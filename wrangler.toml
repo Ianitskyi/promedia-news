@@ -1,0 +1,35 @@
+name = "promedia-news"
+main = "src/worker.js"
+compatibility_date = "2026-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Статичні файли (css, favicon, admin SPA) — усе, що не збігається
+# з маршрутами воркера, віддається напряму з ./public.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = [
+  "/api/*",
+  "/article/*",
+  "/tag/*",
+  "/admin",
+  "/"
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "promedia-news"
+database_id = "62ef89e6-4fd5-4cd2-bea8-da1e221a33ee" # ЗАМІНІТЬ на реальний id після `wrangler d1 create promedia-news`
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "promedia-news-images"
+
+# Кастомний домен — розкоментуйте й переконайтесь, що зона promedia.report
+# є у вашому Cloudflare-акаунті (той самий, де вже є Worker submit-community.js).
+# [[routes]]
+# pattern = "news.promedia.report/*"
+# zone_name = "promedia.report"
+
+# Секрети (НЕ в цьому файлі — задаються через `wrangler secret put`):
+#   AUTH_SECRET      — довільний випадковий рядок (32+ символів) для підпису сесійних токенів
