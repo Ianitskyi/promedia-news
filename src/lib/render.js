@@ -41,7 +41,7 @@ function header(lang) {
 <div class="utility-bar">
   <a class="home-btn" href="https://promedia.report">${t.home}</a>
   <a class="nav-link" href="/">${escapeHtml(t.news)}</a>
-  <a class="nav-link" href="https://communities.promedia.report/">${escapeHtml(t.communities)}</a>
+  <a class="nav-link" href="https://communities.promedia.report/?lang=${lang}">${escapeHtml(t.communities)}</a>
   <div class="lang-toggle">
     <a class="lang-btn${lang === "uk" ? " active" : ""}" href="?lang=uk">UA</a>
     <a class="lang-btn${lang === "en" ? " active" : ""}" href="?lang=en">EN</a>
@@ -156,7 +156,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">
         <span>${lang === "en" ? "About:" : "Про кого:"}</span>
-        ${relatedMediaNames.map((m) => `<a href="https://communities.promedia.report/media/?id=${encodeURIComponent(m.id)}${lang === "en" ? "&lang=en" : ""}">${escapeHtml(m.name)}</a>`).join(", ")}
+        ${relatedMediaNames.map((m) => `<a href="https://communities.promedia.report/media/?id=${encodeURIComponent(m.id)}&lang=${lang}">${escapeHtml(m.name)}</a>`).join(", ")}
       </div>`
     : "";
   const bodyHtml = `
