@@ -2,9 +2,14 @@ import { escapeHtml, markdownToHtml, markdownToPlainText } from "./markdown.js";
 
 const SITE_NAME = { uk: "Новини ПроМедіа", en: "ProMedia News" };
 const SITE_TAGLINE = {
-  uk: "Новини про медіаспільноти та журналістику в Україні",
-  en: "News about media communities and journalism in Ukraine"
+  uk: "Спільноти, інновації, навчання, гранти, вакансії, дослідження, регулювання, гроші та люди в медіа та комунікаціях.",
+  en: "Communities, innovation, education, grants, jobs, research, regulation, money and people in media and communications."
 };
+const SITE_EYEBROW = {
+  uk: "Про журналістику та громадський активізм в Україні",
+  en: "About journalism and civic activism in Ukraine"
+};
+const CATEGORIES = ["Заяви", "Новини", "Статті"];
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 function baseHead({ title, description, url, ogImage, lang }) {
@@ -98,18 +103,38 @@ function articleExcerpt(article, lang) {
   return raw || markdownToPlainText(lang === "en" && article.body_md_en ? article.body_md_en : article.body_md, 200);
 }
 
-function articleCard(article, lang, baseUrl) {
+function categoryNav(lang, activeTag) {
+  const labels = lang === "en"
+    ? { all: "All", "Заяви": "Statements", "Новини": "News", "Статті": "Articles" }
+    : { all: "Усі", "Заяви": "Заяви", "Новини": "Новини", "Статті": "Статті" };
+  const allHref = lang === "en" ? "/?lang=en" : "/";
+  const items = [
+    `<a class="category-link${!activeTag ? " active" : ""}" href="${allHref}">${labels.all}</a>`,
+    ...CATEGORIES.map((category) => {
+      const query = `?tag=${encodeURIComponent(category)}${lang === "en" ? "&lang=en" : ""}`;
+      return `<a class="category-link${activeTag === category ? " active" : ""}" href="/${query}">${labels[category]}</a>`;
+    })
+  ];
+  return `<nav class="category-nav" aria-label="${lang === "en" ? "News categories" : "Рубрики новин"}">${items.join("")}</nav>`;
+}
+
+function articleCard(article, lang, baseUrl, variant) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
   const tags = JSON.parse(article.tags || "[]");
-  const cover = article.cover_image_url
-    ? `<img class="article-card-img" src="${escapeHtml(article.cover_image_url)}" alt="" loading="lazy" />`
+  const cardVariant = variant || "visual";
+  const showCover = cardVariant !== "text" && article.cover_image_url;
+  const cover = showCover
+    ? `<a class="article-card-media" href="${baseUrl}/article/${escapeHtml(article.slug)}${lang === "en" ? "?lang=en" : ""}">
+        <img class="article-card-img" src="${escapeHtml(article.cover_image_url)}" alt="" loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
+      </a>`
     : "";
   const langQ = lang === "en" ? "?lang=en" : "";
   return `
-<article class="article-card">
-  <a href="${baseUrl}/article/${escapeHtml(article.slug)}${langQ}">${cover}</a>
+<article class="article-card article-card--${cardVariant}">
+  ${cover}
   <div class="article-card-body">
+    ${cardVariant === "hero" ? `<span class="lead-label">${lang === "en" ? "Top story" : "Головна новина"}</span>` : ""}
     ${tags.length ? `<div class="article-tags">${tags.map((t) => `<span class="article-tag">${escapeHtml(t)}</span>`).join("")}</div>` : ""}
     <h3><a href="${baseUrl}/article/${escapeHtml(article.slug)}${langQ}">${escapeHtml(title)}</a></h3>
     <p class="article-excerpt">${escapeHtml(excerpt)}</p>
@@ -120,17 +145,38 @@ function articleCard(article, lang, baseUrl) {
 
 export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
   const t = lang === "en" ? SITE_NAME.en : SITE_NAME.uk;
-  const tagline = activeTag
-    ? (lang === "en" ? `Tag: ${activeTag}` : `Тег: ${activeTag}`)
-    : SITE_TAGLINE[lang];
-  const list = articles.length
-    ? `<div class="article-grid">${articles.map((a) => articleCard(a, lang, baseUrl)).join("")}</div>`
-    : `<p class="empty-state">${lang === "en" ? "No articles yet." : "Статей поки немає."}</p>`;
+  const tagline = SITE_TAGLINE[lang];
+  let list = `<p class="empty-state">${lang === "en" ? "No articles yet." : "Статей поки немає."}</p>`;
+  if (articles.length) {
+    const lead = articles.slice(0, 3);
+    const stream = articles.slice(3);
+    const leadSide = lead.slice(1).length
+      ? `<div class="news-lead-side">
+          ${lead[1] ? articleCard(lead[1], lang, baseUrl, "visual") : ""}
+          ${lead[2] ? articleCard(lead[2], lang, baseUrl, "text") : ""}
+        </div>`
+      : "";
+    const streamHtml = stream.length
+      ? `<div class="news-section-heading">
+          <h2>${lang === "en" ? "Latest news" : "Останні новини"}</h2>
+          <span>${String(stream.length).padStart(2, "0")}</span>
+        </div>
+        <div class="article-grid">
+          ${stream.map((article, index) => articleCard(article, lang, baseUrl, index % 4 === 2 ? "text" : "visual")).join("")}
+        </div>`
+      : "";
+    list = `<section class="news-lead${leadSide ? " news-lead--with-side" : ""}" aria-label="${lang === "en" ? "Top stories" : "Головні новини"}">
+        ${articleCard(lead[0], lang, baseUrl, "hero")}
+        ${leadSide}
+      </section>
+      ${streamHtml}`;
+  }
   const bodyHtml = `
 <section class="hero">
-  <div class="eyebrow">${escapeHtml(SITE_NAME[lang])}</div>
-  <h1>${escapeHtml(activeTag ? tagline : (lang === "en" ? "News" : "Новини"))}</h1>
+  <div class="eyebrow">${escapeHtml(SITE_EYEBROW[lang])}</div>
+  <h1>${lang === "en" ? "ProMedia News" : "Новини <span>ProMedia</span>"}</h1>
   <p class="lede">${escapeHtml(tagline)}</p>
+  ${categoryNav(lang, activeTag)}
 </section>
 <main class="wrap">
 ${list}
