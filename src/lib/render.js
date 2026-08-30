@@ -2,7 +2,7 @@ import { escapeHtml, markdownToHtml, markdownToPlainText } from "./markdown.js";
 
 const SITE_NAME = { uk: "Новини ПроМедіа", en: "ProMedia News" };
 const SITE_TAGLINE = {
-  uk: "Публічні заяви, пресрелізи та важливі повідомлення від ГО «ПроМедіа», а також новини про спільноти, навчання, дослідження та людей у сфері медіа, громадському секторі та комунікаціях.",
+  uk: "Заяви від ГО «ПроМедіа», а також новини зі світу медіа, громадських організацій та комунікацій.",
   en: "Public statements, press releases and important updates from ProMedia NGO, along with news about communities, education, research and people working in media, civil society and communications."
 };
 const SITE_EYEBROW = {
