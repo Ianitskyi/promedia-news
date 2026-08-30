@@ -39,32 +39,114 @@ function baseHead({ title, description, url, ogImage, lang }) {
 
 function header(lang) {
   const t = lang === "en"
-    ? { home: "← ProMedia", news: SITE_NAME.en, communities: "Media communities", uk: "UA", en: "EN" }
-    : { home: "← ПроМедіа", news: SITE_NAME.uk, communities: "Медіаспільноти", uk: "UA", en: "EN" };
-  const other = lang === "en" ? "?lang=uk" : "?lang=en";
+    ? { projects: "Projects", services: "What we do", about: "About us", contacts: "Contacts", news: "News", communities: "Media communities", ratings: "Journalism schools ranking", research: "Research", menu: "Open menu" }
+    : { projects: "Проєкти", services: "Що ми робимо", about: "Про нас", contacts: "Контакти", news: "Новини", communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження", menu: "Відкрити меню" };
+  const mainBase = lang === "en" ? "https://promedia.report/en" : "https://promedia.report";
+  const navLinks = `
+    <a href="${mainBase}/projects">${t.projects}</a>
+    <a href="${mainBase}/#services">${t.services}</a>
+    <a href="${mainBase}/#team">${t.about}</a>
+    <a href="${mainBase}/#contacts">${t.contacts}</a>
+    <a class="active" href="/${lang === "en" ? "?lang=en" : ""}">${t.news}</a>`;
   return `
-<div class="utility-bar">
-  <a class="home-btn" href="https://promedia.report">${t.home}</a>
-  <a class="nav-link" href="/">${escapeHtml(t.news)}</a>
-  <a class="nav-link" href="https://communities.promedia.report/?lang=${lang}">${escapeHtml(t.communities)}</a>
-  <div class="lang-toggle">
-    <a class="lang-btn${lang === "uk" ? " active" : ""}" href="?lang=uk">UA</a>
-    <a class="lang-btn${lang === "en" ? " active" : ""}" href="?lang=en">EN</a>
+<header class="org-header">
+  <div class="org-header-shell">
+    <div class="org-header-main">
+      <a class="org-logo" href="${mainBase}" aria-label="ProMedia">
+        <img src="/img/promedia-wordmark.svg" alt="ProMedia" />
+      </a>
+      <nav class="org-primary-nav" aria-label="${lang === "en" ? "Main navigation" : "Головна навігація"}">${navLinks}</nav>
+      <div class="org-lang-select" aria-label="Language">
+        <a class="${lang === "uk" ? "active" : ""}" href="?lang=uk">UA</a>
+        <a class="${lang === "en" ? "active" : ""}" href="?lang=en">EN</a>
+      </div>
+      <details class="org-mobile-menu">
+        <summary aria-label="${t.menu}"><span></span><span></span><span></span></summary>
+        <div class="org-mobile-panel">${navLinks}
+          <a href="https://communities.promedia.report/?lang=${lang}">${t.communities}</a>
+          <a href="https://ratings.promedia.report/?lang=${lang}">${t.ratings}</a>
+          <a href="https://research.promedia.report/?lang=${lang}">${t.research}</a>
+        </div>
+      </details>
+    </div>
+    <nav class="org-subnav" aria-label="${lang === "en" ? "Additional ProMedia links" : "Додаткові посилання ПроМедіа"}">
+      <a href="https://communities.promedia.report/?lang=${lang}">${t.communities}</a>
+      <a href="https://ratings.promedia.report/?lang=${lang}">${t.ratings}</a>
+      <a href="https://research.promedia.report/?lang=${lang}">${t.research}</a>
+    </nav>
   </div>
-</div>`;
+</header>`;
 }
 
 function footer(lang) {
   const t = lang === "en"
-    ? { initiative: "An initiative by", report: "Spotted an error? Email" }
-    : { initiative: "Ініціатива", report: "Побачили помилку? Напишіть на" };
+    ? {
+        projects: "Projects", services: "What we do", about: "About us", contacts: "Contacts", news: "News",
+        communities: "Media communities", ratings: "Journalism schools ranking", research: "Research",
+        details: "Organization details", official: "Official name:", officialValue: "ProMedia NGO",
+        registration: "Registration number:", address: "Registered address:", addressValue: "19/44 Volodymyra Samiilenka St., Kyiv, Ukraine, 03118",
+        chair: "Chair of the Board:", chairValue: "Andrii Ianitskyi", email: "Contact email:", social: "Social media:",
+        partnersKicker: "Community", partners: "Partners and donors", partnersText: "We work with organizations that support independent media, quality communications and resilient communities.",
+        privacy: "Privacy & cookies", rights: "All rights reserved"
+      }
+    : {
+        projects: "Проєкти", services: "Що ми робимо", about: "Про нас", contacts: "Контакти", news: "Новини",
+        communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження",
+        details: "Дані про організацію", official: "Офіційна назва:", officialValue: "ГО «ПроМедіа»",
+        registration: "Реєстраційний номер:", address: "Юридична адреса:", addressValue: "вул. Володимира Самійленка 19/44, Київ, Україна, 03118",
+        chair: "Голова правління:", chairValue: "Андрій Яніцький", email: "Контактна електронна пошта:", social: "Соціальні мережі:",
+        partnersKicker: "Спільнота", partners: "Партнери та донори", partnersText: "Співпрацюємо з організаціями, які підтримують незалежні медіа, якісну комунікацію та стійкість громад.",
+        privacy: "Приватність і cookie", rights: "Усі права захищені"
+      };
+  const mainBase = lang === "en" ? "https://promedia.report/en" : "https://promedia.report";
   return `
-<footer class="site-footer">
-  <a class="footer-brand" href="https://promedia.report" target="_blank" rel="noopener">
-    <span>${escapeHtml(t.initiative)}</span>
-    <img src="/img/promedia-wordmark.svg" alt="ГО «ПроМедіа»" class="footer-logo" />
-  </a>
-  <p>${escapeHtml(t.report)} <a href="mailto:info@promedia.report">info@promedia.report</a></p>
+<footer class="org-footer">
+  <div class="org-footer-inner">
+    <div class="org-footer-top">
+      <a class="org-footer-logo" href="${mainBase}"><img src="https://promedia.report/storage/app/media/logo-footer.svg" alt="ProMedia" /></a>
+      <div class="org-footer-contacts">
+        <a href="tel:+380506959537">+38 (050) 695 95 37</a>
+        <a href="mailto:info@promedia.report">info@promedia.report</a>
+        <div class="org-socials">
+          <a href="https://www.youtube.com/@prostirmedia" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.instagram.com/promediaua/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/promediaukraine" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.facebook.com/promediaukraine" target="_blank" rel="noopener">Facebook</a>
+        </div>
+      </div>
+      <nav class="org-footer-nav" aria-label="Footer">
+        <a href="${mainBase}/projects">${t.projects}</a><a href="${mainBase}/#services">${t.services}</a>
+        <a href="${mainBase}/#team">${t.about}</a><a href="${mainBase}/#contacts">${t.contacts}</a>
+        <a href="/${lang === "en" ? "?lang=en" : ""}">${t.news}</a><a href="https://communities.promedia.report/?lang=${lang}">${t.communities}</a>
+        <a href="https://ratings.promedia.report/?lang=${lang}">${t.ratings}</a><a href="https://research.promedia.report/?lang=${lang}">${t.research}</a>
+      </nav>
+    </div>
+    <section class="org-details" aria-labelledby="org-details-title">
+      <h2 id="org-details-title">${t.details}</h2>
+      <dl>
+        <div><dt>${t.official}</dt><dd>${t.officialValue}</dd></div>
+        <div><dt>${t.registration}</dt><dd>45995408</dd></div>
+        <div><dt>${t.address}</dt><dd>${t.addressValue}</dd></div>
+        <div><dt>${t.chair}</dt><dd>${t.chairValue}</dd></div>
+        <div><dt>${t.email}</dt><dd><a href="mailto:info@promedia.report">info@promedia.report</a></dd></div>
+        <div><dt>${t.social}</dt><dd><a href="https://www.instagram.com/promediaua/">Instagram</a> · <a href="https://www.facebook.com/promediaukraine">Facebook</a> · <a href="https://www.linkedin.com/company/promediaukraine/">LinkedIn</a> · <a href="https://www.youtube.com/@prostirmedia">YouTube</a></dd></div>
+      </dl>
+    </section>
+    <section class="org-partners" aria-labelledby="org-partners-title">
+      <p>${t.partnersKicker}</p><h2 id="org-partners-title">${t.partners}</h2><div class="org-partners-rule"></div>
+      <p class="org-partners-text">${t.partnersText}</p>
+      <div class="org-partners-grid">
+        <a href="https://iwpr.net/" target="_blank" rel="noopener"><img src="https://promedia.report/storage/app/media/partners/iwpr-logo-800x320.png" alt="IWPR" loading="lazy" /></a>
+        <span><img src="https://promedia.report/storage/app/media/partners/nda-confidential-partner-800x320.png" alt="Confidential partner" loading="lazy" /></span>
+        <a href="https://irrp.org.ua/about-rpdi-eng/" target="_blank" rel="noopener"><img src="https://promedia.report/storage/app/media/partners/Dark%20Vert%20Block%20Full.png" alt="RPDI" loading="lazy" /></a>
+        <a href="https://recovery.win/" target="_blank" rel="noopener" class="org-partner-text">Recovery Window</a>
+        <a href="https://nsju.org/" target="_blank" rel="noopener"><img src="https://promedia.report/storage/app/media/partners/images.png" alt="НСЖУ" loading="lazy" /></a>
+        <a href="https://lvivmediaforum.com/" target="_blank" rel="noopener"><img src="https://promedia.report/storage/app/media/partners/LMF.png" alt="Lviv Media Forum" loading="lazy" /></a>
+        <a href="https://gongadzeprize.com.ua/" target="_blank" rel="noopener"><img src="https://promedia.report/storage/app/media/partners/%D0%BB%D0%BE%D0%B3%D0%BE%20%D0%B0%D0%BD%D0%B3.png" alt="Gongadze Prize" loading="lazy" /></a>
+      </div>
+    </section>
+    <div class="org-copyright"><span>© 2025–2026 ProMedia. ${t.rights}</span><a href="${mainBase}/privacy-policy">${t.privacy}</a></div>
+  </div>
 </footer>`;
 }
 
