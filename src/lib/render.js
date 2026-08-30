@@ -2,8 +2,8 @@ import { escapeHtml, markdownToHtml, markdownToPlainText } from "./markdown.js";
 
 const SITE_NAME = { uk: "Новини ПроМедіа", en: "ProMedia News" };
 const SITE_TAGLINE = {
-  uk: "Спільноти, інновації, навчання, гранти, вакансії, дослідження, регулювання, гроші та люди в медіа та комунікаціях.",
-  en: "Communities, innovation, education, grants, jobs, research, regulation, money and people in media and communications."
+  uk: "Публічні заяви, пресрелізи та важливі повідомлення від ГО «ПроМедіа», а також новини про спільноти, навчання, дослідження та людей у сфері медіа, громадському секторі та комунікаціях.",
+  en: "Public statements, press releases and important updates from ProMedia NGO, along with news about communities, education, research and people working in media, civil society and communications."
 };
 const SITE_EYEBROW = {
   uk: "Про журналістику та громадський активізм в Україні",
@@ -256,7 +256,7 @@ export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
   const bodyHtml = `
 <section class="hero">
   <div class="eyebrow">${escapeHtml(SITE_EYEBROW[lang])}</div>
-  <h1>${lang === "en" ? "ProMedia News" : "Новини <span>ProMedia</span>"}</h1>
+  <h1>${lang === "en" ? "News from <span>ProMedia</span>" : "Новини від <span>ProMedia</span>"}</h1>
   <p class="lede">${escapeHtml(tagline)}</p>
   ${categoryNav(lang, activeTag)}
 </section>
