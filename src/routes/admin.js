@@ -22,6 +22,7 @@ function serializeArticle(a) {
     coverImageUrl: a.cover_image_url,
     tags: JSON.parse(a.tags || "[]"),
     relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
+    isImportant: Boolean(a.is_important),
     status: a.status,
     authorId: a.author_id,
     publishedAt: a.published_at,
@@ -60,12 +61,13 @@ export async function handleAdminRoute(request, env, url) {
     const now = new Date().toISOString();
     const result = await db.prepare(`
       INSERT INTO articles (slug, title, title_en, excerpt, excerpt_en, body_md, body_md_en,
-        cover_image_url, tags, related_media_ids, status, author_id, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
+        cover_image_url, tags, related_media_ids, is_important, status, author_id, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
     `).bind(
       slug, body.title, body.titleEn || null, excerpt, body.excerptEn || null,
       body.bodyMd || "", body.bodyMdEn || null, body.coverImageUrl || null,
       JSON.stringify(body.tags || []), JSON.stringify(body.relatedMediaIds || []),
+      body.isImportant ? 1 : 0,
       user.id, now, now
     ).run();
     const article = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(result.meta.last_row_id).first();
@@ -87,6 +89,7 @@ export async function handleAdminRoute(request, env, url) {
       await db.prepare(`
         UPDATE articles SET title = ?, title_en = ?, excerpt = ?, excerpt_en = ?,
           body_md = ?, body_md_en = ?, cover_image_url = ?, tags = ?, related_media_ids = ?,
+          is_important = ?,
           updated_at = ?
         WHERE id = ?
       `).bind(
@@ -99,6 +102,7 @@ export async function handleAdminRoute(request, env, url) {
         body.coverImageUrl ?? article.cover_image_url,
         JSON.stringify(body.tags ?? JSON.parse(article.tags || "[]")),
         JSON.stringify(body.relatedMediaIds ?? JSON.parse(article.related_media_ids || "[]")),
+        body.isImportant === undefined ? article.is_important : (body.isImportant ? 1 : 0),
         new Date().toISOString(),
         id
       ).run();

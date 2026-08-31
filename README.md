@@ -8,6 +8,9 @@
 Статті також можна підтягувати на сторінки медіа в каталозі
 [communities.promedia.report](https://communities.promedia.report) через
 публічний ендпоінт `GET /api/articles?mediaId=<id>` (CORS відкритий).
+Позначені в адмінці важливі матеріали доступні через
+`GET /api/articles?important=1&limit=3` і потрапляють до блока «Вибрані
+новини» на головному `promedia.report`.
 
 ## Стек
 
@@ -157,7 +160,7 @@ src/
 public/
   admin/            — ванільний JS SPA адмінпанелі
   css/style.css     — стилі (бренд ProMedia)
-migrations/0001_init.sql
+migrations/             — послідовні SQL-міграції D1
 ```
 
 ## Інтеграція з каталогом спільнот
@@ -166,6 +169,15 @@ migrations/0001_init.sql
 запит `GET https://news.promedia.report/api/articles?mediaId=<id>` для
 показу заголовків пов'язаних новин. Прив'язка медіа до статті робиться в
 адмінці при створенні/редагуванні статті (поле пошуку медіа за назвою).
+
+## Інтеграція з головною сторінкою ProMedia
+
+Прапорець «Важлива новина» в редакторі статті записує `is_important` у D1.
+Головний сайт завантажує до трьох таких опублікованих матеріалів через
+`GET https://news.promedia.report/api/articles?important=1&limit=3`.
+Позначені матеріали мають пріоритет, а решта трьох місць заповнюється
+чинними картками старого добору. Клієнтська інтеграція знаходиться у
+`public/js/promedia-featured-news.js`.
 
 ## Імпорт новин із promedia.report
 

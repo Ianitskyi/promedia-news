@@ -45,9 +45,10 @@ export async function handlePublicRoute(request, env, url) {
   if (url.pathname === "/api/articles" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
     const mediaId = url.searchParams.get("mediaId");
+    const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, excerpt, excerpt_en, cover_image_url, tags, related_media_ids, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, excerpt, excerpt_en, cover_image_url, tags, related_media_ids, is_important, published_at FROM articles WHERE status = 'published'";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";
@@ -56,6 +57,9 @@ export async function handlePublicRoute(request, env, url) {
     if (mediaId) {
       query += " AND related_media_ids LIKE ?";
       binds.push(`%"${mediaId}"%`);
+    }
+    if (important === "1" || important === "true") {
+      query += " AND is_important = 1";
     }
     query += " ORDER BY published_at DESC LIMIT ?";
     binds.push(limit);
@@ -70,6 +74,7 @@ export async function handlePublicRoute(request, env, url) {
       coverImageUrl: a.cover_image_url,
       tags: JSON.parse(a.tags || "[]"),
       relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
+      isImportant: Boolean(a.is_important),
       publishedAt: a.published_at,
       url: `https://news.promedia.report/article/${a.slug}`
     }));
@@ -94,6 +99,7 @@ export async function handlePublicRoute(request, env, url) {
       coverImageUrl: article.cover_image_url,
       tags: JSON.parse(article.tags || "[]"),
       relatedMediaIds: JSON.parse(article.related_media_ids || "[]"),
+      isImportant: Boolean(article.is_important),
       publishedAt: article.published_at
     });
   }

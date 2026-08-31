@@ -98,7 +98,7 @@
 
     var rows = state.articles.map(function (a) {
       return "<tr>" +
-        "<td>" + escapeHtml(a.title) + "</td>" +
+        "<td>" + (a.isImportant ? '<span title="Важлива новина" aria-label="Важлива новина">★ </span>' : "") + escapeHtml(a.title) + "</td>" +
         "<td>" + statusBadge(a.status) + "</td>" +
         "<td>" + escapeHtml(new Date(a.updatedAt).toLocaleDateString("uk-UA")) + "</td>" +
         '<td><a href="#/edit/' + a.id + '">Редагувати</a></td>' +
@@ -148,7 +148,7 @@
     var isNew = !article;
     var a = article || {
       title: "", titleEn: "", excerpt: "", excerptEn: "", bodyMd: "", bodyMdEn: "",
-      coverImageUrl: "", tags: [], relatedMediaIds: [], status: "draft"
+      coverImageUrl: "", tags: [], relatedMediaIds: [], isImportant: false, status: "draft"
     };
 
     root.innerHTML =
@@ -169,6 +169,10 @@
       (a.coverImageUrl ? '<img class="admin-cover-preview" id="cover-preview" src="' + escapeHtml(a.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="cover-preview" style="display:none" />') +
       "</div>" +
       '<div class="admin-field"><label>Теги (через кому)</label><input type="text" name="tags" value="' + escapeHtml(a.tags.join(", ")) + '" /></div>' +
+      '<div class="admin-field"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">' +
+      '<input type="checkbox" name="isImportant" style="width:auto;margin-top:3px"' + (a.isImportant ? " checked" : "") + ' />' +
+      '<span><strong>Важлива новина</strong><br><span class="admin-hint">Додати матеріал до добору «Вибрані новини» на головному сайті</span></span>' +
+      "</label></div>" +
       '<div class="admin-field"><label>Пов’язані медіа (пошук за назвою з каталогу карти спільнот)</label>' +
       '<input type="text" id="media-search" placeholder="Почніть вводити назву медіа…" autocomplete="off" />' +
       '<div id="media-search-results"></div>' +
@@ -251,7 +255,8 @@
         bodyMdEn: form.bodyMdEn.value || null,
         coverImageUrl: form.coverImageUrl.value || null,
         tags: form.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
-        relatedMediaIds: selectedMediaIds
+        relatedMediaIds: selectedMediaIds,
+        isImportant: form.isImportant.checked
       };
     }
 
