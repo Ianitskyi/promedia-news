@@ -23,6 +23,7 @@ function serializeArticle(a) {
     tags: JSON.parse(a.tags || "[]"),
     relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
     isImportant: Boolean(a.is_important),
+    cardStyle: a.card_style || "auto",
     status: a.status,
     authorId: a.author_id,
     publishedAt: a.published_at,
@@ -36,6 +37,10 @@ function extFromContentType(ct) {
   if (ct === "image/webp") return "webp";
   if (ct === "image/gif") return "gif";
   return "jpg";
+}
+
+function normalizeCardStyle(value) {
+  return ["auto", "hero", "image", "text"].includes(value) ? value : "auto";
 }
 
 export async function handleAdminRoute(request, env, url) {
@@ -61,13 +66,14 @@ export async function handleAdminRoute(request, env, url) {
     const now = new Date().toISOString();
     const result = await db.prepare(`
       INSERT INTO articles (slug, title, title_en, excerpt, excerpt_en, body_md, body_md_en,
-        cover_image_url, tags, related_media_ids, is_important, status, author_id, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
+        cover_image_url, tags, related_media_ids, is_important, card_style, status, author_id, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
     `).bind(
       slug, body.title, body.titleEn || null, excerpt, body.excerptEn || null,
       body.bodyMd || "", body.bodyMdEn || null, body.coverImageUrl || null,
       JSON.stringify(body.tags || []), JSON.stringify(body.relatedMediaIds || []),
       body.isImportant ? 1 : 0,
+      normalizeCardStyle(body.cardStyle),
       user.id, now, now
     ).run();
     const article = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(result.meta.last_row_id).first();
@@ -89,7 +95,7 @@ export async function handleAdminRoute(request, env, url) {
       await db.prepare(`
         UPDATE articles SET title = ?, title_en = ?, excerpt = ?, excerpt_en = ?,
           body_md = ?, body_md_en = ?, cover_image_url = ?, tags = ?, related_media_ids = ?,
-          is_important = ?,
+          is_important = ?, card_style = ?,
           updated_at = ?
         WHERE id = ?
       `).bind(
@@ -103,9 +109,15 @@ export async function handleAdminRoute(request, env, url) {
         JSON.stringify(body.tags ?? JSON.parse(article.tags || "[]")),
         JSON.stringify(body.relatedMediaIds ?? JSON.parse(article.related_media_ids || "[]")),
         body.isImportant === undefined ? article.is_important : (body.isImportant ? 1 : 0),
+        body.cardStyle === undefined ? (article.card_style || "auto") : normalizeCardStyle(body.cardStyle),
         new Date().toISOString(),
         id
       ).run();
+      if (article.status === "published" && normalizeCardStyle(body.cardStyle) === "hero") {
+        await db.prepare(
+          "UPDATE articles SET card_style = 'auto', updated_at = ? WHERE id != ? AND status = 'published' AND card_style = 'hero'"
+        ).bind(new Date().toISOString(), id).run();
+      }
       const updated = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
       return json({ item: serializeArticle(updated) });
     }
@@ -124,6 +136,11 @@ export async function handleAdminRoute(request, env, url) {
     if (user.role !== "admin" && article.author_id !== user.id) return json({ error: "forbidden" }, 403);
     if (!article.title || !article.body_md) return json({ error: "Заголовок і текст обов'язкові перед публікацією" }, 400);
     const now = new Date().toISOString();
+    if (article.card_style === "hero") {
+      await db.prepare(
+        "UPDATE articles SET card_style = 'auto', updated_at = ? WHERE id != ? AND status = 'published' AND card_style = 'hero'"
+      ).bind(now, id).run();
+    }
     await db.prepare(
       "UPDATE articles SET status = 'published', published_at = COALESCE(published_at, ?), updated_at = ? WHERE id = ?"
     ).bind(now, now, id).run();

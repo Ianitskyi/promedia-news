@@ -148,7 +148,7 @@
     var isNew = !article;
     var a = article || {
       title: "", titleEn: "", excerpt: "", excerptEn: "", bodyMd: "", bodyMdEn: "",
-      coverImageUrl: "", tags: [], relatedMediaIds: [], isImportant: false, status: "draft"
+      coverImageUrl: "", tags: [], relatedMediaIds: [], isImportant: false, cardStyle: "auto", status: "draft"
     };
 
     root.innerHTML =
@@ -169,6 +169,13 @@
       (a.coverImageUrl ? '<img class="admin-cover-preview" id="cover-preview" src="' + escapeHtml(a.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="cover-preview" style="display:none" />') +
       "</div>" +
       '<div class="admin-field"><label>Теги (через кому)</label><input type="text" name="tags" value="' + escapeHtml(a.tags.join(", ")) + '" /></div>' +
+      '<div class="admin-field"><label>Оформлення картки на головній сторінці новин</label>' +
+      '<select name="cardStyle">' +
+      '<option value="auto"' + ((a.cardStyle || "auto") === "auto" ? " selected" : "") + '>Автоматично — за позицією</option>' +
+      '<option value="hero"' + (a.cardStyle === "hero" ? " selected" : "") + '>Велика головна новина</option>' +
+      '<option value="image"' + (a.cardStyle === "image" ? " selected" : "") + '>Картка з фото</option>' +
+      '<option value="text"' + (a.cardStyle === "text" ? " selected" : "") + '>Картка без фото</option>' +
+      '</select><span class="admin-hint">Ручний вибір має пріоритет над автоматичним шаблоном. Велика головна новина може бути лише одна.</span></div>' +
       '<div class="admin-field"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">' +
       '<input type="checkbox" name="isImportant" style="width:auto;margin-top:3px"' + (a.isImportant ? " checked" : "") + ' />' +
       '<span><strong>Важлива новина</strong><br><span class="admin-hint">Додати матеріал до добору «Вибрані новини» на головному сайті</span></span>' +
@@ -256,7 +263,8 @@
         coverImageUrl: form.coverImageUrl.value || null,
         tags: form.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,
-        isImportant: form.isImportant.checked
+        isImportant: form.isImportant.checked,
+        cardStyle: form.cardStyle.value
       };
     }
 

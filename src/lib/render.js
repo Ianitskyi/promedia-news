@@ -225,17 +225,27 @@ function articleCard(article, lang, baseUrl, variant) {
 </article>`;
 }
 
+function articleCardVariant(article, automaticVariant) {
+  const style = article.card_style || "auto";
+  if (style === "image") return "visual";
+  if (style === "text" || style === "hero") return style;
+  return automaticVariant;
+}
+
 export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
   const t = lang === "en" ? SITE_NAME.en : SITE_NAME.uk;
   const tagline = SITE_TAGLINE[lang];
   let list = `<p class="empty-state">${lang === "en" ? "No articles yet." : "Статей поки немає."}</p>`;
   if (articles.length) {
-    const lead = articles.slice(0, 3);
-    const stream = articles.slice(3);
+    const orderedArticles = articles.slice();
+    const manualHeroIndex = orderedArticles.findIndex((article) => article.card_style === "hero");
+    if (manualHeroIndex > 0) orderedArticles.unshift(orderedArticles.splice(manualHeroIndex, 1)[0]);
+    const lead = orderedArticles.slice(0, 3);
+    const stream = orderedArticles.slice(3);
     const leadSide = lead.slice(1).length
       ? `<div class="news-lead-side">
-          ${lead[1] ? articleCard(lead[1], lang, baseUrl, "visual") : ""}
-          ${lead[2] ? articleCard(lead[2], lang, baseUrl, "text") : ""}
+          ${lead[1] ? articleCard(lead[1], lang, baseUrl, articleCardVariant(lead[1], "visual")) : ""}
+          ${lead[2] ? articleCard(lead[2], lang, baseUrl, articleCardVariant(lead[2], "text")) : ""}
         </div>`
       : "";
     const streamHtml = stream.length
@@ -244,11 +254,11 @@ export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
           <span>${String(stream.length).padStart(2, "0")}</span>
         </div>
         <div class="article-grid">
-          ${stream.map((article, index) => articleCard(article, lang, baseUrl, index % 4 === 2 ? "text" : "visual")).join("")}
+          ${stream.map((article, index) => articleCard(article, lang, baseUrl, articleCardVariant(article, index % 4 === 2 ? "text" : "visual"))).join("")}
         </div>`
       : "";
     list = `<section class="news-lead${leadSide ? " news-lead--with-side" : ""}" aria-label="${lang === "en" ? "Top stories" : "Головні новини"}">
-        ${articleCard(lead[0], lang, baseUrl, "hero")}
+        ${articleCard(lead[0], lang, baseUrl, articleCardVariant(lead[0], "hero"))}
         ${leadSide}
       </section>
       ${streamHtml}`;

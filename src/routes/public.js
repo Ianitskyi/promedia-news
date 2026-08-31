@@ -48,7 +48,7 @@ export async function handlePublicRoute(request, env, url) {
     const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, excerpt, excerpt_en, cover_image_url, tags, related_media_ids, is_important, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, excerpt, excerpt_en, cover_image_url, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published'";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";
@@ -75,6 +75,7 @@ export async function handlePublicRoute(request, env, url) {
       tags: JSON.parse(a.tags || "[]"),
       relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
       isImportant: Boolean(a.is_important),
+      cardStyle: a.card_style || "auto",
       publishedAt: a.published_at,
       url: `https://news.promedia.report/article/${a.slug}`
     }));
@@ -100,6 +101,7 @@ export async function handlePublicRoute(request, env, url) {
       tags: JSON.parse(article.tags || "[]"),
       relatedMediaIds: JSON.parse(article.related_media_ids || "[]"),
       isImportant: Boolean(article.is_important),
+      cardStyle: article.card_style || "auto",
       publishedAt: article.published_at
     });
   }
@@ -127,7 +129,7 @@ export async function handlePublicRoute(request, env, url) {
   // GET / (homepage, optional ?tag=)
   if (url.pathname === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, excerpt, excerpt_en, cover_image_url, tags, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, excerpt, excerpt_en, cover_image_url, tags, card_style, published_at FROM articles WHERE status = 'published'";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";
