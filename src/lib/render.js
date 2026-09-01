@@ -181,6 +181,44 @@ ${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt })}
 ${header(lang)}
 ${bodyHtml}
 ${footer(lang)}
+<script>
+(function(){
+  function ready(fn) {
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
+    else fn();
+  }
+  ready(function(){
+    document.querySelectorAll("[data-share-native]").forEach(function(button){
+      if (!navigator.share) return;
+      button.hidden = false;
+      button.addEventListener("click", function(){
+        navigator.share({
+          title: button.dataset.shareTitle || document.title,
+          text: button.dataset.shareText || "",
+          url: button.dataset.shareUrl || location.href
+        }).catch(function(){});
+      });
+    });
+
+    document.querySelectorAll("[data-share-copy]").forEach(function(button){
+      button.addEventListener("click", function(){
+        var url = button.dataset.shareUrl || location.href;
+        var label = button.dataset.label || button.textContent;
+        var done = button.dataset.done || "Copied";
+        function showDone() {
+          button.textContent = done;
+          window.setTimeout(function(){ button.textContent = label; }, 1800);
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(url).then(showDone).catch(function(){ window.prompt("Copy link", url); });
+        } else {
+          window.prompt("Copy link", url);
+        }
+      });
+    });
+  });
+})();
+</script>
 </body>
 </html>`;
 }
@@ -246,6 +284,34 @@ function articleCardVariant(article, automaticVariant) {
   return automaticVariant;
 }
 
+function articleShareBlock({ title, excerpt, articleUrl, lang }) {
+  const encodedUrl = encodeURIComponent(articleUrl);
+  const encodedTitle = encodeURIComponent(title);
+  const encodedText = encodeURIComponent(`${title}\n\n${articleUrl}`);
+  const labels = lang === "en"
+    ? { title: "Share", native: "Instagram / more", copy: "Copy link", copied: "Copied", email: "Email" }
+    : { title: "Поширити", native: "Instagram / ще", copy: "Копіювати", copied: "Скопійовано", email: "Email" };
+  const links = [
+    ["Facebook", `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`],
+    ["X", `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`],
+    ["Threads", `https://www.threads.net/intent/post?text=${encodedText}`],
+    ["Telegram", `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`],
+    ["LinkedIn", `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`],
+    ["WhatsApp", `https://api.whatsapp.com/send?text=${encodedText}`],
+    ["Viber", `viber://forward?text=${encodedText}`],
+    [labels.email, `mailto:?subject=${encodedTitle}&body=${encodedText}`]
+  ];
+  return `
+<section class="article-share" aria-label="${escapeHtml(labels.title)}">
+  <span>${escapeHtml(labels.title)}</span>
+  <div class="article-share-links">
+    ${links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener" aria-label="${escapeHtml(`${labels.title}: ${label}`)}">${escapeHtml(label)}</a>`).join("")}
+    <button type="button" data-share-copy data-share-url="${escapeHtml(articleUrl)}" data-label="${escapeHtml(labels.copy)}" data-done="${escapeHtml(labels.copied)}">${escapeHtml(labels.copy)}</button>
+    <button type="button" hidden data-share-native data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}">${escapeHtml(labels.native)}</button>
+  </div>
+</section>`;
+}
+
 export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
   const t = lang === "en" ? SITE_NAME.en : SITE_NAME.uk;
   const tagline = SITE_TAGLINE[lang];
@@ -299,6 +365,7 @@ ${list}
 export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames }) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
+  const articleUrl = `${baseUrl}/article/${article.slug}${lang === "en" ? "?lang=en" : ""}`;
   const bodyMd = (lang === "en" && article.body_md_en) ? article.body_md_en : article.body_md;
   const bodyHtmlContent = markdownToHtml(bodyMd);
   const tags = JSON.parse(article.tags || "[]");
@@ -317,6 +384,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   ${tags.length ? `<div class="article-tags">${tags.map((tg) => `<a class="article-tag" href="/?tag=${encodeURIComponent(tg)}${lang === "en" ? "&lang=en" : ""}">${escapeHtml(tg)}</a>`).join("")}</div>` : ""}
   <h1>${escapeHtml(title)}</h1>
   <p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>
+  ${articleShareBlock({ title, excerpt, articleUrl, lang })}
   ${cover}
   <div class="article-body">${bodyHtmlContent}</div>
   ${mediaLinksHtml}
@@ -324,7 +392,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   return pageShell({
     title: `${title} — ${SITE_NAME[lang]}`,
     description: excerpt,
-    url: `${baseUrl}/article/${article.slug}${lang === "en" ? "?lang=en" : ""}`,
+    url: articleUrl,
     ogImage: article.cover_image_url || undefined,
     ogType: "article",
     publishedAt: article.published_at,
