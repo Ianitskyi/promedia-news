@@ -12,29 +12,43 @@ const SITE_EYEBROW = {
 const CATEGORIES = ["Заяви", "Новини", "Статті"];
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
-function baseHead({ title, description, url, ogImage, lang }) {
-  const altLang = lang === "en" ? "uk" : "en";
+function localizedUrls(url) {
+  const ukUrl = url.replace(/([?&])lang=en&?/, "$1").replace(/[?&]$/, "");
+  const enUrl = ukUrl + (ukUrl.includes("?") ? "&" : "?") + "lang=en";
+  return { ukUrl, enUrl };
+}
+
+function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt }) {
+  const { ukUrl, enUrl } = localizedUrls(url);
+  const canonicalUrl = lang === "en" ? enUrl : ukUrl;
+  const locale = lang === "en" ? "en_US" : "uk_UA";
+  const alternateLocale = lang === "en" ? "uk_UA" : "en_US";
   return `
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}" />
-<meta property="og:type" content="website" />
+<link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
+<meta property="og:type" content="${escapeHtml(ogType || "website")}" />
 <meta property="og:site_name" content="${escapeHtml(SITE_NAME[lang])}" />
-<meta property="og:url" content="${escapeHtml(url)}" />
+<meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
 <meta property="og:title" content="${escapeHtml(title)}" />
 <meta property="og:description" content="${escapeHtml(description)}" />
 <meta property="og:image" content="${escapeHtml(ogImage || DEFAULT_OG_IMAGE)}" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
+<meta property="og:locale" content="${locale}" />
+<meta property="og:locale:alternate" content="${alternateLocale}" />
+${publishedAt ? `<meta property="article:published_time" content="${escapeHtml(publishedAt)}" />` : ""}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="${escapeHtml(title)}" />
 <meta name="twitter:description" content="${escapeHtml(description)}" />
 <meta name="twitter:image" content="${escapeHtml(ogImage || DEFAULT_OG_IMAGE)}" />
-<link rel="alternate" hreflang="uk" href="${escapeHtml(url.replace(/([?&])lang=en&?/, "$1").replace(/[?&]$/, ""))}" />
+<link rel="alternate" hreflang="uk" href="${escapeHtml(ukUrl)}" />
+<link rel="alternate" hreflang="en" href="${escapeHtml(enUrl)}" />
+<link rel="alternate" hreflang="x-default" href="${escapeHtml(ukUrl)}" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="/css/style.css" />
-<!-- lang alt: ${escapeHtml(altLang)} -->`;
+<link rel="stylesheet" href="/css/style.css" />`;
 }
 
 function header(lang) {
@@ -150,11 +164,11 @@ function footer(lang) {
 </footer>`;
 }
 
-function pageShell({ title, description, url, ogImage, lang, bodyHtml }) {
+function pageShell({ title, description, url, ogImage, lang, ogType, publishedAt, bodyHtml }) {
   return `<!doctype html>
 <html lang="${lang}">
 <head>
-${baseHead({ title, description, url, ogImage, lang })}
+${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt })}
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D8TM22QR9R"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -208,7 +222,7 @@ function articleCard(article, lang, baseUrl, variant) {
   const showCover = cardVariant !== "text" && article.cover_image_url;
   const cover = showCover
     ? `<a class="article-card-media" href="${baseUrl}/article/${escapeHtml(article.slug)}${lang === "en" ? "?lang=en" : ""}">
-        <img class="article-card-img" src="${escapeHtml(article.cover_image_url)}" alt="" loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
+        <img class="article-card-img" src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(title)}" loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
       </a>`
     : "";
   const langQ = lang === "en" ? "?lang=en" : "";
@@ -289,7 +303,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const bodyHtmlContent = markdownToHtml(bodyMd);
   const tags = JSON.parse(article.tags || "[]");
   const cover = article.cover_image_url
-    ? `<img class="article-cover" src="${escapeHtml(article.cover_image_url)}" alt="" />`
+    ? `<img class="article-cover" src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(title)}" />`
     : "";
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">
@@ -312,6 +326,8 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
     description: excerpt,
     url: `${baseUrl}/article/${article.slug}${lang === "en" ? "?lang=en" : ""}`,
     ogImage: article.cover_image_url || undefined,
+    ogType: "article",
+    publishedAt: article.published_at,
     lang,
     bodyHtml
   });
