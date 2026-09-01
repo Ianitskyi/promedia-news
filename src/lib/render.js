@@ -11,6 +11,49 @@ const SITE_EYEBROW = {
 };
 const CATEGORIES = ["Заяви", "Новини", "Статті"];
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
+const TAG_LABELS_EN = {
+  "Заяви": "Statements",
+  "Новини": "News",
+  "Статті": "Articles",
+  "освіта": "education",
+  "журналістська освіта": "journalism education",
+  "вступ": "admissions",
+  "рейтинг журфаків": "journalism schools ranking",
+  "українські медіа": "Ukrainian media",
+  "війна": "war",
+  "безпека журналістів": "journalist safety",
+  "дослідження": "research",
+  "Львівський медіафорум": "Lviv Media Forum",
+  "стійкість медіа": "media resilience",
+  "державні комунікації": "public communications",
+  "суспільство": "society",
+  "військова реформа": "military reform",
+  "інтерв’ю": "interview",
+  "студенти": "students",
+  "Україна": "Ukraine",
+  "Японія": "Japan",
+  "медійні спільноти": "media communities",
+  "локальні медіа": "local media",
+  "карта спільнот": "community map",
+  "медіаправо": "media law",
+  "Верховна Рада": "Verkhovna Rada",
+  "доступ журналістів": "journalist access",
+  "парламент": "parliament",
+  "фактчекінг": "fact-checking",
+  "журналістські розслідування": "investigative journalism",
+  "ІРРП": "RPDI",
+  "Суспільне": "Suspilne",
+  "державний бюджет": "state budget",
+  "медіаполітика": "media policy",
+  "незалежні медіа": "independent media",
+  "членство": "membership",
+  "Велика Британія": "United Kingdom",
+  "Чернігів": "Chernihiv"
+};
+
+function tagLabel(tag, lang) {
+  return lang === "en" ? (TAG_LABELS_EN[tag] || tag) : tag;
+}
 
 function localizedUrls(url) {
   const ukUrl = url.replace(/([?&])lang=en&?/, "$1").replace(/[?&]$/, "");
@@ -269,7 +312,7 @@ function articleCard(article, lang, baseUrl, variant) {
   ${cover}
   <div class="article-card-body">
     ${cardVariant === "hero" ? `<span class="lead-label">${lang === "en" ? "Top story" : "Головна новина"}</span>` : ""}
-    ${tags.length ? `<div class="article-tags">${tags.map((t) => `<span class="article-tag">${escapeHtml(t)}</span>`).join("")}</div>` : ""}
+    ${tags.length ? `<div class="article-tags">${tags.map((t) => `<span class="article-tag">${escapeHtml(tagLabel(t, lang))}</span>`).join("")}</div>` : ""}
     <h3><a href="${baseUrl}/article/${escapeHtml(article.slug)}${langQ}">${escapeHtml(title)}</a></h3>
     <p class="article-excerpt">${escapeHtml(excerpt)}</p>
     <p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>
@@ -381,7 +424,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const bodyHtml = `
 <main class="wrap article-page">
   <p class="article-back"><a href="/${lang === "en" ? "?lang=en" : ""}">${lang === "en" ? "← All news" : "← Усі новини"}</a></p>
-  ${tags.length ? `<div class="article-tags">${tags.map((tg) => `<a class="article-tag" href="/?tag=${encodeURIComponent(tg)}${lang === "en" ? "&lang=en" : ""}">${escapeHtml(tg)}</a>`).join("")}</div>` : ""}
+  ${tags.length ? `<div class="article-tags">${tags.map((tg) => `<a class="article-tag" href="/?tag=${encodeURIComponent(tg)}${lang === "en" ? "&lang=en" : ""}">${escapeHtml(tagLabel(tg, lang))}</a>`).join("")}</div>` : ""}
   <h1>${escapeHtml(title)}</h1>
   <p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>
   ${articleShareBlock({ title, excerpt, articleUrl, lang })}
