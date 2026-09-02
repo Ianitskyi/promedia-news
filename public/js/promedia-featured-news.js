@@ -70,6 +70,8 @@
   }
 
   function init() {
+    loadMemorialPopup();
+
     var grid = document.querySelector(".pm-featured-news-grid");
     if (!grid || typeof window.fetch !== "function") return;
 
@@ -113,6 +115,15 @@
       .catch(function () {
         // Якщо API тимчасово недоступний, залишаємо чинний серверний добір.
       });
+  }
+
+  function loadMemorialPopup() {
+    if (document.querySelector('script[data-promedia-memorial-popup]')) return;
+    var script = document.createElement("script");
+    script.src = NEWS_ORIGIN + "/js/promedia-memorial-popup.js";
+    script.defer = true;
+    script.dataset.promediaMemorialPopup = "true";
+    document.head.appendChild(script);
   }
 
   if (document.readyState === "loading") {

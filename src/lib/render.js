@@ -224,6 +224,7 @@ ${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt })}
 ${header(lang)}
 ${bodyHtml}
 ${footer(lang)}
+<script defer src="/js/promedia-memorial-popup.js"></script>
 <script>
 (function(){
   function ready(fn) {
