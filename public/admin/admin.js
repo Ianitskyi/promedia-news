@@ -144,6 +144,44 @@
     });
   }
 
+  function normalizeUrl(url) {
+    var value = String(url || "").trim();
+    if (!value) return "";
+    if (/^[a-z][a-z0-9+.-]*:/i.test(value)) return value;
+    return "https://" + value;
+  }
+
+  function insertMarkdownLink(textarea) {
+    if (!textarea) return;
+    var start = textarea.selectionStart || 0;
+    var end = textarea.selectionEnd || 0;
+    var value = textarea.value;
+    var selected = value.slice(start, end);
+    var selectedLooksLikeUrl = /^[a-z][a-z0-9+.-]*:/i.test(selected.trim()) || /^[\w.-]+\.[a-z]{2,}/i.test(selected.trim());
+    var text = selectedLooksLikeUrl ? window.prompt("Яке слово або фразу показати замість адреси?") : (selected || window.prompt("Яке слово або фразу залінкувати?"));
+    if (!text) return;
+    var url = normalizeUrl(window.prompt("Вставте адресу посилання", selectedLooksLikeUrl ? selected.trim() : "https://"));
+    if (!url) return;
+    textarea.setRangeText("[" + text + "](" + url + ")", start, end, "end");
+    textarea.focus();
+  }
+
+  function attachMarkdownTools() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-insert-link]"), function (button) {
+      button.addEventListener("click", function () {
+        insertMarkdownLink(document.querySelector('textarea[name="' + button.dataset.insertLink + '"]'));
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('textarea[name="bodyMd"], textarea[name="bodyMdEn"]'), function (textarea) {
+      textarea.addEventListener("keydown", function (event) {
+        if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
+          event.preventDefault();
+          insertMarkdownLink(textarea);
+        }
+      });
+    });
+  }
+
   function renderEditor(article) {
     var isNew = !article;
     var a = article || {
@@ -161,8 +199,12 @@
       '<div class="admin-field"><label>Заголовок (англ)</label><input type="text" name="titleEn" value="' + escapeHtml(a.titleEn) + '" /></div>' +
       '<div class="admin-field"><label>Короткий опис (укр) — якщо порожньо, візьметься з тексту</label><input type="text" name="excerpt" value="' + escapeHtml(a.excerpt) + '" /></div>' +
       '<div class="admin-field"><label>Короткий опис (англ)</label><input type="text" name="excerptEn" value="' + escapeHtml(a.excerptEn) + '" /></div>' +
-      '<div class="admin-field"><label>Текст статті (укр, markdown)*</label><textarea name="bodyMd" rows="12" required>' + escapeHtml(a.bodyMd) + "</textarea></div>" +
-      '<div class="admin-field"><label>Текст статті (англ, markdown)</label><textarea name="bodyMdEn" rows="12">' + escapeHtml(a.bodyMdEn) + "</textarea></div>" +
+      '<div class="admin-field admin-markdown-field"><label>Текст статті (укр, markdown)*</label>' +
+      '<div class="admin-editor-toolbar"><button class="admin-btn secondary admin-editor-action" type="button" data-insert-link="bodyMd">Додати посилання</button><span class="admin-hint">Ctrl+K</span></div>' +
+      '<textarea name="bodyMd" rows="12" required>' + escapeHtml(a.bodyMd) + "</textarea></div>" +
+      '<div class="admin-field admin-markdown-field"><label>Текст статті (англ, markdown)</label>' +
+      '<div class="admin-editor-toolbar"><button class="admin-btn secondary admin-editor-action" type="button" data-insert-link="bodyMdEn">Додати посилання</button><span class="admin-hint">Ctrl+K</span></div>' +
+      '<textarea name="bodyMdEn" rows="12">' + escapeHtml(a.bodyMdEn) + "</textarea></div>" +
       '<div class="admin-field"><label>Обкладинка</label>' +
       '<input type="file" id="cover-input" accept="image/*" />' +
       '<input type="hidden" name="coverImageUrl" id="cover-url" value="' + escapeHtml(a.coverImageUrl) + '" />' +
@@ -195,6 +237,7 @@
       "</form></div>";
 
     var selectedMediaIds = a.relatedMediaIds.slice();
+    attachMarkdownTools();
 
     function renderSelectedMedia() {
       loadMediaCatalog().then(function (catalog) {
