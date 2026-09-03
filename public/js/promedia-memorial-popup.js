@@ -7,18 +7,10 @@
   var STYLE_ID = "pm-memorial-style";
   var OVERLAY_ID = "pm-memorial-overlay";
   var PREVIEW_PARAM = "promedia_memorial_preview";
-  var KYIV_TIME_ZONE = "Europe/Kyiv";
   var forceUntil = hasPreviewFlag() ? Date.now() + 60000 : 0;
   var overlay = null;
   var active = false;
   var inertState = [];
-  var timeFormatter = new Intl.DateTimeFormat("en-GB", {
-    timeZone: KYIV_TIME_ZONE,
-    hour12: false,
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
-  });
 
   function hasPreviewFlag() {
     try {
@@ -59,22 +51,10 @@
     });
   }
 
-  function kyivParts(date) {
-    var parts = {};
-    timeFormatter.formatToParts(date).forEach(function (part) {
-      if (part.type !== "literal") parts[part.type] = part.value;
-    });
-    return {
-      hour: parseInt(parts.hour, 10),
-      minute: parseInt(parts.minute, 10),
-      second: parseInt(parts.second, 10)
-    };
-  }
-
   function shouldShow() {
     if (Date.now() < forceUntil) return true;
-    var parts = kyivParts(new Date());
-    return parts.hour === 9 && parts.minute === 0;
+    var now = new Date();
+    return now.getHours() === 9 && now.getMinutes() === 0;
   }
 
   function injectStyles() {
