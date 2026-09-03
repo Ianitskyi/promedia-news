@@ -517,14 +517,115 @@ img { max-width: 100%; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
-}
-.admin-editor-action {
-  padding: 7px 12px;
-  font-size: 12px;
+  gap: 6px;
+  padding: 8px;
+  border: 1.5px solid var(--border);
+  border-bottom: 0;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  background: #fbfbff;
 }
 .admin-markdown-field textarea {
   min-height: 260px;
+}
+.admin-rich-editor {
+  display: flex;
+  flex-direction: column;
+}
+.admin-editor-format {
+  width: auto;
+  min-height: 34px;
+  padding: 5px 28px 5px 10px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+}
+.admin-editor-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 34px;
+  padding: 0 8px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+}
+.admin-editor-icon:hover,
+.admin-editor-icon.is-active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: #fff;
+}
+.admin-editor-surface {
+  min-height: 340px;
+  padding: 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: #fff;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+  outline: none;
+  overflow-wrap: anywhere;
+}
+.admin-editor-surface:focus {
+  border-color: rgba(13, 12, 92, .42);
+  box-shadow: 0 0 0 3px rgba(255, 172, 51, .18);
+}
+.admin-editor-surface p,
+.admin-editor-surface ul,
+.admin-editor-surface ol,
+.admin-editor-surface blockquote,
+.admin-editor-surface h1,
+.admin-editor-surface h2,
+.admin-editor-surface h3,
+.admin-editor-surface h4,
+.admin-editor-surface h5,
+.admin-editor-surface h6 {
+  margin: 0 0 13px;
+}
+.admin-editor-surface h1,
+.admin-editor-surface h2,
+.admin-editor-surface h3,
+.admin-editor-surface h4,
+.admin-editor-surface h5,
+.admin-editor-surface h6 {
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.25;
+}
+.admin-editor-surface h2 { font-size: 25px; }
+.admin-editor-surface h3 { font-size: 20px; }
+.admin-editor-surface blockquote {
+  margin-left: 0;
+  padding: 10px 0 10px 16px;
+  border-left: 4px solid var(--accent);
+  color: #3d3b66;
+}
+.admin-editor-surface a { color: var(--ink); font-weight: 700; text-decoration: underline; }
+.admin-editor-surface img {
+  display: block;
+  max-height: 360px;
+  margin: 10px 0;
+  border-radius: var(--radius-sm);
+}
+.admin-editor-source {
+  display: none;
+}
+.admin-editor-note {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 11.5px;
 }
 
 .admin-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }

@@ -3,7 +3,7 @@
 
   var root = document.getElementById("admin-root");
   var userRow = document.getElementById("admin-user-row");
-  var state = { user: null, articles: [], users: [], mediaCatalog: null };
+  var state = { user: null, articles: [], users: [], mediaCatalog: null, richEditors: [] };
 
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
@@ -151,33 +151,323 @@
     return "https://" + value;
   }
 
-  function insertMarkdownLink(textarea) {
-    if (!textarea) return;
-    var start = textarea.selectionStart || 0;
-    var end = textarea.selectionEnd || 0;
-    var value = textarea.value;
-    var selected = value.slice(start, end);
-    var selectedLooksLikeUrl = /^[a-z][a-z0-9+.-]*:/i.test(selected.trim()) || /^[\w.-]+\.[a-z]{2,}/i.test(selected.trim());
-    var text = selectedLooksLikeUrl ? window.prompt("Яке слово або фразу показати замість адреси?") : (selected || window.prompt("Яке слово або фразу залінкувати?"));
-    if (!text) return;
-    var url = normalizeUrl(window.prompt("Вставте адресу посилання", selectedLooksLikeUrl ? selected.trim() : "https://"));
-    if (!url) return;
-    textarea.setRangeText("[" + text + "](" + url + ")", start, end, "end");
-    textarea.focus();
+  function inlineMarkdownToEditorHtml(text) {
+    var out = escapeHtml(text);
+    out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
+    out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    out = out.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>");
+    return out;
   }
 
-  function attachMarkdownTools() {
-    Array.prototype.forEach.call(document.querySelectorAll("[data-insert-link]"), function (button) {
-      button.addEventListener("click", function () {
-        insertMarkdownLink(document.querySelector('textarea[name="' + button.dataset.insertLink + '"]'));
-      });
+  function markdownToEditorHtml(markdown) {
+    var lines = String(markdown || "").replace(/\r\n/g, "\n").split("\n");
+    var blocks = [];
+    var paragraph = [];
+    var list = null;
+
+    function flushParagraph() {
+      if (paragraph.length) {
+        blocks.push("<p>" + inlineMarkdownToEditorHtml(paragraph.join(" ")) + "</p>");
+        paragraph = [];
+      }
+    }
+
+    function flushList() {
+      if (list) {
+        blocks.push("<" + list.type + ">" + list.items.map(function (item) {
+          return "<li>" + inlineMarkdownToEditorHtml(item) + "</li>";
+        }).join("") + "</" + list.type + ">");
+        list = null;
+      }
+    }
+
+    lines.forEach(function (rawLine) {
+      var line = rawLine.trim();
+      var match;
+
+      if (!line) {
+        flushParagraph();
+        flushList();
+        return;
+      }
+
+      match = line.match(/^(#{1,6})\s+(.*)$/);
+      if (match) {
+        flushParagraph();
+        flushList();
+        blocks.push("<h" + match[1].length + ">" + inlineMarkdownToEditorHtml(match[2]) + "</h" + match[1].length + ">");
+        return;
+      }
+
+      match = line.match(/^>\s?(.*)$/);
+      if (match) {
+        flushParagraph();
+        flushList();
+        blocks.push("<blockquote><p>" + inlineMarkdownToEditorHtml(match[1]) + "</p></blockquote>");
+        return;
+      }
+
+      match = line.match(/^[-*]\s+(.*)$/);
+      if (match) {
+        flushParagraph();
+        if (!list || list.type !== "ul") {
+          flushList();
+          list = { type: "ul", items: [] };
+        }
+        list.items.push(match[1]);
+        return;
+      }
+
+      match = line.match(/^\d+\.\s+(.*)$/);
+      if (match) {
+        flushParagraph();
+        if (!list || list.type !== "ol") {
+          flushList();
+          list = { type: "ol", items: [] };
+        }
+        list.items.push(match[1]);
+        return;
+      }
+
+      flushList();
+      paragraph.push(line);
     });
-    Array.prototype.forEach.call(document.querySelectorAll('textarea[name="bodyMd"], textarea[name="bodyMdEn"]'), function (textarea) {
-      textarea.addEventListener("keydown", function (event) {
+
+    flushParagraph();
+    flushList();
+    return blocks.join("") || "<p><br></p>";
+  }
+
+  function nodeListToMarkdown(nodes) {
+    return Array.prototype.map.call(nodes, inlineNodeToMarkdown).join("");
+  }
+
+  function inlineNodeToMarkdown(node) {
+    if (node.nodeType === Node.TEXT_NODE) return node.nodeValue.replace(/\u00a0/g, " ");
+    if (node.nodeType !== Node.ELEMENT_NODE) return "";
+
+    var tag = node.tagName.toLowerCase();
+    var style = node.getAttribute("style") || "";
+    var inner;
+    if (tag === "br") return "\n";
+    if (tag === "strong" || tag === "b") return "**" + nodeListToMarkdown(node.childNodes).trim() + "**";
+    if (tag === "em" || tag === "i") return "*" + nodeListToMarkdown(node.childNodes).trim() + "*";
+    if (tag === "a") {
+      var href = normalizeUrl(node.getAttribute("href"));
+      var label = nodeListToMarkdown(node.childNodes).trim() || href;
+      return href ? "[" + label + "](" + href + ")" : label;
+    }
+    if (tag === "img") {
+      var src = node.getAttribute("src") || "";
+      var alt = node.getAttribute("alt") || "";
+      return src ? "![" + alt + "](" + src + ")" : "";
+    }
+    inner = nodeListToMarkdown(node.childNodes);
+    if (/font-weight\s*:\s*(bold|[6-9]00)/i.test(style)) return "**" + inner.trim() + "**";
+    if (/font-style\s*:\s*italic/i.test(style)) return "*" + inner.trim() + "*";
+    return nodeListToMarkdown(node.childNodes);
+  }
+
+  function blockNodeToMarkdown(node) {
+    if (node.nodeType === Node.TEXT_NODE) return node.nodeValue.trim();
+    if (node.nodeType !== Node.ELEMENT_NODE) return "";
+
+    var tag = node.tagName.toLowerCase();
+    var levelMatch = tag.match(/^h([1-6])$/);
+    var text;
+
+    if (levelMatch) {
+      text = nodeListToMarkdown(node.childNodes).trim();
+      return text ? Array(Number(levelMatch[1]) + 1).join("#") + " " + text : "";
+    }
+    if (tag === "blockquote") {
+      text = nodeListToMarkdown(node.childNodes).replace(/\n+/g, "\n").trim();
+      return text ? text.split("\n").map(function (line) { return "> " + line.trim(); }).join("\n") : "";
+    }
+    if (tag === "ul" || tag === "ol") {
+      return Array.prototype.map.call(node.children, function (child, index) {
+        if (child.tagName.toLowerCase() !== "li") return "";
+        var marker = tag === "ol" ? (index + 1) + ". " : "- ";
+        return marker + nodeListToMarkdown(child.childNodes).replace(/\n+/g, " ").trim();
+      }).filter(Boolean).join("\n");
+    }
+    if (tag === "p" || tag === "div" || tag === "li") {
+      return nodeListToMarkdown(node.childNodes).trim();
+    }
+    return nodeListToMarkdown(node.childNodes).trim();
+  }
+
+  function editorHtmlToMarkdown(surface) {
+    var parts = Array.prototype.map.call(surface.childNodes, blockNodeToMarkdown)
+      .map(function (part) { return part.replace(/[ \t]+\n/g, "\n").trim(); })
+      .filter(Boolean);
+    return parts.join("\n\n").replace(/\n{3,}/g, "\n\n").trim();
+  }
+
+  function commandButton(label, title, command) {
+    return '<button class="admin-editor-icon" type="button" data-editor-command="' + command + '" title="' + escapeHtml(title) + '" aria-label="' + escapeHtml(title) + '">' + label + "</button>";
+  }
+
+  function richTextEditorHtml(name, value, langLabel, required) {
+    return '' +
+      '<div class="admin-rich-editor" data-rich-editor="' + name + '" data-required="' + (required ? "true" : "false") + '">' +
+      '<div class="admin-editor-toolbar" role="toolbar" aria-label="Панель форматування ' + escapeHtml(langLabel) + '">' +
+      '<select class="admin-editor-format" data-editor-format title="Стиль абзацу" aria-label="Стиль абзацу">' +
+      '<option value="p">Абзац</option>' +
+      '<option value="h2">Підзаголовок</option>' +
+      '<option value="h3">Малий підзаголовок</option>' +
+      '</select>' +
+      commandButton("<strong>B</strong>", "Жирний", "bold") +
+      commandButton("<em>I</em>", "Курсив", "italic") +
+      commandButton("•", "Маркований список", "insertUnorderedList") +
+      commandButton("1.", "Нумерований список", "insertOrderedList") +
+      commandButton("“”", "Цитата", "blockquote") +
+      commandButton("URL", "Додати посилання", "link") +
+      commandButton("↶", "Скасувати", "undo") +
+      commandButton("↷", "Повторити", "redo") +
+      commandButton("Tx", "Очистити форматування", "removeFormat") +
+      '<span class="admin-hint">Ctrl+K — посилання</span>' +
+      '</div>' +
+      '<div class="admin-editor-surface" data-editor-surface="true" contenteditable="true" role="textbox" aria-multiline="true" aria-label="' + escapeHtml(langLabel) + '"></div>' +
+      '<textarea class="admin-editor-source" name="' + name + '">' + escapeHtml(value) + "</textarea>" +
+      '<p class="admin-editor-note">Пишіть як у звичайному документі. Сайт сам збере чистий текст у своєму стилі.</p>' +
+      '</div>';
+  }
+
+  function saveSelection(editor) {
+    var selection = window.getSelection();
+    if (!selection || !selection.rangeCount) return;
+    var range = selection.getRangeAt(0);
+    if (!editor.surface.contains(range.commonAncestorContainer)) return;
+    editor.selection = range.cloneRange();
+  }
+
+  function restoreSelection(editor) {
+    if (!editor.selection) return;
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(editor.selection);
+  }
+
+  function updateEditorToolbar(editor) {
+    var selection = window.getSelection();
+    if (!selection || !selection.rangeCount || !editor.surface.contains(selection.anchorNode)) return;
+    var current = selection.anchorNode.nodeType === Node.ELEMENT_NODE ? selection.anchorNode : selection.anchorNode.parentNode;
+    var block = "p";
+    while (current && current !== editor.surface) {
+      if (/^H[1-6]$/.test(current.tagName)) { block = current.tagName.toLowerCase(); break; }
+      if (current.tagName === "BLOCKQUOTE") { block = "p"; break; }
+      current = current.parentNode;
+    }
+    if (editor.formatSelect) editor.formatSelect.value = block === "h2" || block === "h3" ? block : "p";
+    Array.prototype.forEach.call(editor.toolbar.querySelectorAll("[data-editor-command]"), function (button) {
+      var command = button.dataset.editorCommand;
+      var active = false;
+      if (command === "bold" || command === "italic" || command === "insertUnorderedList" || command === "insertOrderedList") {
+        try { active = document.queryCommandState(command); } catch (e) { active = false; }
+      }
+      button.classList.toggle("is-active", active);
+    });
+  }
+
+  function ensureEditorLinks(surface) {
+    Array.prototype.forEach.call(surface.querySelectorAll("a[href]"), function (link) {
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener");
+    });
+  }
+
+  function syncRichEditors() {
+    state.richEditors.forEach(function (editor) {
+      ensureEditorLinks(editor.surface);
+      editor.textarea.value = editorHtmlToMarkdown(editor.surface);
+    });
+  }
+
+  function insertEditorLink(editor) {
+    restoreSelection(editor);
+    var selection = window.getSelection();
+    var selected = selection && selection.rangeCount ? selection.toString().trim() : "";
+    var selectedLooksLikeUrl = /^[a-z][a-z0-9+.-]*:/i.test(selected) || /^[\w.-]+\.[a-z]{2,}/i.test(selected);
+    var label = selectedLooksLikeUrl ? window.prompt("Яке слово або фразу показати замість адреси?") : selected;
+    if (!label) label = window.prompt("Яке слово або фразу залінкувати?");
+    if (!label) return;
+    var url = normalizeUrl(window.prompt("Вставте адресу посилання", selectedLooksLikeUrl ? selected : "https://"));
+    if (!url) return;
+    restoreSelection(editor);
+    if (!selected) {
+      document.execCommand("insertHTML", false, '<a href="' + escapeHtml(url) + '" target="_blank" rel="noopener">' + escapeHtml(label) + "</a>");
+    } else {
+      document.execCommand("createLink", false, url);
+    }
+    ensureEditorLinks(editor.surface);
+    editor.surface.focus();
+    saveSelection(editor);
+    syncRichEditors();
+  }
+
+  function runEditorCommand(editor, command, value) {
+    restoreSelection(editor);
+    editor.surface.focus();
+    if (command === "link") {
+      insertEditorLink(editor);
+      return;
+    }
+    if (command === "blockquote") {
+      document.execCommand("formatBlock", false, "blockquote");
+    } else if (command === "removeFormat") {
+      document.execCommand("removeFormat", false, null);
+      document.execCommand("formatBlock", false, "p");
+    } else {
+      document.execCommand(command, false, value || null);
+    }
+    ensureEditorLinks(editor.surface);
+    saveSelection(editor);
+    syncRichEditors();
+    updateEditorToolbar(editor);
+  }
+
+  function attachRichTextEditors() {
+    state.richEditors = [];
+    Array.prototype.forEach.call(document.querySelectorAll(".admin-rich-editor"), function (container) {
+      var name = container.dataset.richEditor;
+      var textarea = container.querySelector('textarea[name="' + name + '"]');
+      var surface = container.querySelector("[data-editor-surface]");
+      var toolbar = container.querySelector(".admin-editor-toolbar");
+      var formatSelect = container.querySelector("[data-editor-format]");
+      var editor = { container: container, textarea: textarea, surface: surface, toolbar: toolbar, formatSelect: formatSelect, selection: null };
+      surface.innerHTML = markdownToEditorHtml(textarea.value);
+      ensureEditorLinks(surface);
+      state.richEditors.push(editor);
+
+      surface.addEventListener("input", function () {
+        ensureEditorLinks(surface);
+        syncRichEditors();
+      });
+      surface.addEventListener("keyup", function () { saveSelection(editor); updateEditorToolbar(editor); });
+      surface.addEventListener("mouseup", function () { saveSelection(editor); updateEditorToolbar(editor); });
+      surface.addEventListener("focus", function () { saveSelection(editor); updateEditorToolbar(editor); });
+      surface.addEventListener("blur", function () { syncRichEditors(); });
+      surface.addEventListener("keydown", function (event) {
         if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
           event.preventDefault();
-          insertMarkdownLink(textarea);
+          saveSelection(editor);
+          insertEditorLink(editor);
         }
+      });
+
+      if (formatSelect) {
+        formatSelect.addEventListener("change", function () {
+          runEditorCommand(editor, "formatBlock", formatSelect.value);
+        });
+      }
+
+      Array.prototype.forEach.call(toolbar.querySelectorAll("[data-editor-command]"), function (button) {
+        button.addEventListener("mousedown", function (event) { event.preventDefault(); });
+        button.addEventListener("click", function () {
+          runEditorCommand(editor, button.dataset.editorCommand);
+        });
       });
     });
   }
@@ -199,12 +489,10 @@
       '<div class="admin-field"><label>Заголовок (англ)</label><input type="text" name="titleEn" value="' + escapeHtml(a.titleEn) + '" /></div>' +
       '<div class="admin-field"><label>Короткий опис (укр) — якщо порожньо, візьметься з тексту</label><input type="text" name="excerpt" value="' + escapeHtml(a.excerpt) + '" /></div>' +
       '<div class="admin-field"><label>Короткий опис (англ)</label><input type="text" name="excerptEn" value="' + escapeHtml(a.excerptEn) + '" /></div>' +
-      '<div class="admin-field admin-markdown-field"><label>Текст статті (укр, markdown)*</label>' +
-      '<div class="admin-editor-toolbar"><button class="admin-btn secondary admin-editor-action" type="button" data-insert-link="bodyMd">Додати посилання</button><span class="admin-hint">Ctrl+K</span></div>' +
-      '<textarea name="bodyMd" rows="12" required>' + escapeHtml(a.bodyMd) + "</textarea></div>" +
-      '<div class="admin-field admin-markdown-field"><label>Текст статті (англ, markdown)</label>' +
-      '<div class="admin-editor-toolbar"><button class="admin-btn secondary admin-editor-action" type="button" data-insert-link="bodyMdEn">Додати посилання</button><span class="admin-hint">Ctrl+K</span></div>' +
-      '<textarea name="bodyMdEn" rows="12">' + escapeHtml(a.bodyMdEn) + "</textarea></div>" +
+      '<div class="admin-field admin-markdown-field"><label>Текст статті (укр)*</label>' +
+      richTextEditorHtml("bodyMd", a.bodyMd, "Текст статті українською", true) + "</div>" +
+      '<div class="admin-field admin-markdown-field"><label>Текст статті (англ)</label>' +
+      richTextEditorHtml("bodyMdEn", a.bodyMdEn, "Article text in English", false) + "</div>" +
       '<div class="admin-field"><label>Обкладинка</label>' +
       '<input type="file" id="cover-input" accept="image/*" />' +
       '<input type="hidden" name="coverImageUrl" id="cover-url" value="' + escapeHtml(a.coverImageUrl) + '" />' +
@@ -237,7 +525,7 @@
       "</form></div>";
 
     var selectedMediaIds = a.relatedMediaIds.slice();
-    attachMarkdownTools();
+    attachRichTextEditors();
 
     function renderSelectedMedia() {
       loadMediaCatalog().then(function (catalog) {
@@ -296,6 +584,7 @@
     });
 
     function collectPayload(form) {
+      syncRichEditors();
       return {
         title: form.title.value,
         titleEn: form.titleEn.value || null,
@@ -315,6 +604,10 @@
       e.preventDefault();
       var form = e.target;
       var payload = collectPayload(form);
+      if (!payload.bodyMd) {
+        document.getElementById("editor-error").textContent = "Текст статті українською обов'язковий";
+        return;
+      }
       var req = isNew
         ? api("/api/admin/articles", { method: "POST", body: payload })
         : api("/api/admin/articles/" + a.id, { method: "PUT", body: payload });
