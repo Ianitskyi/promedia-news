@@ -32,6 +32,28 @@
     catch (err) {}
   }
 
+  function cookieGet(key) {
+    try {
+      var parts = document.cookie ? document.cookie.split(";") : [];
+      for (var i = 0; i < parts.length; i += 1) {
+        var pair = parts[i].trim();
+        var eq = pair.indexOf("=");
+        var name = eq === -1 ? pair : pair.slice(0, eq);
+        if (name === key) return decodeURIComponent(eq === -1 ? "" : pair.slice(eq + 1));
+      }
+    } catch (err) {}
+    return null;
+  }
+
+  function cookieSet(key, value) {
+    try {
+      var attrs = "; path=/; SameSite=Lax";
+      if (window.location.protocol === "https:") attrs += "; Secure";
+      if (isPromediaHost(window.location.hostname.toLowerCase())) attrs += "; domain=.promedia.report";
+      document.cookie = key + "=" + encodeURIComponent(value) + attrs;
+    } catch (err) {}
+  }
+
   function escapeHtml(value) {
     return String(value || "").replace(/[&<>"']/g, function (ch) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[ch];
@@ -86,17 +108,25 @@
   }
 
   function seenLanguages() {
-    var raw = sessionGet(SEEN_KEY);
-    if (!raw) return {};
-    try { return JSON.parse(raw) || {}; }
-    catch (err) { return {}; }
+    var seen = {};
+    [cookieGet(SEEN_KEY), sessionGet(SEEN_KEY)].forEach(function (raw) {
+      if (!raw) return;
+      try {
+        var parsed = JSON.parse(raw) || {};
+        if (parsed.uk) seen.uk = true;
+        if (parsed.en) seen.en = true;
+      } catch (err) {}
+    });
+    return seen;
   }
 
   function rememberSeenLanguage(lang) {
     if (lang !== "uk" && lang !== "en") return;
     var seen = seenLanguages();
     seen[lang] = true;
-    sessionSet(SEEN_KEY, JSON.stringify(seen));
+    var value = JSON.stringify(seen);
+    sessionSet(SEEN_KEY, value);
+    cookieSet(SEEN_KEY, value);
   }
 
   function hasSeenLanguage(lang) {
