@@ -70,6 +70,7 @@
   }
 
   function init() {
+    loadLanguageSuggest();
     loadMemorialPopup();
 
     var grid = document.querySelector(".pm-featured-news-grid");
@@ -123,6 +124,15 @@
     script.src = NEWS_ORIGIN + "/js/promedia-memorial-popup.js";
     script.defer = true;
     script.dataset.promediaMemorialPopup = "true";
+    document.head.appendChild(script);
+  }
+
+  function loadLanguageSuggest() {
+    if (window.__PROMEDIA_LANGUAGE_SUGGEST__ || document.querySelector('script[data-promedia-language-suggest]')) return;
+    var script = document.createElement("script");
+    script.src = NEWS_ORIGIN + "/js/promedia-language-suggest.js";
+    script.defer = true;
+    script.dataset.promediaLanguageSuggest = "true";
     document.head.appendChild(script);
   }
 

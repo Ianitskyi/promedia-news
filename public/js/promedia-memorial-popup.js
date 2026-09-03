@@ -7,6 +7,7 @@
   var STYLE_ID = "pm-memorial-style";
   var OVERLAY_ID = "pm-memorial-overlay";
   var PREVIEW_PARAM = "promedia_memorial_preview";
+  var NEWS_ORIGIN = "https://news.promedia.report";
   var forceUntil = hasPreviewFlag() ? Date.now() + 60000 : 0;
   var overlay = null;
   var active = false;
@@ -184,9 +185,19 @@
   }
 
   function start() {
+    loadLanguageSuggest();
     installInteractionGuards();
     sync();
     window.setInterval(sync, 1000);
+  }
+
+  function loadLanguageSuggest() {
+    if (window.__PROMEDIA_LANGUAGE_SUGGEST__ || document.querySelector('script[data-promedia-language-suggest]')) return;
+    var script = document.createElement("script");
+    script.src = NEWS_ORIGIN + "/js/promedia-language-suggest.js";
+    script.defer = true;
+    script.dataset.promediaLanguageSuggest = "true";
+    document.head.appendChild(script);
   }
 
   if (document.readyState === "loading") {
