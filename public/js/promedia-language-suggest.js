@@ -8,6 +8,7 @@
   var PROMPT_ID = "pm-language-suggest";
   var CHOICE_KEY = "promedia.language.choice.v1";
   var DISMISSED_KEY = "promedia.language.dismissed.v1";
+  var SEEN_KEY = "promedia.language.seen.v1";
   var LOCAL_LANGUAGE_CODES = ["uk", "ru", "pl", "bg", "be"];
   var SNOOZE_MS = 30 * 24 * 60 * 60 * 1000;
 
@@ -18,6 +19,16 @@
 
   function storageSet(key, value) {
     try { window.localStorage.setItem(key, value); }
+    catch (err) {}
+  }
+
+  function sessionGet(key) {
+    try { return window.sessionStorage.getItem(key); }
+    catch (err) { return null; }
+  }
+
+  function sessionSet(key, value) {
+    try { window.sessionStorage.setItem(key, value); }
     catch (err) {}
   }
 
@@ -38,18 +49,58 @@
     return LOCAL_LANGUAGE_CODES.indexOf(code) === -1 ? "en" : "uk";
   }
 
-  function currentLanguage() {
-    var params = new URLSearchParams(window.location.search);
+  function isPromediaHost(host) {
+    return host === "promedia.report" || host.slice(-16) === ".promedia.report";
+  }
+
+  function languageFromUrl(url) {
+    var params = url.searchParams;
     var queryLang = String(params.get("lang") || "").toLowerCase();
     if (queryLang === "en") return "en";
     if (queryLang === "uk") return "uk";
 
-    var path = window.location.pathname.toLowerCase();
+    var path = url.pathname.toLowerCase();
     if (path === "/en" || path.indexOf("/en/") === 0) return "en";
+
+    return isPromediaHost(url.hostname.toLowerCase()) ? "uk" : null;
+  }
+
+  function currentLanguage() {
+    var lang = languageFromUrl(new URL(window.location.href));
+    if (lang) return lang;
 
     var htmlLang = String(document.documentElement.getAttribute("lang") || "").toLowerCase();
     if (htmlLang.indexOf("en") === 0) return "en";
     return "uk";
+  }
+
+  function referrerLanguage() {
+    if (!document.referrer) return null;
+    try {
+      var url = new URL(document.referrer);
+      if (!isPromediaHost(url.hostname.toLowerCase())) return null;
+      return languageFromUrl(url);
+    } catch (err) {
+      return null;
+    }
+  }
+
+  function seenLanguages() {
+    var raw = sessionGet(SEEN_KEY);
+    if (!raw) return {};
+    try { return JSON.parse(raw) || {}; }
+    catch (err) { return {}; }
+  }
+
+  function rememberSeenLanguage(lang) {
+    if (lang !== "uk" && lang !== "en") return;
+    var seen = seenLanguages();
+    seen[lang] = true;
+    sessionSet(SEEN_KEY, JSON.stringify(seen));
+  }
+
+  function hasSeenLanguage(lang) {
+    return Boolean(seenLanguages()[lang]);
   }
 
   function isAdminPath() {
@@ -215,9 +266,12 @@
 
   function start() {
     if (isAdminPath() || document.getElementById(PROMPT_ID)) return;
+    var currentLang = currentLanguage();
+    rememberSeenLanguage(currentLang);
     if (storageGet(CHOICE_KEY)) return;
     var targetLang = preferredLanguage();
-    if (targetLang === currentLanguage()) return;
+    if (targetLang === currentLang) return;
+    if (hasSeenLanguage(targetLang) || referrerLanguage() === targetLang) return;
     if (dismissedRecently(targetLang)) return;
     var targetUrl = targetLanguageUrl(targetLang);
     if (!targetUrl || targetUrl === window.location.href) return;
