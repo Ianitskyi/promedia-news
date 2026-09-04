@@ -94,6 +94,7 @@
       '<div class="admin-row" style="margin-bottom:18px">' +
       '<button class="admin-btn" id="new-article-btn" type="button">+ Нова стаття</button>' +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="push-btn" type="button">Пуш-сповіщення</button>' : "") +
+      (state.user.role === "admin" ? '<a class="admin-btn secondary" href="https://ianitskyi.github.io/promedia-subdomains-admin/" target="_blank" rel="noopener">Дослідження / субдомени</a>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="users-btn" type="button">Користувачі</button>' : "") +
       "</div>";
 
