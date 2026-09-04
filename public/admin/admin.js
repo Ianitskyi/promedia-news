@@ -3,7 +3,7 @@
 
   var root = document.getElementById("admin-root");
   var userRow = document.getElementById("admin-user-row");
-  var state = { user: null, articles: [], users: [], mediaCatalog: null, richEditors: [] };
+  var state = { user: null, articles: [], users: [], mediaCatalog: null, richEditors: [], pushSummary: null };
 
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
@@ -93,6 +93,7 @@
     var tabsHtml =
       '<div class="admin-row" style="margin-bottom:18px">' +
       '<button class="admin-btn" id="new-article-btn" type="button">+ Нова стаття</button>' +
+      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="push-btn" type="button">Пуш-сповіщення</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="users-btn" type="button">Користувачі</button>' : "") +
       "</div>";
 
@@ -111,8 +112,97 @@
 
     root.innerHTML = tabsHtml + '<div class="admin-card">' + tableHtml + "</div>";
     document.getElementById("new-article-btn").addEventListener("click", function () { navigate("#/new"); });
+    var pushBtn = document.getElementById("push-btn");
+    if (pushBtn) pushBtn.addEventListener("click", function () { navigate("#/push"); });
     var usersBtn = document.getElementById("users-btn");
     if (usersBtn) usersBtn.addEventListener("click", function () { navigate("#/users"); });
+  }
+
+  // ---------- Push notifications ----------
+
+  function loadPushSummary() {
+    return api("/api/admin/push/summary").then(function (data) {
+      state.pushSummary = data;
+      return data;
+    });
+  }
+
+  function renderPushPanel() {
+    var summary = state.pushSummary || { enabled: false, counts: { active: 0, uk: 0, en: 0 }, recent: [] };
+    var rows = (summary.recent || []).map(function (item) {
+      var title = item.title_uk + (item.title_en ? " / " + item.title_en : "");
+      return "<tr>" +
+        "<td>" + escapeHtml(title) + "</td>" +
+        "<td>" + escapeHtml(item.target_lang || "all") + "</td>" +
+        "<td>" + escapeHtml(new Date(item.sent_at).toLocaleString("uk-UA")) + "</td>" +
+        "<td>" + escapeHtml(item.delivered || 0) + " / " + escapeHtml(item.attempted || 0) + "</td>" +
+        "<td>" + escapeHtml(item.failed || 0) + "</td>" +
+        "</tr>";
+    }).join("");
+
+    root.innerHTML =
+      '<p><a href="#/dashboard">← До списку статей</a></p>' +
+      '<div class="admin-card">' +
+      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Пуш-сповіщення</h1>' +
+      (!summary.enabled ? '<p class="admin-error">Web Push ще не активовано на сервері: потрібно задати секрет VAPID_PRIVATE_JWK.</p>' : "") +
+      '<div class="admin-row" style="margin-bottom:16px">' +
+        '<span class="admin-status published">Активні: ' + escapeHtml(summary.counts.active || 0) + '</span>' +
+        '<span class="admin-status draft">UA: ' + escapeHtml(summary.counts.uk || 0) + '</span>' +
+        '<span class="admin-status draft">EN: ' + escapeHtml(summary.counts.en || 0) + '</span>' +
+      '</div>' +
+      '<p class="admin-hint">Сповіщення з’являться лише в тих читачів, які самі натиснули дзвіночок і дозволили повідомлення у браузері.</p>' +
+      '<p class="admin-error" id="push-error"></p>' +
+      '<p class="admin-hint" id="push-result"></p>' +
+      '<form class="admin-form" id="push-form">' +
+        '<div class="admin-field"><label>Кому відправити</label><select name="targetLang">' +
+          '<option value="all">Усім підписникам</option>' +
+          '<option value="uk">Лише українська версія</option>' +
+          '<option value="en">Лише англійська версія</option>' +
+        '</select></div>' +
+        '<div class="admin-field"><label>Заголовок українською*</label><input type="text" name="titleUk" maxlength="90" required placeholder="Оновлення ПроМедіа" /></div>' +
+        '<div class="admin-field"><label>Текст українською*</label><textarea name="bodyUk" maxlength="180" required placeholder="Коротко поясніть, що сталося"></textarea></div>' +
+        '<div class="admin-field"><label>Заголовок англійською</label><input type="text" name="titleEn" maxlength="90" placeholder="ProMedia update" /></div>' +
+        '<div class="admin-field"><label>Текст англійською</label><textarea name="bodyEn" maxlength="180" placeholder="Briefly explain what happened"></textarea></div>' +
+        '<div class="admin-field"><label>Посилання, яке відкриється після кліку</label><input type="url" name="url" placeholder="https://news.promedia.report/" /></div>' +
+        '<button class="admin-btn" type="submit"' + (!summary.enabled ? " disabled" : "") + '>Відправити сповіщення</button>' +
+      '</form>' +
+      '</div>' +
+      '<div class="admin-card">' +
+      '<h2 style="font-family:var(--serif);color:var(--ink);margin-top:0;font-size:19px">Останні відправки</h2>' +
+      (rows
+        ? '<table class="admin-table"><thead><tr><th>Заголовок</th><th>Мова</th><th>Дата</th><th>Доставлено</th><th>Помилки</th></tr></thead><tbody>' + rows + '</tbody></table>'
+        : '<p class="empty-state">Відправок ще немає.</p>') +
+      '</div>';
+
+    document.getElementById("push-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var form = e.target;
+      var button = form.querySelector("button[type='submit']");
+      var errorEl = document.getElementById("push-error");
+      var resultEl = document.getElementById("push-result");
+      errorEl.textContent = "";
+      resultEl.textContent = "";
+      button.disabled = true;
+      api("/api/admin/push/send", {
+        method: "POST",
+        body: {
+          targetLang: form.targetLang.value,
+          titleUk: form.titleUk.value,
+          bodyUk: form.bodyUk.value,
+          titleEn: form.titleEn.value,
+          bodyEn: form.bodyEn.value,
+          url: form.url.value
+        }
+      }).then(function (data) {
+        resultEl.textContent = "Відправлено: " + data.delivered + " з " + data.attempted + ". Помилок: " + data.failed + ".";
+        return loadPushSummary();
+      }).then(function () {
+        renderPushPanel();
+      }).catch(function (err) {
+        errorEl.textContent = err.message;
+        button.disabled = false;
+      });
+    });
   }
 
   // ---------- Media catalog (для тегування медіа) ----------
@@ -694,6 +784,11 @@
     if (hash === "#/users") {
       if (state.user.role !== "admin") { navigate("#/dashboard"); return; }
       loadUsers().then(renderUsers);
+      return;
+    }
+    if (hash === "#/push") {
+      if (state.user.role !== "admin") { navigate("#/dashboard"); return; }
+      loadPushSummary().then(renderPushPanel);
       return;
     }
     var editMatch = hash.match(/^#\/edit\/(\d+)$/);

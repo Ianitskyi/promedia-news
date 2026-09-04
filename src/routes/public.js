@@ -1,4 +1,5 @@
 import { renderHomepage, renderArticlePage, renderNotFound } from "../lib/render.js";
+import { handlePublicPushRoute } from "../lib/push.js";
 
 function getLang(url) {
   const l = url.searchParams.get("lang");
@@ -40,6 +41,11 @@ export async function handlePublicRoute(request, env, url) {
   const lang = getLang(url);
   const baseUrl = `${url.protocol}//${url.host}`;
   const db = env.DB;
+
+  if (url.pathname.startsWith("/api/push/")) {
+    const res = await handlePublicPushRoute(request, env, url);
+    if (res) return res;
+  }
 
   // GET /api/articles?tag=&mediaId=&limit=
   if (url.pathname === "/api/articles" && request.method === "GET") {

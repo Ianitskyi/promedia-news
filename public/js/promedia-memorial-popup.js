@@ -186,6 +186,7 @@
 
   function start() {
     loadLanguageSuggest();
+    loadPushBell();
     installInteractionGuards();
     sync();
     window.setInterval(sync, 1000);
@@ -197,6 +198,15 @@
     script.src = NEWS_ORIGIN + "/js/promedia-language-suggest.js";
     script.defer = true;
     script.dataset.promediaLanguageSuggest = "true";
+    document.head.appendChild(script);
+  }
+
+  function loadPushBell() {
+    if (window.__PROMEDIA_PUSH_BELL__ || document.querySelector('script[data-promedia-push-bell]')) return;
+    var script = document.createElement("script");
+    script.src = NEWS_ORIGIN + "/js/promedia-push-bell.js";
+    script.defer = true;
+    script.dataset.promediaPushBell = "true";
     document.head.appendChild(script);
   }
 

@@ -1,6 +1,7 @@
 import { getCurrentUser, hashPassword } from "../lib/auth.js";
 import { uniqueSlug } from "../lib/slug.js";
 import { markdownToPlainText } from "../lib/markdown.js";
+import { handleAdminPushRoute } from "../lib/push.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -47,6 +48,11 @@ export async function handleAdminRoute(request, env, url) {
   const db = env.DB;
   const user = await getCurrentUser(request, env);
   if (!user) return json({ error: "unauthenticated" }, 401);
+
+  if (url.pathname.startsWith("/api/admin/push/")) {
+    const res = await handleAdminPushRoute(request, env, url, user);
+    if (res) return res;
+  }
 
   // ---- Статті ----
 

@@ -11,6 +11,9 @@
 Позначені в адмінці важливі матеріали доступні через
 `GET /api/articles?important=1&limit=3` і потрапляють до блока «Вибрані
 новини» на головному `promedia.report`.
+Підписка на браузерні сповіщення працює через Web Push: читач натискає
+дзвіночок, дозволяє повідомлення у браузері, а редактор надсилає коротке
+UA/EN-сповіщення з адмінки новин.
 
 ## Стек
 
@@ -18,6 +21,9 @@
 - D1 (SQLite) — таблиці `users`, `articles` (`migrations/0001_init.sql`)
 - R2 — зберігання завантажених зображень (бакет `promedia-news-images`)
 - Workers Assets — статичні файли (`public/`: css, favicon, адмін-SPA)
+- Web Push — таблиці `push_subscriptions`, `push_messages`, service worker
+  `public/promedia-push-sw.js` і клієнтський дзвіночок
+  `public/js/promedia-push-bell.js`
 - Без зовнішніх npm-залежностей у рантаймі: пароль хешується через
   `crypto.subtle` (PBKDF2), сесії — власні HMAC-підписані токени, markdown —
   власний XSS-safe конвертер
@@ -84,6 +90,15 @@ npx wrangler secret put AUTH_SECRET
 ```bash
 openssl rand -base64 32
 ```
+
+Для Web Push також потрібен приватний VAPID-ключ:
+
+```bash
+npx wrangler secret put VAPID_PRIVATE_JWK
+```
+
+Публічний VAPID-ключ зберігається в `src/lib/push.js`, приватний ключ
+зберігається тільки як секрет Cloudflare Worker.
 
 ### 5. Підключити кастомний домен
 
@@ -160,6 +175,7 @@ src/
 public/
   admin/            — ванільний JS SPA адмінпанелі
   css/style.css     — стилі (бренд ProMedia)
+  promedia-push-sw.js — service worker для Web Push
 migrations/             — послідовні SQL-міграції D1
 ```
 
@@ -184,6 +200,28 @@ migrations/             — послідовні SQL-міграції D1
 картка з фото або картка без фото. Ручний вибір має пріоритет; вибрана велика
 новина піднімається у головну позицію, і одночасно такою може бути лише одна
 опублікована стаття.
+
+## Web Push
+
+Публічні endpoints:
+
+- `GET /api/push/public-key` — публічний VAPID-ключ для браузера
+- `POST /api/push/subscribe` — збереження браузерної підписки
+- `POST /api/push/unsubscribe` — деактивація підписки
+- `GET /api/push/latest?lang=uk|en` — останній текст сповіщення для service worker
+
+Адмінські endpoints:
+
+- `GET /api/admin/push/summary` — кількість підписників і останні відправки
+- `POST /api/admin/push/send` — збереження нового повідомлення і відправка
+  push-сигналу активним підписникам
+
+Клієнтський скрипт `public/js/promedia-push-bell.js` показує дзвіночок не
+одразу: після другої сторінки у поточній сесії або приблизно після 75 секунд
+перебування на сайті. Для тесту можна додати `?promedia_push_preview=1` або
+`?subscribe=1`. На доменах, де немає root service worker
+`/promedia-push-sw.js`, скрипт пропонує перейти на `news.promedia.report` і
+оформити підписку там.
 
 ## Імпорт новин із promedia.report
 
