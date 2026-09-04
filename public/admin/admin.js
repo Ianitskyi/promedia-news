@@ -985,6 +985,7 @@
       richTextEditorHtml("bodyMdEn", a.bodyMdEn, "Article text in English", false) + "</div>" +
       '<div class="admin-field"><label>Обкладинка</label>' +
       '<input type="file" id="cover-input" accept="image/*" />' +
+      '<span class="admin-hint">Бажано: горизонтальне фото 16:9, від 1200×675 px; JPG, PNG або WebP; до 8 МБ. Важливі логотипи й написи краще тримати ближче до центру, бо картки можуть обрізати краї.</span>' +
       '<input type="hidden" name="coverImageUrl" id="cover-url" value="' + escapeHtml(a.coverImageUrl) + '" />' +
       (a.coverImageUrl ? '<img class="admin-cover-preview" id="cover-preview" src="' + escapeHtml(a.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="cover-preview" style="display:none" />') +
       "</div>" +

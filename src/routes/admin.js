@@ -3,6 +3,7 @@ import { uniqueSlug } from "../lib/slug.js";
 import { markdownToPlainText } from "../lib/markdown.js";
 import { handleAdminPushRoute } from "../lib/push.js";
 import { handleAdminSubdomainsRoute } from "../lib/subdomains.js";
+import { completeArticleDraft } from "../lib/articleAssist.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -71,8 +72,9 @@ export async function handleAdminRoute(request, env, url) {
   }
 
   if (url.pathname === "/api/admin/articles" && request.method === "POST") {
-    const body = await request.json().catch(() => null);
+    let body = await request.json().catch(() => null);
     if (!body || !body.title) return json({ error: "title обов'язковий" }, 400);
+    body = await completeArticleDraft(body, env);
     const slug = await uniqueSlug(db, body.title);
     const excerpt = body.excerpt || markdownToPlainText(body.bodyMd || "", 200);
     const now = new Date().toISOString();
@@ -101,8 +103,18 @@ export async function handleAdminRoute(request, env, url) {
     if (!canEdit) return json({ error: "forbidden" }, 403);
 
     if (request.method === "PUT") {
-      const body = await request.json().catch(() => null);
+      let body = await request.json().catch(() => null);
       if (!body) return json({ error: "invalid_body" }, 400);
+      body = await completeArticleDraft({
+        ...body,
+        title: body.title ?? article.title,
+        titleEn: body.titleEn ?? article.title_en,
+        excerpt: body.excerpt !== undefined ? body.excerpt : article.excerpt,
+        excerptEn: body.excerptEn ?? article.excerpt_en,
+        bodyMd: body.bodyMd ?? article.body_md,
+        bodyMdEn: body.bodyMdEn ?? article.body_md_en,
+        tags: body.tags ?? JSON.parse(article.tags || "[]")
+      }, env);
       const excerpt = body.excerpt !== undefined ? body.excerpt : article.excerpt;
       await db.prepare(`
         UPDATE articles SET title = ?, title_en = ?, excerpt = ?, excerpt_en = ?,

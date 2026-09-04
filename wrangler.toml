@@ -35,3 +35,4 @@ zone_name = "promedia.report"
 #   AUTH_SECRET      — довільний випадковий рядок (32+ символів) для підпису сесійних токенів
 #   VAPID_PRIVATE_JWK — приватний ключ Web Push у форматі JWK
 #   SUBDOMAINS_GITHUB_TOKEN — fine-grained GitHub token: Contents Read and write для GitHub-субдоменів
+#   OPENAI_API_KEY   — серверний ключ OpenAI для автоперекладу новин і тегів
