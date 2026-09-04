@@ -2,6 +2,7 @@ import { getCurrentUser, hashPassword } from "../lib/auth.js";
 import { uniqueSlug } from "../lib/slug.js";
 import { markdownToPlainText } from "../lib/markdown.js";
 import { handleAdminPushRoute } from "../lib/push.js";
+import { handleAdminSubdomainsRoute } from "../lib/subdomains.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -51,6 +52,11 @@ export async function handleAdminRoute(request, env, url) {
 
   if (url.pathname.startsWith("/api/admin/push/")) {
     const res = await handleAdminPushRoute(request, env, url, user);
+    if (res) return res;
+  }
+
+  if (url.pathname.startsWith("/api/admin/subdomains")) {
+    const res = await handleAdminSubdomainsRoute(request, env, url, user);
     if (res) return res;
   }
 

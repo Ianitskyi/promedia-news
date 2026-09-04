@@ -3,7 +3,17 @@
 
   var root = document.getElementById("admin-root");
   var userRow = document.getElementById("admin-user-row");
-  var state = { user: null, articles: [], users: [], mediaCatalog: null, richEditors: [], pushSummary: null };
+  var state = {
+    user: null,
+    articles: [],
+    users: [],
+    mediaCatalog: null,
+    richEditors: [],
+    pushSummary: null,
+    subdomains: [],
+    subdomainsConfigured: false,
+    subdomainEditor: null
+  };
 
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
@@ -94,7 +104,7 @@
       '<div class="admin-row" style="margin-bottom:18px">' +
       '<button class="admin-btn" id="new-article-btn" type="button">+ Нова стаття</button>' +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="push-btn" type="button">Пуш-сповіщення</button>' : "") +
-      (state.user.role === "admin" ? '<a class="admin-btn secondary" href="https://ianitskyi.github.io/promedia-subdomains-admin/" target="_blank" rel="noopener">Дослідження / субдомени</a>' : "") +
+      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="subdomains-btn" type="button">Дослідження</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="users-btn" type="button">Користувачі</button>' : "") +
       "</div>";
 
@@ -115,6 +125,8 @@
     document.getElementById("new-article-btn").addEventListener("click", function () { navigate("#/new"); });
     var pushBtn = document.getElementById("push-btn");
     if (pushBtn) pushBtn.addEventListener("click", function () { navigate("#/push"); });
+    var subdomainsBtn = document.getElementById("subdomains-btn");
+    if (subdomainsBtn) subdomainsBtn.addEventListener("click", function () { navigate("#/subdomains"); });
     var usersBtn = document.getElementById("users-btn");
     if (usersBtn) usersBtn.addEventListener("click", function () { navigate("#/users"); });
   }
@@ -204,6 +216,393 @@
         button.disabled = false;
       });
     });
+  }
+
+  // ---------- GitHub-backed subdomains ----------
+
+  function loadSubdomains() {
+    return api("/api/admin/subdomains").then(function (data) {
+      state.subdomains = data.items || [];
+      state.subdomainsConfigured = Boolean(data.configured);
+      return data;
+    });
+  }
+
+  function getSubdomain(siteId) {
+    return state.subdomains.find(function (site) { return site.id === siteId; }) || null;
+  }
+
+  function getSubdomainFile(site, fileId) {
+    return site && site.files ? site.files.find(function (file) { return file.id === fileId; }) : null;
+  }
+
+  function renderSubdomainsHub() {
+    var cards = state.subdomains.map(function (site) {
+      var files = site.files.map(function (file) {
+        return '<button class="admin-btn secondary" type="button" data-subdomain-file="' + escapeHtml(site.id + ":" + file.id) + '">' + escapeHtml(file.label) + '</button>';
+      }).join("");
+      return '<div class="admin-card admin-subdomain-card">' +
+        '<div><h2>' + escapeHtml(site.title) + '</h2>' +
+        '<p class="admin-hint">' + escapeHtml(site.label) + '</p>' +
+        '<p class="admin-hint">' + escapeHtml(site.files.map(function (f) { return f.path; }).join(" · ")) + '</p></div>' +
+        '<div class="admin-row">' + files + '<a class="admin-btn secondary" href="' + escapeHtml(site.liveUrl) + '" target="_blank" rel="noopener">Відкрити сайт</a></div>' +
+      '</div>';
+    }).join("");
+
+    root.innerHTML =
+      '<p><a href="#/dashboard">← До списку статей</a></p>' +
+      '<div class="admin-card">' +
+      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Дослідження та субдомени</h1>' +
+      '<p class="admin-hint">Цей розділ редагує GitHub-субдомени через сервер news.promedia.report. Редактору не потрібен GitHub-акаунт: достатньо бути залогіненим у цю адмінку.</p>' +
+      (!state.subdomainsConfigured ? '<p class="admin-error">Завантаження доступне, але збереження ще не увімкнене: на сервері потрібно додати секрет SUBDOMAINS_GITHUB_TOKEN.</p>' : "") +
+      '</div>' +
+      (cards || '<div class="admin-card"><p class="empty-state">Субдомени ще не налаштовані.</p></div>');
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-subdomain-file]"), function (button) {
+      button.addEventListener("click", function () {
+        var parts = button.dataset.subdomainFile.split(":");
+        navigate("#/subdomains/" + parts[0] + "/" + parts[1]);
+      });
+    });
+  }
+
+  function arrayToCsv(value) {
+    return Array.isArray(value) ? value.join(", ") : "";
+  }
+
+  function csvToArray(value) {
+    return String(value || "").split(",").map(function (item) { return item.trim(); }).filter(Boolean);
+  }
+
+  function deepGet(source, path, fallback) {
+    var current = source;
+    for (var i = 0; i < path.length; i += 1) {
+      if (!current || current[path[i]] === undefined || current[path[i]] === null) return fallback;
+      current = current[path[i]];
+    }
+    return current;
+  }
+
+  function deepSet(source, path, value) {
+    var current = source;
+    for (var i = 0; i < path.length - 1; i += 1) {
+      var key = path[i];
+      if (!current[key] || typeof current[key] !== "object") current[key] = {};
+      current = current[key];
+    }
+    current[path[path.length - 1]] = value;
+  }
+
+  function jsonPathAttr(path) {
+    return escapeHtml(JSON.stringify(path));
+  }
+
+  function syncSubdomainEditor() {
+    if (!state.subdomainEditor) return;
+    state.subdomainEditor.content = JSON.stringify(state.subdomainEditor.data, null, 2) + "\n";
+    var source = document.getElementById("subdomain-json-source");
+    if (source) source.value = state.subdomainEditor.content;
+    var status = document.getElementById("subdomain-dirty-status");
+    if (status) status.textContent = state.subdomainEditor.content === state.subdomainEditor.originalContent ? "Без змін" : "Є незбережені зміни";
+  }
+
+  function smartField(path, label, value, options) {
+    options = options || {};
+    var kind = options.kind || (typeof value === "number" ? "number" : "text");
+    var wide = options.wide ? " wide" : "";
+    var hint = options.hint ? '<span class="admin-field-hint">' + escapeHtml(options.hint) + '</span>' : "";
+    var attr = 'data-json-path="' + jsonPathAttr(path) + '" data-json-kind="' + escapeHtml(kind) + '"';
+    if (options.textarea) {
+      return '<div class="admin-smart-field' + wide + '">' +
+        '<label>' + escapeHtml(label) + '</label>' +
+        '<textarea ' + attr + '>' + escapeHtml(value) + '</textarea>' +
+        hint +
+      '</div>';
+    }
+    var type = options.type || (kind === "number" ? "number" : "text");
+    return '<div class="admin-smart-field' + wide + '">' +
+      '<label>' + escapeHtml(label) + '</label>' +
+      '<input type="' + escapeHtml(type) + '" value="' + escapeHtml(value) + '" ' + attr + ' />' +
+      hint +
+    '</div>';
+  }
+
+  function smartSelect(path, label, value, options, kind) {
+    var htmlOptions = options.map(function (item) {
+      return '<option value="' + escapeHtml(item.value) + '"' + (item.value === value ? " selected" : "") + '>' + escapeHtml(item.label) + '</option>';
+    }).join("");
+    return '<div class="admin-smart-field">' +
+      '<label>' + escapeHtml(label) + '</label>' +
+      '<select data-json-path="' + jsonPathAttr(path) + '" data-json-kind="' + escapeHtml(kind || "text") + '">' + htmlOptions + '</select>' +
+    '</div>';
+  }
+
+  function renderPrimitiveJsonField(path, key, value) {
+    var labelMap = {
+      schemaVersion: "Версія схеми",
+      admin: "Службова інформація",
+      i18n: "Мовні версії",
+      uk: "Українська версія",
+      en: "Англійська версія",
+      meta: "SEO",
+      indexTitle: "SEO-заголовок головної",
+      indexDesc: "SEO-опис головної",
+      hero: "Перший екран",
+      eyebrow: "Надзаголовок",
+      title: "Заголовок",
+      lede: "Короткий опис",
+      list: "Список",
+      sectionLabel: "Назва розділу",
+      empty: "Порожній стан",
+      links: "Посилання"
+    };
+    var label = labelMap[key] || key;
+    if (typeof value === "boolean") {
+      return smartSelect(path, label, value ? "true" : "false", [
+        { value: "true", label: "Так" },
+        { value: "false", label: "Ні" }
+      ], "boolean");
+    }
+    return smartField(path, label, value == null ? "" : value, {
+      kind: typeof value === "number" ? "number" : "text",
+      textarea: String(value || "").length > 90,
+      wide: String(value || "").length > 90
+    });
+  }
+
+  function renderGenericJsonNode(value, path, key) {
+    if (value === null || ["string", "number", "boolean"].indexOf(typeof value) !== -1) {
+      return renderPrimitiveJsonField(path, key, value);
+    }
+    if (Array.isArray(value)) {
+      return '<details class="admin-form-section" open><summary>' + escapeHtml(key || "Список") + ' (' + value.length + ')</summary><div class="admin-form-grid">' +
+        value.map(function (item, index) { return renderGenericJsonNode(item, path.concat(index), "Запис " + (index + 1)); }).join("") +
+      '</div></details>';
+    }
+    var simple = [];
+    var complex = [];
+    Object.keys(value || {}).forEach(function (childKey) {
+      var child = value[childKey];
+      if (child === null || ["string", "number", "boolean"].indexOf(typeof child) !== -1) simple.push([childKey, child]);
+      else complex.push([childKey, child]);
+    });
+    return '<details class="admin-form-section" open><summary>' + escapeHtml(key || "Вміст") + '</summary>' +
+      (simple.length ? '<div class="admin-form-grid">' + simple.map(function (entry) {
+        return renderPrimitiveJsonField(path.concat(entry[0]), entry[0], entry[1]);
+      }).join("") + '</div>' : '') +
+      complex.map(function (entry) { return renderGenericJsonNode(entry[1], path.concat(entry[0]), entry[0]); }).join("") +
+    '</details>';
+  }
+
+  function renderGenericJsonEditor() {
+    return '<div class="admin-form-editor">' + renderGenericJsonNode(state.subdomainEditor.data, [], "Вміст") + '</div>';
+  }
+
+  function renderResearchEntry(item, index) {
+    var title = deepGet(item, ["title", "uk"], "") || deepGet(item, ["title", "en"], "") || "Нове дослідження";
+    var meta = [deepGet(item, ["year"], ""), deepGet(item, ["date"], "")].filter(Boolean).join(" · ");
+    return '<details class="admin-form-section admin-research-entry" open>' +
+      '<summary><span>' + escapeHtml(title) + '</span><em>' + escapeHtml(meta) + '</em></summary>' +
+      '<div class="admin-research-tools">' +
+        '<button class="admin-btn secondary" type="button" data-research-duplicate="' + index + '">Дублювати</button>' +
+        '<button class="admin-btn danger" type="button" data-research-delete="' + index + '">Видалити</button>' +
+      '</div>' +
+      '<div class="admin-form-grid">' +
+        smartField([index, "id"], "ID / slug", deepGet(item, ["id"], ""), { hint: "Латиницею, без пробілів. Краще не змінювати після публікації." }) +
+        smartField([index, "date"], "Дата", deepGet(item, ["date"], ""), { type: "date" }) +
+        smartField([index, "year"], "Рік", deepGet(item, ["year"], ""), { kind: "number" }) +
+        smartField([index, "publisher"], "Видавець", deepGet(item, ["publisher"], "")) +
+        smartField([index, "originalUrl"], "Оригінальна публікація", deepGet(item, ["originalUrl"], ""), { type: "url", wide: true }) +
+      '</div>' +
+      '<h3 class="admin-smart-subtitle">Українська версія</h3>' +
+      '<div class="admin-form-grid">' +
+        smartField([index, "title", "uk"], "Назва українською", deepGet(item, ["title", "uk"], ""), { wide: true }) +
+        smartField([index, "summary", "uk"], "Короткий опис українською", deepGet(item, ["summary", "uk"], ""), { textarea: true, wide: true }) +
+        smartField([index, "authors", "uk"], "Автори українською", arrayToCsv(deepGet(item, ["authors", "uk"], [])), { kind: "array", hint: "Кілька авторів розділяйте комами." }) +
+        smartField([index, "tags", "uk"], "Теги українською", arrayToCsv(deepGet(item, ["tags", "uk"], [])), { kind: "array", hint: "Кілька тегів розділяйте комами." }) +
+        smartSelect([index, "languages", "uk", "type"], "Тип посилання UA", deepGet(item, ["languages", "uk", "type"], "full"), [
+          { value: "full", label: "Повний текст на сайті" },
+          { value: "external", label: "Зовнішнє посилання" }
+        ]) +
+        smartField([index, "languages", "uk", "url"], "URL української версії", deepGet(item, ["languages", "uk", "url"], "")) +
+      '</div>' +
+      '<h3 class="admin-smart-subtitle">Англійська версія</h3>' +
+      '<div class="admin-form-grid">' +
+        smartField([index, "title", "en"], "Назва англійською", deepGet(item, ["title", "en"], ""), { wide: true }) +
+        smartField([index, "summary", "en"], "Короткий опис англійською", deepGet(item, ["summary", "en"], ""), { textarea: true, wide: true }) +
+        smartField([index, "authors", "en"], "Автори англійською", arrayToCsv(deepGet(item, ["authors", "en"], [])), { kind: "array", hint: "Кілька авторів розділяйте комами." }) +
+        smartField([index, "tags", "en"], "Теги англійською", arrayToCsv(deepGet(item, ["tags", "en"], [])), { kind: "array", hint: "Кілька тегів розділяйте комами." }) +
+        smartSelect([index, "languages", "en", "type"], "Тип посилання EN", deepGet(item, ["languages", "en", "type"], "full"), [
+          { value: "full", label: "Повний текст на сайті" },
+          { value: "external", label: "Зовнішнє посилання" }
+        ]) +
+        smartField([index, "languages", "en", "url"], "URL англійської версії", deepGet(item, ["languages", "en", "url"], "")) +
+      '</div>' +
+    '</details>';
+  }
+
+  function renderResearchCatalogEditor() {
+    var items = state.subdomainEditor.data || [];
+    return '<div class="admin-catalog-actions">' +
+      '<div><h2>Каталог досліджень</h2><p class="admin-hint">Це картки на головній research.promedia.report. Повні HTML-тексти поки лишаються окремими файлами в GitHub.</p></div>' +
+      '<button class="admin-btn" type="button" data-research-add>+ Додати дослідження</button>' +
+    '</div>' +
+    items.map(renderResearchEntry).join("");
+  }
+
+  function bindSubdomainSmartFields() {
+    Array.prototype.forEach.call(document.querySelectorAll("[data-json-path]"), function (field) {
+      field.addEventListener("input", function () {
+        var path = JSON.parse(field.dataset.jsonPath);
+        var kind = field.dataset.jsonKind || "text";
+        var value = field.value;
+        if (kind === "number") value = Number(value) || 0;
+        if (kind === "array") value = csvToArray(value);
+        if (kind === "boolean") value = value === "true";
+        deepSet(state.subdomainEditor.data, path, value);
+        syncSubdomainEditor();
+      });
+      field.addEventListener("change", function () {
+        var event = document.createEvent("HTMLEvents");
+        event.initEvent("input", true, false);
+        field.dispatchEvent(event);
+      });
+    });
+
+    Array.prototype.forEach.call(document.querySelectorAll("[data-research-delete]"), function (button) {
+      button.addEventListener("click", function () {
+        if (!window.confirm("Видалити це дослідження з каталогу?")) return;
+        state.subdomainEditor.data.splice(Number(button.dataset.researchDelete), 1);
+        syncSubdomainEditor();
+        renderSubdomainEditor();
+      });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-research-duplicate]"), function (button) {
+      button.addEventListener("click", function () {
+        var source = state.subdomainEditor.data[Number(button.dataset.researchDuplicate)] || {};
+        var copy = JSON.parse(JSON.stringify(source));
+        copy.id = (copy.id || "research") + "-copy";
+        state.subdomainEditor.data.splice(Number(button.dataset.researchDuplicate) + 1, 0, copy);
+        syncSubdomainEditor();
+        renderSubdomainEditor();
+      });
+    });
+    var addButton = document.querySelector("[data-research-add]");
+    if (addButton) addButton.addEventListener("click", function () {
+      var today = new Date().toISOString().slice(0, 10);
+      state.subdomainEditor.data.unshift({
+        id: "new-research-" + Date.now(),
+        year: new Date().getFullYear(),
+        date: today,
+        authors: { uk: [], en: [] },
+        publisher: "",
+        originalUrl: "",
+        tags: { uk: [], en: [] },
+        title: { uk: "", en: "" },
+        summary: { uk: "", en: "" },
+        languages: {
+          uk: { type: "full", url: "" },
+          en: { type: "external", url: "" }
+        }
+      });
+      syncSubdomainEditor();
+      renderSubdomainEditor();
+    });
+
+    var source = document.getElementById("subdomain-json-source");
+    if (source) source.addEventListener("input", function () {
+      try {
+        state.subdomainEditor.data = JSON.parse(source.value);
+        state.subdomainEditor.content = source.value;
+        document.getElementById("subdomain-source-error").textContent = "";
+        var status = document.getElementById("subdomain-dirty-status");
+        if (status) status.textContent = state.subdomainEditor.content === state.subdomainEditor.originalContent ? "Без змін" : "Є незбережені зміни";
+      } catch (err) {
+        document.getElementById("subdomain-source-error").textContent = "JSON-помилка: " + err.message;
+      }
+    });
+  }
+
+  function loadSubdomainEditor(siteId, fileId) {
+    return api("/api/admin/subdomains/" + encodeURIComponent(siteId) + "/files/" + encodeURIComponent(fileId))
+      .then(function (data) {
+        state.subdomainEditor = {
+          site: data.site,
+          file: data.file,
+          sha: data.sha,
+          content: data.content,
+          originalContent: JSON.stringify(JSON.parse(data.content), null, 2) + "\n",
+          data: JSON.parse(data.content),
+          configured: Boolean(data.configured)
+        };
+        state.subdomainEditor.content = state.subdomainEditor.originalContent;
+      });
+  }
+
+  function saveSubdomainEditor() {
+    if (!state.subdomainEditor) return;
+    var errorEl = document.getElementById("subdomain-error");
+    var resultEl = document.getElementById("subdomain-result");
+    var saveBtn = document.getElementById("subdomain-save");
+    errorEl.textContent = "";
+    resultEl.textContent = "";
+    syncSubdomainEditor();
+    saveBtn.disabled = true;
+    api("/api/admin/subdomains/" + encodeURIComponent(state.subdomainEditor.site.id) + "/files/" + encodeURIComponent(state.subdomainEditor.file.id), {
+      method: "PUT",
+      body: {
+        sha: state.subdomainEditor.sha,
+        content: state.subdomainEditor.content,
+        message: "Update " + state.subdomainEditor.file.path + " via ProMedia admin"
+      }
+    }).then(function (data) {
+      state.subdomainEditor.sha = data.sha;
+      state.subdomainEditor.originalContent = state.subdomainEditor.content;
+      resultEl.innerHTML = 'Збережено в GitHub. GitHub Pages оновить сайт автоматично. Commit: <a href="' + escapeHtml(data.commit.url) + '" target="_blank" rel="noopener">' + escapeHtml(data.commit.sha.slice(0, 7)) + '</a>.';
+      syncSubdomainEditor();
+      saveBtn.disabled = false;
+    }).catch(function (err) {
+      errorEl.textContent = err.message;
+      saveBtn.disabled = false;
+    });
+  }
+
+  function renderSubdomainEditor(loadError) {
+    if (loadError) {
+      root.innerHTML =
+        '<p><a href="#/subdomains">← До досліджень і субдоменів</a></p>' +
+        '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Не вдалося завантажити файл</h1>' +
+        '<p class="admin-error">' + escapeHtml(loadError) + '</p></div>';
+      return;
+    }
+    var editor = state.subdomainEditor;
+    if (!editor) return;
+    var body = editor.file.type === "researchCatalog" ? renderResearchCatalogEditor() : renderGenericJsonEditor();
+    root.innerHTML =
+      '<p><a href="#/subdomains">← До досліджень і субдоменів</a></p>' +
+      '<div class="admin-card">' +
+        '<div class="admin-subdomain-head">' +
+          '<div><p class="admin-hint">' + escapeHtml(editor.site.label) + ' · ' + escapeHtml(editor.file.path) + '</p>' +
+          '<h1 style="font-family:var(--serif);color:var(--ink);margin:0">' + escapeHtml(editor.file.label) + '</h1>' +
+          '<p class="admin-hint">' + escapeHtml(editor.file.help || "") + '</p></div>' +
+          '<div class="admin-row"><a class="admin-btn secondary" href="' + escapeHtml(editor.site.liveUrl) + '" target="_blank" rel="noopener">Відкрити сайт</a>' +
+          '<button class="admin-btn" type="button" id="subdomain-save"' + (!editor.configured ? " disabled" : "") + '>Зберегти</button></div>' +
+        '</div>' +
+        (!editor.configured ? '<p class="admin-error">Збереження ще не увімкнене: на сервері потрібно додати секрет SUBDOMAINS_GITHUB_TOKEN.</p>' : '') +
+        '<p class="admin-error" id="subdomain-error"></p>' +
+        '<p class="admin-hint" id="subdomain-result"></p>' +
+        '<p class="admin-hint" id="subdomain-dirty-status">Без змін</p>' +
+      '</div>' +
+      '<div class="admin-card">' + body +
+        '<details class="admin-json-details"><summary>Технічний JSON</summary>' +
+          '<p class="admin-error" id="subdomain-source-error"></p>' +
+          '<textarea id="subdomain-json-source" spellcheck="false">' + escapeHtml(editor.content) + '</textarea>' +
+        '</details>' +
+      '</div>';
+    var saveBtn = document.getElementById("subdomain-save");
+    if (saveBtn) saveBtn.addEventListener("click", saveSubdomainEditor);
+    bindSubdomainSmartFields();
+    syncSubdomainEditor();
   }
 
   // ---------- Media catalog (для тегування медіа) ----------
@@ -790,6 +1189,25 @@
     if (hash === "#/push") {
       if (state.user.role !== "admin") { navigate("#/dashboard"); return; }
       loadPushSummary().then(renderPushPanel);
+      return;
+    }
+    if (hash === "#/subdomains") {
+      if (state.user.role !== "admin") { navigate("#/dashboard"); return; }
+      loadSubdomains().then(renderSubdomainsHub).catch(function (err) {
+        root.innerHTML =
+          '<p><a href="#/dashboard">← До списку статей</a></p>' +
+          '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Не вдалося завантажити субдомени</h1>' +
+          '<p class="admin-error">' + escapeHtml(err.message) + '</p></div>';
+      });
+      return;
+    }
+    var subdomainMatch = hash.match(/^#\/subdomains\/([a-z0-9-]+)\/([a-z0-9-]+)$/);
+    if (subdomainMatch) {
+      if (state.user.role !== "admin") { navigate("#/dashboard"); return; }
+      loadSubdomains()
+        .then(function () { return loadSubdomainEditor(subdomainMatch[1], subdomainMatch[2]); })
+        .then(function () { renderSubdomainEditor(); })
+        .catch(function (err) { renderSubdomainEditor(err.message); });
       return;
     }
     var editMatch = hash.match(/^#\/edit\/(\d+)$/);
