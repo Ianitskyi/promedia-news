@@ -875,6 +875,20 @@
     });
   }
 
+  function findRichEditor(name) {
+    return state.richEditors.find(function (editor) {
+      return editor.container && editor.container.dataset.richEditor === name;
+    }) || null;
+  }
+
+  function setRichEditorMarkdown(name, markdown) {
+    var editor = findRichEditor(name);
+    if (!editor) return;
+    editor.surface.innerHTML = markdownToEditorHtml(markdown || "");
+    ensureEditorLinks(editor.surface);
+    editor.textarea.value = editorHtmlToMarkdown(editor.surface);
+  }
+
   function insertEditorLink(editor) {
     restoreSelection(editor);
     var selection = window.getSelection();
@@ -974,6 +988,7 @@
       '<div class="admin-card">' +
       '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">' + (isNew ? "Нова стаття" : "Редагування статті") + "</h1>" +
       '<p class="admin-error" id="editor-error"></p>' +
+      '<p class="admin-hint" id="assist-status" aria-live="polite"></p>' +
       '<form class="admin-form" id="editor-form">' +
       '<div class="admin-field"><label>Заголовок (укр)*</label><input type="text" name="title" required value="' + escapeHtml(a.title) + '" /></div>' +
       '<div class="admin-field"><label>Заголовок (англ)</label><input type="text" name="titleEn" value="' + escapeHtml(a.titleEn) + '" /></div>' +
@@ -1017,6 +1032,89 @@
 
     var selectedMediaIds = a.relatedMediaIds.slice();
     attachRichTextEditors();
+    var formEl = document.getElementById("editor-form");
+
+    function formField(form, name) {
+      return form.elements[name];
+    }
+
+    var assistState = {
+      timer: null,
+      sequence: 0,
+      lastKey: "",
+      disabled: false,
+      titleEnTouched: Boolean(a.titleEn),
+      excerptEnTouched: Boolean(a.excerptEn),
+      bodyMdEnTouched: Boolean(a.bodyMdEn),
+      tagsTouched: Boolean(a.tags && a.tags.length)
+    };
+
+    function setAssistStatus(message, isError) {
+      var el = document.getElementById("assist-status");
+      if (!el) return;
+      el.className = isError ? "admin-error" : "admin-hint";
+      el.textContent = message || "";
+    }
+
+    function needsLiveAssist() {
+      return !assistState.titleEnTouched || !assistState.excerptEnTouched || !assistState.bodyMdEnTouched || !assistState.tagsTouched;
+    }
+
+    function applyLiveAssist(suggestions) {
+      if (!suggestions) return;
+      if (!assistState.titleEnTouched && suggestions.titleEn) formEl.titleEn.value = suggestions.titleEn;
+      if (!assistState.excerptEnTouched && suggestions.excerptEn) formEl.excerptEn.value = suggestions.excerptEn;
+      if (!assistState.bodyMdEnTouched && suggestions.bodyMdEn) setRichEditorMarkdown("bodyMdEn", suggestions.bodyMdEn);
+      if (!assistState.tagsTouched && suggestions.tags && suggestions.tags.length) formEl.tags.value = suggestions.tags.join(", ");
+    }
+
+    function runLiveAssist() {
+      if (assistState.disabled || !needsLiveAssist()) return;
+      syncRichEditors();
+      var title = formField(formEl, "title").value.trim();
+      var excerpt = formField(formEl, "excerpt").value.trim();
+      var bodyMd = formField(formEl, "bodyMd").value.trim();
+      if (!title || bodyMd.length < 40) return;
+      var key = title + "\n" + excerpt + "\n" + bodyMd;
+      if (key === assistState.lastKey) return;
+      assistState.lastKey = key;
+      var sequence = ++assistState.sequence;
+      setAssistStatus("Готую англійський переклад і теги…");
+      api("/api/admin/articles/assist", {
+        method: "POST",
+        body: { title: title, excerpt: excerpt, bodyMd: bodyMd }
+      }).then(function (data) {
+        if (sequence !== assistState.sequence) return;
+        applyLiveAssist(data.suggestions);
+        setAssistStatus("Автопереклад і теги оновлено.");
+        window.setTimeout(function () {
+          if (sequence === assistState.sequence) setAssistStatus("");
+        }, 3500);
+      }).catch(function (err) {
+        if (err.message.indexOf("OPENAI_API_KEY") !== -1 || err.message.indexOf("Автопереклад ще не підключений") !== -1) {
+          assistState.disabled = true;
+          setAssistStatus("");
+          return;
+        }
+        setAssistStatus("Автопереклад зараз не спрацював. Можна продовжити вручну.", true);
+      });
+    }
+
+    function scheduleLiveAssist() {
+      if (assistState.disabled || !needsLiveAssist()) return;
+      window.clearTimeout(assistState.timer);
+      assistState.timer = window.setTimeout(runLiveAssist, 3500);
+    }
+
+    formField(formEl, "title").addEventListener("input", scheduleLiveAssist);
+    formField(formEl, "excerpt").addEventListener("input", scheduleLiveAssist);
+    formField(formEl, "titleEn").addEventListener("input", function () { assistState.titleEnTouched = true; });
+    formField(formEl, "excerptEn").addEventListener("input", function () { assistState.excerptEnTouched = true; });
+    formField(formEl, "tags").addEventListener("input", function () { assistState.tagsTouched = true; });
+    var ukEditor = findRichEditor("bodyMd");
+    if (ukEditor) ukEditor.surface.addEventListener("input", scheduleLiveAssist);
+    var enEditor = findRichEditor("bodyMdEn");
+    if (enEditor) enEditor.surface.addEventListener("input", function () { assistState.bodyMdEnTouched = true; });
 
     function renderSelectedMedia() {
       loadMediaCatalog().then(function (catalog) {
@@ -1076,22 +1174,23 @@
 
     function collectPayload(form) {
       syncRichEditors();
+      var fields = form.elements;
       return {
-        title: form.title.value,
-        titleEn: form.titleEn.value || null,
-        excerpt: form.excerpt.value || null,
-        excerptEn: form.excerptEn.value || null,
-        bodyMd: form.bodyMd.value,
-        bodyMdEn: form.bodyMdEn.value || null,
-        coverImageUrl: form.coverImageUrl.value || null,
-        tags: form.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
+        title: fields.title.value,
+        titleEn: fields.titleEn.value || null,
+        excerpt: fields.excerpt.value || null,
+        excerptEn: fields.excerptEn.value || null,
+        bodyMd: fields.bodyMd.value,
+        bodyMdEn: fields.bodyMdEn.value || null,
+        coverImageUrl: fields.coverImageUrl.value || null,
+        tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,
-        isImportant: form.isImportant.checked,
-        cardStyle: form.cardStyle.value
+        isImportant: fields.isImportant.checked,
+        cardStyle: fields.cardStyle.value
       };
     }
 
-    document.getElementById("editor-form").addEventListener("submit", function (e) {
+    formEl.addEventListener("submit", function (e) {
       e.preventDefault();
       var form = e.target;
       var payload = collectPayload(form);

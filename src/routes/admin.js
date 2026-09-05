@@ -3,7 +3,7 @@ import { uniqueSlug } from "../lib/slug.js";
 import { markdownToPlainText } from "../lib/markdown.js";
 import { handleAdminPushRoute } from "../lib/push.js";
 import { handleAdminSubdomainsRoute } from "../lib/subdomains.js";
-import { completeArticleDraft } from "../lib/articleAssist.js";
+import { completeArticleDraft, generateArticleAssist } from "../lib/articleAssist.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -62,6 +62,23 @@ export async function handleAdminRoute(request, env, url) {
   }
 
   // ---- Статті ----
+
+  if (url.pathname === "/api/admin/articles/assist" && request.method === "POST") {
+    const body = await request.json().catch(() => null);
+    if (!body || !body.title || !body.bodyMd) return json({ error: "title і bodyMd обов'язкові" }, 400);
+    try {
+      const suggestions = await generateArticleAssist(env, {
+        title: body.title,
+        excerpt: body.excerpt || markdownToPlainText(body.bodyMd || "", 200),
+        bodyMd: body.bodyMd
+      });
+      if (!suggestions) return json({ error: "Автопереклад ще не підключений: бракує OPENAI_API_KEY." }, 503);
+      return json({ suggestions });
+    } catch (err) {
+      console.warn("Live article assist failed", err && err.message ? err.message : err);
+      return json({ error: "Автопереклад зараз недоступний. Спробуйте пізніше або продовжуйте вручну." }, 502);
+    }
+  }
 
   if (url.pathname === "/api/admin/articles" && request.method === "GET") {
     const isAdmin = user.role === "admin";

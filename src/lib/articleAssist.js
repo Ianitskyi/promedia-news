@@ -90,7 +90,18 @@ function responseText(data) {
   return chunks.join("");
 }
 
-async function generateArticleAssist(env, article) {
+function applyAssistedFields(body, assisted) {
+  if (!assisted) return body;
+  return {
+    ...body,
+    titleEn: hasText(body.titleEn) ? body.titleEn : assisted.titleEn,
+    excerptEn: hasText(body.excerptEn) ? body.excerptEn : assisted.excerptEn,
+    bodyMdEn: hasText(body.bodyMdEn) ? body.bodyMdEn : assisted.bodyMdEn,
+    tags: hasTags(body.tags) ? body.tags : assisted.tags
+  };
+}
+
+export async function generateArticleAssist(env, article) {
   const apiKey = String(env.OPENAI_API_KEY || "").trim();
   if (!apiKey) return null;
 
@@ -101,7 +112,8 @@ async function generateArticleAssist(env, article) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: env.OPENAI_MODEL || "gpt-4o-mini",
+      model: env.OPENAI_MODEL || "gpt-5-mini",
+      store: false,
       input: [
         {
           role: "system",
@@ -182,11 +194,5 @@ export async function completeArticleDraft(body, env) {
   }
   if (!assisted) return body;
 
-  return {
-    ...body,
-    titleEn: hasText(body.titleEn) ? body.titleEn : assisted.titleEn,
-    excerptEn: hasText(body.excerptEn) ? body.excerptEn : assisted.excerptEn,
-    bodyMdEn: hasText(body.bodyMdEn) ? body.bodyMdEn : assisted.bodyMdEn,
-    tags: hasTags(body.tags) ? body.tags : assisted.tags
-  };
+  return applyAssistedFields(body, assisted);
 }
