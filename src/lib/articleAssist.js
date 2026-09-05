@@ -127,6 +127,7 @@ export async function generateArticleAssist(env, article) {
                 "Use established English names where clear: ГО «ПроМедіа» = ProMedia NGO, ІРРП = RPDI, Суспільне = Suspilne, Львівський медіафорум = Lviv Media Forum.",
                 "Create a concise English SEO excerpt under 170 characters.",
                 "Return canonical tags in Ukrainian. Include one broad category from: Заяви, Новини, Статті. Add 1-5 topical tags, preferably from this vocabulary: " + TAG_VOCABULARY.join(", ") + ".",
+                "If only the Ukrainian title is present, translate the title, create conservative tags from the title only, and leave bodyMdEn empty.",
                 "Do not add facts, quotes, links or sources that are not present in the Ukrainian text."
               ].join("\n")
             }

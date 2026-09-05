@@ -1062,10 +1062,10 @@
 
     function applyLiveAssist(suggestions) {
       if (!suggestions) return;
-      if (!assistState.titleEnTouched && suggestions.titleEn) formEl.titleEn.value = suggestions.titleEn;
-      if (!assistState.excerptEnTouched && suggestions.excerptEn) formEl.excerptEn.value = suggestions.excerptEn;
+      if (!assistState.titleEnTouched && suggestions.titleEn) formField(formEl, "titleEn").value = suggestions.titleEn;
+      if (!assistState.excerptEnTouched && suggestions.excerptEn) formField(formEl, "excerptEn").value = suggestions.excerptEn;
       if (!assistState.bodyMdEnTouched && suggestions.bodyMdEn) setRichEditorMarkdown("bodyMdEn", suggestions.bodyMdEn);
-      if (!assistState.tagsTouched && suggestions.tags && suggestions.tags.length) formEl.tags.value = suggestions.tags.join(", ");
+      if (!assistState.tagsTouched && suggestions.tags && suggestions.tags.length) formField(formEl, "tags").value = suggestions.tags.join(", ");
     }
 
     function runLiveAssist() {
@@ -1074,7 +1074,7 @@
       var title = formField(formEl, "title").value.trim();
       var excerpt = formField(formEl, "excerpt").value.trim();
       var bodyMd = formField(formEl, "bodyMd").value.trim();
-      if (!title || bodyMd.length < 40) return;
+      if (title.length < 4 && bodyMd.length < 40) return;
       var key = title + "\n" + excerpt + "\n" + bodyMd;
       if (key === assistState.lastKey) return;
       assistState.lastKey = key;

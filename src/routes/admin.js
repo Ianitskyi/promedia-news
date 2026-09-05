@@ -65,7 +65,7 @@ export async function handleAdminRoute(request, env, url) {
 
   if (url.pathname === "/api/admin/articles/assist" && request.method === "POST") {
     const body = await request.json().catch(() => null);
-    if (!body || !body.title || !body.bodyMd) return json({ error: "title і bodyMd обов'язкові" }, 400);
+    if (!body || !body.title) return json({ error: "title обов'язковий" }, 400);
     try {
       const suggestions = await generateArticleAssist(env, {
         title: body.title,
