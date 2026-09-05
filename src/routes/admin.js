@@ -46,6 +46,20 @@ function normalizeCardStyle(value) {
   return ["auto", "hero", "image", "text"].includes(value) ? value : "auto";
 }
 
+function articleAssistErrorMessage(err) {
+  const message = String(err && err.message ? err.message : err || "");
+  if (/no credits|billing|insufficient_quota|quota/i.test(message)) {
+    return "В OpenAI API закінчилися кредити. Поповніть баланс або підключіть оплату в OpenAI Platform Billing, після цього автопереклад запрацює.";
+  }
+  if (/api key|authentication|unauthorized|invalid.*key/i.test(message)) {
+    return "OpenAI API key не приймається. Перевірте, чи правильний ключ додано в секрет OPENAI_API_KEY.";
+  }
+  if (/model|does not exist|access/i.test(message)) {
+    return "OpenAI зараз не приймає вибрану модель для цього ключа. Можна задати іншу модель через OPENAI_MODEL.";
+  }
+  return "Автопереклад зараз недоступний. Спробуйте пізніше або продовжуйте вручну.";
+}
+
 export async function handleAdminRoute(request, env, url) {
   const db = env.DB;
   const user = await getCurrentUser(request, env);
@@ -76,7 +90,7 @@ export async function handleAdminRoute(request, env, url) {
       return json({ suggestions });
     } catch (err) {
       console.warn("Live article assist failed", err && err.message ? err.message : err);
-      return json({ error: "Автопереклад зараз недоступний. Спробуйте пізніше або продовжуйте вручну." }, 502);
+      return json({ error: articleAssistErrorMessage(err) }, 502);
     }
   }
 

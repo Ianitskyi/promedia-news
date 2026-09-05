@@ -1096,7 +1096,7 @@
           setAssistStatus("");
           return;
         }
-        setAssistStatus("Автопереклад зараз не спрацював. Можна продовжити вручну.", true);
+        setAssistStatus(err.message || "Автопереклад зараз не спрацював. Можна продовжити вручну.", true);
       });
     }
 
