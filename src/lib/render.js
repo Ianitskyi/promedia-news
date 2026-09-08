@@ -421,7 +421,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">
         <span>${lang === "en" ? "About:" : "Про кого:"}</span>
-        ${relatedMediaNames.map((m) => `<a href="https://communities.promedia.report/media/?id=${encodeURIComponent(m.id)}&lang=${lang}">${escapeHtml(m.name)}</a>`).join(", ")}
+        ${relatedMediaNames.map((m) => `<a href="${escapeHtml(m.url || `https://communities.promedia.report/media/?id=${encodeURIComponent(m.id)}&lang=${lang}`)}">${escapeHtml(m.name)}</a>`).join(", ")}
       </div>`
     : "";
   const bodyHtml = `

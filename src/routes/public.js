@@ -22,13 +22,18 @@ function html(body) {
   return new Response(body, { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }
 
-async function fetchRelatedMediaNames(mediaIds) {
+async function fetchRelatedMediaNames(mediaIds, env, baseUrl) {
   if (!mediaIds.length) return [];
   try {
-    const res = await fetch("https://communities.promedia.report/data/communities.json");
-    if (!res.ok) return mediaIds.map((id) => ({ id, name: id }));
-    const all = await res.json();
+    const [communityRes, atlasRes] = await Promise.allSettled([
+      fetch("https://communities.promedia.report/data/communities.json").then(res => res.ok ? res.json() : []),
+      env.ASSETS.fetch(new Request(`${baseUrl}/data/atlas-brands.json`)).then(res => res.ok ? res.json() : [])
+    ]);
+    const all = communityRes.status === "fulfilled" ? communityRes.value : [];
+    const atlas = atlasRes.status === "fulfilled" ? atlasRes.value : [];
     return mediaIds.map((id) => {
+      const brand = atlas.find(m => m.id === id || (m.newsIds || []).includes(id));
+      if (brand) return { id, name: brand.name, url: brand.url };
       const found = all.find((m) => m.id === id);
       return { id, name: found ? found.name : id };
     });
@@ -128,7 +133,7 @@ export async function handlePublicRoute(request, env, url) {
         headers: { "Content-Type": "text/html; charset=utf-8" }
       });
     }
-    const relatedMediaNames = await fetchRelatedMediaNames(JSON.parse(article.related_media_ids || "[]"));
+    const relatedMediaNames = await fetchRelatedMediaNames(JSON.parse(article.related_media_ids || "[]"), env, baseUrl);
     return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames }));
   }
 

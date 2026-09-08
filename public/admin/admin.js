@@ -609,10 +609,16 @@
 
   function loadMediaCatalog() {
     if (state.mediaCatalog) return Promise.resolve(state.mediaCatalog);
-    return fetch("https://communities.promedia.report/data/communities.json")
-      .then(function (res) { return res.json(); })
-      .then(function (all) {
-        state.mediaCatalog = all.filter(function (m) { return m.status === "approved"; });
+    return Promise.all([
+      fetch("https://communities.promedia.report/data/communities.json").then(function (res) { if (!res.ok) throw new Error("Catalog unavailable"); return res.json(); }).catch(function () { return []; }),
+      fetch("/data/atlas-brands.json").then(function (res) { if (!res.ok) throw new Error("Atlas unavailable"); return res.json(); }).catch(function () { return []; })
+    ])
+      .then(function (catalogs) {
+        var communities = catalogs[0].filter(function (m) { return m.status === "approved"; });
+        var communityIds = new Set(communities.map(function (m) { return m.id; }));
+        // Preserve existing tags; a linked community already identifies the same brand.
+        var brands = catalogs[1].filter(function (m) { return !(m.newsIds || []).some(function (id) { return communityIds.has(id); }); });
+        state.mediaCatalog = communities.concat(brands);
         return state.mediaCatalog;
       })
       .catch(function () { state.mediaCatalog = []; return state.mediaCatalog; });
