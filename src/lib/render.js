@@ -119,11 +119,35 @@ function header(lang) {
 function footer(lang) {
   const en = lang === "en";
   const main = en ? "https://promedia.report/en" : "https://promedia.report";
+  const t = en ? {
+    details: "Organization details", name: "Official name", nameValue: "ProMedia NGO",
+    registration: "Registration number", address: "Registered address",
+    addressValue: "19/44 Volodymyra Samiilenka St., Kyiv, Ukraine, 03118",
+    chair: "Chair of the Board", chairValue: "Andrii Ianitskyi", phone: "Phone", email: "Email",
+    social: "Social media", project: "A ProMedia project", correction: "Found an error?"
+  } : {
+    details: "Дані про організацію", name: "Офіційна назва", nameValue: "ГО «ПроМедіа»",
+    registration: "Реєстраційний номер", address: "Юридична адреса",
+    addressValue: "вул. Володимира Самійленка, 19/44, Київ, Україна, 03118",
+    chair: "Голова правління", chairValue: "Андрій Яніцький", phone: "Телефон", email: "Електронна пошта",
+    social: "Соціальні мережі", project: "Проєкт ПроМедіа", correction: "Побачили помилку?"
+  };
   return `
 <footer class="site-footer">
-  <a href="${main}">${en ? "A ProMedia project" : "Проєкт ПроМедіа"}</a>
-  <span>${en ? "News about media, civil society and communications" : "Новини про медіа, громадський сектор і комунікації"}</span>
-  <a href="mailto:info@promedia.report">${en ? "Found an error?" : "Побачили помилку?"} info@promedia.report</a>
+  <div class="site-footer-heading">
+    <a href="${main}">${t.project}</a>
+    <h2>${t.details}</h2>
+  </div>
+  <dl class="site-footer-details">
+    <div><dt>${t.name}</dt><dd>${t.nameValue}</dd></div>
+    <div><dt>${t.registration}</dt><dd>45995408</dd></div>
+    <div><dt>${t.address}</dt><dd>${t.addressValue}</dd></div>
+    <div><dt>${t.chair}</dt><dd>${t.chairValue}</dd></div>
+    <div><dt>${t.phone}</dt><dd><a href="tel:+380506959537">+38 (050) 695 95 37</a></dd></div>
+    <div><dt>${t.email}</dt><dd><a href="mailto:info@promedia.report">info@promedia.report</a></dd></div>
+    <div><dt>${t.social}</dt><dd><a href="https://www.instagram.com/promediaua/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/promediaukraine" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.linkedin.com/company/promediaukraine/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@prostirmedia" target="_blank" rel="noopener">YouTube</a></dd></div>
+  </dl>
+  <a class="site-footer-correction" href="mailto:info@promedia.report">${t.correction} info@promedia.report</a>
 </footer>`;
 }
 

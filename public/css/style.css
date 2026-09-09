@@ -786,8 +786,16 @@ img { max-width: 100%; }
   .admin-catalog-actions { flex-direction: column; }
 }
 
-/* Shared subdomain navigation and compact footer */
-.site-footer { max-width: 1120px; margin: 64px auto 0; padding: 22px 24px 34px; border-top: 1.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 18px; color: var(--muted); font-size: 12px; }
+/* Shared subdomain navigation and public organization details */
+.site-footer { max-width: 1120px; margin: 64px auto 0; padding: 28px 24px 36px; border-top: 1.5px solid var(--border); color: var(--text); }
 .site-footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
-@media (max-width: 860px) { .utility-bar { max-width: none; padding-inline: 16px; } .utility-bar .lang-toggle { margin-left: 0; } }
-@media (max-width: 620px) { .utility-bar { gap: 10px; } .utility-bar .nav-link { font-size: 12px; } .site-footer { margin-top: 48px; padding-inline: 16px; flex-direction: column; align-items: flex-start; } }
+.site-footer-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+.site-footer-heading > a { font-size: 13px; }
+.site-footer-heading h2 { margin: 0; color: var(--ink); font-family: var(--sans); font-size: 20px; }
+.site-footer-details { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 36px; margin: 0; }
+.site-footer-details div { display: grid; grid-template-columns: minmax(140px, .65fr) 1.35fr; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.site-footer-details dt { color: var(--muted); font-size: 12px; font-weight: 700; }
+.site-footer-details dd { margin: 0; font-size: 13px; overflow-wrap: anywhere; }
+.site-footer-correction { display: inline-block; margin-top: 22px; font-size: 12px; }
+@media (max-width: 860px) { .utility-bar { max-width: none; padding-inline: 16px; } .utility-bar .lang-toggle { margin-left: 0; } .site-footer-details { grid-template-columns: 1fr; } }
+@media (max-width: 620px) { .utility-bar { gap: 10px; } .utility-bar .nav-link { font-size: 12px; } .site-footer { margin-top: 48px; padding-inline: 16px; } .site-footer-heading { align-items: flex-start; flex-direction: column; } .site-footer-details div { grid-template-columns: 1fr; gap: 3px; } }
