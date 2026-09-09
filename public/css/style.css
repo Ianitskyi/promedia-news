@@ -154,7 +154,8 @@ img { max-width: 100%; }
   font-weight: 700;
   font-size: 13px;
 }
-.nav-link:hover { color: var(--ink); }
+.nav-link:hover, .nav-link.active { color: var(--ink); }
+.nav-link.active { border-bottom: 1.5px solid var(--ink); }
 
 .lang-toggle {
   display: inline-flex;
@@ -784,3 +785,9 @@ img { max-width: 100%; }
   }
   .admin-catalog-actions { flex-direction: column; }
 }
+
+/* Shared subdomain navigation and compact footer */
+.site-footer { max-width: 1120px; margin: 64px auto 0; padding: 22px 24px 34px; border-top: 1.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 18px; color: var(--muted); font-size: 12px; }
+.site-footer a { color: var(--ink); font-weight: 700; text-decoration: none; }
+@media (max-width: 860px) { .utility-bar { max-width: none; padding-inline: 16px; } .utility-bar .lang-toggle { margin-left: 0; } }
+@media (max-width: 620px) { .utility-bar { gap: 10px; } .utility-bar .nav-link { font-size: 12px; } .site-footer { margin-top: 48px; padding-inline: 16px; flex-direction: column; align-items: flex-start; } }
