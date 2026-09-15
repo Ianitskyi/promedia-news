@@ -47,7 +47,7 @@
       await self.registration.showNotification(message.title, {
         body: message.body,
         icon: NEWS_ORIGIN + "/img/og-share.png",
-        badge: NEWS_ORIGIN + "/favicon.svg",
+        badge: NEWS_ORIGIN + "/favicon.png",
         tag: "promedia-update",
         renotify: false,
         data: { url: message.url || DEFAULT_URL }

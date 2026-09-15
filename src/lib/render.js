@@ -90,7 +90,7 @@ ${publishedAt ? `<meta property="article:published_time" content="${escapeHtml(p
 <link rel="alternate" hreflang="uk" href="${escapeHtml(ukUrl)}" />
 <link rel="alternate" hreflang="en" href="${escapeHtml(enUrl)}" />
 <link rel="alternate" hreflang="x-default" href="${escapeHtml(ukUrl)}" />
-<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="icon" href="/favicon.png" type="image/svg+xml" />
 <link rel="stylesheet" href="/css/style.css" />`;
 }
 
