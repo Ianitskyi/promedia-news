@@ -104,15 +104,17 @@ function header(lang) {
   return `
 <nav class="utility-bar" aria-label="${en ? "ProMedia projects" : "Проєкти ПроМедіа"}">
   <a class="home-btn" href="${main}">← ПроМедіа</a>
-  <a class="nav-link active" href="/${q}">${links.news}</a>
-  <a class="nav-link" href="https://communities.promedia.report/${q}">${links.communities}</a>
-  <a class="nav-link" href="https://ratings.promedia.report/${q}">${links.ratings}</a>
-  <a class="nav-link" href="https://research.promedia.report/${q}">${links.research}</a>
-  <a class="nav-link" href="https://atlas.promedia.report/${en ? "en" : ""}">${links.atlas}</a>
   <span class="lang-toggle" aria-label="Language / Мова">
     <a class="lang-btn${en ? "" : " active"}" href="?lang=uk">UA</a>
     <a class="lang-btn${en ? " active" : ""}" href="?lang=en">EN</a>
   </span>
+</nav>
+<nav class="network-nav" aria-label="${en ? "ProMedia projects" : "Проєкти ПроМедіа"}">
+  <a class="network-link active" href="/${q}">${links.news}</a>
+  <a class="network-link" href="https://communities.promedia.report/${en ? "en/" : ""}">${links.communities}</a>
+  <a class="network-link" href="https://ratings.promedia.report/${q}">${links.ratings}</a>
+  <a class="network-link" href="https://research.promedia.report/${en ? "en/" : ""}">${links.research}</a>
+  <a class="network-link" href="https://atlas.promedia.report/${en ? "en/" : ""}">${links.atlas}</a>
 </nav>`;
 }
 
@@ -148,6 +150,13 @@ function footer(lang) {
     <div><dt>${t.social}</dt><dd><a href="https://www.instagram.com/promediaua/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/promediaukraine" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.linkedin.com/company/promediaukraine/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@prostirmedia" target="_blank" rel="noopener">YouTube</a></dd></div>
   </dl>
   <a class="site-footer-correction" href="mailto:info@promedia.report">${t.correction} info@promedia.report</a>
+  <nav class="network-footer" aria-label="${en ? "ProMedia projects" : "Проєкти ПроМедіа"}">
+    <a href="/${en ? "?lang=en" : ""}">${en ? "News" : "Новини"}</a>
+    <a href="https://communities.promedia.report/${en ? "en/" : ""}">${en ? "Community Map" : "Карта спільнот"}</a>
+    <a href="https://ratings.promedia.report/${en ? "?lang=en" : ""}">${en ? "Journalism Schools Ranking" : "Рейтинг журфаків"}</a>
+    <a href="https://research.promedia.report/${en ? "en/" : ""}">${en ? "Research" : "Дослідження"}</a>
+    <a href="https://atlas.promedia.report/${en ? "en/" : ""}">${en ? "Media Atlas" : "Атлас Медіа"}</a>
+  </nav>
 </footer>`;
 }
 
