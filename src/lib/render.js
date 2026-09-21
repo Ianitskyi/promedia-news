@@ -99,8 +99,8 @@ function header(lang) {
   const q = en ? "?lang=en" : "";
   const main = en ? "https://promedia.report/en" : "https://promedia.report";
   const links = en
-    ? { communities: "Media communities", ratings: "Journalism schools", research: "Research", atlas: "Media Atlas", news: "News" }
-    : { communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження", atlas: "Атлас Медіа", news: "Новини" };
+    ? { communities: "Media communities", ratings: "Journalism schools", research: "Research", atlas: "Media Atlas" }
+    : { communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження", atlas: "Атлас Медіа" };
   return `
 <nav class="utility-bar" aria-label="${en ? "ProMedia projects" : "Проєкти ПроМедіа"}">
   <a class="home-btn" href="${main}">← ПроМедіа</a>
@@ -110,7 +110,6 @@ function header(lang) {
   </span>
 </nav>
 <nav class="network-nav" aria-label="${en ? "ProMedia projects" : "Проєкти ПроМедіа"}">
-  <a class="network-link active" href="/${q}">${links.news}</a>
   <a class="network-link" href="https://communities.promedia.report/${en ? "en/" : ""}">${links.communities}</a>
   <a class="network-link" href="https://ratings.promedia.report/${q}">${links.ratings}</a>
   <a class="network-link" href="https://research.promedia.report/${en ? "en/" : ""}">${links.research}</a>
@@ -151,7 +150,6 @@ function footer(lang) {
   </dl>
   <a class="site-footer-correction" href="mailto:info@promedia.report">${t.correction} info@promedia.report</a>
   <nav class="network-footer" aria-label="${en ? "ProMedia projects" : "Проєкти ПроМедіа"}">
-    <a href="/${en ? "?lang=en" : ""}">${en ? "News" : "Новини"}</a>
     <a href="https://communities.promedia.report/${en ? "en/" : ""}">${en ? "Community Map" : "Карта спільнот"}</a>
     <a href="https://ratings.promedia.report/${en ? "?lang=en" : ""}">${en ? "Journalism Schools Ranking" : "Рейтинг журфаків"}</a>
     <a href="https://research.promedia.report/${en ? "en/" : ""}">${en ? "Research" : "Дослідження"}</a>
