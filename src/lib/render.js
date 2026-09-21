@@ -313,7 +313,6 @@ function articleShareBlock({ title, excerpt, articleUrl, lang }) {
 
 export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
   const t = lang === "en" ? SITE_NAME.en : SITE_NAME.uk;
-  const tagline = SITE_TAGLINE[lang];
   let list = `<p class="empty-state">${lang === "en" ? "No articles yet." : "Статей поки немає."}</p>`;
   if (articles.length) {
     const orderedArticles = articles.slice();
@@ -346,7 +345,6 @@ export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
 <section class="hero">
   <div class="eyebrow">${escapeHtml(SITE_EYEBROW[lang])}</div>
   <h1>${lang === "en" ? "News from <span>ProMedia</span>" : "Новини від <span>ProMedia</span>"}</h1>
-  <p class="lede">${escapeHtml(tagline)}</p>
   ${categoryNav(lang, activeTag)}
 </section>
 <main class="wrap">
