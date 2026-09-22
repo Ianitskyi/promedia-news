@@ -2,7 +2,7 @@
   "use strict";
 
   var NEWS_ORIGIN = "https://news.promedia.report";
-  var API_URL = NEWS_ORIGIN + "/api/articles?important=1&limit=3";
+  var API_URL = NEWS_ORIGIN + "/api/articles?limit=3";
 
   function isEnglishPage() {
     return document.documentElement.lang.toLowerCase().indexOf("en") === 0 ||
