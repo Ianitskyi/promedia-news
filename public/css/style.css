@@ -678,6 +678,7 @@ img { max-width: 100%; }
 .admin-status.published { background: #e7f7ee; color: #1c9a56; }
 
 .admin-error { color: #c0392b; font-size: 13px; }
+.admin-success { color: #187a43; font-size: 13px; }
 .admin-hint { color: var(--muted); font-size: 12px; }
 .admin-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
 .admin-cover-preview { max-width: 220px; border-radius: var(--radius-sm); display: block; margin-top: 8px; }

@@ -68,6 +68,20 @@ export async function verifyPassword(password, stored) {
   return diff === 0;
 }
 
+function bytesToBase64Url(bytes) {
+  return base64UrlEncode(bytes);
+}
+
+export function createPasswordResetToken() {
+  const bytes = crypto.getRandomValues(new Uint8Array(32));
+  return bytesToBase64Url(bytes);
+}
+
+export async function hashPasswordResetToken(token) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(token));
+  return toHex(digest);
+}
+
 async function hmacKey(secret) {
   return crypto.subtle.importKey(
     "raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" },

@@ -47,7 +47,9 @@
     if (!state.user) { userRow.innerHTML = ""; return; }
     userRow.innerHTML =
       '<span class="admin-hint">' + escapeHtml(state.user.name) + " (" + escapeHtml(state.user.role) + ")</span>" +
+      '<button class="admin-btn secondary" id="password-btn" type="button">Пароль</button>' +
       '<button class="admin-btn secondary" id="logout-btn" type="button">Вийти</button>';
+    document.getElementById("password-btn").addEventListener("click", function () { navigate("#/change-password"); });
     document.getElementById("logout-btn").addEventListener("click", function () {
       api("/api/auth/logout", { method: "POST" }).then(function () {
         state.user = null;
@@ -68,6 +70,7 @@
       '<div class="admin-field"><label>Email</label><input type="email" name="email" required autofocus /></div>' +
       '<div class="admin-field"><label>Пароль</label><input type="password" name="password" required /></div>' +
       '<button class="admin-btn" type="submit">Увійти</button>' +
+      '<p class="admin-hint" style="margin:0"><a href="#/forgot-password">Не пам’ятаєте пароль?</a></p>' +
       "</form></div>";
     document.getElementById("login-form").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -129,6 +132,79 @@
     if (subdomainsBtn) subdomainsBtn.addEventListener("click", function () { navigate("#/subdomains"); });
     var usersBtn = document.getElementById("users-btn");
     if (usersBtn) usersBtn.addEventListener("click", function () { navigate("#/users"); });
+  }
+
+  function renderForgotPassword(message, errorMsg) {
+    root.innerHTML =
+      '<p><a href="#/login">← До входу</a></p>' +
+      '<div class="admin-card" style="max-width:420px;margin:30px auto">' +
+      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Відновити пароль</h1>' +
+      '<p class="admin-hint">Вкажіть email, з яким зареєстрована адмінка. Ми надішлемо одноразове посилання, чинне одну годину.</p>' +
+      (message ? '<p class="admin-success">' + escapeHtml(message) + '</p>' : '') +
+      (errorMsg ? '<p class="admin-error">' + escapeHtml(errorMsg) + '</p>' : '') +
+      '<form class="admin-form" id="forgot-password-form">' +
+      '<div class="admin-field"><label>Email</label><input type="email" name="email" required autofocus /></div>' +
+      '<button class="admin-btn" type="submit">Надіслати посилання</button>' +
+      '</form></div>';
+    document.getElementById("forgot-password-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var form = e.target;
+      api("/api/auth/password-reset/request", { method: "POST", body: { email: form.email.value } })
+        .then(function () { renderForgotPassword("Якщо така адреса є в системі, посилання вже надіслано."); })
+        .catch(function (err) { renderForgotPassword(null, err.message); });
+    });
+  }
+
+  function renderResetPassword(errorMsg) {
+    var params = new URLSearchParams((window.location.hash.split("?")[1] || ""));
+    var token = params.get("token") || "";
+    root.innerHTML =
+      '<div class="admin-card" style="max-width:420px;margin:60px auto">' +
+      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Новий пароль</h1>' +
+      '<p class="admin-hint">Створіть пароль із щонайменше 10 символів.</p>' +
+      (errorMsg ? '<p class="admin-error">' + escapeHtml(errorMsg) + '</p>' : '') +
+      '<form class="admin-form" id="reset-password-form">' +
+      '<div class="admin-field"><label>Новий пароль</label><input type="password" name="password" required minlength="10" autocomplete="new-password" /></div>' +
+      '<div class="admin-field"><label>Повторіть пароль</label><input type="password" name="confirmPassword" required minlength="10" autocomplete="new-password" /></div>' +
+      '<button class="admin-btn" type="submit">Зберегти новий пароль</button>' +
+      '</form></div>';
+    document.getElementById("reset-password-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var form = e.target;
+      if (!token) { renderResetPassword("У посиланні немає токена відновлення."); return; }
+      if (form.password.value !== form.confirmPassword.value) { renderResetPassword("Паролі не збігаються."); return; }
+      api("/api/auth/password-reset/confirm", { method: "POST", body: { token: token, password: form.password.value } })
+        .then(function (data) {
+          state.user = data.user;
+          renderUserRow();
+          navigate("#/dashboard");
+          boot();
+        })
+        .catch(function (err) { renderResetPassword(err.message); });
+    });
+  }
+
+  function renderChangePassword(message, errorMsg) {
+    root.innerHTML =
+      '<p><a href="#/dashboard">← До статей</a></p>' +
+      '<div class="admin-card" style="max-width:420px;margin:30px auto">' +
+      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Змінити пароль</h1>' +
+      (message ? '<p class="admin-success">' + escapeHtml(message) + '</p>' : '') +
+      (errorMsg ? '<p class="admin-error">' + escapeHtml(errorMsg) + '</p>' : '') +
+      '<form class="admin-form" id="change-password-form">' +
+      '<div class="admin-field"><label>Поточний пароль</label><input type="password" name="currentPassword" required autocomplete="current-password" /></div>' +
+      '<div class="admin-field"><label>Новий пароль</label><input type="password" name="newPassword" required minlength="10" autocomplete="new-password" /></div>' +
+      '<div class="admin-field"><label>Повторіть новий пароль</label><input type="password" name="confirmPassword" required minlength="10" autocomplete="new-password" /></div>' +
+      '<button class="admin-btn" type="submit">Змінити пароль</button>' +
+      '</form></div>';
+    document.getElementById("change-password-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var form = e.target;
+      if (form.newPassword.value !== form.confirmPassword.value) { renderChangePassword(null, "Нові паролі не збігаються."); return; }
+      api("/api/auth/change-password", { method: "POST", body: { currentPassword: form.currentPassword.value, newPassword: form.newPassword.value } })
+        .then(function () { renderChangePassword("Пароль оновлено."); })
+        .catch(function (err) { renderChangePassword(null, err.message); });
+    });
   }
 
   // ---------- Push notifications ----------
@@ -1281,11 +1357,14 @@
     var hash = window.location.hash || "#/dashboard";
 
     if (!state.user) {
+      if (hash === "#/forgot-password") { renderForgotPassword(); return; }
+      if (hash.indexOf("#/reset-password") === 0) { renderResetPassword(); return; }
       renderLogin();
       return;
     }
 
     if (hash === "#/login") { navigate("#/dashboard"); return; }
+    if (hash === "#/change-password") { renderChangePassword(); return; }
     if (hash === "#/new") { renderEditor(null); return; }
     if (hash === "#/users") {
       if (state.user.role !== "admin") { navigate("#/dashboard"); return; }
