@@ -93,6 +93,40 @@ export async function handlePublicRoute(request, env, url) {
     return corsJson({ items });
   }
 
+  // A versioned, machine-readable archive of public content. Drafts, accounts,
+  // and other private editorial data intentionally remain in D1 only.
+  if (url.pathname === "/api/export/published-news.json" && request.method === "GET") {
+    const { results } = await db.prepare(`
+      SELECT slug, title, title_en, excerpt, excerpt_en, body_md, body_md_en,
+        cover_image_url, tags, related_media_ids, is_important, card_style,
+        published_at, created_at, updated_at
+      FROM articles
+      WHERE status = 'published'
+      ORDER BY published_at DESC
+    `).all();
+    return corsJson({
+      schemaVersion: 1,
+      exportedAt: new Date().toISOString(),
+      items: results.map((article) => ({
+        slug: article.slug,
+        title: article.title,
+        titleEn: article.title_en,
+        excerpt: article.excerpt,
+        excerptEn: article.excerpt_en,
+        bodyMd: article.body_md,
+        bodyMdEn: article.body_md_en,
+        coverImageUrl: article.cover_image_url,
+        tags: JSON.parse(article.tags || "[]"),
+        relatedMediaIds: JSON.parse(article.related_media_ids || "[]"),
+        isImportant: Boolean(article.is_important),
+        cardStyle: article.card_style || "auto",
+        publishedAt: article.published_at,
+        createdAt: article.created_at,
+        updatedAt: article.updated_at
+      }))
+    });
+  }
+
   // GET /api/articles/:slug
   const apiSlugMatch = url.pathname.match(/^\/api\/articles\/([a-z0-9-]+)$/);
   if (apiSlugMatch && request.method === "GET") {

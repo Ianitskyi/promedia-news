@@ -1,0 +1,35 @@
+name: Archive published news
+
+on:
+  schedule:
+    - cron: "20 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download the public news archive
+        run: |
+          mkdir -p archive
+          curl --fail --silent --show-error --retry 3 \
+            https://news.promedia.report/api/export/published-news.json \
+            --output archive/published-news.json
+
+      - name: Commit changes when the archive changed
+        run: |
+          if git diff --quiet -- archive/published-news.json; then
+            echo "The archive is already current."
+            exit 0
+          fi
+          git config user.name "ProMedia News Archive"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add archive/published-news.json
+          git commit -m "Archive published news"
+          git push
