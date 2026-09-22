@@ -103,7 +103,7 @@ function header(lang) {
     : { communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження", atlas: "Атлас Медіа", news: "Новини" };
   return `
 <nav class="utility-bar" aria-label="${en ? "ProMedia projects" : "Проєкти ПроМедіа"}">
-  <a class="home-btn" href="${main}">← ПроМедіа</a>
+  <a class="home-btn" href="${main}">← ${en ? "ProMedia" : "ПроМедіа"}</a>
   <span class="lang-toggle" aria-label="Language / Мова">
     <a class="lang-btn${en ? "" : " active"}" href="?lang=uk">UA</a>
     <a class="lang-btn${en ? " active" : ""}" href="?lang=en">EN</a>
