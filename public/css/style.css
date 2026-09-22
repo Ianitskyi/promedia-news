@@ -349,7 +349,12 @@ img { max-width: 100%; }
   text-transform: uppercase;
 }
 
-.news-lead-side .article-card-img { height: 145px; }
+.news-lead-side .article-card-media { background: #f0eff5; }
+.news-lead-side .article-card-img {
+    height: 145px;
+    object-fit: contain;
+}
+.news-lead-side .article-card:hover .article-card-img { transform: none; }
 .news-lead-side .article-card h3 { font-size: 18px; }
 .news-lead-side .article-excerpt { display: none; }
 .article-card--text { background: var(--accent-tint); border-color: #f2d5a8; box-shadow: none; }
