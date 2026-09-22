@@ -22,6 +22,15 @@ function html(body) {
   return new Response(body, { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }
 
+function parseJsonArray(value) {
+  try {
+    const parsed = JSON.parse(value || "[]");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    return [];
+  }
+}
+
 async function fetchRelatedMediaNames(mediaIds, env, baseUrl) {
   if (!mediaIds.length) return [];
   try {
@@ -83,8 +92,8 @@ export async function handlePublicRoute(request, env, url) {
       excerpt: a.excerpt,
       excerptEn: a.excerpt_en,
       coverImageUrl: a.cover_image_url,
-      tags: JSON.parse(a.tags || "[]"),
-      relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
+      tags: parseJsonArray(a.tags),
+      relatedMediaIds: parseJsonArray(a.related_media_ids),
       isImportant: Boolean(a.is_important),
       cardStyle: a.card_style || "auto",
       publishedAt: a.published_at,
@@ -116,8 +125,8 @@ export async function handlePublicRoute(request, env, url) {
         bodyMd: article.body_md,
         bodyMdEn: article.body_md_en,
         coverImageUrl: article.cover_image_url,
-        tags: JSON.parse(article.tags || "[]"),
-        relatedMediaIds: JSON.parse(article.related_media_ids || "[]"),
+        tags: parseJsonArray(article.tags),
+        relatedMediaIds: parseJsonArray(article.related_media_ids),
         isImportant: Boolean(article.is_important),
         cardStyle: article.card_style || "auto",
         publishedAt: article.published_at,
@@ -143,8 +152,8 @@ export async function handlePublicRoute(request, env, url) {
       bodyMd: article.body_md,
       bodyMdEn: article.body_md_en,
       coverImageUrl: article.cover_image_url,
-      tags: JSON.parse(article.tags || "[]"),
-      relatedMediaIds: JSON.parse(article.related_media_ids || "[]"),
+      tags: parseJsonArray(article.tags),
+      relatedMediaIds: parseJsonArray(article.related_media_ids),
       isImportant: Boolean(article.is_important),
       cardStyle: article.card_style || "auto",
       publishedAt: article.published_at
@@ -167,7 +176,7 @@ export async function handlePublicRoute(request, env, url) {
         headers: { "Content-Type": "text/html; charset=utf-8" }
       });
     }
-    const relatedMediaNames = await fetchRelatedMediaNames(JSON.parse(article.related_media_ids || "[]"), env, baseUrl);
+    const relatedMediaNames = await fetchRelatedMediaNames(parseJsonArray(article.related_media_ids), env, baseUrl);
     return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames }));
   }
 
