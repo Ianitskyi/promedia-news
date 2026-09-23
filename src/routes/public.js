@@ -22,6 +22,42 @@ function html(body) {
   return new Response(body, { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }
 
+function text(body) {
+  return new Response(body, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=3600"
+    }
+  });
+}
+
+function xml(body) {
+  return new Response(body, {
+    headers: {
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, max-age=3600"
+    }
+  });
+}
+
+function escapeXml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function sitemapUrl(loc, ukUrl, enUrl, lastmod) {
+  return `<url>\n  <loc>${escapeXml(loc)}</loc>${lastmod ? `\n  <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}\n  <xhtml:link rel="alternate" hreflang="uk" href="${escapeXml(ukUrl)}" />\n  <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(enUrl)}" />\n  <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(ukUrl)}" />\n</url>`;
+}
+
+function sitemapDate(value) {
+  const parsed = new Date(value || "");
+  return Number.isNaN(parsed.getTime()) ? "" : parsed.toISOString().slice(0, 10);
+}
+
 function parseJsonArray(value) {
   try {
     const parsed = JSON.parse(value || "[]");
@@ -59,6 +95,45 @@ export async function handlePublicRoute(request, env, url) {
   if (url.pathname.startsWith("/api/push/")) {
     const res = await handlePublicPushRoute(request, env, url);
     if (res) return res;
+  }
+
+  if (url.pathname === "/robots.txt" && request.method === "GET") {
+    return text(`User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/admin/
+Disallow: /api/auth/
+Disallow: /api/me
+Disallow: /api/setup
+Disallow: /img-storage/
+
+Sitemap: ${baseUrl}/sitemap.xml
+`);
+  }
+
+  if (url.pathname === "/sitemap.xml" && request.method === "GET") {
+    const { results } = await db.prepare(`
+      SELECT slug, published_at, updated_at
+      FROM articles
+      WHERE status = 'published'
+      ORDER BY published_at DESC
+    `).all();
+    const homepageUk = `${baseUrl}/`;
+    const homepageEn = `${baseUrl}/?lang=en`;
+    const entries = [sitemapUrl(homepageUk, homepageUk, homepageEn, "")];
+    results.forEach((article) => {
+      const ukUrl = `${baseUrl}/article/${article.slug}`;
+      const enUrl = `${ukUrl}?lang=en`;
+      const lastmod = sitemapDate(article.updated_at || article.published_at);
+      entries.push(sitemapUrl(ukUrl, ukUrl, enUrl, lastmod));
+      entries.push(sitemapUrl(enUrl, ukUrl, enUrl, lastmod));
+    });
+    return xml(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries.join("\n")}
+</urlset>
+`);
   }
 
   // GET /api/articles?tag=&mediaId=&limit=
