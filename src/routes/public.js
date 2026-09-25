@@ -3,7 +3,7 @@ import { handlePublicPushRoute } from "../lib/push.js";
 
 function getLang(url) {
   const l = url.searchParams.get("lang");
-  return l === "en" ? "en" : "uk";
+  return (l === "en" || l === "crh") ? l : "uk";
 }
 
 function corsJson(data, status) {
@@ -59,7 +59,7 @@ export async function handlePublicRoute(request, env, url) {
     const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, excerpt, excerpt_en, cover_image_url, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published'";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";
@@ -80,8 +80,10 @@ export async function handlePublicRoute(request, env, url) {
       slug: a.slug,
       title: a.title,
       titleEn: a.title_en,
+      titleCrh: a.title_crh,
       excerpt: a.excerpt,
       excerptEn: a.excerpt_en,
+      excerptCrh: a.excerpt_crh,
       coverImageUrl: a.cover_image_url,
       tags: JSON.parse(a.tags || "[]"),
       relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
@@ -104,10 +106,13 @@ export async function handlePublicRoute(request, env, url) {
       slug: article.slug,
       title: article.title,
       titleEn: article.title_en,
+      titleCrh: article.title_crh,
       excerpt: article.excerpt,
       excerptEn: article.excerpt_en,
+      excerptCrh: article.excerpt_crh,
       bodyMd: article.body_md,
       bodyMdEn: article.body_md_en,
+      bodyMdCrh: article.body_md_crh,
       coverImageUrl: article.cover_image_url,
       tags: JSON.parse(article.tags || "[]"),
       relatedMediaIds: JSON.parse(article.related_media_ids || "[]"),
@@ -140,7 +145,7 @@ export async function handlePublicRoute(request, env, url) {
   // GET / (homepage, optional ?tag=)
   if (url.pathname === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, excerpt, excerpt_en, cover_image_url, tags, card_style, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, tags, card_style, published_at FROM articles WHERE status = 'published'";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";

@@ -43,11 +43,14 @@ const TAG_VOCABULARY = [
 const ASSIST_SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["titleEn", "excerptEn", "bodyMdEn", "tags"],
+  required: ["titleEn", "excerptEn", "bodyMdEn", "titleCrh", "excerptCrh", "bodyMdCrh", "tags"],
   properties: {
     titleEn: { type: "string" },
     excerptEn: { type: "string" },
     bodyMdEn: { type: "string" },
+    titleCrh: { type: "string" },
+    excerptCrh: { type: "string" },
+    bodyMdCrh: { type: "string" },
     tags: {
       type: "array",
       minItems: 2,
@@ -97,6 +100,9 @@ function applyAssistedFields(body, assisted) {
     titleEn: hasText(body.titleEn) ? body.titleEn : assisted.titleEn,
     excerptEn: hasText(body.excerptEn) ? body.excerptEn : assisted.excerptEn,
     bodyMdEn: hasText(body.bodyMdEn) ? body.bodyMdEn : assisted.bodyMdEn,
+    titleCrh: hasText(body.titleCrh) ? body.titleCrh : assisted.titleCrh,
+    excerptCrh: hasText(body.excerptCrh) ? body.excerptCrh : assisted.excerptCrh,
+    bodyMdCrh: hasText(body.bodyMdCrh) ? body.bodyMdCrh : assisted.bodyMdCrh,
     tags: hasTags(body.tags) ? body.tags : assisted.tags
   };
 }
@@ -121,13 +127,14 @@ export async function generateArticleAssist(env, article) {
             {
               type: "input_text",
               text: [
-                "You are an experienced Ukrainian-American editor for ProMedia NGO.",
-                "Translate Ukrainian news copy into natural American English for international audiences.",
-                "Preserve facts, dates, names, links, Markdown headings, lists, blockquotes, bold, italics and link syntax.",
+                "You are an experienced Ukrainian-American editor for ProMedia NGO, and also a professional Crimean Tatar translator.",
+                "Translate Ukrainian news copy into natural American English for international audiences, and separately into Crimean Tatar (Qırımtatar tili) using the modern Latin orthography, for the indigenous Crimean Tatar audience.",
+                "Preserve facts, dates, names, links, Markdown headings, lists, blockquotes, bold, italics and link syntax in both translations.",
                 "Use established English names where clear: ГО «ПроМедіа» = ProMedia NGO, ІРРП = RPDI, Суспільне = Suspilne, Львівський медіафорум = Lviv Media Forum.",
-                "Create a concise English SEO excerpt under 170 characters.",
+                "In the Crimean Tatar translation, keep ГО «ПроМедіа» as \"ProMedia İCT\", and keep other organization names and untranslatable proper nouns in Latin transliteration.",
+                "Create a concise English SEO excerpt under 170 characters, and a concise Crimean Tatar SEO excerpt under 170 characters.",
                 "Return canonical tags in Ukrainian. Include one broad category from: Заяви, Новини, Статті. Add 1-5 topical tags, preferably from this vocabulary: " + TAG_VOCABULARY.join(", ") + ".",
-                "If only the Ukrainian title is present, translate the title, create conservative tags from the title only, and leave bodyMdEn empty.",
+                "If only the Ukrainian title is present, translate the title into both languages, create conservative tags from the title only, and leave bodyMdEn and bodyMdCrh empty.",
                 "Do not add facts, quotes, links or sources that are not present in the Ukrainian text."
               ].join("\n")
             }
@@ -174,13 +181,17 @@ export async function generateArticleAssist(env, article) {
     titleEn: String(parsed.titleEn || "").trim(),
     excerptEn: String(parsed.excerptEn || "").trim(),
     bodyMdEn: String(parsed.bodyMdEn || "").trim(),
+    titleCrh: String(parsed.titleCrh || "").trim(),
+    excerptCrh: String(parsed.excerptCrh || "").trim(),
+    bodyMdCrh: String(parsed.bodyMdCrh || "").trim(),
     tags: normalizeTags(parsed.tags)
   };
 }
 
 export async function completeArticleDraft(body, env) {
   if (!body || !hasText(body.title) || !hasText(body.bodyMd)) return body;
-  const needsAssist = !hasText(body.titleEn) || !hasText(body.excerptEn) || !hasText(body.bodyMdEn) || !hasTags(body.tags);
+  const needsAssist = !hasText(body.titleEn) || !hasText(body.excerptEn) || !hasText(body.bodyMdEn)
+    || !hasText(body.titleCrh) || !hasText(body.excerptCrh) || !hasText(body.bodyMdCrh) || !hasTags(body.tags);
   if (!needsAssist) return body;
 
   let assisted = null;

@@ -985,7 +985,7 @@
   function renderEditor(article) {
     var isNew = !article;
     var a = article || {
-      title: "", titleEn: "", excerpt: "", excerptEn: "", bodyMd: "", bodyMdEn: "",
+      title: "", titleEn: "", titleCrh: "", excerpt: "", excerptEn: "", excerptCrh: "", bodyMd: "", bodyMdEn: "", bodyMdCrh: "",
       coverImageUrl: "", tags: [], relatedMediaIds: [], isImportant: false, cardStyle: "auto", status: "draft"
     };
 
@@ -998,12 +998,16 @@
       '<form class="admin-form" id="editor-form">' +
       '<div class="admin-field"><label>Заголовок (укр)*</label><input type="text" name="title" required value="' + escapeHtml(a.title) + '" /></div>' +
       '<div class="admin-field"><label>Заголовок (англ)</label><input type="text" name="titleEn" value="' + escapeHtml(a.titleEn) + '" /></div>' +
+      '<div class="admin-field"><label>Заголовок (кримськотат.)</label><input type="text" name="titleCrh" value="' + escapeHtml(a.titleCrh) + '" /></div>' +
       '<div class="admin-field"><label>Короткий опис (укр) — якщо порожньо, візьметься з тексту</label><input type="text" name="excerpt" value="' + escapeHtml(a.excerpt) + '" /></div>' +
       '<div class="admin-field"><label>Короткий опис (англ)</label><input type="text" name="excerptEn" value="' + escapeHtml(a.excerptEn) + '" /></div>' +
+      '<div class="admin-field"><label>Короткий опис (кримськотат.)</label><input type="text" name="excerptCrh" value="' + escapeHtml(a.excerptCrh) + '" /></div>' +
       '<div class="admin-field admin-markdown-field"><label>Текст статті (укр)*</label>' +
       richTextEditorHtml("bodyMd", a.bodyMd, "Текст статті українською", true) + "</div>" +
       '<div class="admin-field admin-markdown-field"><label>Текст статті (англ)</label>' +
       richTextEditorHtml("bodyMdEn", a.bodyMdEn, "Article text in English", false) + "</div>" +
+      '<div class="admin-field admin-markdown-field"><label>Текст статті (кримськотат.)</label>' +
+      richTextEditorHtml("bodyMdCrh", a.bodyMdCrh, "Maqale metni qırımtatarca", false) + "</div>" +
       '<div class="admin-field"><label>Обкладинка</label>' +
       '<input type="file" id="cover-input" accept="image/*" />' +
       '<span class="admin-hint">Бажано: горизонтальне фото 16:9, від 1200×675 px; JPG, PNG або WebP; до 8 МБ. Важливі логотипи й написи краще тримати ближче до центру, бо картки можуть обрізати краї.</span>' +
@@ -1052,6 +1056,9 @@
       titleEnTouched: Boolean(a.titleEn),
       excerptEnTouched: Boolean(a.excerptEn),
       bodyMdEnTouched: Boolean(a.bodyMdEn),
+      titleCrhTouched: Boolean(a.titleCrh),
+      excerptCrhTouched: Boolean(a.excerptCrh),
+      bodyMdCrhTouched: Boolean(a.bodyMdCrh),
       tagsTouched: Boolean(a.tags && a.tags.length)
     };
 
@@ -1063,7 +1070,8 @@
     }
 
     function needsLiveAssist() {
-      return !assistState.titleEnTouched || !assistState.excerptEnTouched || !assistState.bodyMdEnTouched || !assistState.tagsTouched;
+      return !assistState.titleEnTouched || !assistState.excerptEnTouched || !assistState.bodyMdEnTouched ||
+        !assistState.titleCrhTouched || !assistState.excerptCrhTouched || !assistState.bodyMdCrhTouched || !assistState.tagsTouched;
     }
 
     function applyLiveAssist(suggestions) {
@@ -1071,6 +1079,9 @@
       if (!assistState.titleEnTouched && suggestions.titleEn) formField(formEl, "titleEn").value = suggestions.titleEn;
       if (!assistState.excerptEnTouched && suggestions.excerptEn) formField(formEl, "excerptEn").value = suggestions.excerptEn;
       if (!assistState.bodyMdEnTouched && suggestions.bodyMdEn) setRichEditorMarkdown("bodyMdEn", suggestions.bodyMdEn);
+      if (!assistState.titleCrhTouched && suggestions.titleCrh) formField(formEl, "titleCrh").value = suggestions.titleCrh;
+      if (!assistState.excerptCrhTouched && suggestions.excerptCrh) formField(formEl, "excerptCrh").value = suggestions.excerptCrh;
+      if (!assistState.bodyMdCrhTouched && suggestions.bodyMdCrh) setRichEditorMarkdown("bodyMdCrh", suggestions.bodyMdCrh);
       if (!assistState.tagsTouched && suggestions.tags && suggestions.tags.length) formField(formEl, "tags").value = suggestions.tags.join(", ");
     }
 
@@ -1085,7 +1096,7 @@
       if (key === assistState.lastKey) return;
       assistState.lastKey = key;
       var sequence = ++assistState.sequence;
-      setAssistStatus("Готую англійський переклад і теги…");
+      setAssistStatus("Готую переклади (англ., кримськотат.) і теги…");
       api("/api/admin/articles/assist", {
         method: "POST",
         body: { title: title, excerpt: excerpt, bodyMd: bodyMd }
@@ -1116,11 +1127,15 @@
     formField(formEl, "excerpt").addEventListener("input", scheduleLiveAssist);
     formField(formEl, "titleEn").addEventListener("input", function () { assistState.titleEnTouched = true; });
     formField(formEl, "excerptEn").addEventListener("input", function () { assistState.excerptEnTouched = true; });
+    formField(formEl, "titleCrh").addEventListener("input", function () { assistState.titleCrhTouched = true; });
+    formField(formEl, "excerptCrh").addEventListener("input", function () { assistState.excerptCrhTouched = true; });
     formField(formEl, "tags").addEventListener("input", function () { assistState.tagsTouched = true; });
     var ukEditor = findRichEditor("bodyMd");
     if (ukEditor) ukEditor.surface.addEventListener("input", scheduleLiveAssist);
     var enEditor = findRichEditor("bodyMdEn");
     if (enEditor) enEditor.surface.addEventListener("input", function () { assistState.bodyMdEnTouched = true; });
+    var crhEditor = findRichEditor("bodyMdCrh");
+    if (crhEditor) crhEditor.surface.addEventListener("input", function () { assistState.bodyMdCrhTouched = true; });
 
     function renderSelectedMedia() {
       loadMediaCatalog().then(function (catalog) {
@@ -1184,10 +1199,13 @@
       return {
         title: fields.title.value,
         titleEn: fields.titleEn.value || null,
+        titleCrh: fields.titleCrh.value || null,
         excerpt: fields.excerpt.value || null,
         excerptEn: fields.excerptEn.value || null,
+        excerptCrh: fields.excerptCrh.value || null,
         bodyMd: fields.bodyMd.value,
         bodyMdEn: fields.bodyMdEn.value || null,
+        bodyMdCrh: fields.bodyMdCrh.value || null,
         coverImageUrl: fields.coverImageUrl.value || null,
         tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,

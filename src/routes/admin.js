@@ -18,10 +18,13 @@ function serializeArticle(a) {
     slug: a.slug,
     title: a.title,
     titleEn: a.title_en,
+    titleCrh: a.title_crh,
     excerpt: a.excerpt,
     excerptEn: a.excerpt_en,
+    excerptCrh: a.excerpt_crh,
     bodyMd: a.body_md,
     bodyMdEn: a.body_md_en,
+    bodyMdCrh: a.body_md_crh,
     coverImageUrl: a.cover_image_url,
     tags: JSON.parse(a.tags || "[]"),
     relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
@@ -110,12 +113,12 @@ export async function handleAdminRoute(request, env, url) {
     const excerpt = body.excerpt || markdownToPlainText(body.bodyMd || "", 200);
     const now = new Date().toISOString();
     const result = await db.prepare(`
-      INSERT INTO articles (slug, title, title_en, excerpt, excerpt_en, body_md, body_md_en,
+      INSERT INTO articles (slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, body_md, body_md_en, body_md_crh,
         cover_image_url, tags, related_media_ids, is_important, card_style, status, author_id, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
     `).bind(
-      slug, body.title, body.titleEn || null, excerpt, body.excerptEn || null,
-      body.bodyMd || "", body.bodyMdEn || null, body.coverImageUrl || null,
+      slug, body.title, body.titleEn || null, body.titleCrh || null, excerpt, body.excerptEn || null, body.excerptCrh || null,
+      body.bodyMd || "", body.bodyMdEn || null, body.bodyMdCrh || null, body.coverImageUrl || null,
       JSON.stringify(body.tags || []), JSON.stringify(body.relatedMediaIds || []),
       body.isImportant ? 1 : 0,
       normalizeCardStyle(body.cardStyle),
@@ -140,26 +143,32 @@ export async function handleAdminRoute(request, env, url) {
         ...body,
         title: body.title ?? article.title,
         titleEn: body.titleEn ?? article.title_en,
+        titleCrh: body.titleCrh ?? article.title_crh,
         excerpt: body.excerpt !== undefined ? body.excerpt : article.excerpt,
         excerptEn: body.excerptEn ?? article.excerpt_en,
+        excerptCrh: body.excerptCrh ?? article.excerpt_crh,
         bodyMd: body.bodyMd ?? article.body_md,
         bodyMdEn: body.bodyMdEn ?? article.body_md_en,
+        bodyMdCrh: body.bodyMdCrh ?? article.body_md_crh,
         tags: body.tags ?? JSON.parse(article.tags || "[]")
       }, env);
       const excerpt = body.excerpt !== undefined ? body.excerpt : article.excerpt;
       await db.prepare(`
-        UPDATE articles SET title = ?, title_en = ?, excerpt = ?, excerpt_en = ?,
-          body_md = ?, body_md_en = ?, cover_image_url = ?, tags = ?, related_media_ids = ?,
+        UPDATE articles SET title = ?, title_en = ?, title_crh = ?, excerpt = ?, excerpt_en = ?, excerpt_crh = ?,
+          body_md = ?, body_md_en = ?, body_md_crh = ?, cover_image_url = ?, tags = ?, related_media_ids = ?,
           is_important = ?, card_style = ?,
           updated_at = ?
         WHERE id = ?
       `).bind(
         body.title ?? article.title,
         body.titleEn ?? article.title_en,
+        body.titleCrh ?? article.title_crh,
         excerpt,
         body.excerptEn ?? article.excerpt_en,
+        body.excerptCrh ?? article.excerpt_crh,
         body.bodyMd ?? article.body_md,
         body.bodyMdEn ?? article.body_md_en,
+        body.bodyMdCrh ?? article.body_md_crh,
         body.coverImageUrl ?? article.cover_image_url,
         JSON.stringify(body.tags ?? JSON.parse(article.tags || "[]")),
         JSON.stringify(body.relatedMediaIds ?? JSON.parse(article.related_media_ids || "[]")),
