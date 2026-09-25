@@ -176,7 +176,7 @@ function header(lang) {
   const aria = pick(NAV_ARIA, lang);
   return `
 <nav class="utility-bar" aria-label="${aria}">
-  <a class="home-btn" href="${main}">← ПроМедіа</a>
+  <a class="home-btn" href="${main}">← ${en ? "ProMedia" : "ПроМедіа"}</a>
   <span class="lang-toggle" aria-label="${HTML_LOCALE_LABEL[lang]}">
     ${LANGS.map((l) => `<a class="lang-btn${l === lang ? " active" : ""}" href="?lang=${l}">${LANG_BUTTON_LABEL[l]}</a>`).join("")}
   </span>

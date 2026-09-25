@@ -3,6 +3,8 @@
 
   var NEWS_ORIGIN = "https://news.promedia.report";
   var API_URL = NEWS_ORIGIN + "/api/articles?important=1&limit=3";
+  var retryCount = 0;
+  var maxRetries = 3;
 
   function isEnglishPage() {
     return document.documentElement.lang.toLowerCase().indexOf("en") === 0 ||
@@ -75,7 +77,15 @@
     loadPushBell();
 
     var grid = document.querySelector(".pm-featured-news-grid");
-    if (!grid || typeof window.fetch !== "function") return;
+    if (!grid) {
+      if (retryCount < maxRetries) {
+        retryCount += 1;
+        window.setTimeout(init, 700);
+      }
+      return;
+    }
+    if (typeof window.fetch !== "function" || grid.dataset.pmFeaturedNewsLoading === "true") return;
+    grid.dataset.pmFeaturedNewsLoading = "true";
 
     var isEnglish = isEnglishPage();
     var allNewsLink = document.querySelector(".pm-featured-news-all");
@@ -85,7 +95,7 @@
       grid.querySelectorAll(".pm-featured-news-card")
     );
 
-    window.fetch(API_URL, { mode: "cors", credentials: "omit" })
+    window.fetch(API_URL, { mode: "cors", credentials: "omit", cache: "no-store" })
       .then(function (response) {
         if (!response.ok) throw new Error("HTTP " + response.status);
         return response.json();
@@ -113,9 +123,21 @@
         });
 
         grid.replaceChildren.apply(grid, cards.slice(0, 3));
+        grid.dataset.pmFeaturedNewsStatus = "updated";
       })
       .catch(function () {
         // Якщо API тимчасово недоступний, залишаємо чинний серверний добір.
+        grid.dataset.pmFeaturedNewsStatus = "fallback";
+        if (retryCount < maxRetries) {
+          retryCount += 1;
+          window.setTimeout(function () {
+            grid.dataset.pmFeaturedNewsLoading = "";
+            init();
+          }, 1200);
+        }
+      })
+      .finally(function () {
+        grid.dataset.pmFeaturedNewsLoading = "";
       });
   }
 
@@ -151,4 +173,5 @@
   } else {
     init();
   }
+  window.addEventListener("load", init, { once: true });
 })();

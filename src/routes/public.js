@@ -22,6 +22,51 @@ function html(body) {
   return new Response(body, { headers: { "Content-Type": "text/html; charset=utf-8" } });
 }
 
+function text(body) {
+  return new Response(body, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=3600"
+    }
+  });
+}
+
+function xml(body) {
+  return new Response(body, {
+    headers: {
+      "Content-Type": "application/xml; charset=utf-8",
+      "Cache-Control": "public, max-age=3600"
+    }
+  });
+}
+
+function escapeXml(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function sitemapUrl(loc, ukUrl, enUrl, lastmod) {
+  return `<url>\n  <loc>${escapeXml(loc)}</loc>${lastmod ? `\n  <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}\n  <xhtml:link rel="alternate" hreflang="uk" href="${escapeXml(ukUrl)}" />\n  <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(enUrl)}" />\n  <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(ukUrl)}" />\n</url>`;
+}
+
+function sitemapDate(value) {
+  const parsed = new Date(value || "");
+  return Number.isNaN(parsed.getTime()) ? "" : parsed.toISOString().slice(0, 10);
+}
+
+function parseJsonArray(value) {
+  try {
+    const parsed = JSON.parse(value || "[]");
+    return Array.isArray(parsed) ? parsed : [];
+  } catch (err) {
+    return [];
+  }
+}
+
 async function fetchRelatedMediaNames(mediaIds, env, baseUrl) {
   if (!mediaIds.length) return [];
   try {
@@ -50,6 +95,45 @@ export async function handlePublicRoute(request, env, url) {
   if (url.pathname.startsWith("/api/push/")) {
     const res = await handlePublicPushRoute(request, env, url);
     if (res) return res;
+  }
+
+  if (url.pathname === "/robots.txt" && request.method === "GET") {
+    return text(`User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /api/admin/
+Disallow: /api/auth/
+Disallow: /api/me
+Disallow: /api/setup
+Disallow: /img-storage/
+
+Sitemap: ${baseUrl}/sitemap.xml
+`);
+  }
+
+  if (url.pathname === "/sitemap.xml" && request.method === "GET") {
+    const { results } = await db.prepare(`
+      SELECT slug, published_at, updated_at
+      FROM articles
+      WHERE status = 'published'
+      ORDER BY published_at DESC
+    `).all();
+    const homepageUk = `${baseUrl}/`;
+    const homepageEn = `${baseUrl}/?lang=en`;
+    const entries = [sitemapUrl(homepageUk, homepageUk, homepageEn, "")];
+    results.forEach((article) => {
+      const ukUrl = `${baseUrl}/article/${article.slug}`;
+      const enUrl = `${ukUrl}?lang=en`;
+      const lastmod = sitemapDate(article.updated_at || article.published_at);
+      entries.push(sitemapUrl(ukUrl, ukUrl, enUrl, lastmod));
+      entries.push(sitemapUrl(enUrl, ukUrl, enUrl, lastmod));
+    });
+    return xml(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries.join("\n")}
+</urlset>
+`);
   }
 
   // GET /api/articles?tag=&mediaId=&limit=
@@ -85,14 +169,48 @@ export async function handlePublicRoute(request, env, url) {
       excerptEn: a.excerpt_en,
       excerptCrh: a.excerpt_crh,
       coverImageUrl: a.cover_image_url,
-      tags: JSON.parse(a.tags || "[]"),
-      relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
+      tags: parseJsonArray(a.tags),
+      relatedMediaIds: parseJsonArray(a.related_media_ids),
       isImportant: Boolean(a.is_important),
       cardStyle: a.card_style || "auto",
       publishedAt: a.published_at,
       url: `https://news.promedia.report/article/${a.slug}`
     }));
     return corsJson({ items });
+  }
+
+  // A versioned, machine-readable archive of public content. Drafts, accounts,
+  // and other private editorial data intentionally remain in D1 only.
+  if (url.pathname === "/api/export/published-news.json" && request.method === "GET") {
+    const { results } = await db.prepare(`
+      SELECT slug, title, title_en, excerpt, excerpt_en, body_md, body_md_en,
+        cover_image_url, tags, related_media_ids, is_important, card_style,
+        published_at, created_at, updated_at
+      FROM articles
+      WHERE status = 'published'
+      ORDER BY published_at DESC
+    `).all();
+    return corsJson({
+      schemaVersion: 1,
+      exportedAt: new Date().toISOString(),
+      items: results.map((article) => ({
+        slug: article.slug,
+        title: article.title,
+        titleEn: article.title_en,
+        excerpt: article.excerpt,
+        excerptEn: article.excerpt_en,
+        bodyMd: article.body_md,
+        bodyMdEn: article.body_md_en,
+        coverImageUrl: article.cover_image_url,
+        tags: parseJsonArray(article.tags),
+        relatedMediaIds: parseJsonArray(article.related_media_ids),
+        isImportant: Boolean(article.is_important),
+        cardStyle: article.card_style || "auto",
+        publishedAt: article.published_at,
+        createdAt: article.created_at,
+        updatedAt: article.updated_at
+      }))
+    });
   }
 
   // GET /api/articles/:slug
@@ -114,8 +232,8 @@ export async function handlePublicRoute(request, env, url) {
       bodyMdEn: article.body_md_en,
       bodyMdCrh: article.body_md_crh,
       coverImageUrl: article.cover_image_url,
-      tags: JSON.parse(article.tags || "[]"),
-      relatedMediaIds: JSON.parse(article.related_media_ids || "[]"),
+      tags: parseJsonArray(article.tags),
+      relatedMediaIds: parseJsonArray(article.related_media_ids),
       isImportant: Boolean(article.is_important),
       cardStyle: article.card_style || "auto",
       publishedAt: article.published_at
@@ -138,7 +256,7 @@ export async function handlePublicRoute(request, env, url) {
         headers: { "Content-Type": "text/html; charset=utf-8" }
       });
     }
-    const relatedMediaNames = await fetchRelatedMediaNames(JSON.parse(article.related_media_ids || "[]"), env, baseUrl);
+    const relatedMediaNames = await fetchRelatedMediaNames(parseJsonArray(article.related_media_ids), env, baseUrl);
     return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames }));
   }
 
