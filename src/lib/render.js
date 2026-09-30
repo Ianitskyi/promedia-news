@@ -135,6 +135,8 @@ function localizedUrls(url) {
 function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt }) {
   const { ukUrl, enUrl, crhUrl } = localizedUrls(url);
   const canonicalUrl = lang === "en" ? enUrl : (lang === "crh" ? crhUrl : ukUrl);
+  const defaultImage = lang === "crh" ? "/img/og-share-crh.png" : DEFAULT_OG_IMAGE;
+  const socialImage = new URL(ogImage || defaultImage, canonicalUrl).toString();
   const locale = OG_LOCALE[lang] || OG_LOCALE.uk;
   const alternateLocales = LANGS.filter((l) => l !== lang).map((l) => OG_LOCALE[l]);
   return `
@@ -148,16 +150,15 @@ function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt 
 <meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
 <meta property="og:title" content="${escapeHtml(title)}" />
 <meta property="og:description" content="${escapeHtml(description)}" />
-<meta property="og:image" content="${escapeHtml(ogImage || DEFAULT_OG_IMAGE)}" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+<meta property="og:image" content="${escapeHtml(socialImage)}" />
+<meta property="og:image:secure_url" content="${escapeHtml(socialImage)}" />
 <meta property="og:locale" content="${locale}" />
 ${alternateLocales.map((l) => `<meta property="og:locale:alternate" content="${l}" />`).join("\n")}
 ${publishedAt ? `<meta property="article:published_time" content="${escapeHtml(publishedAt)}" />` : ""}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="${escapeHtml(title)}" />
 <meta name="twitter:description" content="${escapeHtml(description)}" />
-<meta name="twitter:image" content="${escapeHtml(ogImage || DEFAULT_OG_IMAGE)}" />
+<meta name="twitter:image" content="${escapeHtml(socialImage)}" />
 <link rel="alternate" hreflang="uk" href="${escapeHtml(ukUrl)}" />
 <link rel="alternate" hreflang="en" href="${escapeHtml(enUrl)}" />
 <link rel="alternate" hreflang="crh" href="${escapeHtml(crhUrl)}" />
