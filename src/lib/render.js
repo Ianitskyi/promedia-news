@@ -135,7 +135,9 @@ function localizedUrls(url) {
 function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt }) {
   const { ukUrl, enUrl, crhUrl } = localizedUrls(url);
   const canonicalUrl = lang === "en" ? enUrl : (lang === "crh" ? crhUrl : ukUrl);
-  const defaultImage = lang === "crh" ? "/img/og-share-crh.png" : DEFAULT_OG_IMAGE;
+  const defaultImage = lang === "crh" || lang === "en"
+    ? `/img/og-share-${lang}.png`
+    : DEFAULT_OG_IMAGE;
   const socialImage = new URL(ogImage || defaultImage, canonicalUrl).toString();
   const locale = OG_LOCALE[lang] || OG_LOCALE.uk;
   const alternateLocales = LANGS.filter((l) => l !== lang).map((l) => OG_LOCALE[l]);
