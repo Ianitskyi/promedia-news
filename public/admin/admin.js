@@ -106,6 +106,7 @@
     var tabsHtml =
       '<div class="admin-row" style="margin-bottom:18px">' +
       '<button class="admin-btn" id="new-article-btn" type="button">+ Нова стаття</button>' +
+      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="translate-archive-btn" type="button">Перекласти архів</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="push-btn" type="button">Пуш-сповіщення</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="subdomains-btn" type="button">Дослідження</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="users-btn" type="button">Користувачі</button>' : "") +
@@ -126,6 +127,27 @@
 
     root.innerHTML = tabsHtml + '<div class="admin-card">' + tableHtml + "</div>";
     document.getElementById("new-article-btn").addEventListener("click", function () { navigate("#/new"); });
+    var translateArchiveBtn = document.getElementById("translate-archive-btn");
+    if (translateArchiveBtn) translateArchiveBtn.addEventListener("click", function () {
+      if (!window.confirm("Перекласти всі опубліковані матеріали, у яких бракує англійської або кримськотатарської версії? Тексти буде надіслано до OpenAI. Наявні переклади не змінюватимуться.")) return;
+      translateArchiveBtn.disabled = true;
+      var originalLabel = translateArchiveBtn.textContent;
+      function translateNext() {
+        api("/api/admin/articles/translate-missing", { method: "POST" }).then(function (data) {
+          if (data.done) {
+            translateArchiveBtn.textContent = "Архів перекладено";
+            return loadArticles().then(renderRoute);
+          }
+          translateArchiveBtn.textContent = "Перекладено: " + data.translated + ". Залишилося: " + data.remaining;
+          window.setTimeout(translateNext, 250);
+        }).catch(function (err) {
+          translateArchiveBtn.disabled = false;
+          translateArchiveBtn.textContent = originalLabel;
+          window.alert(err.message || "Автопереклад не спрацював.");
+        });
+      }
+      translateNext();
+    });
     var pushBtn = document.getElementById("push-btn");
     if (pushBtn) pushBtn.addEventListener("click", function () { navigate("#/push"); });
     var subdomainsBtn = document.getElementById("subdomains-btn");

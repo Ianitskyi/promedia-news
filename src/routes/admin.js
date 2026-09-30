@@ -98,6 +98,72 @@ export async function handleAdminRoute(request, env, url) {
     }
   }
 
+  if (url.pathname === "/api/admin/articles/translate-missing" && request.method === "POST") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+
+    const article = await db.prepare(`
+      SELECT * FROM articles
+      WHERE status = 'published'
+        AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
+          OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
+      ORDER BY published_at DESC
+      LIMIT 1
+    `).first();
+
+    if (!article) return json({ done: true, remaining: 0 });
+
+    let translated;
+    try {
+      translated = await completeArticleDraft({
+        title: article.title,
+        titleEn: article.title_en,
+        titleCrh: article.title_crh,
+        excerpt: article.excerpt,
+        excerptEn: article.excerpt_en,
+        excerptCrh: article.excerpt_crh,
+        bodyMd: article.body_md,
+        bodyMdEn: article.body_md_en,
+        bodyMdCrh: article.body_md_crh,
+        tags: JSON.parse(article.tags || "[]")
+      }, env);
+    } catch (err) {
+      return json({ error: articleAssistErrorMessage(err) }, 502);
+    }
+
+    if (!translated.titleCrh || !translated.bodyMdCrh) {
+      return json({ error: "Автопереклад не повернув кримськотатарський текст. Спробуйте пізніше." }, 502);
+    }
+
+    const now = new Date().toISOString();
+    await db.prepare(`
+      UPDATE articles SET title_en = ?, title_crh = ?, excerpt_en = ?, excerpt_crh = ?,
+        body_md_en = ?, body_md_crh = ?, tags = ?, updated_at = ?
+      WHERE id = ?
+    `).bind(
+      translated.titleEn || article.title_en,
+      translated.titleCrh || article.title_crh,
+      translated.excerptEn || article.excerpt_en,
+      translated.excerptCrh || article.excerpt_crh,
+      translated.bodyMdEn || article.body_md_en,
+      translated.bodyMdCrh || article.body_md_crh,
+      JSON.stringify(translated.tags || JSON.parse(article.tags || "[]")),
+      now,
+      article.id
+    ).run();
+
+    const remainingRow = await db.prepare(`
+      SELECT COUNT(*) AS count FROM articles
+      WHERE status = 'published'
+        AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
+          OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
+    `).first();
+    return json({
+      done: Number(remainingRow.count || 0) === 0,
+      translated: article.title,
+      remaining: Number(remainingRow.count || 0)
+    });
+  }
+
   if (url.pathname === "/api/admin/articles" && request.method === "GET") {
     const isAdmin = user.role === "admin";
     const { results } = isAdmin
