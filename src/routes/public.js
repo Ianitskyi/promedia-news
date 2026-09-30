@@ -143,7 +143,7 @@ ${entries.join("\n")}
     const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published'";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";
@@ -169,6 +169,7 @@ ${entries.join("\n")}
       excerptEn: a.excerpt_en,
       excerptCrh: a.excerpt_crh,
       coverImageUrl: a.cover_image_url,
+      coverImageUrlEn: a.cover_image_url_en,
       tags: parseJsonArray(a.tags),
       relatedMediaIds: parseJsonArray(a.related_media_ids),
       isImportant: Boolean(a.is_important),
@@ -184,7 +185,7 @@ ${entries.join("\n")}
   if (url.pathname === "/api/export/published-news.json" && request.method === "GET") {
     const { results } = await db.prepare(`
       SELECT slug, title, title_en, excerpt, excerpt_en, body_md, body_md_en,
-        cover_image_url, tags, related_media_ids, is_important, card_style,
+        cover_image_url, cover_image_url_en, tags, related_media_ids, is_important, card_style,
         published_at, created_at, updated_at
       FROM articles
       WHERE status = 'published'
@@ -202,6 +203,7 @@ ${entries.join("\n")}
         bodyMd: article.body_md,
         bodyMdEn: article.body_md_en,
         coverImageUrl: article.cover_image_url,
+        coverImageUrlEn: article.cover_image_url_en,
         tags: parseJsonArray(article.tags),
         relatedMediaIds: parseJsonArray(article.related_media_ids),
         isImportant: Boolean(article.is_important),
@@ -232,6 +234,7 @@ ${entries.join("\n")}
       bodyMdEn: article.body_md_en,
       bodyMdCrh: article.body_md_crh,
       coverImageUrl: article.cover_image_url,
+      coverImageUrlEn: article.cover_image_url_en,
       tags: parseJsonArray(article.tags),
       relatedMediaIds: parseJsonArray(article.related_media_ids),
       isImportant: Boolean(article.is_important),
@@ -263,7 +266,7 @@ ${entries.join("\n")}
   // GET / (homepage, optional ?tag=)
   if (url.pathname === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, tags, card_style, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, tags, card_style, published_at FROM articles WHERE status = 'published'";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";

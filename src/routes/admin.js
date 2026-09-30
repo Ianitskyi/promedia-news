@@ -26,6 +26,7 @@ function serializeArticle(a) {
     bodyMdEn: a.body_md_en,
     bodyMdCrh: a.body_md_crh,
     coverImageUrl: a.cover_image_url,
+    coverImageUrlEn: a.cover_image_url_en,
     tags: JSON.parse(a.tags || "[]"),
     relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
     isImportant: Boolean(a.is_important),
@@ -114,11 +115,11 @@ export async function handleAdminRoute(request, env, url) {
     const now = new Date().toISOString();
     const result = await db.prepare(`
       INSERT INTO articles (slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, body_md, body_md_en, body_md_crh,
-        cover_image_url, tags, related_media_ids, is_important, card_style, status, author_id, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
+        cover_image_url, cover_image_url_en, tags, related_media_ids, is_important, card_style, status, author_id, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
     `).bind(
       slug, body.title, body.titleEn || null, body.titleCrh || null, excerpt, body.excerptEn || null, body.excerptCrh || null,
-      body.bodyMd || "", body.bodyMdEn || null, body.bodyMdCrh || null, body.coverImageUrl || null,
+      body.bodyMd || "", body.bodyMdEn || null, body.bodyMdCrh || null, body.coverImageUrl || null, body.coverImageUrlEn || null,
       JSON.stringify(body.tags || []), JSON.stringify(body.relatedMediaIds || []),
       body.isImportant ? 1 : 0,
       normalizeCardStyle(body.cardStyle),
@@ -150,12 +151,13 @@ export async function handleAdminRoute(request, env, url) {
         bodyMd: body.bodyMd ?? article.body_md,
         bodyMdEn: body.bodyMdEn ?? article.body_md_en,
         bodyMdCrh: body.bodyMdCrh ?? article.body_md_crh,
+        coverImageUrlEn: body.coverImageUrlEn ?? article.cover_image_url_en,
         tags: body.tags ?? JSON.parse(article.tags || "[]")
       }, env);
       const excerpt = body.excerpt !== undefined ? body.excerpt : article.excerpt;
       await db.prepare(`
         UPDATE articles SET title = ?, title_en = ?, title_crh = ?, excerpt = ?, excerpt_en = ?, excerpt_crh = ?,
-          body_md = ?, body_md_en = ?, body_md_crh = ?, cover_image_url = ?, tags = ?, related_media_ids = ?,
+          body_md = ?, body_md_en = ?, body_md_crh = ?, cover_image_url = ?, cover_image_url_en = ?, tags = ?, related_media_ids = ?,
           is_important = ?, card_style = ?,
           updated_at = ?
         WHERE id = ?
@@ -170,6 +172,7 @@ export async function handleAdminRoute(request, env, url) {
         body.bodyMdEn ?? article.body_md_en,
         body.bodyMdCrh ?? article.body_md_crh,
         body.coverImageUrl ?? article.cover_image_url,
+        body.coverImageUrlEn ?? article.cover_image_url_en,
         JSON.stringify(body.tags ?? JSON.parse(article.tags || "[]")),
         JSON.stringify(body.relatedMediaIds ?? JSON.parse(article.related_media_ids || "[]")),
         body.isImportant === undefined ? article.is_important : (body.isImportant ? 1 : 0),

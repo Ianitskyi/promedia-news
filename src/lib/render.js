@@ -120,6 +120,12 @@ function tagLabel(tag, lang) {
   return tag;
 }
 
+function articleCover(article, lang) {
+  return lang === "en" && article.cover_image_url_en
+    ? article.cover_image_url_en
+    : article.cover_image_url;
+}
+
 function localizedUrls(url) {
   const bare = url.replace(/([?&])lang=[a-z]+&?/, "$1").replace(/[?&]$/, "");
   const withLang = (lang) => lang === "uk" ? bare : bare + (bare.includes("?") ? "&" : "?") + `lang=${lang}`;
@@ -356,11 +362,12 @@ function articleCard(article, lang, baseUrl, variant) {
   const excerpt = articleExcerpt(article, lang);
   const tags = JSON.parse(article.tags || "[]");
   const cardVariant = variant || "visual";
-  const showCover = cardVariant !== "text" && article.cover_image_url;
+  const coverUrl = articleCover(article, lang);
+  const showCover = cardVariant !== "text" && coverUrl;
   const langQuery = langQ(lang);
   const cover = showCover
     ? `<a class="article-card-media" href="${baseUrl}/article/${escapeHtml(article.slug)}${langQuery}">
-        <img class="article-card-img" src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(title)}" loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
+        <img class="article-card-img" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(title)}" loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
       </a>`
     : "";
   return `
@@ -478,8 +485,9 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const bodyMd = localizedField(article, "body_md", lang);
   const bodyHtmlContent = markdownToHtml(bodyMd);
   const tags = JSON.parse(article.tags || "[]");
-  const cover = article.cover_image_url
-    ? `<img class="article-cover" src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(title)}" />`
+  const coverUrl = articleCover(article, lang);
+  const cover = coverUrl
+    ? `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(title)}" />`
     : "";
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">
@@ -502,7 +510,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
     title: `${title} — ${pick(SITE_NAME, lang)}`,
     description: excerpt,
     url: articleUrl,
-    ogImage: article.cover_image_url || undefined,
+    ogImage: coverUrl || undefined,
     ogType: "article",
     publishedAt: article.published_at,
     lang,

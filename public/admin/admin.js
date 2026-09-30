@@ -1062,7 +1062,7 @@
     var isNew = !article;
     var a = article || {
       title: "", titleEn: "", titleCrh: "", excerpt: "", excerptEn: "", excerptCrh: "", bodyMd: "", bodyMdEn: "", bodyMdCrh: "",
-      coverImageUrl: "", tags: [], relatedMediaIds: [], isImportant: false, cardStyle: "auto", status: "draft"
+      coverImageUrl: "", coverImageUrlEn: "", tags: [], relatedMediaIds: [], isImportant: false, cardStyle: "auto", status: "draft"
     };
 
     root.innerHTML =
@@ -1089,6 +1089,12 @@
       '<span class="admin-hint">Бажано: горизонтальне фото 16:9, від 1200×675 px; JPG, PNG або WebP; до 8 МБ. Важливі логотипи й написи краще тримати ближче до центру, бо картки можуть обрізати краї.</span>' +
       '<input type="hidden" name="coverImageUrl" id="cover-url" value="' + escapeHtml(a.coverImageUrl) + '" />' +
       (a.coverImageUrl ? '<img class="admin-cover-preview" id="cover-preview" src="' + escapeHtml(a.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="cover-preview" style="display:none" />') +
+      "</div>" +
+      '<div class="admin-field"><label>Обкладинка (англ, за потреби)</label>' +
+      '<input type="file" id="cover-input-en" accept="image/*" />' +
+      '<span class="admin-hint">За наявності англомовної версії зображення завантажте її сюди. Інакше використовуватиметься основна обкладинка.</span>' +
+      '<input type="hidden" name="coverImageUrlEn" id="cover-url-en" value="' + escapeHtml(a.coverImageUrlEn || "") + '" />' +
+      (a.coverImageUrlEn ? '<img class="admin-cover-preview" id="cover-preview-en" src="' + escapeHtml(a.coverImageUrlEn) + '" />' : '<img class="admin-cover-preview" id="cover-preview-en" style="display:none" />') +
       "</div>" +
       '<div class="admin-field"><label>Теги (через кому)</label><input type="text" name="tags" value="' + escapeHtml(a.tags.join(", ")) + '" /></div>' +
       '<div class="admin-field"><label>Оформлення картки на головній сторінці новин</label>' +
@@ -1269,6 +1275,20 @@
       });
     });
 
+    var coverInputEn = document.getElementById("cover-input-en");
+    coverInputEn.addEventListener("change", function () {
+      var file = coverInputEn.files[0];
+      if (!file) return;
+      uploadImage(file).then(function (url) {
+        document.getElementById("cover-url-en").value = url;
+        var preview = document.getElementById("cover-preview-en");
+        preview.src = url;
+        preview.style.display = "block";
+      }).catch(function (err) {
+        document.getElementById("editor-error").textContent = err.message;
+      });
+    });
+
     function collectPayload(form) {
       syncRichEditors();
       var fields = form.elements;
@@ -1283,6 +1303,7 @@
         bodyMdEn: fields.bodyMdEn.value || null,
         bodyMdCrh: fields.bodyMdCrh.value || null,
         coverImageUrl: fields.coverImageUrl.value || null,
+        coverImageUrlEn: fields.coverImageUrlEn.value || null,
         tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,
         isImportant: fields.isImportant.checked,
