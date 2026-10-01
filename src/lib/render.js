@@ -6,14 +6,10 @@ function pick(dict, lang) {
   return (dict && dict[lang] != null) ? dict[lang] : dict.uk;
 }
 
-// "" for the default (uk) language, "?lang=xx" otherwise — for building a fresh query string.
-function langQ(lang) {
-  return lang === "uk" ? "" : `?lang=${lang}`;
-}
-
-// "" for the default (uk) language, "&lang=xx" otherwise — for appending to an existing query string.
-function langAmp(lang) {
-  return lang === "uk" ? "" : `&lang=${lang}`;
+// Мова — перший сегмент шляху, як на інших сайтах мережі: "" для uk,
+// "/en" чи "/crh" для інших мов (/en/article/<slug>, /crh/?tag=…).
+function langPrefix(lang) {
+  return lang === "uk" ? "" : `/${lang}`;
 }
 
 const SITE_NAME = { uk: "Новини ПроМедіа", en: "ProMedia News", crh: "ProMedia haberleri" };
@@ -126,9 +122,12 @@ function articleCover(article, lang) {
     : article.cover_image_url;
 }
 
+// Ту саму сторінку іншими мовами: прибираємо мовний префікс і додаємо потрібний.
 function localizedUrls(url) {
-  const bare = url.replace(/([?&])lang=[a-z]+&?/, "$1").replace(/[?&]$/, "");
-  const withLang = (lang) => lang === "uk" ? bare : bare + (bare.includes("?") ? "&" : "?") + `lang=${lang}`;
+  const u = new URL(url);
+  u.searchParams.delete("lang");
+  const path = u.pathname.replace(/^\/(en|crh)(?=\/|$)/, "") || "/";
+  const withLang = (lang) => `${u.origin}${langPrefix(lang)}${path}${u.search}`;
   return { ukUrl: withLang("uk"), enUrl: withLang("en"), crhUrl: withLang("crh") };
 }
 
@@ -181,14 +180,15 @@ const NAV_LABELS = {
 // кримськотатарський читач потрапляє на його українську версію.
 const NETWORK_URLS = {
   communities: { uk: "https://communities.promedia.report/", en: "https://communities.promedia.report/en/", crh: "https://communities.promedia.report/crh/" },
-  ratings: { uk: "https://ratings.promedia.report/", en: "https://ratings.promedia.report/?lang=en", crh: "https://ratings.promedia.report/crh/" },
+  ratings: { uk: "https://ratings.promedia.report/", en: "https://ratings.promedia.report/en/", crh: "https://ratings.promedia.report/crh/" },
   research: { uk: "https://research.promedia.report/", en: "https://research.promedia.report/en/", crh: "https://research.promedia.report/crh/" },
   atlas: { uk: "https://atlas.promedia.report/", en: "https://atlas.promedia.report/en/", crh: "https://atlas.promedia.report/crh/" }
 };
 
-function header(lang) {
+function header(lang, url) {
   const en = lang === "en";
-  const q = langQ(lang);
+  const langUrls = localizedUrls(url);
+  const langHref = { uk: langUrls.ukUrl, en: langUrls.enUrl, crh: langUrls.crhUrl };
   const main = en ? "https://promedia.report/en" : "https://promedia.report";
   const links = pick(NAV_LABELS, lang);
   const aria = pick(NAV_ARIA, lang);
@@ -196,11 +196,11 @@ function header(lang) {
 <nav class="utility-bar" aria-label="${aria}">
   <a class="home-btn" href="${main}">← ${lang === "uk" ? "ПроМедіа" : "ProMedia"}</a>
   <span class="lang-toggle" aria-label="${HTML_LOCALE_LABEL[lang]}">
-    ${LANGS.map((l) => `<a class="lang-btn${l === lang ? " active" : ""}" href="?lang=${l}">${LANG_BUTTON_LABEL[l]}</a>`).join("")}
+    ${LANGS.map((l) => `<a class="lang-btn${l === lang ? " active" : ""}" href="${escapeHtml(langHref[l])}">${LANG_BUTTON_LABEL[l]}</a>`).join("")}
   </span>
 </nav>
 <nav class="network-nav" aria-label="${aria}">
-  <a class="network-link active" href="/${q}">${links.news}</a>
+  <a class="network-link active" href="${langPrefix(lang)}/">${links.news}</a>
   <a class="network-link" href="${pick(NETWORK_URLS.communities, lang)}">${links.communities}</a>
   <a class="network-link" href="${pick(NETWORK_URLS.ratings, lang)}">${links.ratings}</a>
   <a class="network-link" href="${pick(NETWORK_URLS.research, lang)}">${links.research}</a>
@@ -255,7 +255,7 @@ function footer(lang) {
   </dl>
   <a class="site-footer-correction" href="mailto:info@promedia.report">${t.correction} info@promedia.report</a>
   <nav class="network-footer" aria-label="${aria}">
-    <a href="/${langQ(lang)}">${links.news}</a>
+    <a href="${langPrefix(lang)}/">${links.news}</a>
     <a href="${pick(NETWORK_URLS.communities, lang)}">${links.communities}</a>
     <a href="${pick(NETWORK_URLS.ratings, lang)}">${links.ratings}</a>
     <a href="${pick(NETWORK_URLS.research, lang)}">${links.research}</a>
@@ -278,7 +278,7 @@ ${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt })}
 </script>
 </head>
 <body>
-${header(lang)}
+${header(lang, url)}
 ${bodyHtml}
 ${footer(lang)}
 <script defer src="/js/promedia-language-suggest.js"></script>
@@ -356,12 +356,12 @@ const CATEGORY_NAV_ARIA = { uk: "Рубрики новин", en: "News categorie
 
 function categoryNav(lang, activeTag) {
   const labels = { all: pick(ALL_LABEL, lang), "Заяви": tagLabel("Заяви", lang), "Новини": tagLabel("Новини", lang), "Статті": tagLabel("Статті", lang) };
-  const allHref = `/${langQ(lang)}`;
+  const allHref = `${langPrefix(lang)}/`;
   const items = [
     `<a class="category-link${!activeTag ? " active" : ""}" href="${allHref}">${labels.all}</a>`,
     ...CATEGORIES.map((category) => {
-      const query = `?tag=${encodeURIComponent(category)}${langAmp(lang)}`;
-      return `<a class="category-link${activeTag === category ? " active" : ""}" href="/${query}">${labels[category]}</a>`;
+      const query = `?tag=${encodeURIComponent(category)}`;
+      return `<a class="category-link${activeTag === category ? " active" : ""}" href="${langPrefix(lang)}/${query}">${labels[category]}</a>`;
     })
   ];
   return `<nav class="category-nav" aria-label="${pick(CATEGORY_NAV_ARIA, lang)}">${items.join("")}</nav>`;
@@ -376,9 +376,9 @@ function articleCard(article, lang, baseUrl, variant) {
   const cardVariant = variant || "visual";
   const coverUrl = articleCover(article, lang);
   const showCover = cardVariant !== "text" && coverUrl;
-  const langQuery = langQ(lang);
+  const articleHref = `${baseUrl}${langPrefix(lang)}/article/${escapeHtml(article.slug)}`;
   const cover = showCover
-    ? `<a class="article-card-media" href="${baseUrl}/article/${escapeHtml(article.slug)}${langQuery}">
+    ? `<a class="article-card-media" href="${articleHref}">
         <img class="article-card-img" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(title)}" loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
       </a>`
     : "";
@@ -388,7 +388,7 @@ function articleCard(article, lang, baseUrl, variant) {
   <div class="article-card-body">
     ${cardVariant === "hero" ? `<span class="lead-label">${pick(TOP_STORY_LABEL, lang)}</span>` : ""}
     ${tags.length ? `<div class="article-tags">${tags.map((t) => `<span class="article-tag">${escapeHtml(tagLabel(t, lang))}</span>`).join("")}</div>` : ""}
-    <h3><a href="${baseUrl}/article/${escapeHtml(article.slug)}${langQuery}">${escapeHtml(title)}</a></h3>
+    <h3><a href="${articleHref}">${escapeHtml(title)}</a></h3>
     <p class="article-excerpt">${escapeHtml(excerpt)}</p>
     <p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>
   </div>
@@ -481,7 +481,7 @@ ${list}
   return pageShell({
     title: `${t} — ${tagline}`,
     description: tagline,
-    url: `${baseUrl}/${langQ(lang)}`,
+    url: `${baseUrl}${langPrefix(lang)}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : ""}`,
     lang,
     bodyHtml
   });
@@ -493,7 +493,7 @@ const ABOUT_LABEL = { uk: "Про кого:", en: "About:", crh: "Kimler aqqınd
 export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames }) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
-  const articleUrl = `${baseUrl}/article/${article.slug}${langQ(lang)}`;
+  const articleUrl = `${baseUrl}${langPrefix(lang)}/article/${article.slug}`;
   const bodyMd = localizedField(article, "body_md", lang);
   const bodyHtmlContent = markdownToHtml(bodyMd);
   const tags = JSON.parse(article.tags || "[]");
@@ -504,13 +504,13 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">
         <span>${pick(ABOUT_LABEL, lang)}</span>
-        ${relatedMediaNames.map((m) => `<a href="${escapeHtml(m.url || `https://communities.promedia.report/media/?id=${encodeURIComponent(m.id)}&lang=${lang}`)}">${escapeHtml(m.name)}</a>`).join(", ")}
+        ${relatedMediaNames.map((m) => `<a href="${escapeHtml(m.url || `https://communities.promedia.report${langPrefix(lang)}/media/?id=${encodeURIComponent(m.id)}`)}">${escapeHtml(m.name)}</a>`).join(", ")}
       </div>`
     : "";
   const bodyHtml = `
 <main class="wrap article-page">
-  <p class="article-back"><a href="/${langQ(lang)}">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
-  ${tags.length ? `<div class="article-tags">${tags.map((tg) => `<a class="article-tag" href="/?tag=${encodeURIComponent(tg)}${langAmp(lang)}">${escapeHtml(tagLabel(tg, lang))}</a>`).join("")}</div>` : ""}
+  <p class="article-back"><a href="${langPrefix(lang)}/">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
+  ${tags.length ? `<div class="article-tags">${tags.map((tg) => `<a class="article-tag" href="${langPrefix(lang)}/?tag=${encodeURIComponent(tg)}">${escapeHtml(tagLabel(tg, lang))}</a>`).join("")}</div>` : ""}
   <h1>${escapeHtml(title)}</h1>
   <p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>
   ${articleShareBlock({ title, excerpt, articleUrl, lang })}
@@ -536,12 +536,12 @@ export function renderNotFound(lang, baseUrl) {
   const bodyHtml = `
 <main class="wrap">
   <p class="empty-state">${pick(NOT_FOUND_LABEL, lang)}</p>
-  <p><a href="/${langQ(lang)}">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
+  <p><a href="${langPrefix(lang)}/">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
 </main>`;
   return pageShell({
     title: pick(SITE_NAME, lang),
     description: pick(SITE_TAGLINE, lang),
-    url: `${baseUrl}/`,
+    url: `${baseUrl}${langPrefix(lang)}/`,
     lang,
     bodyHtml
   });

@@ -20,10 +20,11 @@
     catch (err) { return NEWS_ORIGIN; }
   }
 
+  // Мова — перший сегмент шляху: /en/article/<slug>, /crh/article/<slug>.
   function articleUrl(item, lang) {
-    var url = absoluteNewsUrl(item.url || ("/article/" + item.slug));
-    if (lang !== "uk") url += (url.indexOf("?") === -1 ? "?" : "&") + "lang=" + lang;
-    return url;
+    var url = new URL(absoluteNewsUrl(item.url || ("/article/" + item.slug)));
+    if (lang !== "uk") url.pathname = "/" + lang + url.pathname;
+    return url.href;
   }
 
   function formatDate(value, lang) {
@@ -93,7 +94,7 @@
 
     var lang = pageLang();
     var allNewsLink = document.querySelector(".pm-featured-news-all");
-    if (allNewsLink) allNewsLink.href = NEWS_ORIGIN + (lang === "uk" ? "/" : "/?lang=" + lang);
+    if (allNewsLink) allNewsLink.href = NEWS_ORIGIN + (lang === "uk" ? "/" : "/" + lang + "/");
 
     var existingCards = Array.prototype.slice.call(
       grid.querySelectorAll(".pm-featured-news-card")

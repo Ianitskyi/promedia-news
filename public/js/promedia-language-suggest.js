@@ -146,13 +146,6 @@
     return url;
   }
 
-  function withQueryLanguage(targetLang) {
-    var url = cleanSearch(new URL(window.location.href));
-    if (targetLang === "en") url.searchParams.set("lang", "en");
-    else url.searchParams.set("lang", "uk");
-    return url.href;
-  }
-
   function withPathPrefixLanguage(targetLang) {
     var url = cleanSearch(new URL(window.location.href));
     var path = url.pathname || "/";
@@ -196,14 +189,14 @@
       url.searchParams.delete("lang");
       return url.href;
     }
-    return withQueryLanguage(targetLang);
+    return withPathPrefixLanguage(targetLang);
   }
 
   function targetLanguageUrl(targetLang) {
     var host = window.location.hostname.toLowerCase();
     if (host === "promedia.report") return withPathPrefixLanguage(targetLang);
-    if (host === "news.promedia.report") return withQueryLanguage(targetLang);
-    if (host === "ratings.promedia.report") return withQueryLanguage(targetLang);
+    if (host === "news.promedia.report") return withPathPrefixLanguage(targetLang);
+    if (host === "ratings.promedia.report") return withPathPrefixLanguage(targetLang);
     if (host === "communities.promedia.report") return communitiesLanguageUrl(targetLang);
     if (host === "research.promedia.report") return researchLanguageUrl(targetLang);
     return null;

@@ -230,7 +230,7 @@
         '<div class="pm-push-actions">' +
           (localServiceWorker
             ? '<button class="pm-push-primary" type="button" data-push-subscribe>' + t.subscribe + '</button>'
-            : '<a class="pm-push-primary" href="' + NEWS_ORIGIN + '/?subscribe=1' + (isEnglishPage() ? '&lang=en' : isCrimeanTatarPage() ? '&lang=crh' : '') + '">' + t.openNews + '</a>') +
+            : '<a class="pm-push-primary" href="' + NEWS_ORIGIN + (isEnglishPage() ? '/en' : isCrimeanTatarPage() ? '/crh' : '') + '/?subscribe=1' + '">' + t.openNews + '</a>') +
           '<button type="button" data-push-dismiss>' + t.later + '</button>' +
         '</div>' +
         '<div class="pm-push-status" data-push-status></div>' +
