@@ -1,9 +1,29 @@
 import { renderHomepage, renderArticlePage, renderNotFound } from "../lib/render.js";
 import { handlePublicPushRoute } from "../lib/push.js";
 
+// Мова — перший сегмент шляху: /en/…, /crh/… (uk — без префікса).
+const LANG_PATH = /^\/(en|crh)(?=\/|$)/;
+
 function getLang(url) {
-  const l = url.searchParams.get("lang");
-  return (l === "en" || l === "crh") ? l : "uk";
+  const m = url.pathname.match(LANG_PATH);
+  return m ? m[1] : "uk";
+}
+
+function stripLangPrefix(pathname) {
+  return pathname.replace(LANG_PATH, "") || "/";
+}
+
+// Старі адреси з ?lang=en|crh|uk (поширені в соцмережах, розсилках і пушах)
+// переадресовуємо назавжди на шлях із мовним префіксом.
+function legacyLangRedirect(url) {
+  const lang = url.searchParams.get("lang");
+  if (!url.searchParams.has("lang")) return null;
+  const target = new URL(url);
+  target.searchParams.delete("lang");
+  const path = stripLangPrefix(target.pathname);
+  const prefix = lang === "en" || lang === "crh" ? `/${lang}` : "";
+  target.pathname = path === "/" && prefix ? `${prefix}/` : prefix + path;
+  return Response.redirect(target.toString(), 301);
 }
 
 function corsJson(data, status) {
@@ -49,8 +69,8 @@ function escapeXml(value) {
     .replace(/'/g, "&apos;");
 }
 
-function sitemapUrl(loc, ukUrl, enUrl, lastmod) {
-  return `<url>\n  <loc>${escapeXml(loc)}</loc>${lastmod ? `\n  <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}\n  <xhtml:link rel="alternate" hreflang="uk" href="${escapeXml(ukUrl)}" />\n  <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(enUrl)}" />\n  <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(ukUrl)}" />\n</url>`;
+function sitemapUrl(loc, urls, lastmod) {
+  return `<url>\n  <loc>${escapeXml(loc)}</loc>${lastmod ? `\n  <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}\n  <xhtml:link rel="alternate" hreflang="uk" href="${escapeXml(urls.uk)}" />\n  <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(urls.en)}" />\n  <xhtml:link rel="alternate" hreflang="crh" href="${escapeXml(urls.crh)}" />\n  <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(urls.uk)}" />\n</url>`;
 }
 
 function sitemapDate(value) {
@@ -89,6 +109,14 @@ async function fetchRelatedMediaNames(mediaIds, env, baseUrl) {
 
 export async function handlePublicRoute(request, env, url) {
   const lang = getLang(url);
+  const pagePath = stripLangPrefix(url.pathname);
+  const isPage = request.method === "GET" && (pagePath === "/" || /^\/article\/[a-z0-9-]+$/.test(pagePath));
+  if (isPage) {
+    const redirect = legacyLangRedirect(url);
+    if (redirect) return redirect;
+    // /en і /crh без слеша → /en/ і /crh/
+    if (lang !== "uk" && url.pathname === `/${lang}`) return Response.redirect(`${url.origin}/${lang}/${url.search}`, 301);
+  }
   const baseUrl = `${url.protocol}//${url.host}`;
   const db = env.DB;
 
@@ -118,15 +146,13 @@ Sitemap: ${baseUrl}/sitemap.xml
       WHERE status = 'published'
       ORDER BY published_at DESC
     `).all();
-    const homepageUk = `${baseUrl}/`;
-    const homepageEn = `${baseUrl}/?lang=en`;
-    const entries = [sitemapUrl(homepageUk, homepageUk, homepageEn, "")];
+    const forLangs = (path) => ({ uk: `${baseUrl}${path}`, en: `${baseUrl}/en${path}`, crh: `${baseUrl}/crh${path}` });
+    const home = forLangs("/");
+    const entries = ["uk", "en", "crh"].map((l) => sitemapUrl(home[l], home, ""));
     results.forEach((article) => {
-      const ukUrl = `${baseUrl}/article/${article.slug}`;
-      const enUrl = `${ukUrl}?lang=en`;
+      const urls = forLangs(`/article/${article.slug}`);
       const lastmod = sitemapDate(article.updated_at || article.published_at);
-      entries.push(sitemapUrl(ukUrl, ukUrl, enUrl, lastmod));
-      entries.push(sitemapUrl(enUrl, ukUrl, enUrl, lastmod));
+      ["uk", "en", "crh"].forEach((l) => entries.push(sitemapUrl(urls[l], urls, lastmod)));
     });
     return xml(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -248,7 +274,7 @@ ${entries.join("\n")}
   }
 
   // GET /article/:slug
-  const articleMatch = url.pathname.match(/^\/article\/([a-z0-9-]+)$/);
+  const articleMatch = pagePath.match(/^\/article\/([a-z0-9-]+)$/);
   if (articleMatch && request.method === "GET") {
     const article = await db.prepare(
       "SELECT * FROM articles WHERE slug = ? AND status = 'published'"
@@ -264,7 +290,7 @@ ${entries.join("\n")}
   }
 
   // GET / (homepage, optional ?tag=)
-  if (url.pathname === "/" && request.method === "GET") {
+  if (pagePath === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
     let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, tags, card_style, published_at FROM articles WHERE status = 'published'";
     const binds = [];
