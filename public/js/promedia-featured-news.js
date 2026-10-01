@@ -6,9 +6,13 @@
   var retryCount = 0;
   var maxRetries = 3;
 
-  function isEnglishPage() {
-    return document.documentElement.lang.toLowerCase().indexOf("en") === 0 ||
-      window.location.pathname === "/en" || window.location.pathname.indexOf("/en/") === 0;
+  // "en", "crh" (кримськотатарська латинкою) або "uk".
+  function pageLang() {
+    var htmlLang = document.documentElement.lang.toLowerCase();
+    var path = window.location.pathname;
+    if (htmlLang.indexOf("crh") === 0 || path === "/crh" || path.indexOf("/crh/") === 0) return "crh";
+    if (htmlLang.indexOf("en") === 0 || path === "/en" || path.indexOf("/en/") === 0) return "en";
+    return "uk";
   }
 
   function absoluteNewsUrl(path) {
@@ -16,25 +20,25 @@
     catch (err) { return NEWS_ORIGIN; }
   }
 
-  function articleUrl(item, isEnglish) {
+  function articleUrl(item, lang) {
     var url = absoluteNewsUrl(item.url || ("/article/" + item.slug));
-    if (isEnglish) url += (url.indexOf("?") === -1 ? "?" : "&") + "lang=en";
+    if (lang !== "uk") url += (url.indexOf("?") === -1 ? "?" : "&") + "lang=" + lang;
     return url;
   }
 
-  function formatDate(value, isEnglish) {
+  function formatDate(value, lang) {
     var date = new Date(value);
     if (isNaN(date.getTime())) return "";
-    return new Intl.DateTimeFormat(isEnglish ? "en-GB" : "uk-UA", {
+    return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "uk-UA", {
       day: "2-digit", month: "2-digit", year: "numeric"
     }).format(date);
   }
 
-  function createCard(item, isEnglish) {
-    var title = isEnglish ? (item.titleEn || item.title) : item.title;
+  function createCard(item, lang) {
+    var title = (lang === "en" && item.titleEn) || (lang === "crh" && item.titleCrh) || item.title;
     var card = document.createElement("a");
     card.className = "pm-featured-news-card";
-    card.href = articleUrl(item, isEnglish);
+    card.href = articleUrl(item, lang);
     card.dataset.newsSource = "news.promedia.report";
 
     var media = document.createElement("div");
@@ -49,7 +53,7 @@
     body.className = "pm-featured-news-body";
     var date = document.createElement("span");
     date.className = "pm-featured-news-date";
-    date.textContent = formatDate(item.publishedAt, isEnglish);
+    date.textContent = formatDate(item.publishedAt, lang);
     var heading = document.createElement("h3");
     heading.textContent = title || "";
     body.appendChild(date);
@@ -87,9 +91,9 @@
     if (typeof window.fetch !== "function" || grid.dataset.pmFeaturedNewsLoading === "true") return;
     grid.dataset.pmFeaturedNewsLoading = "true";
 
-    var isEnglish = isEnglishPage();
+    var lang = pageLang();
     var allNewsLink = document.querySelector(".pm-featured-news-all");
-    if (allNewsLink) allNewsLink.href = NEWS_ORIGIN + (isEnglish ? "/?lang=en" : "/");
+    if (allNewsLink) allNewsLink.href = NEWS_ORIGIN + (lang === "uk" ? "/" : "/?lang=" + lang);
 
     var existingCards = Array.prototype.slice.call(
       grid.querySelectorAll(".pm-featured-news-card")
@@ -107,7 +111,7 @@
         var used = {};
         var cards = [];
         items.forEach(function (item) {
-          var card = createCard(item, isEnglish);
+          var card = createCard(item, lang);
           var key = normalizeUrl(card.href);
           if (!used[key]) {
             used[key] = true;
