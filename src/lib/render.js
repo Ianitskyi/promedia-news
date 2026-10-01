@@ -227,7 +227,7 @@ const FOOTER_TEXT = {
     details: "Teşkilât aqqında malümat", name: "Resmiy adı", nameValue: "«ProMedia» İCT",
     registration: "Qayd nomeri", address: "Yuridik adres",
     addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kiev, Ukraina, 03118",
-    chair: "İdare Keñeşi Reisi", chairValue: "Andriy Ianitskiy", phone: "Telefon", email: "Elektron poçta",
+    chair: "İdare Keñeşi Reisi", chairValue: "Andrii Ianitskyi", phone: "Telefon", email: "Elektron poçta",
     social: "İçtimaiy şebekeler", project: "ProMedia loyihası", correction: "Hata taptıñızmı?"
   }
 };
