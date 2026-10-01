@@ -80,9 +80,11 @@
     var queryLang = String(params.get("lang") || "").toLowerCase();
     if (queryLang === "en") return "en";
     if (queryLang === "uk") return "uk";
+    if (queryLang === "crh") return "crh";
 
     var path = url.pathname.toLowerCase();
     if (path === "/en" || path.indexOf("/en/") === 0) return "en";
+    if (path === "/crh" || path.indexOf("/crh/") === 0) return "crh";
 
     return isPromediaHost(url.hostname.toLowerCase()) ? "uk" : null;
   }
@@ -93,6 +95,7 @@
 
     var htmlLang = String(document.documentElement.getAttribute("lang") || "").toLowerCase();
     if (htmlLang.indexOf("en") === 0) return "en";
+    if (htmlLang.indexOf("crh") === 0) return "crh";
     return "uk";
   }
 
@@ -297,6 +300,8 @@
   function start() {
     if (isAdminPath() || document.getElementById(PROMPT_ID)) return;
     var currentLang = currentLanguage();
+    // Кримськотатарську версію відкривають свідомо — не пропонуємо іншу мову.
+    if (currentLang === "crh") return;
     rememberSeenLanguage(currentLang);
     if (storageGet(CHOICE_KEY)) return;
     var targetLang = preferredLanguage();

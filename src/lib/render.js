@@ -176,8 +176,17 @@ const NAV_LABELS = {
   crh: { communities: "Cemaatlar haritası", ratings: "Jurnalistika fakülteleri reytingi", research: "Tedqiqatlar", atlas: "Mediya Atlası", news: "Haberler" }
 };
 
+// Адреси сусідніх сайтів мережі для кожної мови. Communities, research і
+// atlas мають crh-версію; promedia.report і рейтинг журфаків — ні, тож
+// кримськотатарський читач потрапляє на їхню українську версію.
+const NETWORK_URLS = {
+  communities: { uk: "https://communities.promedia.report/", en: "https://communities.promedia.report/en/", crh: "https://communities.promedia.report/crh/" },
+  ratings: { uk: "https://ratings.promedia.report/", en: "https://ratings.promedia.report/?lang=en", crh: "https://ratings.promedia.report/" },
+  research: { uk: "https://research.promedia.report/", en: "https://research.promedia.report/en/", crh: "https://research.promedia.report/crh/" },
+  atlas: { uk: "https://atlas.promedia.report/", en: "https://atlas.promedia.report/en/", crh: "https://atlas.promedia.report/crh/" }
+};
+
 function header(lang) {
-  // The other network subdomains only publish uk/en, so a crh reader is sent to their uk version.
   const en = lang === "en";
   const q = langQ(lang);
   const main = en ? "https://promedia.report/en" : "https://promedia.report";
@@ -185,17 +194,17 @@ function header(lang) {
   const aria = pick(NAV_ARIA, lang);
   return `
 <nav class="utility-bar" aria-label="${aria}">
-  <a class="home-btn" href="${main}">← ${en ? "ProMedia" : "ПроМедіа"}</a>
+  <a class="home-btn" href="${main}">← ${lang === "uk" ? "ПроМедіа" : "ProMedia"}</a>
   <span class="lang-toggle" aria-label="${HTML_LOCALE_LABEL[lang]}">
     ${LANGS.map((l) => `<a class="lang-btn${l === lang ? " active" : ""}" href="?lang=${l}">${LANG_BUTTON_LABEL[l]}</a>`).join("")}
   </span>
 </nav>
 <nav class="network-nav" aria-label="${aria}">
   <a class="network-link active" href="/${q}">${links.news}</a>
-  <a class="network-link" href="https://communities.promedia.report/${en ? "en/" : ""}">${links.communities}</a>
-  <a class="network-link" href="https://ratings.promedia.report/${en ? "?lang=en" : ""}">${links.ratings}</a>
-  <a class="network-link" href="https://research.promedia.report/${en ? "en/" : ""}">${links.research}</a>
-  <a class="network-link" href="https://atlas.promedia.report/${en ? "en/" : ""}">${links.atlas}</a>
+  <a class="network-link" href="${pick(NETWORK_URLS.communities, lang)}">${links.communities}</a>
+  <a class="network-link" href="${pick(NETWORK_URLS.ratings, lang)}">${links.ratings}</a>
+  <a class="network-link" href="${pick(NETWORK_URLS.research, lang)}">${links.research}</a>
+  <a class="network-link" href="${pick(NETWORK_URLS.atlas, lang)}">${links.atlas}</a>
 </nav>`;
 }
 
@@ -247,10 +256,10 @@ function footer(lang) {
   <a class="site-footer-correction" href="mailto:info@promedia.report">${t.correction} info@promedia.report</a>
   <nav class="network-footer" aria-label="${aria}">
     <a href="/${langQ(lang)}">${links.news}</a>
-    <a href="https://communities.promedia.report/${en ? "en/" : ""}">${links.communities}</a>
-    <a href="https://ratings.promedia.report/${en ? "?lang=en" : ""}">${links.ratings}</a>
-    <a href="https://research.promedia.report/${en ? "en/" : ""}">${links.research}</a>
-    <a href="https://atlas.promedia.report/${en ? "en/" : ""}">${links.atlas}</a>
+    <a href="${pick(NETWORK_URLS.communities, lang)}">${links.communities}</a>
+    <a href="${pick(NETWORK_URLS.ratings, lang)}">${links.ratings}</a>
+    <a href="${pick(NETWORK_URLS.research, lang)}">${links.research}</a>
+    <a href="${pick(NETWORK_URLS.atlas, lang)}">${links.atlas}</a>
   </nav>
 </footer>`;
 }
