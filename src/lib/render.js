@@ -177,11 +177,11 @@ const NAV_LABELS = {
 };
 
 // Адреси сусідніх сайтів мережі для кожної мови. Communities, research і
-// atlas мають crh-версію; promedia.report і рейтинг журфаків — ні, тож
-// кримськотатарський читач потрапляє на їхню українську версію.
+// atlas і рейтинг журфаків мають crh-версію; promedia.report — ні, тож
+// кримськотатарський читач потрапляє на його українську версію.
 const NETWORK_URLS = {
   communities: { uk: "https://communities.promedia.report/", en: "https://communities.promedia.report/en/", crh: "https://communities.promedia.report/crh/" },
-  ratings: { uk: "https://ratings.promedia.report/", en: "https://ratings.promedia.report/?lang=en", crh: "https://ratings.promedia.report/" },
+  ratings: { uk: "https://ratings.promedia.report/", en: "https://ratings.promedia.report/?lang=en", crh: "https://ratings.promedia.report/crh/" },
   research: { uk: "https://research.promedia.report/", en: "https://research.promedia.report/en/", crh: "https://research.promedia.report/crh/" },
   atlas: { uk: "https://atlas.promedia.report/", en: "https://atlas.promedia.report/en/", crh: "https://atlas.promedia.report/crh/" }
 };
