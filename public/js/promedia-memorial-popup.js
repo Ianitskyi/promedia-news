@@ -32,7 +32,24 @@
       /(?:[?&])lang=en(?:&|$)/.test(search);
   }
 
+  // Кримськотатарська версія сайтів мережі: <html lang="crh">, /crh/… або ?lang=crh.
+  function isCrimeanTatarPage() {
+    var lang = (document.documentElement.getAttribute("lang") || "").toLowerCase();
+    var path = window.location.pathname;
+    return lang.indexOf("crh") === 0 ||
+      path === "/crh" ||
+      path.indexOf("/crh/") === 0 ||
+      /(?:[?&])lang=crh(?:&|$)/.test(window.location.search);
+  }
+
   function text() {
+    if (isCrimeanTatarPage()) {
+      return {
+        title: "Hatırlañız!",
+        time: "09:00",
+        body: "Bir daqqa toqtap, rusiyege qarşı azatlıq cenginde helâk olğanlarnıñ adlarını hatırlaymız"
+      };
+    }
     return isEnglishPage()
       ? {
           title: "Honor them!",

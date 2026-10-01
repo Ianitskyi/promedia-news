@@ -30,7 +30,33 @@
       /(?:[?&])lang=en(?:&|$)/.test(window.location.search);
   }
 
+  // Кримськотатарська версія сайтів мережі: <html lang="crh">, /crh/… або ?lang=crh.
+  function isCrimeanTatarPage() {
+    var lang = (document.documentElement.getAttribute("lang") || "").toLowerCase();
+    var path = window.location.pathname;
+    return lang.indexOf("crh") === 0 ||
+      path === "/crh" ||
+      path.indexOf("/crh/") === 0 ||
+      /(?:[?&])lang=crh(?:&|$)/.test(window.location.search);
+  }
+
   function copy() {
+    if (isCrimeanTatarPage()) {
+      return {
+        open: "Yañılıqlarğa abonementni açmaq",
+        title: "ProMedia yañılıqlarını alıñız",
+        body: "Muhim haberler, beyanatlar, tedqiqatlar ve ProMedia loyihalarına abone oluñız.",
+        subscribe: "Abone olmaq",
+        later: "Soñra",
+        unavailableTitle: "Abonement Haberlerde açılır",
+        unavailableBody: "Bu saife şimdilik bildirimlerni doğrudan qayd etip olamay. Olarnı açmaq içün ProMedia Haberlerini açıñız.",
+        openNews: "Haberlerni açmaq",
+        active: "Abonement faal. Sağ oluñız.",
+        denied: "Bu brauzerde bildirimler bloklanğan.",
+        error: "Bildirimlerni açmaq mümkün olmadı. Soñra deñeñiz.",
+        label: "Yañılıqlar"
+      };
+    }
     return isEnglishPage()
       ? {
           open: "Open updates subscription",
@@ -196,7 +222,7 @@
     root.className = "pm-push-bell";
     root.innerHTML =
       '<button class="pm-push-bell-button" type="button" aria-expanded="false" aria-label="' + t.open + '">' +
-        bellIcon() + '<span>' + (isEnglishPage() ? "Updates" : "Оновлення") + '</span>' +
+        bellIcon() + '<span>' + (t.label || (isEnglishPage() ? "Updates" : "Оновлення")) + '</span>' +
       '</button>' +
       '<div class="pm-push-panel" role="dialog" aria-live="polite">' +
         '<h2>' + (localServiceWorker ? t.title : t.unavailableTitle) + '</h2>' +
@@ -204,7 +230,7 @@
         '<div class="pm-push-actions">' +
           (localServiceWorker
             ? '<button class="pm-push-primary" type="button" data-push-subscribe>' + t.subscribe + '</button>'
-            : '<a class="pm-push-primary" href="' + NEWS_ORIGIN + '/?subscribe=1' + (isEnglishPage() ? '&lang=en' : '') + '">' + t.openNews + '</a>') +
+            : '<a class="pm-push-primary" href="' + NEWS_ORIGIN + '/?subscribe=1' + (isEnglishPage() ? '&lang=en' : isCrimeanTatarPage() ? '&lang=crh' : '') + '">' + t.openNews + '</a>') +
           '<button type="button" data-push-dismiss>' + t.later + '</button>' +
         '</div>' +
         '<div class="pm-push-status" data-push-status></div>' +
