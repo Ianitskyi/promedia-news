@@ -24,7 +24,7 @@ const SITE_EYEBROW = {
   crh: "Ukrainada jurnalistika hem içtimaiy aktivizm aqqında"
 };
 const OG_LOCALE = { uk: "uk_UA", en: "en_US", crh: "crh_UA" };
-const HTML_LOCALE_LABEL = { uk: "Мова / Language", en: "Мова / Language", crh: "Мова / Language" };
+const HTML_LOCALE_LABEL = { uk: "Мова / Language", en: "Мова / Language", crh: "Til / Language" };
 const LANG_BUTTON_LABEL = { uk: "UA", en: "EN", crh: "QT" };
 const CATEGORIES = ["Заяви", "Новини", "Статті"];
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
