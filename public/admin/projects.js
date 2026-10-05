@@ -41,11 +41,32 @@
         '</td><td><button class="admin-btn secondary" data-edit="' + p.id + '" type="button">Редагувати</button></td></tr>';
     }).join("");
     root.innerHTML =
-      '<div class="admin-row" style="margin-bottom:18px"><button class="admin-btn" id="new-project" type="button">+ Новий проєкт</button></div>' +
+      '<div class="admin-row" style="margin-bottom:18px"><button class="admin-btn" id="new-project" type="button">+ Новий проєкт</button><button class="admin-btn secondary" id="translate-projects" type="button">Перекласти відсутні EN/QT</button><span class="admin-hint" id="translate-projects-status"></span></div>' +
       '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Проєкти</h1>' +
       (rows ? '<table class="admin-table"><thead><tr><th>Назва</th><th>Статус проєкту</th><th>Публікація</th><th>Оновлено</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>' :
         '<p class="empty-state">Проєктів ще немає.</p>') + '</div>';
     document.getElementById("new-project").addEventListener("click", function () { editor(null); });
+    var translateBtn = document.getElementById("translate-projects");
+    if (translateBtn) translateBtn.addEventListener("click", function () {
+      var status = document.getElementById("translate-projects-status");
+      translateBtn.disabled = true;
+      function next() {
+        api("/api/admin/projects/translate-missing", { method:"POST" }).then(function (data) {
+          if (data.done) {
+            status.textContent = "Переклади заповнено.";
+            translateBtn.disabled = false;
+            return loadProjects().then(list);
+          }
+          status.textContent = "Перекладено: " + (data.translated || "") + ". Залишилось: " + data.remaining;
+          next();
+        }).catch(function (err) {
+          status.textContent = err.message;
+          translateBtn.disabled = false;
+        });
+      }
+      status.textContent = "Перекладаю…";
+      next();
+    });
     Array.prototype.forEach.call(root.querySelectorAll("[data-edit]"), function (btn) {
       btn.addEventListener("click", function () {
         var id = Number(btn.dataset.edit);
@@ -58,8 +79,8 @@
 
   function editor(project) {
     var p = project || {
-      title:"",titleEn:"",excerpt:"",excerptEn:"",bodyMd:"",bodyMdEn:"",coverImageUrl:"",
-      partner:"",partnerEn:"",donor:"",donorEn:"",projectStatus:"active",startDate:"",endDate:"",
+      title:"",titleEn:"",titleCrh:"",excerpt:"",excerptEn:"",excerptCrh:"",bodyMd:"",bodyMdEn:"",bodyMdCrh:"",coverImageUrl:"",
+      partner:"",partnerEn:"",partnerCrh:"",donor:"",donorEn:"",donorCrh:"",projectStatus:"active",startDate:"",endDate:"",
       websiteUrl:"",tags:[],isFeatured:false,publicationStatus:"draft"
     };
     var isNew = !project;
@@ -70,10 +91,13 @@
       '<form class="admin-form" id="project-form">' +
       '<div class="admin-field"><label>Назва (укр)*</label><input name="title" required value="' + esc(p.title) + '" /></div>' +
       '<div class="admin-field"><label>Назва (англ)</label><input name="titleEn" value="' + esc(p.titleEn) + '" /></div>' +
+      '<div class="admin-field"><label>Назва (кримськотатарська)</label><input name="titleCrh" value="' + esc(p.titleCrh) + '" /></div>' +
       '<div class="admin-field"><label>Короткий опис (укр)</label><textarea name="excerpt">' + esc(p.excerpt) + '</textarea></div>' +
       '<div class="admin-field"><label>Короткий опис (англ)</label><textarea name="excerptEn">' + esc(p.excerptEn) + '</textarea></div>' +
+      '<div class="admin-field"><label>Короткий опис (кримськотатарська)</label><textarea name="excerptCrh">' + esc(p.excerptCrh) + '</textarea></div>' +
       '<div class="admin-field"><label>Повний опис (укр, Markdown)*</label><textarea name="bodyMd" rows="12" required>' + esc(p.bodyMd) + '</textarea></div>' +
       '<div class="admin-field"><label>Повний опис (англ, Markdown)</label><textarea name="bodyMdEn" rows="12">' + esc(p.bodyMdEn) + '</textarea></div>' +
+      '<div class="admin-field"><label>Повний опис (кримськотатарська, Markdown)</label><textarea name="bodyMdCrh" rows="12">' + esc(p.bodyMdCrh) + '</textarea></div>' +
       '<div class="admin-field"><label>Обкладинка</label><input type="file" id="project-cover" accept="image/*" />' +
       '<input type="hidden" name="coverImageUrl" value="' + esc(p.coverImageUrl) + '" />' +
       (p.coverImageUrl ? '<img class="admin-cover-preview" id="project-cover-preview" src="' + esc(p.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="project-cover-preview" style="display:none" />') + '</div>' +
@@ -85,8 +109,10 @@
       '<div class="admin-field"><label>Дата завершення</label><input type="date" name="endDate" value="' + esc(p.endDate || "") + '" /></div></div>' +
       '<div class="admin-field"><label>Партнер (укр)</label><input name="partner" value="' + esc(p.partner) + '" /></div>' +
       '<div class="admin-field"><label>Партнер (англ)</label><input name="partnerEn" value="' + esc(p.partnerEn) + '" /></div>' +
+      '<div class="admin-field"><label>Партнер (кримськотатарська)</label><input name="partnerCrh" value="' + esc(p.partnerCrh) + '" /></div>' +
       '<div class="admin-field"><label>Донор (укр)</label><input name="donor" value="' + esc(p.donor) + '" /></div>' +
       '<div class="admin-field"><label>Донор (англ)</label><input name="donorEn" value="' + esc(p.donorEn) + '" /></div>' +
+      '<div class="admin-field"><label>Донор (кримськотатарська)</label><input name="donorCrh" value="' + esc(p.donorCrh) + '" /></div>' +
       '<div class="admin-field"><label>Посилання на сайт/матеріали проєкту</label><input type="url" name="websiteUrl" value="' + esc(p.websiteUrl) + '" /></div>' +
       '<div class="admin-field"><label>Теги (через кому)</label><input name="tags" value="' + esc((p.tags || []).join(", ")) + '" /></div>' +
       '<div class="admin-field"><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" name="isFeatured" style="width:auto"' + (p.isFeatured ? " checked" : "") + ' /> Показувати як вибраний проєкт</label></div>' +
@@ -111,9 +137,9 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var body = {
-        title:value(form,"title"), titleEn:value(form,"titleEn"), excerpt:value(form,"excerpt"), excerptEn:value(form,"excerptEn"),
-        bodyMd:value(form,"bodyMd"), bodyMdEn:value(form,"bodyMdEn"), coverImageUrl:value(form,"coverImageUrl"),
-        partner:value(form,"partner"), partnerEn:value(form,"partnerEn"), donor:value(form,"donor"), donorEn:value(form,"donorEn"),
+        title:value(form,"title"), titleEn:value(form,"titleEn"), titleCrh:value(form,"titleCrh"), excerpt:value(form,"excerpt"), excerptEn:value(form,"excerptEn"), excerptCrh:value(form,"excerptCrh"),
+        bodyMd:value(form,"bodyMd"), bodyMdEn:value(form,"bodyMdEn"), bodyMdCrh:value(form,"bodyMdCrh"), coverImageUrl:value(form,"coverImageUrl"),
+        partner:value(form,"partner"), partnerEn:value(form,"partnerEn"), partnerCrh:value(form,"partnerCrh"), donor:value(form,"donor"), donorEn:value(form,"donorEn"), donorCrh:value(form,"donorCrh"),
         projectStatus:form.elements.projectStatus.value, startDate:form.elements.startDate.value, endDate:form.elements.endDate.value,
         websiteUrl:value(form,"websiteUrl"), tags:value(form,"tags").split(",").map(function(x){return x.trim();}).filter(Boolean),
         isFeatured:form.elements.isFeatured.checked

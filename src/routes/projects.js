@@ -21,15 +21,20 @@ function serialize(project) {
     slug: project.slug,
     title: project.title,
     titleEn: project.title_en,
+    titleCrh: project.title_crh,
     excerpt: project.excerpt,
     excerptEn: project.excerpt_en,
+    excerptCrh: project.excerpt_crh,
     bodyMd: project.body_md,
     bodyMdEn: project.body_md_en,
+    bodyMdCrh: project.body_md_crh,
     coverImageUrl: project.cover_image_url,
     partner: project.partner,
     partnerEn: project.partner_en,
+    partnerCrh: project.partner_crh,
     donor: project.donor,
     donorEn: project.donor_en,
+    donorCrh: project.donor_crh,
     projectStatus: project.project_status,
     startDate: project.start_date,
     endDate: project.end_date,
@@ -44,9 +49,9 @@ function serialize(project) {
 export async function handleProjectsPublicRoute(request, env, url) {
   const host = url.hostname.toLowerCase();
   const isProjectsHost = host === "projects.promedia.report" || host.startsWith("projects.");
-  const pathMatch = url.pathname.match(/^\/(en)(?=\/|$)/);
-  const lang = pathMatch ? "en" : "uk";
-  const path = pathMatch ? (url.pathname.replace(/^\/en/, "") || "/") : url.pathname;
+  const pathMatch = url.pathname.match(/^\/(en|crh)(?=\/|$)/);
+  const lang = pathMatch ? pathMatch[1] : "uk";
+  const path = pathMatch ? (url.pathname.replace(/^\/(en|crh)/, "") || "/") : url.pathname;
   const db = env.DB;
 
   if (url.pathname === "/api/projects" && request.method === "OPTIONS") return corsJson({}, 204);
@@ -59,7 +64,7 @@ export async function handleProjectsPublicRoute(request, env, url) {
     const binds = [];
     if (featured === "1" || featured === "true") query += " AND is_featured = 1";
     if (["upcoming", "active", "completed"].includes(status)) { query += " AND project_status = ?"; binds.push(status); }
-    query += " ORDER BY is_featured DESC, COALESCE(start_date, published_at) DESC LIMIT ?";
+    query += " ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC LIMIT ?";
     binds.push(limit);
     const { results } = await db.prepare(query).bind(...binds).all();
     return corsJson({ items: results.map(serialize) });
@@ -75,8 +80,11 @@ export async function handleProjectsPublicRoute(request, env, url) {
 
   const baseUrl = "https://projects.promedia.report";
   if (path === "/" && request.method === "GET") {
-    const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' ORDER BY is_featured DESC, COALESCE(start_date, published_at) DESC").all();
-    return new Response(renderProjectsHomepage({ projects: results, lang, baseUrl }), { headers: { "Content-Type": "text/html; charset=utf-8" } });
+    const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC").all();
+    const allTags = Array.from(new Set(results.flatMap((project) => parseJson(project.tags)))).sort((a, b) => String(a).localeCompare(String(b), "uk"));
+    const selectedTag = url.searchParams.get("tag") || "";
+    const filtered = selectedTag ? results.filter((project) => parseJson(project.tags).includes(selectedTag)) : results;
+    return new Response(renderProjectsHomepage({ projects: filtered, lang, baseUrl, allTags, selectedTag }), { headers: { "Content-Type": "text/html; charset=utf-8" } });
   }
 
   const projectMatch = path.match(/^\/project\/([a-z0-9-]+)$/);
