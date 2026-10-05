@@ -471,7 +471,6 @@ export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
   }
   const bodyHtml = `
 <section class="hero">
-  <div class="eyebrow">${escapeHtml(pick(SITE_EYEBROW, lang))}</div>
   <h1>${lang === "en" ? "News from <span>ProMedia</span>" : (lang === "crh" ? "<span>ProMedia</span>'dan haberler" : "Новини від <span>ProMedia</span>")}</h1>
   ${categoryNav(lang, activeTag)}
 </section>
