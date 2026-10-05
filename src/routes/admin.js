@@ -190,6 +190,11 @@ export async function handleAdminRoute(request, env, url) {
     const article = await db.prepare("SELECT * FROM articles WHERE id = ? AND deleted_at IS NOT NULL").bind(id).first();
     if (!article) return json({ error: "not_found" }, 404);
     const now = new Date().toISOString();
+    if (article.status === "published" && article.card_style === "hero") {
+      await db.prepare(
+        "UPDATE articles SET card_style = 'auto', updated_at = ? WHERE id != ? AND deleted_at IS NULL AND status = 'published' AND card_style = 'hero'"
+      ).bind(now, id).run();
+    }
     await db.prepare("UPDATE articles SET deleted_at = NULL, updated_at = ? WHERE id = ?").bind(now, id).run();
     return json({ ok: true });
   }
@@ -289,7 +294,7 @@ export async function handleAdminRoute(request, env, url) {
 
     if (request.method === "DELETE") {
       const now = new Date().toISOString();
-      await db.prepare("UPDATE articles SET deleted_at = ?, is_important = 0, updated_at = ? WHERE id = ?")
+      await db.prepare("UPDATE articles SET deleted_at = ?, updated_at = ? WHERE id = ?")
         .bind(now, now, id).run();
       return json({ ok: true, deletedAt: now });
     }
