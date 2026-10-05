@@ -1,6 +1,7 @@
 import { getCurrentUser } from "../lib/auth.js";
 import { slugify } from "../lib/slug.js";
 import { markdownToPlainText } from "../lib/markdown.js";
+import { completeArticleDraft } from "../lib/articleAssist.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), { status: status || 200, headers: { "Content-Type": "application/json; charset=utf-8" } });
@@ -12,9 +13,13 @@ function parseJson(value) {
 
 function serialize(p) {
   return {
-    id: p.id, slug: p.slug, title: p.title, titleEn: p.title_en, excerpt: p.excerpt, excerptEn: p.excerpt_en,
-    bodyMd: p.body_md, bodyMdEn: p.body_md_en, coverImageUrl: p.cover_image_url,
-    partner: p.partner, partnerEn: p.partner_en, donor: p.donor, donorEn: p.donor_en,
+    id: p.id, slug: p.slug,
+    title: p.title, titleEn: p.title_en, titleCrh: p.title_crh,
+    excerpt: p.excerpt, excerptEn: p.excerpt_en, excerptCrh: p.excerpt_crh,
+    bodyMd: p.body_md, bodyMdEn: p.body_md_en, bodyMdCrh: p.body_md_crh,
+    coverImageUrl: p.cover_image_url,
+    partner: p.partner, partnerEn: p.partner_en, partnerCrh: p.partner_crh,
+    donor: p.donor, donorEn: p.donor_en, donorCrh: p.donor_crh,
     projectStatus: p.project_status, startDate: p.start_date, endDate: p.end_date, websiteUrl: p.website_url,
     tags: parseJson(p.tags), isFeatured: Boolean(p.is_featured), publicationStatus: p.publication_status,
     authorId: p.author_id, publishedAt: p.published_at, createdAt: p.created_at, updatedAt: p.updated_at
@@ -32,6 +37,14 @@ function normalizeProjectStatus(value) {
   return ["upcoming","active","completed"].includes(value) ? value : "active";
 }
 
+async function autoTranslateProject(body, env) {
+  if (!body || !body.title || !body.bodyMd) return body;
+  return completeArticleDraft({
+    ...body,
+    tags: Array.isArray(body.tags) ? body.tags : []
+  }, env);
+}
+
 export async function handleProjectsAdminRoute(request, env, url) {
   if (!url.pathname.startsWith("/api/admin/projects")) return null;
   const user = await getCurrentUser(request, env);
@@ -40,23 +53,75 @@ export async function handleProjectsAdminRoute(request, env, url) {
 
   if (url.pathname === "/api/admin/projects" && request.method === "GET") {
     const { results } = user.role === "admin"
-      ? await db.prepare("SELECT * FROM projects ORDER BY updated_at DESC").all()
-      : await db.prepare("SELECT * FROM projects WHERE author_id = ? ORDER BY updated_at DESC").bind(user.id).all();
+      ? await db.prepare("SELECT * FROM projects ORDER BY COALESCE(start_date, updated_at) DESC, id DESC").all()
+      : await db.prepare("SELECT * FROM projects WHERE author_id = ? ORDER BY COALESCE(start_date, updated_at) DESC, id DESC").bind(user.id).all();
     return json({ items: results.map(serialize) });
   }
 
+  if (url.pathname === "/api/admin/projects/translate-missing" && request.method === "POST") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const project = await db.prepare(`
+      SELECT * FROM projects
+      WHERE publication_status = 'published'
+        AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
+          OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
+      ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC
+      LIMIT 1
+    `).first();
+    if (!project) return json({ done: true, remaining: 0 });
+
+    const translated = await autoTranslateProject({
+      title: project.title,
+      titleEn: project.title_en,
+      titleCrh: project.title_crh,
+      excerpt: project.excerpt,
+      excerptEn: project.excerpt_en,
+      excerptCrh: project.excerpt_crh,
+      bodyMd: project.body_md,
+      bodyMdEn: project.body_md_en,
+      bodyMdCrh: project.body_md_crh,
+      tags: parseJson(project.tags)
+    }, env);
+
+    if (!translated.titleEn || !translated.bodyMdEn || !translated.titleCrh || !translated.bodyMdCrh) {
+      return json({ error: "Автопереклад не повернув повний англійський і кримськотатарський текст." }, 502);
+    }
+
+    await db.prepare(`UPDATE projects SET
+      title_en=?, title_crh=?, excerpt_en=?, excerpt_crh=?, body_md_en=?, body_md_crh=?, tags=?, updated_at=?
+      WHERE id=?`).bind(
+      translated.titleEn, translated.titleCrh, translated.excerptEn || "", translated.excerptCrh || "",
+      translated.bodyMdEn, translated.bodyMdCrh, JSON.stringify(translated.tags || parseJson(project.tags)),
+      new Date().toISOString(), project.id
+    ).run();
+
+    const remainingRow = await db.prepare(`
+      SELECT COUNT(*) AS count FROM projects
+      WHERE publication_status = 'published'
+        AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
+          OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
+    `).first();
+    return json({ done: Number(remainingRow.count || 0) === 0, translated: project.title, remaining: Number(remainingRow.count || 0) });
+  }
+
   if (url.pathname === "/api/admin/projects" && request.method === "POST") {
-    const body = await request.json().catch(() => null);
+    let body = await request.json().catch(() => null);
     if (!body || !body.title) return json({ error: "title обов'язковий" }, 400);
+    body = await autoTranslateProject(body, env);
     const now = new Date().toISOString();
     const slug = await uniqueProjectSlug(db, body.title);
     const excerpt = body.excerpt || markdownToPlainText(body.bodyMd || "", 220);
     const result = await db.prepare(`INSERT INTO projects
-      (slug,title,title_en,excerpt,excerpt_en,body_md,body_md_en,cover_image_url,partner,partner_en,donor,donor_en,
+      (slug,title,title_en,title_crh,excerpt,excerpt_en,excerpt_crh,body_md,body_md_en,body_md_crh,
+       cover_image_url,partner,partner_en,partner_crh,donor,donor_en,donor_crh,
        project_status,start_date,end_date,website_url,tags,is_featured,publication_status,author_id,created_at,updated_at)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'draft', ?,?,?)`).bind(
-      slug, body.title, body.titleEn || null, excerpt, body.excerptEn || null, body.bodyMd || "", body.bodyMdEn || null,
-      body.coverImageUrl || null, body.partner || null, body.partnerEn || null, body.donor || null, body.donorEn || null,
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'draft', ?,?,?)`).bind(
+      slug, body.title, body.titleEn || null, body.titleCrh || null,
+      excerpt, body.excerptEn || null, body.excerptCrh || null,
+      body.bodyMd || "", body.bodyMdEn || null, body.bodyMdCrh || null,
+      body.coverImageUrl || null,
+      body.partner || null, body.partnerEn || null, body.partnerCrh || null,
+      body.donor || null, body.donorEn || null, body.donorCrh || null,
       normalizeProjectStatus(body.projectStatus), body.startDate || null, body.endDate || null, body.websiteUrl || null,
       JSON.stringify(body.tags || []), body.isFeatured ? 1 : 0, user.id, now, now
     ).run();
@@ -84,19 +149,36 @@ export async function handleProjectsAdminRoute(request, env, url) {
     if (user.role !== "admin" && project.author_id !== user.id) return json({ error: "forbidden" }, 403);
 
     if (request.method === "PUT") {
-      const body = await request.json().catch(() => null);
+      let body = await request.json().catch(() => null);
       if (!body) return json({ error: "invalid_body" }, 400);
-      const excerpt = body.excerpt !== undefined ? body.excerpt : project.excerpt;
+      body = await autoTranslateProject({
+        title: body.title ?? project.title,
+        titleEn: body.titleEn ?? project.title_en,
+        titleCrh: body.titleCrh ?? project.title_crh,
+        excerpt: body.excerpt ?? project.excerpt,
+        excerptEn: body.excerptEn ?? project.excerpt_en,
+        excerptCrh: body.excerptCrh ?? project.excerpt_crh,
+        bodyMd: body.bodyMd ?? project.body_md,
+        bodyMdEn: body.bodyMdEn ?? project.body_md_en,
+        bodyMdCrh: body.bodyMdCrh ?? project.body_md_crh,
+        tags: body.tags ?? parseJson(project.tags),
+        ...body
+      }, env);
       await db.prepare(`UPDATE projects SET
-        title=?, title_en=?, excerpt=?, excerpt_en=?, body_md=?, body_md_en=?, cover_image_url=?,
-        partner=?, partner_en=?, donor=?, donor_en=?, project_status=?, start_date=?, end_date=?,
-        website_url=?, tags=?, is_featured=?, updated_at=? WHERE id=?`).bind(
-        body.title ?? project.title, body.titleEn ?? project.title_en, excerpt, body.excerptEn ?? project.excerpt_en,
-        body.bodyMd ?? project.body_md, body.bodyMdEn ?? project.body_md_en, body.coverImageUrl ?? project.cover_image_url,
-        body.partner ?? project.partner, body.partnerEn ?? project.partner_en, body.donor ?? project.donor,
-        body.donorEn ?? project.donor_en, normalizeProjectStatus(body.projectStatus ?? project.project_status),
+        title=?, title_en=?, title_crh=?, excerpt=?, excerpt_en=?, excerpt_crh=?,
+        body_md=?, body_md_en=?, body_md_crh=?, cover_image_url=?,
+        partner=?, partner_en=?, partner_crh=?, donor=?, donor_en=?, donor_crh=?,
+        project_status=?, start_date=?, end_date=?, website_url=?, tags=?, is_featured=?, updated_at=? WHERE id=?`).bind(
+        body.title ?? project.title, body.titleEn ?? project.title_en, body.titleCrh ?? project.title_crh,
+        body.excerpt ?? project.excerpt, body.excerptEn ?? project.excerpt_en, body.excerptCrh ?? project.excerpt_crh,
+        body.bodyMd ?? project.body_md, body.bodyMdEn ?? project.body_md_en, body.bodyMdCrh ?? project.body_md_crh,
+        body.coverImageUrl ?? project.cover_image_url,
+        body.partner ?? project.partner, body.partnerEn ?? project.partner_en, body.partnerCrh ?? project.partner_crh,
+        body.donor ?? project.donor, body.donorEn ?? project.donor_en, body.donorCrh ?? project.donor_crh,
+        normalizeProjectStatus(body.projectStatus ?? project.project_status),
         body.startDate ?? project.start_date, body.endDate ?? project.end_date, body.websiteUrl ?? project.website_url,
-        JSON.stringify(body.tags ?? parseJson(project.tags)), body.isFeatured === undefined ? project.is_featured : (body.isFeatured ? 1 : 0),
+        JSON.stringify(body.tags ?? parseJson(project.tags)),
+        body.isFeatured === undefined ? project.is_featured : (body.isFeatured ? 1 : 0),
         new Date().toISOString(), id
       ).run();
       return json({ item: serialize(await db.prepare("SELECT * FROM projects WHERE id=?").bind(id).first()) });
