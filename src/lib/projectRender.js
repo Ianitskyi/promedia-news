@@ -42,7 +42,7 @@ function fmtDate(value, lang) {
 
 const LABELS = {
   uk: {
-    eyebrow: "Проєкти ПроМедіа", title: "Наші проєкти", active: "Триває", completed: "Завершено",
+    eyebrow: "Проєкти ПроМедіа", title: "Проєкти ProMedia", active: "Триває", completed: "Завершено",
     upcoming: "Заплановано", partner: "Партнер", donor: "Донор", dates: "Період",
     more: "Докладніше", back: "← Усі проєкти", empty: "Проєктів поки немає.",
     details: "Дані про організацію", officialName: "Офіційна назва", officialNameValue: "ГО «ПроМедіа»",
@@ -51,7 +51,7 @@ const LABELS = {
     social: "Соціальні мережі", project: "Проєкт ПроМедіа", correction: "Побачили помилку?"
   },
   en: {
-    eyebrow: "ProMedia projects", title: "Our projects", active: "Active", completed: "Completed",
+    eyebrow: "ProMedia projects", title: "ProMedia Projects", active: "Active", completed: "Completed",
     upcoming: "Upcoming", partner: "Partner", donor: "Donor", dates: "Period",
     more: "Learn more", back: "← All projects", empty: "No projects yet.",
     details: "Organization details", officialName: "Official name", officialNameValue: "ProMedia NGO",
@@ -60,7 +60,7 @@ const LABELS = {
     social: "Social media", project: "A ProMedia project", correction: "Found an error?"
   },
   crh: {
-    eyebrow: "ProMedia loyihaları", title: "Bizim loyihalarımız", active: "Devam ete", completed: "Tamamlandı",
+    eyebrow: "ProMedia loyihaları", title: "ProMedia loyihaları", active: "Devam ete", completed: "Tamamlandı",
     upcoming: "Planlaştırılğan", partner: "Ortaq", donor: "Donor", dates: "Devir",
     more: "Daa tafsilâtlı", back: "← Episi loyihalar", empty: "Şimdilik loyiha yoq.",
     details: "Teşkilât aqqında malümat", officialName: "Resmiy adı", officialNameValue: "«ProMedia» İCT",
