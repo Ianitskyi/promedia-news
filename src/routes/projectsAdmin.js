@@ -1,0 +1,134 @@
+import { getCurrentUser } from "../lib/auth.js";
+import { slugify } from "../lib/slug.js";
+import { markdownToPlainText } from "../lib/markdown.js";
+
+function json(data, status) {
+  return new Response(JSON.stringify(data), { status: status || 200, headers: { "Content-Type": "application/json; charset=utf-8" } });
+}
+
+function parseJson(value) {
+  try { return JSON.parse(value || "[]"); } catch { return []; }
+}
+
+function serialize(p) {
+  return {
+    id: p.id, slug: p.slug, title: p.title, titleEn: p.title_en, excerpt: p.excerpt, excerptEn: p.excerpt_en,
+    bodyMd: p.body_md, bodyMdEn: p.body_md_en, coverImageUrl: p.cover_image_url,
+    partner: p.partner, partnerEn: p.partner_en, donor: p.donor, donorEn: p.donor_en,
+    projectStatus: p.project_status, startDate: p.start_date, endDate: p.end_date, websiteUrl: p.website_url,
+    tags: parseJson(p.tags), isFeatured: Boolean(p.is_featured), publicationStatus: p.publication_status,
+    authorId: p.author_id, publishedAt: p.published_at, createdAt: p.created_at, updatedAt: p.updated_at
+  };
+}
+
+async function uniqueProjectSlug(db, title) {
+  const base = slugify(title);
+  let candidate = base, i = 2;
+  while (await db.prepare("SELECT id FROM projects WHERE slug = ?").bind(candidate).first()) candidate = `${base}-${i++}`;
+  return candidate;
+}
+
+function normalizeProjectStatus(value) {
+  return ["upcoming","active","completed"].includes(value) ? value : "active";
+}
+
+export async function handleProjectsAdminRoute(request, env, url) {
+  if (!url.pathname.startsWith("/api/admin/projects")) return null;
+  const user = await getCurrentUser(request, env);
+  if (!user) return json({ error: "unauthenticated" }, 401);
+  const db = env.DB;
+
+  if (url.pathname === "/api/admin/projects" && request.method === "GET") {
+    const { results } = user.role === "admin"
+      ? await db.prepare("SELECT * FROM projects ORDER BY updated_at DESC").all()
+      : await db.prepare("SELECT * FROM projects WHERE author_id = ? ORDER BY updated_at DESC").bind(user.id).all();
+    return json({ items: results.map(serialize) });
+  }
+
+  if (url.pathname === "/api/admin/projects" && request.method === "POST") {
+    const body = await request.json().catch(() => null);
+    if (!body || !body.title) return json({ error: "title обов'язковий" }, 400);
+    const now = new Date().toISOString();
+    const slug = await uniqueProjectSlug(db, body.title);
+    const excerpt = body.excerpt || markdownToPlainText(body.bodyMd || "", 220);
+    const result = await db.prepare(`INSERT INTO projects
+      (slug,title,title_en,excerpt,excerpt_en,body_md,body_md_en,cover_image_url,partner,partner_en,donor,donor_en,
+       project_status,start_date,end_date,website_url,tags,is_featured,publication_status,author_id,created_at,updated_at)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'draft', ?,?,?)`).bind(
+      slug, body.title, body.titleEn || null, excerpt, body.excerptEn || null, body.bodyMd || "", body.bodyMdEn || null,
+      body.coverImageUrl || null, body.partner || null, body.partnerEn || null, body.donor || null, body.donorEn || null,
+      normalizeProjectStatus(body.projectStatus), body.startDate || null, body.endDate || null, body.websiteUrl || null,
+      JSON.stringify(body.tags || []), body.isFeatured ? 1 : 0, user.id, now, now
+    ).run();
+    const project = await db.prepare("SELECT * FROM projects WHERE id = ?").bind(result.meta.last_row_id).first();
+    return json({ item: serialize(project) }, 201);
+  }
+
+  if (url.pathname === "/api/admin/projects/upload" && request.method === "POST") {
+    const type = request.headers.get("Content-Type") || "";
+    if (!type.startsWith("image/")) return json({ error: "Дозволені лише зображення" }, 400);
+    const buffer = await request.arrayBuffer();
+    if (buffer.byteLength > 8 * 1024 * 1024) return json({ error: "Файл завеликий (максимум 8 МБ)" }, 400);
+    const ext = type === "image/png" ? "png" : type === "image/webp" ? "webp" : type === "image/gif" ? "gif" : "jpg";
+    const key = `projects/${crypto.randomUUID()}.${ext}`;
+    await env.IMAGES.put(key, buffer, { httpMetadata: { contentType: type } });
+    const publicUrl = env.IMAGES_PUBLIC_BASE_URL ? `${env.IMAGES_PUBLIC_BASE_URL.replace(/\/$/, "")}/${key}` : `/img-storage/${key}`;
+    return json({ url: publicUrl });
+  }
+
+  const match = url.pathname.match(/^\/api\/admin\/projects\/(\d+)$/);
+  if (match) {
+    const id = Number(match[1]);
+    const project = await db.prepare("SELECT * FROM projects WHERE id = ?").bind(id).first();
+    if (!project) return json({ error: "not_found" }, 404);
+    if (user.role !== "admin" && project.author_id !== user.id) return json({ error: "forbidden" }, 403);
+
+    if (request.method === "PUT") {
+      const body = await request.json().catch(() => null);
+      if (!body) return json({ error: "invalid_body" }, 400);
+      const excerpt = body.excerpt !== undefined ? body.excerpt : project.excerpt;
+      await db.prepare(`UPDATE projects SET
+        title=?, title_en=?, excerpt=?, excerpt_en=?, body_md=?, body_md_en=?, cover_image_url=?,
+        partner=?, partner_en=?, donor=?, donor_en=?, project_status=?, start_date=?, end_date=?,
+        website_url=?, tags=?, is_featured=?, updated_at=? WHERE id=?`).bind(
+        body.title ?? project.title, body.titleEn ?? project.title_en, excerpt, body.excerptEn ?? project.excerpt_en,
+        body.bodyMd ?? project.body_md, body.bodyMdEn ?? project.body_md_en, body.coverImageUrl ?? project.cover_image_url,
+        body.partner ?? project.partner, body.partnerEn ?? project.partner_en, body.donor ?? project.donor,
+        body.donorEn ?? project.donor_en, normalizeProjectStatus(body.projectStatus ?? project.project_status),
+        body.startDate ?? project.start_date, body.endDate ?? project.end_date, body.websiteUrl ?? project.website_url,
+        JSON.stringify(body.tags ?? parseJson(project.tags)), body.isFeatured === undefined ? project.is_featured : (body.isFeatured ? 1 : 0),
+        new Date().toISOString(), id
+      ).run();
+      return json({ item: serialize(await db.prepare("SELECT * FROM projects WHERE id=?").bind(id).first()) });
+    }
+
+    if (request.method === "DELETE") {
+      await db.prepare("DELETE FROM projects WHERE id=?").bind(id).run();
+      return json({ ok: true });
+    }
+  }
+
+  const publish = url.pathname.match(/^\/api\/admin\/projects\/(\d+)\/publish$/);
+  if (publish && request.method === "POST") {
+    const id = Number(publish[1]);
+    const project = await db.prepare("SELECT * FROM projects WHERE id=?").bind(id).first();
+    if (!project) return json({ error: "not_found" }, 404);
+    if (user.role !== "admin" && project.author_id !== user.id) return json({ error: "forbidden" }, 403);
+    if (!project.title || !project.body_md) return json({ error: "Назва і опис проєкту обов'язкові" }, 400);
+    const now = new Date().toISOString();
+    await db.prepare("UPDATE projects SET publication_status='published', published_at=COALESCE(published_at, ?), updated_at=? WHERE id=?").bind(now, now, id).run();
+    return json({ ok: true });
+  }
+
+  const unpublish = url.pathname.match(/^\/api\/admin\/projects\/(\d+)\/unpublish$/);
+  if (unpublish && request.method === "POST") {
+    const id = Number(unpublish[1]);
+    const project = await db.prepare("SELECT * FROM projects WHERE id=?").bind(id).first();
+    if (!project) return json({ error: "not_found" }, 404);
+    if (user.role !== "admin" && project.author_id !== user.id) return json({ error: "forbidden" }, 403);
+    await db.prepare("UPDATE projects SET publication_status='draft', updated_at=? WHERE id=?").bind(new Date().toISOString(), id).run();
+    return json({ ok: true });
+  }
+
+  return null;
+}
