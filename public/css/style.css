@@ -856,3 +856,24 @@ img { max-width: 100%; }
   color: #187a43;
   border: 1px solid rgba(24,122,67,.18);
 }
+
+.project-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0 0 22px;
+}
+.project-filters-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  margin-right: 2px;
+}
+.project-filter.active {
+  background: var(--ink);
+  color: #fff;
+}
+.project-tag {
+  text-decoration: none;
+}
