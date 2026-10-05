@@ -165,15 +165,45 @@ function statusLabel(project, lang) {
   return l[project.project_status] || project.project_status || "";
 }
 
+function projectTags(project) {
+  if (Array.isArray(project.tags)) return project.tags;
+  try { return JSON.parse(project.tags || "[]"); } catch { return []; }
+}
+
+function tagLabel(tag, lang) {
+  const map = {
+    "навчання": { en: "training", crh: "talim" },
+    "спільнота": { en: "community", crh: "cemaat" },
+    "дослідження": { en: "research", crh: "tedqiqat" },
+    "консалтинг": { en: "consulting", crh: "mesleat" },
+    "медіа": { en: "media", crh: "mediya" },
+    "штучний інтелект": { en: "artificial intelligence", crh: "suniy zekâ" },
+    "автоматизація": { en: "automation", crh: "avtomatlaştırma" },
+    "фактчекінг": { en: "fact-checking", crh: "faktçeking" },
+    "відео": { en: "video", crh: "video" },
+    "модерація": { en: "moderation", crh: "moderatsiya" },
+    "інструмент": { en: "tool", crh: "alet" }
+  };
+  return lang === "uk" ? tag : ((map[tag] && map[tag][lang]) || tag);
+}
+
+function tagUrl(baseUrl, lang, tag) {
+  return `${baseUrl}${langPrefix(lang)}/?tag=${encodeURIComponent(tag)}`;
+}
+
 function projectCard(project, lang, baseUrl) {
   const title = field(project, "title", lang);
   const excerpt = field(project, "excerpt", lang) || markdownToPlainText(field(project, "body_md", lang), 220);
   const href = `${baseUrl}${langPrefix(lang)}/project/${esc(project.slug)}`;
   const statusClass = project.project_status === "active" ? " project-status-active" : "";
+  const tags = projectTags(project);
   return `<article class="article-card article-card--visual">
     ${project.cover_image_url ? `<a class="article-card-media" href="${href}"><img class="article-card-img" src="${esc(project.cover_image_url)}" alt="${esc(title)}" loading="lazy" /></a>` : ""}
     <div class="article-card-body">
-      <div class="article-tags"><span class="article-tag project-status${statusClass}">${esc(statusLabel(project, lang))}</span></div>
+      <div class="article-tags">
+        <span class="article-tag project-status${statusClass}">${esc(statusLabel(project, lang))}</span>
+        ${tags.map((tag) => `<a class="article-tag project-tag" href="${esc(tagUrl(baseUrl, lang, tag))}">${esc(tagLabel(tag, lang))}</a>`).join("")}
+      </div>
       <h3><a href="${href}">${esc(title)}</a></h3>
       <p class="article-excerpt">${esc(excerpt)}</p>
       <p><a href="${href}">${LABELS[lang].more} →</a></p>
@@ -181,10 +211,18 @@ function projectCard(project, lang, baseUrl) {
   </article>`;
 }
 
-export function renderProjectsHomepage({ projects, lang, baseUrl }) {
+export function renderProjectsHomepage({ projects, lang, baseUrl, allTags = [], selectedTag = "" }) {
   const l = LABELS[lang] || LABELS.uk;
+  const filterTitle = lang === "en" ? "Filter by tag" : (lang === "crh" ? "Etiket boyunca süz" : "Фільтр за тегом");
+  const allLabel = lang === "en" ? "All" : (lang === "crh" ? "Episi" : "Усі");
+  const filters = allTags.length ? `<div class="project-filters" aria-label="${esc(filterTitle)}">
+    <span class="project-filters-label">${esc(filterTitle)}:</span>
+    <a class="article-tag project-filter${!selectedTag ? " active" : ""}" href="${baseUrl}${langPrefix(lang)}/">${esc(allLabel)}</a>
+    ${allTags.map((tag) => `<a class="article-tag project-filter${selectedTag === tag ? " active" : ""}" href="${esc(tagUrl(baseUrl, lang, tag))}">${esc(tagLabel(tag, lang))}</a>`).join("")}
+  </div>` : "";
   const body = `<section class="hero"><div class="eyebrow">${l.eyebrow}</div><h1>${l.title}</h1></section>
 <main class="wrap">
+  ${filters}
   ${projects.length ? `<div class="article-grid">${projects.map((p) => projectCard(p, lang, baseUrl)).join("")}</div>` : `<p class="empty-state">${l.empty}</p>`}
 </main>`;
   return shell({ lang, title: `${l.title} — ProMedia`, description: l.eyebrow, canonical: `${baseUrl}${langPrefix(lang)}/`, body });
@@ -202,7 +240,10 @@ export function renderProjectPage({ project, lang, baseUrl }) {
   const statusClass = project.project_status === "active" ? " project-status-active" : "";
   const body = `<main class="wrap article-page">
     <p class="article-back"><a href="${langPrefix(lang)}/">${l.back}</a></p>
-    <div class="article-tags"><span class="article-tag project-status${statusClass}">${esc(statusLabel(project, lang))}</span></div>
+    <div class="article-tags">
+      <span class="article-tag project-status${statusClass}">${esc(statusLabel(project, lang))}</span>
+      ${projectTags(project).map((tag) => `<a class="article-tag project-tag" href="${esc(tagUrl(baseUrl, lang, tag))}">${esc(tagLabel(tag, lang))}</a>`).join("")}
+    </div>
     <h1>${esc(title)}</h1>
     <p class="article-excerpt">${esc(excerpt)}</p>
     ${project.cover_image_url ? `<img class="article-cover" src="${esc(project.cover_image_url)}" alt="${esc(title)}" />` : ""}
