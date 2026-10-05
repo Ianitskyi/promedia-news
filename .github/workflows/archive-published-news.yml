@@ -24,7 +24,8 @@ jobs:
 
       - name: Commit changes when the archive changed
         run: |
-          if git diff --quiet -- archive/published-news.json; then
+          git add archive/published-news.json
+          if git diff --cached --quiet -- archive/published-news.json; then
             echo "The archive is already current."
             exit 0
           fi
