@@ -877,3 +877,9 @@ img { max-width: 100%; }
 .project-tag {
   text-decoration: none;
 }
+
+.project-status-completed {
+  background: #fdecec;
+  color: #b42318;
+  border: 1px solid rgba(180,35,24,.18);
+}

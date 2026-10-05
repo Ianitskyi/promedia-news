@@ -195,7 +195,7 @@ function projectCard(project, lang, baseUrl) {
   const title = field(project, "title", lang);
   const excerpt = field(project, "excerpt", lang) || markdownToPlainText(field(project, "body_md", lang), 220);
   const href = `${baseUrl}${langPrefix(lang)}/project/${esc(project.slug)}`;
-  const statusClass = project.project_status === "active" ? " project-status-active" : "";
+  const statusClass = project.project_status === "active" ? " project-status-active" : (project.project_status === "completed" ? " project-status-completed" : "");
   const tags = projectTags(project);
   return `<article class="article-card article-card--visual">
     ${project.cover_image_url ? `<a class="article-card-media" href="${href}"><img class="article-card-img" src="${esc(project.cover_image_url)}" alt="${esc(title)}" loading="lazy" /></a>` : ""}
@@ -237,7 +237,7 @@ export function renderProjectPage({ project, lang, baseUrl }) {
   if (project.donor || project.donor_en || project.donor_crh) meta.push(`<div><strong>${l.donor}:</strong> ${esc(field(project, "donor", lang))}</div>`);
   if (project.start_date || project.end_date) meta.push(`<div><strong>${l.dates}:</strong> ${esc(fmtDate(project.start_date, lang))}${project.end_date ? " — " + esc(fmtDate(project.end_date, lang)) : ""}</div>`);
   const canonical = `${baseUrl}${langPrefix(lang)}/project/${project.slug}`;
-  const statusClass = project.project_status === "active" ? " project-status-active" : "";
+  const statusClass = project.project_status === "active" ? " project-status-active" : (project.project_status === "completed" ? " project-status-completed" : "");
   const body = `<main class="wrap article-page">
     <p class="article-back"><a href="${langPrefix(lang)}/">${l.back}</a></p>
     <div class="article-tags">
