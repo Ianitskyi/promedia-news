@@ -53,5 +53,13 @@ export default {
         headers: { "Content-Type": "application/json; charset=utf-8" }
       });
     }
+  },
+
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(
+      env.DB.prepare(
+        "DELETE FROM articles WHERE deleted_at IS NOT NULL AND datetime(deleted_at) <= datetime('now', '-30 days')"
+      ).run()
+    );
   }
 };
