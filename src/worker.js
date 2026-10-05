@@ -1,6 +1,8 @@
 import { handlePublicRoute } from "./routes/public.js";
 import { handleAuthRoute } from "./routes/auth.js";
 import { handleAdminRoute } from "./routes/admin.js";
+import { handleProjectsAdminRoute } from "./routes/projectsAdmin.js";
+import { handleProjectsPublicRoute } from "./routes/projects.js";
 
 export default {
   async fetch(request, env, ctx) {
@@ -19,6 +21,11 @@ export default {
         return new Response(object.body, { headers });
       }
 
+      if (url.pathname.startsWith("/api/admin/projects")) {
+        const res = await handleProjectsAdminRoute(request, env, url);
+        if (res) return res;
+      }
+
       if (url.pathname.startsWith("/api/admin/")) {
         const res = await handleAdminRoute(request, env, url);
         if (res) return res;
@@ -28,6 +35,9 @@ export default {
         const res = await handleAuthRoute(request, env, url);
         if (res) return res;
       }
+
+      const projectsRes = await handleProjectsPublicRoute(request, env, url);
+      if (projectsRes) return projectsRes;
 
       const publicRes = await handlePublicRoute(request, env, url);
       if (publicRes) return publicRes;
