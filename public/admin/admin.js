@@ -106,6 +106,7 @@
     var tabsHtml =
       '<div class="admin-row" style="margin-bottom:18px">' +
       '<button class="admin-btn" id="new-article-btn" type="button">+ Нова стаття</button>' +
+      '<a class="admin-btn secondary" href="/admin/projects.html">Проєкти</a>' +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="translate-archive-btn" type="button">Перекласти архів</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="push-btn" type="button">Пуш-сповіщення</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="subdomains-btn" type="button">Дослідження</button>' : "") +
