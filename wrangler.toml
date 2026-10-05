@@ -11,6 +11,7 @@ binding = "ASSETS"
 run_worker_first = [
   "/api/*",
   "/article/*",
+  "/project/*",
   "/tag/*",
   "/admin",
   "/"
@@ -29,6 +30,10 @@ bucket_name = "promedia-news-images"
 # є у вашому Cloudflare-акаунті (той самий, де вже є Worker submit-community.js).
 [[routes]]
 pattern = "news.promedia.report/*"
+zone_name = "promedia.report"
+
+[[routes]]
+pattern = "projects.promedia.report/*"
 zone_name = "promedia.report"
 
 # Секрети (НЕ в цьому файлі — задаються через `wrangler secret put`):
