@@ -248,7 +248,7 @@ export function renderProjectsHomepage({ projects, lang, baseUrl, allTags = [], 
     <a class="article-tag project-filter${!selectedTag ? " active" : ""}" href="${baseUrl}${langPrefix(lang)}/">${esc(allLabel)}</a>
     ${allTags.map((tag) => `<a class="article-tag project-filter${selectedTag === tag ? " active" : ""}" href="${esc(tagUrl(baseUrl, lang, tag))}">${esc(tagLabel(tag, lang))}</a>`).join("")}
   </div>` : "";
-  const body = `<section class="hero"><div class="eyebrow">${l.eyebrow}</div><h1>${l.title}</h1></section>
+  const body = `<section class="hero"><h1>${l.title}</h1></section>
 <main class="wrap">
   ${filters}
   ${projects.length ? `<div class="article-grid">${projects.map((p) => projectCard(p, lang, baseUrl)).join("")}</div>` : `<p class="empty-state">${l.empty}</p>`}
