@@ -81,7 +81,10 @@ export async function handleProjectsPublicRoute(request, env, url) {
   const baseUrl = "https://projects.promedia.report";
   if (path === "/" && request.method === "GET") {
     const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC").all();
-    return new Response(renderProjectsHomepage({ projects: results, lang, baseUrl }), { headers: { "Content-Type": "text/html; charset=utf-8" } });
+    const allTags = Array.from(new Set(results.flatMap((project) => parseJson(project.tags)))).sort((a, b) => String(a).localeCompare(String(b), "uk"));
+    const selectedTag = url.searchParams.get("tag") || "";
+    const filtered = selectedTag ? results.filter((project) => parseJson(project.tags).includes(selectedTag)) : results;
+    return new Response(renderProjectsHomepage({ projects: filtered, lang, baseUrl, allTags, selectedTag }), { headers: { "Content-Type": "text/html; charset=utf-8" } });
   }
 
   const projectMatch = path.match(/^\/project\/([a-z0-9-]+)$/);
