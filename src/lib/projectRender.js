@@ -136,8 +136,12 @@ function footer(lang) {
 </footer>`;
 }
 
-function shell({ lang, title, description, canonical, body }) {
+function shell({ lang, title, description, canonical, body, ogImage }) {
   const urls = localizedUrls(canonical);
+  const locale = lang === "en" ? "en_US" : (lang === "crh" ? "crh_UA" : "uk_UA");
+  const alternateLocales = ["uk_UA", "en_US", "crh_UA"].filter((item) => item !== locale);
+  const defaultOg = lang === "uk" ? "/img/og-share.png" : `/img/og-share-${lang}.png`;
+  const socialImage = new URL(ogImage || defaultOg, canonical).toString();
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -146,16 +150,40 @@ function shell({ lang, title, description, canonical, body }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}" />
 <link rel="canonical" href="${esc(canonical)}" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="ProMedia" />
+<meta property="og:url" content="${esc(canonical)}" />
+<meta property="og:title" content="${esc(title)}" />
+<meta property="og:description" content="${esc(description)}" />
+<meta property="og:image" content="${esc(socialImage)}" />
+<meta property="og:image:secure_url" content="${esc(socialImage)}" />
+<meta property="og:locale" content="${locale}" />
+${alternateLocales.map((item) => `<meta property="og:locale:alternate" content="${item}" />`).join("\n")}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${esc(title)}" />
+<meta name="twitter:description" content="${esc(description)}" />
+<meta name="twitter:image" content="${esc(socialImage)}" />
 <link rel="alternate" hreflang="uk" href="${esc(urls.uk)}" />
 <link rel="alternate" hreflang="en" href="${esc(urls.en)}" />
 <link rel="alternate" hreflang="crh" href="${esc(urls.crh)}" />
 <link rel="alternate" hreflang="x-default" href="${esc(urls.uk)}" />
+<link rel="icon" href="/favicon.png" type="image/png" />
 <link rel="stylesheet" href="/css/style.css" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D8TM22QR9R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D8TM22QR9R');
+</script>
 </head>
 <body>
 ${header(lang, canonical)}
 ${body}
 ${footer(lang)}
+<script defer src="/js/promedia-language-suggest.js"></script>
+<script defer src="/js/promedia-memorial-popup.js"></script>
+<script defer src="/js/promedia-push-bell.js"></script>
 </body>
 </html>`;
 }
@@ -251,5 +279,5 @@ export function renderProjectPage({ project, lang, baseUrl }) {
     <div class="article-body">${markdownToHtml(field(project, "body_md", lang))}</div>
     ${project.website_url ? `<p><a class="admin-btn" href="${esc(project.website_url)}" target="_blank" rel="noopener">${l.more}</a></p>` : ""}
   </main>`;
-  return shell({ lang, title: `${title} — ProMedia`, description: excerpt, canonical, body });
+  return shell({ lang, title: `${title} — ProMedia`, description: excerpt, canonical, body, ogImage: project.cover_image_url || undefined });
 }
