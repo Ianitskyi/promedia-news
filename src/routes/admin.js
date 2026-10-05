@@ -35,7 +35,8 @@ function serializeArticle(a) {
     authorId: a.author_id,
     publishedAt: a.published_at,
     createdAt: a.created_at,
-    updatedAt: a.updated_at
+    updatedAt: a.updated_at,
+    deletedAt: a.deleted_at
   };
 }
 
@@ -103,7 +104,8 @@ export async function handleAdminRoute(request, env, url) {
 
     const article = await db.prepare(`
       SELECT * FROM articles
-      WHERE status = 'published'
+      WHERE deleted_at IS NULL
+        AND status = 'published'
         AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
           OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
       ORDER BY published_at DESC
@@ -153,7 +155,8 @@ export async function handleAdminRoute(request, env, url) {
 
     const remainingRow = await db.prepare(`
       SELECT COUNT(*) AS count FROM articles
-      WHERE status = 'published'
+      WHERE deleted_at IS NULL
+        AND status = 'published'
         AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
           OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
     `).first();
@@ -167,9 +170,43 @@ export async function handleAdminRoute(request, env, url) {
   if (url.pathname === "/api/admin/articles" && request.method === "GET") {
     const isAdmin = user.role === "admin";
     const { results } = isAdmin
-      ? await db.prepare("SELECT * FROM articles ORDER BY updated_at DESC").all()
-      : await db.prepare("SELECT * FROM articles WHERE author_id = ? ORDER BY updated_at DESC").bind(user.id).all();
+      ? await db.prepare("SELECT * FROM articles WHERE deleted_at IS NULL ORDER BY updated_at DESC").all()
+      : await db.prepare("SELECT * FROM articles WHERE author_id = ? AND deleted_at IS NULL ORDER BY updated_at DESC").bind(user.id).all();
     return json({ items: results.map(serializeArticle) });
+  }
+
+  if (url.pathname === "/api/admin/articles/trash" && request.method === "GET") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const { results } = await db.prepare(
+      "SELECT * FROM articles WHERE deleted_at IS NOT NULL ORDER BY deleted_at DESC"
+    ).all();
+    return json({ items: results.map(serializeArticle) });
+  }
+
+  const restoreMatch = url.pathname.match(/^\/api\/admin\/articles\/(\d+)\/restore$/);
+  if (restoreMatch && request.method === "POST") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const id = parseInt(restoreMatch[1], 10);
+    const article = await db.prepare("SELECT * FROM articles WHERE id = ? AND deleted_at IS NOT NULL").bind(id).first();
+    if (!article) return json({ error: "not_found" }, 404);
+    const now = new Date().toISOString();
+    if (article.status === "published" && article.card_style === "hero") {
+      await db.prepare(
+        "UPDATE articles SET card_style = 'auto', updated_at = ? WHERE id != ? AND deleted_at IS NULL AND status = 'published' AND card_style = 'hero'"
+      ).bind(now, id).run();
+    }
+    await db.prepare("UPDATE articles SET deleted_at = NULL, updated_at = ? WHERE id = ?").bind(now, id).run();
+    return json({ ok: true });
+  }
+
+  const permanentDeleteMatch = url.pathname.match(/^\/api\/admin\/articles\/(\d+)\/permanent$/);
+  if (permanentDeleteMatch && request.method === "DELETE") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const id = parseInt(permanentDeleteMatch[1], 10);
+    const article = await db.prepare("SELECT id FROM articles WHERE id = ? AND deleted_at IS NOT NULL").bind(id).first();
+    if (!article) return json({ error: "not_found" }, 404);
+    await db.prepare("DELETE FROM articles WHERE id = ?").bind(id).run();
+    return json({ ok: true });
   }
 
   if (url.pathname === "/api/admin/articles" && request.method === "POST") {
@@ -198,7 +235,7 @@ export async function handleAdminRoute(request, env, url) {
   const articleIdMatch = url.pathname.match(/^\/api\/admin\/articles\/(\d+)$/);
   if (articleIdMatch) {
     const id = parseInt(articleIdMatch[1], 10);
-    const article = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
+    const article = await db.prepare("SELECT * FROM articles WHERE id = ? AND deleted_at IS NULL").bind(id).first();
     if (!article) return json({ error: "not_found" }, 404);
     const canEdit = user.role === "admin" || article.author_id === user.id;
     if (!canEdit) return json({ error: "forbidden" }, 403);
@@ -256,15 +293,17 @@ export async function handleAdminRoute(request, env, url) {
     }
 
     if (request.method === "DELETE") {
-      await db.prepare("DELETE FROM articles WHERE id = ?").bind(id).run();
-      return json({ ok: true });
+      const now = new Date().toISOString();
+      await db.prepare("UPDATE articles SET deleted_at = ?, updated_at = ? WHERE id = ?")
+        .bind(now, now, id).run();
+      return json({ ok: true, deletedAt: now });
     }
   }
 
   const publishMatch = url.pathname.match(/^\/api\/admin\/articles\/(\d+)\/publish$/);
   if (publishMatch && request.method === "POST") {
     const id = parseInt(publishMatch[1], 10);
-    const article = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
+    const article = await db.prepare("SELECT * FROM articles WHERE id = ? AND deleted_at IS NULL").bind(id).first();
     if (!article) return json({ error: "not_found" }, 404);
     if (user.role !== "admin" && article.author_id !== user.id) return json({ error: "forbidden" }, 403);
     if (!article.title || !article.body_md) return json({ error: "Заголовок і текст обов'язкові перед публікацією" }, 400);
@@ -283,7 +322,7 @@ export async function handleAdminRoute(request, env, url) {
   const unpublishMatch = url.pathname.match(/^\/api\/admin\/articles\/(\d+)\/unpublish$/);
   if (unpublishMatch && request.method === "POST") {
     const id = parseInt(unpublishMatch[1], 10);
-    const article = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
+    const article = await db.prepare("SELECT * FROM articles WHERE id = ? AND deleted_at IS NULL").bind(id).first();
     if (!article) return json({ error: "not_found" }, 404);
     if (user.role !== "admin" && article.author_id !== user.id) return json({ error: "forbidden" }, 403);
     await db.prepare("UPDATE articles SET status = 'draft', updated_at = ? WHERE id = ?")

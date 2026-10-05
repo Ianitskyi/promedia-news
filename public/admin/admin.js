@@ -6,6 +6,7 @@
   var state = {
     user: null,
     articles: [],
+    trash: [],
     users: [],
     mediaCatalog: null,
     richEditors: [],
@@ -110,6 +111,7 @@
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="translate-archive-btn" type="button">Перекласти архів</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="push-btn" type="button">Пуш-сповіщення</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="subdomains-btn" type="button">Дослідження</button>' : "") +
+      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="trash-btn" type="button">Кошик</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="users-btn" type="button">Користувачі</button>' : "") +
       "</div>";
 
@@ -118,7 +120,7 @@
         "<td>" + (a.isImportant ? '<span title="Важлива новина" aria-label="Важлива новина">★ </span>' : "") + escapeHtml(a.title) + "</td>" +
         "<td>" + statusBadge(a.status) + "</td>" +
         "<td>" + escapeHtml(new Date(a.updatedAt).toLocaleDateString("uk-UA")) + "</td>" +
-        '<td><a href="#/edit/' + a.id + '">Редагувати</a></td>' +
+        '<td><div class="admin-row"><a href="#/edit/' + a.id + '">Редагувати</a><button class="admin-btn danger" style="padding:5px 10px;font-size:11px" data-trash-article="' + a.id + '" type="button">Видалити</button></div></td>' +
         "</tr>";
     }).join("");
 
@@ -153,6 +155,17 @@
     if (pushBtn) pushBtn.addEventListener("click", function () { navigate("#/push"); });
     var subdomainsBtn = document.getElementById("subdomains-btn");
     if (subdomainsBtn) subdomainsBtn.addEventListener("click", function () { navigate("#/subdomains"); });
+    Array.prototype.forEach.call(root.querySelectorAll("[data-trash-article]"), function (btn) {
+      btn.addEventListener("click", function () {
+        var id = btn.dataset.trashArticle;
+        if (!window.confirm("Перемістити цю новину в кошик? Її можна буде відновити протягом 30 днів.")) return;
+        api("/api/admin/articles/" + id, { method: "DELETE" })
+          .then(loadArticles).then(renderDashboard)
+          .catch(function (err) { window.alert(err.message); });
+      });
+    });
+    var trashBtn = document.getElementById("trash-btn");
+    if (trashBtn) trashBtn.addEventListener("click", function () { navigate("#/trash"); });
     var usersBtn = document.getElementById("users-btn");
     if (usersBtn) usersBtn.addEventListener("click", function () { navigate("#/users"); });
   }
@@ -1363,10 +1376,66 @@
     });
     var deleteBtn = document.getElementById("delete-btn");
     if (deleteBtn) deleteBtn.addEventListener("click", function () {
-      if (!window.confirm("Видалити статтю остаточно?")) return;
+      if (!window.confirm("Перемістити статтю в кошик? Її можна буде відновити протягом 30 днів.")) return;
       api("/api/admin/articles/" + a.id, { method: "DELETE" })
         .then(function () { navigate("#/dashboard"); loadArticles().then(renderRoute); })
         .catch(function (err) { document.getElementById("editor-error").textContent = err.message; });
+    });
+  }
+
+  // ---------- Trash ----------
+
+  function loadTrash() {
+    return api("/api/admin/articles/trash").then(function (data) {
+      state.trash = data.items || [];
+    });
+  }
+
+  function trashDaysLeft(deletedAt) {
+    var deleted = new Date(deletedAt).getTime();
+    if (!deleted) return "";
+    var expires = deleted + 30 * 24 * 60 * 60 * 1000;
+    return Math.max(0, Math.ceil((expires - Date.now()) / (24 * 60 * 60 * 1000)));
+  }
+
+  function renderTrash() {
+    var rows = state.trash.map(function (a) {
+      var days = trashDaysLeft(a.deletedAt);
+      return "<tr>" +
+        "<td>" + escapeHtml(a.title) + "</td>" +
+        "<td>" + escapeHtml(new Date(a.deletedAt).toLocaleDateString("uk-UA")) + "</td>" +
+        "<td>" + escapeHtml(String(days)) + "</td>" +
+        '<td><div class="admin-row">' +
+          '<button class="admin-btn secondary" data-restore-article="' + a.id + '" type="button">Відновити</button>' +
+          '<button class="admin-btn danger" data-delete-forever="' + a.id + '" type="button">Видалити назавжди</button>' +
+        "</div></td></tr>";
+    }).join("");
+
+    root.innerHTML =
+      '<p><a href="#/dashboard">← До новин</a></p>' +
+      '<div class="admin-card">' +
+      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Кошик</h1>' +
+      '<p class="admin-hint">Видалені новини автоматично стираються назавжди через 30 днів. До цього їх можна відновити.</p>' +
+      (rows
+        ? '<table class="admin-table"><thead><tr><th>Заголовок</th><th>Видалено</th><th>Днів до видалення</th><th></th></tr></thead><tbody>' + rows + "</tbody></table>"
+        : '<p class="empty-state">Кошик порожній.</p>') +
+      "</div>";
+
+    Array.prototype.forEach.call(root.querySelectorAll("[data-restore-article]"), function (btn) {
+      btn.addEventListener("click", function () {
+        api("/api/admin/articles/" + btn.dataset.restoreArticle + "/restore", { method: "POST" })
+          .then(loadTrash).then(renderTrash)
+          .catch(function (err) { window.alert(err.message); });
+      });
+    });
+
+    Array.prototype.forEach.call(root.querySelectorAll("[data-delete-forever]"), function (btn) {
+      btn.addEventListener("click", function () {
+        if (!window.confirm("Видалити цю новину назавжди? Відновити її після цього буде неможливо.")) return;
+        api("/api/admin/articles/" + btn.dataset.deleteForever + "/permanent", { method: "DELETE" })
+          .then(loadTrash).then(renderTrash)
+          .catch(function (err) { window.alert(err.message); });
+      });
     });
   }
 
@@ -1428,6 +1497,13 @@
     if (hash === "#/login") { navigate("#/dashboard"); return; }
     if (hash === "#/change-password") { renderChangePassword(); return; }
     if (hash === "#/new") { renderEditor(null); return; }
+    if (hash === "#/trash") {
+      if (state.user.role !== "admin") { navigate("#/dashboard"); return; }
+      loadTrash().then(renderTrash).catch(function (err) {
+        root.innerHTML = '<p><a href="#/dashboard">← До новин</a></p><div class="admin-card"><p class="admin-error">' + escapeHtml(err.message) + '</p></div>';
+      });
+      return;
+    }
     if (hash === "#/users") {
       if (state.user.role !== "admin") { navigate("#/dashboard"); return; }
       loadUsers().then(renderUsers);

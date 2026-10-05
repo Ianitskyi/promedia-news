@@ -43,3 +43,7 @@ zone_name = "promedia.report"
 #   OPENAI_API_KEY   — серверний ключ OpenAI для автоперекладу новин і тегів
 #   RESEND_API_KEY   — ключ Resend для листів відновлення пароля
 #   RESET_EMAIL_FROM — підтверджена адреса відправника, наприклад: ProMedia <news@promedia.report>
+
+
+[triggers]
+crons = ["17 3 * * *"]

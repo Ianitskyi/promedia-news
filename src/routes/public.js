@@ -143,7 +143,7 @@ Sitemap: ${baseUrl}/sitemap.xml
     const { results } = await db.prepare(`
       SELECT slug, published_at, updated_at
       FROM articles
-      WHERE status = 'published'
+      WHERE status = 'published' AND deleted_at IS NULL
       ORDER BY published_at DESC
     `).all();
     const forLangs = (path) => ({ uk: `${baseUrl}${path}`, en: `${baseUrl}/en${path}`, crh: `${baseUrl}/crh${path}` });
@@ -169,7 +169,7 @@ ${entries.join("\n")}
     const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";
@@ -214,7 +214,7 @@ ${entries.join("\n")}
         cover_image_url, cover_image_url_en, tags, related_media_ids, is_important, card_style,
         published_at, created_at, updated_at
       FROM articles
-      WHERE status = 'published'
+      WHERE status = 'published' AND deleted_at IS NULL
       ORDER BY published_at DESC
     `).all();
     return corsJson({
@@ -245,7 +245,7 @@ ${entries.join("\n")}
   const apiSlugMatch = url.pathname.match(/^\/api\/articles\/([a-z0-9-]+)$/);
   if (apiSlugMatch && request.method === "GET") {
     const article = await db.prepare(
-      "SELECT * FROM articles WHERE slug = ? AND status = 'published'"
+      "SELECT * FROM articles WHERE slug = ? AND status = 'published' AND deleted_at IS NULL"
     ).bind(apiSlugMatch[1]).first();
     if (!article) return corsJson({ error: "not_found" }, 404);
     return corsJson({
@@ -277,7 +277,7 @@ ${entries.join("\n")}
   const articleMatch = pagePath.match(/^\/article\/([a-z0-9-]+)$/);
   if (articleMatch && request.method === "GET") {
     const article = await db.prepare(
-      "SELECT * FROM articles WHERE slug = ? AND status = 'published'"
+      "SELECT * FROM articles WHERE slug = ? AND status = 'published' AND deleted_at IS NULL"
     ).bind(articleMatch[1]).first();
     if (!article) {
       return new Response(renderNotFound(lang, baseUrl), {
@@ -292,7 +292,7 @@ ${entries.join("\n")}
   // GET / (homepage, optional ?tag=)
   if (pagePath === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, tags, card_style, published_at FROM articles WHERE status = 'published'";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, tags, card_style, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";
