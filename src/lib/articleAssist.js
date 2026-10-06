@@ -107,6 +107,19 @@ function applyAssistedFields(body, assisted) {
   };
 }
 
+// Small, source-backed guardrail for mistakes that have already appeared in
+// generated copy. It deliberately avoids grammar-changing rewrites.
+function normalizeCrimeanTatar(text) {
+  return String(text || "")
+    .replace(/\bTesebbüs\b/g, "Teşebbüs")
+    .replace(/\bTelevizor(?=\s+ve\s+radio)/g, "Televideniye")
+    .replace(/\bUkrayna\b/g, "Ukraina")
+    .replace(/\bUkraina\s+da\b/g, "Ukrainada")
+    .replace(/\bmedya\b/g, "mediya")
+    .replace(/\bspileñost\b/g, "cemaat")
+    .replace(/\bYanitskyi\b/g, "Ianitskyi");
+}
+
 export async function generateArticleAssist(env, article) {
   const apiKey = String(env.OPENAI_API_KEY || "").trim();
   if (!apiKey) return null;
@@ -139,7 +152,7 @@ export async function generateArticleAssist(env, article) {
                 "Apply dictionaries and the corpus as terminology and usage checks, not as word-for-word translators: preserve natural Crimean Tatar grammar, syntax, case, agreement and context. If the dictionary offers several equivalents, choose the one that best matches the media, journalism, civil-society or communications context. If no source-backed equivalent is available, use a clear neutral wording or preserve the established international term rather than inventing a calque.",
                 "Do not invent a Crimean Tatar term merely to avoid a loanword. If Ana Yurt has no suitable entry or the established proper/professional term should remain unchanged, use the established Crimean Tatar form, a conventional international term, or Latin transliteration as appropriate.",
                 "Use these established Crimean Tatar forms exactly: Initiative = Teşebbüs; television broadcasting = Televideniye. Never use Tesebbüs or Televizor for these meanings. Keep the Ukrainian registry marker ФОП as \"ФОП / FOP\" rather than inventing an abbreviation.",
-                "Apply ProMedia's source-checked editorial glossary consistently: Ukraine = Ukraina; media = mediya; a media community = cemaat; project = leyha; research = tedqiqat; news = haber. Never substitute Ukrainian or Turkish look-alikes such as Ukrayna, medya, spileñost, topluluk, proyekt, araştırma, or haberler for these concepts unless the word is part of an official proper name. Do not translate the Ukrainian word \"війна\" as \"occupation\"; preserve its meaning as war unless the source explicitly says occupation.",
+                "Apply ProMedia's source-checked editorial glossary consistently: Ukraine = Ukraina (and Ukrainada for 'in Ukraine'); media = mediya; a media community = cemaat; research = tedqiqat; news = haber. Prefer leyha for a ProMedia product project, while proyekt is acceptable where it is the established conventional term. Never substitute Ukrainian or Turkish look-alikes such as Ukrayna, medya, or spileñost for these concepts. Do not translate the Ukrainian word \"війна\" as \"occupation\"; preserve its meaning as war unless the source explicitly says occupation.",
                 "After translating, perform a second terminology pass: check consistency of repeated terms, modern Crimean Tatar Latin orthography, names, special letters, and the absence of Ukrainian or Russian prose. Do not render data matches as a chance coincidence. Facts, meaning, dates, quotations, links and Markdown structure must remain unchanged.",
                 "Create a concise English SEO excerpt under 170 characters, and a concise Crimean Tatar SEO excerpt under 170 characters.",
                 "Return canonical tags in Ukrainian. Include one broad category from: Заяви, Новини, Статті. Add 1-5 topical tags, preferably from this vocabulary: " + TAG_VOCABULARY.join(", ") + ".",
@@ -190,9 +203,9 @@ export async function generateArticleAssist(env, article) {
     titleEn: String(parsed.titleEn || "").trim(),
     excerptEn: String(parsed.excerptEn || "").trim(),
     bodyMdEn: String(parsed.bodyMdEn || "").trim(),
-    titleCrh: String(parsed.titleCrh || "").trim(),
-    excerptCrh: String(parsed.excerptCrh || "").trim(),
-    bodyMdCrh: String(parsed.bodyMdCrh || "").trim(),
+    titleCrh: normalizeCrimeanTatar(parsed.titleCrh).trim(),
+    excerptCrh: normalizeCrimeanTatar(parsed.excerptCrh).trim(),
+    bodyMdCrh: normalizeCrimeanTatar(parsed.bodyMdCrh).trim(),
     tags: normalizeTags(parsed.tags)
   };
 }
