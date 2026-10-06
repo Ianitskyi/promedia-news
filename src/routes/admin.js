@@ -167,6 +167,47 @@ export async function handleAdminRoute(request, env, url) {
     });
   }
 
+  // Rebuild just the Crimean Tatar fields from the Ukrainian source. This is
+  // intentionally admin-only: it overwrites a live translation, while leaving
+  // the Ukrainian original, English version, tags, and publication settings intact.
+  const retranslateCrhMatch = url.pathname.match(/^\/api\/admin\/articles\/(\d+)\/retranslate-crh$/);
+  if (retranslateCrhMatch && request.method === "POST") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const id = parseInt(retranslateCrhMatch[1], 10);
+    const article = await db.prepare("SELECT * FROM articles WHERE id = ? AND deleted_at IS NULL").bind(id).first();
+    if (!article) return json({ error: "not_found" }, 404);
+    if (!article.title || !article.body_md) return json({ error: "Заголовок і текст обов'язкові" }, 400);
+
+    let translated;
+    try {
+      translated = await generateArticleAssist(env, {
+        title: article.title,
+        excerpt: article.excerpt || markdownToPlainText(article.body_md || "", 200),
+        bodyMd: article.body_md
+      });
+    } catch (err) {
+      return json({ error: articleAssistErrorMessage(err) }, 502);
+    }
+
+    if (!translated || !translated.titleCrh || !translated.excerptCrh || !translated.bodyMdCrh) {
+      return json({ error: "Автопереклад не повернув повний кримськотатарський текст. Спробуйте пізніше." }, 502);
+    }
+
+    const now = new Date().toISOString();
+    await db.prepare(`
+      UPDATE articles SET title_crh = ?, excerpt_crh = ?, body_md_crh = ?, updated_at = ?
+      WHERE id = ?
+    `).bind(
+      translated.titleCrh,
+      translated.excerptCrh,
+      translated.bodyMdCrh,
+      now,
+      id
+    ).run();
+    const updated = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
+    return json({ item: serializeArticle(updated) });
+  }
+
   if (url.pathname === "/api/admin/articles" && request.method === "GET") {
     const isAdmin = user.role === "admin";
     const { results } = isAdmin
