@@ -69,7 +69,8 @@ const TAG_LABELS_EN = {
   "Чернігів": "Chernihiv"
 };
 
-// Best-effort machine translation into Crimean Tatar (Latin orthography) — review by a native speaker recommended.
+// Crimean Tatar interface labels use the modern Latin orthography and the shared
+// editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
   "Заяви": "Beyanatlar",
   "Новини": "Haberler",
