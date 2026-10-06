@@ -120,6 +120,7 @@ function normalizeCrimeanTatar(text) {
     .replace(/\bxəritede\b/g, "haritada")
     .replace(/\bxəriteni\b/g, "haritanı")
     .replace(/\bxərite\b/g, "harita")
+    .replace(/ə/g, "e")
     .replace(/\bYanitskyi\b/g, "Ianitskyi");
 }
 
