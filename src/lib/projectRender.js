@@ -84,56 +84,12 @@ const URLS = {
   atlas: { uk: "https://atlas.promedia.report/", en: "https://atlas.promedia.report/en/", crh: "https://atlas.promedia.report/crh/" }
 };
 
-function header(lang, canonical) {
-  const l = NAV[lang] || NAV.uk;
-  const langUrls = localizedUrls(canonical);
-  const main = lang === "en" ? "https://promedia.report/en" : "https://promedia.report";
-  return `
-<nav class="utility-bar" aria-label="ProMedia">
-  <a class="home-btn" href="${main}">← ${lang === "uk" ? "ПроМедіа" : "ProMedia"}</a>
-  <span class="lang-toggle" style="margin-left:auto">
-    ${LANGS.map((code) => `<a class="lang-btn${code === lang ? " active" : ""}" href="${esc(langUrls[code])}">${LANG_BUTTON[code]}</a>`).join("")}
-  </span>
-</nav>
-<nav class="network-nav" aria-label="ProMedia">
-  <a class="network-link active" href="${langPrefix(lang)}/">${l.projects}</a>
-  <a class="network-link" href="${URLS.news[lang]}">${l.news}</a>
-  <a class="network-link" href="${URLS.communities[lang]}">${l.communities}</a>
-  <a class="network-link" href="${URLS.ratings[lang]}">${l.ratings}</a>
-  <a class="network-link" href="${URLS.research[lang]}">${l.research}</a>
-  <a class="network-link" href="${URLS.atlas[lang]}">${l.atlas}</a>
-</nav>`;
+function header() {
+  return `<promedia-global-header></promedia-global-header>`;
 }
 
-function footer(lang) {
-  const t = LABELS[lang] || LABELS.uk;
-  const main = lang === "en" ? "https://promedia.report/en" : "https://promedia.report";
-  const l = NAV[lang] || NAV.uk;
-  return `
-<footer class="site-footer">
-  <div class="site-footer-heading">
-    <a href="${main}">${t.project}</a>
-    <h2>${t.details}</h2>
-  </div>
-  <dl class="site-footer-details">
-    <div><dt>${t.officialName}</dt><dd>${t.officialNameValue}</dd></div>
-    <div><dt>${t.registration}</dt><dd>45995408</dd></div>
-    <div><dt>${t.address}</dt><dd>${t.addressValue}</dd></div>
-    <div><dt>${t.chair}</dt><dd>${t.chairValue}</dd></div>
-    <div><dt>${t.phone}</dt><dd><a href="tel:+380506959537">+38 (050) 695 95 37</a></dd></div>
-    <div><dt>${t.email}</dt><dd><a href="mailto:info@promedia.report">info@promedia.report</a></dd></div>
-    <div><dt>${t.social}</dt><dd><a href="https://www.instagram.com/promediaua/" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/promediaukraine" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.linkedin.com/company/promediaukraine/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://www.youtube.com/@prostirmedia" target="_blank" rel="noopener">YouTube</a></dd></div>
-  </dl>
-  <a class="site-footer-correction" href="mailto:info@promedia.report">${t.correction} info@promedia.report</a>
-  <nav class="network-footer" aria-label="ProMedia">
-    <a href="${langPrefix(lang)}/">${l.projects}</a>
-    <a href="${URLS.news[lang]}">${l.news}</a>
-    <a href="${URLS.communities[lang]}">${l.communities}</a>
-    <a href="${URLS.ratings[lang]}">${l.ratings}</a>
-    <a href="${URLS.research[lang]}">${l.research}</a>
-    <a href="${URLS.atlas[lang]}">${l.atlas}</a>
-  </nav>
-</footer>`;
+function footer() {
+  return `<promedia-global-footer></promedia-global-footer>`;
 }
 
 function shell({ lang, title, description, canonical, body, ogImage }) {
@@ -184,6 +140,7 @@ ${footer(lang)}
 <script defer src="/js/promedia-language-suggest.js"></script>
 <script defer src="/js/promedia-memorial-popup.js"></script>
 <script defer src="/js/promedia-push-bell.js"></script>
+<script defer src="/js/promedia-global-shell.js"></script>
 </body>
 </html>`;
 }
