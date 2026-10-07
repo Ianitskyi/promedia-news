@@ -33,6 +33,11 @@
   };
   const current=Object.keys(HOSTS).find(k=>location.hostname===HOSTS[k])||"";
   const samePath=(targetLang)=>{
+    const alt=document.querySelector('link[rel="alternate"][hreflang="'+targetLang+'"]');
+    if(alt&&alt.href)return alt.href;
+    if(location.hostname==="research.promedia.report"&&location.pathname.includes("/membership-guide/")){
+      return targetLang==="uk"?"https://research.promedia.report/membership-guide/":"https://research.promedia.report/"+targetLang+"/";
+    }
     const u=new URL(location.href);
     let path=u.pathname.replace(/^\/(en|crh)(?=\/|$)/,"")||"/";
     const p=targetLang==="uk"?"":"/"+targetLang;
@@ -91,10 +96,11 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
       ];
       const mobileMain=[[t.projects,projectUrl],[t.about,mainHome+"#team"],[t.contacts,mainHome+"#contacts"]];
       const mobileSub=sec.map(x=>[x[1],x[2]]);
+      const available=(this.getAttribute("data-langs")||"uk,en,crh").split(",").map(x=>x.trim()).filter(Boolean);
       this.innerHTML=`<header class="pm-global-header"><div class="pm-global-main">
         <a class="pm-global-logo" href="${mainHome}" aria-label="ProMedia"><img src="https://news.promedia.report/img/promedia-wordmark.svg" alt="ProMedia"></a>
         <nav class="pm-global-primary"><a href="${projectUrl}">${t.projects}</a><a href="${mainHome}#team">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a></nav>
-        <div class="pm-global-langs"><a class="${lang==="uk"?"active":""}" href="${samePath("uk")}">UA</a><a class="${lang==="en"?"active":""}" href="${samePath("en")}">EN</a><a class="${lang==="crh"?"active":""}" href="${samePath("crh")}">QT</a></div>
+        <div class="pm-global-langs">${available.includes("uk")?`<a class="${lang==="uk"?"active":""}" href="${samePath("uk")}">UA</a>`:""}${available.includes("en")?`<a class="${lang==="en"?"active":""}" href="${samePath("en")}">EN</a>`:""}${available.includes("crh")?`<a class="${lang==="crh"?"active":""}" href="${samePath("crh")}">QT</a>`:""}</div>
         <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div></div></details>
       </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}">${x[1]}</a>`).join("")}</nav></header>`;
     }
