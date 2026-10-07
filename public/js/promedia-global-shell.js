@@ -74,7 +74,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-footer{background:#08083a;color:#e9edf2;padding:64px 0 42px}
 .pm-global-footer-inner{width:min(1120px,calc(100% - 40px));margin:0 auto}
 .pm-global-footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:34px;align-items:start}
-.pm-global-footer-logo img{width:150px;filter:brightness(0) invert(1)}
+.pm-global-footer-logo img{width:150px;height:auto;filter:none}
 .pm-global-footer-contact{margin:0;padding:0;list-style:none}.pm-global-footer-contact li{margin:0 0 10px}
 .pm-global-footer a{color:#fff;text-decoration:none}.pm-global-footer a:hover{color:var(--pm-shell-accent)}
 .pm-global-footer-nav{display:flex;flex-direction:column;gap:9px}
