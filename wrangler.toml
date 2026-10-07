@@ -26,15 +26,6 @@ database_id = "b5471e04-ad38-45d7-a306-0c6f8c47c14b"
 binding = "IMAGES"
 bucket_name = "promedia-news-images"
 
-# Кастомний домен — розкоментуйте й переконайтесь, що зона promedia.report
-# є у вашому Cloudflare-акаунті (той самий, де вже є Worker submit-community.js).
-[[routes]]
-pattern = "news.promedia.report/*"
-zone_name = "promedia.report"
-
-[[routes]]
-pattern = "projects.promedia.report/*"
-zone_name = "promedia.report"
 
 # Секрети (НЕ в цьому файлі — задаються через `wrangler secret put`):
 #   AUTH_SECRET      — довільний випадковий рядок (32+ символів) для підпису сесійних токенів
