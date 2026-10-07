@@ -109,7 +109,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
     connectedCallback(){
       this.innerHTML=`<footer class="pm-global-footer"><div class="pm-global-footer-inner">
       <div class="pm-global-footer-top">
-        <div class="pm-global-footer-logo"><a href="${mainHome}"><img src="https://news.promedia.report/img/promedia-wordmark.svg" alt="ProMedia"></a></div>
+        <div class="pm-global-footer-logo"><a href="${mainHome}"><img src="https://news.promedia.report/img/promedia-logo-footer.svg" alt="ProMedia"></a></div>
         <div><ul class="pm-global-footer-contact"><li><a href="tel:+380506959537">+38 (050) 695 95 37</a></li><li><a href="mailto:info@promedia.report">info@promedia.report</a></li></ul><div class="pm-global-socials">
           <a href="https://www.youtube.com/@prostirmedia" target="_blank" rel="noopener" aria-label="YouTube">${socialIcon("youtube")}</a>
           <a href="https://www.instagram.com/promediaua/" target="_blank" rel="noopener" aria-label="Instagram">${socialIcon("instagram")}</a>
