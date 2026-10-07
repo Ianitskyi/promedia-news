@@ -125,7 +125,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         <tr><td>${t.chair}</td><td>${t.chairValue}</td></tr>
         <tr><td>E-mail</td><td><a href="mailto:info@promedia.report">info@promedia.report</a></td></tr>
       </table></div>
-      <div class="pm-global-bottom"><div>© 2025–2026 ProMedia. ${t.rights}<div class="pm-global-powered">Created by <a href="https://fabrikastyle.com" target="_blank" rel="noopener"><img src="https://fabrikastyle.com/logo-fa.svg" alt="Fabrika Style"></a></div></div><div><a href="https://promedia.report/privacy-policy/">${t.privacy}</a></div></div>
+      <div class="pm-global-bottom"><div>© 2025–2026 ProMedia. ${t.rights}<div class="pm-global-powered">Created by <a href="https://fabrikastyle.com" target="_blank" rel="noopener"><img src="https://fabrikastyle.com/logo-fa.svg" alt="Fabrika Style"></a></div></div><div><a href="${mainBase+(lang==="uk"?"/privacy-policy/":prefix+"/privacy-policy/")}">${t.privacy}</a></div></div>
       </div></footer>`;
     }
   }
