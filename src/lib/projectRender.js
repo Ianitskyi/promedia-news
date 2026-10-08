@@ -176,14 +176,46 @@ function tagUrl(baseUrl, lang, tag) {
   return `${baseUrl}${langPrefix(lang)}/?tag=${encodeURIComponent(tag)}`;
 }
 
+function projectFallbackImage(project) {
+  const hay = [
+    project.slug,
+    project.title,
+    project.title_en,
+    project.title_crh
+  ].filter(Boolean).join(" ").toLowerCase();
+
+  if (hay.includes("summer-basic-video") || hay.includes("summer basic video") || hay.includes("video lab")) {
+    return "https://promedia.report/assets/projects/project-summer-ai-lab-1200x900.webp";
+  }
+  if (hay.includes("rating") || hay.includes("рейтин") || hay.includes("журфак") || hay.includes("journalism school")) {
+    return "https://promedia.report/assets/projects/ratings.webp";
+  }
+  if (hay.includes("financial") || hay.includes("фінанс") || hay.includes("звітност") || hay.includes("lmf")) {
+    return "https://promedia.report/assets/projects/lmf-financial-report.webp";
+  }
+  if (hay.includes("atlas") || hay.includes("атлас")) {
+    return "https://promedia.report/assets/projects/atlas.webp";
+  }
+  return "";
+}
+
+function projectImageUrl(project, baseUrl) {
+  const raw = project.cover_image_url || "";
+  if (raw) {
+    try { return new URL(raw, baseUrl).toString(); } catch {}
+  }
+  return projectFallbackImage(project);
+}
+
 function projectCard(project, lang, baseUrl) {
   const title = field(project, "title", lang);
   const excerpt = field(project, "excerpt", lang) || markdownToPlainText(field(project, "body_md", lang), 220);
   const href = `${baseUrl}${langPrefix(lang)}/project/${esc(project.slug)}`;
   const statusClass = project.project_status === "active" ? " project-status-active" : (project.project_status === "completed" ? " project-status-completed" : "");
   const tags = projectTags(project);
+  const imageUrl = projectImageUrl(project, baseUrl);
   return `<article class="article-card article-card--visual">
-    ${project.cover_image_url ? `<a class="article-card-media" href="${href}"><img class="article-card-img" src="${esc(project.cover_image_url)}" alt="${esc(title)}" loading="lazy" /></a>` : ""}
+    ${imageUrl ? `<a class="article-card-media" href="${href}"><img class="article-card-img" src="${esc(imageUrl)}" alt="${esc(title)}" loading="lazy" /></a>` : ""}
     <div class="article-card-body">
       <div class="article-tags">
         <span class="article-tag project-status${statusClass}">${esc(statusLabel(project, lang))}</span>
@@ -223,6 +255,7 @@ export function renderProjectPage({ project, lang, baseUrl }) {
   if (project.start_date || project.end_date) meta.push(`<div><strong>${l.dates}:</strong> ${esc(fmtDate(project.start_date, lang))}${project.end_date ? " — " + esc(fmtDate(project.end_date, lang)) : ""}</div>`);
   const canonical = `${baseUrl}${langPrefix(lang)}/project/${project.slug}`;
   const statusClass = project.project_status === "active" ? " project-status-active" : (project.project_status === "completed" ? " project-status-completed" : "");
+  const imageUrl = projectImageUrl(project, baseUrl);
   const body = `<main class="wrap article-page">
     <p class="article-back"><a href="${langPrefix(lang)}/">${l.back}</a></p>
     <div class="article-tags">
@@ -231,10 +264,10 @@ export function renderProjectPage({ project, lang, baseUrl }) {
     </div>
     <h1>${esc(title)}</h1>
     <p class="article-excerpt">${esc(excerpt)}</p>
-    ${project.cover_image_url ? `<img class="article-cover" src="${esc(project.cover_image_url)}" alt="${esc(title)}" />` : ""}
+    ${imageUrl ? `<img class="article-cover" src="${esc(imageUrl)}" alt="${esc(title)}" />` : ""}
     ${meta.length ? `<div class="admin-card" style="margin:24px 0">${meta.join("")}</div>` : ""}
     <div class="article-body">${markdownToHtml(field(project, "body_md", lang))}</div>
     ${project.website_url ? `<p><a class="admin-btn" href="${esc(project.website_url)}" target="_blank" rel="noopener">${l.more}</a></p>` : ""}
   </main>`;
-  return shell({ lang, title: `${title} — ProMedia`, description: excerpt, canonical, body, ogImage: project.cover_image_url || undefined });
+  return shell({ lang, title: `${title} — ProMedia`, description: excerpt, canonical, body, ogImage: imageUrl || undefined });
 }
