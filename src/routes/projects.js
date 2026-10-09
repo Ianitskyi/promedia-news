@@ -16,6 +16,37 @@ function parseJson(value) {
   try { return JSON.parse(value || "[]"); } catch { return []; }
 }
 
+function publicProjectCoverUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "";
+
+  const base = "https://projects.promedia.report";
+  const projectMarker = "/storage/app/media/projects/";
+  const mediaMarker = "/storage/app/media/";
+  const lower = raw.toLowerCase();
+
+  let i = lower.indexOf(projectMarker);
+  if (i >= 0) {
+    const file = decodeURIComponent(raw.slice(i + projectMarker.length));
+    return `${base}/img/projects/${file.split("/").map(encodeURIComponent).join("/")}`;
+  }
+
+  i = lower.indexOf(mediaMarker);
+  if (i >= 0) {
+    const file = decodeURIComponent(raw.slice(i + mediaMarker.length));
+    return `${base}/img/projects/${file.split("/").map(encodeURIComponent).join("/")}`;
+  }
+
+  if (raw.startsWith("projects/")) {
+    const file = decodeURIComponent(raw.slice("projects/".length));
+    return `${base}/img/projects/${file.split("/").map(encodeURIComponent).join("/")}`;
+  }
+
+  if (raw.startsWith("/img/projects/")) return base + raw;
+
+  try { return new URL(raw, base).toString(); } catch { return ""; }
+}
+
 function publicProjectImageUrl(raw) {
   if (!raw) return null;
   const value = String(raw).trim();
