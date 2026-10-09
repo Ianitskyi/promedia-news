@@ -12,6 +12,8 @@ run_worker_first = [
   "/api/*",
   "/article/*",
   "/project/*",
+  "/en/*",
+  "/crh/*",
   "/tag/*",
   "/admin",
   "/"
