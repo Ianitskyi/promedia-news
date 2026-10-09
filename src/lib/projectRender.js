@@ -180,17 +180,28 @@ function projectImageUrl(project, baseUrl) {
   const raw = String(project.cover_image_url || "").trim();
   if (!raw) return "";
 
-  const marker = "/storage/app/media/projects/";
+  const projectMarker = "/storage/app/media/projects/";
+  const mediaMarker = "/storage/app/media/";
   const lower = raw.toLowerCase();
-  const markerIndex = lower.indexOf(marker);
+
+  let markerIndex = lower.indexOf(projectMarker);
   if (markerIndex >= 0) {
-    const file = raw.slice(markerIndex + marker.length);
-    return `${baseUrl}/img/projects/${file}`;
+    const file = decodeURIComponent(raw.slice(markerIndex + projectMarker.length));
+    return `${baseUrl}/img/projects/${file.split("/").map(encodeURIComponent).join("/")}`;
+  }
+
+  markerIndex = lower.indexOf(mediaMarker);
+  if (markerIndex >= 0) {
+    const file = decodeURIComponent(raw.slice(markerIndex + mediaMarker.length));
+    return `${baseUrl}/img/projects/${file.split("/").map(encodeURIComponent).join("/")}`;
   }
 
   if (raw.startsWith("projects/")) {
-    return `${baseUrl}/img/${raw}`;
+    const file = decodeURIComponent(raw.slice("projects/".length));
+    return `${baseUrl}/img/projects/${file.split("/").map(encodeURIComponent).join("/")}`;
   }
+
+  if (raw.startsWith("/img/projects/")) return baseUrl + raw;
 
   try {
     return new URL(raw, baseUrl).toString();
