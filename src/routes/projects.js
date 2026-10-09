@@ -16,6 +16,31 @@ function parseJson(value) {
   try { return JSON.parse(value || "[]"); } catch { return []; }
 }
 
+function publicProjectImageUrl(raw) {
+  if (!raw) return null;
+  const value = String(raw).trim();
+
+  const marker = "/storage/app/media/projects/";
+  const lower = value.toLowerCase();
+  const markerIndex = lower.indexOf(marker);
+  if (markerIndex >= 0) {
+    const file = value.slice(markerIndex + marker.length);
+    return `https://projects.promedia.report/img/projects/${file}`;
+  }
+
+  if (value.startsWith("projects/")) {
+    return `https://projects.promedia.report/img/${value}`;
+  }
+
+  if (/^https?:\/\//i.test(value)) return value;
+  if (value.startsWith("/img/projects/")) return `https://projects.promedia.report${value}`;
+  if (value.startsWith("img/projects/")) return `https://projects.promedia.report/${value}`;
+
+  return value.startsWith("/")
+    ? `https://projects.promedia.report${value}`
+    : `https://projects.promedia.report/${value}`;
+}
+
 function serialize(project) {
   return {
     slug: project.slug,
@@ -28,7 +53,7 @@ function serialize(project) {
     bodyMd: project.body_md,
     bodyMdEn: project.body_md_en,
     bodyMdCrh: project.body_md_crh,
-    coverImageUrl: project.cover_image_url,
+    coverImageUrl: publicProjectImageUrl(project.cover_image_url),
     partner: project.partner,
     partnerEn: project.partner_en,
     partnerCrh: project.partner_crh,
