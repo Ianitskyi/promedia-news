@@ -13,9 +13,16 @@ function langPrefix(lang) {
   return lang === "uk" ? "" : "/" + lang;
 }
 
+function correctCrhDisplay(value) {
+  return String(value || "")
+    .replace(/L[ьЬвВ]+ivte/g, "Lvivde")
+    .replace(/\bUkraina\b/g, "Ukrayina")
+    .replace(/\bUkrainada\b/g, "Ukrayinada");
+}
+
 function field(project, name, lang) {
   if (lang === "en") return project[name + "_en"] || project[name] || "";
-  if (lang === "crh") return project[name + "_crh"] || project[name] || "";
+  if (lang === "crh") return correctCrhDisplay(project[name + "_crh"] || project[name] || "");
   return project[name] || "";
 }
 
