@@ -22,7 +22,7 @@ function serialize(p) {
     donor: p.donor, donorEn: p.donor_en, donorCrh: p.donor_crh,
     projectStatus: p.project_status, startDate: p.start_date, endDate: p.end_date, websiteUrl: p.website_url,
     tags: parseJson(p.tags), isFeatured: Boolean(p.is_featured), publicationStatus: p.publication_status,
-    authorId: p.author_id, publishedAt: p.published_at, createdAt: p.created_at, updatedAt: p.updated_at
+    authorId: p.author_id, publishedAt: p.published_at, createdAt: p.created_at, updatedAt: p.updated_at, deletedAt: p.deleted_at
   };
 }
 
@@ -53,8 +53,8 @@ export async function handleProjectsAdminRoute(request, env, url) {
 
   if (url.pathname === "/api/admin/projects" && request.method === "GET") {
     const { results } = user.role === "admin"
-      ? await db.prepare("SELECT * FROM projects ORDER BY COALESCE(start_date, updated_at) DESC, id DESC").all()
-      : await db.prepare("SELECT * FROM projects WHERE author_id = ? ORDER BY COALESCE(start_date, updated_at) DESC, id DESC").bind(user.id).all();
+      ? await db.prepare("SELECT * FROM projects WHERE deleted_at IS NULL ORDER BY COALESCE(start_date, updated_at) DESC, id DESC").all()
+      : await db.prepare("SELECT * FROM projects WHERE author_id = ? AND deleted_at IS NULL ORDER BY COALESCE(start_date, updated_at) DESC, id DESC").bind(user.id).all();
     return json({ items: results.map(serialize) });
   }
 
@@ -141,10 +141,36 @@ export async function handleProjectsAdminRoute(request, env, url) {
     return json({ url: publicUrl });
   }
 
+  if (url.pathname === "/api/admin/projects/trash" && request.method === "GET") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const { results } = await db.prepare("SELECT * FROM projects WHERE deleted_at IS NOT NULL ORDER BY deleted_at DESC").all();
+    return json({ items: results.map(serialize) });
+  }
+
+  const restoreMatch = url.pathname.match(/^\/api\/admin\/projects\/(\d+)\/restore$/);
+  if (restoreMatch && request.method === "POST") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const id = Number(restoreMatch[1]);
+    const project = await db.prepare("SELECT * FROM projects WHERE id=? AND deleted_at IS NULL AND deleted_at IS NOT NULL").bind(id).first();
+    if (!project) return json({ error: "not_found" }, 404);
+    await db.prepare("UPDATE projects SET deleted_at=NULL, updated_at=? WHERE id=?").bind(new Date().toISOString(), id).run();
+    return json({ ok: true });
+  }
+
+  const permanentMatch = url.pathname.match(/^\/api\/admin\/projects\/(\d+)\/permanent$/);
+  if (permanentMatch && request.method === "DELETE") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const id = Number(permanentMatch[1]);
+    const project = await db.prepare("SELECT id FROM projects WHERE id=? AND deleted_at IS NOT NULL").bind(id).first();
+    if (!project) return json({ error: "not_found" }, 404);
+    await db.prepare("DELETE FROM projects WHERE id=?").bind(id).run();
+    return json({ ok: true });
+  }
+
   const match = url.pathname.match(/^\/api\/admin\/projects\/(\d+)$/);
   if (match) {
     const id = Number(match[1]);
-    const project = await db.prepare("SELECT * FROM projects WHERE id = ?").bind(id).first();
+    const project = await db.prepare("SELECT * FROM projects WHERE id = ? AND deleted_at IS NULL").bind(id).first();
     if (!project) return json({ error: "not_found" }, 404);
     if (user.role !== "admin" && project.author_id !== user.id) return json({ error: "forbidden" }, 403);
 
@@ -181,11 +207,11 @@ export async function handleProjectsAdminRoute(request, env, url) {
         body.isFeatured === undefined ? project.is_featured : (body.isFeatured ? 1 : 0),
         new Date().toISOString(), id
       ).run();
-      return json({ item: serialize(await db.prepare("SELECT * FROM projects WHERE id=?").bind(id).first()) });
+      return json({ item: serialize(await db.prepare("SELECT * FROM projects WHERE id=? AND deleted_at IS NULL").bind(id).first()) });
     }
 
     if (request.method === "DELETE") {
-      await db.prepare("DELETE FROM projects WHERE id=?").bind(id).run();
+      await db.prepare("UPDATE projects SET deleted_at=?, updated_at=? WHERE id=?").bind(new Date().toISOString(), new Date().toISOString(), id).run();
       return json({ ok: true });
     }
   }
@@ -193,7 +219,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
   const publish = url.pathname.match(/^\/api\/admin\/projects\/(\d+)\/publish$/);
   if (publish && request.method === "POST") {
     const id = Number(publish[1]);
-    const project = await db.prepare("SELECT * FROM projects WHERE id=?").bind(id).first();
+    const project = await db.prepare("SELECT * FROM projects WHERE id=? AND deleted_at IS NULL").bind(id).first();
     if (!project) return json({ error: "not_found" }, 404);
     if (user.role !== "admin" && project.author_id !== user.id) return json({ error: "forbidden" }, 403);
     if (!project.title || !project.body_md) return json({ error: "Назва і опис проєкту обов'язкові" }, 400);
@@ -205,7 +231,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
   const unpublish = url.pathname.match(/^\/api\/admin\/projects\/(\d+)\/unpublish$/);
   if (unpublish && request.method === "POST") {
     const id = Number(unpublish[1]);
-    const project = await db.prepare("SELECT * FROM projects WHERE id=?").bind(id).first();
+    const project = await db.prepare("SELECT * FROM projects WHERE id=? AND deleted_at IS NULL").bind(id).first();
     if (!project) return json({ error: "not_found" }, 404);
     if (user.role !== "admin" && project.author_id !== user.id) return json({ error: "forbidden" }, 403);
     await db.prepare("UPDATE projects SET publication_status='draft', updated_at=? WHERE id=?").bind(new Date().toISOString(), id).run();
