@@ -60,6 +60,29 @@
     });
   }
 
+  function adminSectionNav(active) {
+    return '<div class="admin-section-nav">' +
+      '<a class="admin-section-link' + (active === "news" ? " active" : "") + '" href="/admin#/dashboard">Новини</a>' +
+      '<a class="admin-section-link' + (active === "projects" ? " active" : "") + '" href="/admin/projects.html">Проєкти</a>' +
+      '<a class="admin-section-link' + (active === "research" ? " active" : "") + '" href="/admin#/subdomains">Дослідження</a>' +
+    '</div>';
+  }
+
+  function articleNeedsTranslation(a) {
+    return !String(a.titleEn || "").trim() || !String(a.excerptEn || "").trim() || !String(a.bodyMdEn || "").trim()
+      || !String(a.titleCrh || "").trim() || !String(a.excerptCrh || "").trim() || !String(a.bodyMdCrh || "").trim();
+  }
+
+  function researchFileNav(site, activeFileId) {
+    if (!site || !site.files) return "";
+    return '<div class="admin-subsection-nav">' + site.files.map(function (file) {
+      return '<a class="admin-section-link' + (file.id === activeFileId ? " active" : "") + '" href="#/subdomains/' +
+        escapeHtml(site.id) + '/' + escapeHtml(file.id) + '">' + escapeHtml(file.label) + '</a>';
+    }).join("") +
+      '<a class="admin-section-link" href="' + escapeHtml(site.liveUrl) + '" target="_blank" rel="noopener">Відкрити сайт ↗</a>' +
+    '</div>';
+  }
+
   // ---------- Login ----------
 
   function renderLogin(errorMsg) {
@@ -104,13 +127,13 @@
   }
 
   function renderDashboard() {
+    var hasMissingTranslations = state.articles.some(articleNeedsTranslation);
     var tabsHtml =
-      '<div class="admin-row" style="margin-bottom:18px">' +
+      adminSectionNav("news") +
+      '<div class="admin-row admin-context-actions" style="margin-bottom:18px">' +
       '<button class="admin-btn" id="new-article-btn" type="button">+ Нова стаття</button>' +
-      '<a class="admin-btn secondary" href="/admin/projects.html">Проєкти</a>' +
-      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="translate-archive-btn" type="button">Перекласти архів</button>' : "") +
+      (state.user.role === "admin" && hasMissingTranslations ? '<button class="admin-btn secondary" id="translate-archive-btn" type="button">Перекласти архів</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="push-btn" type="button">Пуш-сповіщення</button>' : "") +
-      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="subdomains-btn" type="button">Дослідження</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="trash-btn" type="button">Кошик</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="users-btn" type="button">Користувачі</button>' : "") +
       "</div>";
@@ -153,8 +176,6 @@
     });
     var pushBtn = document.getElementById("push-btn");
     if (pushBtn) pushBtn.addEventListener("click", function () { navigate("#/push"); });
-    var subdomainsBtn = document.getElementById("subdomains-btn");
-    if (subdomainsBtn) subdomainsBtn.addEventListener("click", function () { navigate("#/subdomains"); });
     Array.prototype.forEach.call(root.querySelectorAll("[data-trash-article]"), function (btn) {
       btn.addEventListener("click", function () {
         var id = btn.dataset.trashArticle;
@@ -362,13 +383,13 @@
     }).join("");
 
     root.innerHTML =
-      '<p><a href="#/dashboard">← До списку статей</a></p>' +
+      adminSectionNav("research") +
       '<div class="admin-card">' +
-      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Дослідження та субдомени</h1>' +
-      '<p class="admin-hint">Цей розділ редагує GitHub-субдомени через сервер news.promedia.report. Редактору не потрібен GitHub-акаунт: достатньо бути залогіненим у цю адмінку.</p>' +
+      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Дослідження</h1>' +
+      '<p class="admin-hint">Редагування каталогу та службових текстів research.promedia.report.</p>' +
       (!state.subdomainsConfigured ? '<p class="admin-error">Завантаження доступне, але збереження ще не увімкнене: на сервері потрібно додати секрет SUBDOMAINS_GITHUB_TOKEN.</p>' : "") +
       '</div>' +
-      (cards || '<div class="admin-card"><p class="empty-state">Субдомени ще не налаштовані.</p></div>');
+      (cards || '<div class="admin-card"><p class="empty-state">Дослідження ще не налаштовані.</p></div>');
 
     Array.prototype.forEach.call(document.querySelectorAll("[data-subdomain-file]"), function (button) {
       button.addEventListener("click", function () {
@@ -682,7 +703,8 @@
   function renderSubdomainEditor(loadError) {
     if (loadError) {
       root.innerHTML =
-        '<p><a href="#/subdomains">← До досліджень і субдоменів</a></p>' +
+        adminSectionNav("research") +
+        '<p><a href="#/subdomains">← До огляду досліджень</a></p>' +
         '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Не вдалося завантажити файл</h1>' +
         '<p class="admin-error">' + escapeHtml(loadError) + '</p></div>';
       return;
@@ -691,7 +713,9 @@
     if (!editor) return;
     var body = editor.file.type === "researchCatalog" ? renderResearchCatalogEditor() : renderGenericJsonEditor();
     root.innerHTML =
-      '<p><a href="#/subdomains">← До досліджень і субдоменів</a></p>' +
+      adminSectionNav("research") +
+      researchFileNav(editor.site, editor.file.id) +
+      '<p><a href="#/subdomains">← До огляду досліджень</a></p>' +
       '<div class="admin-card">' +
         '<div class="admin-subdomain-head">' +
           '<div><p class="admin-hint">' + escapeHtml(editor.site.label) + ' · ' + escapeHtml(editor.file.path) + '</p>' +
