@@ -159,6 +159,7 @@ function tagLabel(tag, lang) {
   const map = {
     "навчання": { en: "training", crh: "talim" },
     "спільнота": { en: "community", crh: "cemaat" },
+    "спільноти": { en: "communities", crh: "cemaatlar" },
     "дослідження": { en: "research", crh: "tedqiqat" },
     "консалтинг": { en: "consulting", crh: "mesleat" },
     "медіа": { en: "media", crh: "mediya" },
@@ -167,9 +168,15 @@ function tagLabel(tag, lang) {
     "фактчекінг": { en: "fact-checking", crh: "faktçeking" },
     "відео": { en: "video", crh: "video" },
     "модерація": { en: "moderation", crh: "moderatsiya" },
-    "інструмент": { en: "tool", crh: "alet" }
+    "інструмент": { en: "tool", crh: "alet" },
+    "інструменти": { en: "tools", crh: "aletler" },
+    "журналістика": { en: "journalism", crh: "jurnalistika" },
+    "медіаграмотність": { en: "media literacy", crh: "mediya savatlılığı" }
   };
-  return lang === "uk" ? tag : ((map[tag] && map[tag][lang]) || tag);
+  const value = String(tag || "").trim();
+  if (lang === "uk") return value;
+  const key = value.toLocaleLowerCase("uk-UA");
+  return (map[key] && map[key][lang]) || value;
 }
 
 function tagUrl(baseUrl, lang, tag) {
