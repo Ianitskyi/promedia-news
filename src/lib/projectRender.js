@@ -200,11 +200,14 @@ function projectFallbackImage(project) {
 }
 
 function projectImageUrl(project, baseUrl) {
+  const fallback = projectFallbackImage(project);
+  if (fallback) return fallback;
+
   const raw = project.cover_image_url || "";
   if (raw) {
     try { return new URL(raw, baseUrl).toString(); } catch {}
   }
-  return projectFallbackImage(project);
+  return "";
 }
 
 function projectCard(project, lang, baseUrl) {
