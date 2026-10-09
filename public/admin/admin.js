@@ -287,6 +287,7 @@
     }).join("");
 
     root.innerHTML =
+      adminSectionNav("news") +
       '<p><a href="#/dashboard">← До списку статей</a></p>' +
       '<div class="admin-card">' +
       '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Пуш-сповіщення</h1>' +
@@ -1126,6 +1127,7 @@
     };
 
     root.innerHTML =
+      adminSectionNav("news") +
       '<p><a href="#/dashboard">← До списку статей</a></p>' +
       '<div class="admin-card">' +
       '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">' + (isNew ? "Нова стаття" : "Редагування статті") + "</h1>" +
@@ -1436,6 +1438,7 @@
     }).join("");
 
     root.innerHTML =
+      adminSectionNav("news") +
       '<p><a href="#/dashboard">← До новин</a></p>' +
       '<div class="admin-card">' +
       '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Кошик</h1>' +
@@ -1474,6 +1477,7 @@
       return "<tr><td>" + escapeHtml(u.name) + "</td><td>" + escapeHtml(u.email) + "</td><td>" + escapeHtml(u.role) + "</td></tr>";
     }).join("");
     root.innerHTML =
+      adminSectionNav("news") +
       '<p><a href="#/dashboard">← До списку статей</a></p>' +
       '<div class="admin-card">' +
       "<h1 style=\"font-family:var(--serif);color:var(--ink);margin-top:0\">Автори</h1>" +
