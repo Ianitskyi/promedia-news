@@ -1,11 +1,23 @@
 (function () {
   "use strict";
   var root = document.getElementById("projects-admin-root");
+  var userRow = document.getElementById("admin-user-row");
   var state = { user: null, projects: [], trash: [], editing: null };
 
   function esc(v) {
     return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
+    });
+  }
+
+  function renderUserRow() {
+    if (!userRow || !state.user) return;
+    userRow.innerHTML =
+      '<span class="admin-hint">' + esc(state.user.name) + " (" + esc(state.user.role) + ")</span>" +
+      '<a class="admin-btn secondary" href="/admin#/change-password">Пароль</a>' +
+      '<button class="admin-btn secondary" id="projects-logout" type="button">Вийти</button>';
+    document.getElementById("projects-logout").addEventListener("click", function () {
+      api("/api/auth/logout", { method:"POST" }).then(function () { window.location.href = "/admin"; });
     });
   }
 
@@ -223,6 +235,7 @@
 
   api("/api/me").then(function (data) {
     state.user = data.user;
+    renderUserRow();
     return loadProjects();
   }).then(list).catch(function () {
     root.innerHTML = '<div class="admin-card"><p class="admin-error">Спочатку увійдіть в адмінку новин.</p><p><a class="admin-btn" href="/admin">Увійти</a></p></div>';
