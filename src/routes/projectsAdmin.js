@@ -151,7 +151,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
   if (restoreMatch && request.method === "POST") {
     if (user.role !== "admin") return json({ error: "forbidden" }, 403);
     const id = Number(restoreMatch[1]);
-    const project = await db.prepare("SELECT * FROM projects WHERE id=? AND deleted_at IS NULL AND deleted_at IS NOT NULL").bind(id).first();
+    const project = await db.prepare("SELECT * FROM projects WHERE id=? AND deleted_at IS NOT NULL").bind(id).first();
     if (!project) return json({ error: "not_found" }, 404);
     await db.prepare("UPDATE projects SET deleted_at=NULL, updated_at=? WHERE id=?").bind(new Date().toISOString(), id).run();
     return json({ ok: true });
