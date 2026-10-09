@@ -116,7 +116,7 @@ export async function handleProjectsPublicRoute(request, env, url) {
     const featured = url.searchParams.get("featured");
     const status = url.searchParams.get("status");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
-    let query = "SELECT * FROM projects WHERE publication_status = 'published'";
+    let query = "SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (featured === "1" || featured === "true") query += " AND is_featured = 1";
     if (["upcoming", "active", "completed"].includes(status)) { query += " AND project_status = ?"; binds.push(status); }
@@ -128,7 +128,7 @@ export async function handleProjectsPublicRoute(request, env, url) {
 
   const apiMatch = url.pathname.match(/^\/api\/projects\/([a-z0-9-]+)$/);
   if (apiMatch && request.method === "GET") {
-    const project = await db.prepare("SELECT * FROM projects WHERE slug = ? AND publication_status = 'published'").bind(apiMatch[1]).first();
+    const project = await db.prepare("SELECT * FROM projects WHERE slug = ? AND publication_status = 'published' AND deleted_at IS NULL").bind(apiMatch[1]).first();
     return project ? corsJson({ item: serialize(project) }) : corsJson({ error: "not_found" }, 404);
   }
 
@@ -145,7 +145,7 @@ export async function handleProjectsPublicRoute(request, env, url) {
 
   const projectMatch = path.match(/^\/project\/([a-z0-9-]+)$/);
   if (projectMatch && request.method === "GET") {
-    const project = await db.prepare("SELECT * FROM projects WHERE slug = ? AND publication_status = 'published'").bind(projectMatch[1]).first();
+    const project = await db.prepare("SELECT * FROM projects WHERE slug = ? AND publication_status = 'published' AND deleted_at IS NULL").bind(projectMatch[1]).first();
     if (!project) return new Response("Not found", { status: 404 });
     return new Response(renderProjectPage({ project, lang, baseUrl }), { headers: { "Content-Type": "text/html; charset=utf-8" } });
   }
