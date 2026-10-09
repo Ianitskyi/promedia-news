@@ -143,7 +143,7 @@ export async function handleProjectsPublicRoute(request, env, url) {
     return new Response(renderProjectsHomepage({ projects: filtered, lang, baseUrl, allTags, selectedTag }), { headers: { "Content-Type": "text/html; charset=utf-8" } });
   }
 
-  const projectMatch = path.match(/^\/project\/([a-z0-9-]+)$/);
+  const projectMatch = path.match(/^\/project\/([A-Za-z0-9-]+)$/);
   if (projectMatch && request.method === "GET") {
     const project = await db.prepare("SELECT * FROM projects WHERE slug = ? AND publication_status = 'published' AND deleted_at IS NULL").bind(projectMatch[1]).first();
     if (!project) return new Response("Not found", { status: 404 });
