@@ -176,38 +176,27 @@ function tagUrl(baseUrl, lang, tag) {
   return `${baseUrl}${langPrefix(lang)}/?tag=${encodeURIComponent(tag)}`;
 }
 
-function projectFallbackImage(project) {
-  const hay = [
-    project.slug,
-    project.title,
-    project.title_en,
-    project.title_crh
-  ].filter(Boolean).join(" ").toLowerCase();
-
-  if (hay.includes("summer-basic-video") || hay.includes("summer basic video") || hay.includes("video lab")) {
-    return "https://promedia.report/assets/projects/project-summer-ai-lab-1200x900.webp";
-  }
-  if (hay.includes("rating") || hay.includes("рейтин") || hay.includes("журфак") || hay.includes("journalism school")) {
-    return "https://promedia.report/assets/projects/ratings.webp";
-  }
-  if (hay.includes("financial") || hay.includes("фінанс") || hay.includes("звітност") || hay.includes("lmf")) {
-    return "https://promedia.report/assets/projects/lmf-financial-report.webp";
-  }
-  if (hay.includes("atlas") || hay.includes("атлас")) {
-    return "https://promedia.report/assets/projects/atlas.webp";
-  }
-  return "";
-}
-
 function projectImageUrl(project, baseUrl) {
-  const fallback = projectFallbackImage(project);
-  if (fallback) return fallback;
+  const raw = String(project.cover_image_url || "").trim();
+  if (!raw) return "";
 
-  const raw = project.cover_image_url || "";
-  if (raw) {
-    try { return new URL(raw, baseUrl).toString(); } catch {}
+  const marker = "/storage/app/media/projects/";
+  const lower = raw.toLowerCase();
+  const markerIndex = lower.indexOf(marker);
+  if (markerIndex >= 0) {
+    const file = raw.slice(markerIndex + marker.length);
+    return `${baseUrl}/img/projects/${file}`;
   }
-  return "";
+
+  if (raw.startsWith("projects/")) {
+    return `${baseUrl}/img/${raw}`;
+  }
+
+  try {
+    return new URL(raw, baseUrl).toString();
+  } catch {
+    return "";
+  }
 }
 
 function projectCard(project, lang, baseUrl) {
