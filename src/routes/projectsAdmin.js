@@ -62,7 +62,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
     if (user.role !== "admin") return json({ error: "forbidden" }, 403);
     const project = await db.prepare(`
       SELECT * FROM projects
-      WHERE publication_status = 'published'
+      WHERE publication_status = 'published' AND deleted_at IS NULL
         AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
           OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
       ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC
@@ -97,7 +97,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
 
     const remainingRow = await db.prepare(`
       SELECT COUNT(*) AS count FROM projects
-      WHERE publication_status = 'published'
+      WHERE publication_status = 'published' AND deleted_at IS NULL
         AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
           OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
     `).first();
