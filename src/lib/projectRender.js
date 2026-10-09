@@ -69,9 +69,9 @@ const LABELS = {
   crh: {
     eyebrow: "ProMedia loyihaları", title: "ProMedia loyihaları", active: "Devam ete", completed: "Tamamlandı",
     upcoming: "Planlaştırılğan", partner: "Ortaq", donor: "Donor", dates: "Devir",
-    more: "Daa tafsilâtlı", back: "← Episi loyihalar", empty: "Şimdilik loyiha yoq.",
+    more: "Daa tafsilâtlı", back: "← Bütün loyihalar", empty: "Şimdilik loyiha yoq.",
     details: "Teşkilât aqqında malümat", officialName: "Resmiy adı", officialNameValue: "«ProMedia» İCT",
-    registration: "Qayd nomeri", address: "Yuridik adres", addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kiev, Ukraina, 03118",
+    registration: "Qayd nomeri", address: "Yuridik adres", addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kyiv, Ukrayina, 03118",
     chair: "İdare Keñeşi Reisi", chairValue: "Andrii Ianitskyi", phone: "Telefon", email: "Elektron poçta",
     social: "İçtimaiy şebekeler", project: "ProMedia loyihası", correction: "Hata taptıñızmı?"
   }
