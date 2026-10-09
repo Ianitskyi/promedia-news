@@ -1,7 +1,7 @@
 (function () {
   "use strict";
   var root = document.getElementById("projects-admin-root");
-  var state = { user: null, projects: [], editing: null };
+  var state = { user: null, projects: [], trash: [], editing: null };
 
   function esc(v) {
     return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) {
@@ -29,8 +29,25 @@
     return '<span class="admin-status ' + (status === "published" ? "published" : "draft") + '">' + label + '</span>';
   }
 
+  function adminSectionNav(active) {
+    return '<div class="admin-section-nav">' +
+      '<a class="admin-section-link' + (active === "news" ? " active" : "") + '" href="/admin#/dashboard">Новини</a>' +
+      '<a class="admin-section-link' + (active === "projects" ? " active" : "") + '" href="/admin/projects.html">Проєкти</a>' +
+      '<a class="admin-section-link' + (active === "research" ? " active" : "") + '" href="/admin#/subdomains">Дослідження</a>' +
+    '</div>';
+  }
+
+  function projectNeedsTranslation(p) {
+    return !String(p.titleEn || "").trim() || !String(p.excerptEn || "").trim() || !String(p.bodyMdEn || "").trim()
+      || !String(p.titleCrh || "").trim() || !String(p.excerptCrh || "").trim() || !String(p.bodyMdCrh || "").trim();
+  }
+
   function loadProjects() {
     return api("/api/admin/projects").then(function (data) { state.projects = data.items || []; });
+  }
+
+  function loadTrash() {
+    return api("/api/admin/projects/trash").then(function (data) { state.trash = data.items || []; });
   }
 
   function list() {
@@ -38,10 +55,17 @@
       var projectState = p.projectStatus === "completed" ? "завершено" : (p.projectStatus === "upcoming" ? "заплановано" : "триває");
       return "<tr><td>" + (p.isFeatured ? "★ " : "") + esc(p.title) + "</td><td>" + esc(projectState) + "</td><td>" +
         statusBadge(p.publicationStatus) + "</td><td>" + esc(new Date(p.updatedAt).toLocaleDateString("uk-UA")) +
-        '</td><td><button class="admin-btn secondary" data-edit="' + p.id + '" type="button">Редагувати</button></td></tr>';
+        '</td><td><div class="admin-row"><button class="admin-btn secondary" data-edit="' + p.id + '" type="button">Редагувати</button>' +
+        '<button class="admin-btn danger" data-trash-project="' + p.id + '" type="button">Видалити</button></div></td></tr>';
     }).join("");
+    var hasMissingTranslations = state.projects.some(projectNeedsTranslation);
     root.innerHTML =
-      '<div class="admin-row" style="margin-bottom:18px"><button class="admin-btn" id="new-project" type="button">+ Новий проєкт</button><button class="admin-btn secondary" id="translate-projects" type="button">Перекласти відсутні EN/QT</button><span class="admin-hint" id="translate-projects-status"></span></div>' +
+      adminSectionNav("projects") +
+      '<div class="admin-row admin-context-actions" style="margin-bottom:18px"><button class="admin-btn" id="new-project" type="button">+ Новий проєкт</button>' +
+      (hasMissingTranslations && state.user.role === "admin" ? '<button class="admin-btn secondary" id="translate-projects" type="button">Перекласти відсутні EN/QT</button>' : '') +
+      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="project-trash" type="button">Кошик</button>' : '') +
+      '<a class="admin-btn secondary" href="https://projects.promedia.report/" target="_blank" rel="noopener">Відкрити сайт</a>' +
+      '<span class="admin-hint" id="translate-projects-status"></span></div>' +
       '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Проєкти</h1>' +
       (rows ? '<table class="admin-table"><thead><tr><th>Назва</th><th>Статус проєкту</th><th>Публікація</th><th>Оновлено</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>' :
         '<p class="empty-state">Проєктів ще немає.</p>') + '</div>';
@@ -54,11 +78,10 @@
         api("/api/admin/projects/translate-missing", { method:"POST" }).then(function (data) {
           if (data.done) {
             status.textContent = "Переклади заповнено.";
-            translateBtn.disabled = false;
             return loadProjects().then(list);
           }
           status.textContent = "Перекладено: " + (data.translated || "") + ". Залишилось: " + data.remaining;
-          next();
+          window.setTimeout(next, 250);
         }).catch(function (err) {
           status.textContent = err.message;
           translateBtn.disabled = false;
@@ -67,10 +90,48 @@
       status.textContent = "Перекладаю…";
       next();
     });
+    var trashBtn = document.getElementById("project-trash");
+    if (trashBtn) trashBtn.addEventListener("click", function () { loadTrash().then(renderTrash); });
     Array.prototype.forEach.call(root.querySelectorAll("[data-edit]"), function (btn) {
       btn.addEventListener("click", function () {
         var id = Number(btn.dataset.edit);
         editor(state.projects.find(function (p) { return p.id === id; }) || null);
+      });
+    });
+    Array.prototype.forEach.call(root.querySelectorAll("[data-trash-project]"), function (btn) {
+      btn.addEventListener("click", function () {
+        if (!window.confirm("Перемістити цей проєкт у кошик?")) return;
+        api("/api/admin/projects/" + btn.dataset.trashProject, { method:"DELETE" })
+          .then(loadProjects).then(list)
+          .catch(function (err) { window.alert(err.message); });
+      });
+    });
+  }
+
+  function renderTrash() {
+    var rows = state.trash.map(function (p) {
+      return "<tr><td>" + esc(p.title) + "</td><td>" + esc(new Date(p.deletedAt).toLocaleDateString("uk-UA")) + "</td>" +
+        '<td><div class="admin-row"><button class="admin-btn secondary" data-restore-project="' + p.id + '" type="button">Відновити</button>' +
+        '<button class="admin-btn danger" data-delete-project-forever="' + p.id + '" type="button">Видалити назавжди</button></div></td></tr>';
+    }).join("");
+    root.innerHTML = adminSectionNav("projects") +
+      '<div class="admin-row admin-context-actions" style="margin-bottom:18px"><button class="admin-btn secondary" id="back-from-project-trash" type="button">← До проєктів</button></div>' +
+      '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Кошик проєктів</h1>' +
+      '<p class="admin-hint">Проєкти в кошику не показуються на сайті. Їх можна відновити або видалити назавжди.</p>' +
+      (rows ? '<table class="admin-table"><thead><tr><th>Назва</th><th>Видалено</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>' :
+        '<p class="empty-state">Кошик порожній.</p>') + '</div>';
+    document.getElementById("back-from-project-trash").addEventListener("click", list);
+    Array.prototype.forEach.call(root.querySelectorAll("[data-restore-project]"), function (btn) {
+      btn.addEventListener("click", function () {
+        api("/api/admin/projects/" + btn.dataset.restoreProject + "/restore", { method:"POST" })
+          .then(loadTrash).then(renderTrash).catch(function (err) { window.alert(err.message); });
+      });
+    });
+    Array.prototype.forEach.call(root.querySelectorAll("[data-delete-project-forever]"), function (btn) {
+      btn.addEventListener("click", function () {
+        if (!window.confirm("Видалити цей проєкт назавжди? Відновити його буде неможливо.")) return;
+        api("/api/admin/projects/" + btn.dataset.deleteProjectForever + "/permanent", { method:"DELETE" })
+          .then(loadTrash).then(renderTrash).catch(function (err) { window.alert(err.message); });
       });
     });
   }
@@ -85,6 +146,7 @@
     };
     var isNew = !project;
     root.innerHTML =
+      adminSectionNav("projects") +
       '<p><button class="admin-btn secondary" id="back-projects" type="button">← До списку проєктів</button></p>' +
       '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">' + (isNew ? "Новий проєкт" : "Редагування проєкту") + '</h1>' +
       '<p class="admin-error" id="project-error"></p>' +
@@ -154,7 +216,7 @@
     if(unpub) unpub.addEventListener("click", function(){ api("/api/admin/projects/"+p.id+"/unpublish",{method:"POST"}).then(loadProjects).then(list); });
     var del=document.getElementById("delete-project");
     if(del) del.addEventListener("click", function(){
-      if(!window.confirm("Видалити цей проєкт?")) return;
+      if(!window.confirm("Перемістити цей проєкт у кошик?")) return;
       api("/api/admin/projects/"+p.id,{method:"DELETE"}).then(loadProjects).then(list);
     });
   }
