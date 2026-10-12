@@ -1586,7 +1586,9 @@
     }).catch(function () {
       state.user = null;
       renderUserRow();
-      renderLogin();
+      // Preserve public authentication routes, including password recovery,
+      // when the initial /api/me request returns 401.
+      renderRoute();
     });
   }
 
