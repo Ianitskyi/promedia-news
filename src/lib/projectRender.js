@@ -190,6 +190,14 @@ function tagUrl(baseUrl, lang, tag) {
   return `${baseUrl}${langPrefix(lang)}/?tag=${encodeURIComponent(tag)}`;
 }
 
+function projectFocalStyle(project, format) {
+  let data = project.cover_crop_data;
+  try { if (typeof data === "string") data = JSON.parse(data); } catch (_) { return ""; }
+  const point = data && data[format];
+  if (!point || !Number.isFinite(Number(point.x)) || !Number.isFinite(Number(point.y))) return "";
+  return ' style="object-position:' + Math.max(0,Math.min(100,Number(point.x))) + '% ' + Math.max(0,Math.min(100,Number(point.y))) + '%"';
+}
+
 function projectImageUrl(project, baseUrl) {
   const raw = String(project.cover_image_url || "").trim();
   if (!raw) return "";
@@ -232,7 +240,7 @@ function projectCard(project, lang, baseUrl) {
   const tags = projectTags(project);
   const imageUrl = projectImageUrl(project, baseUrl);
   return `<article class="article-card article-card--visual">
-    ${imageUrl ? `<a class="article-card-media" href="${href}"><img class="article-card-img" src="${esc(imageUrl)}" alt="${esc(title)}" loading="lazy" /></a>` : ""}
+    ${imageUrl ? `<a class="article-card-media" href="${href}"><img class="article-card-img" src="${esc(imageUrl)}" alt="${esc(title)}"${projectFocalStyle(project, "feed")} loading="lazy" /></a>` : ""}
     <div class="article-card-body">
       <div class="article-tags">
         <span class="article-tag project-status${statusClass}">${esc(statusLabel(project, lang))}</span>
@@ -281,7 +289,7 @@ export function renderProjectPage({ project, lang, baseUrl }) {
     </div>
     <h1>${esc(title)}</h1>
     <p class="article-excerpt">${esc(excerpt)}</p>
-    ${imageUrl ? `<img class="article-cover" src="${esc(imageUrl)}" alt="${esc(title)}" />` : ""}
+    ${imageUrl ? `<img class="article-cover" src="${esc(imageUrl)}" alt="${esc(title)}"${projectFocalStyle(project, "desktop")} />` : ""}
     ${meta.length ? `<div class="admin-card" style="margin:24px 0">${meta.join("")}</div>` : ""}
     <div class="article-body">${markdownToHtml(field(project, "body_md", lang))}</div>
     ${project.website_url ? `<p><a class="admin-btn" href="${esc(project.website_url)}" target="_blank" rel="noopener">${l.more}</a></p>` : ""}
