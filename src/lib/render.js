@@ -122,7 +122,13 @@ function articleFocalStyle(article, lang, format) {
   try { if (typeof data === "string") data = JSON.parse(data); } catch (_) { return ""; }
   const point = data && data[format];
   if (!point || !Number.isFinite(Number(point.x)) || !Number.isFinite(Number(point.y))) return "";
-  return ' style="object-position:' + Math.max(0,Math.min(100,Number(point.x))) + '% ' + Math.max(0,Math.min(100,Number(point.y))) + '%"';
+  const clamped = (p) => Math.max(0, Math.min(100, Number(p.x))) + "% " + Math.max(0, Math.min(100, Number(p.y))) + "%";
+  if (format === "desktop") {
+    const mobile = data.mobile && Number.isFinite(Number(data.mobile.x)) && Number.isFinite(Number(data.mobile.y))
+      ? clamped(data.mobile) : clamped(point);
+    return ' style="--cover-desktop-position:' + clamped(point) + ';--cover-mobile-position:' + mobile + '"';
+  }
+  return ' style="object-position:' + clamped(point) + '"';
 }
 
 function articleCover(article, lang) {
