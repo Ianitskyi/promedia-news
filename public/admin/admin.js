@@ -1065,8 +1065,17 @@
     if (command === "youtube") {
       var url = window.prompt("Вставте посилання на YouTube", "https://www.youtube.com/watch?v=");
       if (!url) return;
-      var match = url.match(/^(https?:\/\/\S+)$/i);
-      if (!match || !/^(www\.)?(youtube\.com|youtu\.be|m\.youtube\.com)\//.test(url.replace(/^https?:\/\//, ""))) { window.alert("Потрібне коректне посилання на YouTube."); return; }
+      var parsed;
+      try { parsed = new URL(url); } catch (_) { parsed = null; }
+      var host = parsed && parsed.hostname.toLowerCase().replace(/^www\./, "");
+      var id = "";
+      if (host === "youtu.be") id = parsed.pathname.slice(1).split("/")[0];
+      else if (host === "youtube.com" || host === "m.youtube.com") {
+        if (parsed.pathname === "/watch") id = parsed.searchParams.get("v") || "";
+        else if (/^\/(embed|shorts|live)\//.test(parsed.pathname)) id = parsed.pathname.split("/")[2];
+      }
+      if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) { window.alert("Потрібне коректне посилання на YouTube."); return; }
+      url = "https://www.youtube.com/watch?v=" + id;
       var marker = document.createElement("div"); marker.className = "admin-youtube-placeholder"; marker.contentEditable = "false"; marker.dataset.youtubeUrl = url; marker.textContent = "▶ YouTube: " + url;
       restoreSelection(editor); document.execCommand("insertHTML", false, marker.outerHTML);
       syncRichEditors(); return;
