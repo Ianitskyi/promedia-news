@@ -15,12 +15,12 @@ try {
   await page.evaluate(() => { window.editor = window.ProMediaCoverEditor.create("editor", "url", "crop"); });
   assert.equal(await page.locator(".cover-editor-tab").count(), 4);
   assert.equal(await page.locator(".cover-editor-stage").evaluate(el => el.style.display), "");
-  await page.locator(".cover-x").fill("70");
-  await page.locator(".cover-y").fill("30");
+  await page.locator(".cover-x").evaluate(el => {el.value="70";el.dispatchEvent(new Event("input",{bubbles:true}));});
+  await page.locator(".cover-y").evaluate(el => {el.value="30";el.dispatchEvent(new Event("input",{bubbles:true}));});
   await page.getByText("Мобільний", { exact: false }).click();
   assert.equal(await page.locator(".cover-x").inputValue(), "50");
-  await page.locator(".cover-x").fill("20");
-  await page.locator(".cover-y").fill("80");
+  await page.locator(".cover-x").evaluate(el => {el.value="20";el.dispatchEvent(new Event("input",{bubbles:true}));});
+  await page.locator(".cover-y").evaluate(el => {el.value="80";el.dispatchEvent(new Event("input",{bubbles:true}));});
   await page.getByText("Десктоп", { exact: false }).click();
   assert.equal(await page.locator(".cover-x").inputValue(), "70");
   assert.equal(await page.locator(".cover-y").inputValue(), "30");
