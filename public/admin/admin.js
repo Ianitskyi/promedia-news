@@ -1140,7 +1140,7 @@
     details.innerHTML = "<summary>Переклади: англійська та кримськотатарська — розгорнути для перевірки</summary>";
     var fields = Array.prototype.filter.call(form.querySelectorAll(".admin-field"), function (field) {
       var label = field.querySelector("label");
-      return label && /\((англ|кримськотат\.)\)/i.test(label.textContent || "");
+      return label && /\((англ|кримськотат\.)/i.test(label.textContent || "");
     });
     if (!fields.length) return;
     fields[0].parentNode.insertBefore(details, fields[0]);
