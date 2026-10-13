@@ -190,8 +190,22 @@ function tagUrl(baseUrl, lang, tag) {
   return `${baseUrl}${langPrefix(lang)}/?tag=${encodeURIComponent(tag)}`;
 }
 
-function projectImageUrl(project, baseUrl) {
-  const raw = String(project.cover_image_url || "").trim();
+function projectFocalStyle(project, format, lang) {
+  let data = lang === "en" && project.cover_image_url_en ? project.cover_crop_data_en : project.cover_crop_data;
+  try { if (typeof data === "string") data = JSON.parse(data); } catch (_) { return ""; }
+  const point = data && data[format];
+  if (!point || !Number.isFinite(Number(point.x)) || !Number.isFinite(Number(point.y))) return "";
+  const clamped = (p) => Math.max(0, Math.min(100, Number(p.x))) + "% " + Math.max(0, Math.min(100, Number(p.y))) + "%";
+  if (format === "desktop") {
+    const mobile = data.mobile && Number.isFinite(Number(data.mobile.x)) && Number.isFinite(Number(data.mobile.y))
+      ? clamped(data.mobile) : clamped(point);
+    return ' style="--cover-desktop-position:' + clamped(point) + ';--cover-mobile-position:' + mobile + '"';
+  }
+  return ' style="object-position:' + clamped(point) + '"';
+}
+
+function projectImageUrl(project, baseUrl, lang) {
+  const raw = String(lang === "en" && project.cover_image_url_en ? project.cover_image_url_en : (project.cover_image_url || "")).trim();
   if (!raw) return "";
 
   const projectMarker = "/storage/app/media/projects/";
@@ -230,9 +244,9 @@ function projectCard(project, lang, baseUrl) {
   const href = `${baseUrl}${langPrefix(lang)}/project/${esc(project.slug)}`;
   const statusClass = project.project_status === "active" ? " project-status-active" : (project.project_status === "completed" ? " project-status-completed" : "");
   const tags = projectTags(project);
-  const imageUrl = projectImageUrl(project, baseUrl);
+  const imageUrl = projectImageUrl(project, baseUrl, lang);
   return `<article class="article-card article-card--visual">
-    ${imageUrl ? `<a class="article-card-media" href="${href}"><img class="article-card-img" src="${esc(imageUrl)}" alt="${esc(title)}" loading="lazy" /></a>` : ""}
+    ${imageUrl ? `<a class="article-card-media" href="${href}"><img class="article-card-img" src="${esc(imageUrl)}" alt="${esc(title)}"${projectFocalStyle(project, "feed", lang)} loading="lazy" /></a>` : ""}
     <div class="article-card-body">
       <div class="article-tags">
         <span class="article-tag project-status${statusClass}">${esc(statusLabel(project, lang))}</span>
@@ -272,7 +286,7 @@ export function renderProjectPage({ project, lang, baseUrl }) {
   if (project.start_date || project.end_date) meta.push(`<div><strong>${l.dates}:</strong> ${esc(fmtDate(project.start_date, lang))}${project.end_date ? " — " + esc(fmtDate(project.end_date, lang)) : ""}</div>`);
   const canonical = `${baseUrl}${langPrefix(lang)}/project/${project.slug}`;
   const statusClass = project.project_status === "active" ? " project-status-active" : (project.project_status === "completed" ? " project-status-completed" : "");
-  const imageUrl = projectImageUrl(project, baseUrl);
+  const imageUrl = projectImageUrl(project, baseUrl, lang);
   const body = `<main class="wrap article-page">
     <p class="article-back"><a href="${langPrefix(lang)}/">${l.back}</a></p>
     <div class="article-tags">
@@ -281,7 +295,7 @@ export function renderProjectPage({ project, lang, baseUrl }) {
     </div>
     <h1>${esc(title)}</h1>
     <p class="article-excerpt">${esc(excerpt)}</p>
-    ${imageUrl ? `<img class="article-cover" src="${esc(imageUrl)}" alt="${esc(title)}" />` : ""}
+    ${imageUrl ? `<img class="article-cover" src="${esc(imageUrl)}" alt="${esc(title)}"${projectFocalStyle(project, "desktop", lang)} />` : ""}
     ${meta.length ? `<div class="admin-card" style="margin:24px 0">${meta.join("")}</div>` : ""}
     <div class="article-body">${markdownToHtml(field(project, "body_md", lang))}</div>
     ${project.website_url ? `<p><a class="admin-btn" href="${esc(project.website_url)}" target="_blank" rel="noopener">${l.more}</a></p>` : ""}

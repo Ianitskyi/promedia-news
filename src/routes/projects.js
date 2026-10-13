@@ -85,6 +85,8 @@ function serialize(project) {
     bodyMdEn: project.body_md_en,
     bodyMdCrh: project.body_md_crh,
     coverImageUrl: publicProjectImageUrl(project.cover_image_url),
+    coverImageUrlEn: publicProjectImageUrl(project.cover_image_url_en),
+    coverCropData: project.cover_crop_data,
     partner: project.partner,
     partnerEn: project.partner_en,
     partnerCrh: project.partner_crh,

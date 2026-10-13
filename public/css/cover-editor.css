@@ -1,0 +1,21 @@
+
+/* Shared non-destructive cover crop editor */
+.cover-editor { max-width: 700px; margin: 12px 0 20px; }
+.cover-editor-tabs { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+.cover-editor-tab { padding:8px 11px; cursor:pointer; border:1px solid #bbc6cb; background:#fff; border-radius:5px; color:#17333b; }
+.cover-editor-tab[aria-pressed="true"] { background:#12343c; color:#fff; border-color:#12343c; }
+.cover-editor-stage { width:100%; max-height:510px; overflow:hidden; position:relative; background:#edf1f2; border-radius:6px; touch-action:none; cursor:grab; }
+.cover-editor-stage:active {cursor:grabbing;}
+.cover-editor-stage img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; pointer-events:none; }
+.cover-editor-target { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); color:white; text-shadow:0 1px 4px #000; font-size:26px; pointer-events:none; }
+.cover-editor-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:12px; }
+.cover-editor-controls label {display:grid; gap:4px; font-size:13px; }
+.cover-editor-controls input {width:100%;}
+.cover-editor-actions {display:flex; gap:8px; flex-wrap:wrap; margin-top:10px;}
+@media(max-width:600px) { .cover-editor-controls {grid-template-columns:1fr;} }
+
+.admin-translations {border:1px solid #cfd8dc; padding:12px; border-radius:6px; margin:14px 0;}
+.admin-translations summary {font-weight:600; cursor:pointer; color:#193b43;}
+.admin-youtube-placeholder {background:#edf4f6; border:1px solid #c0d5de; padding:16px; border-radius:6px; margin:12px 0;}
+.youtube-embed {width:100%; aspect-ratio:16/9; margin:18px auto; max-width:920px;}
+.youtube-embed iframe {border:0; width:100%; height:100%; display:block; border-radius:6px;}

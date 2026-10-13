@@ -1,0 +1,30 @@
+name: ProMedia admin regression tests
+on:
+  pull_request:
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'migrations/**'
+      - 'tests/**'
+      - 'package.json'
+      - '.github/workflows/admin-tests.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'migrations/**'
+      - 'tests/**'
+      - 'package.json'
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm test
+      - run: python3 tests/migrations-smoke.py

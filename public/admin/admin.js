@@ -520,7 +520,7 @@
       if (child === null || ["string", "number", "boolean"].indexOf(typeof child) !== -1) simple.push([childKey, child]);
       else complex.push([childKey, child]);
     });
-    return '<details class="admin-form-section" open><summary>' + escapeHtml(key || "Вміст") + '</summary>' +
+    return '<details class="admin-form-section"' + ((key === "en" || key === "crh") ? '' : ' open') + '><summary>' + escapeHtml(key === "en" ? "Англійська версія (розгорнути)" : (key === "crh" ? "Кримськотатарська версія (розгорнути)" : (key || "Вміст"))) + '</summary>' +
       (simple.length ? '<div class="admin-form-grid">' + simple.map(function (entry) {
         return renderPrimitiveJsonField(path.concat(entry[0]), entry[0], entry[1]);
       }).join("") + '</div>' : '') +
@@ -530,6 +530,21 @@
 
   function renderGenericJsonEditor() {
     return '<div class="admin-form-editor">' + renderGenericJsonNode(state.subdomainEditor.data, [], "Вміст") + '</div>';
+  }
+
+  function researchCoverField(item, index, english) {
+    var key = english ? "coverImageUrlEn" : "coverImageUrl";
+    var cropKey = english ? "coverCropDataEn" : "coverCropData";
+    var suffix = (english ? "en-" : "uk-") + index;
+    var label = english ? "Обкладинка англомовної картки (за потреби)" : "Обкладинка дослідження";
+    var image = item[key] || "";
+    return '<div class="admin-field admin-research-cover-field">' +
+      '<label>' + label + '</label>' +
+      '<input type="url" id="research-cover-url-' + suffix + '" data-json-path="' + jsonPathAttr([index, key]) + '" data-json-kind="text" placeholder="https://…" value="' + escapeHtml(image) + '" />' +
+      '<input type="file" accept="image/jpeg,image/png,image/webp" data-research-cover-file="' + suffix + '" />' +
+      '<div class="cover-editor" id="research-cover-editor-' + suffix + '"></div>' +
+      '<input type="hidden" id="research-cover-crop-' + suffix + '" value="' + escapeHtml(JSON.stringify(item[cropKey] || {})) + '" />' +
+      '<p class="admin-hint">Зображення зберігається в R2. У картці каталогу використовується налаштування формату «Картка».</p></div>';
   }
 
   function renderResearchEntry(item, index) {
@@ -548,6 +563,7 @@
         smartField([index, "publisher"], "Видавець", deepGet(item, ["publisher"], "")) +
         smartField([index, "originalUrl"], "Оригінальна публікація", deepGet(item, ["originalUrl"], ""), { type: "url", wide: true }) +
       '</div>' +
+      researchCoverField(item, index, false) +
       '<h3 class="admin-smart-subtitle">Українська версія</h3>' +
       '<div class="admin-form-grid">' +
         smartField([index, "title", "uk"], "Назва українською", deepGet(item, ["title", "uk"], ""), { wide: true }) +
@@ -560,7 +576,8 @@
         ]) +
         smartField([index, "languages", "uk", "url"], "URL української версії", deepGet(item, ["languages", "uk", "url"], "")) +
       '</div>' +
-      '<h3 class="admin-smart-subtitle">Англійська версія</h3>' +
+      '<details class="admin-form-section admin-translations"><summary>Англійська версія — розгорнути</summary>' +
+      researchCoverField(item, index, true) +
       '<div class="admin-form-grid">' +
         smartField([index, "title", "en"], "Назва англійською", deepGet(item, ["title", "en"], ""), { wide: true }) +
         smartField([index, "summary", "en"], "Короткий опис англійською", deepGet(item, ["summary", "en"], ""), { textarea: true, wide: true }) +
@@ -571,7 +588,18 @@
           { value: "external", label: "Зовнішнє посилання" }
         ]) +
         smartField([index, "languages", "en", "url"], "URL англійської версії", deepGet(item, ["languages", "en", "url"], "")) +
-      '</div>' +
+      '</div></details>' +
+      '<details class="admin-form-section admin-translations"><summary>Кримськотатарська версія — розгорнути</summary><div class="admin-form-grid">' +
+        smartField([index, "title", "crh"], "Назва кримськотатарською", deepGet(item, ["title", "crh"], ""), { wide: true }) +
+        smartField([index, "summary", "crh"], "Короткий опис кримськотатарською", deepGet(item, ["summary", "crh"], ""), { textarea: true, wide: true }) +
+        smartField([index, "authors", "crh"], "Автори кримськотатарською", arrayToCsv(deepGet(item, ["authors", "crh"], [])), { kind: "array" }) +
+        smartField([index, "tags", "crh"], "Теги кримськотатарською", arrayToCsv(deepGet(item, ["tags", "crh"], [])), { kind: "array" }) +
+        smartSelect([index, "languages", "crh", "type"], "Тип посилання CRH", deepGet(item, ["languages", "crh", "type"], "full"), [
+          { value: "full", label: "Повний текст на сайті" },
+          { value: "external", label: "Зовнішнє посилання" }
+        ]) +
+        smartField([index, "languages", "crh", "url"], "URL кримськотатарської версії", deepGet(item, ["languages", "crh", "url"], "")) +
+      '</div></details>' +
     '</details>';
   }
 
@@ -585,6 +613,39 @@
   }
 
   function bindSubdomainSmartFields() {
+    Array.prototype.forEach.call(document.querySelectorAll(".admin-research-cover-field"), function (container) {
+      var uploadInput = container.querySelector("[data-research-cover-file]");
+      if (!uploadInput) return;
+      var suffix = uploadInput.dataset.researchCoverFile;
+      var parts = suffix.match(/^(uk|en)-(\d+)$/);
+      if (!parts) return;
+      var english = parts[1] === "en", index = Number(parts[2]);
+      var urlField = document.getElementById("research-cover-url-" + suffix);
+      var cropField = document.getElementById("research-cover-crop-" + suffix);
+      var editor = ProMediaCoverEditor.create("research-cover-editor-" + suffix, urlField.id, cropField.id, {
+        onChange: function (cropData) {
+          if (!state.subdomainEditor || !state.subdomainEditor.data[index]) return;
+          state.subdomainEditor.data[index][english ? "coverCropDataEn" : "coverCropData"] = cropData;
+          syncSubdomainEditor();
+        }
+      });
+      urlField.addEventListener("input", function () { if (editor) editor.setImage(urlField.value); });
+      uploadInput.addEventListener("change", function () {
+        var file = uploadInput.files && uploadInput.files[0];
+        if (!file) return;
+        uploadInput.disabled = true;
+        uploadImage(file).then(function (url) {
+          // Research is served from another origin; keep the R2 URL on the news host.
+          if (url.indexOf("/img-storage/") === 0) url = "https://news.promedia.report" + url;
+          urlField.value = url;
+          urlField.dispatchEvent(new Event("input", { bubbles: true }));
+          if (editor) editor.setImage(url);
+        }).catch(function (err) {
+          var error = document.getElementById("subdomain-error");
+          if (error) error.textContent = err.message || "Не вдалося завантажити обкладинку.";
+        }).finally(function () { uploadInput.disabled = false; });
+      });
+    });
     Array.prototype.forEach.call(document.querySelectorAll("[data-json-path]"), function (field) {
       field.addEventListener("input", function () {
         var path = JSON.parse(field.dataset.jsonPath);
@@ -825,6 +886,9 @@
         return;
       }
 
+      match = line.match(/^\[youtube\]\((https?:\/\/[^\s)]+)\)$/i);
+      if (match) { flushParagraph(); flushList(); blocks.push('<div data-youtube-url="' + escapeHtml(match[1]) + '" class="admin-youtube-placeholder" contenteditable="false">▶ YouTube: ' + escapeHtml(match[1]) + '</div>'); return; }
+
       match = line.match(/^(#{1,6})\s+(.*)$/);
       if (match) {
         flushParagraph();
@@ -914,6 +978,7 @@
       text = nodeListToMarkdown(node.childNodes).trim();
       return text ? Array(Number(levelMatch[1]) + 1).join("#") + " " + text : "";
     }
+    if (node.dataset && node.dataset.youtubeUrl) return "[youtube](" + node.dataset.youtubeUrl + ")";
     if (tag === "blockquote") {
       text = nodeListToMarkdown(node.childNodes).replace(/\n+/g, "\n").trim();
       return text ? text.split("\n").map(function (line) { return "> " + line.trim(); }).join("\n") : "";
@@ -957,6 +1022,7 @@
       commandButton("1.", "Нумерований список", "insertOrderedList") +
       commandButton("“”", "Цитата", "blockquote") +
       commandButton("URL", "Додати посилання", "link") +
+      commandButton("▶", "Вставити відео YouTube", "youtube") +
       commandButton("↶", "Скасувати", "undo") +
       commandButton("↷", "Повторити", "redo") +
       commandButton("Tx", "Очистити форматування", "removeFormat") +
@@ -1057,6 +1123,24 @@
   function runEditorCommand(editor, command, value) {
     restoreSelection(editor);
     editor.surface.focus();
+    if (command === "youtube") {
+      var url = window.prompt("Вставте посилання на YouTube", "https://www.youtube.com/watch?v=");
+      if (!url) return;
+      var parsed;
+      try { parsed = new URL(url); } catch (_) { parsed = null; }
+      var host = parsed && parsed.hostname.toLowerCase().replace(/^www\./, "");
+      var id = "";
+      if (host === "youtu.be") id = parsed.pathname.slice(1).split("/")[0];
+      else if (host === "youtube.com" || host === "m.youtube.com") {
+        if (parsed.pathname === "/watch") id = parsed.searchParams.get("v") || "";
+        else if (/^\/(embed|shorts|live)\//.test(parsed.pathname)) id = parsed.pathname.split("/")[2];
+      }
+      if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) { window.alert("Потрібне коректне посилання на YouTube."); return; }
+      url = "https://www.youtube.com/watch?v=" + id;
+      var marker = document.createElement("div"); marker.className = "admin-youtube-placeholder"; marker.contentEditable = "false"; marker.dataset.youtubeUrl = url; marker.textContent = "▶ YouTube: " + url;
+      restoreSelection(editor); document.execCommand("insertHTML", false, marker.outerHTML);
+      syncRichEditors(); return;
+    }
     if (command === "link") {
       insertEditorLink(editor);
       return;
@@ -1119,6 +1203,20 @@
     });
   }
 
+  function foldTranslationFields(form) {
+    if (!form) return;
+    var details = document.createElement("details");
+    details.className = "admin-translations";
+    details.innerHTML = "<summary>Переклади: англійська та кримськотатарська — розгорнути для перевірки</summary>";
+    var fields = Array.prototype.filter.call(form.querySelectorAll(".admin-field"), function (field) {
+      var label = field.querySelector("label");
+      return label && /\((англ|кримськотат\.)/i.test(label.textContent || "");
+    });
+    if (!fields.length) return;
+    fields[0].parentNode.insertBefore(details, fields[0]);
+    fields.forEach(function (field) { details.appendChild(field); });
+  }
+
   function renderEditor(article) {
     var isNew = !article;
     var a = article || {
@@ -1148,15 +1246,17 @@
       richTextEditorHtml("bodyMdCrh", a.bodyMdCrh, "Maqale metni qırımtatarca", false) + "</div>" +
       '<div class="admin-field"><label>Обкладинка</label>' +
       '<input type="file" id="cover-input" accept="image/*" />' +
-      '<span class="admin-hint">Бажано: горизонтальне фото 16:9, від 1200×675 px; JPG, PNG або WebP; до 8 МБ. Важливі логотипи й написи краще тримати ближче до центру, бо картки можуть обрізати краї.</span>' +
+      '<span class="admin-hint">Бажано: горизонтальне фото 16:9, від 1200×675 px; JPG, PNG або WebP; до 8 МБ. Під кожною обкладинкою можна налаштувати позицію кадру для різних форматів.</span>' +
       '<input type="hidden" name="coverImageUrl" id="cover-url" value="' + escapeHtml(a.coverImageUrl) + '" />' +
       (a.coverImageUrl ? '<img class="admin-cover-preview" id="cover-preview" src="' + escapeHtml(a.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="cover-preview" style="display:none" />') +
+      '<div class="cover-editor" id="news-cover-crop"></div><input type="hidden" id="news-cover-crop-value" name="coverCropData" value="' + escapeHtml(JSON.stringify(a.coverCropData || {})) + '" />' +
       "</div>" +
       '<div class="admin-field"><label>Обкладинка (англ, за потреби)</label>' +
       '<input type="file" id="cover-input-en" accept="image/*" />' +
       '<span class="admin-hint">За наявності англомовної версії зображення завантажте її сюди. Інакше використовуватиметься основна обкладинка.</span>' +
       '<input type="hidden" name="coverImageUrlEn" id="cover-url-en" value="' + escapeHtml(a.coverImageUrlEn || "") + '" />' +
       (a.coverImageUrlEn ? '<img class="admin-cover-preview" id="cover-preview-en" src="' + escapeHtml(a.coverImageUrlEn) + '" />' : '<img class="admin-cover-preview" id="cover-preview-en" style="display:none" />') +
+      '<div class="cover-editor" id="news-cover-crop-en"></div><input type="hidden" id="news-cover-crop-en-value" name="coverCropDataEn" value="' + escapeHtml(JSON.stringify(a.coverCropDataEn || {})) + '" />' +
       "</div>" +
       '<div class="admin-field"><label>Теги (через кому)</label><input type="text" name="tags" value="' + escapeHtml(a.tags.join(", ")) + '" /></div>' +
       '<div class="admin-field"><label>Оформлення картки на головній сторінці новин</label>' +
@@ -1323,12 +1423,25 @@
       });
     });
 
+    foldTranslationFields(document.getElementById("article-form") || document.getElementById("editor-form"));
+    var newsCrop = ProMediaCoverEditor.create("news-cover-crop", "cover-url", "news-cover-crop-value");
+    var newsCropEn = ProMediaCoverEditor.create("news-cover-crop-en", "cover-url-en", "news-cover-crop-en-value");
+    (function () {
+      var copyButton = document.createElement("button");
+      copyButton.type = "button"; copyButton.className = "admin-btn secondary";
+      copyButton.textContent = "Скопіювати кадрування з української обкладинки";
+      copyButton.addEventListener("click", function () {
+        newsCropEn.setValue(newsCrop.getValue());
+      });
+      document.getElementById("news-cover-crop-en").parentNode.appendChild(copyButton);
+    })();
     var coverInput = document.getElementById("cover-input");
     coverInput.addEventListener("change", function () {
       var file = coverInput.files[0];
       if (!file) return;
       uploadImage(file).then(function (url) {
         document.getElementById("cover-url").value = url;
+        newsCrop.setImage(url);
         var preview = document.getElementById("cover-preview");
         preview.src = url;
         preview.style.display = "block";
@@ -1343,6 +1456,7 @@
       if (!file) return;
       uploadImage(file).then(function (url) {
         document.getElementById("cover-url-en").value = url;
+        newsCropEn.setImage(url);
         var preview = document.getElementById("cover-preview-en");
         preview.src = url;
         preview.style.display = "block";
@@ -1366,6 +1480,7 @@
         bodyMdCrh: fields.bodyMdCrh.value || null,
         coverImageUrl: fields.coverImageUrl.value || null,
         coverImageUrlEn: fields.coverImageUrlEn.value || null,
+        coverCropData: newsCrop.getValue(), coverCropDataEn: newsCropEn.getValue(),
         tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,
         isImportant: fields.isImportant.checked,
