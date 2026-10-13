@@ -198,6 +198,18 @@
 
     document.getElementById("back-projects").addEventListener("click", list);
     var form = document.getElementById("project-form");
+    (function foldTranslations() {
+      var formFields = Array.prototype.filter.call(form.querySelectorAll(".admin-field"), function (field) {
+        var label = field.querySelector("label");
+        return label && /\((англ|кримськотатарська)\)/i.test(label.textContent || "");
+      });
+      if (!formFields.length) return;
+      var details = document.createElement("details");
+      details.className = "admin-translations";
+      details.innerHTML = "<summary>Переклади: англійська та кримськотатарська — розгорнути для перевірки</summary>";
+      formFields[0].parentNode.insertBefore(details, formFields[0]);
+      formFields.forEach(function (field) { details.appendChild(field); });
+    })();
     var projectCrop = ProMediaCoverEditor.create("project-cover-crop", "project-cover-url-field", "project-cover-crop-value");
     document.getElementById("project-cover").addEventListener("change", function (e) {
       var file = e.target.files && e.target.files[0]; if (!file) return;
