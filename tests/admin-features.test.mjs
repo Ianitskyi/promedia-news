@@ -65,3 +65,44 @@ test("New article and project INSERT statements match column and argument counts
     assert.equal(columns, params + explicitLiterals, table + " INSERT columns and values");
   }
 });
+
+
+test("Public article renders UA/EN image positions and mobile focal point", () => {
+  const source = read("src/lib/render.js").replace(/^import .*?;\s*/m, "").replace(/export /g, "");
+  const render = new Function("markdownToHtml", "markdownToPlainText", "escapeHtml", source + "; return renderArticlePage;")(
+    markdown.markdownToHtml, markdown.markdownToPlainText, markdown.escapeHtml
+  );
+  const article = {
+    slug: "test", title: "Тест", title_en: "Test", excerpt: "Опис", excerpt_en: "Description",
+    body_md: "Текст", body_md_en: "Text", tags: "[]", cover_image_url: "/img/uk.jpg",
+    cover_image_url_en: "/img/en.jpg",
+    cover_crop_data: JSON.stringify({ desktop: {x: 35, y: 40}, mobile: {x: 65, y: 80} }),
+    cover_crop_data_en: JSON.stringify({ desktop: {x: 15, y: 20}, mobile: {x: 45, y: 55} })
+  };
+  const ua = render({ article, lang: "uk", baseUrl: "https://news.promedia.report", relatedMediaNames: [] });
+  const en = render({ article, lang: "en", baseUrl: "https://news.promedia.report", relatedMediaNames: [] });
+  assert.match(ua, /--cover-desktop-position:35% 40%;--cover-mobile-position:65% 80%/);
+  assert.match(en, /--cover-desktop-position:15% 20%;--cover-mobile-position:45% 55%/);
+  assert.match(en, /src="\/img\/en.jpg"/);
+  assert.doesNotMatch(ua, /--cover-desktop-position:15% 20%/);
+});
+
+test("Public project page supports an independent English photo", () => {
+  const source = read("src/lib/projectRender.js").replace(/^import .*?;\s*/m, "").replace(/export /g, "");
+  const render = new Function("markdownToHtml", "markdownToPlainText", source + "; return renderProjectPage;")(
+    markdown.markdownToHtml, markdown.markdownToPlainText
+  );
+  const project = {
+    slug: "project", title: "Проєкт", title_en: "Project",
+    excerpt: "Опис", excerpt_en: "Description", body_md: "Text", body_md_en: "Text",
+    cover_image_url: "/img/projects/uk.jpg", cover_image_url_en: "/img/projects/en.jpg",
+    cover_crop_data: JSON.stringify({ desktop: { x: 60, y: 40}, mobile: { x: 55, y: 70 } }),
+    cover_crop_data_en: JSON.stringify({ desktop: { x: 10, y: 20}, mobile: { x: 25, y: 35 } }),
+    tags: "[]"
+  };
+  const ua = render({project,lang:"uk",baseUrl:"https://projects.promedia.report"});
+  const en = render({project,lang:"en",baseUrl:"https://projects.promedia.report"});
+  assert.match(ua, /--cover-desktop-position:60% 40%;--cover-mobile-position:55% 70%/);
+  assert.match(en, /--cover-desktop-position:10% 20%;--cover-mobile-position:25% 35%/);
+  assert.match(en, /en\.jpg/);
+});
