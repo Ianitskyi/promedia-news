@@ -169,7 +169,7 @@
       '<div class="admin-field"><label>Короткий опис (укр)</label><textarea name="excerpt">' + esc(p.excerpt) + '</textarea></div>' +
       '<div class="admin-field"><label>Короткий опис (англ)</label><textarea name="excerptEn">' + esc(p.excerptEn) + '</textarea></div>' +
       '<div class="admin-field"><label>Короткий опис (кримськотатарська)</label><textarea name="excerptCrh">' + esc(p.excerptCrh) + '</textarea></div>' +
-      '<div class="admin-field"><label>Повний опис (укр, Markdown)*</label><textarea name="bodyMd" rows="12" required>' + esc(p.bodyMd) + '</textarea></div>' +
+      '<div class="admin-field"><label>Повний опис (укр, Markdown)*</label><p class="admin-hint">Для YouTube вставте окремим рядком [youtube](https://www.youtube.com/watch?v=VIDEO_ID)</p><textarea name="bodyMd" rows="12" required>' + esc(p.bodyMd) + '</textarea></div>' +
       '<div class="admin-field"><label>Повний опис (англ, Markdown)</label><textarea name="bodyMdEn" rows="12">' + esc(p.bodyMdEn) + '</textarea></div>' +
       '<div class="admin-field"><label>Повний опис (кримськотатарська, Markdown)</label><textarea name="bodyMdCrh" rows="12">' + esc(p.bodyMdCrh) + '</textarea></div>' +
       '<div class="admin-field"><label>Обкладинка</label><input type="file" id="project-cover" accept="image/*" />' +
