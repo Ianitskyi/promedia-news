@@ -18,6 +18,7 @@ function serialize(p) {
     excerpt: p.excerpt, excerptEn: p.excerpt_en, excerptCrh: p.excerpt_crh,
     bodyMd: p.body_md, bodyMdEn: p.body_md_en, bodyMdCrh: p.body_md_crh,
     coverImageUrl: p.cover_image_url,
+    coverCropData: JSON.parse(p.cover_crop_data || "{}"),
     partner: p.partner, partnerEn: p.partner_en, partnerCrh: p.partner_crh,
     donor: p.donor, donorEn: p.donor_en, donorCrh: p.donor_crh,
     projectStatus: p.project_status, startDate: p.start_date, endDate: p.end_date, websiteUrl: p.website_url,
@@ -113,13 +114,13 @@ export async function handleProjectsAdminRoute(request, env, url) {
     const excerpt = body.excerpt || markdownToPlainText(body.bodyMd || "", 220);
     const result = await db.prepare(`INSERT INTO projects
       (slug,title,title_en,title_crh,excerpt,excerpt_en,excerpt_crh,body_md,body_md_en,body_md_crh,
-       cover_image_url,partner,partner_en,partner_crh,donor,donor_en,donor_crh,
+       cover_image_url,cover_crop_data,partner,partner_en,partner_crh,donor,donor_en,donor_crh,
        project_status,start_date,end_date,website_url,tags,is_featured,publication_status,author_id,created_at,updated_at)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'draft', ?,?,?)`).bind(
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'draft', ?,?,?)`).bind(
       slug, body.title, body.titleEn || null, body.titleCrh || null,
       excerpt, body.excerptEn || null, body.excerptCrh || null,
       body.bodyMd || "", body.bodyMdEn || null, body.bodyMdCrh || null,
-      body.coverImageUrl || null,
+      body.coverImageUrl || null, JSON.stringify(body.coverCropData || {}),
       body.partner || null, body.partnerEn || null, body.partnerCrh || null,
       body.donor || null, body.donorEn || null, body.donorCrh || null,
       normalizeProjectStatus(body.projectStatus), body.startDate || null, body.endDate || null, body.websiteUrl || null,
@@ -192,13 +193,14 @@ export async function handleProjectsAdminRoute(request, env, url) {
       }, env);
       await db.prepare(`UPDATE projects SET
         title=?, title_en=?, title_crh=?, excerpt=?, excerpt_en=?, excerpt_crh=?,
-        body_md=?, body_md_en=?, body_md_crh=?, cover_image_url=?,
+        body_md=?, body_md_en=?, body_md_crh=?, cover_image_url=?, cover_crop_data=?,
         partner=?, partner_en=?, partner_crh=?, donor=?, donor_en=?, donor_crh=?,
         project_status=?, start_date=?, end_date=?, website_url=?, tags=?, is_featured=?, updated_at=? WHERE id=?`).bind(
         body.title ?? project.title, body.titleEn ?? project.title_en, body.titleCrh ?? project.title_crh,
         body.excerpt ?? project.excerpt, body.excerptEn ?? project.excerpt_en, body.excerptCrh ?? project.excerpt_crh,
         body.bodyMd ?? project.body_md, body.bodyMdEn ?? project.body_md_en, body.bodyMdCrh ?? project.body_md_crh,
         body.coverImageUrl ?? project.cover_image_url,
+        JSON.stringify(body.coverCropData ?? JSON.parse(project.cover_crop_data || "{}")),
         body.partner ?? project.partner, body.partnerEn ?? project.partner_en, body.partnerCrh ?? project.partner_crh,
         body.donor ?? project.donor, body.donorEn ?? project.donor_en, body.donorCrh ?? project.donor_crh,
         normalizeProjectStatus(body.projectStatus ?? project.project_status),
