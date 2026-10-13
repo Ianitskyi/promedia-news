@@ -32,7 +32,7 @@
       '<label>Позиція Y <input class="cover-y" type="range" min="0" max="100" step="1" /></label></div>' +
       '<div class="cover-editor-actions"><button type="button" class="admin-btn secondary cover-center">Центрувати</button>' +
       '<button type="button" class="admin-btn secondary cover-all">Застосувати позицію до всіх форматів</button></div>' +
-      '<p class="admin-hint">Перетягніть фото в межах перегляду або скористайтеся повзунками. Оригінал зберігається без змін.</p>';
+      '<p class="admin-hint">Перетягніть фото в межах перегляду або скористайтеся повзунками. Оригінал зберігається без змін; формат «Соцмережі» поки є лише попереднім переглядом і не створює окремий OG-файл.</p>';
     var tabs = host.querySelector(".cover-editor-tabs"), stage = host.querySelector(".cover-editor-stage"), img = stage.querySelector("img");
     var xInput = host.querySelector(".cover-x"), yInput = host.querySelector(".cover-y");
     formats.forEach(function (f) {
@@ -43,7 +43,9 @@
     });
     function draw() {
       var f = formats.find(function (item) { return item.id === active; }), p = state[active];
-      stage.style.aspectRatio = String(f.ratio); img.src = url || "";
+      stage.style.aspectRatio = String(f.ratio);
+      stage.style.maxWidth = f.ratio < 1 ? "408px" : "700px";
+      if (img.getAttribute("src") !== (url || "")) img.setAttribute("src", url || "");
       img.style.objectPosition = p.x + "% " + p.y + "%";
       stage.style.display = url ? "" : "none";
       xInput.value = p.x; yInput.value = p.y;
