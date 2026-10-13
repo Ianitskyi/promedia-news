@@ -21,6 +21,21 @@ function inline(text) {
   return out;
 }
 
+function youtubeEmbed(url) {
+  let parsed;
+  try { parsed = new URL(url); } catch (_) { return ""; }
+  const host = parsed.hostname.toLowerCase().replace(/^www\./, "");
+  let id = "";
+  if (host === "youtu.be") id = parsed.pathname.slice(1).split("/")[0];
+  else if (host === "youtube.com" || host === "m.youtube.com" || host === "youtube-nocookie.com") {
+    if (parsed.pathname === "/watch") id = parsed.searchParams.get("v") || "";
+    else if (/^\/(embed|shorts|live)\//.test(parsed.pathname)) id = parsed.pathname.split("/")[2];
+  }
+  if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) return "";
+  return '<div class="youtube-embed"><iframe src="https://www.youtube-nocookie.com/embed/' + id +
+    '" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
+}
+
 export function markdownToHtml(md) {
   if (!md) return "";
   const lines = md.replace(/\r\n/g, "\n").split("\n");
@@ -48,6 +63,14 @@ export function markdownToHtml(md) {
     if (line === "") {
       flushParagraph();
       flushList();
+      continue;
+    }
+
+    const youtube = line.match(/^\[youtube\]\((https?:\/\/[^\s)]+)\)$/i);
+    if (youtube) {
+      flushParagraph(); flushList();
+      const embed = youtubeEmbed(youtube[1]);
+      htmlBlocks.push(embed || "<p>" + inline(line) + "</p>");
       continue;
     }
 
@@ -97,6 +120,7 @@ export function markdownToHtml(md) {
 export function markdownToPlainText(md, maxLength) {
   const text = String(md ?? "")
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
+    .replace(/\[youtube\]\([^)]+\)/gi, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/[#>*_`]/g, "")
     .replace(/\s+/g, " ")
