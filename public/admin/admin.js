@@ -1062,6 +1062,15 @@
   function runEditorCommand(editor, command, value) {
     restoreSelection(editor);
     editor.surface.focus();
+    if (command === "youtube") {
+      var url = window.prompt("Вставте посилання на YouTube", "https://www.youtube.com/watch?v=");
+      if (!url) return;
+      var match = url.match(/^(https?:\/\/\S+)$/i);
+      if (!match || !/^(www\.)?(youtube\.com|youtu\.be|m\.youtube\.com)\//.test(url.replace(/^https?:\/\//, ""))) { window.alert("Потрібне коректне посилання на YouTube."); return; }
+      var marker = document.createElement("div"); marker.className = "admin-youtube-placeholder"; marker.contentEditable = "false"; marker.dataset.youtubeUrl = url; marker.textContent = "▶ YouTube: " + url;
+      restoreSelection(editor); document.execCommand("insertHTML", false, marker.outerHTML);
+      syncRichEditors(); return;
+    }
     if (command === "link") {
       insertEditorLink(editor);
       return;
@@ -1122,6 +1131,20 @@
         });
       });
     });
+  }
+
+  function foldTranslationFields(form) {
+    if (!form) return;
+    var details = document.createElement("details");
+    details.className = "admin-translations";
+    details.innerHTML = "<summary>Переклади: англійська та кримськотатарська — розгорнути для перевірки</summary>";
+    var fields = Array.prototype.filter.call(form.querySelectorAll(".admin-field"), function (field) {
+      var label = field.querySelector("label");
+      return label && /\((англ|кримськотат\.)\)/i.test(label.textContent || "");
+    });
+    if (!fields.length) return;
+    fields[0].parentNode.insertBefore(details, fields[0]);
+    fields.forEach(function (field) { details.appendChild(field); });
   }
 
   function renderEditor(article) {
@@ -1330,6 +1353,7 @@
       });
     });
 
+    foldTranslationFields(document.getElementById("article-form") || document.getElementById("editor-form"));
     var newsCrop = ProMediaCoverEditor.create("news-cover-crop", "cover-url", "news-cover-crop-value");
     var newsCropEn = ProMediaCoverEditor.create("news-cover-crop-en", "cover-url-en", "news-cover-crop-en-value");
     var coverInput = document.getElementById("cover-input");
