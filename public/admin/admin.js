@@ -825,6 +825,9 @@
         return;
       }
 
+      match = line.match(/^\[youtube\]\((https?:\/\/[^\s)]+)\)$/i);
+      if (match) { flushParagraph(); flushList(); blocks.push('<div data-youtube-url="' + escapeHtml(match[1]) + '" class="admin-youtube-placeholder" contenteditable="false">▶ YouTube: ' + escapeHtml(match[1]) + '</div>'); return; }
+
       match = line.match(/^(#{1,6})\s+(.*)$/);
       if (match) {
         flushParagraph();
@@ -914,6 +917,7 @@
       text = nodeListToMarkdown(node.childNodes).trim();
       return text ? Array(Number(levelMatch[1]) + 1).join("#") + " " + text : "";
     }
+    if (node.dataset && node.dataset.youtubeUrl) return "[youtube](" + node.dataset.youtubeUrl + ")";
     if (tag === "blockquote") {
       text = nodeListToMarkdown(node.childNodes).replace(/\n+/g, "\n").trim();
       return text ? text.split("\n").map(function (line) { return "> " + line.trim(); }).join("\n") : "";
@@ -957,6 +961,7 @@
       commandButton("1.", "Нумерований список", "insertOrderedList") +
       commandButton("“”", "Цитата", "blockquote") +
       commandButton("URL", "Додати посилання", "link") +
+      commandButton("▶", "Вставити відео YouTube", "youtube") +
       commandButton("↶", "Скасувати", "undo") +
       commandButton("↷", "Повторити", "redo") +
       commandButton("Tx", "Очистити форматування", "removeFormat") +
