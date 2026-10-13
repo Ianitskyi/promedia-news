@@ -1,0 +1,61 @@
+name: Deploy ProMedia News Worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/deploy-worker.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promedia-news-production-worker
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check credentials exist
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CF_TOKEN" || { echo "::error::Missing CLOUDFLARE_API_TOKEN"; exit 1; }
+          test -n "$CF_ACCOUNT" || { echo "::error::Missing CLOUDFLARE_ACCOUNT_ID"; exit 1; }
+      - name: Verify deployed D1 schema
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          node - <<'NODE'
+          const { execFileSync } = require('node:child_process');
+          const sql = "SELECT (SELECT COUNT(*) FROM pragma_table_info('articles') WHERE name IN ('cover_crop_data','cover_crop_data_en')) AS article_cols, (SELECT COUNT(*) FROM pragma_table_info('projects') WHERE name IN ('cover_crop_data','cover_crop_data_en','cover_image_url_en')) AS project_cols;";
+          const text = execFileSync('npx',['wrangler','d1','execute','promedia-news','--remote','--command',sql],{encoding:'utf8'});
+          const index=text.search(/\[\s*\{\s*"results"\s*:/);
+          if(index<0)throw Error("Cannot parse D1 schema verification");
+          const result=JSON.parse(text.slice(index).trim())[0].results[0];
+          if(result.article_cols!==2 || result.project_cols!==3)throw Error('D1 schema is incomplete: '+JSON.stringify(result));
+          console.log("D1 schema verified: articles=2, projects=3.");
+          NODE
+      - name: Deploy Worker and static assets
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --keep-vars
+      - name: Smoke test public site after deploy
+        run: |
+          set -e
+          curl --fail --silent --show-error --location --max-time 30 https://news.promedia.report/admin/cover-editor.js | grep -q ProMediaCoverEditor
+          curl --fail --silent --show-error --location --max-time 30 https://news.promedia.report/admin/projects.html | grep -q cover-editor.js
+          echo "Production admin assets verified."
