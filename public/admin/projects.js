@@ -173,8 +173,8 @@
       '<div class="admin-field"><label>Повний опис (англ, Markdown)</label><textarea name="bodyMdEn" rows="12">' + esc(p.bodyMdEn) + '</textarea></div>' +
       '<div class="admin-field"><label>Повний опис (кримськотатарська, Markdown)</label><textarea name="bodyMdCrh" rows="12">' + esc(p.bodyMdCrh) + '</textarea></div>' +
       '<div class="admin-field"><label>Обкладинка</label><input type="file" id="project-cover" accept="image/*" />' +
-      '<input type="hidden" name="coverImageUrl" value="' + esc(p.coverImageUrl) + '" />' +
-      (p.coverImageUrl ? '<img class="admin-cover-preview" id="project-cover-preview" src="' + esc(p.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="project-cover-preview" style="display:none" />') + '</div>' +
+      '<input type="hidden" id="project-cover-url-field" name="coverImageUrl" value="' + esc(p.coverImageUrl) + '" />' +
+      (p.coverImageUrl ? '<img class="admin-cover-preview" id="project-cover-preview" src="' + esc(p.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="project-cover-preview" style="display:none" />') + '<div class="cover-editor" id="project-cover-crop"></div><input type="hidden" name="coverCropData" id="project-cover-crop-value" value="' + esc(JSON.stringify(p.coverCropData || {})) + '" />' + '</div>' +
       '<div class="admin-field"><label>Статус проєкту</label><select name="projectStatus">' +
       '<option value="upcoming"' + (p.projectStatus === "upcoming" ? " selected" : "") + '>Заплановано</option>' +
       '<option value="active"' + (p.projectStatus === "active" ? " selected" : "") + '>Триває</option>' +
@@ -198,12 +198,14 @@
 
     document.getElementById("back-projects").addEventListener("click", list);
     var form = document.getElementById("project-form");
+    var projectCrop = ProMediaCoverEditor.create("project-cover-crop", "project-cover-url-field", "project-cover-crop-value");
     document.getElementById("project-cover").addEventListener("change", function (e) {
       var file = e.target.files && e.target.files[0]; if (!file) return;
       fetch("/api/admin/projects/upload", { method:"POST", credentials:"include", headers:{"Content-Type":file.type}, body:file })
         .then(function (r) { return r.json().then(function(d){ if(!r.ok) throw new Error(d.error || "Upload failed"); return d; }); })
         .then(function (d) {
           form.elements.coverImageUrl.value = d.url;
+          projectCrop.setImage(d.url);
           var img=document.getElementById("project-cover-preview"); img.src=d.url; img.style.display="";
         }).catch(function(err){ document.getElementById("project-error").textContent=err.message; });
     });
@@ -212,7 +214,7 @@
       e.preventDefault();
       var body = {
         title:value(form,"title"), titleEn:value(form,"titleEn"), titleCrh:value(form,"titleCrh"), excerpt:value(form,"excerpt"), excerptEn:value(form,"excerptEn"), excerptCrh:value(form,"excerptCrh"),
-        bodyMd:value(form,"bodyMd"), bodyMdEn:value(form,"bodyMdEn"), bodyMdCrh:value(form,"bodyMdCrh"), coverImageUrl:value(form,"coverImageUrl"),
+        bodyMd:value(form,"bodyMd"), bodyMdEn:value(form,"bodyMdEn"), bodyMdCrh:value(form,"bodyMdCrh"), coverImageUrl:value(form,"coverImageUrl"), coverCropData:projectCrop.getValue(),
         partner:value(form,"partner"), partnerEn:value(form,"partnerEn"), partnerCrh:value(form,"partnerCrh"), donor:value(form,"donor"), donorEn:value(form,"donorEn"), donorCrh:value(form,"donorCrh"),
         projectStatus:form.elements.projectStatus.value, startDate:form.elements.startDate.value, endDate:form.elements.endDate.value,
         websiteUrl:value(form,"websiteUrl"), tags:value(form,"tags").split(",").map(function(x){return x.trim();}).filter(Boolean),
