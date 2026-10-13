@@ -532,6 +532,21 @@
     return '<div class="admin-form-editor">' + renderGenericJsonNode(state.subdomainEditor.data, [], "Вміст") + '</div>';
   }
 
+  function researchCoverField(item, index, english) {
+    var key = english ? "coverImageUrlEn" : "coverImageUrl";
+    var cropKey = english ? "coverCropDataEn" : "coverCropData";
+    var suffix = (english ? "en-" : "uk-") + index;
+    var label = english ? "Обкладинка англомовної картки (за потреби)" : "Обкладинка дослідження";
+    var image = item[key] || "";
+    return '<div class="admin-field admin-research-cover-field">' +
+      '<label>' + label + '</label>' +
+      '<input type="url" id="research-cover-url-' + suffix + '" data-json-path="' + jsonPathAttr([index, key]) + '" data-json-kind="text" placeholder="https://…" value="' + escapeHtml(image) + '" />' +
+      '<input type="file" accept="image/jpeg,image/png,image/webp" data-research-cover-file="' + suffix + '" />' +
+      '<div class="cover-editor" id="research-cover-editor-' + suffix + '"></div>' +
+      '<input type="hidden" id="research-cover-crop-' + suffix + '" value="' + escapeHtml(JSON.stringify(item[cropKey] || {})) + '" />' +
+      '<p class="admin-hint">Зображення зберігається в R2. У картці каталогу використовується налаштування формату «Картка».</p></div>';
+  }
+
   function renderResearchEntry(item, index) {
     var title = deepGet(item, ["title", "uk"], "") || deepGet(item, ["title", "en"], "") || "Нове дослідження";
     var meta = [deepGet(item, ["year"], ""), deepGet(item, ["date"], "")].filter(Boolean).join(" · ");
@@ -548,6 +563,7 @@
         smartField([index, "publisher"], "Видавець", deepGet(item, ["publisher"], "")) +
         smartField([index, "originalUrl"], "Оригінальна публікація", deepGet(item, ["originalUrl"], ""), { type: "url", wide: true }) +
       '</div>' +
+      researchCoverField(item, index, false) +
       '<h3 class="admin-smart-subtitle">Українська версія</h3>' +
       '<div class="admin-form-grid">' +
         smartField([index, "title", "uk"], "Назва українською", deepGet(item, ["title", "uk"], ""), { wide: true }) +
@@ -560,7 +576,9 @@
         ]) +
         smartField([index, "languages", "uk", "url"], "URL української версії", deepGet(item, ["languages", "uk", "url"], "")) +
       '</div>' +
-      '<details class="admin-form-section admin-translations"><summary>Англійська версія — розгорнути</summary><div class="admin-form-grid">' +
+      '<details class="admin-form-section admin-translations"><summary>Англійська версія — розгорнути</summary>' +
+      researchCoverField(item, index, true) +
+      '<div class="admin-form-grid">' +
         smartField([index, "title", "en"], "Назва англійською", deepGet(item, ["title", "en"], ""), { wide: true }) +
         smartField([index, "summary", "en"], "Короткий опис англійською", deepGet(item, ["summary", "en"], ""), { textarea: true, wide: true }) +
         smartField([index, "authors", "en"], "Автори англійською", arrayToCsv(deepGet(item, ["authors", "en"], [])), { kind: "array", hint: "Кілька авторів розділяйте комами." }) +
@@ -595,6 +613,37 @@
   }
 
   function bindSubdomainSmartFields() {
+    Array.prototype.forEach.call(document.querySelectorAll(".admin-research-cover-field"), function (container) {
+      var uploadInput = container.querySelector("[data-research-cover-file]");
+      if (!uploadInput) return;
+      var suffix = uploadInput.dataset.researchCoverFile;
+      var parts = suffix.match(/^(uk|en)-(\\d+)$/);
+      if (!parts) return;
+      var english = parts[1] === "en", index = Number(parts[2]);
+      var urlField = document.getElementById("research-cover-url-" + suffix);
+      var cropField = document.getElementById("research-cover-crop-" + suffix);
+      var editor = ProMediaCoverEditor.create("research-cover-editor-" + suffix, urlField.id, cropField.id, {
+        onChange: function (cropData) {
+          if (!state.subdomainEditor || !state.subdomainEditor.data[index]) return;
+          state.subdomainEditor.data[index][english ? "coverCropDataEn" : "coverCropData"] = cropData;
+          syncSubdomainEditor();
+        }
+      });
+      urlField.addEventListener("input", function () { if (editor) editor.setImage(urlField.value); });
+      uploadInput.addEventListener("change", function () {
+        var file = uploadInput.files && uploadInput.files[0];
+        if (!file) return;
+        uploadInput.disabled = true;
+        uploadImage(file).then(function (url) {
+          urlField.value = url;
+          urlField.dispatchEvent(new Event("input", { bubbles: true }));
+          if (editor) editor.setImage(url);
+        }).catch(function (err) {
+          var error = document.getElementById("subdomain-error");
+          if (error) error.textContent = err.message || "Не вдалося завантажити обкладинку.";
+        }).finally(function () { uploadInput.disabled = false; });
+      });
+    });
     Array.prototype.forEach.call(document.querySelectorAll("[data-json-path]"), function (field) {
       field.addEventListener("input", function () {
         var path = JSON.parse(field.dataset.jsonPath);
