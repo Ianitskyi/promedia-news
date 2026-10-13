@@ -617,7 +617,7 @@
       var uploadInput = container.querySelector("[data-research-cover-file]");
       if (!uploadInput) return;
       var suffix = uploadInput.dataset.researchCoverFile;
-      var parts = suffix.match(/^(uk|en)-(\\d+)$/);
+      var parts = suffix.match(/^(uk|en)-(\d+)$/);
       if (!parts) return;
       var english = parts[1] === "en", index = Number(parts[2]);
       var urlField = document.getElementById("research-cover-url-" + suffix);
