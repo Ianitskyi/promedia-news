@@ -1148,15 +1148,17 @@
       richTextEditorHtml("bodyMdCrh", a.bodyMdCrh, "Maqale metni qırımtatarca", false) + "</div>" +
       '<div class="admin-field"><label>Обкладинка</label>' +
       '<input type="file" id="cover-input" accept="image/*" />' +
-      '<span class="admin-hint">Бажано: горизонтальне фото 16:9, від 1200×675 px; JPG, PNG або WebP; до 8 МБ. Важливі логотипи й написи краще тримати ближче до центру, бо картки можуть обрізати краї.</span>' +
+      '<span class="admin-hint">Бажано: горизонтальне фото 16:9, від 1200×675 px; JPG, PNG або WebP; до 8 МБ. Під кожною обкладинкою можна налаштувати позицію кадру для різних форматів.</span>' +
       '<input type="hidden" name="coverImageUrl" id="cover-url" value="' + escapeHtml(a.coverImageUrl) + '" />' +
       (a.coverImageUrl ? '<img class="admin-cover-preview" id="cover-preview" src="' + escapeHtml(a.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="cover-preview" style="display:none" />') +
+      '<div class="cover-editor" id="news-cover-crop"></div><input type="hidden" id="news-cover-crop-value" name="coverCropData" value="' + escapeHtml(JSON.stringify(a.coverCropData || {})) + '" />' +
       "</div>" +
       '<div class="admin-field"><label>Обкладинка (англ, за потреби)</label>' +
       '<input type="file" id="cover-input-en" accept="image/*" />' +
       '<span class="admin-hint">За наявності англомовної версії зображення завантажте її сюди. Інакше використовуватиметься основна обкладинка.</span>' +
       '<input type="hidden" name="coverImageUrlEn" id="cover-url-en" value="' + escapeHtml(a.coverImageUrlEn || "") + '" />' +
       (a.coverImageUrlEn ? '<img class="admin-cover-preview" id="cover-preview-en" src="' + escapeHtml(a.coverImageUrlEn) + '" />' : '<img class="admin-cover-preview" id="cover-preview-en" style="display:none" />') +
+      '<div class="cover-editor" id="news-cover-crop-en"></div><input type="hidden" id="news-cover-crop-en-value" name="coverCropDataEn" value="' + escapeHtml(JSON.stringify(a.coverCropDataEn || {})) + '" />' +
       "</div>" +
       '<div class="admin-field"><label>Теги (через кому)</label><input type="text" name="tags" value="' + escapeHtml(a.tags.join(", ")) + '" /></div>' +
       '<div class="admin-field"><label>Оформлення картки на головній сторінці новин</label>' +
@@ -1323,12 +1325,15 @@
       });
     });
 
+    var newsCrop = ProMediaCoverEditor.create("news-cover-crop", "cover-url", "news-cover-crop-value");
+    var newsCropEn = ProMediaCoverEditor.create("news-cover-crop-en", "cover-url-en", "news-cover-crop-en-value");
     var coverInput = document.getElementById("cover-input");
     coverInput.addEventListener("change", function () {
       var file = coverInput.files[0];
       if (!file) return;
       uploadImage(file).then(function (url) {
         document.getElementById("cover-url").value = url;
+        newsCrop.setImage(url);
         var preview = document.getElementById("cover-preview");
         preview.src = url;
         preview.style.display = "block";
@@ -1343,6 +1348,7 @@
       if (!file) return;
       uploadImage(file).then(function (url) {
         document.getElementById("cover-url-en").value = url;
+        newsCropEn.setImage(url);
         var preview = document.getElementById("cover-preview-en");
         preview.src = url;
         preview.style.display = "block";
@@ -1366,6 +1372,7 @@
         bodyMdCrh: fields.bodyMdCrh.value || null,
         coverImageUrl: fields.coverImageUrl.value || null,
         coverImageUrlEn: fields.coverImageUrlEn.value || null,
+        coverCropData: newsCrop.getValue(), coverCropDataEn: newsCropEn.getValue(),
         tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,
         isImportant: fields.isImportant.checked,
