@@ -67,6 +67,38 @@
       function done() { stage.removeEventListener("pointermove", move); stage.removeEventListener("pointerup", done); stage.removeEventListener("pointercancel", done); }
       stage.addEventListener("pointermove", move); stage.addEventListener("pointerup", done); stage.addEventListener("pointercancel", done);
     });
+    if (typeof window.FaceDetector === "function") {
+      var autoButton = document.createElement("button");
+      autoButton.type = "button"; autoButton.className = "admin-btn secondary";
+      autoButton.textContent = "Авто: знайти обличчя";
+      var status = document.createElement("span"); status.className = "admin-hint"; status.setAttribute("role", "status");
+      host.querySelector(".cover-editor-actions").appendChild(autoButton);
+      host.querySelector(".cover-editor-actions").appendChild(status);
+      autoButton.addEventListener("click", async function () {
+        if (!url) return;
+        autoButton.disabled = true; status.textContent = "Аналіз фотографії…";
+        try {
+          await img.decode();
+          var detector = new window.FaceDetector({ fastMode: true, maxDetectedFaces: 10 });
+          var faces = await detector.detect(img);
+          if (!faces.length) {
+            status.textContent = "Облич не знайдено. Можна кадрувати вручну."; return;
+          }
+          var largest = faces.reduce(function (best, face) {
+            return face.boundingBox.width * face.boundingBox.height > best.boundingBox.width * best.boundingBox.height ? face : best;
+          });
+          var rect = largest.boundingBox;
+          var point = {
+            x: Math.max(0, Math.min(100, (rect.x + rect.width / 2) / img.naturalWidth * 100)),
+            y: Math.max(0, Math.min(100, (rect.y + rect.height / 2) / img.naturalHeight * 100))
+          };
+          formats.forEach(function (format) { state[format.id] = { x: point.x, y: point.y }; });
+          draw(); status.textContent = "Позицію обличчя застосовано до всіх форматів. Кожен кадр можна змінити вручну.";
+        } catch (_) {
+          status.textContent = "Автопошук недоступний для цього фото. Скористайтеся ручним кадруванням.";
+        } finally { autoButton.disabled = false; }
+      });
+    }
     host.querySelector(".cover-center").addEventListener("click", function () { state[active] = { x: 50, y: 50 }; draw(); });
     host.querySelector(".cover-all").addEventListener("click", function () {
       var point = state[active]; formats.forEach(function (f) { state[f.id] = { x: point.x, y: point.y }; }); draw();
@@ -74,7 +106,8 @@
     draw();
     return {
       setImage: function (next) { url = next || ""; draw(); },
-      getValue: function () { return normalize(field.value); }
+      getValue: function () { return normalize(field.value); },
+      setValue: function (value) { state = normalize(value); draw(); }
     };
   }
   window.ProMediaCoverEditor = { create: make, normalize: normalize };
