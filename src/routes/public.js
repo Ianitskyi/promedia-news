@@ -292,7 +292,7 @@ ${entries.join("\n")}
   // GET / (homepage, optional ?tag=)
   if (pagePath === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, tags, card_style, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, card_style, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND tags LIKE ?";
