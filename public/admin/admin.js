@@ -635,6 +635,8 @@
         if (!file) return;
         uploadInput.disabled = true;
         uploadImage(file).then(function (url) {
+          // Research is served from another origin; keep the R2 URL on the news host.
+          if (url.indexOf("/img-storage/") === 0) url = "https://news.promedia.report" + url;
           urlField.value = url;
           urlField.dispatchEvent(new Event("input", { bubbles: true }));
           if (editor) editor.setImage(url);
