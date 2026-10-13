@@ -25,7 +25,7 @@
     var urlInput = document.getElementById(imageInputId);
     var field = document.getElementById(hiddenId);
     if (!host || !urlInput || !field) return null;
-    var state = normalize(field.value), active = "desktop", url = urlInput.value || "";
+    var state = normalize(field.value), active = "desktop", url = urlInput.value || "", initialized = false;
     host.innerHTML = '<div class="cover-editor-tabs" role="group" aria-label="Формат кадрування"></div>' +
       '<div class="cover-editor-stage"><img alt="Попередній перегляд обкладинки" draggable="false" /><div class="cover-editor-target" aria-hidden="true">+</div></div>' +
       '<div class="cover-editor-controls"><label>Позиція X <input class="cover-x" type="range" min="0" max="100" step="1" /></label>' +
@@ -51,6 +51,7 @@
       xInput.value = p.x; yInput.value = p.y;
       Array.prototype.forEach.call(tabs.children, function (b) { b.setAttribute("aria-pressed", b.dataset.format === active ? "true" : "false"); });
       field.value = JSON.stringify(state);
+      if (initialized && options && typeof options.onChange === "function") options.onChange(normalize(state));
     }
     function change() { state[active] = { x: Number(xInput.value), y: Number(yInput.value) }; draw(); }
     xInput.addEventListener("input", change); yInput.addEventListener("input", change);
@@ -104,6 +105,7 @@
       var point = state[active]; formats.forEach(function (f) { state[f.id] = { x: point.x, y: point.y }; }); draw();
     });
     draw();
+    initialized = true;
     return {
       setImage: function (next) { url = next || ""; draw(); },
       getValue: function () { return normalize(field.value); },
