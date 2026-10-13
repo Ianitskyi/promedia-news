@@ -169,7 +169,7 @@
       '<div class="admin-field"><label>Короткий опис (укр)</label><textarea name="excerpt">' + esc(p.excerpt) + '</textarea></div>' +
       '<div class="admin-field"><label>Короткий опис (англ)</label><textarea name="excerptEn">' + esc(p.excerptEn) + '</textarea></div>' +
       '<div class="admin-field"><label>Короткий опис (кримськотатарська)</label><textarea name="excerptCrh">' + esc(p.excerptCrh) + '</textarea></div>' +
-      '<div class="admin-field"><label>Повний опис (укр, Markdown)*</label><p class="admin-hint">Для YouTube вставте окремим рядком [youtube](https://www.youtube.com/watch?v=VIDEO_ID)</p><textarea name="bodyMd" rows="12" required>' + esc(p.bodyMd) + '</textarea></div>' +
+      '<div class="admin-field"><label>Повний опис (укр, Markdown)*</label><p class="admin-hint">Відео YouTube можна вставити за посиланням.</p><button type="button" class="admin-btn secondary" data-add-youtube="bodyMd">▶ Додати YouTube</button><textarea name="bodyMd" rows="12" required>' + esc(p.bodyMd) + '</textarea></div>' +
       '<div class="admin-field"><label>Повний опис (англ, Markdown)</label><textarea name="bodyMdEn" rows="12">' + esc(p.bodyMdEn) + '</textarea></div>' +
       '<div class="admin-field"><label>Повний опис (кримськотатарська, Markdown)</label><textarea name="bodyMdCrh" rows="12">' + esc(p.bodyMdCrh) + '</textarea></div>' +
       '<div class="admin-field"><label>Обкладинка</label><input type="file" id="project-cover" accept="image/*" />' +
@@ -236,6 +236,28 @@
           projectCropEn.setImage(d.url);
           var img = document.getElementById("project-cover-en-preview"); img.src = d.url; img.style.display = "";
         }).catch(function(err){ document.getElementById("project-error").textContent = err.message; });
+    });
+
+    Array.prototype.forEach.call(form.querySelectorAll("[data-add-youtube]"), function (button) {
+      button.addEventListener("click", function () {
+        var url = window.prompt("Посилання YouTube (youtube.com/watch або youtu.be)");
+        if (!url) return;
+        var parsed;
+        try { parsed = new URL(url); } catch (_) { parsed = null; }
+        var host = parsed && parsed.hostname.toLowerCase().replace(/^www\./, "");
+        var id = "";
+        if (host === "youtu.be") id = parsed.pathname.slice(1).split("/")[0];
+        else if (host === "youtube.com" || host === "m.youtube.com") {
+          if (parsed.pathname === "/watch") id = parsed.searchParams.get("v") || "";
+          else if (/^\/(embed|shorts|live)\//.test(parsed.pathname)) id = parsed.pathname.split("/")[2];
+        }
+        if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) { window.alert("Некоректне посилання на YouTube"); return; }
+        var textarea = form.elements[button.dataset.addYoutube];
+        var marker = "[youtube](https://www.youtube.com/watch?v=" + id + ")";
+        var start = textarea.selectionStart, end = textarea.selectionEnd;
+        textarea.value = textarea.value.slice(0, start) + "\n\n" + marker + "\n\n" + textarea.value.slice(end);
+        textarea.focus(); textarea.selectionStart = textarea.selectionEnd = start + marker.length + 4;
+      });
     });
 
     form.addEventListener("submit", function (e) {
