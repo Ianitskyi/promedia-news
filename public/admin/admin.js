@@ -520,7 +520,7 @@
       if (child === null || ["string", "number", "boolean"].indexOf(typeof child) !== -1) simple.push([childKey, child]);
       else complex.push([childKey, child]);
     });
-    return '<details class="admin-form-section" open><summary>' + escapeHtml(key || "Вміст") + '</summary>' +
+    return '<details class="admin-form-section"' + ((key === "en" || key === "crh") ? '' : ' open') + '><summary>' + escapeHtml(key === "en" ? "Англійська версія (розгорнути)" : (key === "crh" ? "Кримськотатарська версія (розгорнути)" : (key || "Вміст"))) + '</summary>' +
       (simple.length ? '<div class="admin-form-grid">' + simple.map(function (entry) {
         return renderPrimitiveJsonField(path.concat(entry[0]), entry[0], entry[1]);
       }).join("") + '</div>' : '') +
@@ -560,8 +560,7 @@
         ]) +
         smartField([index, "languages", "uk", "url"], "URL української версії", deepGet(item, ["languages", "uk", "url"], "")) +
       '</div>' +
-      '<h3 class="admin-smart-subtitle">Англійська версія</h3>' +
-      '<div class="admin-form-grid">' +
+      '<details class="admin-form-section admin-translations"><summary>Англійська версія — розгорнути</summary><div class="admin-form-grid">' +
         smartField([index, "title", "en"], "Назва англійською", deepGet(item, ["title", "en"], ""), { wide: true }) +
         smartField([index, "summary", "en"], "Короткий опис англійською", deepGet(item, ["summary", "en"], ""), { textarea: true, wide: true }) +
         smartField([index, "authors", "en"], "Автори англійською", arrayToCsv(deepGet(item, ["authors", "en"], [])), { kind: "array", hint: "Кілька авторів розділяйте комами." }) +
@@ -571,7 +570,18 @@
           { value: "external", label: "Зовнішнє посилання" }
         ]) +
         smartField([index, "languages", "en", "url"], "URL англійської версії", deepGet(item, ["languages", "en", "url"], "")) +
-      '</div>' +
+      '</div></details>' +
+      '<details class="admin-form-section admin-translations"><summary>Кримськотатарська версія — розгорнути</summary><div class="admin-form-grid">' +
+        smartField([index, "title", "crh"], "Назва кримськотатарською", deepGet(item, ["title", "crh"], ""), { wide: true }) +
+        smartField([index, "summary", "crh"], "Короткий опис кримськотатарською", deepGet(item, ["summary", "crh"], ""), { textarea: true, wide: true }) +
+        smartField([index, "authors", "crh"], "Автори кримськотатарською", arrayToCsv(deepGet(item, ["authors", "crh"], [])), { kind: "array" }) +
+        smartField([index, "tags", "crh"], "Теги кримськотатарською", arrayToCsv(deepGet(item, ["tags", "crh"], [])), { kind: "array" }) +
+        smartSelect([index, "languages", "crh", "type"], "Тип посилання CRH", deepGet(item, ["languages", "crh", "type"], "full"), [
+          { value: "full", label: "Повний текст на сайті" },
+          { value: "external", label: "Зовнішнє посилання" }
+        ]) +
+        smartField([index, "languages", "crh", "url"], "URL кримськотатарської версії", deepGet(item, ["languages", "crh", "url"], "")) +
+      '</div></details>' +
     '</details>';
   }
 
