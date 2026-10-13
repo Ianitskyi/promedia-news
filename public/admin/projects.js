@@ -205,7 +205,7 @@
     (function foldTranslations() {
       var formFields = Array.prototype.filter.call(form.querySelectorAll(".admin-field"), function (field) {
         var label = field.querySelector("label");
-        return label && /\((англ|кримськотатарська)\)/i.test(label.textContent || "");
+        return label && /\((англ|кримськотатарська)([,)]|$)/i.test(label.textContent || "");
       });
       if (!formFields.length) return;
       var details = document.createElement("details");
