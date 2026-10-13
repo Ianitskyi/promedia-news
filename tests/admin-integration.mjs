@@ -66,7 +66,7 @@ try {
     assert.equal(await trans.locator('[name="titleEn"]').count(), 1);
     assert.equal(await trans.locator('[name="bodyMdCrh"]').count(), 1);
     await page.locator('[name="title"]').fill("Тестове повідомлення");
-    await page.locator('[data-editor-surface]').first().fill("Тестова українська стаття");
+    await page.locator('[data-rich-editor="bodyMd"] [data-editor-surface]').fill("Тестова українська стаття");
     await page.locator('#cover-url').evaluate(el => {el.value = "/img-storage/cover-uk.jpg";});
     await page.locator("#news-cover-crop .cover-x").evaluate(el => {el.value="65";el.dispatchEvent(new Event("input",{bubbles:true}));});
     await page.locator("#news-cover-crop .cover-y").evaluate(el => {el.value="35";el.dispatchEvent(new Event("input",{bubbles:true}));});
