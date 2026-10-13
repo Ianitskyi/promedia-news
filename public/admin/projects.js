@@ -216,6 +216,15 @@
     })();
     var projectCrop = ProMediaCoverEditor.create("project-cover-crop", "project-cover-url-field", "project-cover-crop-value");
     var projectCropEn = ProMediaCoverEditor.create("project-cover-crop-en", "project-cover-url-en-field", "project-cover-crop-en-value");
+    (function () {
+      var copyButton = document.createElement("button");
+      copyButton.type = "button"; copyButton.className = "admin-btn secondary";
+      copyButton.textContent = "Скопіювати кадрування з української обкладинки";
+      copyButton.addEventListener("click", function () {
+        projectCropEn.setValue(projectCrop.getValue());
+      });
+      document.getElementById("project-cover-crop-en").parentNode.appendChild(copyButton);
+    })();
     document.getElementById("project-cover").addEventListener("change", function (e) {
       var file = e.target.files && e.target.files[0]; if (!file) return;
       fetch("/api/admin/projects/upload", { method:"POST", credentials:"include", headers:{"Content-Type":file.type}, body:file })
