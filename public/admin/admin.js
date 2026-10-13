@@ -1375,6 +1375,15 @@
     foldTranslationFields(document.getElementById("article-form") || document.getElementById("editor-form"));
     var newsCrop = ProMediaCoverEditor.create("news-cover-crop", "cover-url", "news-cover-crop-value");
     var newsCropEn = ProMediaCoverEditor.create("news-cover-crop-en", "cover-url-en", "news-cover-crop-en-value");
+    (function () {
+      var copyButton = document.createElement("button");
+      copyButton.type = "button"; copyButton.className = "admin-btn secondary";
+      copyButton.textContent = "Скопіювати кадрування з української обкладинки";
+      copyButton.addEventListener("click", function () {
+        newsCropEn.setValue(newsCrop.getValue());
+      });
+      document.getElementById("news-cover-crop-en").parentNode.appendChild(copyButton);
+    })();
     var coverInput = document.getElementById("cover-input");
     coverInput.addEventListener("change", function () {
       var file = coverInput.files[0];
