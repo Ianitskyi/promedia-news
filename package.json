@@ -12,7 +12,8 @@
     "import:promedia": "node scripts/audit-promedia-import.mjs --apply",
     "migrate:project-images": "node scripts/migrate-project-images-to-r2.mjs",
     "db:migrate:cover-crops:local": "wrangler d1 execute promedia-news --local --file=migrations/0012_cover_crop_positions.sql",
-    "db:migrate:cover-crops:remote": "wrangler d1 execute promedia-news --remote --file=migrations/0012_cover_crop_positions.sql"
+    "db:migrate:cover-crops:remote": "wrangler d1 execute promedia-news --remote --file=migrations/0012_cover_crop_positions.sql",
+    "test": "node --test tests/*.test.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
