@@ -143,7 +143,7 @@
         "<td>" + (a.isImportant ? '<span title="Важлива новина" aria-label="Важлива новина">★ </span>' : "") + escapeHtml(a.title) + "</td>" +
         "<td>" + statusBadge(a.status) + "</td>" +
         "<td>" + escapeHtml(new Date(a.updatedAt).toLocaleDateString("uk-UA")) + "</td>" +
-        '<td><div class="admin-row"><a href="#/edit/' + a.id + '">Редагувати</a><button class="admin-btn danger" style="padding:5px 10px;font-size:11px" data-trash-article="' + a.id + '" type="button">Видалити</button></div></td>' +
+        '<td><div class="admin-row"><a href="#/edit/' + a.id + '">Редагувати</a></div></td>' +
         "</tr>";
     }).join("");
 
@@ -176,15 +176,6 @@
     });
     var pushBtn = document.getElementById("push-btn");
     if (pushBtn) pushBtn.addEventListener("click", function () { navigate("#/push"); });
-    Array.prototype.forEach.call(root.querySelectorAll("[data-trash-article]"), function (btn) {
-      btn.addEventListener("click", function () {
-        var id = btn.dataset.trashArticle;
-        if (!window.confirm("Перемістити цю новину в кошик? Її можна буде відновити протягом 30 днів.")) return;
-        api("/api/admin/articles/" + id, { method: "DELETE" })
-          .then(loadArticles).then(renderDashboard)
-          .catch(function (err) { window.alert(err.message); });
-      });
-    });
     var trashBtn = document.getElementById("trash-btn");
     if (trashBtn) trashBtn.addEventListener("click", function () { navigate("#/trash"); });
     var usersBtn = document.getElementById("users-btn");
