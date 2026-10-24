@@ -11,19 +11,57 @@ function parseJson(value) {
   try { return JSON.parse(value || "[]"); } catch { return []; }
 }
 
+const PROJECT_TAGS = ["навчання", "дослідження", "інструмент", "інструменти", "модерація", "спільнота", "спільноти", "консалтинг", "консультації", "медіа", "штучний інтелект", "автоматизація", "фактчекінг", "відео", "журналістика", "медіаграмотність", "посібник"];
+
+function normalizeProjectTags(tags) {
+  const allowed = new Map(PROJECT_TAGS.map((tag) => [tag.toLocaleLowerCase("uk-UA"), tag]));
+  const invalid = [], result = [];
+  for (const raw of Array.isArray(tags) ? tags : []) {
+    const key = String(raw || "").trim().toLocaleLowerCase("uk-UA");
+    if (!key) continue;
+    if (!allowed.has(key)) invalid.push(String(raw));
+    else if (!result.includes(allowed.get(key))) result.push(allowed.get(key));
+  }
+  return { tags: result, invalid };
+}
+
+const MONTHS = { "січень":1,"січня":1,"лютий":2,"лютого":2,"березень":3,"березня":3,"квітень":4,"квітня":4,"травень":5,"травня":5,"червень":6,"червня":6,"липень":7,"липня":7,"серпень":8,"серпня":8,"вересень":9,"вересня":9,"жовтень":10,"жовтня":10,"листопад":11,"листопада":11,"грудень":12,"грудня":12 };
+function isoDate(year, month, day) { return `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`; }
+function extractStructuredSections(markdown) {
+  const source = String(markdown || "");
+  const periodMatch = source.match(/^\s*\*\*Період:\*\*\s*([^\n]+)\s*(?:\n|$)/i);
+  const label = periodMatch ? periodMatch[1].trim() : "";
+  const body = periodMatch ? source.slice(periodMatch[0].length).replace(/^\s+/, "") : source;
+  let startDate = null, endDate = null;
+  let match = label.match(/^(\d{1,2})\s*[–—-]\s*(\d{1,2})\s+([а-яіїєґ]+)\s+(\d{4})/i);
+  if (match && MONTHS[match[3].toLocaleLowerCase("uk-UA")]) { startDate = isoDate(+match[4], MONTHS[match[3].toLocaleLowerCase("uk-UA")], +match[1]); endDate = isoDate(+match[4], MONTHS[match[3].toLocaleLowerCase("uk-UA")], +match[2]); }
+  else { match = label.match(/^(\d{1,2})\s+([а-яіїєґ]+)\s+(\d{4})/i); if (match && MONTHS[match[2].toLocaleLowerCase("uk-UA")]) startDate = endDate = isoDate(+match[3], MONTHS[match[2].toLocaleLowerCase("uk-UA")], +match[1]); }
+  const heading = /^##\s+(.+)$/gmi, sections = []; let item;
+  while ((item = heading.exec(body))) sections.push({ title: item[1].trim(), start: item.index, contentStart: heading.lastIndex });
+  sections.forEach((section, index) => { section.end = index + 1 < sections.length ? sections[index + 1].start : body.length; });
+  const work = sections.find((section) => /^що ми (зробили|робили)$/i.test(section.title));
+  const results = sections.find((section) => /^результати$/i.test(section.title));
+  if (!work && !results) return { overview: body.trim(), work: "", results: "", structured: false, label, startDate, endDate };
+  const recognised = [work, results].filter(Boolean).sort((a,b) => a.start-b.start); let cursor = 0; const overview = [];
+  recognised.forEach((section) => { overview.push(body.slice(cursor, section.start)); cursor = section.end; }); overview.push(body.slice(cursor));
+  return { overview: overview.join("").trim(), work: work ? body.slice(work.contentStart, work.end).trim() : "", results: results ? body.slice(results.contentStart, results.end).trim() : "", structured: true, label, startDate, endDate };
+}
+
 function serialize(p) {
   return {
     id: p.id, slug: p.slug,
     title: p.title, titleEn: p.title_en, titleCrh: p.title_crh,
     excerpt: p.excerpt, excerptEn: p.excerpt_en, excerptCrh: p.excerpt_crh,
     bodyMd: p.body_md, bodyMdEn: p.body_md_en, bodyMdCrh: p.body_md_crh,
+    workMd: p.work_md, workMdEn: p.work_md_en, workMdCrh: p.work_md_crh,
+    resultsMd: p.results_md, resultsMdEn: p.results_md_en, resultsMdCrh: p.results_md_crh,
     coverImageUrl: p.cover_image_url,
     coverImageUrlEn: p.cover_image_url_en,
     coverCropDataEn: JSON.parse(p.cover_crop_data_en || "{}"),
     coverCropData: JSON.parse(p.cover_crop_data || "{}"),
     partner: p.partner, partnerEn: p.partner_en, partnerCrh: p.partner_crh,
     donor: p.donor, donorEn: p.donor_en, donorCrh: p.donor_crh,
-    projectStatus: p.project_status, startDate: p.start_date, endDate: p.end_date, websiteUrl: p.website_url,
+    projectStatus: p.project_status, startDate: p.start_date, endDate: p.end_date, periodLabel: p.period_label, periodLabelEn: p.period_label_en, periodLabelCrh: p.period_label_crh, websiteUrl: p.website_url,
     tags: parseJson(p.tags), isFeatured: Boolean(p.is_featured), publicationStatus: p.publication_status,
     authorId: p.author_id, publishedAt: p.published_at, createdAt: p.created_at, updatedAt: p.updated_at, deletedAt: p.deleted_at
   };
@@ -42,10 +80,11 @@ function normalizeProjectStatus(value) {
 
 async function autoTranslateProject(body, env) {
   if (!body || !body.title || !body.bodyMd) return body;
-  return completeArticleDraft({
+  const completed = await completeArticleDraft({
     ...body,
     tags: Array.isArray(body.tags) ? body.tags : []
   }, env);
+  return { ...completed, tags: body.tags };
 }
 
 export async function handleProjectsAdminRoute(request, env, url) {
@@ -67,7 +106,9 @@ export async function handleProjectsAdminRoute(request, env, url) {
       SELECT * FROM projects
       WHERE publication_status = 'published' AND deleted_at IS NULL
         AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
-          OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
+          OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = ''
+          OR (TRIM(COALESCE(partner, '')) <> '' AND (TRIM(COALESCE(partner_en, '')) = '' OR TRIM(COALESCE(partner_crh, '')) = ''))
+          OR (TRIM(COALESCE(donor, '')) <> '' AND (TRIM(COALESCE(donor_en, '')) = '' OR TRIM(COALESCE(donor_crh, '')) = '')))
       ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC
       LIMIT 1
     `).first();
@@ -83,6 +124,8 @@ export async function handleProjectsAdminRoute(request, env, url) {
       bodyMd: project.body_md,
       bodyMdEn: project.body_md_en,
       bodyMdCrh: project.body_md_crh,
+      partner: project.partner, partnerEn: project.partner_en, partnerCrh: project.partner_crh,
+      donor: project.donor, donorEn: project.donor_en, donorCrh: project.donor_crh,
       tags: parseJson(project.tags)
     }, env);
 
@@ -91,10 +134,11 @@ export async function handleProjectsAdminRoute(request, env, url) {
     }
 
     await db.prepare(`UPDATE projects SET
-      title_en=?, title_crh=?, excerpt_en=?, excerpt_crh=?, body_md_en=?, body_md_crh=?, tags=?, updated_at=?
+      title_en=?, title_crh=?, excerpt_en=?, excerpt_crh=?, body_md_en=?, body_md_crh=?, partner_en=?, partner_crh=?, donor_en=?, donor_crh=?, tags=?, updated_at=?
       WHERE id=?`).bind(
       translated.titleEn, translated.titleCrh, translated.excerptEn || "", translated.excerptCrh || "",
-      translated.bodyMdEn, translated.bodyMdCrh, JSON.stringify(translated.tags || parseJson(project.tags)),
+      translated.bodyMdEn, translated.bodyMdCrh, translated.partnerEn || project.partner_en, translated.partnerCrh || project.partner_crh,
+      translated.donorEn || project.donor_en, translated.donorCrh || project.donor_crh, JSON.stringify(translated.tags || parseJson(project.tags)),
       new Date().toISOString(), project.id
     ).run();
 
@@ -102,26 +146,57 @@ export async function handleProjectsAdminRoute(request, env, url) {
       SELECT COUNT(*) AS count FROM projects
       WHERE publication_status = 'published' AND deleted_at IS NULL
         AND (TRIM(COALESCE(title_en, '')) = '' OR TRIM(COALESCE(excerpt_en, '')) = '' OR TRIM(COALESCE(body_md_en, '')) = ''
-          OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = '')
+          OR TRIM(COALESCE(title_crh, '')) = '' OR TRIM(COALESCE(excerpt_crh, '')) = '' OR TRIM(COALESCE(body_md_crh, '')) = ''
+          OR (TRIM(COALESCE(partner, '')) <> '' AND (TRIM(COALESCE(partner_en, '')) = '' OR TRIM(COALESCE(partner_crh, '')) = ''))
+          OR (TRIM(COALESCE(donor, '')) <> '' AND (TRIM(COALESCE(donor_en, '')) = '' OR TRIM(COALESCE(donor_crh, '')) = '')))
     `).first();
     return json({ done: Number(remainingRow.count || 0) === 0, translated: project.title, remaining: Number(remainingRow.count || 0) });
+  }
+
+  if (url.pathname === "/api/admin/projects/migrate-legacy-content" && request.method === "POST") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const payload = await request.json().catch(() => ({})); const apply = payload.apply === true;
+    const { results } = await db.prepare("SELECT * FROM projects WHERE deleted_at IS NULL ORDER BY id").all();
+    const items = []; let eligible = 0, applied = 0; const now = new Date().toISOString();
+    for (const project of results) {
+      const data = extractStructuredSections(project.body_md);
+      const canStructure = data.structured && !String(project.work_md || "").trim() && !String(project.results_md || "").trim() && Boolean(data.work || data.results);
+      const canPeriod = !String(project.period_label || "").trim() && Boolean(data.label);
+      const canStart = !project.start_date && Boolean(data.startDate), canEnd = !project.end_date && Boolean(data.endDate);
+      const changed = Number(canStructure) + Number(canPeriod) + Number(canStart) + Number(canEnd);
+      if (changed) eligible++;
+      const item = { id: project.id, title: project.title, status: !changed ? "unchanged" : (canStructure && data.work && data.results ? "ready" : "partial"), structure: canStructure, period: canPeriod, startDate: canStart ? data.startDate : null, endDate: canEnd ? data.endDate : null, periodLabel: data.label || null };
+      if (apply && changed) {
+        await db.prepare("UPDATE projects SET body_md=?, work_md=?, results_md=?, period_label=?, start_date=?, end_date=?, updated_at=? WHERE id=?").bind(
+          canStructure ? data.overview : project.body_md, canStructure ? data.work : (project.work_md || ""), canStructure ? data.results : (project.results_md || ""),
+          canPeriod ? data.label : project.period_label, canStart ? data.startDate : project.start_date, canEnd ? data.endDate : project.end_date, now, project.id
+        ).run(); item.applied = true; applied++;
+      }
+      items.push(item);
+    }
+    return json({ dryRun: !apply, total: results.length, eligible, applied, items });
   }
 
   if (url.pathname === "/api/admin/projects" && request.method === "POST") {
     let body = await request.json().catch(() => null);
     if (!body || !body.title) return json({ error: "title обов'язковий" }, 400);
+    const normalizedTags = normalizeProjectTags(body.tags);
+    if (normalizedTags.invalid.length) return json({ error: "Доступні лише встановлені теги: " + PROJECT_TAGS.join(", ") }, 400);
+    body.tags = normalizedTags.tags;
     body = await autoTranslateProject(body, env);
     const now = new Date().toISOString();
     const slug = await uniqueProjectSlug(db, body.title);
     const excerpt = body.excerpt || markdownToPlainText(body.bodyMd || "", 220);
     const result = await db.prepare(`INSERT INTO projects
-      (slug,title,title_en,title_crh,excerpt,excerpt_en,excerpt_crh,body_md,body_md_en,body_md_crh,
+      (slug,title,title_en,title_crh,excerpt,excerpt_en,excerpt_crh,body_md,body_md_en,body_md_crh,work_md,work_md_en,work_md_crh,results_md,results_md_en,results_md_crh,period_label,period_label_en,period_label_crh,
        cover_image_url,cover_image_url_en,cover_crop_data,cover_crop_data_en,partner,partner_en,partner_crh,donor,donor_en,donor_crh,
        project_status,start_date,end_date,website_url,tags,is_featured,publication_status,author_id,created_at,updated_at)
-      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? , 'draft', ?,?,?)`).bind(
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,? , 'draft', ?,?,?)`).bind(
       slug, body.title, body.titleEn || null, body.titleCrh || null,
       excerpt, body.excerptEn || null, body.excerptCrh || null,
       body.bodyMd || "", body.bodyMdEn || null, body.bodyMdCrh || null,
+      body.workMd || "", body.workMdEn || null, body.workMdCrh || null, body.resultsMd || "", body.resultsMdEn || null, body.resultsMdCrh || null,
+      body.periodLabel || null, body.periodLabelEn || null, body.periodLabelCrh || null,
       body.coverImageUrl || null, body.coverImageUrlEn || null, JSON.stringify(body.coverCropData || {}), JSON.stringify(body.coverCropDataEn || {}),
       body.partner || null, body.partnerEn || null, body.partnerCrh || null,
       body.donor || null, body.donorEn || null, body.donorCrh || null,
@@ -180,6 +255,11 @@ export async function handleProjectsAdminRoute(request, env, url) {
     if (request.method === "PUT") {
       let body = await request.json().catch(() => null);
       if (!body) return json({ error: "invalid_body" }, 400);
+      if (body.tags !== undefined) {
+        const normalizedTags = normalizeProjectTags(body.tags);
+        if (normalizedTags.invalid.length) return json({ error: "Доступні лише встановлені теги: " + PROJECT_TAGS.join(", ") }, 400);
+        body.tags = normalizedTags.tags;
+      }
       body = await autoTranslateProject({
         title: body.title ?? project.title,
         titleEn: body.titleEn ?? project.title_en,
@@ -195,12 +275,15 @@ export async function handleProjectsAdminRoute(request, env, url) {
       }, env);
       await db.prepare(`UPDATE projects SET
         title=?, title_en=?, title_crh=?, excerpt=?, excerpt_en=?, excerpt_crh=?,
-        body_md=?, body_md_en=?, body_md_crh=?, cover_image_url=?, cover_image_url_en=?, cover_crop_data=?, cover_crop_data_en=?,
+        body_md=?, body_md_en=?, body_md_crh=?, work_md=?, work_md_en=?, work_md_crh=?, results_md=?, results_md_en=?, results_md_crh=?, period_label=?, period_label_en=?, period_label_crh=?, cover_image_url=?, cover_image_url_en=?, cover_crop_data=?, cover_crop_data_en=?,
         partner=?, partner_en=?, partner_crh=?, donor=?, donor_en=?, donor_crh=?,
         project_status=?, start_date=?, end_date=?, website_url=?, tags=?, is_featured=?, updated_at=? WHERE id=?`).bind(
         body.title ?? project.title, body.titleEn ?? project.title_en, body.titleCrh ?? project.title_crh,
         body.excerpt ?? project.excerpt, body.excerptEn ?? project.excerpt_en, body.excerptCrh ?? project.excerpt_crh,
         body.bodyMd ?? project.body_md, body.bodyMdEn ?? project.body_md_en, body.bodyMdCrh ?? project.body_md_crh,
+        body.workMd ?? project.work_md, body.workMdEn ?? project.work_md_en, body.workMdCrh ?? project.work_md_crh,
+        body.resultsMd ?? project.results_md, body.resultsMdEn ?? project.results_md_en, body.resultsMdCrh ?? project.results_md_crh,
+        body.periodLabel ?? project.period_label, body.periodLabelEn ?? project.period_label_en, body.periodLabelCrh ?? project.period_label_crh,
         body.coverImageUrl ?? project.cover_image_url,
         body.coverImageUrlEn ?? project.cover_image_url_en,
         JSON.stringify(body.coverCropData ?? JSON.parse(project.cover_crop_data || "{}")),
