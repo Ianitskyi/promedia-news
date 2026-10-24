@@ -3,6 +3,7 @@
   var root = document.getElementById("projects-admin-root");
   var userRow = document.getElementById("admin-user-row");
   var state = { user: null, projects: [], trash: [], editing: null };
+  var PROJECT_TAGS = ["навчання", "дослідження", "інструмент", "інструменти", "модерація", "спільнота", "спільноти", "консалтинг", "консультації", "медіа", "штучний інтелект", "автоматизація", "фактчекінг", "відео", "журналістика", "медіаграмотність", "посібник"];
 
   function esc(v) {
     return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) {
@@ -51,7 +52,9 @@
 
   function projectNeedsTranslation(p) {
     return !String(p.titleEn || "").trim() || !String(p.excerptEn || "").trim() || !String(p.bodyMdEn || "").trim()
-      || !String(p.titleCrh || "").trim() || !String(p.excerptCrh || "").trim() || !String(p.bodyMdCrh || "").trim();
+      || !String(p.titleCrh || "").trim() || !String(p.excerptCrh || "").trim() || !String(p.bodyMdCrh || "").trim()
+      || (p.partner && (!String(p.partnerEn || "").trim() || !String(p.partnerCrh || "").trim()))
+      || (p.donor && (!String(p.donorEn || "").trim() || !String(p.donorCrh || "").trim()));
   }
 
   function loadProjects() {
@@ -75,6 +78,7 @@
       adminSectionNav("projects") +
       '<div class="admin-row admin-context-actions" style="margin-bottom:18px"><button class="admin-btn" id="new-project" type="button">+ Новий проєкт</button>' +
       (hasMissingTranslations && state.user.role === "admin" ? '<button class="admin-btn secondary" id="translate-projects" type="button">Перекласти відсутні EN/QT</button>' : '') +
+      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="migrate-legacy-projects" type="button">Переглянути перенесення зі старого сайту</button>' : '') +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="project-trash" type="button">Кошик</button>' : '') +
       '<a class="admin-btn secondary" href="https://projects.promedia.report/" target="_blank" rel="noopener">Відкрити сайт</a>' +
       '<span class="admin-hint" id="translate-projects-status"></span></div>' +
@@ -101,6 +105,16 @@
       }
       status.textContent = "Перекладаю…";
       next();
+    });
+    var migrateBtn = document.getElementById("migrate-legacy-projects");
+    if (migrateBtn) migrateBtn.addEventListener("click", function () {
+      var status = document.getElementById("translate-projects-status"); migrateBtn.disabled = true; status.textContent = "Готую безпечний перегляд…";
+      api("/api/admin/projects/migrate-legacy-content", { method:"POST", body:{apply:false} }).then(function (preview) {
+        var ready = preview.items.filter(function(i){return i.status === "ready";}).length, partial = preview.items.filter(function(i){return i.status === "partial";}).length;
+        var names = preview.items.filter(function(i){return i.status !== "unchanged";}).slice(0,12).map(function(i){return "• "+i.title+(i.status === "partial" ? " (потрібна ручна перевірка)" : "");}).join("\n");
+        if (!preview.eligible || !window.confirm("Попередній перегляд: дані ще не змінено.\n\nПовністю структуровано: "+ready+".\nЧастково: "+partial+".\nУсього до перенесення: "+preview.eligible+".\n\n"+(names || "Нових даних немає.")+"\n\nЗастосувати? Наявні тексти, дати й поля не перезаписуються.")) { migrateBtn.disabled=false; status.textContent="Перенесення скасовано; дані не змінено."; return null; }
+        status.textContent="Переношу дані…"; return api("/api/admin/projects/migrate-legacy-content", {method:"POST",body:{apply:true}});
+      }).then(function(result){ if(!result)return; status.textContent="Безпечно оновлено проєктів: "+result.applied+"."; return loadProjects().then(list); }).catch(function(err){status.textContent=err.message;migrateBtn.disabled=false;});
     });
     var trashBtn = document.getElementById("project-trash");
     if (trashBtn) trashBtn.addEventListener("click", function () { loadTrash().then(renderTrash); });
@@ -149,12 +163,13 @@
   }
 
   function value(form, name) { return form.elements[name].value.trim(); }
+  function tagChoices(selected) { return '<div class="project-tag-options" role="group" aria-label="Теги проєкту">' + PROJECT_TAGS.map(function(tag){ return '<label class="project-tag-option"><input type="checkbox" name="projectTag" value="'+esc(tag)+'"'+((selected||[]).indexOf(tag)>=0?" checked":"")+' /> <span>'+esc(tag)+"</span></label>"; }).join("") + "</div>"; }
 
   function editor(project) {
     var p = project || {
-      title:"",titleEn:"",titleCrh:"",excerpt:"",excerptEn:"",excerptCrh:"",bodyMd:"",bodyMdEn:"",bodyMdCrh:"",coverImageUrl:"",coverImageUrlEn:"",
+      title:"",titleEn:"",titleCrh:"",excerpt:"",excerptEn:"",excerptCrh:"",bodyMd:"",bodyMdEn:"",bodyMdCrh:"",workMd:"",workMdEn:"",workMdCrh:"",resultsMd:"",resultsMdEn:"",resultsMdCrh:"",coverImageUrl:"",coverImageUrlEn:"",
       partner:"",partnerEn:"",partnerCrh:"",donor:"",donorEn:"",donorCrh:"",projectStatus:"active",startDate:"",endDate:"",
-      websiteUrl:"",tags:[],isFeatured:false,publicationStatus:"draft"
+      periodLabel:"",websiteUrl:"",tags:[],isFeatured:false,publicationStatus:"draft"
     };
     var isNew = !project;
     root.innerHTML =
@@ -169,9 +184,15 @@
       '<div class="admin-field"><label>Короткий опис (укр)</label><textarea name="excerpt">' + esc(p.excerpt) + '</textarea></div>' +
       '<div class="admin-field"><label>Короткий опис (англ)</label><textarea name="excerptEn">' + esc(p.excerptEn) + '</textarea></div>' +
       '<div class="admin-field"><label>Короткий опис (кримськотатарська)</label><textarea name="excerptCrh">' + esc(p.excerptCrh) + '</textarea></div>' +
-      '<div class="admin-field"><label>Повний опис (укр, Markdown)*</label><p class="admin-hint">Відео YouTube можна вставити за посиланням.</p><button type="button" class="admin-btn secondary" data-add-youtube="bodyMd">▶ Додати YouTube</button><textarea name="bodyMd" rows="12" required>' + esc(p.bodyMd) + '</textarea></div>' +
-      '<div class="admin-field"><label>Повний опис (англ, Markdown)</label><textarea name="bodyMdEn" rows="12">' + esc(p.bodyMdEn) + '</textarea></div>' +
-      '<div class="admin-field"><label>Повний опис (кримськотатарська, Markdown)</label><textarea name="bodyMdCrh" rows="12">' + esc(p.bodyMdCrh) + '</textarea></div>' +
+      '<div class="admin-field admin-markdown-field"><label>Про проєкт (укр)*</label>'+ProMediaRichEditor.html("bodyMd",p.bodyMd,"Опис проєкту українською",true)+'</div>' +
+      '<div class="admin-field admin-markdown-field"><label>Що ми робили (укр)*</label>'+ProMediaRichEditor.html("workMd",p.workMd,"Що ми робили українською",true)+'</div>' +
+      '<div class="admin-field admin-markdown-field"><label>Результати (укр)*</label>'+ProMediaRichEditor.html("resultsMd",p.resultsMd,"Результати українською",true)+'</div>' +
+      '<div class="admin-field admin-markdown-field"><label>Про проєкт (англ)</label>'+ProMediaRichEditor.html("bodyMdEn",p.bodyMdEn,"Project description in English",false)+'</div>' +
+      '<div class="admin-field admin-markdown-field"><label>Що ми робили (англ)</label>'+ProMediaRichEditor.html("workMdEn",p.workMdEn,"Work completed in English",false)+'</div>' +
+      '<div class="admin-field admin-markdown-field"><label>Результати (англ)</label>'+ProMediaRichEditor.html("resultsMdEn",p.resultsMdEn,"Results in English",false)+'</div>' +
+      '<div class="admin-field admin-markdown-field"><label>Про проєкт (кримськотатарська)</label>'+ProMediaRichEditor.html("bodyMdCrh",p.bodyMdCrh,"Layiha tasviri qırımtatarca",false)+'</div>' +
+      '<div class="admin-field admin-markdown-field"><label>Що ми робили (кримськотатарська)</label>'+ProMediaRichEditor.html("workMdCrh",p.workMdCrh,"Yapqanımız qırımtatarca",false)+'</div>' +
+      '<div class="admin-field admin-markdown-field"><label>Результати (кримськотатарська)</label>'+ProMediaRichEditor.html("resultsMdCrh",p.resultsMdCrh,"Neticeler qırımtatarca",false)+'</div>' +
       '<div class="admin-field"><label>Обкладинка</label><input type="file" id="project-cover" accept="image/*" />' +
       '<input type="hidden" id="project-cover-url-field" name="coverImageUrl" value="' + esc(p.coverImageUrl) + '" />' +
       (p.coverImageUrl ? '<img class="admin-cover-preview" id="project-cover-preview" src="' + esc(p.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="project-cover-preview" style="display:none" />') + '<div class="cover-editor" id="project-cover-crop"></div><input type="hidden" name="coverCropData" id="project-cover-crop-value" value="' + esc(JSON.stringify(p.coverCropData || {})) + '" />' + '</div>' +
@@ -185,6 +206,7 @@
       '<option value="completed"' + (p.projectStatus === "completed" ? " selected" : "") + '>Завершено</option></select></div>' +
       '<div class="admin-row"><div class="admin-field"><label>Дата початку</label><input type="date" name="startDate" value="' + esc(p.startDate || "") + '" /></div>' +
       '<div class="admin-field"><label>Дата завершення</label><input type="date" name="endDate" value="' + esc(p.endDate || "") + '" /></div></div>' +
+      '<div class="admin-field"><label>Період для показу на сайті</label><input name="periodLabel" placeholder="Наприклад: травень–червень 2026" value="'+esc(p.periodLabel||"")+'" /><span class="admin-hint">Зберігає точне формулювання для періодів без конкретного дня.</span></div>' +
       '<div class="admin-field"><label>Партнер (укр)</label><input name="partner" value="' + esc(p.partner) + '" /></div>' +
       '<div class="admin-field"><label>Партнер (англ)</label><input name="partnerEn" value="' + esc(p.partnerEn) + '" /></div>' +
       '<div class="admin-field"><label>Партнер (кримськотатарська)</label><input name="partnerCrh" value="' + esc(p.partnerCrh) + '" /></div>' +
@@ -192,7 +214,7 @@
       '<div class="admin-field"><label>Донор (англ)</label><input name="donorEn" value="' + esc(p.donorEn) + '" /></div>' +
       '<div class="admin-field"><label>Донор (кримськотатарська)</label><input name="donorCrh" value="' + esc(p.donorCrh) + '" /></div>' +
       '<div class="admin-field"><label>Посилання на сайт/матеріали проєкту</label><input type="url" name="websiteUrl" value="' + esc(p.websiteUrl) + '" /></div>' +
-      '<div class="admin-field"><label>Теги (через кому)</label><input name="tags" value="' + esc((p.tags || []).join(", ")) + '" /></div>' +
+      '<div class="admin-field"><label>Теги</label><span class="admin-hint">Оберіть один або кілька напрямів зі встановленого переліку.</span>'+tagChoices(p.tags)+'</div>' +
       '<div class="admin-field"><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" name="isFeatured" style="width:auto"' + (p.isFeatured ? " checked" : "") + ' /> Показувати як вибраний проєкт</label></div>' +
       '<div class="admin-row"><button class="admin-btn" type="submit">Зберегти</button>' +
       (!isNew && p.publicationStatus === "published" ? '<button class="admin-btn secondary" id="unpublish-project" type="button">Зняти з публікації</button>' : '') +
@@ -214,6 +236,7 @@
       formFields[0].parentNode.insertBefore(details, formFields[0]);
       formFields.forEach(function (field) { details.appendChild(field); });
     })();
+    var projectEditors = ProMediaRichEditor.attach(form);
     var projectCrop = ProMediaCoverEditor.create("project-cover-crop", "project-cover-url-field", "project-cover-crop-value");
     var projectCropEn = ProMediaCoverEditor.create("project-cover-crop-en", "project-cover-url-en-field", "project-cover-crop-en-value");
     (function () {
@@ -247,38 +270,18 @@
         }).catch(function(err){ document.getElementById("project-error").textContent = err.message; });
     });
 
-    Array.prototype.forEach.call(form.querySelectorAll("[data-add-youtube]"), function (button) {
-      button.addEventListener("click", function () {
-        var url = window.prompt("Посилання YouTube (youtube.com/watch або youtu.be)");
-        if (!url) return;
-        var parsed;
-        try { parsed = new URL(url); } catch (_) { parsed = null; }
-        var host = parsed && parsed.hostname.toLowerCase().replace(/^www\./, "");
-        var id = "";
-        if (host === "youtu.be") id = parsed.pathname.slice(1).split("/")[0];
-        else if (host === "youtube.com" || host === "m.youtube.com") {
-          if (parsed.pathname === "/watch") id = parsed.searchParams.get("v") || "";
-          else if (/^\/(embed|shorts|live)\//.test(parsed.pathname)) id = parsed.pathname.split("/")[2];
-        }
-        if (!/^[a-zA-Z0-9_-]{11}$/.test(id)) { window.alert("Некоректне посилання на YouTube"); return; }
-        var textarea = form.elements[button.dataset.addYoutube];
-        var marker = "[youtube](https://www.youtube.com/watch?v=" + id + ")";
-        var start = textarea.selectionStart, end = textarea.selectionEnd;
-        textarea.value = textarea.value.slice(0, start) + "\n\n" + marker + "\n\n" + textarea.value.slice(end);
-        textarea.focus(); textarea.selectionStart = textarea.selectionEnd = start + marker.length + 4;
-      });
-    });
-
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      ProMediaRichEditor.sync(projectEditors);
       var body = {
         title:value(form,"title"), titleEn:value(form,"titleEn"), titleCrh:value(form,"titleCrh"), excerpt:value(form,"excerpt"), excerptEn:value(form,"excerptEn"), excerptCrh:value(form,"excerptCrh"),
-        bodyMd:value(form,"bodyMd"), bodyMdEn:value(form,"bodyMdEn"), bodyMdCrh:value(form,"bodyMdCrh"), coverImageUrl:value(form,"coverImageUrl"), coverCropData:projectCrop.getValue(), coverImageUrlEn:value(form,"coverImageUrlEn"), coverCropDataEn:projectCropEn.getValue(),
+        bodyMd:value(form,"bodyMd"), bodyMdEn:value(form,"bodyMdEn"), bodyMdCrh:value(form,"bodyMdCrh"), workMd:value(form,"workMd"), workMdEn:value(form,"workMdEn"), workMdCrh:value(form,"workMdCrh"), resultsMd:value(form,"resultsMd"), resultsMdEn:value(form,"resultsMdEn"), resultsMdCrh:value(form,"resultsMdCrh"), coverImageUrl:value(form,"coverImageUrl"), coverCropData:projectCrop.getValue(), coverImageUrlEn:value(form,"coverImageUrlEn"), coverCropDataEn:projectCropEn.getValue(),
         partner:value(form,"partner"), partnerEn:value(form,"partnerEn"), partnerCrh:value(form,"partnerCrh"), donor:value(form,"donor"), donorEn:value(form,"donorEn"), donorCrh:value(form,"donorCrh"),
-        projectStatus:form.elements.projectStatus.value, startDate:form.elements.startDate.value, endDate:form.elements.endDate.value,
-        websiteUrl:value(form,"websiteUrl"), tags:value(form,"tags").split(",").map(function(x){return x.trim();}).filter(Boolean),
+        projectStatus:form.elements.projectStatus.value, startDate:form.elements.startDate.value, endDate:form.elements.endDate.value, periodLabel:value(form,"periodLabel"),
+        websiteUrl:value(form,"websiteUrl"), tags:Array.prototype.map.call(form.querySelectorAll('input[name="projectTag"]:checked'),function(input){return input.value;}),
         isFeatured:form.elements.isFeatured.checked
       };
+      if (!body.bodyMd || !body.workMd || !body.resultsMd) { document.getElementById("project-error").textContent="Заповніть поля «Про проєкт», «Що ми робили» та «Результати»."; return; }
       api(isNew ? "/api/admin/projects" : "/api/admin/projects/" + p.id, { method:isNew ? "POST" : "PUT", body:body })
         .then(loadProjects).then(list).catch(function(err){ document.getElementById("project-error").textContent=err.message; });
     });

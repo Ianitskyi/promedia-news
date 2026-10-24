@@ -43,7 +43,7 @@ const TAG_VOCABULARY = [
 const ASSIST_SCHEMA = {
   type: "object",
   additionalProperties: false,
-  required: ["titleEn", "excerptEn", "bodyMdEn", "titleCrh", "excerptCrh", "bodyMdCrh", "tags"],
+  required: ["titleEn", "excerptEn", "bodyMdEn", "titleCrh", "excerptCrh", "bodyMdCrh", "partnerEn", "partnerCrh", "donorEn", "donorCrh", "tags"],
   properties: {
     titleEn: { type: "string" },
     excerptEn: { type: "string" },
@@ -51,6 +51,8 @@ const ASSIST_SCHEMA = {
     titleCrh: { type: "string" },
     excerptCrh: { type: "string" },
     bodyMdCrh: { type: "string" },
+    partnerEn: { type: "string" }, partnerCrh: { type: "string" },
+    donorEn: { type: "string" }, donorCrh: { type: "string" },
     tags: {
       type: "array",
       minItems: 2,
@@ -103,6 +105,10 @@ function applyAssistedFields(body, assisted) {
     titleCrh: hasText(body.titleCrh) ? body.titleCrh : assisted.titleCrh,
     excerptCrh: hasText(body.excerptCrh) ? body.excerptCrh : assisted.excerptCrh,
     bodyMdCrh: hasText(body.bodyMdCrh) ? body.bodyMdCrh : assisted.bodyMdCrh,
+    partnerEn: hasText(body.partnerEn) ? body.partnerEn : assisted.partnerEn,
+    partnerCrh: hasText(body.partnerCrh) ? body.partnerCrh : assisted.partnerCrh,
+    donorEn: hasText(body.donorEn) ? body.donorEn : assisted.donorEn,
+    donorCrh: hasText(body.donorCrh) ? body.donorCrh : assisted.donorCrh,
     tags: hasTags(body.tags) ? body.tags : assisted.tags
   };
 }
@@ -162,6 +168,7 @@ export async function generateArticleAssist(env, article) {
                 "The Crimean Tatar Latin alphabet here uses ç, ğ, ñ, ö, ş, ü, ı, İ and â where appropriate. Never introduce letters from Azerbaijani, especially ə. Never mix Cyrillic and Latin letters inside one word: Lьвivte is invalid; write Lvivde for “in Lviv”. Use harita for map and its natural forms, not xəritə.",
                 "After translating, perform a second terminology pass: check consistency of repeated terms, modern Crimean Tatar Latin orthography, names, special letters, and the absence of Ukrainian or Russian prose. Do not render data matches as a chance coincidence. Facts, meaning, dates, quotations, links and Markdown structure must remain unchanged.",
                 "Create a concise English SEO excerpt under 170 characters, and a concise Crimean Tatar SEO excerpt under 170 characters.",
+                "When partner or donor names are present, translate them too. Use an established English name where it exists; for Crimean Tatar use a natural translation or standard Latin transliteration. Return an empty string when the source value is absent.",
                 "Return canonical tags in Ukrainian. Include one broad category from: Заяви, Новини, Статті. Add 1-5 topical tags, preferably from this vocabulary: " + TAG_VOCABULARY.join(", ") + ".",
                 "If only the Ukrainian title is present, translate the title into both languages, create conservative tags from the title only, and leave bodyMdEn and bodyMdCrh empty.",
                 "Do not add facts, quotes, links or sources that are not present in the Ukrainian text."
@@ -177,7 +184,9 @@ export async function generateArticleAssist(env, article) {
               text: JSON.stringify({
                 titleUk: article.title || "",
                 excerptUk: article.excerpt || "",
-                bodyMdUk: article.bodyMd || ""
+                bodyMdUk: article.bodyMd || "",
+                partnerUk: article.partner || "",
+                donorUk: article.donor || ""
               })
             }
           ]
@@ -213,22 +222,28 @@ export async function generateArticleAssist(env, article) {
     titleCrh: normalizeCrimeanTatar(parsed.titleCrh).trim(),
     excerptCrh: normalizeCrimeanTatar(parsed.excerptCrh).trim(),
     bodyMdCrh: normalizeCrimeanTatar(parsed.bodyMdCrh).trim(),
+    partnerEn: String(parsed.partnerEn || "").trim(),
+    partnerCrh: normalizeCrimeanTatar(parsed.partnerCrh).trim(),
+    donorEn: String(parsed.donorEn || "").trim(),
+    donorCrh: normalizeCrimeanTatar(parsed.donorCrh).trim(),
     tags: normalizeTags(parsed.tags)
   };
 }
 
 export async function completeArticleDraft(body, env) {
   if (!body || !hasText(body.title) || !hasText(body.bodyMd)) return body;
+  const needsPartnerTranslation = hasText(body.partner) && (!hasText(body.partnerEn) || !hasText(body.partnerCrh));
+  const needsDonorTranslation = hasText(body.donor) && (!hasText(body.donorEn) || !hasText(body.donorCrh));
   const needsAssist = !hasText(body.titleEn) || !hasText(body.excerptEn) || !hasText(body.bodyMdEn)
     || !hasText(body.titleCrh) || !hasText(body.excerptCrh) || !hasText(body.bodyMdCrh) || !hasTags(body.tags);
-  if (!needsAssist) return body;
+  if (!needsAssist && !needsPartnerTranslation && !needsDonorTranslation) return body;
 
   let assisted = null;
   try {
     assisted = await generateArticleAssist(env, {
       title: body.title,
       excerpt: body.excerpt || markdownToPlainText(body.bodyMd || "", 200),
-      bodyMd: body.bodyMd
+      bodyMd: body.bodyMd, partner: body.partner, donor: body.donor
     });
   } catch (err) {
     console.warn("Article assist failed", err && err.message ? err.message : err);
