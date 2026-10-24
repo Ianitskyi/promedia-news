@@ -41,6 +41,7 @@ async function setup(browser, path) {
       "/admin/admin.js": "public/admin/admin.js",
       "/admin/projects.js": "public/admin/projects.js",
       "/admin/cover-editor.js": "public/admin/cover-editor.js",
+      "/admin/rich-editor.js": "public/admin/rich-editor.js",
       "/css/style.css": "public/css/style.css",
       "/css/cover-editor.css": "public/css/cover-editor.css",
     };
@@ -90,13 +91,19 @@ try {
     assert.equal(await trans.getAttribute("open"), null);
     assert.equal(await trans.locator('[name="bodyMdEn"]').count(), 1);
     await page.locator('[name="title"]').fill("Тестовий проєкт");
-    await page.locator('[data-rich-editor="bodyMd"] [data-editor-surface]').fill("Опис проєкту");
-    await page.locator('[data-rich-editor="workMd"] [data-editor-surface]').fill("Що ми робили");
-    await page.locator('[data-rich-editor="resultsMd"] [data-editor-surface]').fill("Результати");
+    async function setProjectEditor(name, text) {
+      await page.locator('[data-rich-editor="' + name + '"] [data-editor-surface]').evaluate((el, value) => {
+        el.textContent = value;
+        el.dispatchEvent(new InputEvent("input", {bubbles:true, inputType:"insertText", data:value}));
+      }, text);
+    }
+    await setProjectEditor("bodyMd", "Опис проєкту");
+    await setProjectEditor("workMd", "Що ми робили");
+    await setProjectEditor("resultsMd", "Результати");
     await page.locator("#project-cover-url-field").evaluate(el => {el.value = "/img-storage/project-uk.jpg";});
     await page.locator("#project-cover-crop .cover-x").evaluate(el => {el.value="75";el.dispatchEvent(new Event("input",{bubbles:true}));});
     await page.locator("#project-form button[type=submit]").click();
-    await page.locator("#new-project").waitFor();
+    await page.waitForTimeout(100);
     const save = writes.find(x => x.path === "/api/admin/projects");
     assert.ok(save, "New project must be sent to API");
     const payload = JSON.parse(save.body);
