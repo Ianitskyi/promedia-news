@@ -84,6 +84,8 @@ function serialize(project) {
     bodyMd: project.body_md,
     bodyMdEn: project.body_md_en,
     bodyMdCrh: project.body_md_crh,
+    workMd: project.work_md, workMdEn: project.work_md_en, workMdCrh: project.work_md_crh,
+    resultsMd: project.results_md, resultsMdEn: project.results_md_en, resultsMdCrh: project.results_md_crh,
     coverImageUrl: publicProjectImageUrl(project.cover_image_url),
     coverImageUrlEn: publicProjectImageUrl(project.cover_image_url_en),
     coverCropData: project.cover_crop_data,
@@ -96,6 +98,7 @@ function serialize(project) {
     projectStatus: project.project_status,
     startDate: project.start_date,
     endDate: project.end_date,
+    periodLabel: project.period_label, periodLabelEn: project.period_label_en, periodLabelCrh: project.period_label_crh,
     websiteUrl: project.website_url,
     tags: parseJson(project.tags),
     isFeatured: Boolean(project.is_featured),
@@ -138,7 +141,7 @@ export async function handleProjectsPublicRoute(request, env, url) {
 
   const baseUrl = "https://projects.promedia.report";
   if (path === "/" && request.method === "GET") {
-    const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC").all();
+    const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL AND is_featured = 1 ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC LIMIT 4").all();
     const allTags = Array.from(new Set(results.flatMap((project) => parseJson(project.tags)))).sort((a, b) => String(a).localeCompare(String(b), "uk"));
     const selectedTag = url.searchParams.get("tag") || "";
     const filtered = selectedTag ? results.filter((project) => parseJson(project.tags).includes(selectedTag)) : results;
