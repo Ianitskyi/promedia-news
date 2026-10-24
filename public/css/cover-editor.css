@@ -6,8 +6,8 @@
 .cover-editor-tab[aria-pressed="true"] { background:#12343c; color:#fff; border-color:#12343c; }
 .cover-editor-stage { width:100%; max-height:510px; overflow:hidden; position:relative; background:#edf1f2; border-radius:6px; touch-action:none; cursor:grab; }
 .cover-editor-stage:active {cursor:grabbing;}
-.cover-editor-stage img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; pointer-events:none; }
-.cover-editor-target { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); color:white; text-shadow:0 1px 4px #000; font-size:26px; pointer-events:none; }
+.cover-editor-stage img { width:100%; height:100%; position:absolute; inset:0; object-fit:cover; object-position:var(--cover-editor-x, 50%) var(--cover-editor-y, 50%) !important; pointer-events:none; }
+.cover-editor-target { position:absolute; left:var(--cover-editor-x, 50%); top:var(--cover-editor-y, 50%); transform:translate(-50%,-50%); color:white; text-shadow:0 1px 4px #000; font-size:26px; pointer-events:none; transition:left .06s linear,top .06s linear; }
 .cover-editor-controls { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:12px; }
 .cover-editor-controls label {display:grid; gap:4px; font-size:13px; }
 .cover-editor-controls input {width:100%;}
