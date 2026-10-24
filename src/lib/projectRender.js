@@ -50,7 +50,7 @@ function fmtDate(value, lang) {
 const LABELS = {
   uk: {
     eyebrow: "Проєкти ПроМедіа", title: "Проєкти ProMedia", active: "Триває", completed: "Завершено",
-    upcoming: "Заплановано", partner: "Партнер", donor: "Донор", dates: "Період",
+    upcoming: "Заплановано", partner: "Партнер", donor: "Донор", dates: "Період", about: "Про проєкт", work: "Що ми робили", results: "Результати",
     more: "Докладніше", back: "← Усі проєкти", empty: "Проєктів поки немає.",
     details: "Дані про організацію", officialName: "Офіційна назва", officialNameValue: "ГО «ПроМедіа»",
     registration: "Реєстраційний номер", address: "Юридична адреса", addressValue: "вул. Володимира Самійленка, 19/44, Київ, Україна, 03118",
@@ -59,7 +59,7 @@ const LABELS = {
   },
   en: {
     eyebrow: "ProMedia projects", title: "ProMedia Projects", active: "Active", completed: "Completed",
-    upcoming: "Upcoming", partner: "Partner", donor: "Donor", dates: "Period",
+    upcoming: "Upcoming", partner: "Partner", donor: "Donor", dates: "Period", about: "About the project", work: "What we did", results: "Results",
     more: "Learn more", back: "← All projects", empty: "No projects yet.",
     details: "Organization details", officialName: "Official name", officialNameValue: "ProMedia NGO",
     registration: "Registration number", address: "Registered address", addressValue: "19/44 Volodymyra Samiilenka St., Kyiv, Ukraine, 03118",
@@ -68,7 +68,7 @@ const LABELS = {
   },
   crh: {
     eyebrow: "ProMedia loyihaları", title: "ProMedia loyihaları", active: "Devam ete", completed: "Tamamlandı",
-    upcoming: "Planlaştırılğan", partner: "Ortaq", donor: "Donor", dates: "Devir",
+    upcoming: "Planlaştırılğan", partner: "Ortaq", donor: "Donor", dates: "Devir", about: "Layiha aqqında", work: "Ne yaptıq", results: "Neticeler",
     more: "Daa tafsilâtlı", back: "← Bütün loyihalar", empty: "Şimdilik loyiha yoq.",
     details: "Teşkilât aqqında malümat", officialName: "Resmiy adı", officialNameValue: "«ProMedia» İCT",
     registration: "Qayd nomeri", address: "Yuridik adres", addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kyiv, Ukrayina, 03118",
@@ -169,6 +169,7 @@ function tagLabel(tag, lang) {
     "спільноти": { en: "communities", crh: "cemaatlar" },
     "дослідження": { en: "research", crh: "tedqiqat" },
     "консалтинг": { en: "consulting", crh: "mesleat" },
+    "консультації": { en: "consultations", crh: "mesleatlar" },
     "медіа": { en: "media", crh: "mediya" },
     "штучний інтелект": { en: "artificial intelligence", crh: "suniy zekâ" },
     "автоматизація": { en: "automation", crh: "avtomatlaştırma" },
@@ -178,7 +179,8 @@ function tagLabel(tag, lang) {
     "інструмент": { en: "tool", crh: "alet" },
     "інструменти": { en: "tools", crh: "aletler" },
     "журналістика": { en: "journalism", crh: "jurnalistika" },
-    "медіаграмотність": { en: "media literacy", crh: "mediya savatlılığı" }
+    "медіаграмотність": { en: "media literacy", crh: "mediya savatlılığı" },
+    "посібник": { en: "guide", crh: "rehber" }
   };
   const value = String(tag || "").trim();
   if (lang === "uk") return value;
@@ -283,7 +285,16 @@ export function renderProjectPage({ project, lang, baseUrl }) {
   const meta = [];
   if (project.partner || project.partner_en || project.partner_crh) meta.push(`<div><strong>${l.partner}:</strong> ${esc(field(project, "partner", lang))}</div>`);
   if (project.donor || project.donor_en || project.donor_crh) meta.push(`<div><strong>${l.donor}:</strong> ${esc(field(project, "donor", lang))}</div>`);
-  if (project.start_date || project.end_date) meta.push(`<div><strong>${l.dates}:</strong> ${esc(fmtDate(project.start_date, lang))}${project.end_date ? " — " + esc(fmtDate(project.end_date, lang)) : ""}</div>`);
+  const exactPeriod = field(project, "period_label", lang);
+  if (exactPeriod) meta.push(`<div><strong>${l.dates}:</strong> ${esc(exactPeriod)}</div>`);
+  else if (project.start_date || project.end_date) meta.push(`<div><strong>${l.dates}:</strong> ${esc(fmtDate(project.start_date, lang))}${project.end_date ? " — " + esc(fmtDate(project.end_date, lang)) : ""}</div>`);
+  const suffix = lang === "uk" ? "" : `_${lang}`;
+  const hasOwnTranslation = lang === "uk" || Boolean(String(project[`body_md${suffix}`] || "").trim());
+  const hasStructuredContent = Boolean(String(project[`work_md${suffix}`] || "").trim() || String(project[`results_md${suffix}`] || "").trim());
+  const fallbackWholeBody = !hasOwnTranslation && [project.body_md, project.work_md, project.results_md].filter(Boolean).join("\n\n");
+  const overview = fallbackWholeBody || field(project, "body_md", lang);
+  const work = hasStructuredContent ? field(project, "work_md", lang) : "";
+  const results = hasStructuredContent ? field(project, "results_md", lang) : "";
   const canonical = `${baseUrl}${langPrefix(lang)}/project/${project.slug}`;
   const statusClass = project.project_status === "active" ? " project-status-active" : (project.project_status === "completed" ? " project-status-completed" : "");
   const imageUrl = projectImageUrl(project, baseUrl, lang);
@@ -297,7 +308,9 @@ export function renderProjectPage({ project, lang, baseUrl }) {
     <p class="article-excerpt">${esc(excerpt)}</p>
     ${imageUrl ? `<img class="article-cover" src="${esc(imageUrl)}" alt="${esc(title)}"${projectFocalStyle(project, "desktop", lang)} />` : ""}
     ${meta.length ? `<div class="admin-card" style="margin:24px 0">${meta.join("")}</div>` : ""}
-    <div class="article-body">${markdownToHtml(field(project, "body_md", lang))}</div>
+    ${overview ? `<section class="article-body"><h2>${esc(l.about)}</h2>${markdownToHtml(overview)}</section>` : ""}
+    ${work ? `<section class="article-body"><h2>${esc(l.work)}</h2>${markdownToHtml(work)}</section>` : ""}
+    ${results ? `<section class="article-body"><h2>${esc(l.results)}</h2>${markdownToHtml(results)}</section>` : ""}
     ${project.website_url ? `<p><a class="admin-btn" href="${esc(project.website_url)}" target="_blank" rel="noopener">${l.more}</a></p>` : ""}
   </main>`;
   return shell({ lang, title: `${title} — ProMedia`, description: excerpt, canonical, body, ogImage: imageUrl || undefined });
