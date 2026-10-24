@@ -90,10 +90,9 @@ try {
     assert.equal(await trans.getAttribute("open"), null);
     assert.equal(await trans.locator('[name="bodyMdEn"]').count(), 1);
     await page.locator('[name="title"]').fill("Тестовий проєкт");
-    await page.locator('[name="bodyMd"]').fill("Опис проєкту");
-    page.once("dialog", dialog => dialog.accept("https://youtu.be/dQw4w9WgXcQ"));
-    await page.locator('[data-add-youtube="bodyMd"]').click();
-    assert.match(await page.locator('[name="bodyMd"]').inputValue(), /\[youtube\]\(https:\/\/www\.youtube\.com\/watch\?v=dQw4w9WgXcQ\)/);
+    await page.locator('[data-rich-editor="bodyMd"] [data-editor-surface]').fill("Опис проєкту");
+    await page.locator('[data-rich-editor="workMd"] [data-editor-surface]').fill("Що ми робили");
+    await page.locator('[data-rich-editor="resultsMd"] [data-editor-surface]').fill("Результати");
     await page.locator("#project-cover-url-field").evaluate(el => {el.value = "/img-storage/project-uk.jpg";});
     await page.locator("#project-cover-crop .cover-x").evaluate(el => {el.value="75";el.dispatchEvent(new Event("input",{bubbles:true}));});
     await page.locator("#project-form button[type=submit]").click();
@@ -103,9 +102,11 @@ try {
     const payload = JSON.parse(save.body);
     assert.equal(payload.title, "Тестовий проєкт");
     assert.equal(payload.coverCropData.desktop.x, 75);
-    assert.match(payload.bodyMd, /\[youtube\]/);
+    assert.match(payload.bodyMd, /Опис проєкту/);
+    assert.match(payload.workMd, /Що ми робили/);
+    assert.match(payload.resultsMd, /Результати/);
     assert.deepEqual(errors, [], "No uncaught browser errors");
-    console.log("Project create + YouTube + payload passed");
+    console.log("Project create + structured payload passed");
     await page.close();
   }
   {
