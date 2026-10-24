@@ -33,7 +33,7 @@
       '<div class="cover-editor-actions"><button type="button" class="admin-btn secondary cover-center">Центрувати</button>' +
       '<button type="button" class="admin-btn secondary cover-all">Застосувати позицію до всіх форматів</button></div>' +
       '<p class="admin-hint">Перетягніть фото в межах перегляду або скористайтеся повзунками. Оригінал зберігається без змін; формат «Соцмережі» поки є лише попереднім переглядом і не створює окремий OG-файл.</p>';
-    var tabs = host.querySelector(".cover-editor-tabs"), stage = host.querySelector(".cover-editor-stage"), img = stage.querySelector("img");
+    var tabs = host.querySelector(".cover-editor-tabs"), stage = host.querySelector(".cover-editor-stage"), img = stage.querySelector("img"), target = stage.querySelector(".cover-editor-target");
     var xInput = host.querySelector(".cover-x"), yInput = host.querySelector(".cover-y");
     formats.forEach(function (f) {
       var b = document.createElement("button");
@@ -47,6 +47,9 @@
       stage.style.maxWidth = f.ratio < 1 ? "408px" : "700px";
       if (img.getAttribute("src") !== (url || "")) img.setAttribute("src", url || "");
       img.style.objectPosition = p.x + "% " + p.y + "%";
+      stage.style.setProperty("--cover-editor-x", p.x + "%");
+      stage.style.setProperty("--cover-editor-y", p.y + "%");
+      target.setAttribute("aria-label", "Фокус: " + p.x + "% по горизонталі, " + p.y + "% по вертикалі");
       stage.style.display = url ? "" : "none";
       xInput.value = p.x; yInput.value = p.y;
       Array.prototype.forEach.call(tabs.children, function (b) { b.setAttribute("aria-pressed", b.dataset.format === active ? "true" : "false"); });
@@ -55,6 +58,10 @@
     }
     function change() { state[active] = { x: Number(xInput.value), y: Number(yInput.value) }; draw(); }
     xInput.addEventListener("input", change); yInput.addEventListener("input", change);
+    xInput.addEventListener("change", change); yInput.addEventListener("change", change);
+    // A cached image can finish loading after the first draw. Redraw then so
+    // the focal position is also applied to the final, rendered image.
+    img.addEventListener("load", draw);
     stage.addEventListener("pointerdown", function (event) {
       if (!url) return;
       var startX = event.clientX, startY = event.clientY, initialX = state[active].x, initialY = state[active].y;
