@@ -77,7 +77,6 @@
       '<div class="admin-row admin-context-actions" style="margin-bottom:18px"><button class="admin-btn" id="new-project" type="button">+ Новий проєкт</button>' +
       (hasMissingTranslations && state.user.role === "admin" ? '<button class="admin-btn secondary" id="translate-projects" type="button">Перекласти відсутні EN/QT</button>' : '') +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="project-trash" type="button">Кошик</button>' : '') +
-      '<a class="admin-btn secondary" href="https://projects.promedia.report/" target="_blank" rel="noopener">Відкрити сайт</a>' +
       '<span class="admin-hint" id="translate-projects-status"></span></div>' +
       '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Проєкти</h1>' +
       (notice ? '<p class="admin-success" role="status">' + esc(notice) + '</p>' : '') +
