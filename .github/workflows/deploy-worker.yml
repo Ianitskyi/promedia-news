@@ -4,6 +4,13 @@ on:
   push:
     branches: [main]
     paths:
+      - 'src/**'
+      - 'public/**'
+      - 'migrations/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'wrangler.toml'
       - '.github/workflows/deploy-worker.yml'
   workflow_dispatch:
 
