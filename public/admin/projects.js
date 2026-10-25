@@ -64,7 +64,7 @@
     return api("/api/admin/projects/trash").then(function (data) { state.trash = data.items || []; });
   }
 
-  function list() {
+  function list(notice) {
     var rows = state.projects.map(function (p) {
       var projectState = p.projectStatus === "completed" ? "завершено" : (p.projectStatus === "upcoming" ? "заплановано" : "триває");
       return "<tr><td>" + (p.isFeatured ? "★ " : "") + esc(p.title) + "</td><td>" + esc(projectState) + "</td><td>" +
@@ -81,6 +81,7 @@
       '<a class="admin-btn secondary" href="https://projects.promedia.report/" target="_blank" rel="noopener">Відкрити сайт</a>' +
       '<span class="admin-hint" id="translate-projects-status"></span></div>' +
       '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Проєкти</h1>' +
+      (notice ? '<p class="admin-success" role="status">' + esc(notice) + '</p>' : '') +
       (rows ? '<table class="admin-table"><thead><tr><th>Назва</th><th>Статус проєкту</th><th>Публікація</th><th>Оновлено</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>' :
         '<p class="empty-state">Проєктів ще немає.</p>') + '</div>';
     document.getElementById("new-project").addEventListener("click", function () { editor(null); });
@@ -188,6 +189,7 @@
       '<p><button class="admin-btn secondary" id="back-projects" type="button">← До списку проєктів</button></p>' +
       '<div class="admin-card"><h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">' + (isNew ? "Новий проєкт" : "Редагування проєкту") + '</h1>' +
       '<p class="admin-error" id="project-error"></p>' +
+      '<p class="admin-hint" id="project-save-status" role="status" aria-live="polite"></p>' +
       '<form class="admin-form" id="project-form">' +
       '<div class="admin-field"><label>Назва (укр)*</label><input name="title" required value="' + esc(p.title) + '" /></div>' +
       '<div class="admin-field"><label>Назва (англ)</label><input name="titleEn" value="' + esc(p.titleEn) + '" /></div>' +
@@ -316,6 +318,8 @@
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      var saveButton = form.querySelector('button[type="submit"]');
+      var saveStatus = document.getElementById("project-save-status");
       ProMediaRichEditor.sync(projectEditors);
       var body = {
         title:value(form,"title"), titleEn:value(form,"titleEn"), titleCrh:value(form,"titleCrh"), excerpt:value(form,"excerpt"), excerptEn:value(form,"excerptEn"), excerptCrh:value(form,"excerptCrh"),
@@ -326,8 +330,17 @@
         isFeatured:form.elements.isFeatured.checked
       };
       if (!body.bodyMd || !body.workMd || !body.resultsMd) { document.getElementById("project-error").textContent="Заповніть поля «Про проєкт», «Що ми робили» та «Результати»."; return; }
+      saveButton.disabled = true;
+      saveButton.textContent = "Зберігаю…";
+      saveStatus.textContent = "Зберігаю зміни. Це може тривати кілька секунд.";
       api(isNew ? "/api/admin/projects" : "/api/admin/projects/" + p.id, { method:isNew ? "POST" : "PUT", body:body })
-        .then(loadProjects).then(list).catch(function(err){ document.getElementById("project-error").textContent=err.message; });
+        .then(loadProjects).then(function () { list("Проєкт збережено."); })
+        .catch(function(err){
+          saveButton.disabled = false;
+          saveButton.textContent = "Зберегти";
+          saveStatus.textContent = "";
+          document.getElementById("project-error").textContent=err.message;
+        });
     });
 
     var pub=document.getElementById("publish-project");
