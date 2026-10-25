@@ -48,9 +48,9 @@
     if (!state.user) { userRow.innerHTML = ""; return; }
     userRow.innerHTML =
       '<span class="admin-hint">' + escapeHtml(state.user.name) + " (" + escapeHtml(state.user.role) + ")</span>" +
-      '<button class="admin-btn secondary" id="password-btn" type="button">Пароль</button>' +
+      '<button class="admin-btn secondary" id="settings-btn" type="button">Налаштування</button>' +
       '<button class="admin-btn secondary" id="logout-btn" type="button">Вийти</button>';
-    document.getElementById("password-btn").addEventListener("click", function () { navigate("#/change-password"); });
+    document.getElementById("settings-btn").addEventListener("click", function () { navigate("#/settings"); });
     document.getElementById("logout-btn").addEventListener("click", function () {
       api("/api/auth/logout", { method: "POST" }).then(function () {
         state.user = null;
@@ -135,7 +135,6 @@
       (state.user.role === "admin" && hasMissingTranslations ? '<button class="admin-btn secondary" id="translate-archive-btn" type="button">Перекласти архів</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="push-btn" type="button">Пуш-сповіщення</button>' : "") +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="trash-btn" type="button">Кошик</button>' : "") +
-      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="users-btn" type="button">Користувачі</button>' : "") +
       "</div>";
 
     var rows = state.articles.map(function (a) {
@@ -178,8 +177,6 @@
     if (pushBtn) pushBtn.addEventListener("click", function () { navigate("#/push"); });
     var trashBtn = document.getElementById("trash-btn");
     if (trashBtn) trashBtn.addEventListener("click", function () { navigate("#/trash"); });
-    var usersBtn = document.getElementById("users-btn");
-    if (usersBtn) usersBtn.addEventListener("click", function () { navigate("#/users"); });
   }
 
   function renderForgotPassword(message, errorMsg) {
@@ -232,9 +229,24 @@
     });
   }
 
+  function renderSettings() {
+    root.innerHTML =
+      adminSectionNav("news") +
+      '<p><a href="#/dashboard">← До новин</a></p>' +
+      '<div class="admin-card" style="max-width:620px">' +
+      '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Налаштування</h1>' +
+      '<p class="admin-hint">Керуйте обліковим записом і доступом до адмінки.</p>' +
+      '<div class="admin-row"><button class="admin-btn secondary" id="settings-password-btn" type="button">Змінити пароль</button>' +
+      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="settings-users-btn" type="button">Користувачі</button>' : "") +
+      '</div></div>';
+    document.getElementById("settings-password-btn").addEventListener("click", function () { navigate("#/change-password"); });
+    var usersBtn = document.getElementById("settings-users-btn");
+    if (usersBtn) usersBtn.addEventListener("click", function () { navigate("#/users"); });
+  }
+
   function renderChangePassword(message, errorMsg) {
     root.innerHTML =
-      '<p><a href="#/dashboard">← До статей</a></p>' +
+      '<p><a href="#/settings">← До налаштувань</a></p>' +
       '<div class="admin-card" style="max-width:420px;margin:30px auto">' +
       '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Змінити пароль</h1>' +
       (message ? '<p class="admin-success">' + escapeHtml(message) + '</p>' : '') +
@@ -279,7 +291,7 @@
 
     root.innerHTML =
       adminSectionNav("news") +
-      '<p><a href="#/dashboard">← До списку статей</a></p>' +
+      '<p><a href="#/settings">← До налаштувань</a></p>' +
       '<div class="admin-card">' +
       '<h1 style="font-family:var(--serif);color:var(--ink);margin-top:0">Пуш-сповіщення</h1>' +
       (!summary.enabled ? '<p class="admin-error">Web Push ще не активовано на сервері: потрібно задати секрет VAPID_PRIVATE_JWK.</p>' : "") +
@@ -1586,11 +1598,11 @@
       adminSectionNav("news") +
       '<p><a href="#/dashboard">← До списку статей</a></p>' +
       '<div class="admin-card">' +
-      "<h1 style=\"font-family:var(--serif);color:var(--ink);margin-top:0\">Автори</h1>" +
+      "<h1 style=\"font-family:var(--serif);color:var(--ink);margin-top:0\">Користувачі</h1>" +
       '<table class="admin-table"><thead><tr><th>Ім’я</th><th>Email</th><th>Роль</th></tr></thead><tbody>' + rows + "</tbody></table>" +
       "</div>" +
       '<div class="admin-card">' +
-      "<h2 style=\"font-family:var(--serif);color:var(--ink);margin-top:0;font-size:19px\">Додати автора</h2>" +
+      "<h2 style=\"font-family:var(--serif);color:var(--ink);margin-top:0;font-size:19px\">Додати користувача</h2>" +
       '<p class="admin-error" id="new-user-error"></p>' +
       '<form class="admin-form" id="new-user-form">' +
       '<div class="admin-field"><label>Ім’я</label><input type="text" name="name" required /></div>' +
@@ -1629,6 +1641,7 @@
     }
 
     if (hash === "#/login") { navigate("#/dashboard"); return; }
+    if (hash === "#/settings") { renderSettings(); return; }
     if (hash === "#/change-password") { renderChangePassword(); return; }
     if (hash === "#/new") { renderEditor(null); return; }
     if (hash === "#/trash") {
