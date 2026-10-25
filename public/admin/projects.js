@@ -14,7 +14,7 @@
     if (!userRow || !state.user) return;
     userRow.innerHTML =
       '<span class="admin-hint">' + esc(state.user.name) + " (" + esc(state.user.role) + ")</span>" +
-      '<a class="admin-btn secondary" href="/admin#/change-password">Пароль</a>' +
+      '<a class="admin-btn secondary" href="/admin#/settings">Налаштування</a>' +
       '<button class="admin-btn secondary" id="projects-logout" type="button">Вийти</button>';
     document.getElementById("projects-logout").addEventListener("click", function () {
       api("/api/auth/logout", { method:"POST" }).then(function () { window.location.href = "/admin"; });
