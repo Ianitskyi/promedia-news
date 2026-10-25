@@ -128,7 +128,9 @@ export async function handleProjectsPublicRoute(request, env, url) {
     // the full catalogue can explicitly request `featured=0`.
     if (featured === null || featured === "" || featured === "1" || featured === "true") query += " AND is_featured = 1";
     if (["upcoming", "active", "completed"].includes(status)) { query += " AND project_status = ?"; binds.push(status); }
-    query += " ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC LIMIT ?";
+    // Record creation is an editorial timestamp, not the project's chronology.
+    // Keep undated projects below every project with a start date.
+    query += " ORDER BY CASE WHEN start_date IS NULL OR start_date = '' THEN 1 ELSE 0 END ASC, start_date DESC, id DESC LIMIT ?";
     binds.push(limit);
     const { results } = await db.prepare(query).bind(...binds).all();
     return corsJson({ items: results.map(serialize) });
@@ -146,7 +148,7 @@ export async function handleProjectsPublicRoute(request, env, url) {
   if (path === "/" && request.method === "GET") {
     // The projects site is the complete catalogue. The four selected cards are
     // reserved for the main ProMedia homepage, which reads the public API.
-    const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC").all();
+    const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL ORDER BY CASE WHEN start_date IS NULL OR start_date = '' THEN 1 ELSE 0 END ASC, start_date DESC, id DESC").all();
     const allTags = Array.from(new Set(results.flatMap((project) => parseJson(project.tags)))).sort((a, b) => String(a).localeCompare(String(b), "uk"));
     const selectedTag = url.searchParams.get("tag") || "";
     const filtered = selectedTag ? results.filter((project) => parseJson(project.tags).includes(selectedTag)) : results;
