@@ -76,7 +76,6 @@
       adminSectionNav("projects") +
       '<div class="admin-row admin-context-actions" style="margin-bottom:18px"><button class="admin-btn" id="new-project" type="button">+ Новий проєкт</button>' +
       (hasMissingTranslations && state.user.role === "admin" ? '<button class="admin-btn secondary" id="translate-projects" type="button">Перекласти відсутні EN/QT</button>' : '') +
-      (state.user.role === "admin" ? '<button class="admin-btn secondary" id="migrate-legacy-projects" type="button">Переглянути перенесення зі старого сайту</button>' : '') +
       (state.user.role === "admin" ? '<button class="admin-btn secondary" id="project-trash" type="button">Кошик</button>' : '') +
       '<a class="admin-btn secondary" href="https://projects.promedia.report/" target="_blank" rel="noopener">Відкрити сайт</a>' +
       '<span class="admin-hint" id="translate-projects-status"></span></div>' +
@@ -107,15 +106,7 @@
     });
     var migrateBtn = document.getElementById("migrate-legacy-projects");
     if (migrateBtn) migrateBtn.addEventListener("click", function () {
-      var status = document.getElementById("translate-projects-status"); migrateBtn.disabled = true; status.textContent = "Готую безпечний перегляд…";
-      api("/api/admin/projects/migrate-legacy-content", { method:"POST", body:{apply:false} }).then(function (preview) {
-        var ready = preview.items.filter(function(i){return i.status === "ready";}).length, partial = preview.items.filter(function(i){return i.status === "partial";}).length;
-        var names = preview.items.filter(function(i){return i.status !== "unchanged";}).slice(0,12).map(function(i){return "• "+i.title+(i.status === "partial" ? " (потрібна ручна перевірка)" : "");}).join("\n");
-        if (!preview.eligible || !window.confirm("Попередній перегляд: дані ще не змінено.\n\nПовністю структуровано: "+ready+".\nЧастково: "+partial+".\nУсього до перенесення: "+preview.eligible+".\n\n"+(names || "Нових даних немає.")+"\n\nЗастосувати? Наявні тексти, дати й поля не перезаписуються.")) { migrateBtn.disabled=false; status.textContent="Перенесення скасовано; дані не змінено."; return null; }
-        status.textContent="Переношу дані…"; return api("/api/admin/projects/migrate-legacy-content", {method:"POST",body:{apply:true}});
-      }).then(function(result){ if(!result)return; status.textContent="Безпечно оновлено проєктів: "+result.applied+"."; return loadProjects().then(list); }).catch(function(err){status.textContent=err.message;migrateBtn.disabled=false;});
-    });
-    var trashBtn = document.getElementById("project-trash");
+      var status = document.getE    var trashBtn = document.getElementById("project-trash");
     if (trashBtn) trashBtn.addEventListener("click", function () { loadTrash().then(renderTrash); });
     Array.prototype.forEach.call(root.querySelectorAll("[data-edit]"), function (btn) {
       btn.addEventListener("click", function () {
