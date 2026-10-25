@@ -182,7 +182,6 @@ export async function handleProjectsAdminRoute(request, env, url) {
     const normalizedTags = normalizeProjectTags(body.tags);
     if (normalizedTags.invalid.length) return json({ error: "Тег має містити до 48 символів; у проєкті можна вказати до 12 тегів." }, 400);
     body.tags = normalizedTags.tags;
-    body = await autoTranslateProject(body, env);
     const now = new Date().toISOString();
     const slug = await uniqueProjectSlug(db, body.title);
     const excerpt = body.excerpt || markdownToPlainText(body.bodyMd || "", 220);
@@ -259,19 +258,6 @@ export async function handleProjectsAdminRoute(request, env, url) {
         if (normalizedTags.invalid.length) return json({ error: "Тег має містити до 48 символів; у проєкті можна вказати до 12 тегів." }, 400);
         body.tags = normalizedTags.tags;
       }
-      body = await autoTranslateProject({
-        title: body.title ?? project.title,
-        titleEn: body.titleEn ?? project.title_en,
-        titleCrh: body.titleCrh ?? project.title_crh,
-        excerpt: body.excerpt ?? project.excerpt,
-        excerptEn: body.excerptEn ?? project.excerpt_en,
-        excerptCrh: body.excerptCrh ?? project.excerpt_crh,
-        bodyMd: body.bodyMd ?? project.body_md,
-        bodyMdEn: body.bodyMdEn ?? project.body_md_en,
-        bodyMdCrh: body.bodyMdCrh ?? project.body_md_crh,
-        tags: body.tags ?? parseJson(project.tags),
-        ...body
-      }, env);
       await db.prepare(`UPDATE projects SET
         title=?, title_en=?, title_crh=?, excerpt=?, excerpt_en=?, excerpt_crh=?,
         body_md=?, body_md_en=?, body_md_crh=?, work_md=?, work_md_en=?, work_md_crh=?, results_md=?, results_md_en=?, results_md_crh=?, period_label=?, period_label_en=?, period_label_crh=?, cover_image_url=?, cover_image_url_en=?, cover_crop_data=?, cover_crop_data_en=?,
