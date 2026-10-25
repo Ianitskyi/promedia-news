@@ -123,7 +123,10 @@ export async function handleProjectsPublicRoute(request, env, url) {
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
     let query = "SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL";
     const binds = [];
-    if (featured === "1" || featured === "true") query += " AND is_featured = 1";
+    // The main ProMedia site consumes this endpoint without query parameters.
+    // Keep that integration limited to the selected projects; callers that need
+    // the full catalogue can explicitly request `featured=0`.
+    if (featured === null || featured === "" || featured === "1" || featured === "true") query += " AND is_featured = 1";
     if (["upcoming", "active", "completed"].includes(status)) { query += " AND project_status = ?"; binds.push(status); }
     query += " ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC LIMIT ?";
     binds.push(limit);
@@ -141,7 +144,9 @@ export async function handleProjectsPublicRoute(request, env, url) {
 
   const baseUrl = "https://projects.promedia.report";
   if (path === "/" && request.method === "GET") {
-    const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL AND is_featured = 1 ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC LIMIT 4").all();
+    // The projects site is the complete catalogue. The four selected cards are
+    // reserved for the main ProMedia homepage, which reads the public API.
+    const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL ORDER BY COALESCE(start_date, published_at, created_at) DESC, id DESC").all();
     const allTags = Array.from(new Set(results.flatMap((project) => parseJson(project.tags)))).sort((a, b) => String(a).localeCompare(String(b), "uk"));
     const selectedTag = url.searchParams.get("tag") || "";
     const filtered = selectedTag ? results.filter((project) => parseJson(project.tags).includes(selectedTag)) : results;
