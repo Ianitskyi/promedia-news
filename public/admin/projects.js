@@ -70,8 +70,7 @@
       var projectState = p.projectStatus === "completed" ? "завершено" : (p.projectStatus === "upcoming" ? "заплановано" : "триває");
       return "<tr><td>" + (p.isFeatured ? "★ " : "") + esc(p.title) + "</td><td>" + esc(projectState) + "</td><td>" +
         statusBadge(p.publicationStatus) + "</td><td>" + esc(new Date(p.updatedAt).toLocaleDateString("uk-UA")) +
-        '</td><td><div class="admin-row"><button class="admin-btn secondary" data-edit="' + p.id + '" type="button">Редагувати</button>' +
-        '<button class="admin-btn danger" data-trash-project="' + p.id + '" type="button">Видалити</button></div></td></tr>';
+        '</td><td><div class="admin-row"><button class="admin-btn secondary" data-edit="' + p.id + '" type="button">Редагувати</button></div></td></tr>';
     }).join("");
     var hasMissingTranslations = state.projects.some(projectNeedsTranslation);
     root.innerHTML =
@@ -122,14 +121,6 @@
       btn.addEventListener("click", function () {
         var id = Number(btn.dataset.edit);
         editor(state.projects.find(function (p) { return p.id === id; }) || null);
-      });
-    });
-    Array.prototype.forEach.call(root.querySelectorAll("[data-trash-project]"), function (btn) {
-      btn.addEventListener("click", function () {
-        if (!window.confirm("Перемістити цей проєкт у кошик?")) return;
-        api("/api/admin/projects/" + btn.dataset.trashProject, { method:"DELETE" })
-          .then(loadProjects).then(list)
-          .catch(function (err) { window.alert(err.message); });
       });
     });
   }
