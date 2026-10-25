@@ -11,16 +11,15 @@ function parseJson(value) {
   try { return JSON.parse(value || "[]"); } catch { return []; }
 }
 
-const PROJECT_TAGS = ["навчання", "дослідження", "інструмент", "інструменти", "модерація", "спільнота", "спільноти", "консалтинг", "консультації", "медіа", "штучний інтелект", "автоматизація", "фактчекінг", "відео", "журналістика", "медіаграмотність", "посібник"];
-
 function normalizeProjectTags(tags) {
-  const allowed = new Map(PROJECT_TAGS.map((tag) => [tag.toLocaleLowerCase("uk-UA"), tag]));
   const invalid = [], result = [];
   for (const raw of Array.isArray(tags) ? tags : []) {
-    const key = String(raw || "").trim().toLocaleLowerCase("uk-UA");
-    if (!key) continue;
-    if (!allowed.has(key)) invalid.push(String(raw));
-    else if (!result.includes(allowed.get(key))) result.push(allowed.get(key));
+    const tag = String(raw || "").replace(/\s+/g, " ").trim();
+    if (!tag) continue;
+    if (tag.length > 48) { invalid.push(tag); continue; }
+    const key = tag.toLocaleLowerCase("uk-UA");
+    if (!result.some((value) => value.toLocaleLowerCase("uk-UA") === key)) result.push(tag);
+    if (result.length > 12) { invalid.push(tag); result.pop(); }
   }
   return { tags: result, invalid };
 }
@@ -181,7 +180,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
     let body = await request.json().catch(() => null);
     if (!body || !body.title) return json({ error: "title обов'язковий" }, 400);
     const normalizedTags = normalizeProjectTags(body.tags);
-    if (normalizedTags.invalid.length) return json({ error: "Доступні лише встановлені теги: " + PROJECT_TAGS.join(", ") }, 400);
+    if (normalizedTags.invalid.length) return json({ error: "Тег має містити до 48 символів; у проєкті можна вказати до 12 тегів." }, 400);
     body.tags = normalizedTags.tags;
     body = await autoTranslateProject(body, env);
     const now = new Date().toISOString();
@@ -257,7 +256,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
       if (!body) return json({ error: "invalid_body" }, 400);
       if (body.tags !== undefined) {
         const normalizedTags = normalizeProjectTags(body.tags);
-        if (normalizedTags.invalid.length) return json({ error: "Доступні лише встановлені теги: " + PROJECT_TAGS.join(", ") }, 400);
+        if (normalizedTags.invalid.length) return json({ error: "Тег має містити до 48 символів; у проєкті можна вказати до 12 тегів." }, 400);
         body.tags = normalizedTags.tags;
       }
       body = await autoTranslateProject({
