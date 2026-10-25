@@ -104,9 +104,7 @@
       status.textContent = "Перекладаю…";
       next();
     });
-    var migrateBtn = document.getElementById("migrate-legacy-projects");
-    if (migrateBtn) migrateBtn.addEventListener("click", function () {
-      var status = document.getE    var trashBtn = document.getElementById("project-trash");
+    var trashBtn = document.getElementById("project-trash");
     if (trashBtn) trashBtn.addEventListener("click", function () { loadTrash().then(renderTrash); });
     Array.prototype.forEach.call(root.querySelectorAll("[data-edit]"), function (btn) {
       btn.addEventListener("click", function () {
