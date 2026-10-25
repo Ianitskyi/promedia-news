@@ -3,7 +3,6 @@
   var root = document.getElementById("projects-admin-root");
   var userRow = document.getElementById("admin-user-row");
   var state = { user: null, projects: [], trash: [], editing: null };
-  var PROJECT_TAGS = ["навчання", "дослідження", "інструмент", "інструменти", "модерація", "спільнота", "спільноти", "консалтинг", "консультації", "медіа", "штучний інтелект", "автоматизація", "фактчекінг", "відео", "журналістика", "медіаграмотність", "посібник"];
 
   function esc(v) {
     return String(v == null ? "" : v).replace(/[&<>"']/g, function (ch) {
@@ -154,7 +153,28 @@
   }
 
   function value(form, name) { return form.elements[name].value.trim(); }
-  function tagChoices(selected) { return '<div class="project-tag-options" role="group" aria-label="Теги проєкту">' + PROJECT_TAGS.map(function(tag){ return '<label class="project-tag-option"><input type="checkbox" name="projectTag" value="'+esc(tag)+'"'+((selected||[]).indexOf(tag)>=0?" checked":"")+' /> <span>'+esc(tag)+"</span></label>"; }).join("") + "</div>"; }
+  function cleanTag(value) { return String(value || "").replace(/\s+/g, " ").trim(); }
+  function uniqueTags(tags) {
+    return (Array.isArray(tags) ? tags : []).reduce(function (result, raw) {
+      var tag = cleanTag(raw), key = tag.toLocaleLowerCase("uk-UA");
+      if (tag && tag.length <= 48 && !result.some(function (value) { return value.toLocaleLowerCase("uk-UA") === key; })) result.push(tag);
+      return result;
+    }, []).slice(0, 12);
+  }
+  function tagChips(tags) {
+    return tags.map(function (tag, index) {
+      return '<span class="project-tag-chip">' + esc(tag) + '<button type="button" class="project-tag-remove" data-project-tag-index="' + index + '" aria-label="Прибрати тег ' + esc(tag) + '">×</button></span>';
+    }).join("");
+  }
+  function tagEditor(selected) {
+    var tags = uniqueTags(selected);
+    return '<div class="project-tag-editor" aria-label="Теги проєкту">' +
+      '<input type="hidden" name="projectTags" value="' + esc(JSON.stringify(tags)) + '" />' +
+      '<div class="project-tag-list" id="project-tag-list">' + tagChips(tags) + '</div>' +
+      '<div class="admin-row project-tag-add"><input id="project-tag-input" maxlength="48" placeholder="Новий тег" autocomplete="off" />' +
+      '<button class="admin-btn secondary" id="add-project-tag" type="button">Додати тег</button></div>' +
+      '<span class="admin-hint">Додайте лише потрібні позначки; до 12 тегів у проєкті.</span></div>';
+  }
 
   function editor(project) {
     var p = project || {
@@ -205,7 +225,7 @@
       '<div class="admin-field"><label>Донор (англ)</label><input name="donorEn" value="' + esc(p.donorEn) + '" /></div>' +
       '<div class="admin-field"><label>Донор (кримськотатарська)</label><input name="donorCrh" value="' + esc(p.donorCrh) + '" /></div>' +
       '<div class="admin-field"><label>Посилання на сайт/матеріали проєкту</label><input type="url" name="websiteUrl" value="' + esc(p.websiteUrl) + '" /></div>' +
-      '<div class="admin-field"><label>Теги</label><span class="admin-hint">Оберіть один або кілька напрямів зі встановленого переліку.</span>'+tagChoices(p.tags)+'</div>' +
+      '<div class="admin-field"><label>Теги</label>'+tagEditor(p.tags)+'</div>' +
       '<div class="admin-field"><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" name="isFeatured" style="width:auto"' + (p.isFeatured ? " checked" : "") + ' /> Показувати як вибраний проєкт</label></div>' +
       '<div class="admin-row"><button class="admin-btn" type="submit">Зберегти</button>' +
       (!isNew && p.publicationStatus === "published" ? '<button class="admin-btn secondary" id="unpublish-project" type="button">Зняти з публікації</button>' : '') +
@@ -215,6 +235,39 @@
 
     document.getElementById("back-projects").addEventListener("click", list);
     var form = document.getElementById("project-form");
+    var projectTagField = form.elements.projectTags;
+    function currentProjectTags() {
+      try { return uniqueTags(JSON.parse(projectTagField.value || "[]")); } catch (_) { return []; }
+    }
+    function renderProjectTags(tags) {
+      var clean = uniqueTags(tags);
+      projectTagField.value = JSON.stringify(clean);
+      document.getElementById("project-tag-list").innerHTML = tagChips(clean);
+      Array.prototype.forEach.call(form.querySelectorAll("[data-project-tag-index]"), function (button) {
+        button.addEventListener("click", function () {
+          var tags = currentProjectTags();
+          tags.splice(Number(button.dataset.projectTagIndex), 1);
+          renderProjectTags(tags);
+        });
+      });
+    }
+    function addProjectTag() {
+      var input = document.getElementById("project-tag-input");
+      var tag = cleanTag(input.value), tags = currentProjectTags();
+      if (!tag) return;
+      if (tag.length > 48) { document.getElementById("project-error").textContent = "Тег має містити до 48 символів."; return; }
+      if (tags.length >= 12) { document.getElementById("project-error").textContent = "У проєкті може бути до 12 тегів."; return; }
+      if (!tags.some(function (value) { return value.toLocaleLowerCase("uk-UA") === tag.toLocaleLowerCase("uk-UA"); })) tags.push(tag);
+      input.value = "";
+      document.getElementById("project-error").textContent = "";
+      renderProjectTags(tags);
+      input.focus();
+    }
+    document.getElementById("add-project-tag").addEventListener("click", addProjectTag);
+    document.getElementById("project-tag-input").addEventListener("keydown", function (event) {
+      if (event.key === "Enter") { event.preventDefault(); addProjectTag(); }
+    });
+    renderProjectTags(currentProjectTags());
     (function foldTranslations() {
       var formFields = Array.prototype.filter.call(form.querySelectorAll(".admin-field"), function (field) {
         var label = field.querySelector("label");
@@ -269,7 +322,7 @@
         bodyMd:value(form,"bodyMd"), bodyMdEn:value(form,"bodyMdEn"), bodyMdCrh:value(form,"bodyMdCrh"), workMd:value(form,"workMd"), workMdEn:value(form,"workMdEn"), workMdCrh:value(form,"workMdCrh"), resultsMd:value(form,"resultsMd"), resultsMdEn:value(form,"resultsMdEn"), resultsMdCrh:value(form,"resultsMdCrh"), coverImageUrl:value(form,"coverImageUrl"), coverCropData:projectCrop.getValue(), coverImageUrlEn:value(form,"coverImageUrlEn"), coverCropDataEn:projectCropEn.getValue(),
         partner:value(form,"partner"), partnerEn:value(form,"partnerEn"), partnerCrh:value(form,"partnerCrh"), donor:value(form,"donor"), donorEn:value(form,"donorEn"), donorCrh:value(form,"donorCrh"),
         projectStatus:form.elements.projectStatus.value, startDate:form.elements.startDate.value, endDate:form.elements.endDate.value, periodLabel:value(form,"periodLabel"),
-        websiteUrl:value(form,"websiteUrl"), tags:Array.prototype.map.call(form.querySelectorAll('input[name="projectTag"]:checked'),function(input){return input.value;}),
+        websiteUrl:value(form,"websiteUrl"), tags:currentProjectTags(),
         isFeatured:form.elements.isFeatured.checked
       };
       if (!body.bodyMd || !body.workMd || !body.resultsMd) { document.getElementById("project-error").textContent="Заповніть поля «Про проєкт», «Що ми робили» та «Результати»."; return; }
