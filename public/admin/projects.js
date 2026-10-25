@@ -65,6 +65,7 @@
   }
 
   function list(notice) {
+    notice = typeof notice === "string" ? notice : "";
     var rows = state.projects.map(function (p) {
       var projectState = p.projectStatus === "completed" ? "завершено" : (p.projectStatus === "upcoming" ? "заплановано" : "триває");
       return "<tr><td>" + (p.isFeatured ? "★ " : "") + esc(p.title) + "</td><td>" + esc(projectState) + "</td><td>" +
@@ -125,7 +126,7 @@
       '<p class="admin-hint">Проєкти в кошику не показуються на сайті. Їх можна відновити або видалити назавжди.</p>' +
       (rows ? '<table class="admin-table"><thead><tr><th>Назва</th><th>Видалено</th><th></th></tr></thead><tbody>' + rows + '</tbody></table>' :
         '<p class="empty-state">Кошик порожній.</p>') + '</div>';
-    document.getElementById("back-from-project-trash").addEventListener("click", list);
+    document.getElementById("back-from-project-trash").addEventListener("click", function () { list(); });
     Array.prototype.forEach.call(root.querySelectorAll("[data-restore-project]"), function (btn) {
       btn.addEventListener("click", function () {
         api("/api/admin/projects/" + btn.dataset.restoreProject + "/restore", { method:"POST" })
@@ -223,7 +224,7 @@
       (!isNew ? '<button class="admin-btn danger" id="delete-project" type="button">Видалити</button>' : '') +
       '</div></form></div>';
 
-    document.getElementById("back-projects").addEventListener("click", list);
+    document.getElementById("back-projects").addEventListener("click", function () { list(); });
     var form = document.getElementById("project-form");
     var projectTagField = form.elements.projectTags;
     function currentProjectTags() {
