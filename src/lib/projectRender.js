@@ -67,20 +67,20 @@ const LABELS = {
     social: "Social media", project: "A ProMedia project", correction: "Found an error?"
   },
   crh: {
-    eyebrow: "ProMedia loyihaları", title: "ProMedia loyihaları", active: "Devam ete", completed: "Tamamlandı",
+    eyebrow: "ProMedia leyhaları", title: "ProMedia leyhaları", active: "Devam ete", completed: "Tamamlandı",
     upcoming: "Planlaştırılğan", partner: "Ortaq", donor: "Donor", dates: "Devir", about: "Layiha aqqında", work: "Ne yaptıq", results: "Neticeler",
-    more: "Daa tafsilâtlı", back: "← Bütün loyihalar", empty: "Şimdilik loyiha yoq.",
+    more: "Daa tafsilâtlı", back: "← Bütün leyhalar", empty: "Şimdilik leyha yoq.",
     details: "Teşkilât aqqında malümat", officialName: "Resmiy adı", officialNameValue: "«ProMedia» İCT",
     registration: "Qayd nomeri", address: "Yuridik adres", addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kyiv, Ukrayina, 03118",
     chair: "İdare Keñeşi Reisi", chairValue: "Andrii Ianitskyi", phone: "Telefon", email: "Elektron poçta",
-    social: "İçtimaiy şebekeler", project: "ProMedia loyihası", correction: "Hata taptıñızmı?"
+    social: "İçtimaiy şebekeler", project: "ProMedia leyhası", correction: "Hata taptıñızmı?"
   }
 };
 
 const NAV = {
   uk: { projects: "Проєкти", news: "Новини", communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження", atlas: "Атлас Медіа" },
   en: { projects: "Projects", news: "News", communities: "Media communities", ratings: "Journalism schools", research: "Research", atlas: "Media Atlas" },
-  crh: { projects: "Loyihalar", news: "Haberler", communities: "Cemaatlar haritası", ratings: "Jurnalistika fakülteleri reytingi", research: "Tedqiqatlar", atlas: "Mediya Atlası" }
+  crh: { projects: "Leyhalar", news: "Haberler", communities: "Cemaatlar haritası", ratings: "Jurnalistika fakülteleri reytingi", research: "Tedqiqatlar", atlas: "Mediya Atlası" }
 };
 
 const URLS = {

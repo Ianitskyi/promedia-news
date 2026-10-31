@@ -45,7 +45,7 @@
       return {
         open: "Yañılıqlarğa abonementni açmaq",
         title: "ProMedia yañılıqlarını alıñız",
-        body: "Muhim haberler, beyanatlar, tedqiqatlar ve ProMedia loyihalarına abone oluñız.",
+        body: "Muhim haberler, beyanatlar, tedqiqatlar ve ProMedia leyhalarına abone oluñız.",
         subscribe: "Abone olmaq",
         later: "Soñra",
         unavailableTitle: "Abonement Haberlerde açılır",
