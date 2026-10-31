@@ -21,7 +21,7 @@ const SITE_TAGLINE = {
 const SITE_EYEBROW = {
   uk: "Про журналістику та громадський активізм в Україні",
   en: "About journalism and civic activism in Ukraine",
-  crh: "Ukrainada jurnalistika hem içtimaiy aktivizm aqqında"
+  crh: "Ukrayinada jurnalistika hem içtimaiy aktivizm aqqında"
 };
 const OG_LOCALE = { uk: "uk_UA", en: "en_US", crh: "crh_UA" };
 const HTML_LOCALE_LABEL = { uk: "Мова / Language", en: "Мова / Language", crh: "Til / Language" };
@@ -79,7 +79,7 @@ const TAG_LABELS_CRH = {
   "журналістська освіта": "jurnalistika maarifi",
   "вступ": "qabul",
   "рейтинг журфаків": "jurnalistika fakülteleri reytingi",
-  "українські медіа": "Ukraina mediyası",
+  "українські медіа": "Ukrayina mediyası",
   "війна": "urış",
   "безпека журналістів": "jurnalistlerniñ emniyeti",
   "дослідження": "tedqiqat",
@@ -90,7 +90,7 @@ const TAG_LABELS_CRH = {
   "військова реформа": "asker reformı",
   "інтерв’ю": "intervyu",
   "студенти": "talebeler",
-  "Україна": "Ukraina",
+  "Україна": "Ukrayina",
   "Японія": "Yaponiya",
   "медійні спільноти": "mediya cemaatları",
   "локальні медіа": "yerli mediya",
@@ -183,7 +183,7 @@ ${publishedAt ? `<meta property="article:published_time" content="${escapeHtml(p
 <link rel="stylesheet" href="/css/style.css" />`;
 }
 
-const NAV_ARIA = { uk: "Проєкти ПроМедіа", en: "ProMedia projects", crh: "ProMedia loyihaları" };
+const NAV_ARIA = { uk: "Проєкти ПроМедіа", en: "ProMedia projects", crh: "ProMedia leyhaları" };
 const NAV_LABELS = {
   uk: { communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження", atlas: "Атлас Медіа", news: "Новини" },
   en: { communities: "Media communities", ratings: "Journalism schools", research: "Research", atlas: "Media Atlas", news: "News" },
@@ -222,9 +222,9 @@ const FOOTER_TEXT = {
   crh: {
     details: "Teşkilât aqqında malümat", name: "Resmiy adı", nameValue: "«ProMedia» İCT",
     registration: "Qayd nomeri", address: "Yuridik adres",
-    addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kiev, Ukraina, 03118",
+    addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kyiv, Ukrayina, 03118",
     chair: "İdare Keñeşi Reisi", chairValue: "Andrii Ianitskyi", phone: "Telefon", email: "Elektron poçta",
-    social: "İçtimaiy şebekeler", project: "ProMedia loyihası", correction: "Hata taptıñızmı?"
+    social: "İçtimaiy şebekeler", project: "ProMedia leyhası", correction: "Hata taptıñızmı?"
   }
 };
 

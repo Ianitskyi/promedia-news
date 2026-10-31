@@ -14,6 +14,7 @@
 - Статичні assets: `public/`, binding `ASSETS`.
 - Production route: `news.promedia.report/*`.
 - Основна мова — українська; англійська й кримськотатарська — через префікс шляху `/en/…` і `/crh/…` (старі адреси з `?lang=` переадресовуються 301).
+- Правила кримськотатарського перекладу — `docs/CRIMEAN_TATAR_TRANSLATION_RULES.md` (канонічні для всієї мережі; ШІ-помічник `src/lib/articleAssist.js` має відповідати їм).
 
 ## 2. Архітектура
 
