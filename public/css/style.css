@@ -957,4 +957,12 @@ img { max-width: 100%; }
 .project-tag-remove {border:0;background:transparent;color:#9b1c1c;font-size:18px;line-height:1;cursor:pointer;padding:0 1px;}
 .project-tag-add {align-items:center;margin-top:10px;}
 .project-tag-add input {max-width:240px;}
-@media (max-width:600px) { .article-cover {aspect-ratio:4 / 5; object-position:var(--cover-mobile-position, 50% 50%);} }
+/* Keep the complete cover visible on phones, including people at the edges. */
+@media (max-width:600px) {
+  .article-cover {
+    height:auto;
+    aspect-ratio:auto;
+    object-fit:contain;
+    object-position:var(--cover-mobile-position, 50% 50%);
+  }
+}
