@@ -1,5 +1,6 @@
 import { renderHomepage, renderArticlePage, renderNotFound } from "../lib/render.js";
 import { handlePublicPushRoute } from "../lib/push.js";
+import { ukrainianTypographyReplacer } from "../lib/typography.js";
 
 // Мова — перший сегмент шляху: /en/…, /crh/… (uk — без префікса).
 const LANG_PATH = /^\/(en|crh)(?=\/|$)/;
@@ -27,7 +28,7 @@ function legacyLangRedirect(url) {
 }
 
 function corsJson(data, status) {
-  return new Response(JSON.stringify(data), {
+  return new Response(JSON.stringify(data, ukrainianTypographyReplacer), {
     status: status || 200,
     headers: {
       "Content-Type": "application/json; charset=utf-8",

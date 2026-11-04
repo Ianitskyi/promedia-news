@@ -4,6 +4,7 @@ import { markdownToPlainText } from "../lib/markdown.js";
 import { handleAdminPushRoute } from "../lib/push.js";
 import { handleAdminSubdomainsRoute } from "../lib/subdomains.js";
 import { completeArticleDraft, generateArticleAssist } from "../lib/articleAssist.js";
+import { normalizeUkrainianFields } from "../lib/typography.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -13,6 +14,7 @@ function json(data, status) {
 }
 
 function serializeArticle(a) {
+  a = normalizeUkrainianFields(a);
   return {
     id: a.id,
     slug: a.slug,

@@ -1,7 +1,8 @@
 import { renderProjectsHomepage, renderProjectPage } from "../lib/projectRender.js";
+import { ukrainianTypographyReplacer } from "../lib/typography.js";
 
 function corsJson(data, status) {
-  return new Response(JSON.stringify(data), {
+  return new Response(JSON.stringify(data, ukrainianTypographyReplacer), {
     status: status || 200,
     headers: {
       "Content-Type": "application/json; charset=utf-8",

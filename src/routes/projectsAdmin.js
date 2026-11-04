@@ -2,6 +2,7 @@ import { getCurrentUser } from "../lib/auth.js";
 import { slugify } from "../lib/slug.js";
 import { markdownToPlainText } from "../lib/markdown.js";
 import { completeArticleDraft } from "../lib/articleAssist.js";
+import { normalizeUkrainianFields } from "../lib/typography.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), { status: status || 200, headers: { "Content-Type": "application/json; charset=utf-8" } });
@@ -47,6 +48,7 @@ function extractStructuredSections(markdown) {
 }
 
 function serialize(p) {
+  p = normalizeUkrainianFields(p);
   return {
     id: p.id, slug: p.slug,
     title: p.title, titleEn: p.title_en, titleCrh: p.title_crh,

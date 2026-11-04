@@ -6,6 +6,7 @@ import { runInNewContext } from "node:vm";
 const read = (path) => readFileSync(new URL("../" + path, import.meta.url), "utf8");
 const markdownSource = read("src/lib/markdown.js");
 const markdown = await import("data:text/javascript;base64," + Buffer.from(markdownSource).toString("base64"));
+const typography = await import("data:text/javascript;base64," + Buffer.from(read("src/lib/typography.js")).toString("base64"));
 
 test("YouTube watch, short, shorts and live links render restricted embeds", () => {
   const urls = [
@@ -68,9 +69,9 @@ test("New article and project INSERT statements match column and argument counts
 
 
 test("Public article renders UA/EN image positions and mobile focal point", () => {
-  const source = read("src/lib/render.js").replace(/^import .*?;\s*/m, "").replace(/export /g, "");
-  const render = new Function("markdownToHtml", "markdownToPlainText", "escapeHtml", source + "; return renderArticlePage;")(
-    markdown.markdownToHtml, markdown.markdownToPlainText, markdown.escapeHtml
+  const source = read("src/lib/render.js").replace(/^import .*?;\s*/gm, "").replace(/export /g, "");
+  const render = new Function("markdownToHtml", "markdownToPlainText", "escapeHtml", "normalizeUkrainianQuotes", source + "; return renderArticlePage;")(
+    markdown.markdownToHtml, markdown.markdownToPlainText, markdown.escapeHtml, typography.normalizeUkrainianQuotes
   );
   const article = {
     slug: "test", title: "Тест", title_en: "Test", excerpt: "Опис", excerpt_en: "Description",
@@ -88,9 +89,9 @@ test("Public article renders UA/EN image positions and mobile focal point", () =
 });
 
 test("Public project page supports an independent English photo", () => {
-  const source = read("src/lib/projectRender.js").replace(/^import .*?;\s*/m, "").replace(/export /g, "");
-  const render = new Function("markdownToHtml", "markdownToPlainText", source + "; return renderProjectPage;")(
-    markdown.markdownToHtml, markdown.markdownToPlainText
+  const source = read("src/lib/projectRender.js").replace(/^import .*?;\s*/gm, "").replace(/export /g, "");
+  const render = new Function("markdownToHtml", "markdownToPlainText", "normalizeUkrainianQuotes", source + "; return renderProjectPage;")(
+    markdown.markdownToHtml, markdown.markdownToPlainText, typography.normalizeUkrainianQuotes
   );
   const project = {
     slug: "project", title: "Проєкт", title_en: "Project",

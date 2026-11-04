@@ -1,4 +1,5 @@
 import { markdownToHtml, markdownToPlainText } from "./markdown.js";
+import { normalizeUkrainianQuotes } from "./typography.js";
 
 function esc(value) {
   return String(value == null ? "" : value).replace(/[&<>"']/g, (ch) => ({
@@ -21,9 +22,9 @@ function correctCrhDisplay(value) {
 }
 
 function field(project, name, lang) {
-  if (lang === "en") return project[name + "_en"] || project[name] || "";
-  if (lang === "crh") return correctCrhDisplay(project[name + "_crh"] || project[name] || "");
-  return project[name] || "";
+  if (lang === "en") return project[name + "_en"] || normalizeUkrainianQuotes(project[name] || "");
+  if (lang === "crh") return correctCrhDisplay(project[name + "_crh"] || normalizeUkrainianQuotes(project[name] || ""));
+  return normalizeUkrainianQuotes(project[name] || "");
 }
 
 function localizedUrls(canonical) {
@@ -291,7 +292,7 @@ export function renderProjectPage({ project, lang, baseUrl }) {
   const suffix = lang === "uk" ? "" : `_${lang}`;
   const hasOwnTranslation = lang === "uk" || Boolean(String(project[`body_md${suffix}`] || "").trim());
   const hasStructuredContent = Boolean(String(project[`work_md${suffix}`] || "").trim() || String(project[`results_md${suffix}`] || "").trim());
-  const fallbackWholeBody = !hasOwnTranslation && [project.body_md, project.work_md, project.results_md].filter(Boolean).join("\n\n");
+  const fallbackWholeBody = !hasOwnTranslation && normalizeUkrainianQuotes([project.body_md, project.work_md, project.results_md].filter(Boolean).join("\n\n"));
   const overview = fallbackWholeBody || field(project, "body_md", lang);
   const work = hasStructuredContent ? field(project, "work_md", lang) : "";
   const results = hasStructuredContent ? field(project, "results_md", lang) : "";

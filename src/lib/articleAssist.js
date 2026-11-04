@@ -1,4 +1,5 @@
 import { markdownToPlainText } from "./markdown.js";
+import { normalizeUkrainianFields } from "./typography.js";
 
 const TAG_VOCABULARY = [
   "Заяви",
@@ -236,6 +237,7 @@ export async function generateArticleAssist(env, article) {
 }
 
 export async function completeArticleDraft(body, env) {
+  body = normalizeUkrainianFields(body);
   if (!body || !hasText(body.title) || !hasText(body.bodyMd)) return body;
   const needsPartnerTranslation = hasText(body.partner) && (!hasText(body.partnerEn) || !hasText(body.partnerCrh));
   const needsDonorTranslation = hasText(body.donor) && (!hasText(body.donorEn) || !hasText(body.donorCrh));
