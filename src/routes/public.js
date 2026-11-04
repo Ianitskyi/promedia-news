@@ -27,6 +27,10 @@ function legacyLangRedirect(url) {
   return Response.redirect(target.toString(), 301);
 }
 
+function coverMetadata(data) {
+  try { return (typeof data === "string" ? JSON.parse(data) : data) || {}; } catch (_) { return {}; }
+}
+
 function corsJson(data, status) {
   return new Response(JSON.stringify(data, ukrainianTypographyReplacer), {
     status: status || 200,
@@ -197,6 +201,8 @@ ${entries.join("\n")}
       excerptCrh: a.excerpt_crh,
       coverImageUrl: a.cover_image_url,
       coverImageUrlEn: a.cover_image_url_en,
+      coverAlt: coverMetadata(a.cover_crop_data).alt || "",
+      coverFit: coverMetadata(a.cover_crop_data).fit || "cover",
       tags: parseJsonArray(a.tags),
       relatedMediaIds: parseJsonArray(a.related_media_ids),
       isImportant: Boolean(a.is_important),

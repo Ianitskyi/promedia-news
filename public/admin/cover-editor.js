@@ -18,6 +18,8 @@
         if (Number.isFinite(n)) result[f.id][axis] = Math.max(0, Math.min(100, n));
       });
     });
+    if (value && typeof value.alt === "string") result.alt = value.alt.slice(0, 500);
+    if (value && value.fit === "contain") result.fit = "contain";
     return result;
   }
   function make(elementId, imageInputId, hiddenId, options) {
@@ -33,6 +35,15 @@
       '<div class="cover-editor-actions"><button type="button" class="admin-btn secondary cover-center">Центрувати</button>' +
       '<button type="button" class="admin-btn secondary cover-all">Застосувати позицію до всіх форматів</button></div>' +
       '<p class="admin-hint">Перетягніть фото в межах перегляду або скористайтеся повзунками. Оригінал зберігається без змін; формат «Соцмережі» поки є лише попереднім переглядом і не створює окремий OG-файл.</p>';
+    var metadata = document.createElement("div");
+    metadata.className = "cover-editor-metadata";
+    metadata.innerHTML = '<label>Опис зображення (alt)<input type="text" class="cover-alt" maxlength="500" /></label>' +
+      '<label><input type="checkbox" class="cover-fit" /> Показувати обкладинку повністю без обрізання</label>';
+    host.appendChild(metadata);
+    var altInput = metadata.querySelector(".cover-alt"), fitInput = metadata.querySelector(".cover-fit");
+    altInput.value = state.alt || ""; fitInput.checked = state.fit === "contain";
+    altInput.addEventListener("input", function () { state.alt = altInput.value; draw(); });
+    fitInput.addEventListener("change", function () { state.fit = fitInput.checked ? "contain" : "cover"; draw(); });
     var tabs = host.querySelector(".cover-editor-tabs"), stage = host.querySelector(".cover-editor-stage"), img = stage.querySelector("img"), target = stage.querySelector(".cover-editor-target");
     var xInput = host.querySelector(".cover-x"), yInput = host.querySelector(".cover-y");
     formats.forEach(function (f) {
@@ -46,6 +57,7 @@
       stage.style.aspectRatio = String(f.ratio);
       stage.style.maxWidth = f.ratio < 1 ? "408px" : "700px";
       if (img.getAttribute("src") !== (url || "")) img.setAttribute("src", url || "");
+      img.style.objectFit = state.fit === "contain" ? "contain" : "cover";
       img.style.objectPosition = p.x + "% " + p.y + "%";
       stage.style.setProperty("--cover-editor-x", p.x + "%");
       stage.style.setProperty("--cover-editor-y", p.y + "%");

@@ -118,18 +118,28 @@ function tagLabel(tag, lang) {
   return tag;
 }
 
+function articleCoverMetadata(article, lang) {
+  let data = lang === "en" && article.cover_image_url_en ? article.cover_crop_data_en : article.cover_crop_data;
+  try { return (typeof data === "string" ? JSON.parse(data) : data) || {}; } catch (_) { return {}; }
+}
+
+function articleCoverAlt(article, lang, fallback) {
+  return articleCoverMetadata(article, lang).alt || fallback;
+}
+
 function articleFocalStyle(article, lang, format) {
   let data = lang === "en" && article.cover_image_url_en ? article.cover_crop_data_en : article.cover_crop_data;
   try { if (typeof data === "string") data = JSON.parse(data); } catch (_) { return ""; }
+  const fit = data && data.fit === "contain" ? "object-fit:contain;background:#f1f2fa;" : "";
   const point = data && data[format];
   if (!point || !Number.isFinite(Number(point.x)) || !Number.isFinite(Number(point.y))) return "";
   const clamped = (p) => Math.max(0, Math.min(100, Number(p.x))) + "% " + Math.max(0, Math.min(100, Number(p.y))) + "%";
   if (format === "desktop") {
     const mobile = data.mobile && Number.isFinite(Number(data.mobile.x)) && Number.isFinite(Number(data.mobile.y))
       ? clamped(data.mobile) : clamped(point);
-    return ' style="--cover-desktop-position:' + clamped(point) + ';--cover-mobile-position:' + mobile + '"';
+    return ' style="' + fit + '--cover-desktop-position:' + clamped(point) + ';--cover-mobile-position:' + mobile + '"';
   }
-  return ' style="object-position:' + clamped(point) + '"';
+  return ' style="' + fit + 'object-position:' + clamped(point) + '"';
 }
 
 function articleCover(article, lang) {
@@ -350,7 +360,7 @@ function articleCard(article, lang, baseUrl, variant) {
   const articleHref = `${baseUrl}${langPrefix(lang)}/article/${escapeHtml(article.slug)}`;
   const cover = showCover
     ? `<a class="article-card-media" href="${articleHref}">
-        <img class="article-card-img" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(title)}"${articleFocalStyle(article, lang, cardVariant === "hero" ? "desktop" : "feed")} loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
+        <img class="article-card-img" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, cardVariant === "hero" ? "desktop" : "feed")} loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
       </a>`
     : "";
   return `
@@ -469,7 +479,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const tags = JSON.parse(article.tags || "[]");
   const coverUrl = articleCover(article, lang);
   const cover = coverUrl
-    ? `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(title)}"${articleFocalStyle(article, lang, "desktop")} />`
+    ? `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, "desktop")} />`
     : "";
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">

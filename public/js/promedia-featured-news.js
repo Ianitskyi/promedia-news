@@ -46,7 +46,8 @@
     media.className = "pm-featured-news-media";
     var image = document.createElement("img");
     image.src = absoluteNewsUrl(item.coverImageUrl || "/img/og-share.png");
-    image.alt = title || "";
+    image.alt = item.coverAlt || title || "";
+    if (item.coverFit === "contain") image.style.objectFit = "contain";
     image.loading = "lazy";
     media.appendChild(image);
 
