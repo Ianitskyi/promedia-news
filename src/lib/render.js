@@ -42,6 +42,9 @@ const TAG_LABELS_EN = {
   "війна": "war",
   "безпека журналістів": "journalist safety",
   "дослідження": "research",
+  "медіаграмотність": "media literacy",
+  "штучний інтелект": "artificial intelligence",
+  "медіаспільноти": "media communities",
   "Львівський медіафорум": "Lviv Media Forum",
   "стійкість медіа": "media resilience",
   "державні комунікації": "public communications",
@@ -84,6 +87,9 @@ const TAG_LABELS_CRH = {
   "війна": "urış",
   "безпека журналістів": "jurnalistlerniñ emniyeti",
   "дослідження": "tedqiqat",
+  "медіаграмотність": "mediya savatlılığı",
+  "штучний інтелект": "suniy zekâ",
+  "медіаспільноти": "mediya cemaatları",
   "Львівський медіафорум": "Lviv mediya forumı",
   "стійкість медіа": "mediyanıñ turaqlılığı",
   "державні комунікації": "devlet kommunikatsiyaları",
@@ -112,10 +118,18 @@ const TAG_LABELS_CRH = {
   "Чернігів": "Çernihiv"
 };
 
+function tagLookupKey(tag) {
+  return String(tag || "").normalize("NFC").trim().replace(/\s+/g, " ").toLocaleLowerCase("uk-UA");
+}
+
+const TAG_LABEL_LOOKUP = Object.fromEntries(
+  [["en", TAG_LABELS_EN], ["crh", TAG_LABELS_CRH]].map(([lang, labels]) => [
+    lang, Object.fromEntries(Object.entries(labels).map(([tag, label]) => [tagLookupKey(tag), label]))
+  ])
+);
+
 function tagLabel(tag, lang) {
-  if (lang === "en") return TAG_LABELS_EN[tag] || tag;
-  if (lang === "crh") return TAG_LABELS_CRH[tag] || tag;
-  return tag;
+  return TAG_LABEL_LOOKUP[lang]?.[tagLookupKey(tag)] || tag;
 }
 
 function articleCoverMetadata(article, lang) {
