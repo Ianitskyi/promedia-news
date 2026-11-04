@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 const read = (path) => readFileSync(new URL("../" + path, import.meta.url), "utf8");
 const importSource = (source) => import("data:text/javascript;base64," + Buffer.from(source).toString("base64"));
 const typographySource = read("src/lib/typography.js");
-const { normalizeUkrainianQuotes: quotes, normalizeUkrainianFields: fields, ukrainianTypographyReplacer: replacer } = await importSource(typographySource);
+const { normalizeUkrainianQuotes: quotes, normalizeUkrainianTitle: title, normalizeUkrainianFields: fields, ukrainianTypographyReplacer: replacer } = await importSource(typographySource);
 const markdown = await importSource(read("src/lib/markdown.js"));
 
 test("Ukrainian quotation styles, nesting and repeated normalization", () => {
@@ -41,8 +41,8 @@ test("Public API and admin fields keep translations and non-editorial data", () 
 
 function renderFunctions(path, names) {
   const source = read(path).replace(/^import .*?;\s*/gm, '').replace(/export /g, '');
-  return new Function('markdownToHtml','markdownToPlainText','escapeHtml','normalizeUkrainianQuotes',source + '; return {'+names.join(',')+'};')(
-    markdown.markdownToHtml, markdown.markdownToPlainText, markdown.escapeHtml, quotes
+  return new Function('markdownToHtml','markdownToPlainText','escapeHtml','normalizeUkrainianQuotes','normalizeUkrainianTitle',source + '; return {'+names.join(',')+'};')(
+    markdown.markdownToHtml, markdown.markdownToPlainText, markdown.escapeHtml, quotes, title
   );
 }
 
@@ -65,4 +65,23 @@ test("Project descriptions and partners follow the same Ukrainian style", () => 
   const project={slug:'test',title:'Проєкт “Тест”',body_md:'“Опис”',work_md:'Робота "команди"',results_md:'“Результат”',partner:'ГО “ПроМедіа”',tags:'[]'};
   const page=renderProjectPage({project,lang:'uk',baseUrl:'https://projects.promedia.report'});
   for(const value of ['Проєкт «Тест»','«Опис»','Робота «команди»','«Результат»','ГО «ПроМедіа»']) assert.ok(page.includes(value),value);
+});
+
+
+test("Organization headlines use the full name without changing body mentions or products", () => {
+  for (const text of ['«ПроМедіа» провела навчання', 'ProMedia провела навчання', 'ГО “ПроМедіа” провела навчання', 'Громадська організація «ПроМедіа» провела навчання', 'ПроМедіа провела навчання']) {
+    assert.equal(title(text), 'ГО «ПроМедіа» провела навчання');
+    assert.equal(title(title(text)), title(text));
+  }
+  const record = fields({title:'«ПроМедіа» провела навчання',bodyMd:'«ПроМедіа» провела навчання',titleEn:'ProMedia held a workshop'});
+  assert.equal(record.title,'ГО «ПроМедіа» провела навчання');
+  assert.equal(record.bodyMd,'«ПроМедіа» провела навчання');
+  assert.equal(record.titleEn,'ProMedia held a workshop');
+  for(const product of ['ProMedia Report','ProMedia News','ProMedia Events','ProMedia CRM','https://promedia.report/']) assert.equal(title(product),product);
+  const {renderArticlePage,renderHomepage}=renderFunctions('src/lib/render.js',['renderArticlePage','renderHomepage']);
+  const article={slug:'workshop',title:'«ПроМедіа» провела навчання',excerpt:'Опис',body_md:'Текст',tags:'[]'};
+  const page=renderArticlePage({article,lang:'uk',baseUrl:'https://news.promedia.report',relatedMediaNames:[]});
+  assert.match(page,/<h1>ГО «ПроМедіа» провела навчання<\/h1>/);
+  assert.match(page,/property="og:title" content="ГО «ПроМедіа» провела навчання/);
+  assert.match(renderHomepage({articles:[article],lang:'uk',baseUrl:'https://news.promedia.report'}),/ГО «ПроМедіа» провела навчання/);
 });

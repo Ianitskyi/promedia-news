@@ -1,5 +1,5 @@
 import { markdownToHtml, markdownToPlainText } from "./markdown.js";
-import { normalizeUkrainianQuotes } from "./typography.js";
+import { normalizeUkrainianQuotes, normalizeUkrainianTitle } from "./typography.js";
 
 function esc(value) {
   return String(value == null ? "" : value).replace(/[&<>"']/g, (ch) => ({
@@ -22,9 +22,10 @@ function correctCrhDisplay(value) {
 }
 
 function field(project, name, lang) {
-  if (lang === "en") return project[name + "_en"] || normalizeUkrainianQuotes(project[name] || "");
-  if (lang === "crh") return correctCrhDisplay(project[name + "_crh"] || normalizeUkrainianQuotes(project[name] || ""));
-  return normalizeUkrainianQuotes(project[name] || "");
+  const normalize = name === "title" ? normalizeUkrainianTitle : normalizeUkrainianQuotes;
+  if (lang === "en") return project[name + "_en"] || normalize(project[name] || "");
+  if (lang === "crh") return correctCrhDisplay(project[name + "_crh"] || normalize(project[name] || ""));
+  return normalize(project[name] || "");
 }
 
 function localizedUrls(canonical) {

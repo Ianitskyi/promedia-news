@@ -1,5 +1,5 @@
 import { escapeHtml, markdownToHtml, markdownToPlainText } from "./markdown.js";
-import { normalizeUkrainianQuotes } from "./typography.js";
+import { normalizeUkrainianQuotes, normalizeUkrainianTitle } from "./typography.js";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -308,9 +308,10 @@ function formatDate(dateStr, lang) {
 }
 
 function localizedField(article, field, lang) {
-  if (lang === "uk") return normalizeUkrainianQuotes(article[field]);
+  const normalize = field === "title" ? normalizeUkrainianTitle : normalizeUkrainianQuotes;
+  if (lang === "uk") return normalize(article[field]);
   const localized = article[`${field}_${lang}`];
-  return localized || normalizeUkrainianQuotes(article[field]);
+  return localized || normalize(article[field]);
 }
 
 function articleTitle(article, lang) {

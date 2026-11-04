@@ -40,6 +40,17 @@ export function normalizeUkrainianQuotes(value) {
   return normalized.replace(/\uE000(\d+)\uE001/g, (_, i) => protectedText[Number(i)]);
 }
 
+// Use the full organization name in editorial headlines. Product names such
+// as ProMedia Report, ProMedia News and ProMedia Events are separate names.
+export function normalizeUkrainianTitle(value) {
+  const title = normalizeUkrainianQuotes(value);
+  if (typeof title !== "string") return title;
+  return title.replace(
+    /(?<![\p{L}\p{N}@/])(?:(?:ГО|[Гг]ромадська\s+організація)\s+)?(?:«(?:ПроМедіа|ProMedia)»|ПроМедіа(?![\p{L}\p{N}./@-])|ProMedia(?![\p{L}\p{N}./@-]|\s+(?:Report|News|Events|CRM)\b))/gu,
+    "ГО «ПроМедіа»"
+  );
+}
+
 const UKRAINIAN_FIELDS = new Set([
   "title", "excerpt", "bodyMd", "body_md", "workMd", "work_md",
   "resultsMd", "results_md", "partner", "donor", "periodLabel", "period_label"
@@ -48,6 +59,7 @@ const UKRAINIAN_FIELDS = new Set([
 // Shared by public APIs, exports and the admin editor. Translation fields and
 // image/URL/crop data are deliberately outside the editorial field allowlist.
 export function ukrainianTypographyReplacer(key, value) {
+  if (key === "title") return normalizeUkrainianTitle(value);
   return UKRAINIAN_FIELDS.has(key) ? normalizeUkrainianQuotes(value) : value;
 }
 
