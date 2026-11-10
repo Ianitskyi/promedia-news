@@ -39,6 +39,15 @@ test("Public API and admin fields keep translations and non-editorial data", () 
   assert.equal(JSON.parse(JSON.stringify({items:[record]},replacer)).items[0].title, normalized.title);
 });
 
+test("English reprints remain verbatim below a Ukrainian publication notice", () => {
+  const english = '“The next winter will be the most difficult one” has been a cliché.\n\nKyiv “has electricity less often,” the author says.';
+  const body = 'Ця стаття надрукована з дозволу The Fix Media.\n\n' + english;
+  assert.equal(quotes(body), body);
+  assert.equal(fields({ bodyMd: body }).bodyMd, body);
+  assert.equal(JSON.parse(JSON.stringify({ bodyMd: body }, replacer)).bodyMd, body);
+  assert.equal(quotes('“Українська цитата”\n\n' + english), '«Українська цитата»\n\n' + english);
+});
+
 function renderFunctions(path, names) {
   const source = read(path).replace(/^import .*?;\s*/gm, '').replace(/export /g, '');
   return new Function('markdownToHtml','markdownToPlainText','escapeHtml','normalizeUkrainianQuotes','normalizeUkrainianTitle',source + '; return {'+names.join(',')+'};')(

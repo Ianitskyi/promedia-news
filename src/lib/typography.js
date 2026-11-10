@@ -10,6 +10,9 @@ export function normalizeUkrainianQuotes(value) {
     return `\uE000${protectedText.length - 1}\uE001`;
   });
   const normalized = source.split(/(\n\s*\n)/).map((paragraph) => {
+    // Reprints may keep an English original below a Ukrainian notice.
+    // Apply Ukrainian quotation style only to Cyrillic prose paragraphs.
+    if (!/\p{Script=Cyrillic}/u.test(paragraph)) return paragraph;
     const chars = [...paragraph];
     const stack = [];
     for (let i = 0; i < chars.length; i++) {
