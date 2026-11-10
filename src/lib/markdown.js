@@ -11,13 +11,28 @@ export function escapeHtml(value) {
 
 function inline(text) {
   let out = escapeHtml(text);
+  // Keep URLs and image descriptions outside inline formatting rules.
+  const tokens = [];
+  let prefix = "\u0000PM";
+  while (out.includes(prefix)) prefix += "X";
+  const token = (html) => prefix + (tokens.push(html) - 1) + "\u0000";
   // зображення: ![alt](url)
-  out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
+  out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g,
+    (_, alt, url) => token('<img src="' + url + '" alt="' + alt + '" loading="lazy" />'));
   // посилання: [text](url)
-  out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    (_, label, url) => token('<a href="' + url + '" target="_blank" rel="noopener">' + formatInline(label) + '</a>'));
+  out = formatInline(out);
+  return out.replace(new RegExp(prefix + "(\\d+)\\u0000", "g"), (_, index) => tokens[Number(index)]);
+}
+
+function formatInline(text) {
+  let out = text;
   // жирний / курсив
   out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
   out = out.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
+  // Жовтий маркер: ==ключова фраза==.
+  out = out.replace(/==([^\n]+?)==/g, "<mark>$1</mark>");
   return out;
 }
 
@@ -122,6 +137,7 @@ export function markdownToPlainText(md, maxLength) {
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
     .replace(/\[youtube\]\([^)]+\)/gi, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/==([^\n]+?)==/g, "$1")
     .replace(/[#>*_`]/g, "")
     .replace(/\s+/g, " ")
     .trim();

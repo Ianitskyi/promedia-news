@@ -850,11 +850,35 @@
 
   function inlineMarkdownToEditorHtml(text) {
     var out = escapeHtml(text);
-    out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
-    out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+    var tokens = [], prefix = "\u0000PM";
+    while (out.indexOf(prefix) !== -1) prefix += "X";
+    function token(html) { return prefix + (tokens.push(html) - 1) + "\u0000"; }
+    out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, function (_, alt, url) {
+      return token('<img src="' + url + '" alt="' + alt + '" loading="lazy" />');
+    });
+    out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function (_, label, url) {
+      return token('<a href="' + url + '" target="_blank" rel="noopener">' + formatEditorInline(label) + '</a>');
+    });
+    out = formatEditorInline(out);
+    return out.replace(new RegExp(prefix + "(\\d+)\\u0000", "g"), function (_, index) { return tokens[Number(index)]; });
+  }
+
+  function formatEditorInline(text) {
+    var out = text;
     out = out.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
     out = out.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>");
+    // Inline styles let the browser split/remove a highlight while retaining undo.
+    out = out.replace(/==([^\n]+?)==/g, '<span style="background-color: #ffe66d">$1</span>');
     return out;
+  }
+
+  function isEditorHighlightColor(color) {
+    return /^(#ffe66d|rgb\(255,230,109\)|rgba\(255,230,109,1\)|yellow|#ffff00|rgb\(255,255,0\))$/i.test(String(color || "").replace(/\s/g, ""));
+  }
+
+  function editorHighlightActive() {
+    try { return isEditorHighlightColor(document.queryCommandValue("hiliteColor") || document.queryCommandValue("backColor")); }
+    catch (_) { return false; }
   }
 
   function markdownToEditorHtml(markdown) {
@@ -951,22 +975,24 @@
     var style = node.getAttribute("style") || "";
     var inner;
     if (tag === "br") return "\n";
-    if (tag === "strong" || tag === "b") return "**" + nodeListToMarkdown(node.childNodes).trim() + "**";
-    if (tag === "em" || tag === "i") return "*" + nodeListToMarkdown(node.childNodes).trim() + "*";
+    inner = nodeListToMarkdown(node.childNodes);
+    if (tag === "strong" || tag === "b") inner = "**" + inner.trim() + "**";
+    else if (tag === "em" || tag === "i") inner = "*" + inner.trim() + "*";
     if (tag === "a") {
       var href = normalizeUrl(node.getAttribute("href"));
-      var label = nodeListToMarkdown(node.childNodes).trim() || href;
-      return href ? "[" + label + "](" + href + ")" : label;
+      var label = inner.trim() || href;
+      inner = href ? "[" + label + "](" + href + ")" : label;
     }
     if (tag === "img") {
       var src = node.getAttribute("src") || "";
       var alt = node.getAttribute("alt") || "";
       return src ? "![" + alt + "](" + src + ")" : "";
     }
-    inner = nodeListToMarkdown(node.childNodes);
-    if (/font-weight\s*:\s*(bold|[6-9]00)/i.test(style)) return "**" + inner.trim() + "**";
-    if (/font-style\s*:\s*italic/i.test(style)) return "*" + inner.trim() + "*";
-    return nodeListToMarkdown(node.childNodes);
+    if (tag !== "strong" && tag !== "b" && /font-weight\s*:\s*(bold|[6-9]00)/i.test(style)) inner = "**" + inner.trim() + "**";
+    if (tag !== "em" && tag !== "i" && /font-style\s*:\s*italic/i.test(style)) inner = "*" + inner.trim() + "*";
+    var background = style.match(/background-color\s*:\s*([^;]+)/i);
+    if ((tag === "mark" || (background && isEditorHighlightColor(background[1]))) && inner.trim()) inner = "==" + inner + "==";
+    return inner;
   }
 
   function blockNodeToMarkdown(node) {
@@ -1021,6 +1047,7 @@
       '</select>' +
       commandButton("<strong>B</strong>", "Жирний", "bold") +
       commandButton("<em>I</em>", "Курсив", "italic") +
+      commandButton("Маркер", "Жовтий маркер", "highlight") +
       commandButton("•", "Маркований список", "insertUnorderedList") +
       commandButton("1.", "Нумерований список", "insertOrderedList") +
       commandButton("“”", "Цитата", "blockquote") +
@@ -1033,7 +1060,7 @@
       '</div>' +
       '<div class="admin-editor-surface" data-editor-surface="true" contenteditable="true" role="textbox" aria-multiline="true" aria-label="' + escapeHtml(langLabel) + '"></div>' +
       '<textarea class="admin-editor-source" name="' + name + '">' + escapeHtml(value) + "</textarea>" +
-      '<p class="admin-editor-note">Пишіть як у звичайному документі. Сайт сам збере чистий текст у своєму стилі.</p>' +
+      '<p class="admin-editor-note">Пишіть як у звичайному документі. Щоб виділити фразу жовтим, оберіть текст і натисніть «Маркер». Повторне натискання знімає виділення.</p>' +
       '</div>';
   }
 
@@ -1068,6 +1095,10 @@
       var active = false;
       if (command === "bold" || command === "italic" || command === "insertUnorderedList" || command === "insertOrderedList") {
         try { active = document.queryCommandState(command); } catch (e) { active = false; }
+      }
+      if (command === "highlight") {
+        active = editorHighlightActive();
+        button.setAttribute("aria-pressed", active ? "true" : "false");
       }
       button.classList.toggle("is-active", active);
     });
@@ -1148,7 +1179,13 @@
       insertEditorLink(editor);
       return;
     }
-    if (command === "blockquote") {
+    if (command === "highlight") {
+      var highlighted = editorHighlightActive();
+      var cssMode = document.queryCommandState("styleWithCSS");
+      document.execCommand("styleWithCSS", false, true);
+      document.execCommand(document.queryCommandSupported("hiliteColor") ? "hiliteColor" : "backColor", false, highlighted ? "transparent" : "#ffe66d");
+      document.execCommand("styleWithCSS", false, cssMode);
+    } else if (command === "blockquote") {
       document.execCommand("formatBlock", false, "blockquote");
     } else if (command === "removeFormat") {
       document.execCommand("removeFormat", false, null);
@@ -1198,7 +1235,7 @@
       }
 
       Array.prototype.forEach.call(toolbar.querySelectorAll("[data-editor-command]"), function (button) {
-        button.addEventListener("mousedown", function (event) { event.preventDefault(); });
+        button.addEventListener("mousedown", function (event) { saveSelection(editor); event.preventDefault(); });
         button.addEventListener("click", function () {
           runEditorCommand(editor, button.dataset.editorCommand);
         });
