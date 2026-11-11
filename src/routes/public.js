@@ -177,12 +177,12 @@ ${entries.join("\n")}
     let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
-      query += " AND tags LIKE ?";
-      binds.push(`%"${tag}"%`);
+      query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";
+      binds.push(tag);
     }
     if (mediaId) {
-      query += " AND related_media_ids LIKE ?";
-      binds.push(`%"${mediaId}"%`);
+      query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(related_media_ids) THEN related_media_ids ELSE '[]' END) AS media_filter WHERE media_filter.value = ?)";
+      binds.push(mediaId);
     }
     if (important === "1" || important === "true") {
       query += " AND is_important = 1";
@@ -302,8 +302,8 @@ ${entries.join("\n")}
     let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, card_style, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
-      query += " AND tags LIKE ?";
-      binds.push(`%"${tag}"%`);
+      query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";
+      binds.push(tag);
     }
     query += " ORDER BY published_at DESC LIMIT 60";
     const { results } = await db.prepare(query).bind(...binds).all();
