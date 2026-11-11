@@ -37,7 +37,7 @@ export async function verifyAnalyticsToken(token, { now = Date.now(), fetcher = 
   let keys = cacheable && keyCache?.until > now ? keyCache.keys : null;
   if (!keys || !keys.some(key => key.kid === header.kid)) {
     let response;
-    try { response = await fetcher(`${ISSUER}/.well-known/jwks`, { redirect: "error" }); }
+    try { response = await fetcher(`${ISSUER}/.well-known/jwks`, { redirect: "manual" }); }
     catch (_) { throw Error("Workflow signing keys unavailable"); }
     if (!response.ok) throw Error("Workflow signing keys unavailable");
     try { keys = (await response.json()).keys; }
