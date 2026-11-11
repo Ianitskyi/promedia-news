@@ -20,7 +20,11 @@ async function token(overrides = {}) {
   const signature = await crypto.subtle.sign("RSASSA-PKCS1-v1_5",keypair.privateKey,new TextEncoder().encode(input));
   return input + "." + Buffer.from(signature).toString("base64url");
 }
-const options = {now,fetcher: async () => Response.json({keys:[jwk]})};
+const options = {now,fetcher: async (url, init) => {
+  assert.equal(url,"https://token.actions.githubusercontent.com/.well-known/jwks");
+  assert.equal(init.redirect,"manual", "Workers supports manual redirects; redirects remain rejected by the status check");
+  return Response.json({keys:[jwk]});
+}};
 
 test("Only the signed main-branch analytics workflow can sync totals", async () => {
   assert.equal((await auth.verifyAnalyticsToken(await token(),options)).repository_id,claims.repository_id);
