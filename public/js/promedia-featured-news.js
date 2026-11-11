@@ -56,9 +56,35 @@
     var date = document.createElement("span");
     date.className = "pm-featured-news-date";
     date.textContent = formatDate(item.publishedAt, lang);
+    var meta = document.createElement("div");
+    meta.className = "pm-featured-news-meta";
+    meta.appendChild(date);
+    if (Number.isSafeInteger(item.viewCount) && item.viewCount >= 0) {
+      var views = document.createElement("span");
+      views.className = "pm-featured-news-views";
+      var label = lang === "en" ? "Views" : lang === "crh" ? "Baqıluvlar" : "Перегляди";
+      views.title = label + " · Google Analytics";
+      views.setAttribute("aria-label", label + ": " + item.viewCount);
+      var icon = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      icon.setAttribute("viewBox", "0 0 24 24");
+      icon.setAttribute("width", "16");
+      icon.setAttribute("height", "16");
+      icon.setAttribute("fill", "none");
+      icon.setAttribute("stroke", "currentColor");
+      icon.setAttribute("stroke-width", "1.6");
+      icon.setAttribute("aria-hidden", "true");
+      var path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      path.setAttribute("d", "M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z");
+      var pupil = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      pupil.setAttribute("cx", "12"); pupil.setAttribute("cy", "12"); pupil.setAttribute("r", "3");
+      icon.appendChild(path); icon.appendChild(pupil);
+      views.appendChild(icon);
+      views.appendChild(document.createTextNode(new Intl.NumberFormat(lang === "en" ? "en-GB" : "uk-UA").format(item.viewCount)));
+      meta.appendChild(views);
+    }
     var heading = document.createElement("h3");
     heading.textContent = title || "";
-    body.appendChild(date);
+    body.appendChild(meta);
     body.appendChild(heading);
 
     card.appendChild(media);

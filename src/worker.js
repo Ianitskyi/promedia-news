@@ -3,12 +3,16 @@ import { handleAuthRoute } from "./routes/auth.js";
 import { handleAdminRoute } from "./routes/admin.js";
 import { handleProjectsAdminRoute } from "./routes/projectsAdmin.js";
 import { handleProjectsPublicRoute } from "./routes/projects.js";
+import { handleAnalyticsRoute } from "./routes/analytics.js";
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     try {
+      const analyticsRes = await handleAnalyticsRoute(request, env, url);
+      if (analyticsRes) return analyticsRes;
+
       // Роздача картинок з R2, якщо не налаштовано публічний домен бакета
       // (env.IMAGES_PUBLIC_BASE_URL). Зручно для локальної розробки.
       if (url.pathname.startsWith("/img-storage/")) {

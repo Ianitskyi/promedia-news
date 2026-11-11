@@ -321,6 +321,10 @@ img { max-width: 100%; }
 .article-card h3 a { text-decoration: none; color: var(--ink); }
 .article-excerpt { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.5; flex: 1; }
 .article-date { margin: 0; color: var(--muted); font-size: 12px; }
+.article-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; color: var(--muted); font-size: 12px; }
+.article-views { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.article-views svg { flex: none; }
+.article-card--hero .article-meta { color: rgba(255,255,255,.72); }
 
 .article-card--hero { position: relative; min-height: 0; background: var(--ink); border: 0; color: #fff; }
 .article-card--hero .article-card-media { position: relative; aspect-ratio: auto; flex: none; }

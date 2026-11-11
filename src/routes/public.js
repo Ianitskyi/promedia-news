@@ -174,7 +174,7 @@ ${entries.join("\n")}
     const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, related_media_ids, is_important, card_style, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, related_media_ids, is_important, card_style, published_at , av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";
@@ -208,6 +208,8 @@ ${entries.join("\n")}
       isImportant: Boolean(a.is_important),
       cardStyle: a.card_style || "auto",
       publishedAt: a.published_at,
+      viewCount: a.view_count ?? null,
+      viewsUpdatedAt: a.views_updated_at ?? null,
       url: `https://news.promedia.report/article/${a.slug}`
     }));
     return corsJson({ items });
@@ -252,7 +254,7 @@ ${entries.join("\n")}
   const apiSlugMatch = url.pathname.match(/^\/api\/articles\/([a-z0-9-]+)$/);
   if (apiSlugMatch && request.method === "GET") {
     const article = await db.prepare(
-      "SELECT * FROM articles WHERE slug = ? AND status = 'published' AND deleted_at IS NULL"
+      "SELECT articles.*, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE slug = ? AND status = 'published' AND deleted_at IS NULL"
     ).bind(apiSlugMatch[1]).first();
     if (!article) return corsJson({ error: "not_found" }, 404);
     return corsJson({
@@ -272,7 +274,9 @@ ${entries.join("\n")}
       relatedMediaIds: parseJsonArray(article.related_media_ids),
       isImportant: Boolean(article.is_important),
       cardStyle: article.card_style || "auto",
-      publishedAt: article.published_at
+      publishedAt: article.published_at,
+      viewCount: article.view_count ?? null,
+      viewsUpdatedAt: article.views_updated_at ?? null
     });
   }
 
@@ -284,7 +288,7 @@ ${entries.join("\n")}
   const articleMatch = pagePath.match(/^\/article\/([a-z0-9-]+)$/);
   if (articleMatch && request.method === "GET") {
     const article = await db.prepare(
-      "SELECT * FROM articles WHERE slug = ? AND status = 'published' AND deleted_at IS NULL"
+      "SELECT articles.*, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE slug = ? AND status = 'published' AND deleted_at IS NULL"
     ).bind(articleMatch[1]).first();
     if (!article) {
       return new Response(renderNotFound(lang, baseUrl), {
@@ -299,7 +303,7 @@ ${entries.join("\n")}
   // GET / (homepage, optional ?tag=)
   if (pagePath === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, card_style, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, card_style, published_at , av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";

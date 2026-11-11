@@ -20,6 +20,7 @@ const sqlite = `
 import sqlite3, json, sys
 p=json.loads(sys.argv[1]); row=p['article']; db=sqlite3.connect(':memory:'); db.row_factory=sqlite3.Row
 db.setlimit(sqlite3.SQLITE_LIMIT_LIKE_PATTERN_LENGTH,50)
+db.execute('CREATE TABLE article_views(article_id INTEGER PRIMARY KEY,ga4_views INTEGER,synced_at TEXT)')
 db.execute('CREATE TABLE articles ('+','.join('"'+c+'"' for c in row)+')')
 db.execute('INSERT INTO articles VALUES ('+','.join('?' for _ in row)+')',list(row.values()))
 print(json.dumps([dict(r) for r in db.execute(p['sql'],p['values'])]))

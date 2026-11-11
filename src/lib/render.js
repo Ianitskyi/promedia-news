@@ -331,6 +331,16 @@ function formatDate(dateStr, lang) {
   return d.toLocaleDateString(lang === "en" ? "en-GB" : "uk-UA", { year: "numeric", month: "long", day: "numeric" });
 }
 
+function articleMeta(article, lang) {
+  const count = article.view_count;
+  const labels = { uk: "Перегляди", en: "Views", crh: "Baqıluvlar" };
+  const hints = { uk: "Перегляди за даними Google Analytics", en: "Page views from Google Analytics", crh: "Google Analytics malümatlarına köre baqıluvlar" };
+  const views = Number.isSafeInteger(count) && count >= 0
+    ? `<span class="article-views" title="${pick(hints, lang)}" aria-label="${pick(labels, lang)}: ${count}"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>${new Intl.NumberFormat(lang === "en" ? "en-GB" : "uk-UA").format(count)}</span></span>`
+    : "";
+  return `<div class="article-meta"><p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>${views}</div>`;
+}
+
 function localizedField(article, field, lang) {
   const normalize = field === "title" ? normalizeUkrainianTitle : normalizeUkrainianQuotes;
   if (lang === "uk") return normalize(article[field]);
@@ -385,7 +395,7 @@ function articleCard(article, lang, baseUrl, variant) {
     ${tags.length ? `<div class="article-tags">${tags.map((t) => `<span class="article-tag">${escapeHtml(tagLabel(t, lang))}</span>`).join("")}</div>` : ""}
     <h3><a href="${articleHref}">${escapeHtml(title)}</a></h3>
     <p class="article-excerpt">${escapeHtml(excerpt)}</p>
-    <p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>
+    ${articleMeta(article, lang)}
   </div>
 </article>`;
 }
@@ -506,7 +516,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   <p class="article-back"><a href="${langPrefix(lang)}/">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
   ${tags.length ? `<div class="article-tags">${tags.map((tg) => `<a class="article-tag" href="${langPrefix(lang)}/?tag=${encodeURIComponent(tg)}">${escapeHtml(tagLabel(tg, lang))}</a>`).join("")}</div>` : ""}
   <h1>${escapeHtml(title)}</h1>
-  <p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>
+  ${articleMeta(article, lang)}
   ${articleShareBlock({ title, excerpt, articleUrl, lang })}
   ${cover}
   <div class="article-body">${bodyHtmlContent}</div>
