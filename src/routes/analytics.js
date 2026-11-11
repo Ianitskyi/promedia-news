@@ -24,7 +24,10 @@ export async function handleAnalyticsRoute(request, env, url, verify = verifyAna
   if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
   try {
     await verify(request.headers.get("Authorization")?.match(/^Bearer (\S+)$/)?.[1]);
-  } catch (_) { return json({ error: "unauthorized" }, 401); }
+  } catch (error) {
+    const reasons = new Set(["Missing workflow identity", "Invalid workflow identity", "Invalid token encoding", "Untrusted workflow identity", "Workflow signing keys unavailable", "Invalid workflow signing keys", "Unknown workflow signing key", "Invalid workflow signature"]);
+    return json({ error: "unauthorized", reason: reasons.has(error.message) ? error.message : "Identity verification failed", serverTime: new Date().toISOString() }, 401);
+  }
   let report;
   try {
     if (!request.headers.get("Content-Type")?.startsWith("application/json")) throw Error("Expected JSON");
