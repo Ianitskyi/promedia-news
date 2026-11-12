@@ -391,7 +391,6 @@ function articleCard(article, lang, baseUrl, variant) {
 <article class="article-card article-card--${cardVariant}">
   ${cover}
   <div class="article-card-body">
-    ${cardVariant === "hero" ? `<span class="lead-label">${pick(TOP_STORY_LABEL, lang)}</span>` : ""}
     ${tags.length ? `<div class="article-tags">${tags.map((t) => `<span class="article-tag">${escapeHtml(tagLabel(t, lang))}</span>`).join("")}</div>` : ""}
     <h3><a href="${articleHref}">${escapeHtml(title)}</a></h3>
     <p class="article-excerpt">${escapeHtml(excerpt)}</p>
@@ -466,22 +465,16 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   const topic = PRACTICE_TOPICS.find(item => item.id === activeTopic);
   const filtered = Boolean(activeTag || topic);
   const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
-  const topicNav = `<section class="practice-needs" aria-label="${escapeHtml(copy.needs)}"><h2>${escapeHtml(copy.needs)}</h2><nav class="practice-topics">${PRACTICE_TOPICS.map(item => `<a href="${prefix}/?topic=${item.id}"${item.id === activeTopic ? ' aria-current="page"' : ""}><span>${escapeHtml(pick(item.labels, lang))}</span><span aria-hidden="true">↗</span></a>`).join("")}</nav></section>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
   if (articles.length && filtered) {
     list = heading(topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang), `${prefix}/`) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
   } else if (articles.length) {
     const hero = articles.find(a => a.card_style === "hero") || articles[0];
     const remaining = articles.filter(a => a.slug !== hero.slug);
-    const practical = remaining.filter(a => articleTags(a).includes("Статті")).slice(0, 3);
-    const research = remaining.filter(a => articleTags(a).some(t => tagLookupKey(t) === "дослідження")).slice(0, 3);
-    const organisation = remaining.filter(a => articleTags(a).some(t => ["промедіа", "promedia", "події", "заяви"].includes(tagLookupKey(t)))).slice(0, 3);
-    const section = (title, items, href) => items.length ? `<section class="practice-section">${heading(title, href)}<div class="practice-grid">${items.map(a => articleCard(a, lang, baseUrl, articleCardVariant(a, "visual"))).join("")}</div></section>` : "";
     list = `<section class="practice-feature" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">${articleCard(hero, lang, baseUrl, "hero")}</section>
-      ${section(copy.practice, practical, `${prefix}/?tag=${encodeURIComponent("Статті")}`)}
-      <section class="practice-section">${heading(copy.latest)}<div class="practice-stream">${remaining.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div></section>
-      ${section(copy.research, research, `${prefix}/?tag=${encodeURIComponent("дослідження")}`)}
-      ${section(copy.organisation, organisation, `${prefix}/?tag=${encodeURIComponent("ПроМедіа")}`)}`;
+      <div class="practice-grid practice-section">${remaining.slice(0, 3).map(a => articleCard(a, lang, baseUrl, articleCardVariant(a, "visual"))).join("")}</div>
+      <div class="practice-stream practice-section">${remaining.slice(3).map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
+
   }
   const bodyHtml = `<main class="wrap practice-home">
     ${list}
