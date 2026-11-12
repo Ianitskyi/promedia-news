@@ -478,14 +478,13 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
     const organisation = remaining.filter(a => articleTags(a).some(t => ["промедіа", "promedia", "події", "заяви"].includes(tagLookupKey(t)))).slice(0, 3);
     const section = (title, items, href) => items.length ? `<section class="practice-section">${heading(title, href)}<div class="practice-grid">${items.map(a => articleCard(a, lang, baseUrl, articleCardVariant(a, "visual"))).join("")}</div></section>` : "";
     list = `<section class="practice-feature" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">${articleCard(hero, lang, baseUrl, "hero")}</section>
-      ${topicNav}
       ${section(copy.practice, practical, `${prefix}/?tag=${encodeURIComponent("Статті")}`)}
       <section class="practice-section">${heading(copy.latest)}<div class="practice-stream">${remaining.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div></section>
       ${section(copy.research, research, `${prefix}/?tag=${encodeURIComponent("дослідження")}`)}
       ${section(copy.organisation, organisation, `${prefix}/?tag=${encodeURIComponent("ПроМедіа")}`)}`;
   }
   const bodyHtml = `<main class="wrap practice-home">
-    ${filtered ? topicNav : ""}${list}
+    ${list}
     <section class="practice-services">${heading(copy.services)}<div><a href="https://guide.promedia.report/${lang === "uk" ? "" : lang + "/"}">${escapeHtml(copy.guide)} ↗</a><a href="${NETWORK_URLS.atlas[lang]}">${escapeHtml(copy.atlas)} ↗</a><a href="https://jobs.promedia.report/">${escapeHtml(copy.jobs)} ↗</a></div></section>
   </main>`;
   return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
