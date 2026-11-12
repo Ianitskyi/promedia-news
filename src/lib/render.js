@@ -500,7 +500,6 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${list}
-    <section class="practice-services">${heading(copy.services)}<div><a href="https://guide.promedia.report/${lang === "uk" ? "" : lang + "/"}">${escapeHtml(copy.guide)} ↗</a><a href="${NETWORK_URLS.atlas[lang]}">${escapeHtml(copy.atlas)} ↗</a></div></section>
   </main><script defer src="/js/promedia-mosaic.js"></script>`;
   return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
     url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : ""}`, lang, bodyHtml });
