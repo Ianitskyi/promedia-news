@@ -372,7 +372,7 @@ function categoryNav(lang, activeTag) {
   return `<nav class="category-nav" aria-label="${pick(CATEGORY_NAV_ARIA, lang)}">${items.join("")}</nav>`;
 }
 
-const TOP_STORY_LABEL = { uk: "Головна новина", en: "Top story", crh: "Baş haber" };
+const TOP_STORY_LABEL = { uk: "У центрі уваги", en: "Top story", crh: "Baş haber" };
 
 function articleCard(article, lang, baseUrl, variant) {
   const title = articleTitle(article, lang);
@@ -443,52 +443,54 @@ const NO_ARTICLES_LABEL = { uk: "Статей поки немає.", en: "No art
 const TOP_STORIES_ARIA = { uk: "Головні новини", en: "Top stories", crh: "Baş haberler" };
 const LATEST_NEWS_LABEL = { uk: "Останні новини", en: "Latest news", crh: "Soñki haberler" };
 
-export function renderHomepage({ articles, lang, activeTag, baseUrl }) {
-  const t = pick(SITE_NAME, lang);
-  const tagline = pick(SITE_TAGLINE, lang);
+export const PRACTICE_TOPICS = [
+  { id: "audience", labels: { uk: "Залучати аудиторію", en: "Engage audiences", crh: "Auditoriyanı celp etmek" }, tags: ["медійні спільноти", "медіаспільноти", "Медіаспільноти", "членство", "карта спільнот"] },
+  { id: "money", labels: { uk: "Знаходити гроші", en: "Find funding", crh: "Malî imkânlar tapmaq" }, tags: ["локальний бізнес", "фінансування", "фандрейзинг", "медіапідприємництво", "членство"] },
+  { id: "technology", labels: { uk: "Автоматизувати роботу", en: "Automate work", crh: "İşni avtomatlaştırmaq" }, tags: ["штучний інтелект", "Штучний інтелект", "ШІ", "автоматизація", "відкриті дані", "фактчекінг"] },
+  { id: "team", labels: { uk: "Розвивати команду", en: "Develop your team", crh: "Komandanı inkişaf ettirmek" }, tags: ["журналістська освіта", "освіта", "навчання", "безпека журналістів", "ейджизм"] }
+];
+
+function articleTags(article) {
+  try { const tags = JSON.parse(article.tags || "[]"); return Array.isArray(tags) ? tags : []; } catch { return []; }
+}
+
+const PRACTICE_COPY = {
+  uk: { title: "Медіа, які розвиваються", intro: "Досвід, знання та інструменти для вашої редакції.", needs: "Що потрібно вашій редакції?", practice: "Взяти в роботу", latest: "Останні публікації", all: "Усі матеріали", research: "Дослідження", organisation: "ПроМедіа: події та проєкти", services: "Інструменти ПроМедіа", guide: "Посібник із розвитку спільнот", atlas: "Атлас Медіа", jobs: "Робота в медіа", filtered: "Матеріали за темою" },
+  en: { title: "Helping media grow", intro: "Experience, knowledge and tools for your newsroom.", needs: "What does your newsroom need?", practice: "Put into practice", latest: "Latest publications", all: "All publications", research: "Research", organisation: "ProMedia: events and projects", services: "ProMedia tools", guide: "Community development guide", atlas: "Media Atlas", jobs: "Media jobs", filtered: "Explore this topic" },
+  crh: { title: "İnkişaf etken mediya", intro: "Redaktsiyañız içün tecribe, bilgi ve aletler.", needs: "Redaktsiyañızğa ne kerek?", practice: "Amelde qullanıñız", latest: "Soñki neşirler", all: "Bütün neşirler", research: "Tedqiqatlar", organisation: "ProMedia: tedbirler ve leyhalar", services: "ProMedia aletleri", guide: "Cemaatlarnı inkişaf ettirüv qılavuzı", atlas: "Mediya Atlası", jobs: "Mediyada iş", filtered: "Mevzuğa ait neşirler" }
+};
+
+export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl }) {
+  const copy = pick(PRACTICE_COPY, lang);
+  const prefix = langPrefix(lang);
+  const topic = PRACTICE_TOPICS.find(item => item.id === activeTopic);
+  const filtered = Boolean(activeTag || topic);
+  const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
+  const topicNav = `<section class="practice-needs" aria-label="${escapeHtml(copy.needs)}"><h2>${escapeHtml(copy.needs)}</h2><nav class="practice-topics">${PRACTICE_TOPICS.map(item => `<a href="${prefix}/?topic=${item.id}"${item.id === activeTopic ? ' aria-current="page"' : ""}><span>${escapeHtml(pick(item.labels, lang))}</span><span aria-hidden="true">↗</span></a>`).join("")}</nav></section>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
-  if (articles.length) {
-    const orderedArticles = articles.slice();
-    const manualHeroIndex = orderedArticles.findIndex((article) => article.card_style === "hero");
-    if (manualHeroIndex > 0) orderedArticles.unshift(orderedArticles.splice(manualHeroIndex, 1)[0]);
-    const lead = orderedArticles.slice(0, 3);
-    const stream = orderedArticles.slice(3);
-    const leadSide = lead.slice(1).length
-      ? `<div class="news-lead-side">
-          ${lead[1] ? articleCard(lead[1], lang, baseUrl, articleCardVariant(lead[1], "visual")) : ""}
-          ${lead[2] ? articleCard(lead[2], lang, baseUrl, articleCardVariant(lead[2], "text")) : ""}
-        </div>`
-      : "";
-    const streamHtml = stream.length
-      ? `<div class="news-section-heading">
-          <h2>${pick(LATEST_NEWS_LABEL, lang)}</h2>
-          <span>${String(stream.length).padStart(2, "0")}</span>
-        </div>
-        <div class="article-grid">
-          ${stream.map((article, index) => articleCard(article, lang, baseUrl, articleCardVariant(article, index % 4 === 2 ? "text" : "visual"))).join("")}
-        </div>`
-      : "";
-    list = `<section class="news-lead${leadSide ? " news-lead--with-side" : ""}" aria-label="${pick(TOP_STORIES_ARIA, lang)}">
-        ${articleCard(lead[0], lang, baseUrl, articleCardVariant(lead[0], "hero"))}
-        ${leadSide}
-      </section>
-      ${streamHtml}`;
+  if (articles.length && filtered) {
+    list = heading(topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang), `${prefix}/`) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
+  } else if (articles.length) {
+    const hero = articles.find(a => a.card_style === "hero") || articles[0];
+    const remaining = articles.filter(a => a.slug !== hero.slug);
+    const practical = remaining.filter(a => articleTags(a).includes("Статті")).slice(0, 3);
+    const research = remaining.filter(a => articleTags(a).some(t => tagLookupKey(t) === "дослідження")).slice(0, 3);
+    const organisation = remaining.filter(a => articleTags(a).some(t => ["промедіа", "promedia", "події", "заяви"].includes(tagLookupKey(t)))).slice(0, 3);
+    const section = (title, items, href) => items.length ? `<section class="practice-section">${heading(title, href)}<div class="practice-grid">${items.map(a => articleCard(a, lang, baseUrl, articleCardVariant(a, "visual"))).join("")}</div></section>` : "";
+    list = `<section class="practice-feature" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">${articleCard(hero, lang, baseUrl, "hero")}</section>
+      ${topicNav}
+      ${section(copy.practice, practical, `${prefix}/?tag=${encodeURIComponent("Статті")}`)}
+      <section class="practice-section">${heading(copy.latest)}<div class="practice-stream">${remaining.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div></section>
+      ${section(copy.research, research, `${prefix}/?tag=${encodeURIComponent("дослідження")}`)}
+      ${section(copy.organisation, organisation, `${prefix}/?tag=${encodeURIComponent("ПроМедіа")}`)}`;
   }
-  const bodyHtml = `
-<section class="hero">
-  <h1>${lang === "en" ? "News from <span>ProMedia</span>" : (lang === "crh" ? "<span>ProMedia</span>'dan haberler" : "Новини від <span>ProMedia</span>")}</h1>
-  ${categoryNav(lang, activeTag)}
-</section>
-<main class="wrap">
-${list}
-</main>`;
-  return pageShell({
-    title: `${t} — ${tagline}`,
-    description: tagline,
-    url: `${baseUrl}${langPrefix(lang)}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : ""}`,
-    lang,
-    bodyHtml
-  });
+  const bodyHtml = `<main class="wrap practice-home">
+    <div class="practice-masthead"><p class="practice-eyebrow">ProMedia Report</p><h1>${escapeHtml(filtered ? copy.filtered : copy.title)}</h1><p>${escapeHtml(copy.intro)}</p>${categoryNav(lang, activeTag)}</div>
+    ${filtered ? topicNav : ""}${list}
+    <section class="practice-services">${heading(copy.services)}<div><a href="https://guide.promedia.report/${lang === "uk" ? "" : lang + "/"}">${escapeHtml(copy.guide)} ↗</a><a href="${NETWORK_URLS.atlas[lang]}">${escapeHtml(copy.atlas)} ↗</a><a href="https://jobs.promedia.report/">${escapeHtml(copy.jobs)} ↗</a></div></section>
+  </main>`;
+  return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
+    url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : ""}`, lang, bodyHtml });
 }
 
 const BACK_TO_NEWS_LABEL = { uk: "← Усі новини", en: "← All news", crh: "← Episi haberler" };

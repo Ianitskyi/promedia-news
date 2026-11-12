@@ -5,15 +5,16 @@ import { execFileSync } from "node:child_process";
 
 const source = readFileSync(new URL("../src/routes/public.js", import.meta.url), "utf8")
   .replace(/^import .*?;\s*/gm, "").replace(/export /g, "");
-const route = new Function("renderHomepage", "ukrainianTypographyReplacer", source + "; return handlePublicRoute;")(
-  () => "<html>Filtered news</html>", (_key, value) => value
+const { PRACTICE_TOPICS } = await import("../src/lib/render.js");
+const route = new Function("renderHomepage", "ukrainianTypographyReplacer", "PRACTICE_TOPICS", source + "; return handlePublicRoute;")(
+  ({ articles }) => `<html>${articles.length}</html>`, (_key, value) => value, PRACTICE_TOPICS
 );
 const longTag = "журналістські розслідування";
 const article = {
   id: 1, slug: "test", title: "Новина", title_en: "News", title_crh: "Haber",
   excerpt: "Опис", excerpt_en: "Description", excerpt_crh: "Tarif",
   cover_image_url: "", cover_image_url_en: "", cover_crop_data: "{}", cover_crop_data_en: "{}",
-  tags: JSON.stringify([longTag, 'Тег "із лапками" та % _']), related_media_ids: JSON.stringify(["long-media-id-".repeat(8)]),
+  tags: JSON.stringify(["автоматизація", longTag, 'Тег "із лапками" та % _']), related_media_ids: JSON.stringify(["long-media-id-".repeat(8)]),
   is_important: 0, card_style: "auto", published_at: "2026-11-05", status: "published", deleted_at: null
 };
 const sqlite = `
@@ -54,4 +55,11 @@ test("Tag filters use exact values including quotes and wildcard characters", as
 test("Long media identifiers use the same safe array membership filter", async () => {
   const response = await request("/api/articles?mediaId=" + encodeURIComponent("long-media-id-".repeat(8)));
   assert.equal((await response.json()).items.length, 1);
+});
+
+test("Practical topic filters work in each language and exclude unrelated topics", async () => {
+  for (const prefix of ["", "/en", "/crh"]) {
+    assert.equal(await (await request(prefix + "/?topic=technology")).text(), "<html>1</html>");
+    assert.equal(await (await request(prefix + "/?topic=money")).text(), "<html>0</html>");
+  }
 });

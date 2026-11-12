@@ -1,4 +1,4 @@
-import { renderHomepage, renderArticlePage, renderNotFound } from "../lib/render.js";
+import { renderHomepage, renderArticlePage, renderNotFound, PRACTICE_TOPICS } from "../lib/render.js";
 import { handlePublicPushRoute } from "../lib/push.js";
 import { ukrainianTypographyReplacer } from "../lib/typography.js";
 
@@ -309,9 +309,14 @@ ${entries.join("\n")}
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";
       binds.push(tag);
     }
+    const topic = PRACTICE_TOPICS.find(item => item.id === url.searchParams.get("topic"));
+    if (topic) {
+      query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS topic_filter WHERE topic_filter.value IN (" + topic.tags.map(() => "?").join(",") + "))";
+      binds.push(...topic.tags);
+    }
     query += " ORDER BY published_at DESC LIMIT 60";
     const { results } = await db.prepare(query).bind(...binds).all();
-    return html(renderHomepage({ articles: results, lang, activeTag: tag, baseUrl }));
+    return html(renderHomepage({ articles: results, lang, activeTag: tag, activeTopic: topic?.id, baseUrl }));
   }
 
   return null;
