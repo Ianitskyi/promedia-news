@@ -1060,3 +1060,52 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 
 /* Keep topic navigation inside articles, leaving feed cards uncluttered. */
 .practice-home .article-card .article-tags { display: none; }
+
+/* Approved editorial opening: lead story plus two concise recent stories. */
+.practice-opening { display: grid; gap: 32px; align-items: stretch; }
+.practice-opening--with-side { grid-template-columns: minmax(0, 1.9fr) minmax(0, 1fr); }
+.practice-home .practice-feature .article-card--hero { display: flex; flex-direction: column; gap: 0; align-items: stretch; }
+.practice-home .practice-feature .article-card--hero .article-card-body { padding: 18px 0 0; gap: 12px; }
+.practice-home .practice-feature .article-card--hero h1 { margin: 0; font-family: var(--serif); font-size: clamp(28px, 3vw, 38px); line-height: 1.14; letter-spacing: -.5px; }
+.practice-home .practice-feature .article-card--hero h1 a { color: var(--ink); text-decoration: none; }
+.practice-home .practice-feature .article-card--hero h1 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.practice-home .practice-feature .article-card--hero .article-excerpt { font-size: 14px; line-height: 1.65; }
+.practice-home .practice-feature .article-card-img { border-radius: 3px; }
+.practice-opening-side { min-width: 0; display: grid; grid-template-rows: repeat(2, 1fr); border-left: 1px solid var(--border); padding-left: 28px; }
+.practice-home .practice-opening-side .article-card { background: transparent; border-bottom: 1px solid var(--border); }
+.practice-home .practice-opening-side .article-card:last-child { border-bottom: 0; }
+.practice-home .practice-opening-side .article-card-body { justify-content: center; padding: 24px 0; gap: 16px; }
+.practice-home .practice-opening-side h3 { font-size: clamp(22px, 2.2vw, 28px); line-height: 1.3; }
+.practice-home .practice-opening-side .article-excerpt { display: none; }
+.practice-home { padding-top: 28px; }
+.project-promo-slot { display: flex; justify-content: center; margin: 32px auto; width: 100%; }
+.project-promo { box-sizing: border-box; width: 728px; height: 90px; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 12px 20px; border-left: 3px solid var(--accent); border-radius: 3px; background: var(--accent-tint); color: var(--ink); text-decoration: none; }
+.project-promo-copy { min-width: 0; }
+.project-promo-label { display: block; font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: .06em; color: #595970; }
+.project-promo h2 { font-family: var(--serif); font-size: 22px; line-height: 1.15; margin: 3px 0 5px; color: var(--ink); }
+.project-promo p { font-family: var(--sans); font-size: 11px; line-height: 1.3; margin: 0; color: #45445f; }
+.project-promo-action { flex: 0 0 auto; font-family: var(--sans); font-weight: 700; font-size: 11px; line-height: 1.3; background: var(--ink); color: #fff; padding: 12px 14px; border-radius: 3px; }
+.project-promo--jobs { background: #fff; border: 1px solid var(--border); border-left: 3px solid var(--ink); }
+.project-promo:hover .project-promo-action { background: var(--ink-soft); }
+.project-promo:focus-visible { outline: 3px solid var(--accent-dark); outline-offset: 4px; }
+@media (max-width: 799px) {
+  .project-promo { width: 320px; height: 100px; padding: 12px; gap: 10px; }
+  .project-promo h2 { font-family: var(--sans); font-size: 15px; line-height: 1.2; margin: 5px 0 0; }
+  .project-promo p { display: none; }
+  .project-promo-label { letter-spacing: 0; }
+  .project-promo-action { max-width: 86px; padding: 10px 8px; }
+}
+@media (max-width: 620px) {
+  .practice-opening--with-side { grid-template-columns: 1fr; gap: 20px; }
+  .practice-home .practice-feature .article-card--hero h1 { font-size: 29px; }
+  .practice-home .practice-feature .article-card--hero .article-card-body { padding-top: 16px; }
+  .practice-home .practice-feature .article-excerpt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+  .practice-opening-side { border-left: 0; border-top: 2px solid var(--ink); padding-left: 0; }
+  .practice-home .practice-opening-side .article-card-body { padding: 18px 0; gap: 10px; }
+  .practice-home .practice-opening-side h3 { font-size: 21px; }
+  .project-promo-slot { margin-block: 24px; }
+}
+@media (max-width: 355px) {
+  .practice-home, .wrap.article-page { padding-inline: 10px; }
+  .project-promo { width: 300px; }
+}

@@ -392,7 +392,7 @@ function articleCard(article, lang, baseUrl, variant) {
   ${cover}
   <div class="article-card-body">
     ${tags.length ? `<div class="article-tags">${tags.map((t) => `<a class="article-tag" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>` : ""}
-    <h3><a href="${articleHref}">${escapeHtml(title)}</a></h3>
+    <${cardVariant === "hero" ? "h1" : "h3"}><a href="${articleHref}">${escapeHtml(title)}</a></${cardVariant === "hero" ? "h1" : "h3"}>
     <p class="article-excerpt">${escapeHtml(excerpt)}</p>
     ${articleMeta(article, lang)}
   </div>
@@ -459,6 +459,25 @@ const PRACTICE_COPY = {
   crh: { title: "İnkişaf etken mediya", intro: "Redaktsiyañız içün tecribe, bilgi ve aletler.", needs: "Redaktsiyañızğa ne kerek?", practice: "Amelde qullanıñız", latest: "Soñki neşirler", all: "Bütün neşirler", research: "Tedqiqatlar", organisation: "ProMedia: tedbirler ve leyhalar", services: "ProMedia aletleri", guide: "Cemaatlarnı inkişaf ettirüv qılavuzı", atlas: "Mediya Atlası", jobs: "Mediyada iş", filtered: "Mevzuğa ait neşirler" }
 };
 
+
+const PROJECT_PROMOS = {
+  uk: { label: "Проєкт ПроМедіа", atlas: ["Хто стоїть за українськими медіа?", "Шукайте медіа та їхніх власників в Атласі Медіа.", "Відкрити Атлас"], jobs: ["Знайдіть свою роботу в медіа", "Вакансії та можливості для медійників.", "До вакансій"] },
+  en: { label: "A ProMedia project", atlas: ["Who owns Ukrainian media?", "Explore media outlets and their owners in the Media Atlas.", "Open the Atlas"], jobs: ["Find your next media job", "Jobs and opportunities for media professionals.", "Explore jobs"] },
+  crh: { label: "ProMedia leyhası", atlas: ["Ukrayina mediyasınıñ saipleri kim?", "Mediya Atlasında mediya ve saiplerini tapıñız.", "Atlasnı aç"], jobs: ["Mediyada iş tapıñız", "Mediya mütehassısları içün vakansiyalar.", "Vakansiyalar"] }
+};
+
+function projectPromo(lang, project, placement) {
+  const copy = pick(PROJECT_PROMOS, lang);
+  const [title, description, action] = copy[project];
+  const href = project === "atlas" ? NETWORK_URLS.atlas[lang] : "https://jobs.promedia.report/";
+  return `<aside class="project-promo-slot" data-ad-slot="${escapeHtml(placement)}" aria-label="${escapeHtml(copy.label)}">
+    <a class="project-promo project-promo--${project}" href="${escapeHtml(href)}">
+      <div class="project-promo-copy"><span class="project-promo-label">${escapeHtml(copy.label)}</span><h2>${escapeHtml(title)}</h2><p>${escapeHtml(description)}</p></div>
+      <span class="project-promo-action">${escapeHtml(action)} ↗</span>
+    </a>
+  </aside>`;
+}
+
 export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl }) {
   const copy = pick(PRACTICE_COPY, lang);
   const prefix = langPrefix(lang);
@@ -471,9 +490,16 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   } else if (articles.length) {
     const hero = articles.find(a => a.card_style === "hero") || articles[0];
     const remaining = articles.filter(a => a.slug !== hero.slug);
-    list = `<section class="practice-feature" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">${articleCard(hero, lang, baseUrl, "hero")}</section>
-      <div class="practice-grid practice-section">${remaining.slice(0, 3).map(a => articleCard(a, lang, baseUrl, articleCardVariant(a, "visual"))).join("")}</div>
-      <div class="practice-stream practice-section">${remaining.slice(3).map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
+    const side = remaining.slice(0, 2);
+    const below = remaining.slice(2);
+    list = `<section class="practice-opening${side.length ? " practice-opening--with-side" : ""}" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">
+        <div class="practice-feature">${articleCard(hero, lang, baseUrl, "hero")}</div>
+        ${side.length ? `<div class="practice-opening-side">${side.map(a => articleCard(a, lang, baseUrl, "text")).join("")}</div>` : ""}
+      </section>
+      ${projectPromo(lang, "atlas", "home-leaderboard")}
+      ${below.length ? `<div class="practice-grid practice-section">${below.slice(0, 3).map(a => articleCard(a, lang, baseUrl, articleCardVariant(a, "visual"))).join("")}</div>` : ""}
+      ${below.length > 3 ? `<div class="practice-stream practice-section">${below.slice(3).map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>` : ""}
+      ${projectPromo(lang, "jobs", "home-bottom")}`;
 
   }
   const bodyHtml = `<main class="wrap practice-home">
@@ -514,6 +540,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   ${cover}
   <div class="article-body">${bodyHtmlContent}</div>
   ${mediaLinksHtml}
+  ${projectPromo(lang, "atlas", "article-bottom")}
 </main>`;
   return pageShell({
     title: `${title} — ${pick(SITE_NAME, lang)}`,
