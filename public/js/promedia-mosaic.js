@@ -2,7 +2,6 @@
   const grids = [...document.querySelectorAll(".restored-feed")];
   if (!grids.length) return;
   const desktop = window.matchMedia("(min-width: 861px)");
-  const pattern = [4, 2, 2, 2, 2, 3, 3, 2, 4];
   let scheduled = false;
   function layout() {
     scheduled = false;
@@ -19,20 +18,17 @@
       }
       const width = grid.clientWidth;
       if (!width) continue;
-      const gap = 20, columns = 6, lane = (width - gap * (columns - 1)) / columns;
+      const gap = 20, columns = 3, lane = (width - gap * (columns - 1)) / columns;
       const heights = Array(columns).fill(0);
       grid.classList.add("mosaic-active");
-      cells.forEach((cell, index) => {
-        const span = cell.classList.contains("mosaic-cell--promo") ? Math.min(columns, Math.ceil((300 + gap) / (lane + gap))) : pattern[index % pattern.length];
-        cell.style.width = (lane * span + gap * (span - 1)) + "px";
-        let bestColumn = 0, bestTop = Infinity;
-        for (let col = 0; col <= columns - span; col++) {
-          const top = Math.max(...heights.slice(col, col + span));
-          if (top < bestTop) { bestTop = top; bestColumn = col; }
-        }
+      // One column per card: varying heights create the mosaic without spanning
+      // across shorter neighbours and leaving inaccessible holes underneath.
+      cells.forEach(cell => {
+        cell.style.width = lane + "px";
+        const bestTop = Math.min(...heights);
+        const bestColumn = heights.indexOf(bestTop);
         cell.style.transform = "translate(" + bestColumn * (lane + gap) + "px," + bestTop + "px)";
-        const bottom = bestTop + cell.getBoundingClientRect().height + gap;
-        for (let col = bestColumn; col < bestColumn + span; col++) heights[col] = bottom;
+        heights[bestColumn] = bestTop + cell.getBoundingClientRect().height + gap;
       });
       grid.style.height = Math.max(0, Math.max(...heights) - gap) + "px";
     }

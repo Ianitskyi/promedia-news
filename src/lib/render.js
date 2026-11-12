@@ -379,7 +379,7 @@ function articleCard(article, lang, baseUrl, variant) {
   const excerpt = articleExcerpt(article, lang);
   const tags = JSON.parse(article.tags || "[]");
   const isArticle = tags.some(t => tagLookupKey(t) === "статті");
-  const contentKind = isArticle ? "article" : tags.some(t => tagLookupKey(t) === "новини") ? "news" : "other";
+  const contentKind = isArticle ? "article" : tags.some(t => tagLookupKey(t) === "заяви") ? "statement" : tags.some(t => tagLookupKey(t) === "новини") ? "news" : "other";
   const cardVariant = variant || "visual";
   const coverUrl = articleCover(article, lang);
   const showCover = coverUrl && (cardVariant !== "text" || isArticle);
