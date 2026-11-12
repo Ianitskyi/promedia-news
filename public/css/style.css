@@ -1109,3 +1109,8 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .practice-home, .wrap.article-page { padding-inline: 10px; }
   .project-promo { width: 300px; }
 }
+
+/* Keep the shared header within very narrow phone viewports. */
+@media (max-width: 355px) {
+  .pm-global-main { gap: 10px !important; padding-inline: 10px !important; }
+}
