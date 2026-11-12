@@ -490,11 +490,11 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   } else if (articles.length) {
     const hero = articles.find(a => a.card_style === "hero") || articles[0];
     const remaining = articles.filter(a => a.slug !== hero.slug);
-    const magazineGrid = (items) => items.length ? `<div class="magazine-grid">${items.map(a => articleCard(a, lang, baseUrl, a.card_style === "text" ? "text" : "visual")).join("")}</div>` : "";
+    const feedGrid = (items, offset = 0) => items.length ? `<div class="article-grid restored-feed">${items.map((a, i) => articleCard(a, lang, baseUrl, articleCardVariant(a, (i + offset) % 4 === 2 ? "text" : "visual"))).join("")}</div>` : "";
     list = `<section class="magazine-lead" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">${articleCard(hero, lang, baseUrl, "hero")}</section>
-      ${magazineGrid(remaining.slice(0, 4))}
+      ${feedGrid(remaining.slice(0, 6))}
       ${projectPromo(lang, "atlas", "home-leaderboard")}
-      ${magazineGrid(remaining.slice(4))}
+      ${feedGrid(remaining.slice(6), 6)}
       ${projectPromo(lang, "jobs", "home-bottom")}`;
 
   }
