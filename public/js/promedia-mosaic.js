@@ -6,13 +6,32 @@
   function layout() {
     scheduled = false;
     for (const grid of grids) {
+      for (const repeat of grid.querySelectorAll("[data-promo-repeat]")) repeat.remove();
       const cells = [...grid.children];
+      const promo = cells.find(cell => cell.classList.contains("mosaic-cell--promo"));
+      const interval = Math.max(600, window.innerHeight * 1.5);
+      let lastPromoTop = null;
+      function repeatBefore(cell) {
+        const repeat = promo.cloneNode(true);
+        repeat.dataset.promoRepeat = "";
+        grid.insertBefore(repeat, cell);
+        return repeat;
+      }
       if (!desktop.matches) {
         grid.classList.remove("mosaic-active");
         grid.style.removeProperty("height");
         for (const cell of cells) {
           cell.style.removeProperty("width");
           cell.style.removeProperty("transform");
+        }
+        // Measure natural mobile/tablet positions, including headline-only cards.
+        for (const cell of cells) {
+          if (cell === promo) {
+            lastPromoTop = cell.offsetTop;
+          } else if (promo && lastPromoTop !== null && cell.offsetTop - lastPromoTop >= interval) {
+            const repeat = repeatBefore(cell);
+            lastPromoTop = repeat.offsetTop;
+          }
         }
         continue;
       }
@@ -23,12 +42,21 @@
       grid.classList.add("mosaic-active");
       // One column per card: varying heights create the mosaic without spanning
       // across shorter neighbours and leaving inaccessible holes underneath.
-      cells.forEach(cell => {
+      function place(cell) {
         cell.style.width = lane + "px";
         const bestTop = Math.min(...heights);
         const bestColumn = heights.indexOf(bestTop);
         cell.style.transform = "translate(" + bestColumn * (lane + gap) + "px," + bestTop + "px)";
         heights[bestColumn] = bestTop + cell.getBoundingClientRect().height + gap;
+      }
+      cells.forEach(cell => {
+        const top = Math.min(...heights);
+        if (cell !== promo && promo && lastPromoTop !== null && top - lastPromoTop >= interval) {
+          lastPromoTop = top;
+          place(repeatBefore(cell));
+        }
+        if (cell === promo) lastPromoTop = Math.min(...heights);
+        place(cell);
       });
       grid.style.height = Math.max(0, Math.max(...heights) - gap) + "px";
     }

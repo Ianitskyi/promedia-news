@@ -511,7 +511,8 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   if (articles.length && filtered) {
     list = heading(topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang), `${prefix}/`) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
   } else if (articles.length) {
-    const hero = articles.find(a => a.card_style === "hero") || articles[0];
+    const featured = articles.filter(a => a.card_style === "hero");
+    const hero = featured.length ? featured.reduce((latest, article) => (article.published_at || "") > (latest.published_at || "") ? article : latest) : articles[0];
     const remaining = articles.filter(a => a.slug !== hero.slug);
     const cells = remaining.map((a, i) => `<div class="mosaic-cell">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
     cells.splice(Math.min(2, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
