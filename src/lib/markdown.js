@@ -51,6 +51,16 @@ function youtubeEmbed(url) {
     '" title="YouTube video player" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>';
 }
 
+// Markdown pipe-table support. Input is always escaped by inline(), never treated as HTML.
+function tableCells(line) {
+  const trimmed = line.trim().replace(/^\|/, "").replace(/\|$/, "");
+  return trimmed.split(/(?<!\\)\|/).map((cell) => cell.replace(/\\\|/g, "|").trim());
+}
+function tableDivider(line, count) {
+  const cells = tableCells(line);
+  return cells.length === count && cells.every((cell) => /^:?-{3,}:?$/.test(cell));
+}
+
 export function markdownToHtml(md) {
   if (!md) return "";
   const lines = md.replace(/\r\n/g, "\n").split("\n");
@@ -72,8 +82,30 @@ export function markdownToHtml(md) {
     }
   }
 
-  for (const rawLine of lines) {
-    const line = rawLine.trim();
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (i + 1 < lines.length && line.includes("|")) {
+      const headers = tableCells(line);
+      if (headers.length >= 2 && tableDivider(lines[i + 1], headers.length)) {
+        flushParagraph(); flushList();
+        const rows = [];
+        i += 2;
+        while (i < lines.length && lines[i].trim() && lines[i].includes("|")) {
+          const cells = tableCells(lines[i]);
+          rows.push(cells.slice(0, headers.length));
+          i++;
+        }
+        i--;
+        const cellsHtml = (cells, tag) => "<tr>" + headers.map((_, index) =>
+          "<" + tag + ">" + inline(cells[index] || "") + "</" + tag + ">"
+        ).join("") + "</tr>";
+        htmlBlocks.push('<div class="article-table-scroll"><table><thead>' +
+          cellsHtml(headers, "th") + "</thead><tbody>" +
+          rows.map((row) => cellsHtml(row, "td")).join("") +
+          "</tbody></table></div>");
+        continue;
+      }
+    }
 
     if (line === "") {
       flushParagraph();

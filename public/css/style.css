@@ -1196,3 +1196,18 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"]) .article-card-body { padding: 18px 0; gap: 10px; }
   .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"]) h3 { font-size: 21px; line-height: 1.25; }
 }
+
+
+/* Tables in published stories and the existing visual article editor. */
+.article-table-scroll { width: 100%; overflow-x: auto; margin: 24px 0; -webkit-overflow-scrolling: touch; }
+.article-table-scroll table, .admin-editor-surface table {
+  border-collapse: collapse; min-width: 420px; width: 100%; text-align: left; font-size: 14px;
+}
+.article-table-scroll th, .article-table-scroll td, .admin-editor-surface th, .admin-editor-surface td {
+  border: 1px solid var(--border); padding: 10px 12px; vertical-align: top;
+}
+.article-table-scroll th, .admin-editor-surface th { background: var(--accent-tint); font-weight: 700; }
+.article-table-scroll tbody tr:nth-child(even) { background: rgba(0, 0, 0, .025); }
+.admin-editor-surface { overflow-x: auto; }
+.admin-editor-surface table { margin: 12px 0; }
+.admin-editor-surface td:focus, .admin-editor-surface th:focus { outline: 2px solid var(--accent); outline-offset: -2px; }
