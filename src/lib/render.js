@@ -472,6 +472,27 @@ function projectPromo(lang, project, placement) {
   const copy = pick(PROJECT_PROMOS, lang);
   const [title, description, action] = copy[project];
   const href = project === "atlas" ? NETWORK_URLS.atlas[lang] : "https://jobs.promedia.report/";
+  if (project === "atlas" && placement === "home-mosaic") {
+    const labels = pick({
+      uk: { label: "Наші проєкти", brand: "АТЛАС МЕДІА", title: "Хто володіє українськими медіа?" },
+      en: { label: "Our projects", brand: "MEDIA ATLAS", title: "Who owns Ukrainian media?" },
+      crh: { label: "Leyhalarımız", brand: "MEDİYA ATLASI", title }
+    }, lang);
+    return `<aside class="project-promo-slot" data-ad-slot="home-mosaic" aria-label="${escapeHtml(labels.label)}">
+      <a class="project-promo atlas-display-ad" href="${escapeHtml(href)}">
+        <span class="atlas-ad-eyebrow">${escapeHtml(labels.label)} <span>↗</span></span>
+        <span class="atlas-ad-brand">${escapeHtml(labels.brand)}</span>
+        <svg class="atlas-ad-network" viewBox="0 0 140 150" fill="none" aria-hidden="true" focusable="false">
+          <g stroke="#ffac33" stroke-width="1.5" opacity=".65"><path d="M76 72 18 24M76 72 126 18M76 72 122 124M76 72 20 132M76 72 16 76"/></g>
+          <g fill="#17166c" stroke="#ffac33" stroke-width="2"><circle cx="18" cy="24" r="12"/><circle cx="126" cy="18" r="9"/><circle cx="122" cy="124" r="13"/><circle cx="20" cy="132" r="8"/><circle cx="16" cy="76" r="7"/></g>
+          <circle cx="76" cy="72" r="23" fill="#ffac33"/>
+          <g stroke="#0d0c5c" stroke-width="2"><rect x="64" y="61" width="24" height="19" rx="2"/><path d="M68 66h16M68 71h10M68 76h14"/></g>
+        </svg>
+        <h2>${escapeHtml(labels.title)}</h2>
+        <span class="atlas-ad-action">${escapeHtml(action)} <span>↗</span></span>
+      </a>
+    </aside>`;
+  }
   return `<aside class="project-promo-slot" data-ad-slot="${escapeHtml(placement)}" aria-label="${escapeHtml(copy.label)}">
     <a class="project-promo project-promo--${project}" href="${escapeHtml(href)}">
       <div class="project-promo-copy"><span class="project-promo-label">${escapeHtml(copy.label)}</span><h2>${escapeHtml(title)}</h2><p>${escapeHtml(description)}</p></div>
