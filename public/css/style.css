@@ -1114,3 +1114,38 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 @media (max-width: 355px) {
   .pm-global-main { gap: 10px !important; padding-inline: 10px !important; }
 }
+
+/* Magazine layout: one opening story, followed by generous paired features. */
+.magazine-home { padding-top: 30px; }
+.magazine-home .magazine-lead { margin-bottom: 40px; }
+.magazine-home .magazine-lead .article-card--hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: center; gap: 0; background: var(--accent-tint); border-radius: 4px; }
+.magazine-home .magazine-lead .article-card-media { padding: 0; }
+.magazine-home .magazine-lead .article-card-img { display: block; width: 100%; height: auto; border-radius: 0; object-fit: contain; }
+.magazine-home .magazine-lead .article-card-body { padding: 32px; gap: 18px; justify-content: center; }
+.magazine-home .magazine-lead h1 { margin: 0; font-family: var(--serif); font-size: clamp(28px, 3.2vw, 40px); line-height: 1.14; letter-spacing: -.6px; }
+.magazine-home .magazine-lead h1 a { text-decoration: none; color: var(--ink); }
+.magazine-home .magazine-lead h1 a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.magazine-home .magazine-lead .article-excerpt { font-size: 14px; line-height: 1.65; color: #45445f; }
+.magazine-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px 34px; }
+.magazine-home .magazine-grid .article-card { border-bottom: 1px solid var(--border); padding-bottom: 12px; background: transparent; }
+.magazine-home .magazine-grid .article-card-img { width: 100%; height: auto; object-fit: contain; border-radius: 3px; }
+.magazine-home .magazine-grid .article-card-body { padding: 20px 0 12px; gap: 12px; }
+.magazine-home .magazine-grid h3 { font-size: clamp(23px, 2.3vw, 29px); line-height: 1.25; }
+.magazine-home .magazine-grid .article-excerpt { display: block; font-size: 14px; line-height: 1.6; max-width: 560px; }
+.magazine-home .magazine-grid .article-card--text { background: var(--accent-tint); padding: 28px; border: 0; }
+.magazine-home .project-promo-slot { margin-block: 40px; }
+@media (max-width: 860px) {
+  .magazine-home .magazine-lead .article-card--hero { grid-template-columns: 1fr; }
+  .magazine-home .magazine-lead .article-card-body { padding: 26px; }
+}
+@media (max-width: 620px) {
+  .magazine-home { padding-top: 20px; }
+  .magazine-home .magazine-lead { margin-bottom: 30px; }
+  .magazine-home .magazine-lead .article-card-body { padding: 22px 20px; gap: 14px; }
+  .magazine-home .magazine-lead h1 { font-size: 29px; }
+  .magazine-home .magazine-lead .article-excerpt { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+  .magazine-grid { grid-template-columns: 1fr; gap: 30px; }
+  .magazine-home .magazine-grid .article-card-body { padding-top: 16px; }
+  .magazine-home .magazine-grid h3 { font-size: 25px; }
+  .magazine-home .project-promo-slot { margin-block: 30px; }
+}

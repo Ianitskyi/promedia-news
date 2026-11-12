@@ -490,19 +490,15 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   } else if (articles.length) {
     const hero = articles.find(a => a.card_style === "hero") || articles[0];
     const remaining = articles.filter(a => a.slug !== hero.slug);
-    const side = remaining.slice(0, 2);
-    const below = remaining.slice(2);
-    list = `<section class="practice-opening${side.length ? " practice-opening--with-side" : ""}" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">
-        <div class="practice-feature">${articleCard(hero, lang, baseUrl, "hero")}</div>
-        ${side.length ? `<div class="practice-opening-side">${side.map(a => articleCard(a, lang, baseUrl, "text")).join("")}</div>` : ""}
-      </section>
+    const magazineGrid = (items) => items.length ? `<div class="magazine-grid">${items.map(a => articleCard(a, lang, baseUrl, a.card_style === "text" ? "text" : "visual")).join("")}</div>` : "";
+    list = `<section class="magazine-lead" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">${articleCard(hero, lang, baseUrl, "hero")}</section>
+      ${magazineGrid(remaining.slice(0, 4))}
       ${projectPromo(lang, "atlas", "home-leaderboard")}
-      ${below.length ? `<div class="practice-grid practice-section">${below.slice(0, 3).map(a => articleCard(a, lang, baseUrl, articleCardVariant(a, "visual"))).join("")}</div>` : ""}
-      ${below.length > 3 ? `<div class="practice-stream practice-section">${below.slice(3).map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>` : ""}
+      ${magazineGrid(remaining.slice(4))}
       ${projectPromo(lang, "jobs", "home-bottom")}`;
 
   }
-  const bodyHtml = `<main class="wrap practice-home">
+  const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${list}
     <section class="practice-services">${heading(copy.services)}<div><a href="https://guide.promedia.report/${lang === "uk" ? "" : lang + "/"}">${escapeHtml(copy.guide)} ↗</a><a href="${NETWORK_URLS.atlas[lang]}">${escapeHtml(copy.atlas)} ↗</a><a href="https://jobs.promedia.report/">${escapeHtml(copy.jobs)} ↗</a></div></section>
   </main>`;
