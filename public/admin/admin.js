@@ -881,11 +881,22 @@
     catch (_) { return false; }
   }
 
+  function editorTableCells(line) {
+    return line.trim().replace(/^\|/, "").replace(/\|$/, "").split(/(?<!\\)\|/)
+      .map(function (cell) { return cell.replace(/\\\|/g, "|").trim(); });
+  }
+
+  function editorTableDivider(line, count) {
+    var cells = editorTableCells(line);
+    return cells.length === count && cells.every(function (cell) { return /^:?-{3,}:?$/.test(cell); });
+  }
+
   function markdownToEditorHtml(markdown) {
     var lines = String(markdown || "").replace(/\r\n/g, "\n").split("\n");
     var blocks = [];
     var paragraph = [];
     var list = null;
+    var tableSkipUntil = -1;
 
     function flushParagraph() {
       if (paragraph.length) {
@@ -903,9 +914,33 @@
       }
     }
 
-    lines.forEach(function (rawLine) {
+    lines.forEach(function (rawLine, index) {
+      if (index <= tableSkipUntil) return;
       var line = rawLine.trim();
       var match;
+
+      if (index + 1 < lines.length && line.includes("|")) {
+        var headers = editorTableCells(line);
+        if (headers.length >= 2 && editorTableDivider(lines[index + 1], headers.length)) {
+          flushParagraph(); flushList();
+          var rows = [];
+          var next = index + 2;
+          while (next < lines.length && lines[next].trim() && lines[next].includes("|")) {
+            rows.push(editorTableCells(lines[next]));
+            next++;
+          }
+          tableSkipUntil = next - 1;
+          function tableRow(cells, tag) {
+            return "<tr>" + headers.map(function (_, i) {
+              return "<" + tag + ">" + (inlineMarkdownToEditorHtml(cells[i] || "") || "<br>") + "</" + tag + ">";
+            }).join("") + "</tr>";
+          }
+          blocks.push('<table class="admin-editable-table"><thead>' + tableRow(headers, "th") +
+            "</thead><tbody>" + rows.map(function (row) { return tableRow(row, "td"); }).join("") +
+            "</tbody></table>");
+          return;
+        }
+      }
 
       if (!line) {
         flushParagraph();
@@ -1008,6 +1043,24 @@
       return text ? Array(Number(levelMatch[1]) + 1).join("#") + " " + text : "";
     }
     if (node.dataset && node.dataset.youtubeUrl) return "[youtube](" + node.dataset.youtubeUrl + ")";
+    if (tag === "table") {
+      var rows = Array.prototype.slice.call(node.querySelectorAll("tr"));
+      if (!rows.length) return "";
+      var width = Math.max.apply(null, rows.map(function (row) { return row.cells.length; }));
+      if (width < 2) return "";
+      function cells(row) {
+        return Array.prototype.slice.call(row.cells).map(function (cell) {
+          return nodeListToMarkdown(cell.childNodes).replace(/\s+/g, " ").replace(/\|/g, "\\|").trim();
+        });
+      }
+      function markdownRow(row) {
+        var values = cells(row);
+        while (values.length < width) values.push("");
+        return "| " + values.join(" | ") + " |";
+      }
+      return [markdownRow(rows[0]), "| " + Array(width).fill("---").join(" | ") + " |"]
+        .concat(rows.slice(1).map(markdownRow)).join("\n");
+    }
     if (tag === "blockquote") {
       text = nodeListToMarkdown(node.childNodes).replace(/\n+/g, "\n").trim();
       return text ? text.split("\n").map(function (line) { return "> " + line.trim(); }).join("\n") : "";
@@ -1050,6 +1103,7 @@
       commandButton("Маркер", "Жовтий маркер", "highlight") +
       commandButton("•", "Маркований список", "insertUnorderedList") +
       commandButton("1.", "Нумерований список", "insertOrderedList") +
+      commandButton("▦", "Вставити таблицю", "table") +
       commandButton("“”", "Цитата", "blockquote") +
       commandButton("URL", "Додати посилання", "link") +
       commandButton("▶", "Вставити відео YouTube", "youtube") +
@@ -1157,6 +1211,26 @@
   function runEditorCommand(editor, command, value) {
     restoreSelection(editor);
     editor.surface.focus();
+    if (command === "table") {
+      var rowInput = window.prompt("Скільки рядків даних? (1–30)", "3");
+      if (rowInput === null) return;
+      var colInput = window.prompt("Скільки стовпців? (2–10)", "3");
+      if (colInput === null) return;
+      var rows = Number(rowInput), cols = Number(colInput);
+      if (!Number.isInteger(rows) || rows < 1 || rows > 30 || !Number.isInteger(cols) || cols < 2 || cols > 10) {
+        window.alert("Вкажіть від 1 до 30 рядків і від 2 до 10 стовпців.");
+        return;
+      }
+      function row(tag) {
+        return "<tr>" + Array(cols).fill("<" + tag + "><br></" + tag + ">").join("") + "</tr>";
+      }
+      var html = '<table class="admin-editable-table"><thead>' + row("th") + "</thead><tbody>" +
+        Array(rows).fill(row("td")).join("") + "</tbody></table><p><br></p>";
+      restoreSelection(editor);
+      document.execCommand("insertHTML", false, html);
+      syncRichEditors();
+      return;
+    }
     if (command === "youtube") {
       var url = window.prompt("Вставте посилання на YouTube", "https://www.youtube.com/watch?v=");
       if (!url) return;
