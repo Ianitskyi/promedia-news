@@ -485,7 +485,6 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
       ${section(copy.organisation, organisation, `${prefix}/?tag=${encodeURIComponent("ПроМедіа")}`)}`;
   }
   const bodyHtml = `<main class="wrap practice-home">
-    <div class="practice-masthead"><p class="practice-eyebrow">ProMedia Report</p><h1>${escapeHtml(filtered ? copy.filtered : copy.title)}</h1><p>${escapeHtml(copy.intro)}</p>${categoryNav(lang, activeTag)}</div>
     ${filtered ? topicNav : ""}${list}
     <section class="practice-services">${heading(copy.services)}<div><a href="https://guide.promedia.report/${lang === "uk" ? "" : lang + "/"}">${escapeHtml(copy.guide)} ↗</a><a href="${NETWORK_URLS.atlas[lang]}">${escapeHtml(copy.atlas)} ↗</a><a href="https://jobs.promedia.report/">${escapeHtml(copy.jobs)} ↗</a></div></section>
   </main>`;
