@@ -1057,3 +1057,6 @@ img { max-width: 100%; }
 .article-tag { text-transform: lowercase; }
 a.article-tag:hover { text-decoration: underline; text-underline-offset: 3px; }
 a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* Keep topic navigation inside articles, leaving feed cards uncluttered. */
+.practice-home .article-card .article-tags { display: none; }
