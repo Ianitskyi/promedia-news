@@ -378,17 +378,19 @@ function articleCard(article, lang, baseUrl, variant) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
   const tags = JSON.parse(article.tags || "[]");
+  const isArticle = tags.some(t => tagLookupKey(t) === "статті");
+  const contentKind = isArticle ? "article" : tags.some(t => tagLookupKey(t) === "новини") ? "news" : "other";
   const cardVariant = variant || "visual";
   const coverUrl = articleCover(article, lang);
-  const showCover = cardVariant !== "text" && coverUrl;
+  const showCover = coverUrl && (cardVariant !== "text" || isArticle);
   const articleHref = `${baseUrl}${langPrefix(lang)}/article/${escapeHtml(article.slug)}`;
   const cover = showCover
-    ? `<a class="article-card-media" href="${articleHref}">
+    ? `<a class="article-card-media${cardVariant === "text" ? " article-card-media--mobile-only" : ""}" href="${articleHref}">
         <img class="article-card-img" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, cardVariant === "hero" ? "desktop" : "feed")} loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
       </a>`
     : "";
   return `
-<article class="article-card article-card--${cardVariant}">
+<article class="article-card article-card--${cardVariant}" data-content-kind="${contentKind}">
   ${cover}
   <div class="article-card-body">
     ${tags.length ? `<div class="article-tags">${tags.map((t) => `<a class="article-tag" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>` : ""}
@@ -490,18 +492,16 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   } else if (articles.length) {
     const hero = articles.find(a => a.card_style === "hero") || articles[0];
     const remaining = articles.filter(a => a.slug !== hero.slug);
-    const feedGrid = (items, offset = 0) => items.length ? `<div class="article-grid restored-feed">${items.map((a, i) => articleCard(a, lang, baseUrl, articleCardVariant(a, (i + offset) % 4 === 2 ? "text" : "visual"))).join("")}</div>` : "";
+    const cells = remaining.map((a, i) => `<div class="mosaic-cell">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
+    cells.splice(Math.min(2, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
     list = `<section class="magazine-lead" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">${articleCard(hero, lang, baseUrl, "hero")}</section>
-      ${feedGrid(remaining.slice(0, 6))}
-      ${projectPromo(lang, "atlas", "home-leaderboard")}
-      ${feedGrid(remaining.slice(6), 6)}
-      ${projectPromo(lang, "jobs", "home-bottom")}`;
+      <div class="article-grid restored-feed">${cells.join("")}</div>`;
 
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${list}
-    <section class="practice-services">${heading(copy.services)}<div><a href="https://guide.promedia.report/${lang === "uk" ? "" : lang + "/"}">${escapeHtml(copy.guide)} ↗</a><a href="${NETWORK_URLS.atlas[lang]}">${escapeHtml(copy.atlas)} ↗</a><a href="https://jobs.promedia.report/">${escapeHtml(copy.jobs)} ↗</a></div></section>
-  </main>`;
+    <section class="practice-services">${heading(copy.services)}<div><a href="https://guide.promedia.report/${lang === "uk" ? "" : lang + "/"}">${escapeHtml(copy.guide)} ↗</a><a href="${NETWORK_URLS.atlas[lang]}">${escapeHtml(copy.atlas)} ↗</a></div></section>
+  </main><script defer src="/js/promedia-mosaic.js"></script>`;
   return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
     url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : ""}`, lang, bodyHtml });
 }

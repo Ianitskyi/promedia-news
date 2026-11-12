@@ -1163,3 +1163,36 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .magazine-home .restored-feed .article-card--text h3 { font-size: 22px; }
 @media (max-width: 860px) { .magazine-home .restored-feed { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .magazine-home .restored-feed { grid-template-columns: 1fr; gap: 14px; } }
+
+/* Asymmetric desktop masonry; document order stays unchanged. */
+.restored-feed .mosaic-cell { min-width: 0; }
+.magazine-home .restored-feed .mosaic-cell .article-card { height: auto; }
+.magazine-home .restored-feed.mosaic-active { display: block; position: relative; }
+.restored-feed.mosaic-active .mosaic-cell { position: absolute; top: 0; left: 0; }
+.magazine-home .restored-feed.mosaic-active .article-card-body { flex: initial; }
+@media (min-width: 861px) {
+  .magazine-home .restored-feed .mosaic-cell:nth-child(6n + 1) h3 { font-size: 27px; line-height: 1.2; }
+}
+@media (max-width: 620px) {
+  .magazine-home .restored-feed { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .restored-feed .mosaic-cell { position: static; width: auto; transform: none; }
+}
+
+/* A standard medium rectangle belongs to the mosaic, alongside stories. */
+.restored-feed .mosaic-cell--promo { display: flex; justify-content: center; }
+.restored-feed .project-promo-slot { margin: 0; }
+.restored-feed .project-promo { width: 300px; height: 250px; padding: 24px; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 16px; border-radius: var(--radius-md); }
+.restored-feed .project-promo h2 { font-family: var(--serif); font-size: 25px; line-height: 1.15; margin: 12px 0; }
+.restored-feed .project-promo p { display: block; font-size: 13px; line-height: 1.5; }
+.restored-feed .project-promo-action { max-width: none; padding: 11px 14px; }
+
+/* Mobile editorial rule: news as headlines, articles with their cover images. */
+.article-card-media--mobile-only { display: none; }
+@media (max-width: 620px) {
+  .practice-home .article-card[data-content-kind="news"] .article-card-media,
+  .practice-home .article-card[data-content-kind="news"] .article-excerpt { display: none; }
+  .practice-home .article-card[data-content-kind="article"] .article-card-media--mobile-only { display: block; }
+  .magazine-home .restored-feed .article-card[data-content-kind="news"] { background: transparent; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; }
+  .magazine-home .restored-feed .article-card[data-content-kind="news"] .article-card-body { padding: 18px 0; gap: 10px; }
+  .magazine-home .restored-feed .article-card[data-content-kind="news"] h3 { font-size: 21px; line-height: 1.25; }
+}
