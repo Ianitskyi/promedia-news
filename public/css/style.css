@@ -1052,3 +1052,8 @@ img { max-width: 100%; }
   .practice-stream .article-card h3 { font-size: 19px; }
   .practice-section { margin-top: 32px; }
 }
+
+/* Consistent tag casing; preserve canonical tag values in filter links. */
+.article-tag { text-transform: lowercase; }
+a.article-tag:hover { text-decoration: underline; text-underline-offset: 3px; }
+a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }

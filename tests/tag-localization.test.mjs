@@ -24,7 +24,7 @@ test("Article and feed tags translate despite capitalization, keeping filter ide
     const feed = renderHomepage({ articles: [article], lang, baseUrl: "https://news.promedia.report" });
     for (const label of labels) {
       assert.ok(page.includes(">" + label + "</a>"), lang + " article tag " + label);
-      assert.ok(feed.includes(">" + label + "</span>"), lang + " feed tag " + label);
+      assert.ok(feed.includes(">" + label + "</a>"), lang + " feed tag " + label);
     }
     for (const tag of tags) assert.ok(page.includes("/" + lang + "/?tag=" + encodeURIComponent(tag)), "Canonical filter remains intact");
   }

@@ -391,7 +391,7 @@ function articleCard(article, lang, baseUrl, variant) {
 <article class="article-card article-card--${cardVariant}">
   ${cover}
   <div class="article-card-body">
-    ${tags.length ? `<div class="article-tags">${tags.map((t) => `<span class="article-tag">${escapeHtml(tagLabel(t, lang))}</span>`).join("")}</div>` : ""}
+    ${tags.length ? `<div class="article-tags">${tags.map((t) => `<a class="article-tag" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>` : ""}
     <h3><a href="${articleHref}">${escapeHtml(title)}</a></h3>
     <p class="article-excerpt">${escapeHtml(excerpt)}</p>
     ${articleMeta(article, lang)}
