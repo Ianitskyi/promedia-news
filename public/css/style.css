@@ -1245,3 +1245,19 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .restored-feed .atlas-display-ad:hover { background: #17166c; transform: none; }
 .atlas-display-ad:hover .atlas-ad-action { background: #ffc266; }
 .atlas-display-ad:focus-visible { outline: 3px solid #ffac33; outline-offset: 4px; }
+
+/* Distinct campaign colours and illustrations for each project. */
+.restored-feed .display-ad--guide { background: #ffac33; color: #0d0c5c; }
+.display-ad--guide .atlas-ad-eyebrow,
+.display-ad--guide .atlas-ad-brand,
+.restored-feed .display-ad--guide h2 { color: #0d0c5c; }
+.display-ad--guide .atlas-ad-action { background: #0d0c5c; color: #fff; }
+.restored-feed .display-ad--guide:hover { background: #ffc266; }
+.display-ad--guide:hover .atlas-ad-action { background: #17166c; }
+.restored-feed .display-ad--ratings { background: #dcebe5; color: #0d0c5c; }
+.display-ad--ratings .atlas-ad-eyebrow,
+.display-ad--ratings .atlas-ad-brand,
+.restored-feed .display-ad--ratings h2 { color: #0d0c5c; }
+.display-ad--ratings .atlas-ad-action { background: #0d0c5c; color: #fff; }
+.restored-feed .display-ad--ratings:hover { background: #caddd3; }
+.display-ad--ratings:hover .atlas-ad-action { background: #17166c; }

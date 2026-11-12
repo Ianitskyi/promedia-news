@@ -9,10 +9,13 @@
       for (const repeat of grid.querySelectorAll("[data-promo-repeat]")) repeat.remove();
       const cells = [...grid.children];
       const promo = cells.find(cell => cell.classList.contains("mosaic-cell--promo"));
-      const interval = Math.max(600, window.innerHeight * 1.5);
+      const interval = Math.max(600, window.innerHeight * 2);
+      const creatives = [promo, ...document.querySelectorAll("[data-mosaic-promo-template]")].filter(Boolean);
+      let creativeIndex = 1;
       let lastPromoTop = null;
       function repeatBefore(cell) {
-        const repeat = promo.cloneNode(true);
+        const creative = creatives[creativeIndex++ % creatives.length];
+        const repeat = (creative.content ? creative.content.firstElementChild : creative).cloneNode(true);
         repeat.dataset.promoRepeat = "";
         grid.insertBefore(repeat, cell);
         return repeat;

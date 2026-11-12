@@ -403,8 +403,8 @@ function articleCard(article, lang, baseUrl, variant) {
 
 function articleCardVariant(article, automaticVariant) {
   const style = article.card_style || "auto";
-  if (style === "image") return "visual";
-  if (style === "text" || style === "hero") return style;
+  if (style === "image" || style === "hero") return "visual";
+  if (style === "text") return style;
   return automaticVariant;
 }
 
@@ -501,6 +501,33 @@ function projectPromo(lang, project, placement) {
   </aside>`;
 }
 
+
+function mosaicPromoTemplates(lang) {
+  const copy = pick({
+    uk: { label: "Наші проєкти", guide: ["РОЗВИТОК СПІЛЬНОТ", "Як об’єднати аудиторію навколо медіа?", "Відкрити посібник"], ratings: ["РЕЙТИНГ ЖУРФАКІВ", "Де навчатися журналістики?", "Переглянути рейтинг"] },
+    en: { label: "Our projects", guide: ["COMMUNITY GUIDE", "Build a community around your media", "Explore the guide"], ratings: ["JOURNALISM SCHOOLS", "Where to study journalism?", "Explore the ranking"] },
+    crh: { label: "Leyhalarımız", guide: ["CEMAAT REHBERİ", "Mediya etrafında cemaat quruñız", "Rehberni aç"], ratings: ["FAKÜLTELER REYTİNGİ", "Jurnalistikanı qayda ögrenmeli?", "Reytingni aç"] }
+  }, lang);
+  return ["guide", "ratings"].map(project => {
+    const [brand, title, action] = copy[project];
+    const href = project === "guide" ? "https://guide.promedia.report/" + (lang === "uk" ? "" : lang + "/") : NETWORK_URLS.ratings[lang];
+    const graphic = project === "guide"
+      ? '<path d="M22 32Q48 19 70 34Q94 19 120 32V121Q94 108 70 123Q48 108 22 121Z"/><path d="M70 34V123M33 47L56 45M33 59L56 57M84 45L108 47M84 57L108 59"/>'
+      : '<path d="M22 128H126M30 128V88H51V128M65 128V60H86V128M100 128V29H121V128"/><path d="M24 62L62 35L82 43L119 10"/>';
+    return `<template data-mosaic-promo-template><div class="mosaic-cell mosaic-cell--promo">
+      <aside class="project-promo-slot" data-ad-slot="home-mosaic-${project}" aria-label="${escapeHtml(copy.label)}">
+        <a class="project-promo atlas-display-ad display-ad--${project}" href="${escapeHtml(href)}">
+          <span class="atlas-ad-eyebrow">${escapeHtml(copy.label)} <span>↗</span></span>
+          <span class="atlas-ad-brand">${escapeHtml(brand)}</span>
+          <svg class="atlas-ad-network" viewBox="0 0 140 150" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true" focusable="false">${graphic}</svg>
+          <h2>${escapeHtml(title)}</h2>
+          <span class="atlas-ad-action">${escapeHtml(action)} <span>↗</span></span>
+        </a>
+      </aside>
+    </div></template>`;
+  }).join("");
+}
+
 export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl }) {
   const copy = pick(PRACTICE_COPY, lang);
   const prefix = langPrefix(lang);
@@ -522,7 +549,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${list}
-  </main><script defer src="/js/promedia-mosaic.js"></script>`;
+  </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js"></script>`;
   return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
     url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : ""}`, lang, bodyHtml });
 }
