@@ -133,7 +133,8 @@ function tagLabel(tag, lang) {
 }
 
 function articleCoverMetadata(article, lang) {
-  let data = lang === "en" && article.cover_image_url_en ? article.cover_crop_data_en : article.cover_crop_data;
+  let data = lang === "crh" && article.cover_image_url_crh ? article.cover_crop_data_crh
+    : lang === "en" && article.cover_image_url_en ? article.cover_crop_data_en : article.cover_crop_data;
   try { return (typeof data === "string" ? JSON.parse(data) : data) || {}; } catch (_) { return {}; }
 }
 
@@ -142,7 +143,7 @@ function articleCoverAlt(article, lang, fallback) {
 }
 
 function articleFocalStyle(article, lang, format) {
-  let data = lang === "en" && article.cover_image_url_en ? article.cover_crop_data_en : article.cover_crop_data;
+  let data = articleCoverMetadata(article, lang);
   try { if (typeof data === "string") data = JSON.parse(data); } catch (_) { return ""; }
   const fit = data && data.fit === "contain" ? "object-fit:contain;background:#f1f2fa;" : "";
   const point = data && data[format];
@@ -157,6 +158,7 @@ function articleFocalStyle(article, lang, format) {
 }
 
 function articleCover(article, lang) {
+  if (lang === "crh" && article.cover_image_url_crh) return article.cover_image_url_crh;
   return lang === "en" && article.cover_image_url_en
     ? article.cover_image_url_en
     : article.cover_image_url;

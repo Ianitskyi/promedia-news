@@ -29,7 +29,9 @@ function serializeArticle(a) {
     bodyMdCrh: a.body_md_crh,
     coverImageUrl: a.cover_image_url,
     coverImageUrlEn: a.cover_image_url_en,
+    coverImageUrlCrh: a.cover_image_url_crh,
     coverCropData: JSON.parse(a.cover_crop_data || "{}"), coverCropDataEn: JSON.parse(a.cover_crop_data_en || "{}"),
+    coverCropDataCrh: JSON.parse(a.cover_crop_data_crh || "{}"),
     tags: JSON.parse(a.tags || "[]"),
     relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
     isImportant: Boolean(a.is_important),
@@ -262,11 +264,11 @@ export async function handleAdminRoute(request, env, url) {
     const now = new Date().toISOString();
     const result = await db.prepare(`
       INSERT INTO articles (slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, body_md, body_md_en, body_md_crh,
-        cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, related_media_ids, is_important, card_style, status, author_id, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
+        cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, related_media_ids, is_important, card_style, status, author_id, created_at, updated_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'draft', ?, ?, ?)
     `).bind(
       slug, body.title, body.titleEn || null, body.titleCrh || null, excerpt, body.excerptEn || null, body.excerptCrh || null,
-      body.bodyMd || "", body.bodyMdEn || null, body.bodyMdCrh || null, body.coverImageUrl || null, body.coverImageUrlEn || null, JSON.stringify(body.coverCropData || {}), JSON.stringify(body.coverCropDataEn || {}),
+      body.bodyMd || "", body.bodyMdEn || null, body.bodyMdCrh || null, body.coverImageUrl || null, body.coverImageUrlEn || null, body.coverImageUrlCrh || null, JSON.stringify(body.coverCropData || {}), JSON.stringify(body.coverCropDataEn || {}), JSON.stringify(body.coverCropDataCrh || {}),
       JSON.stringify(body.tags || []), JSON.stringify(body.relatedMediaIds || []),
       body.isImportant ? 1 : 0,
       normalizeCardStyle(body.cardStyle),
@@ -304,7 +306,7 @@ export async function handleAdminRoute(request, env, url) {
       const excerpt = body.excerpt !== undefined ? body.excerpt : article.excerpt;
       await db.prepare(`
         UPDATE articles SET title = ?, title_en = ?, title_crh = ?, excerpt = ?, excerpt_en = ?, excerpt_crh = ?,
-          body_md = ?, body_md_en = ?, body_md_crh = ?, cover_image_url = ?, cover_image_url_en = ?, cover_crop_data = ?, cover_crop_data_en = ?, tags = ?, related_media_ids = ?,
+          body_md = ?, body_md_en = ?, body_md_crh = ?, cover_image_url = ?, cover_image_url_en = ?, cover_image_url_crh = ?, cover_crop_data = ?, cover_crop_data_en = ?, cover_crop_data_crh = ?, tags = ?, related_media_ids = ?,
           is_important = ?, card_style = ?,
           updated_at = ?
         WHERE id = ?
@@ -320,8 +322,10 @@ export async function handleAdminRoute(request, env, url) {
         body.bodyMdCrh ?? article.body_md_crh,
         body.coverImageUrl ?? article.cover_image_url,
         body.coverImageUrlEn ?? article.cover_image_url_en,
+        body.coverImageUrlCrh === undefined ? article.cover_image_url_crh : body.coverImageUrlCrh,
         JSON.stringify(body.coverCropData ?? JSON.parse(article.cover_crop_data || "{}")),
         JSON.stringify(body.coverCropDataEn ?? JSON.parse(article.cover_crop_data_en || "{}")),
+        JSON.stringify(body.coverCropDataCrh ?? JSON.parse(article.cover_crop_data_crh || "{}")),
         JSON.stringify(body.tags ?? JSON.parse(article.tags || "[]")),
         JSON.stringify(body.relatedMediaIds ?? JSON.parse(article.related_media_ids || "[]")),
         body.isImportant === undefined ? article.is_important : (body.isImportant ? 1 : 0),

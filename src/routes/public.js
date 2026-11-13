@@ -174,7 +174,7 @@ ${entries.join("\n")}
     const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, related_media_ids, is_important, card_style, published_at , av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, related_media_ids, is_important, card_style, published_at , av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";
@@ -201,6 +201,7 @@ ${entries.join("\n")}
       excerptCrh: a.excerpt_crh,
       coverImageUrl: a.cover_image_url,
       coverImageUrlEn: a.cover_image_url_en,
+      coverImageUrlCrh: a.cover_image_url_crh,
       coverAlt: coverMetadata(a.cover_crop_data).alt || "",
       coverFit: coverMetadata(a.cover_crop_data).fit || "cover",
       tags: parseJsonArray(a.tags),
@@ -220,7 +221,7 @@ ${entries.join("\n")}
   if (url.pathname === "/api/export/published-news.json" && request.method === "GET") {
     const { results } = await db.prepare(`
       SELECT slug, title, title_en, excerpt, excerpt_en, body_md, body_md_en,
-        cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, related_media_ids, is_important, card_style,
+        cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, related_media_ids, is_important, card_style,
         published_at, created_at, updated_at
       FROM articles
       WHERE status = 'published' AND deleted_at IS NULL
@@ -239,6 +240,7 @@ ${entries.join("\n")}
         bodyMdEn: article.body_md_en,
         coverImageUrl: article.cover_image_url,
         coverImageUrlEn: article.cover_image_url_en,
+        coverImageUrlCrh: article.cover_image_url_crh,
         tags: parseJsonArray(article.tags),
         relatedMediaIds: parseJsonArray(article.related_media_ids),
         isImportant: Boolean(article.is_important),
@@ -270,6 +272,7 @@ ${entries.join("\n")}
       bodyMdCrh: article.body_md_crh,
       coverImageUrl: article.cover_image_url,
       coverImageUrlEn: article.cover_image_url_en,
+        coverImageUrlCrh: article.cover_image_url_crh,
       tags: parseJsonArray(article.tags),
       relatedMediaIds: parseJsonArray(article.related_media_ids),
       isImportant: Boolean(article.is_important),
@@ -303,7 +306,7 @@ ${entries.join("\n")}
   // GET / (homepage, optional ?tag=)
   if (pagePath === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_crop_data, cover_crop_data_en, tags, card_style, published_at , av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, card_style, published_at , av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";

@@ -1335,7 +1335,7 @@
     var isNew = !article;
     var a = article || {
       title: "", titleEn: "", titleCrh: "", excerpt: "", excerptEn: "", excerptCrh: "", bodyMd: "", bodyMdEn: "", bodyMdCrh: "",
-      coverImageUrl: "", coverImageUrlEn: "", tags: [], relatedMediaIds: [], isImportant: false, cardStyle: "auto", status: "draft"
+      coverImageUrl: "", coverImageUrlEn: "", coverImageUrlCrh: "", tags: [], relatedMediaIds: [], isImportant: false, cardStyle: "auto", status: "draft"
     };
 
     root.innerHTML =
@@ -1372,6 +1372,14 @@
       (a.coverImageUrlEn ? '<img class="admin-cover-preview" id="cover-preview-en" src="' + escapeHtml(a.coverImageUrlEn) + '" />' : '<img class="admin-cover-preview" id="cover-preview-en" style="display:none" />') +
       '<div class="cover-editor" id="news-cover-crop-en"></div><input type="hidden" id="news-cover-crop-en-value" name="coverCropDataEn" value="' + escapeHtml(JSON.stringify(a.coverCropDataEn || {})) + '" />' +
       "</div>" +
+      '<div class="admin-field"><label>Обкладинка (кримськотат., за потреби)</label>' +
+      '<input type="file" id="cover-input-crh" accept="image/*" />' +
+      '<span class="admin-hint">За наявності кримськотатарської версії зображення завантажте її сюди. Інакше використовуватиметься основна обкладинка.</span>' +
+      '<input type="hidden" name="coverImageUrlCrh" id="cover-url-crh" value="' + escapeHtml(a.coverImageUrlCrh || "") + '" />' +
+      (a.coverImageUrlCrh ? '<img class="admin-cover-preview" id="cover-preview-crh" src="' + escapeHtml(a.coverImageUrlCrh) + '" />' : '<img class="admin-cover-preview" id="cover-preview-crh" style="display:none" />') +
+      '<div class="cover-editor" id="news-cover-crop-crh"></div><input type="hidden" id="news-cover-crop-crh-value" name="coverCropDataCrh" value="' + escapeHtml(JSON.stringify(a.coverCropDataCrh || {})) + '" />' +
+      "</div>" +
+      '<div class="admin-field"><button class="admin-btn secondary" type="button" id="santa-covers-preset">Вставити обкладинки «Таємного Санти» · UK / EN / QT</button><span class="admin-hint">Підставляє три мовні версії ілюстрації. Зміни застосуються лише після збереження статті.</span></div>' +
       '<div class="admin-field"><label>Теги (через кому)</label><input type="text" name="tags" value="' + escapeHtml(a.tags.join(", ")) + '" /></div>' +
       '<div class="admin-field"><label>Оформлення картки на головній сторінці новин</label>' +
       '<select name="cardStyle">' +
@@ -1540,6 +1548,7 @@
     foldTranslationFields(document.getElementById("article-form") || document.getElementById("editor-form"));
     var newsCrop = ProMediaCoverEditor.create("news-cover-crop", "cover-url", "news-cover-crop-value");
     var newsCropEn = ProMediaCoverEditor.create("news-cover-crop-en", "cover-url-en", "news-cover-crop-en-value");
+    var newsCropCrh = ProMediaCoverEditor.create("news-cover-crop-crh", "cover-url-crh", "news-cover-crop-crh-value");
     (function () {
       var copyButton = document.createElement("button");
       copyButton.type = "button"; copyButton.className = "admin-btn secondary";
@@ -1579,6 +1588,35 @@
       });
     });
 
+    var coverInputCrh = document.getElementById("cover-input-crh");
+    coverInputCrh.addEventListener("change", function () {
+      var file = coverInputCrh.files[0];
+      if (!file) return;
+      uploadImage(file).then(function (url) {
+        document.getElementById("cover-url-crh").value = url;
+        newsCropCrh.setImage(url);
+        var preview = document.getElementById("cover-preview-crh");
+        preview.src = url;
+        preview.style.display = "block";
+      }).catch(function (err) {
+        document.getElementById("editor-error").textContent = err.message;
+      });
+    });
+
+    document.getElementById("santa-covers-preset").addEventListener("click", function () {
+      [
+        {suffix:"",lang:"uk",crop:newsCrop,alt:"Таємний Санта — сервіс від ProMedia. Санта з упряжкою оленів."},
+        {suffix:"-en",lang:"en",crop:newsCropEn,alt:"Secret Santa — a service by ProMedia. Santa in a sleigh pulled by reindeer."},
+        {suffix:"-crh",lang:"crh",crop:newsCropCrh,alt:"Gizli Santa — ProMedia servisi."}
+      ].forEach(function (item) {
+        var url = "/img/news/santa/santa-news-" + item.lang + "-v1.png";
+        document.getElementById("cover-url" + item.suffix).value = url;
+        item.crop.setImage(url); item.crop.setValue({fit:"contain",alt:item.alt});
+        var preview = document.getElementById("cover-preview" + item.suffix);
+        preview.src=url;preview.style.display="block";
+      });
+    });
+
     function collectPayload(form) {
       syncRichEditors();
       var fields = form.elements;
@@ -1594,7 +1632,8 @@
         bodyMdCrh: fields.bodyMdCrh.value || null,
         coverImageUrl: fields.coverImageUrl.value || null,
         coverImageUrlEn: fields.coverImageUrlEn.value || null,
-        coverCropData: newsCrop.getValue(), coverCropDataEn: newsCropEn.getValue(),
+        coverImageUrlCrh: fields.coverImageUrlCrh.value || null,
+        coverCropData: newsCrop.getValue(), coverCropDataEn: newsCropEn.getValue(), coverCropDataCrh: newsCropCrh.getValue(),
         tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,
         isImportant: fields.isImportant.checked,
