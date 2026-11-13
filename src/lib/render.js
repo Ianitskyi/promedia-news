@@ -70,7 +70,10 @@ const TAG_LABELS_EN = {
   "незалежні медіа": "independent media",
   "членство": "membership",
   "Велика Британія": "United Kingdom",
-  "Чернігів": "Chernihiv"
+  "Чернігів": "Chernihiv",
+  "Канада": "Canada",
+  "місцеві медіа": "local media",
+  "фінансування медіа": "media funding"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -115,7 +118,10 @@ const TAG_LABELS_CRH = {
   "незалежні медіа": "müstaqil mediya",
   "членство": "azalıq",
   "Велика Британія": "Buyuk Britaniya",
-  "Чернігів": "Çernihiv"
+  "Чернігів": "Çernihiv",
+  "Канада": "Kanada",
+  "місцеві медіа": "yerli mediya",
+  "фінансування медіа": "mediyanı malieleştirüv"
 };
 
 function tagLookupKey(tag) {
