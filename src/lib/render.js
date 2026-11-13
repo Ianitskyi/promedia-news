@@ -292,31 +292,28 @@ ${footer(lang)}
     else fn();
   }
   ready(function(){
-    document.querySelectorAll("[data-share-native]").forEach(function(button){
-      if (!navigator.share) return;
-      button.hidden = false;
-      button.addEventListener("click", function(){
-        navigator.share({
-          title: button.dataset.shareTitle || document.title,
-          text: button.dataset.shareText || "",
-          url: button.dataset.shareUrl || location.href
-        }).catch(function(){});
-      });
-    });
-
-    document.querySelectorAll("[data-share-copy]").forEach(function(button){
-      button.addEventListener("click", function(){
+    document.querySelectorAll("[data-share-instagram]").forEach(function(button){
+      button.addEventListener("click", async function(){
         var url = button.dataset.shareUrl || location.href;
-        var label = button.dataset.label || button.textContent;
-        var done = button.dataset.done || "Copied";
-        function showDone() {
-          button.textContent = done;
-          window.setTimeout(function(){ button.textContent = label; }, 1800);
+        var status = button.closest(".article-share").querySelector("[data-share-status]");
+        status.textContent = "";
+        if (navigator.share) {
+          try {
+            await navigator.share({
+              title: button.dataset.shareTitle || document.title,
+              text: button.dataset.shareText || "",
+              url: url
+            });
+            return;
+          } catch (error) {
+            if (error.name === "AbortError") return;
+          }
         }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(url).then(showDone).catch(function(){ window.prompt("Copy link", url); });
-        } else {
-          window.prompt("Copy link", url);
+        try {
+          await navigator.clipboard.writeText(url);
+          status.textContent = button.dataset.copied;
+        } catch (error) {
+          window.prompt(button.dataset.copy, url);
         }
       });
     });
@@ -417,10 +414,23 @@ function articleCardVariant(article, automaticVariant) {
 }
 
 const SHARE_LABELS = {
-  en: { title: "Share", native: "Instagram / more", copy: "Copy link", copied: "Copied", email: "Email" },
-  uk: { title: "Поширити", native: "Instagram / ще", copy: "Копіювати", copied: "Скопійовано", email: "Email" },
-  crh: { title: "Paylaş", native: "Instagram / daha", copy: "Kopiyala", copied: "Kopiyalandı", email: "Email" }
+  en: { title: "Share", instagram: "Instagram: open sharing options or copy the link", copy: "Copy this link and paste it into Instagram", copied: "Link copied. Paste it into an Instagram message or a story link sticker." },
+  uk: { title: "Поширити", instagram: "Instagram: відкрити меню поширення або скопіювати посилання", copy: "Скопіюйте посилання та вставте в Instagram", copied: "Посилання скопійовано. Вставте його в повідомлення Instagram або стікер посилання в історії." },
+  crh: { title: "Paylaş", instagram: "Instagram: paylaşuv menüsini aç ya da bağlantını kopiyala", copy: "Bağlantını kopiyalañız ve Instagram'ğa yapıştırıñız", copied: "Bağlantı kopiyalandı. Onı Instagram mesajına ya da hikâyedeki bağlantı etiketine yapıştırıñız." }
 };
+
+// Inline brand icons keep the share controls independent of external icon services.
+const SHARE_ICON_PATHS = {
+  Facebook: "M13.7 21v-8h2.8l.4-3.2h-3.2V7.7c0-.9.3-1.6 1.7-1.6h1.8V3.2c-.3 0-1.4-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.5v2.3H7.3V13h2.9v8h3.5Z",
+  X: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.64 7.584H.47l8.6-9.835L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z",
+  Threads: "M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z",
+  LinkedIn: "M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 10h4v11H3V10Zm6 0h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05C20.65 9.45 21 12.1 21 15.55V21h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55V21H9V10Z",
+  Instagram: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm10.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
+};
+
+function shareIcon(network) {
+  return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${SHARE_ICON_PATHS[network]}" /></svg>`;
+}
 
 function articleShareBlock({ title, excerpt, articleUrl, lang }) {
   const encodedUrl = encodeURIComponent(articleUrl);
@@ -431,20 +441,16 @@ function articleShareBlock({ title, excerpt, articleUrl, lang }) {
     ["Facebook", `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`],
     ["X", `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`],
     ["Threads", `https://www.threads.net/intent/post?text=${encodedText}`],
-    ["Telegram", `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`],
-    ["LinkedIn", `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`],
-    ["WhatsApp", `https://api.whatsapp.com/send?text=${encodedText}`],
-    ["Viber", `viber://forward?text=${encodedText}`],
-    [labels.email, `mailto:?subject=${encodedTitle}&body=${encodedText}`]
+    ["LinkedIn", `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`]
   ];
   return `
 <section class="article-share" aria-label="${escapeHtml(labels.title)}">
   <span>${escapeHtml(labels.title)}</span>
   <div class="article-share-links">
-    ${links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener" aria-label="${escapeHtml(`${labels.title}: ${label}`)}">${escapeHtml(label)}</a>`).join("")}
-    <button type="button" data-share-copy data-share-url="${escapeHtml(articleUrl)}" data-label="${escapeHtml(labels.copy)}" data-done="${escapeHtml(labels.copied)}">${escapeHtml(labels.copy)}</button>
-    <button type="button" hidden data-share-native data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}">${escapeHtml(labels.native)}</button>
+    ${links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener" aria-label="${escapeHtml(`${labels.title}: ${label}`)}" title="${escapeHtml(label)}">${shareIcon(label)}</a>`).join("")}
+    <button type="button" data-share-instagram data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}" data-copy="${escapeHtml(labels.copy)}" data-copied="${escapeHtml(labels.copied)}" aria-label="${escapeHtml(`${labels.title}: Instagram`)}" title="${escapeHtml(labels.instagram)}">${shareIcon("Instagram")}</button>
   </div>
+  <p class="article-share-status" data-share-status role="status"></p>
 </section>`;
 }
 
