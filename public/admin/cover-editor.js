@@ -128,7 +128,12 @@
     return {
       setImage: function (next) { url = next || ""; draw(); },
       getValue: function () { return normalize(field.value); },
-      setValue: function (value) { state = normalize(value); draw(); }
+      setValue: function (value) {
+        state = normalize(value);
+        altInput.value = state.alt || "";
+        fitInput.checked = state.fit === "contain";
+        draw();
+      }
     };
   }
   window.ProMediaCoverEditor = { create: make, normalize: normalize };
