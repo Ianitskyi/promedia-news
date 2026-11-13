@@ -1261,3 +1261,15 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .display-ad--ratings .atlas-ad-action { background: #0d0c5c; color: #fff; }
 .restored-feed .display-ad--ratings:hover { background: #caddd3; }
 .display-ad--ratings:hover .atlas-ad-action { background: #17166c; }
+
+/* Article 54: apply the editor crop to the portrait news-reading photo. */
+.article-cover[src$="/2db62916-05ff-4eca-aed7-30702fcd85cc.jpg"] {
+  height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  object-position: var(--cover-desktop-position, 50% 33%);
+}
+@media (max-width: 600px) {
+  .article-cover[src$="/2db62916-05ff-4eca-aed7-30702fcd85cc.jpg"] {
+    aspect-ratio: 4 / 5;
+    object-position: var(--cover-mobile-position, 50% 33%);
+  }
+}
