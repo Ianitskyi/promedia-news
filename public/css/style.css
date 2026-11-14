@@ -1284,3 +1284,15 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
     object-position: var(--cover-mobile-position, 50% 33%);
   }
 }
+
+/* Article 61: respect the editor crop for the portrait smartphone photo. */
+.article-cover[src$="/0a8dfaf7-f3dc-49ac-8ecb-aa50c6c7fbb3.jpg"] {
+  height: auto; aspect-ratio: 16 / 9; object-fit: cover;
+  object-position: var(--cover-desktop-position, 50% 50%);
+}
+@media (max-width: 600px) {
+  .article-cover[src$="/0a8dfaf7-f3dc-49ac-8ecb-aa50c6c7fbb3.jpg"] {
+    aspect-ratio: 4 / 5;
+    object-position: var(--cover-mobile-position, 50% 50%);
+  }
+}
