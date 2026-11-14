@@ -71,6 +71,8 @@ const TAG_LABELS_EN = {
   "членство": "membership",
   "Велика Британія": "United Kingdom",
   "Чернігів": "Chernihiv",
+  "Індонезія": "Indonesia",
+  "авторське право": "copyright",
   "Канада": "Canada",
   "місцеві медіа": "local media",
   "фінансування медіа": "media funding"
@@ -119,6 +121,8 @@ const TAG_LABELS_CRH = {
   "членство": "azalıq",
   "Велика Британія": "Buyuk Britaniya",
   "Чернігів": "Çernihiv",
+  "Індонезія": "İndoneziya",
+  "авторське право": "müelliflik aqqı",
   "Канада": "Kanada",
   "місцеві медіа": "yerli mediya",
   "фінансування медіа": "mediyanı malieleştirüv"
