@@ -134,13 +134,7 @@ ${alternateLocales.map((item) => `<meta property="og:locale:alternate" content="
 <link rel="alternate" hreflang="x-default" href="${esc(urls.uk)}" />
 <link rel="icon" href="/favicon.png" type="image/png" />
 <link rel="stylesheet" href="/css/style.css" />
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D8TM22QR9R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-D8TM22QR9R');
-</script>
+<script async src="https://news.promedia.report/js/promedia-analytics.js"></script>
 </head>
 <body>
 ${header(lang, canonical)}

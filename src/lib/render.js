@@ -274,13 +274,7 @@ function pageShell({ title, description, url, ogImage, lang, ogType, publishedAt
 <html lang="${lang}">
 <head>
 ${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt })}
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D8TM22QR9R"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-D8TM22QR9R');
-</script>
+<script async src="https://news.promedia.report/js/promedia-analytics.js"></script>
 </head>
 <body>
 ${header(lang, url)}
