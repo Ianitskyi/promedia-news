@@ -77,7 +77,8 @@
       if (!home || home.hidden) return false;
     }
     // Keep registration, login and account forms clear of advertising.
-    if (promo.host === "events.promedia.report" && doc.querySelector('form input[type="email"], input[type="password"]')) return false;
+    var path = root.location.pathname.replace(/^\/(en|crh)(?=\/|$)/, "") || "/";
+    if (promo.host === "events.promedia.report" && path !== "/" && doc.querySelector('form input[type="email"], input[type="password"]')) return false;
     return true;
   }
 
