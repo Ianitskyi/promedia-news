@@ -144,4 +144,48 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
     header.setAttribute("data-langs",location.hostname==="events.promedia.report"?"none":"uk");
     document.body.prepend(header);
   }
+
+  // The static homepage shares this deployed shell. Show its existing localized
+  // biographies inline while preserving the archived homepage source.
+  function showHomepageTeam() {
+    if (!["promedia.report", "www.promedia.report"].includes(location.hostname)) return;
+    const section = document.querySelector(".section-team#team");
+    if (!section || section.dataset.inlineBios === "true") return;
+    const cards = Array.from(section.querySelectorAll(".pm-team-card"));
+    if (cards.length !== 4) return;
+    const people = cards.map(card => {
+      const link = card.querySelector(".pm-team-open");
+      const modal = link && document.getElementById(link.getAttribute("href").slice(1));
+      const description = modal && modal.querySelector(".pm-team-modal-description");
+      const position = card.querySelector(".pm-team-position");
+      const photo = card.querySelector(".pm-team-photo");
+      return { card, modal, description, position, photo };
+    });
+    if (people.some(person => !person.modal || !person.description || !person.position || !person.photo)) return;
+
+    people.forEach(({ card, modal, description, position, photo }) => {
+      const bio = description.cloneNode(true);
+      bio.className = "pm-team-bio";
+      position.after(bio);
+      const portrait = document.createElement("div");
+      portrait.className = "pm-team-photo";
+      while (photo.firstChild) portrait.appendChild(photo.firstChild);
+      photo.replaceWith(portrait);
+      card.querySelectorAll(".pm-team-name.pm-team-open").forEach(link => {
+        link.replaceWith(document.createTextNode(link.textContent));
+      });
+      card.classList.remove("pm-team-card-right");
+      card.id = modal.id;
+    });
+    section.querySelectorAll(":scope > .container > p").forEach(paragraph => {
+      if (paragraph.textContent.includes("2019") && paragraph.textContent.includes("ProMedia Report")) paragraph.remove();
+    });
+    people.forEach(({ modal }) => modal.remove());
+    document.body.classList.remove("pm-modal-open");
+    const style = document.getElementById("pm-team-exact");
+    if (style) style.textContent = "\n.pm-team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:32px}\n.pm-team-card{display:grid;grid-template-columns:38% minmax(0,1fr);align-items:start;background:#fff;scroll-margin-top:120px}\n.pm-team-photo{display:block;overflow:hidden}\n.pm-team-photo img{display:block;width:100%;height:auto;object-fit:contain;object-position:center top;aspect-ratio:1/1}\n.pm-team-copy{padding:24px 18px}\n.pm-team-copy h4{margin:0 0 8px;color:#2d2d2d;font-size:1.25rem;font-weight:700}\n.pm-team-position{margin:0 0 14px;color:#555;font-size:1rem}\n.pm-team-bio{margin:0 0 20px;font-size:.92rem;line-height:1.65;overflow-wrap:anywhere}\n.pm-team-social{display:flex;gap:14px;margin:0;padding:0;list-style:none}\n.pm-team-social li{margin:0!important}\n.pm-team-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;color:#0d0c5c;text-decoration:none}\n.pm-team-social a:hover{color:#ffac33}\n.pm-team-social svg{width:26px;height:26px;fill:currentColor}\n@media(max-width:991px){.pm-team-grid{grid-template-columns:1fr}}\n@media(max-width:575px){\n .pm-team-card{grid-template-columns:1fr}\n .pm-team-photo{width:min(100%,320px);justify-self:center}\n .pm-team-copy{padding:20px 18px 28px}\n}\n";
+    section.dataset.inlineBios = "true";
+  }
+  showHomepageTeam();
+
 })();
