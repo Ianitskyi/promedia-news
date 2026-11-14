@@ -188,4 +188,14 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
   }
   showHomepageTeam();
 
+  // One low-page cross-promotion slot on public services; news has its own slots.
+  const promoHosts = ["promedia.report", "www.promedia.report", "projects.promedia.report", "communities.promedia.report", "ratings.promedia.report", "research.promedia.report", "guide.promedia.report", "atlas.promedia.report", "jobs.promedia.report", "events.promedia.report", "brief.promedia.report", "santa.promedia.report"];
+  if (promoHosts.includes(location.hostname) && !document.getElementById("pm-network-promo-loader")) {
+    const promo = document.createElement("script");
+    promo.id = "pm-network-promo-loader";
+    promo.src = "https://news.promedia.report/js/promedia-network-promo.js";
+    promo.defer = true;
+    document.head.appendChild(promo);
+  }
+
 })();
