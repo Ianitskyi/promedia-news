@@ -41,7 +41,7 @@ test('Santa preset prepares three language covers without saving or publishing a
  for(const lang of ['uk','en','crh'])assert(action.includes('lang:"'+lang+'"'));
  assert(!/api\(|fetch\(|publish/.test(action));assert.match(source,/coverImageUrlCrh: fields.coverImageUrlCrh.value/);
 });
-test('The shared header links to Santa on desktop and mobile in every language',()=>{
+test('The shared header links to Santa on desktop and mobile only in Ukrainian',()=>{
  for(const lang of ['uk','en','crh']){
   const definitions=new Map();class Element{getAttribute(){return null;}}
   runInNewContext(read('public/js/promedia-global-shell.js'),{HTMLElement:Element,URL,
@@ -49,7 +49,7 @@ test('The shared header links to Santa on desktop and mobile in every language',
    document:{documentElement:{lang},getElementById:()=>null,querySelector:()=>null,createElement:()=>({}),head:{appendChild(){}}},
    customElements:{get:n=>definitions.get(n),define:(n,c)=>definitions.set(n,c)}});
   const Header=definitions.get('promedia-global-header'),header=new Header();header.connectedCallback();
-  assert.equal((header.innerHTML.match(/href="https:\/\/santa.promedia.report\/"/g)||[]).length,2);
-  assert(header.innerHTML.includes(lang==='uk'?'>Санта</a>':'>Santa</a>'));
+  assert.equal((header.innerHTML.match(/href="https:\/\/santa.promedia.report\/"/g)||[]).length,lang==='uk'?2:0);
+  assert.equal(header.innerHTML.includes(lang==='uk'?'>Санта</a>':'>Santa</a>'),lang==='uk');
  }
 });

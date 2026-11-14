@@ -95,7 +95,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
     connectedCallback(){
       const sec=[
         ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa],["proof",t.proof,"https://irrp.org.ua/proof"]
-      ];
+      ].filter(([key]) => key !== "santa" || lang === "uk");
       const mobileMain=[[t.projects,projectUrl],[t.about,mainHome+"#team"],[t.contacts,mainHome+"#contacts"]];
       const mobileSub=sec.map(x=>[x[1],x[2]]);
       const available=(this.getAttribute("data-langs")||"uk,en,crh").split(",").map(x=>x.trim()).filter(Boolean);
