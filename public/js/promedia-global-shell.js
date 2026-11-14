@@ -9,9 +9,9 @@
     santa:"santa.promedia.report"
   };
   const L={
-    uk:{projects:"Проєкти",about:"Про нас",contacts:"Контакти",news:"Новини",communities:"Карта спільнот",ratings:"Рейтинг журфаків",research:"Дослідження",atlas:"Атлас медіа",santa:"Санта",proof:"Proof",details:"Дані про організацію",official:"Офіційна назва",officialValue:"ГО «ПроМедіа»",reg:"Реєстраційний номер",address:"Юридична адреса",addressValue:"вул. Володимира Самійленка 19/44, Київ, Україна, 03118",chair:"Голова правління",chairValue:"Андрій Яніцький",privacy:"Приватність і cookie",support:"Підтримати ПроМедіа",donationOffer:"Умови пожертви",rights:"Усі права захищені"},
-    en:{projects:"Projects",about:"About us",contacts:"Contacts",news:"News",communities:"Communities Map",ratings:"Journalism Schools",research:"Research",atlas:"Media Atlas",santa:"Santa",proof:"Proof",details:"Organization details",official:"Official name",officialValue:"NGO “ProMedia”",reg:"Registration number",address:"Legal address",addressValue:"19/44 Volodymyr Samiilenko St, Kyiv, Ukraine, 03118",chair:"Chair of the Board",chairValue:"Andrii Ianitskyi",privacy:"Privacy and cookies",support:"Support ProMedia",donationOffer:"Donation terms",rights:"All rights reserved"},
-    crh:{projects:"Leyhalar",about:"Biz aqqımızda",contacts:"Kontaktlar",news:"Haberler",communities:"Cemaatlar haritası",ratings:"Jurnalistika fakülteleri reytingi",research:"Tedqiqatlar",atlas:"Mediya Atlası",santa:"Santa",proof:"Proof",details:"Teşkilât aqqında malümat",official:"Resmiy adı",officialValue:"«ProMedia» İCT",reg:"Qayd nomeri",address:"Yuridik adres",addressValue:"Volodymyr Samiilenko soqağı, 19/44, Kyiv, Ukrayina, 03118",chair:"İdare Keñeşi reisi",chairValue:"Andrii Ianitskyi",privacy:"Mahremiyet ve cookie",support:"ProMediağa yardım et",donationOffer:"Bağış şartları",rights:"Er aqqı saqlıdır"}
+    uk:{projects:"Проєкти",about:"Про нас",contacts:"Контакти",news:"Новини",communities:"Карта спільнот",ratings:"Рейтинг журфаків",research:"Дослідження",atlas:"Атлас медіа",santa:"Санта",proof:"Proof",details:"Дані про організацію",official:"Офіційна назва",officialValue:"ГО «ПроМедіа»",reg:"Реєстраційний номер",address:"Юридична адреса",addressValue:"вул. Володимира Самійленка 19/44, Київ, Україна, 03118",chair:"Голова правління",chairValue:"Андрій Яніцький",privacy:"Приватність і cookie",analyticsOn:"Вимкнути аналітику",analyticsOff:"Увімкнути аналітику",support:"Підтримати ПроМедіа",donationOffer:"Умови пожертви",rights:"Усі права захищені"},
+    en:{projects:"Projects",about:"About us",contacts:"Contacts",news:"News",communities:"Communities Map",ratings:"Journalism Schools",research:"Research",atlas:"Media Atlas",santa:"Santa",proof:"Proof",details:"Organization details",official:"Official name",officialValue:"NGO “ProMedia”",reg:"Registration number",address:"Legal address",addressValue:"19/44 Volodymyr Samiilenko St, Kyiv, Ukraine, 03118",chair:"Chair of the Board",chairValue:"Andrii Ianitskyi",privacy:"Privacy and cookies",analyticsOn:"Turn off analytics",analyticsOff:"Turn on analytics",support:"Support ProMedia",donationOffer:"Donation terms",rights:"All rights reserved"},
+    crh:{projects:"Leyhalar",about:"Biz aqqımızda",contacts:"Kontaktlar",news:"Haberler",communities:"Cemaatlar haritası",ratings:"Jurnalistika fakülteleri reytingi",research:"Tedqiqatlar",atlas:"Mediya Atlası",santa:"Santa",proof:"Proof",details:"Teşkilât aqqında malümat",official:"Resmiy adı",officialValue:"«ProMedia» İCT",reg:"Qayd nomeri",address:"Yuridik adres",addressValue:"Volodymyr Samiilenko soqağı, 19/44, Kyiv, Ukrayina, 03118",chair:"İdare Keñeşi reisi",chairValue:"Andrii Ianitskyi",privacy:"Mahremiyet ve cookie",analyticsOn:"Analitikanı söndürmek",analyticsOff:"Analitikanı qabuzmaq",support:"ProMediağa yardım et",donationOffer:"Bağış şartları",rights:"Er aqqı saqlıdır"}
   };
   const lang=(()=>{
     const p=location.pathname.split("/").filter(Boolean)[0];
@@ -20,6 +20,7 @@
     return h.startsWith("en")?"en":h.startsWith("crh")?"crh":"uk";
   })();
   const t=L[lang];
+  const analyticsOn=!/(?:^|;\s*)pm_analytics=denied(?:;|$)/.test(document.cookie);
   const prefix=lang==="uk"?"":"/"+lang;
   const localize=(base)=>base+prefix+"/";
   const mainBase="https://promedia.report";
@@ -84,7 +85,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-socials svg{width:20px;height:20px;fill:currentColor}
 .pm-global-org{margin:34px auto 0;max-width:900px}.pm-global-org h3{text-align:center;font-size:1rem;margin:0 0 14px}
 .pm-global-org table{width:100%;border-collapse:collapse}.pm-global-org td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.18);vertical-align:top}.pm-global-org td:first-child{font-weight:700;color:#fff;width:36%}
-.pm-global-bottom{display:flex;justify-content:space-between;gap:22px;margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);font-size:.9rem}.pm-global-powered{display:flex;align-items:center;gap:10px;margin-top:8px}.pm-global-powered img{width:88px;filter:brightness(0) invert(1);opacity:.9}
+.pm-global-bottom{display:flex;justify-content:space-between;gap:22px;margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);font-size:.9rem}.pm-global-powered{display:flex;align-items:center;gap:10px;margin-top:8px}.pm-global-powered img{width:88px;filter:brightness(0) invert(1);opacity:.9}.pm-global-analytics-toggle{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
 @media(max-width:980px){.pm-global-primary,.pm-global-secondary{display:none}.pm-global-burger{display:block}.pm-global-main{min-height:62px;padding:6px 18px}.pm-global-logo{width:100px;height:44px}.pm-global-footer-top{grid-template-columns:1fr 1fr}.pm-global-footer-nav{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
 @media(max-width:640px){.pm-global-footer{padding:42px 0 36px}.pm-global-footer-top{grid-template-columns:1fr}.pm-global-footer-nav{grid-column:auto}.pm-global-bottom{flex-direction:column}.pm-global-org td{display:block;width:100%!important;padding:6px 0;border:0}.pm-global-org tr{display:block;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.18)}}
 `;
@@ -127,7 +128,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         <tr><td>${t.chair}</td><td>${t.chairValue}</td></tr>
         <tr><td>E-mail</td><td><a href="mailto:info@promedia.report">info@promedia.report</a></td></tr>
       </table></div>
-      <div class="pm-global-bottom"><div>© 2025–2026 ProMedia. ${t.rights}<div class="pm-global-powered">Created by <a href="https://fabrikastyle.com" target="_blank" rel="noopener"><img src="https://fabrikastyle.com/logo-fa.svg" alt="Fabrika Style"></a></div></div><div><a href="${mainBase+(lang==="uk"?"/privacy-policy/":prefix+"/privacy-policy/")}">${t.privacy}</a></div></div>
+      <div class="pm-global-bottom"><div>© 2025–2026 ProMedia. ${t.rights}<div class="pm-global-powered">Created by <a href="https://fabrikastyle.com" target="_blank" rel="noopener"><img src="https://fabrikastyle.com/logo-fa.svg" alt="Fabrika Style"></a></div></div><div><a href="${mainBase+(lang==="uk"?"/privacy-policy/":prefix+"/privacy-policy/")}">${t.privacy}</a> · <button type="button" class="pm-global-analytics-toggle" data-pm-analytics-toggle data-label-on="${t.analyticsOn}" data-label-off="${t.analyticsOff}" aria-pressed="${analyticsOn}">${analyticsOn?t.analyticsOn:t.analyticsOff}</button></div></div>
       </div></footer>`;
     }
   }

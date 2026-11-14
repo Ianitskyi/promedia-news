@@ -248,6 +248,34 @@ migrations/             — послідовні SQL-міграції D1
 новина піднімається у головну позицію, і одночасно такою може бути лише одна
 опублікована стаття.
 
+## Спільна аналітика мережі (GA4)
+
+`public/js/promedia-analytics.js` — єдиний модуль Google Analytics для всіх
+сайтів `*.promedia.report`. Сайти підключають його одним рядком замість
+власного коду gtag:
+
+```html
+<script async src="https://news.promedia.report/js/promedia-analytics.js"></script>
+```
+
+Модуль:
+
+- завантажує GA4 (`G-D8TM22QR9R`) лише на `promedia.report` і його піддоменах:
+  не на localhost, `*.workers.dev`, превʼю чи `www`. Параметр `?ga_debug=1`
+  вмикає DebugView будь-де, `?ga_debug=0` вимикає;
+- додає до всіх подій `site_section`, `content_type`, `content_language`, а для
+  статей ще `publish_date` і `author` (з мета-тегу `article:author`, якщо він є).
+  Тип сторінки можна задати явно: `<meta name="promedia:content-type" content="tool">`;
+- один раз показує повідомлення про аналітику з кнопкою «Вимкнути». Вибір
+  зберігається в cookie `pm_analytics` на `.promedia.report` і діє на всіх
+  піддоменах. Кнопка в спільному футері (`promedia-global-shell.js`)
+  дозволяє змінити вибір будь-коли;
+- надає `window.ProMediaAnalytics.track(name, params)` для власних подій.
+  Персональних даних (email, телефон, імʼя) у параметри не передавайте.
+
+Тести: `tests/promedia-analytics.test.mjs`. Кроки в Cloudflare і в адмінці GA4
+описано в `promedia-seo-gateway/docs/analytics-stage1-ops.md`.
+
 ## Web Push
 
 Публічні endpoints:
