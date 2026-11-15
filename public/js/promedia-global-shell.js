@@ -189,6 +189,114 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
   }
   showHomepageTeam();
 
+  function refineHomepage() {
+    if (!["promedia.report", "www.promedia.report"].includes(location.hostname) || !document.body.classList.contains("homepage") || document.body.dataset.pmHomeRefined) return;
+    document.body.dataset.pmHomeRefined = "true";
+    const style = document.createElement("style");
+    style.id = "pm-home-refinements";
+    style.textContent = `
+body.homepage .section-lastprojects .eyebrow,
+body.homepage .section-featured-news .eyebrow,
+body.homepage #services .eyebrow,
+body.homepage #contacts .cf-section-label{display:none!important}
+body.homepage #contacts .cf-title span{color:#ffac33!important}
+@media(max-width:767px){
+ body.homepage #projects-grid .card-text,
+ body.homepage #projects-grid .badge,
+ body.homepage #projects-grid .card-body>.d-flex{display:none!important}
+ body.homepage #projects-grid .card-body{padding:12px}
+ body.homepage #projects-grid .card-title{margin-bottom:0!important}
+ body.homepage #contacts{padding-top:50px!important;padding-bottom:50px!important}
+}
+`;
+    document.head.appendChild(style);
+    const newsHeading = document.querySelector(".section-featured-news h2");
+    if (newsHeading) newsHeading.textContent = t.news;
+    const contactHeading = document.querySelector("#contacts .cf-title");
+    if (contactHeading) {
+      const highlight = contactHeading.querySelector("span");
+      if (lang === "crh") {
+        const word = document.createElement("span");
+        word.textContent = "Fikirleriñizni";
+        contactHeading.replaceChildren(word, document.createTextNode(" muzakere eteyik"));
+      } else if (highlight) highlight.textContent = lang === "en" ? "ideas" : "ідеї";
+    }
+    const services = document.getElementById("services");
+    if (services) {
+      services.querySelectorAll(".accordion-collapse").forEach(panel => panel.classList.remove("show"));
+      const syncAccordion = () => services.querySelectorAll("button[data-acc]").forEach(button => {
+        const panel = document.getElementById(button.dataset.acc);
+        const expanded = !!panel && panel.classList.contains("show");
+        button.classList.toggle("collapsed", !expanded);
+        button.setAttribute("aria-expanded", String(expanded));
+        if (panel) button.setAttribute("aria-controls", panel.id);
+      });
+      syncAccordion();
+      services.addEventListener("click", () => requestAnimationFrame(syncAccordion));
+    }
+
+    // Async project/news cards and team portraits can move an anchor after a click.
+    // Keep the chosen section aligned until the upper-page layout settles, or the
+    // visitor starts scrolling. This also handles arriving directly at #team.
+    let stopAlignment = () => {};
+    function alignAnchor(hash) {
+      const target = document.getElementById(hash.slice(1));
+      if (!target) return;
+      stopAlignment();
+      const abort = new AbortController();
+      let active = true, frame = 0;
+      const align = () => {
+        frame = 0;
+        if (!active || !target.isConnected) return;
+        const header = document.querySelector(".pm-global-header");
+        const offset = (header ? header.getBoundingClientRect().height : 0) + 16;
+        const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset);
+        const previous = document.documentElement.style.scrollBehavior;
+        document.documentElement.style.scrollBehavior = "auto";
+        window.scrollTo({ top, behavior: "instant" });
+        document.documentElement.style.scrollBehavior = previous;
+      };
+      const schedule = () => { if (active && !frame) frame = requestAnimationFrame(align); };
+      const observer = typeof ResizeObserver === "function" ? new ResizeObserver(schedule) : null;
+      document.querySelectorAll(".hero-rotator,.section-lastprojects,.section-featured-news,.section-team").forEach(section => observer && observer.observe(section));
+      const timer = setTimeout(() => stopAlignment(), 5000);
+      stopAlignment = () => {
+        active = false;
+        if (frame) cancelAnimationFrame(frame);
+        if (observer) observer.disconnect();
+        abort.abort();
+        clearTimeout(timer);
+      };
+      window.addEventListener("wheel", stopAlignment, { once: true, passive: true, signal: abort.signal });
+      window.addEventListener("touchstart", stopAlignment, { once: true, passive: true, signal: abort.signal });
+      window.addEventListener("keydown", stopAlignment, { once: true, signal: abort.signal });
+      document.addEventListener("load", schedule, { capture: true, signal: abort.signal });
+      if (document.fonts) document.fonts.ready.then(schedule);
+      schedule();
+    }
+    document.addEventListener("click", event => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target.closest && event.target.closest("a[href]");
+      if (!link || link.target && link.target !== "_self") return;
+      const url = new URL(link.href, location.href);
+      if (!["promedia.report", "www.promedia.report"].includes(url.hostname) || url.pathname.replace(/\/$/, "") !== location.pathname.replace(/\/$/, "") || !["#team", "#contacts"].includes(url.hash)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const menu = link.closest("details.pm-global-burger");
+      if (menu) menu.removeAttribute("open");
+      if (location.hash !== url.hash) history.pushState(null, "", location.pathname + location.search + url.hash);
+      alignAnchor(url.hash);
+    }, true);
+    window.addEventListener("hashchange", () => {
+      if (["#team", "#contacts"].includes(location.hash)) alignAnchor(location.hash);
+      else stopAlignment();
+    });
+    if (["#team", "#contacts"].includes(location.hash)) alignAnchor(location.hash);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", refineHomepage, { once: true });
+  else refineHomepage();
+
+
   // One low-page cross-promotion slot on public services; news has its own slots.
   const promoHosts = ["promedia.report", "www.promedia.report", "projects.promedia.report", "communities.promedia.report", "ratings.promedia.report", "research.promedia.report", "guide.promedia.report", "atlas.promedia.report", "jobs.promedia.report", "events.promedia.report", "brief.promedia.report", "santa.promedia.report"];
   if (promoHosts.includes(location.hostname) && !document.getElementById("pm-network-promo-loader")) {
