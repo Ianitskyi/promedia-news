@@ -1,0 +1,10 @@
+{
+  "slug": "media-atlas",
+  "title": "Атлас: все про зареєстровані медіа в Україні",
+  "titleEn": "Atlas: everything about registered media in Ukraine",
+  "titleCrh": "Atlas: Ukrayinada qayd etilgen mediya aqqında er şey",
+  "projectStatus": "active",
+  "isFeatured": true,
+  "tags": ["дослідження", "інструмент"],
+  "revision": "2026-11-16-title-en-crh"
+}
