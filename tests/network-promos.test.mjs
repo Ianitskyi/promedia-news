@@ -9,7 +9,7 @@ runInNewContext(source, {window: browser});
 const {choosePromo} = browser.ProMediaNetworkPromo;
 
 test('Network banners never advertise vacancies or their own host in any language', () => {
-  const hosts = ['promedia.report','www.promedia.report','projects.promedia.report','atlas.promedia.report','communities.promedia.report','ratings.promedia.report','research.promedia.report','guide.promedia.report','jobs.promedia.report','events.promedia.report','brief.promedia.report','santa.promedia.report'];
+  const hosts = ['projects.promedia.report','atlas.promedia.report','communities.promedia.report','ratings.promedia.report','research.promedia.report','guide.promedia.report','jobs.promedia.report','events.promedia.report','brief.promedia.report','santa.promedia.report'];
   for (const host of hosts) for (const lang of ['uk','en','crh']) {
     const promo = choosePromo(host, lang, lang === 'uk' ? '/' : '/' + lang + '/');
     assert.ok(promo, `${host} ${lang}`);
@@ -27,7 +27,7 @@ test('Public sites get contextual destinations while news and internal tools kee
   assert.equal(choosePromo('communities.promedia.report','uk','/').id, 'research');
   assert.equal(choosePromo('research.promedia.report','uk','/').id, 'communities');
   assert.equal(choosePromo('santa.promedia.report','uk','/').id, 'projects');
-  for (const host of ['news.promedia.report','money.promedia.report','localhost','example.com']) assert.equal(choosePromo(host,'uk','/'), null);
+  for (const host of ['promedia.report','www.promedia.report','news.promedia.report','money.promedia.report','localhost','example.com']) assert.equal(choosePromo(host,'uk','/'), null);
 });
 
 test('Administrative, account and registration routes receive no network banner', () => {

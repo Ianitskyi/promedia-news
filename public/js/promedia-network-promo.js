@@ -31,7 +31,8 @@
   };
 
   var placements = {
-    "promedia.report": ["atlas", "communities", "research"],
+    // На головній promedia.report банер не показуємо: там і так видно всі сервіси.
+    "promedia.report": [],
     "projects.promedia.report": ["atlas", "communities"],
     "atlas.promedia.report": ["research", "communities"],
     "communities.promedia.report": ["research", "atlas"],
