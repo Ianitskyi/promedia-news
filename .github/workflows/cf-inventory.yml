@@ -1,0 +1,24 @@
+name: Cloudflare inventory (read-only)
+on:
+  push:
+    branches: [ops/cf-inventory]
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read Cloudflare config (GET only)
+        env:
+          T: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          A: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          api(){ curl -sS -H "Authorization: Bearer $T" "https://api.cloudflare.com/client/v4$1"; }
+          echo "== scripts"; api "/accounts/$A/workers/scripts" | jq -r '.success, (.result[]? | "\(.id)  modified=\(.modified_on)")'
+          echo "== custom domains"; api "/accounts/$A/workers/domains" | jq -r '.success, .errors, (.result[]? | "\(.hostname) -> \(.service) [\(.environment)]")'
+          Z=$(api "/zones?name=promedia.report" | jq -r '.result[0].id'); echo "zone ok: $([ -n "$Z" ] && echo yes)"
+          echo "== zone routes"; api "/zones/$Z/workers/routes" | jq -r '.success, .errors, (.result[]? | "\(.pattern) -> \(.script)")'
+          echo "== promedia-main settings"; api "/accounts/$A/workers/scripts/promedia-main/settings" | jq '{success, errors, bindings: [.result.bindings[]? | {type,name}], compat: .result.compatibility_date, flags: .result.compatibility_flags}'
+          echo "== promedia-main subdomain"; api "/accounts/$A/workers/scripts/promedia-main/subdomain" | jq -c '.'
+          echo "== DNS apex/www"; api "/zones/$Z/dns_records?name=promedia.report" | jq -r '.result[]? | "\(.type) \(.name) proxied=\(.proxied)"'; api "/zones/$Z/dns_records?name=www.promedia.report" | jq -r '.result[]? | "\(.type) \(.name) proxied=\(.proxied)"'
+          echo "== token perms"; api "/user/tokens/verify" | jq -c '.result.status'
