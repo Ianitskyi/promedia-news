@@ -24,5 +24,8 @@
     "url": "/img/news/iwpr-forum-2026-panel-nabu.jpg",
     "alt": "Учасники панелі про антикорупцію та парламент на форумі IWPR у Києві"
   },
-  "decision": "Andrii Ianitskyi"
+  "decision": "Andrii Ianitskyi",
+  "revision": "2026-11-16-hero-1",
+  "isImportant": true,
+  "cardStyle": "hero"
 }
