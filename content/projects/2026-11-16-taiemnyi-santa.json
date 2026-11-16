@@ -1,0 +1,27 @@
+{
+  "slug": "taiemnyi-santa",
+  "title": "Таємний Санта",
+  "titleEn": "Secret Santa",
+  "titleCrh": "«Таємний Санта» (Gizli Santa)",
+  "excerpt": "Безкоштовний онлайн-сервіс для анонімного обміну подарунками на зимові свята. Підходить командам, які працюють дистанційно.",
+  "excerptEn": "A free online service for anonymous gift exchange during the winter holidays, designed for teams that work remotely.",
+  "excerptCrh": "Qış bayramlarında anonim olaraq hediye deñiştirmek içün parasız onlayn hızmet. Uzaqtan çalışqan komandalar içün uyğun.",
+  "bodyMd": "«Таємний Санта» — онлайн-сервіс ГО «ПроМедіа» для анонімного обміну подарунками. Ми створили його для власної команди: наші активісти живуть в Одесі, Коломиї, Миколаєві, Львові, Києві та області. Тепер сервісом можуть безкоштовно користуватися й інші команди. Сервіс доступний лише українською мовою. Персональні дані система зберігає лише тимчасово й видаляє всю інформацію після завершення гри.",
+  "bodyMdEn": "Secret Santa is an online service by the NGO ProMedia for anonymous gift exchange. We built it for our own team, whose activists live in Odesa, Kolomyia, Mykolaiv, Lviv, Kyiv and the surrounding region. Now other teams can use it free of charge too. The service is available in Ukrainian only. The system stores personal data only temporarily and deletes all information once the game is over.",
+  "bodyMdCrh": "«Таємний Санта» (Gizli Santa) — anonim olaraq hediye deñiştirmek içün ProMedia İCT-niñ onlayn hızmeti. Biz onı öz komandamız içün yarattıq: aktivistlerimiz Odesa, Kolomyia, Mykolaiv, Lviv, Kyiv ve Kyiv vilâyetinde yaşaylar. Şimdi hızmetten diger komandalar da parasız faydalanıp olalar. Hızmet tek ukrain tilinde mevcut. Sistema şahsiy malümatnı tek muvaqqat saqlay ve oyun bitken soñ bütün malümatnı yoq ete.",
+  "workMd": "- Розробили сервіс, у якому організатор створює гру, задає бюджет подарунка, дедлайн реєстрації та дату обміну.\n- Додали запрошення учасників поштою або закритими посиланнями та автоматичне жеребкування.\n- Зробили сервіс відкритим і безкоштовним для інших команд.",
+  "workMdEn": "- Built a service where the organiser creates a game and sets the gift budget, the registration deadline and the exchange date.\n- Added invitations by email or private links and an automatic draw.\n- Made the service open and free for other teams.",
+  "workMdCrh": "- Teşkilâtçı oyun yaratıp, hediye büdcesini, qayd olunuvnıñ soñki müddetini ve hediye deñiştirüv tarihını belgilegen hızmet yarattıq.\n- İştirakçilerni elektron poçta ya da qapalı bağlantılar vastasınen davet etüvni ve avtomatik çekilişni qoştıq.\n- Hızmetni diger komandalar içün açıq ve parasız yaptıq.",
+  "periodLabel": "З листопада 2026 року",
+  "periodLabelEn": "Since November 2026",
+  "periodLabelCrh": "2026 senesi noyabrden berli",
+  "coverImageUrl": "/img/projects/taiemnyi-santa.jpg",
+  "projectStatus": "active",
+  "startDate": "2026-11-16",
+  "websiteUrl": "https://santa.promedia.report",
+  "tags": [
+    "сервіси",
+    "команди",
+    "зимові свята"
+  ]
+}
