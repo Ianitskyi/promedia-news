@@ -1,0 +1,53 @@
+name: Publish approved articles
+
+# Publishes editorially approved articles committed to content/articles/*.json.
+# Idempotent: existing slugs are skipped, so admin-panel edits are never overwritten.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/articles/**'
+      - 'scripts/publish-article-from-json.mjs'
+      - '.github/workflows/publish-articles.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promedia-production-d1-schema
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Validate Cloudflare secrets
+        env:
+          CF_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CF_ACCOUNT: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CF_TOKEN" || { echo "::error::Missing CLOUDFLARE_API_TOKEN"; exit 1; }
+          test -n "$CF_ACCOUNT" || { echo "::error::Missing CLOUDFLARE_ACCOUNT_ID"; exit 1; }
+      - name: Publish new articles
+        env:
+          CI: '1'
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/publish-article-from-json.mjs content/articles
+      - name: Check public pages
+        run: |
+          for f in content/articles/*.json; do
+            slug=$(node -e "console.log(require('./$f').slug)")
+            for prefix in "" "/en" "/crh"; do
+              code=$(curl -s -o /dev/null -w '%{http_code}' "https://news.promedia.report${prefix}/article/${slug}" || true)
+              echo "${prefix:-/uk} /article/${slug}: ${code}"
+            done
+          done
