@@ -93,6 +93,9 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-socials{display:flex;gap:12px;margin-top:14px}.pm-global-socials a{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid rgba(255,255,255,.3);border-radius:50%}
 .pm-global-socials svg{width:20px;height:20px;fill:currentColor}
 .pm-global-org{margin:34px auto 0;max-width:900px}.pm-global-org h3{text-align:center;font-size:1rem;margin:0 0 14px}
+.pm-global-org>summary{list-style:none;cursor:pointer}.pm-global-org>summary::-webkit-details-marker{display:none}
+@media(min-width:641px){.pm-global-org>summary{pointer-events:none}}
+@media(max-width:640px){.pm-global-org{margin-top:22px;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18)}.pm-global-org>summary h3{display:flex;justify-content:space-between;align-items:center;text-align:left;margin:0;padding:14px 0}.pm-global-org>summary h3::after{content:"+";font-size:20px;font-weight:400;line-height:1}.pm-global-org[open]>summary h3::after{content:"−"}.pm-global-org[open] table{margin-bottom:10px}}
 .pm-global-org table{width:100%;border-collapse:collapse}.pm-global-org td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.18);vertical-align:top}.pm-global-org td:first-child{font-weight:700;color:#fff;width:36%}
 .pm-global-bottom{display:flex;justify-content:space-between;gap:22px;margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);font-size:.9rem}.pm-global-powered{display:flex;align-items:center;gap:10px;margin-top:8px}.pm-global-powered img{width:88px;filter:brightness(0) invert(1);opacity:.9}.pm-global-analytics-toggle{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
 @media(max-width:980px){.pm-global-primary,.pm-global-secondary{display:none}.pm-global-burger{display:block}.pm-global-main{min-height:62px;padding:6px 18px}.pm-global-logo{width:100px;height:44px}.pm-global-footer-top{grid-template-columns:1fr 1fr}.pm-global-footer-nav{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
@@ -128,6 +131,8 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
   ];
   class PMFooter extends HTMLElement{
     connectedCallback(){
+      // На телефоні дані про організацію згорнуті, на більших екранах — відкриті.
+      const orgOpen=!(window.matchMedia&&window.matchMedia("(max-width:640px)").matches);
       this.innerHTML=`<footer class="pm-global-footer"><div class="pm-global-footer-inner">
       <div class="pm-global-footer-top">
         <div class="pm-global-footer-logo"><a href="${mainHome}"><img src="https://news.promedia.report/img/promedia-logo-footer.svg" alt="ProMedia"></a></div>
@@ -140,13 +145,13 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         <nav class="pm-global-footer-nav"><a href="${projectUrl}">${t.projects}</a><a href="${mainHome}#team">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a><a href="${mainBase}${prefix}/support/">${t.support}</a><a href="${mainBase}${prefix}/donation-offer/">${t.donationOffer}</a></nav>
       </div>
       <div class="pm-global-partners"><h3>${t.partners}</h3><div class="pm-global-partners-grid">${PARTNERS.map(p=>`<a class="pm-global-partner${p.img?"":" pm-global-partner-text"}" href="${p.href}" target="_blank" rel="noopener">${p.img?`<img loading="lazy" decoding="async" src="https://promedia.report/assets/partners/${p.img}" alt="${p.name}">`:p.name}</a>`).join("")}</div></div>
-      <div class="pm-global-org"><h3>${t.details}</h3><table>
+      <details class="pm-global-org"${orgOpen?" open":""}><summary><h3>${t.details}</h3></summary><table>
         <tr><td>${t.official}</td><td>${t.officialValue}</td></tr>
         <tr><td>${t.reg}</td><td>45995408</td></tr>
         <tr><td>${t.address}</td><td>${t.addressValue}</td></tr>
         <tr><td>${t.chair}</td><td>${t.chairValue}</td></tr>
         <tr><td>E-mail</td><td><a href="mailto:info@promedia.report">info@promedia.report</a></td></tr>
-      </table></div>
+      </table></details>
       <div class="pm-global-bottom"><div>© 2025–2026 ProMedia. ${t.rights}<div class="pm-global-powered">Created by <a href="https://fabrikastyle.com" target="_blank" rel="noopener"><img src="https://fabrikastyle.com/logo-fa.svg" alt="Fabrika Style"></a></div></div><div><a href="${mainBase+(lang==="uk"?"/privacy-policy/":prefix+"/privacy-policy/")}">${t.privacy}</a> · <button type="button" class="pm-global-analytics-toggle" data-pm-analytics-toggle data-label-on="${t.analyticsOn}" data-label-off="${t.analyticsOff}" aria-pressed="${analyticsOn}">${analyticsOn?t.analyticsOn:t.analyticsOff}</button></div></div>
       </div></footer>`;
     }
