@@ -1,8 +1,8 @@
 {
   "slug": "taiemnyi-santa",
-  "title": "Таємний Санта",
-  "titleEn": "Secret Santa",
-  "titleCrh": "«Таємний Санта» (Gizli Santa)",
+  "title": "Онлайн-сервіс «Таємний Санта»",
+  "titleEn": "Secret Santa online service",
+  "titleCrh": "«Таємний Санта» (Gizli Santa) onlayn hızmeti",
   "excerpt": "Безкоштовний онлайн-сервіс для анонімного обміну подарунками на зимові свята. Підходить командам, які працюють дистанційно.",
   "excerptEn": "A free online service for anonymous gift exchange during the winter holidays, designed for teams that work remotely.",
   "excerptCrh": "Qış bayramlarında anonim olaraq hediye deñiştirmek içün parasız onlayn hızmet. Uzaqtan çalışqan komandalar içün uyğun.",
@@ -23,5 +23,5 @@
     "інструменти"
   ],
   "isFeatured": true,
-  "revision": "2026-11-16-tags"
+  "revision": "2026-11-16-title"
 }
