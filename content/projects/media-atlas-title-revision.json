@@ -5,6 +5,10 @@
   "titleCrh": "Atlas: Ukrayinada qayd etilgen mediya aqqında er şey",
   "projectStatus": "active",
   "isFeatured": true,
-  "tags": ["дослідження", "інструмент"],
-  "revision": "2026-11-16-title-en-crh"
+  "tags": [
+    "дослідження",
+    "інструмент"
+  ],
+  "revision": "2026-11-17-cover-map",
+  "coverImageUrl": "/img/projects/atlas-media-map.jpg"
 }
