@@ -76,8 +76,14 @@ for (const f of files) {
     const tmp = join(mkdtempSync(join(tmpdir(), 'cover-')), 'cover.jpg');
     writeFileSync(tmp, Buffer.from(await img.arrayBuffer()));
     const key = `articles/${a.slug.slice(0, 60)}-${Date.now()}.jpg`;
-    wrangler(['r2', 'object', 'put', `${BUCKET}/${key}`, '--file', tmp, '--content-type', 'image/jpeg', '--remote']);
-    coverUrl = `/img-storage/${key}`;
+    try {
+      wrangler(['r2', 'object', 'put', `${BUCKET}/${key}`, '--file', tmp, '--content-type', 'image/jpeg', '--remote']);
+      coverUrl = `/img-storage/${key}`;
+    } catch {
+      // The deployment token may lack R2 write access; Wikimedia allows hotlinking its thumbnails.
+      console.log('::warning::R2 upload not permitted; using the Wikimedia Commons thumbnail URL.');
+      coverUrl = credit.thumb;
+    }
   }
   for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
     if (a[k] && /⟦[^⟧]+⟧/.test(a[k])) throw Error(`Unfilled placeholder in ${k} of ${f}`);
