@@ -297,41 +297,7 @@ ${footer(lang)}
 <script defer src="/js/promedia-language-suggest.js"></script>
 <script defer src="/js/promedia-memorial-popup.js"></script>
 <script defer src="/js/promedia-push-bell.js"></script>
-<script>
-(function(){
-  function ready(fn) {
-    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn);
-    else fn();
-  }
-  ready(function(){
-    document.querySelectorAll("[data-share-instagram]").forEach(function(button){
-      button.addEventListener("click", async function(){
-        var url = button.dataset.shareUrl || location.href;
-        var status = button.closest(".article-share").querySelector("[data-share-status]");
-        status.textContent = "";
-        if (navigator.share) {
-          try {
-            await navigator.share({
-              title: button.dataset.shareTitle || document.title,
-              text: button.dataset.shareText || "",
-              url: url
-            });
-            return;
-          } catch (error) {
-            if (error.name === "AbortError") return;
-          }
-        }
-        try {
-          await navigator.clipboard.writeText(url);
-          status.textContent = button.dataset.copied;
-        } catch (error) {
-          window.prompt(button.dataset.copy, url);
-        }
-      });
-    });
-  });
-})();
-</script>
+<script defer src="/js/promedia-story-share.js"></script>
 <script defer src="/js/promedia-global-shell.js"></script>
 </body>
 </html>`;
@@ -426,9 +392,9 @@ function articleCardVariant(article, automaticVariant) {
 }
 
 const SHARE_LABELS = {
-  en: { title: "Share", instagram: "Instagram: open sharing options or copy the link", copy: "Copy this link and paste it into Instagram", copied: "Link copied. Paste it into an Instagram message or a story link sticker." },
-  uk: { title: "Поширити", instagram: "Instagram: відкрити меню поширення або скопіювати посилання", copy: "Скопіюйте посилання та вставте в Instagram", copied: "Посилання скопійовано. Вставте його в повідомлення Instagram або стікер посилання в історії." },
-  crh: { title: "Paylaş", instagram: "Instagram: paylaşuv menüsini aç ya da bağlantını kopiyala", copy: "Bağlantını kopiyalañız ve Instagram'ğa yapıştırıñız", copied: "Bağlantı kopiyalandı. Onı Instagram mesajına ya da hikâyedeki bağlantı etiketine yapıştırıñız." }
+  en: { title: "Share", instagram: "Instagram: share to your story", copy: "Copy this link and paste it into Instagram", copied: "Link copied. Paste it into an Instagram message or a story link sticker." },
+  uk: { title: "Поширити", instagram: "Instagram: поширити в сторіз", copy: "Скопіюйте посилання та вставте в Instagram", copied: "Посилання скопійовано. Вставте його в повідомлення Instagram або стікер посилання в історії." },
+  crh: { title: "Paylaş", instagram: "Instagram: hikâyede paylaşmaq", copy: "Bağlantını kopiyalañız ve Instagram'ğa yapıştırıñız", copied: "Bağlantı kopiyalandı. Onı Instagram mesajına ya da hikâyedeki bağlantı etiketine yapıştırıñız." }
 };
 
 // Inline brand icons keep the share controls independent of external icon services.
@@ -444,7 +410,7 @@ function shareIcon(network) {
   return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${SHARE_ICON_PATHS[network]}" /></svg>`;
 }
 
-function articleShareBlock({ title, excerpt, articleUrl, lang }) {
+function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl }) {
   const encodedUrl = encodeURIComponent(articleUrl);
   const encodedTitle = encodeURIComponent(title);
   const encodedText = encodeURIComponent(`${title}\n\n${articleUrl}`);
@@ -460,7 +426,7 @@ function articleShareBlock({ title, excerpt, articleUrl, lang }) {
   <span>${escapeHtml(labels.title)}</span>
   <div class="article-share-links">
     ${links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener" aria-label="${escapeHtml(`${labels.title}: ${label}`)}" title="${escapeHtml(label)}">${shareIcon(label)}</a>`).join("")}
-    <button type="button" data-share-instagram data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}" data-copy="${escapeHtml(labels.copy)}" data-copied="${escapeHtml(labels.copied)}" aria-label="${escapeHtml(`${labels.title}: Instagram`)}" title="${escapeHtml(labels.instagram)}">${shareIcon("Instagram")}</button>
+    <button type="button" data-share-instagram data-share-cover="${escapeHtml(coverUrl || "")}" data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}" data-copy="${escapeHtml(labels.copy)}" data-copied="${escapeHtml(labels.copied)}" aria-label="${escapeHtml(`${labels.title}: Instagram`)}" title="${escapeHtml(labels.instagram)}">${shareIcon("Instagram")}</button>
   </div>
   <p class="article-share-status" data-share-status role="status"></p>
 </section>`;
@@ -609,7 +575,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   ${tags.length ? tagLinks(tags, lang) : ""}
   <h1>${escapeHtml(title)}</h1>
   ${articleMeta(article, lang)}
-  ${articleShareBlock({ title, excerpt, articleUrl, lang })}
+  ${articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl })}
   ${cover}
   <div class="article-body">${bodyHtmlContent}</div>
   ${mediaLinksHtml}
