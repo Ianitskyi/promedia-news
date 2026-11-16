@@ -63,7 +63,36 @@ for (const f of files) {
   const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
   if (!a.slug || !a.title || !a.bodyMd) throw Error('Missing slug/title/bodyMd in ' + f);
   if (d1(`SELECT id FROM articles WHERE slug = ${q(a.slug)}`).length) {
-    console.log(`Skip ${a.slug}: already exists.`);
+    // An approved revision is applied once, then admin edits stay authoritative.
+    const marker = a.revision ? `article_revision:${a.slug}:${a.revision}` : null;
+    d1('CREATE TABLE IF NOT EXISTS editorial_data_fixes (name TEXT PRIMARY KEY)');
+    if (!marker || d1(`SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)}`).length) {
+      console.log(`Skip ${a.slug}: already exists.`);
+      continue;
+    }
+    if (a.cover?.commonsFile) {
+      const credit = await commonsInfo(a.cover.commonsFile, a.cover.width);
+      for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) if (a[k]) a[k] = fillCredit(a[k], credit);
+    }
+    for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
+      if (a[k] && /⟦[^⟧]+⟧/.test(a[k])) throw Error(`Unfilled placeholder in ${k} of ${f}`);
+    }
+    const sql = `UPDATE articles SET title = ${q(a.title)}, title_en = ${q(a.titleEn)}, title_crh = ${q(a.titleCrh)},
+      excerpt = ${q(a.excerpt || '')}, excerpt_en = ${q(a.excerptEn)}, excerpt_crh = ${q(a.excerptCrh)},
+      body_md = ${q(a.bodyMd)}, body_md_en = ${q(a.bodyMdEn)}, body_md_crh = ${q(a.bodyMdCrh)},
+      tags = ${q(JSON.stringify(a.tags || []))},
+      is_important = ${a.isImportant === undefined ? 'is_important' : (a.isImportant ? 1 : 0)},
+      card_style = ${a.cardStyle ? q(a.cardStyle) : 'card_style'},
+      updated_at = ${q(new Date().toISOString())}
+    WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
+    ${a.cardStyle === 'hero' ? `UPDATE articles SET card_style = 'auto', updated_at = ${q(new Date().toISOString())}
+    WHERE slug != ${q(a.slug)} AND status = 'published' AND card_style = 'hero'
+      AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});` : ''}
+    INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`;
+    const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'update.sql');
+    writeFileSync(sqlFile, sql);
+    d1(sqlFile, true);
+    console.log(`Updated ${a.slug} to revision ${a.revision}.`);
     continue;
   }
   let coverUrl = null;
@@ -93,10 +122,10 @@ for (const f of files) {
   const now = new Date().toISOString();
   const published = a.publishedAt || now;
   const sql = `INSERT INTO articles (slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh,
-    body_md, body_md_en, body_md_crh, cover_image_url, tags, related_media_ids, status, author_id,
+    body_md, body_md_en, body_md_crh, cover_image_url, tags, related_media_ids, is_important, card_style, status, author_id,
     published_at, created_at, updated_at)
   SELECT ${[a.slug, a.title, a.titleEn, a.titleCrh, a.excerpt || '', a.excerptEn, a.excerptCrh,
-    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, JSON.stringify(a.tags || []), '[]'].map(q).join(', ')},
+    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, JSON.stringify(a.tags || []), '[]'].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
     'published', ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});`;
   const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'insert.sql');
