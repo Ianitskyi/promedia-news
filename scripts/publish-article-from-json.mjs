@@ -2,7 +2,9 @@
 // Idempotent: an article whose slug already exists is skipped and never overwritten,
 // so later edits made in the admin panel stay authoritative.
 //
-// Cover photos come from Wikimedia Commons only. The script reads the author and
+// Cover photos come from Wikimedia Commons, or from an original illustration already
+// served from this site's public/ folder (cover.url, a same-site path like /img/news/x.jpg).
+// Commons covers: The script reads the author and
 // licence from the Commons API, refuses non-free files, substitutes the credit
 // placeholders (⟦АВТОР⟧/⟦AUTHOR⟧/⟦MÜELLİF⟧ and ⟦ЛІЦЕНЗІЯ⟧/⟦LICENCE⟧/⟦LİTSENZİYA⟧)
 // and uploads a resized copy to R2. It fails if any placeholder is left unfilled.
@@ -96,7 +98,10 @@ for (const f of files) {
     continue;
   }
   let coverUrl = null;
-  if (a.cover?.commonsFile) {
+  if (a.cover?.url) {
+    if (!/^\/img\/[a-z0-9/_-]+\.(jpe?g|png|webp)$/i.test(a.cover.url)) throw Error('cover.url must be a same-site /img/ path: ' + f);
+    coverUrl = a.cover.url;
+  } else if (a.cover?.commonsFile) {
     const credit = await commonsInfo(a.cover.commonsFile, a.cover.width);
     console.log(`Cover: ${credit.page} — ${credit.author}, ${credit.licence}`);
     for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) if (a[k]) a[k] = fillCredit(a[k], credit);
@@ -122,10 +127,11 @@ for (const f of files) {
   const now = new Date().toISOString();
   const published = a.publishedAt || now;
   const sql = `INSERT INTO articles (slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh,
-    body_md, body_md_en, body_md_crh, cover_image_url, tags, related_media_ids, is_important, card_style, status, author_id,
+    body_md, body_md_en, body_md_crh, cover_image_url, cover_crop_data, tags, related_media_ids, is_important, card_style, status, author_id,
     published_at, created_at, updated_at)
   SELECT ${[a.slug, a.title, a.titleEn, a.titleCrh, a.excerpt || '', a.excerptEn, a.excerptCrh,
-    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, JSON.stringify(a.tags || []), '[]'].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
+    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, a.cover?.alt ? JSON.stringify({alt: a.cover.alt}) : null,
+    JSON.stringify(a.tags || []), '[]'].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
     'published', ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});`;
   const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'insert.sql');

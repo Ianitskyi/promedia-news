@@ -551,7 +551,10 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
     list = heading(topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang), `${prefix}/`) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
   } else if (articles.length) {
     const featured = articles.filter(a => a.card_style === "hero");
-    const hero = featured.length ? featured.reduce((latest, article) => (article.published_at || "") > (latest.published_at || "") ? article : latest) : articles[0];
+    // Without an explicit hero, lead with the newest automatic card: an editor who chose
+    // "image" or "text" for a story has asked for it not to lead the feed.
+    const hero = featured.length ? featured.reduce((latest, article) => (article.published_at || "") > (latest.published_at || "") ? article : latest)
+      : articles.find(a => (a.card_style || "auto") === "auto") || articles[0];
     const remaining = articles.filter(a => a.slug !== hero.slug);
     const cells = remaining.map((a, i) => `<div class="mosaic-cell">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
     cells.splice(Math.min(2, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
