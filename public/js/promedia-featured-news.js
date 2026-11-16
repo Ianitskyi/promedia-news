@@ -38,6 +38,7 @@
   }
 
   var RUBRICS = {
+    "Прес-реліз": { uk: "Прес-реліз", en: "Press release", crh: "Basın bildirisi" },
     "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
     "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
     "Заяви": { uk: "Заяви", en: "Statements", crh: "Beyanatlar" }
@@ -50,6 +51,8 @@
 
   function rubric(item, lang) {
     var tags = Array.isArray(item.tags) ? item.tags : [];
+    // A press release is labelled as such even if it also carries a regular rubric.
+    if (tags.indexOf("Прес-реліз") !== -1) return { key: "Прес-реліз", label: RUBRICS["Прес-реліз"][lang] || "Прес-реліз" };
     for (var i = 0; i < tags.length; i += 1) {
       if (RUBRICS[tags[i]]) return { key: tags[i], label: RUBRICS[tags[i]][lang] || tags[i] };
     }
@@ -67,7 +70,7 @@
     var line = el("p", "pm-news-lead-meta");
     var r = rubric(item, lang);
     if (r) {
-      line.appendChild(el("span", "pm-news-lead-rubric" + (r.key === "Новини" ? "" : " pm-news-lead-rubric--alt"), r.label));
+      line.appendChild(el("span", "pm-news-lead-rubric" + (r.key === "Прес-реліз" ? " pm-news-lead-rubric--press" : r.key === "Новини" ? "" : " pm-news-lead-rubric--alt"), r.label));
       line.appendChild(document.createTextNode(" · "));
     }
     line.appendChild(document.createTextNode(formatDate(item.publishedAt, lang)));
@@ -95,6 +98,9 @@
       ".pm-news-lead-meta{margin:0;font-size:12px;color:#6b6a85}",
       ".pm-news-lead-rubric{font-weight:700;color:#b36a00}",
       ".pm-news-lead-rubric--alt{color:#0d0c5c}",
+      ".pm-news-lead-rubric--press{display:inline-block;padding:2px 8px;border-radius:999px;background:#c2185b;color:#fff;text-transform:uppercase;letter-spacing:.06em;font-size:10px}",
+      ".pm-news-lead-media{position:relative}",
+      ".pm-news-lead-press-badge{position:absolute;top:12px;left:12px;padding:5px 11px;border-radius:999px;background:#c2185b;color:#fff;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 4px 14px rgba(0,0,0,.25)}",
       ".pm-news-lead-side{flex:1 1 300px;min-width:0;background:#fff;border:1px solid #e7e7ef;border-radius:12px;padding:20px 24px;box-sizing:border-box}",
       ".pm-news-lead-side-title{margin:0;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0d0c5c;padding-bottom:12px;border-bottom:3px solid #ffac33}",
       ".pm-news-lead-list{list-style:none;margin:0;padding:0}",
@@ -126,6 +132,8 @@
       img.alt = hero.coverAlt || title;
       img.loading = "lazy";
       media.appendChild(img);
+      var r0 = rubric(hero, lang);
+      if (r0 && r0.key === "Прес-реліз") media.appendChild(el("span", "pm-news-lead-press-badge", r0.label));
       main.appendChild(media);
     }
     main.appendChild(metaLine(hero, lang));

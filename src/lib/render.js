@@ -31,6 +31,7 @@ const CATEGORIES = ["Заяви", "Новини", "Статті"];
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "Прес-реліз": "Press release",
   "Заяви": "Statements",
   "Новини": "News",
   "Статті": "Articles",
@@ -81,6 +82,7 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "Прес-реліз": "Basın bildirisi",
   "Заяви": "Beyanatlar",
   "Новини": "Haberler",
   "Статті": "Maqaleler",
@@ -140,6 +142,21 @@ const TAG_LABEL_LOOKUP = Object.fromEntries(
 
 function tagLabel(tag, lang) {
   return TAG_LABEL_LOOKUP[lang]?.[tagLookupKey(tag)] || tag;
+}
+
+// A press release (someone else's text published with light editing) is marked
+// with a distinct tag colour and a badge on the cover so readers don't take it for our own reporting.
+const PRESS_RELEASE_KEY = tagLookupKey("Прес-реліз");
+function isPressRelease(tags) {
+  return tags.some(t => tagLookupKey(t) === PRESS_RELEASE_KEY);
+}
+function tagLinks(tags, lang) {
+  // The press-release tag always comes first so it is the first thing a reader sees.
+  const ordered = [...tags.filter(t => tagLookupKey(t) === PRESS_RELEASE_KEY), ...tags.filter(t => tagLookupKey(t) !== PRESS_RELEASE_KEY)];
+  return `<div class="article-tags">${ordered.map((t) => `<a class="article-tag${tagLookupKey(t) === PRESS_RELEASE_KEY ? " article-tag--press" : ""}" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>`;
+}
+function pressBadge(tags, lang) {
+  return isPressRelease(tags) ? `<span class="press-badge">${escapeHtml(tagLabel("Прес-реліз", lang))}</span>` : "";
 }
 
 function articleCoverMetadata(article, lang) {
@@ -382,7 +399,7 @@ function articleCard(article, lang, baseUrl, variant) {
   const excerpt = articleExcerpt(article, lang);
   const tags = JSON.parse(article.tags || "[]");
   const isArticle = tags.some(t => tagLookupKey(t) === "статті");
-  const contentKind = isArticle ? "article" : tags.some(t => tagLookupKey(t) === "заяви") ? "statement" : tags.some(t => tagLookupKey(t) === "новини") ? "news" : "other";
+  const contentKind = isArticle ? "article" : isPressRelease(tags) ? "press-release" : tags.some(t => tagLookupKey(t) === "заяви") ? "statement" : tags.some(t => tagLookupKey(t) === "новини") ? "news" : "other";
   const cardVariant = variant || "visual";
   const coverUrl = articleCover(article, lang);
   const showCover = coverUrl && (cardVariant !== "text" || isArticle);
@@ -390,13 +407,14 @@ function articleCard(article, lang, baseUrl, variant) {
   const cover = showCover
     ? `<a class="article-card-media${cardVariant === "text" ? " article-card-media--mobile-only" : ""}" href="${articleHref}">
         <img class="article-card-img" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, cardVariant === "hero" ? "desktop" : "feed")} loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
+        ${pressBadge(tags, lang)}
       </a>`
     : "";
   return `
 <article class="article-card article-card--${cardVariant}" data-content-kind="${contentKind}">
   ${cover}
   <div class="article-card-body">
-    ${tags.length ? `<div class="article-tags">${tags.map((t) => `<a class="article-tag" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>` : ""}
+    ${tags.length ? tagLinks(tags, lang) : ""}
     <${cardVariant === "hero" ? "h1" : "h3"}><a href="${articleHref}">${escapeHtml(title)}</a></${cardVariant === "hero" ? "h1" : "h3"}>
     <p class="article-excerpt">${escapeHtml(excerpt)}</p>
     ${articleMeta(article, lang)}
@@ -581,7 +599,9 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const tags = JSON.parse(article.tags || "[]");
   const coverUrl = articleCover(article, lang);
   const cover = coverUrl
-    ? `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, "desktop")} />`
+    ? (isPressRelease(tags)
+      ? `<div class="article-cover-wrap"><img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, "desktop")} />${pressBadge(tags, lang)}</div>`
+      : `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, "desktop")} />`)
     : "";
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">
@@ -592,7 +612,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const bodyHtml = `
 <main class="wrap article-page">
   <p class="article-back"><a href="${langPrefix(lang)}/">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
-  ${tags.length ? `<div class="article-tags">${tags.map((tg) => `<a class="article-tag" href="${langPrefix(lang)}/?tag=${encodeURIComponent(tg)}">${escapeHtml(tagLabel(tg, lang))}</a>`).join("")}</div>` : ""}
+  ${tags.length ? tagLinks(tags, lang) : ""}
   <h1>${escapeHtml(title)}</h1>
   ${articleMeta(article, lang)}
   ${articleShareBlock({ title, excerpt, articleUrl, lang })}
