@@ -20,10 +20,8 @@
   "startDate": "2026-11-16",
   "websiteUrl": "https://santa.promedia.report",
   "tags": [
-    "сервіси",
-    "команди",
-    "зимові свята"
+    "інструменти"
   ],
   "isFeatured": true,
-  "featuredRevision": "2026-11-16-homepage"
+  "revision": "2026-11-16-tags"
 }
