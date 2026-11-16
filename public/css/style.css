@@ -1197,11 +1197,11 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .restored-feed .project-promo p { display: block; font-size: 13px; line-height: 1.5; }
 .restored-feed .project-promo-action { max-width: none; padding: 11px 14px; }
 
-/* Mobile editorial rule: news and statements as headlines, articles with their cover images. */
+/* Mobile editorial rule: news and statements as headlines, articles with their cover images. The top story always keeps its cover. */
 .article-card-media--mobile-only { display: none; }
 @media (max-width: 620px) {
-  .practice-home .article-card:is([data-content-kind="news"], [data-content-kind="statement"]) .article-card-media,
-  .practice-home .article-card:is([data-content-kind="news"], [data-content-kind="statement"]) .article-excerpt { display: none; }
+  .practice-home .article-card:not(.article-card--hero):is([data-content-kind="news"], [data-content-kind="statement"]) .article-card-media,
+  .practice-home .article-card:not(.article-card--hero):is([data-content-kind="news"], [data-content-kind="statement"]) .article-excerpt { display: none; }
   .practice-home .article-card[data-content-kind="article"] .article-card-media--mobile-only { display: block; }
   .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"]) { background: transparent; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; }
   .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"]) .article-card-body { padding: 18px 0; gap: 10px; }
