@@ -1,0 +1,300 @@
+/* ============================================================
+   Design system tokens (Claude Design mockup) + Bootstrap overrides
+   Loaded last (after bootstrap.min.css, theme.css, media.css)
+   ============================================================ */
+:root {
+    --pm-ink: #0D0C5C;
+    --pm-ink-soft: #3A3A6E;
+    --pm-ink-mute: #6E6E93;
+    --pm-line: rgba(13, 12, 92, .16);
+    --pm-accent: #FFAC33;
+    --pm-accent-deep: #E8901A;
+    --pm-white: #FCFBF7;
+    --pm-radius: 14px;
+    --pm-mono: ui-monospace, 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+}
+
+/* ===== Buttons: btn-primary = дизайнерський .btn, btn-secondary = .btn--ghost ===== */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 26px;
+    border-radius: 100px;
+    background: var(--pm-ink);
+    border-color: var(--pm-ink);
+    color: var(--pm-white);
+    text-transform: none;
+    letter-spacing: normal;
+    transition: transform .3s cubic-bezier(.2,.7,.2,1), background .3s, color .3s, border-color .3s;
+}
+.btn-primary:before { content: none; }
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary.focus,
+.btn-primary:active {
+    background: var(--pm-accent) !important;
+    border-color: var(--pm-accent) !important;
+    color: var(--pm-ink) !important;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 15px 26px;
+    border-radius: 100px;
+    background: transparent;
+    border: 1.5px solid var(--pm-line);
+    color: var(--pm-ink);
+    text-transform: none;
+    letter-spacing: normal;
+    transition: background .3s, color .3s, border-color .3s;
+}
+.btn-secondary:before { content: none; }
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary.focus,
+.btn-secondary:active {
+    background: var(--pm-ink) !important;
+    border-color: var(--pm-ink) !important;
+    color: var(--pm-white) !important;
+}
+
+.btn-primary.btn-sm,
+.btn-secondary.btn-sm {
+    padding: 9px 16px;
+    font-size: 13px;
+    gap: 6px;
+}
+
+.badge {
+    font-weight: 600;
+    letter-spacing: .02em;
+}
+
+/* ===== Filter chips (список проєктів) ===== */
+.filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+.filter-lbl {
+    font-family: var(--pm-mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--pm-ink-mute);
+    margin-right: 4px;
+}
+.filter-chip {
+    display: inline-block;
+    font-family: var(--pm-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .03em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    padding: 9px 16px;
+    border-radius: 100px;
+    border: 1px solid var(--pm-line);
+    background: transparent;
+    color: var(--pm-ink-soft);
+    text-decoration: none;
+    transition: background .25s, color .25s, border-color .25s;
+}
+.filter-chip:hover {
+    border-color: var(--pm-ink);
+    color: var(--pm-ink);
+    text-decoration: none;
+}
+.filter-chip.on {
+    background: var(--pm-ink);
+    color: var(--pm-white);
+    border-color: var(--pm-ink);
+}
+
+/* ===== Новини (постовий грід, як на головній) ===== */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+.post {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+}
+.post .ph {
+    border-radius: var(--pm-radius);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    border: 1px solid var(--pm-line);
+    position: relative;
+    background: var(--pm-white);
+}
+.post .ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(.2,.7,.2,1);
+}
+.post:hover .ph img { transform: scale(1.05); }
+.post .date {
+    font-family: var(--pm-mono);
+    font-size: 13px;
+    color: var(--pm-ink-mute);
+    margin-top: 16px;
+    letter-spacing: .04em;
+}
+.post h3 {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.28;
+    letter-spacing: -.01em;
+    margin-top: 8px;
+    transition: color .3s;
+}
+.post:hover h3 { color: var(--pm-accent-deep); }
+.news-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: clamp(40px, 5vw, 56px);
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* ===== Новини з news.promedia.report на головній ===== */
+.pm-featured-news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+.pm-featured-news-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--pm-line);
+    border-radius: var(--pm-radius);
+    background: var(--pm-white);
+    color: var(--pm-ink);
+    text-decoration: none;
+    transition: box-shadow .25s ease, transform .25s ease;
+}
+.pm-featured-news-card:hover,
+.pm-featured-news-card:focus-visible {
+    color: var(--pm-ink);
+    box-shadow: 0 12px 28px rgba(13, 12, 92, .13);
+    transform: translateY(-3px);
+}
+.pm-featured-news-media {
+    position: relative;
+    padding: 16px 16px 0;
+    overflow: hidden;
+    background: transparent;
+}
+/* Natural proportions keep portrait artwork readable without letterboxing. */
+.pm-featured-news-media img {
+    display: block;
+    position: static;
+    width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    border-radius: 12px;
+}
+.pm-featured-news-card:hover .pm-featured-news-media img { transform: none; }
+.pm-featured-news-body { padding: 18px 20px 22px; }
+.pm-featured-news-date {
+    display: block;
+    font-family: var(--pm-mono);
+    font-size: 12px;
+    letter-spacing: .04em;
+    color: var(--pm-ink-mute);
+    margin-bottom: 9px;
+}
+.pm-featured-news-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 9px; }
+.pm-featured-news-meta .pm-featured-news-date { margin-bottom: 0; }
+.pm-featured-news-views { display: inline-flex; align-items: center; gap: 5px; font-family: var(--pm-mono); font-size: 12px; color: var(--pm-ink-mute); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.pm-featured-news-body h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.32;
+}
+@media (max-width: 767px) {
+    .pm-featured-news-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 991px) {
+    .news-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 575px) {
+    .news-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== Inner pages: клірінс під фіксований header, коли немає .slimheader ===== */
+body.innerpage main:not(:has(> .slimheader)) {
+    padding-top: 110px;
+}
+@media (max-width: 767px) {
+    body.innerpage main:not(:has(> .slimheader)) {
+        padding-top: 90px;
+    }
+}
+
+
+
+/* ProMedia 2026 homepage refinements */
+@media (max-width: 767px) {
+    .section-title,
+    .pm-partners h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.12 !important;
+        letter-spacing: normal !important;
+    }
+}
+
+
+/* Mobile projects spacing */
+@media (max-width: 767px) {
+    .section-lastprojects {
+        padding-top: 24px !important;
+        padding-bottom: 32px !important;
+    }
+    .section-lastprojects > .container > .row.align-items-end {
+        --bs-gutter-y: .65rem;
+        margin-bottom: 16px !important;
+    }
+    .section-lastprojects .eyebrow {
+        margin-bottom: 8px !important;
+    }
+    .section-lastprojects .section-title {
+        margin-bottom: 0 !important;
+    }
+    .section-lastprojects .col-lg-5 > p {
+        margin: 0 !important;
+    }
+    .section-lastprojects #projects-grid {
+        --bs-gutter-y: 16px;
+    }
+}
+
+
+/* Contact social icons on dark contact section */
+.section-contactform .pm-contact-socials a {
+    color: #fff !important;
+}
+.section-contactform .pm-contact-socials a:hover {
+    color: #ffac33 !important;
+}
+.section-contactform .pm-contact-socials svg {
+    fill: currentColor !important;
+}
+

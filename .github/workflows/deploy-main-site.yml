@@ -1,0 +1,47 @@
+name: Deploy promedia.report main site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'main-site/**'
+      - '.github/workflows/deploy-main-site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promedia-main-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check HTML pages exist
+        run: |
+          for f in index.html en/index.html crh/index.html; do test -s "main-site/static/$f" || { echo "::error::missing $f"; exit 1; }; done
+      - name: Deploy main site worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --config main-site/wrangler.toml
+      - name: Smoke test promedia.report
+        run: |
+          set -e
+          sleep 5
+          for p in / /en/ /crh/ /support/ /assets/js/static-site.js; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "https://promedia.report$p?smoke=$GITHUB_RUN_ID")
+            echo "$p -> $code"; test "$code" = 200
+          done
+          curl -fsS --max-time 30 "https://promedia.report/?smoke=$GITHUB_RUN_ID" | grep -q 'id="projects-grid"'
+          curl -s -o /dev/null -w '/news redirect -> %{http_code}\n' --max-time 30 https://promedia.report/news

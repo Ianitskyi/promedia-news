@@ -1,0 +1,15 @@
+# Головний сайт promedia.report (статичний). Перенесено з архівного
+# ProMedia-Ukraine/promedia-website (гілка static-migration) 16.11.2026.
+# Ім'я воркера те саме, що й раніше, — домен promedia.report уже прив'язаний
+# до нього в Cloudflare; маршрутів тут навмисно немає, щоб деплой їх не чіпав.
+# robots.txt і sitemap.xml на домені віддає окремий воркер promedia-seo-gateway.
+name = "promedia-main"
+main = "static-worker.js"
+compatibility_date = "2026-10-06"
+workers_dev = true
+keep_vars = true
+
+[assets]
+directory = "./static"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"

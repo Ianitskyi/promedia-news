@@ -1,0 +1,350 @@
+@media screen and (min-width: 768px) and (max-width: 991px) {
+}
+@media screen and (min-width: 578px) {
+
+}
+@media screen and (min-width: 768px) {
+	.hero-info {
+		max-width: 56vw;
+	}
+    
+    .card-info h3 {
+        text-align: left;
+    }
+
+
+}
+@media screen and (min-width: 992px) {
+
+}
+@media screen and (min-width: 1200px) {
+
+}
+
+@media screen and (max-width: 1500px) {
+
+}
+@media screen and (max-width: 1300px) {
+	.is-top .logo {
+	}
+	.logo {
+	}
+	.is-top .logo img {
+	}
+	.mainnav a {
+		letter-spacing: 0px;
+	}
+}
+@media screen and (max-width: 1199px) {
+
+
+}
+@media screen and (max-width: 1100px) {
+
+}
+@media screen and (max-width: 991px) {
+
+    .footerSecondNav  {
+        margin: auto;
+    }
+    .footerSecondNav ul {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+	.addressText {
+		display: none;
+	}
+	.phoneNumber {
+		display: none;
+	}
+
+	#trigger-overlay {
+		display: block;
+	}
+
+/* Nav collapse button */
+.dropdown-icon {
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  border-radius: none;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+	  margin-left: 10px;
+}
+
+	.dropdown-icon:focus {
+		outline: none; }
+.dropdown-icon span {
+  display: block;
+  position: absolute;
+  background: var(--color2);
+  top: 19px;
+  left: 5px;
+  right: 5px;
+  height: 2px;
+}
+
+
+	.dropdown-icon span::before,
+	.dropdown-icon span::after {
+		position: absolute;
+		display: block;
+		left: 0;
+		width: 100%;
+		background-color: var(--color2);
+		content: "";
+		height: 2px; }
+
+
+	.dropdown-icon span::before {
+		top: -12px; }
+
+
+	.dropdown-icon span::after {
+		bottom: -12px; }
+
+
+	.dropdown-icon--animate {
+			background-color: transparent;
+	}
+	.dropdown-icon--animate span {
+		transition: background 0s 0.2s; }
+
+	.dropdown-icon--animate span::before,
+	.dropdown-icon--animate span::after {
+		transition-duration: 0.2s, 0.2s;
+		transition-delay: 0.2s, 0s; }
+
+	.dropdown-icon--animate span::before {
+		transition-property: top, transform; }
+
+	.dropdown-icon--animate span::after {
+		transition-property: bottom, transform; }
+
+	.is-active.dropdown-icon--animate {
+		/*background-color: transparent; */
+		}
+
+	.is-active.dropdown-icon--animate span {
+		background: none; }
+
+	.is-active.dropdown-icon--animate span::before {
+		top: 0;
+		-ms-transform: rotate(45deg);
+				transform: rotate(45deg); }
+
+	.is-active.dropdown-icon--animate span::after {
+		bottom: 0;
+		-ms-transform: rotate(-45deg);
+				transform: rotate(-45deg); }
+
+	.is-active.dropdown-icon--animate span::before,
+	.is-active.dropdown-icon--animate span::after {
+		transition-delay: 0s, 0.2s; }
+	/**/
+.mainnav {
+	  max-height: 0;
+	  padding: 0;
+	  background: #fff;
+	  position: fixed;
+	  width: 100%;
+	  top: 0;
+	  padding-top: 85px;
+	  z-index: -1;
+	  opacity: 0;
+	  overflow: hidden;
+	  transition: all 1.5s;
+	  transition-timing-function: cubic-bezier(.19,1,.22,1);
+	  height: 0px;
+	  left: 0;
+	  text-align: center;
+      visibility: hidden;
+	}
+	
+.mainnav ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  /* background: #ccc; 
+  justify-content: center;*/
+}
+	.mainnav li {
+	  display: none;
+	}
+	.open.mainnav li {
+		display: block;
+		margin-bottom: 20px;
+	}
+	#mainnav.open {
+	  max-height: 100vh;
+	  	  height: 3000px;
+visibility: visible;
+	  
+	  opacity: 1;
+	}   
+
+    .footer-nav ul {
+        justify-content: center;
+    }
+
+}
+
+
+
+@media screen and (max-width: 767px) {
+	.topPhones {
+	    position: fixed;
+	    bottom: 0;
+	    right: 0;
+	}
+
+	.lang-select {
+	    border-left: none;
+	}
+    .breadcrumbs {
+        margin-bottom: 20px;
+    }
+    .dropdown-toggle {
+        border-radius: 0 8px 0 8px;
+    }
+    .map-contacts {
+        padding: 60px 20px 40px;
+    }
+    .contacts-block {
+        font-size: 1em;
+    }
+    .mobileBooking-btn {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        z-index: 10;
+        left: 0;
+        right: 54px;
+        padding: 14px 10px;
+        text-align: center;
+        border-radius: 0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+		background: linear-gradient(0deg, #e3780d 0%, var(--color2) 27%, var(--color2) 71%, rgb(255 166 77) 100%);
+    }
+    .mobileBooking-btn:hover {
+		background: linear-gradient(0deg, #e3780d 0%, var(--color2) 27%, var(--color2) 71%, rgb(255 166 77) 100%);
+    }
+    .logo-title {
+        padding: 40px 30px 20px;
+    }
+    footer {
+        padding: 30px 0 60px;
+    }
+    .bgImage .textBlock {
+        padding: 30px 30px 30px;;
+    }
+    .logo img {
+        height: 46px;
+    }
+    .section-services .item img {
+        max-width: 70px;
+        margin-bottom: 0;
+    }
+    .item-title {
+        line-height: 1.1;
+        font-size: .9em;
+    }
+    .section-services .item {
+        margin: 10px auto 0px;
+    }
+    .footer-cols {
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .footerPrimaryNav ul {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .copyright {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+
+	header {
+		padding: 5px 10px;
+	}
+    .short-desc>p {
+        display: none;
+    }
+    .short-desc>p:first-child, .short-desc>p:last-child {
+        display: block;
+    }
+
+}
+
+@media screen and (max-width: 577px) {
+    .map-logo {
+        display: none;
+    }
+
+	.closeModal {
+		margin-bottom: 10px;
+	}
+	.h2, h2 {
+		font-size: 1.5rem;
+	}
+	.buttons-group {
+		text-align: center;
+	}	
+	.buttons-group a {
+		margin-bottom:10px;
+	}	
+	.buttons-group a:last-child {
+		margin-bottom:0px;
+	}
+	
+	.topAddress {
+		display: none;
+	}
+	.topPhones li:nth-child(2n) {
+    display:none;
+	}
+
+	.topSocial {
+		display: none;
+	}
+
+	h1, .h1 {
+		font-size: 1.8rem;
+	}
+    .hero-subtitle {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+
+    .nav-tabs {
+        font-size: 12px;
+    }
+}
+
+
+@media screen and (max-height: 750px) {
+
+}
+

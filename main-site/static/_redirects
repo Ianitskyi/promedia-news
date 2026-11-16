@@ -1,0 +1,2 @@
+/news/* https://news.promedia.report/:splat 301
+/projects/* https://projects.promedia.report/:splat 301
