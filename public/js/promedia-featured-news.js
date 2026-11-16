@@ -98,7 +98,7 @@
       ".pm-news-lead-meta{margin:0;font-size:12px;color:#6b6a85}",
       ".pm-news-lead-rubric{font-weight:700;color:#b36a00}",
       ".pm-news-lead-rubric--alt{color:#0d0c5c}",
-      ".pm-news-lead-rubric--press{color:#5b5a7a}",
+      ".pm-news-lead-rubric--press{color:#b3261e}",
       ".pm-news-lead-side{flex:1 1 300px;min-width:0;background:#fff;border:1px solid #e7e7ef;border-radius:12px;padding:20px 24px;box-sizing:border-box}",
       ".pm-news-lead-side-title{margin:0;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0d0c5c;padding-bottom:12px;border-bottom:3px solid #ffac33}",
       ".pm-news-lead-list{list-style:none;margin:0;padding:0}",

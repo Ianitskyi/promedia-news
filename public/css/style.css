@@ -1299,7 +1299,7 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   }
 }
 
-/* Press releases: one muted slate tag, distinct from the orange topic tags. */
+/* Press releases: a tag styled like the others, in a light red tone. */
 .article-tag.article-tag--press,
 .article-card--hero .article-tag.article-tag--press,
-.article-card--text .article-tag.article-tag--press { background: #e6e6ef; color: #4a4968; }
+.article-card--text .article-tag.article-tag--press { background: #fdeaea; color: #b3261e; }
