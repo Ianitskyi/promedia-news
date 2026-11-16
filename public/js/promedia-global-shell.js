@@ -88,8 +88,8 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-partners-grid{display:flex;flex-wrap:wrap;gap:10px}
 .pm-global-partner{display:flex;align-items:center;justify-content:center;width:132px;height:64px;padding:8px 12px;box-sizing:border-box;border-radius:6px;background:#fff;overflow:hidden}
 .pm-global-partner img{display:block;max-width:100%;max-height:46px;object-fit:contain}
-.pm-global-footer a.pm-global-partner-text{color:#2e3038;font-size:13px;font-weight:700;line-height:1.15;text-align:center}
-.pm-global-footer a.pm-global-partner:hover{opacity:.88;color:#2e3038}
+.pm-global-footer a.pm-global-partner-text{color:#2e3038!important;font-size:13px;font-weight:700;line-height:1.15;text-align:center}
+.pm-global-footer a.pm-global-partner:hover{opacity:.88;color:#2e3038!important}
 .pm-global-socials{display:flex;gap:12px;margin-top:14px}.pm-global-socials a{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border:1px solid rgba(255,255,255,.3);border-radius:50%}
 .pm-global-socials svg{width:20px;height:20px;fill:currentColor}
 .pm-global-org{margin:34px auto 0;max-width:900px}.pm-global-org h3{text-align:center;font-size:1rem;margin:0 0 14px}
