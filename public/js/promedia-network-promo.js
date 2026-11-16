@@ -150,7 +150,7 @@
 
   var style = doc.createElement("style"); style.id = "pm-network-promo-style";
   style.textContent = `
-.pm-network-promo{display:block;box-sizing:border-box;width:min(1120px,calc(100% - 40px));margin:40px auto;font-family:Montserrat,Arial,sans-serif;clear:both}
+.pm-network-promo{display:block;box-sizing:border-box;container-type:inline-size;width:min(1120px,calc(100% - 40px));margin:40px auto;font-family:Montserrat,Arial,sans-serif;clear:both}
 .pm-network-promo[hidden]{display:none!important}
 .pm-network-promo .pm-network-card{box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:32px;min-height:220px;padding:30px 36px;border:1px solid #29276e;border-radius:18px;background:#0d0c5c;color:#fff;text-decoration:none;box-shadow:none}
 .pm-network-promo .pm-network-copy{min-width:0;max-width:740px;text-align:left}
@@ -163,6 +163,8 @@
 .pm-network-promo .pm-network-card:focus-visible{outline:3px solid #ffac33;outline-offset:4px}
 .pm-network-promo--compact{max-width:444px;margin-bottom:110px}
 @media(max-width:700px){.pm-network-promo{margin:28px auto}.pm-network-promo .pm-network-card{min-height:0;flex-direction:column;align-items:flex-start;gap:22px;padding:25px 24px}.pm-network-promo .pm-network-action{white-space:normal}.pm-network-promo--compact{margin-bottom:110px}}
+/* Stack by the banner's own width, not the screen: a narrow column on a wide screen squeezed the title into the button */
+@container (max-width:640px){.pm-network-promo .pm-network-card{min-height:0;flex-direction:column;align-items:flex-start;gap:22px;padding:25px 24px}.pm-network-promo .pm-network-action{white-space:normal}.pm-network-promo .pm-network-card h2{font-size:24px}}
 `;
   if (!doc.getElementById(style.id)) doc.head.appendChild(style);
 
