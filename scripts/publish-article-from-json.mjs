@@ -79,22 +79,27 @@ for (const f of files) {
     for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
       if (a[k] && /⟦[^⟧]+⟧/.test(a[k])) throw Error(`Unfilled placeholder in ${k} of ${f}`);
     }
+    // Editing a published article never moves it to the top: the order follows the first
+    // publication date. It becomes the lead story again only when the editor asks for it,
+    // by setting "raiseToTop" to the same value as this "revision".
+    const raise = a.cardStyle === 'hero' && a.raiseToTop === a.revision;
+    const cardStyle = a.cardStyle === 'hero' && !raise ? null : a.cardStyle;
     const sql = `UPDATE articles SET title = ${q(a.title)}, title_en = ${q(a.titleEn)}, title_crh = ${q(a.titleCrh)},
       excerpt = ${q(a.excerpt || '')}, excerpt_en = ${q(a.excerptEn)}, excerpt_crh = ${q(a.excerptCrh)},
       body_md = ${q(a.bodyMd)}, body_md_en = ${q(a.bodyMdEn)}, body_md_crh = ${q(a.bodyMdCrh)},
       tags = ${q(JSON.stringify(a.tags || []))},
       is_important = ${a.isImportant === undefined ? 'is_important' : (a.isImportant ? 1 : 0)},
-      card_style = ${a.cardStyle ? q(a.cardStyle) : 'card_style'},
+      card_style = ${cardStyle ? q(cardStyle) : 'card_style'},
       updated_at = ${q(new Date().toISOString())}
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
-    ${a.cardStyle === 'hero' ? `UPDATE articles SET card_style = 'auto', updated_at = ${q(new Date().toISOString())}
+    ${raise ? `UPDATE articles SET card_style = 'auto', updated_at = ${q(new Date().toISOString())}
     WHERE slug != ${q(a.slug)} AND status = 'published' AND card_style = 'hero'
       AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});` : ''}
     INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`;
     const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'update.sql');
     writeFileSync(sqlFile, sql);
     d1(sqlFile, true);
-    console.log(`Updated ${a.slug} to revision ${a.revision}.`);
+    console.log(`Updated ${a.slug} to revision ${a.revision}${raise ? ' and raised it to the lead story' : ''}.`);
     continue;
   }
   let coverUrl = null;
