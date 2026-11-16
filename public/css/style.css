@@ -1299,18 +1299,7 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   }
 }
 
-/* Press releases: a distinct raspberry tag and a badge over the cover image. */
+/* Press releases: one muted slate tag, distinct from the orange topic tags. */
 .article-tag.article-tag--press,
 .article-card--hero .article-tag.article-tag--press,
-.article-card--text .article-tag.article-tag--press { background: #c2185b; color: #fff; }
-.article-cover-wrap { position: relative; }
-.article-cover-wrap .article-cover { display: block; }
-.press-badge {
-  position: absolute; top: 28px; left: 28px; z-index: 2;
-  padding: 6px 12px; border-radius: var(--radius-pill);
-  background: #c2185b; color: #fff;
-  font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase;
-  box-shadow: 0 4px 14px rgba(0,0,0,.25); pointer-events: none;
-}
-.article-cover-wrap .press-badge { top: 26px; left: 14px; }
-.practice-home .article-card-media .press-badge { top: 12px; left: 12px; }
+.article-card--text .article-tag.article-tag--press { background: #e6e6ef; color: #4a4968; }

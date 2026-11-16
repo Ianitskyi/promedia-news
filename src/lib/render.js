@@ -145,7 +145,7 @@ function tagLabel(tag, lang) {
 }
 
 // A press release (someone else's text published with light editing) is marked
-// with a distinct tag colour and a badge on the cover so readers don't take it for our own reporting.
+// with a distinct, muted tag colour so readers don't take it for our own reporting.
 const PRESS_RELEASE_KEY = tagLookupKey("Прес-реліз");
 function isPressRelease(tags) {
   return tags.some(t => tagLookupKey(t) === PRESS_RELEASE_KEY);
@@ -154,9 +154,6 @@ function tagLinks(tags, lang) {
   // The press-release tag always comes first so it is the first thing a reader sees.
   const ordered = [...tags.filter(t => tagLookupKey(t) === PRESS_RELEASE_KEY), ...tags.filter(t => tagLookupKey(t) !== PRESS_RELEASE_KEY)];
   return `<div class="article-tags">${ordered.map((t) => `<a class="article-tag${tagLookupKey(t) === PRESS_RELEASE_KEY ? " article-tag--press" : ""}" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>`;
-}
-function pressBadge(tags, lang) {
-  return isPressRelease(tags) ? `<span class="press-badge">${escapeHtml(tagLabel("Прес-реліз", lang))}</span>` : "";
 }
 
 function articleCoverMetadata(article, lang) {
@@ -407,7 +404,6 @@ function articleCard(article, lang, baseUrl, variant) {
   const cover = showCover
     ? `<a class="article-card-media${cardVariant === "text" ? " article-card-media--mobile-only" : ""}" href="${articleHref}">
         <img class="article-card-img" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, cardVariant === "hero" ? "desktop" : "feed")} loading="${cardVariant === "hero" ? "eager" : "lazy"}" />
-        ${pressBadge(tags, lang)}
       </a>`
     : "";
   return `
@@ -599,9 +595,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const tags = JSON.parse(article.tags || "[]");
   const coverUrl = articleCover(article, lang);
   const cover = coverUrl
-    ? (isPressRelease(tags)
-      ? `<div class="article-cover-wrap"><img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, "desktop")} />${pressBadge(tags, lang)}</div>`
-      : `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, "desktop")} />`)
+    ? `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, "desktop")} />`
     : "";
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">
