@@ -157,29 +157,7 @@
     return wrap;
   }
 
-  // Блок проєктів на головній promedia.report: заголовок «Проєкти» замість
-  // «Кейси, якими ми пишаємось», картки — лише фото, статус і назва.
-  var PROJECTS_TITLE = { uk: "Проєкти", en: "Projects", crh: "Leyhalar" };
-
-  function tidyProjectsSection() {
-    var section = document.querySelector(".section-lastprojects");
-    if (!section) return;
-    if (!document.getElementById("pm-projects-compact-styles")) {
-      var style = document.createElement("style");
-      style.id = "pm-projects-compact-styles";
-      style.textContent =
-        ".section-lastprojects .eyebrow{display:none!important}" +
-        ".section-lastprojects #projects-grid .card-text," +
-        ".section-lastprojects #projects-grid .card-body>.d-flex.flex-wrap{display:none!important}" +
-        ".section-lastprojects #projects-grid .card-title{margin-bottom:0}";
-      document.head.appendChild(style);
-    }
-    var title = section.querySelector(".section-title");
-    if (title) title.textContent = PROJECTS_TITLE[pageLang()];
-  }
-
   function init() {
-    tidyProjectsSection();
     loadLanguageSuggest();
     loadMemorialPopup();
     loadPushBell();

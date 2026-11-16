@@ -173,11 +173,7 @@
                 ${label ? `<span class="badge position-absolute top-0 start-0 m-2 ${badgeClass}">${esc(label)}</span>` : ""}
               </div>
               <div class="card-body">
-                <h3 class="h5 card-title">${esc(title)}</h3>
-                <p class="card-text text-muted">${esc(excerpt)}</p>
-                <div class="d-flex flex-wrap gap-2 mt-2">
-                  ${tags.slice(0, 3).map((t) => `<span class="badge bg-light text-dark border">${esc(projectTagLabel(t, lang))}</span>`).join("")}
-                </div>
+                <h3 class="h5 card-title mb-0">${esc(title)}</h3>
               </div>
             </a>
           </div>`;
