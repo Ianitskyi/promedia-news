@@ -113,6 +113,14 @@ export function markdownToHtml(md) {
       continue;
     }
 
+    // Тонка лінія: відокремлює службові примітки (підпис фото, виправлення, джерела) від тексту.
+    if (/^(-{3,}|\*{3,})$/.test(line)) {
+      flushParagraph();
+      flushList();
+      htmlBlocks.push('<hr class="article-notes-divider" />');
+      continue;
+    }
+
     const youtube = line.match(/^\[youtube\]\((https?:\/\/[^\s)]+)\)$/i);
     if (youtube) {
       flushParagraph(); flushList();

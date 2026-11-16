@@ -435,6 +435,8 @@ img { max-width: 100%; }
 .article-cover { width: 100%; border-radius: var(--radius-md); margin: 12px 0 20px; }
 .article-body { font-size: 16px; line-height: 1.75; }
 .article-body h2 { font-family: var(--serif); color: var(--ink); margin-top: 32px; }
+.article-body hr.article-notes-divider { border: 0; border-top: 1px solid var(--border); margin: 36px 0 16px; }
+.article-body hr.article-notes-divider ~ p { font-size: 14px; line-height: 1.6; color: var(--muted); }
 .article-body img { max-width: 100%; height: auto; object-fit: contain; border-radius: var(--radius-sm); margin: 12px 0; }
 .article-body a { color: var(--ink); text-decoration: underline; }
 .article-body mark {
