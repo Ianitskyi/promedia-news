@@ -31,7 +31,17 @@ for (const f of files) {
   if (p.coverImageUrl && !/^\/img\/[a-z0-9/_-]+\.(jpe?g|png|webp)$/i.test(p.coverImageUrl)) throw Error('coverImageUrl must be a same-site /img/ path: ' + f);
   for (const d of [p.startDate, p.endDate]) if (d && !/^\d{4}-\d{2}-\d{2}$/.test(d)) throw Error('Dates must be YYYY-MM-DD in ' + f);
   if (d1(`SELECT id FROM projects WHERE slug = ${q(p.slug)}`).length) {
-    console.log(`Skip ${p.slug}: already exists.`);
+    // The only change applied to an existing project: an approved "show on the homepage"
+    // flag, once per featuredRevision. Everything else stays with the admin panel.
+    const marker = p.isFeatured && p.featuredRevision ? `project_featured:${p.slug}:${p.featuredRevision}` : null;
+    d1('CREATE TABLE IF NOT EXISTS editorial_data_fixes (name TEXT PRIMARY KEY)');
+    if (marker && !d1(`SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)}`).length) {
+      d1(`UPDATE projects SET is_featured = 1, updated_at = ${qs(new Date().toISOString())} WHERE slug = ${q(p.slug)}`);
+      d1(`INSERT INTO editorial_data_fixes (name) VALUES (${q(marker)})`);
+      console.log(`Featured ${p.slug} on the homepage.`);
+    } else {
+      console.log(`Skip ${p.slug}: already exists.`);
+    }
     continue;
   }
   const author = d1("SELECT id FROM users WHERE role = 'admin' ORDER BY id LIMIT 1")[0];
