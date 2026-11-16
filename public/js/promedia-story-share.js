@@ -36,48 +36,55 @@
     return lines;
   }
 
+  // Макет сторіз: спершу заголовок (там, куди падає погляд), під ним — посилання на сайт
+  // (бренд згадуємо один раз), нижче — фото на всю ширину, що виринає з фону через градієнт.
+  // Лише фірмовий Montserrat, без засічок. Верхні ~250 px лишаємо вільними під інтерфейс Instagram.
   function draw(title, img) {
     var c = document.createElement("canvas");
     c.width = W; c.height = H;
     var ctx = c.getContext("2d");
     ctx.fillStyle = "#0d0c5c";
     ctx.fillRect(0, 0, W, H);
-
-    var photoH = 1100;
-    if (img) {
-      var scale = Math.max(W / img.naturalWidth, photoH / img.naturalHeight);
-      var dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
-      ctx.drawImage(img, (W - dw) / 2, (photoH - dh) / 2, dw, dh);
-      var g = ctx.createLinearGradient(0, photoH - 360, 0, photoH);
-      g.addColorStop(0, "rgba(13,12,92,0)");
-      g.addColorStop(1, "rgba(13,12,92,1)");
-      ctx.fillStyle = g;
-      ctx.fillRect(0, photoH - 360, W, 360);
-    } else {
-      photoH = 520;
-    }
-
-    var x = 80, y = photoH + 40;
-    ctx.fillStyle = "#ffac33";
-    ctx.fillRect(x, y, 120, 10);
-    ctx.font = "600 34px Montserrat, Arial, sans-serif";
     ctx.textBaseline = "top";
-    ctx.fillText(T.brand.toUpperCase(), x + 150, y - 12);
 
-    var size = 76, lines;
+    var x = 80, maxW = W - 2 * x, y = 250;
+
+    // Заголовок
+    var size = 96, lines;
     do {
-      ctx.font = "700 " + size + "px 'Playfair Display', Georgia, serif";
-      lines = wrap(ctx, title, W - 2 * x, 6);
-      if (lines.length <= 5 || size <= 56) break;
+      ctx.font = "800 " + size + "px Montserrat, Arial, sans-serif";
+      lines = wrap(ctx, title, maxW, 6);
+      if (lines.length <= 4 || size <= 64) break;
       size -= 6;
     } while (true);
     ctx.fillStyle = "#ffffff";
-    var ty = y + 70;
-    lines.forEach(function (l) { ctx.fillText(l, x, ty); ty += size * 1.2; });
+    lines.forEach(function (l) { ctx.fillText(l, x, y); y += Math.round(size * 1.16); });
 
-    ctx.fillStyle = "rgba(255,255,255,0.75)";
-    ctx.font = "500 36px Montserrat, Arial, sans-serif";
-    ctx.fillText(T.read + " · news.promedia.report", x, H - 330);
+    // Акцентна лінія і посилання на сайт
+    y += 28;
+    ctx.fillStyle = "#ffac33";
+    ctx.fillRect(x, y, 120, 10);
+    y += 44;
+    ctx.fillStyle = "rgba(255,255,255,0.8)";
+    ctx.font = "600 38px Montserrat, Arial, sans-serif";
+    ctx.fillText(T.read + " · news.promedia.report", x, y);
+    y += 38;
+
+    // Фото на всю ширину до низу, верхній край розчиняється у фоні
+    if (img) {
+      var top = Math.max(y + 20, 760), photoH = H - top;
+      var scale = Math.max(W / img.naturalWidth, photoH / img.naturalHeight);
+      var dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
+      ctx.save();
+      ctx.beginPath(); ctx.rect(0, top, W, photoH); ctx.clip();
+      ctx.drawImage(img, (W - dw) / 2, top + (photoH - dh) / 2, dw, dh);
+      ctx.restore();
+      var g = ctx.createLinearGradient(0, top, 0, top + 420);
+      g.addColorStop(0, "rgba(13,12,92,1)");
+      g.addColorStop(1, "rgba(13,12,92,0)");
+      ctx.fillStyle = g;
+      ctx.fillRect(0, top, W, 420);
+    }
     return c;
   }
 
@@ -95,7 +102,7 @@
     if (button._storyFile) return button._storyFile;
     var title = button.dataset.shareTitle || document.title;
     var fonts = document.fonts && document.fonts.load
-      ? Promise.all([document.fonts.load("700 76px 'Playfair Display'"), document.fonts.load("600 34px Montserrat")]).catch(function () {})
+      ? Promise.all(["800 96px Montserrat", "600 38px Montserrat"].map(function (f) { return document.fonts.load(f); })).catch(function () {})
       : Promise.resolve();
     button._storyFile = fonts.then(function () { return loadImage(button.dataset.shareCover); })
       .then(function (img) {
