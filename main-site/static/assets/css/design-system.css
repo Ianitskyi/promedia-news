@@ -341,8 +341,8 @@ body.innerpage main:not(:has(> .slimheader)) {
 .pm-projects-all:hover { color: var(--pm-accent-deep); }
 @media (max-width: 767px) {
     .section-lastprojects.pm-projects-strip { padding: 12px 0; }
-    .pm-projects-strip > .container { padding-right: 0; }
-    .pm-projects-strip-title,
+    .pm-projects-strip > .container { padding-right: 0; gap: 10px; }
+    .pm-projects-strip-title { font-size: 14px; flex: none; }
     .pm-projects-all { display: none; }
     .pm-project-pill--all { display: inline-flex; }
     .pm-projects-pills { padding-right: 12px; }

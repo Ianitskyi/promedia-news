@@ -55,8 +55,9 @@
     // A press release is labelled as such even if it also carries a regular rubric.
     if (tags.indexOf("Прес-реліз") !== -1) return { key: "Прес-реліз", label: RUBRICS["Прес-реліз"][lang] || "Прес-реліз" };
     if (tags.indexOf("Анонс") !== -1) return { key: "Анонс", label: RUBRICS["Анонс"][lang] || "Анонс" };
+    // "Новини" is not shown: the homepage block is news by default, so the label adds nothing.
     for (var i = 0; i < tags.length; i += 1) {
-      if (RUBRICS[tags[i]]) return { key: tags[i], label: RUBRICS[tags[i]][lang] || tags[i] };
+      if (tags[i] !== "Новини" && RUBRICS[tags[i]]) return { key: tags[i], label: RUBRICS[tags[i]][lang] || tags[i] };
     }
     return null;
   }
