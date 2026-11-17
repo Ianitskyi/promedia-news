@@ -14,7 +14,9 @@
     "штучний інтелект",
     "бізнес-моделі медіа",
     "JournalismAI",
-    "LSE"
+    "LSE",
+    "Чарлі Беккет",
+    "Томаш Белла"
   ],
   "cover": {
     "commonsFile": "LSE Old Building Entrance, Houghton Street.jpg",
@@ -24,5 +26,5 @@
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
   "cardStyle": "image",
-  "revision": "2026-11-17-title"
+  "revision": "2026-11-17-people"
 }

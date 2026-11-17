@@ -887,6 +887,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "tomas-bella",
+    "tag": "Томаш Белла",
+    "aliases": [
+      "Tomáš Bella"
+    ],
+    "name": {
+      "uk": "Томаш Белла",
+      "en": "Tomáš Bella"
+    },
+    "role": {
+      "uk": "співзасновник і директор з цифрових технологій словацького видання Denník N",
+      "en": "Co-founder and Chief Digital Officer of Denník N, Slovakia"
+    },
+    "summary": {
+      "uk": "Співзасновник Denník N, відповідає за цифровий напрям видання й платформу передплат REMP.",
+      "en": "Co-founder of Denník N, responsible for its digital operations and the REMP subscription platform."
+    }
+  },
+  {
     "slug": "ford-risley",
     "tag": "Форд Ріслі",
     "aliases": [],
@@ -920,6 +939,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Французький журналіст BFMTV, загиблий 30 травня 2022 року біля Сєвєродонецька, коли знімав евакуацію.",
       "en": "French BFMTV journalist killed near Sievierodonetsk on 30 May 2022 while filming an evacuation."
+    }
+  },
+  {
+    "slug": "charlie-beckett",
+    "tag": "Чарлі Беккет",
+    "aliases": [],
+    "name": {
+      "uk": "Чарлі Беккет",
+      "en": "Charlie Beckett"
+    },
+    "role": {
+      "uk": "директор Polis і проєкту JournalismAI, професор Лондонської школи економіки",
+      "en": "Director of Polis and the JournalismAI project, Professor of Practice at LSE"
+    },
+    "summary": {
+      "uk": "Засновник і директор Polis — центру досліджень журналістики при Лондонській школі економіки, керівник проєкту JournalismAI.",
+      "en": "Founding director of Polis, the journalism think tank at the London School of Economics, and director of the JournalismAI project."
     }
   },
   {

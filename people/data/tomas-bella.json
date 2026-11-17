@@ -1,0 +1,58 @@
+{
+  "slug": "tomas-bella",
+  "group": "intl",
+  "country": "Словаччина",
+  "kind": "journalist",
+  "name": {
+    "uk": "Томаш Белла",
+    "en": "Tomáš Bella"
+  },
+  "sort": {
+    "uk": "Белла Томаш",
+    "en": "Bella Tomáš"
+  },
+  "aliases": [
+    "Tomáš Bella"
+  ],
+  "role": {
+    "uk": "співзасновник і директор з цифрових технологій словацького видання Denník N",
+    "en": "Co-founder and Chief Digital Officer of Denník N, Slovakia"
+  },
+  "summary": {
+    "uk": "Співзасновник Denník N, відповідає за цифровий напрям видання й платформу передплат REMP.",
+    "en": "Co-founder of Denník N, responsible for its digital operations and the REMP subscription platform."
+  },
+  "bio": {
+    "uk": "Томаш Белла — співзасновник і директор з цифрових технологій незалежного видання Denník N, яке виходить словацькою, чеською та угорською мовами. Denník N заснували 2015 року журналісти, які пішли з газети SME на знак протесту проти того, що видавця купив місцевий олігарх.\n\nРаніше він працював репортером, був головним редактором найпопулярнішого новинного сайту Словаччини та генеральним директором софтверної компанії Piano.\n\nDenník N розробляє REMP — відкриту платформу для керування передплатами. У межах програми JournalismAI Innovation Challenge команда пана Томаша створила модель, яка щодня оцінює ризик відмови передплатників від передплати; технологію планують відкрити в REMP.",
+    "en": "Tomáš Bella is co-founder and Chief Digital Officer of Denník N, an independent daily published in Slovak, Czech and Hungarian. Denník N was founded in 2015 by journalists who left the daily SME in protest at the takeover of its publisher by a local oligarch.\n\nHe previously worked as a reporter, was editor-in-chief of Slovakia's most popular news website and served as CEO of the software company Piano.\n\nDenník N develops REMP, an open-source subscription management platform. In the JournalismAI Innovation Challenge, his team built a model that scores subscribers' churn risk every day; the technology is to be released in REMP."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Denník N"
+    ],
+    [
+      "Місто",
+      "Братислава"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Lviv Media Forum: Tomáš Bella",
+      "url": "https://conference.lvivmediaforum.com/speakers/tomas-bella"
+    },
+    {
+      "title": "journalism.co.uk: How 45 journalists started again, and built a profitable news business from scratch (2018)",
+      "url": "https://www.journalism.co.uk/how-45-journalists-started-again-and-built-a-profitable-news-business-from-scratch/"
+    },
+    {
+      "title": "JournalismAI: Prompting Sustainability (2025 Innovation Challenge Report)",
+      "url": "https://www.journalismai.info/research/2025-innovation-challenge-report"
+    },
+    {
+      "title": "ПроМедіа: Як 12 редакцій використали ШІ, щоб заробити. Звіт LSE",
+      "url": "https://news.promedia.report/article/zvit-lse-yak-12-redaktsii-vykorystaly-shi-dlia-utrymannia-chytachiv"
+    }
+  ],
+  "updated": "2026-11-17"
+}

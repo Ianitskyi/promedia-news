@@ -1,0 +1,52 @@
+{
+  "slug": "charlie-beckett",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Чарлі Беккет",
+    "en": "Charlie Beckett"
+  },
+  "sort": {
+    "uk": "Беккет Чарлі",
+    "en": "Beckett Charlie"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "директор Polis і проєкту JournalismAI, професор Лондонської школи економіки",
+    "en": "Director of Polis and the JournalismAI project, Professor of Practice at LSE"
+  },
+  "summary": {
+    "uk": "Засновник і директор Polis — центру досліджень журналістики при Лондонській школі економіки, керівник проєкту JournalismAI.",
+    "en": "Founding director of Polis, the journalism think tank at the London School of Economics, and director of the JournalismAI project."
+  },
+  "bio": {
+    "uk": "Чарлі Беккет — професор практики кафедри медіа та комунікацій Лондонської школи економіки й політичних наук (LSE), засновник і директор Polis — аналітичного центру з питань міжнародної журналістики та суспільства. Він також очолює проєкт JournalismAI, який працює з редакціями з усього світу над відповідальним використанням штучного інтелекту.\n\nДо LSE він працював у місцевих газетах на півдні Лондона, на телеканалі LWT, десять років був старшим продюсером і редактором програм у BBC News and Current Affairs, а також редактором програм у Channel 4 News (ITN). Очолював Комісію LSE з питань правди, довіри й технологій, яка оприлюднила свій звіт 2018 року.\n\nАвтор книжок «SuperMedia: Saving Journalism So It Can Save The World» (2008) і «WikiLeaks: News In The Networked Era» (2012); книжка «Reimagining Journalism in the AI Era» має вийти восени 2026 року.",
+    "en": "Charlie Beckett is Professor of Practice in the Department of Media and Communications at the London School of Economics and Political Science (LSE) and the founding director of Polis, a think tank on international journalism and society. He also directs the JournalismAI project, which works with newsrooms worldwide on the responsible use of artificial intelligence.\n\nBefore LSE he worked on local newspapers in South London and at LWT, spent ten years as a senior producer and programme editor at BBC News and Current Affairs, and was a programme editor at ITN's Channel 4 News. He was Lead Commissioner of LSE's Truth, Trust and Technology Commission, which reported in 2018.\n\nHe is the author of SuperMedia: Saving Journalism So It Can Save The World (2008) and WikiLeaks: News In The Networked Era (2012); Reimagining Journalism in the AI Era is due in autumn 2026."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Polis, Лондонська школа економіки"
+    ],
+    [
+      "Місто",
+      "Лондон"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "LSE: Charlie Beckett, Department of Media and Communications",
+      "url": "https://lse.ac.uk/media-and-communications/people/academic-staff/charlie-beckett"
+    },
+    {
+      "title": "JournalismAI: Prompting Sustainability (2025 Innovation Challenge Report)",
+      "url": "https://www.journalismai.info/research/2025-innovation-challenge-report"
+    },
+    {
+      "title": "ПроМедіа: Як 12 редакцій використали ШІ, щоб заробити. Звіт LSE",
+      "url": "https://news.promedia.report/article/zvit-lse-yak-12-redaktsii-vykorystaly-shi-dlia-utrymannia-chytachiv"
+    }
+  ],
+  "updated": "2026-11-17"
+}
