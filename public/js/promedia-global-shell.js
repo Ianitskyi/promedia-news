@@ -246,6 +246,26 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
       const bio = description.cloneNode(true);
       bio.className = "pm-team-bio";
       position.after(bio);
+      // Phones: first sentence only, the rest opens with «Далі» (owner, 2026-11-17).
+      const parts = bio.children.length ? null : bio.textContent.trim().match(/^(.+?[.!?»])\s+(\S[\s\S]*)$/);
+      if (parts) {
+        bio.textContent = parts[1] + " ";
+        const rest = document.createElement("span");
+        rest.className = "pm-team-bio-more";
+        rest.id = modal.id + "-more";
+        rest.textContent = parts[2];
+        const more = document.createElement("button");
+        more.type = "button";
+        more.className = "pm-team-bio-toggle";
+        more.setAttribute("aria-expanded", "false");
+        more.setAttribute("aria-controls", rest.id);
+        more.textContent = lang === "en" ? "More" : lang === "crh" ? "Devamı" : "Далі";
+        more.addEventListener("click", () => {
+          card.classList.add("pm-team-card-open");
+          more.setAttribute("aria-expanded", "true");
+        });
+        bio.append(rest, more);
+      }
       const portrait = document.createElement("div");
       portrait.className = "pm-team-photo";
       while (photo.firstChild) portrait.appendChild(photo.firstChild);
@@ -262,7 +282,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
     people.forEach(({ modal }) => modal.remove());
     document.body.classList.remove("pm-modal-open");
     const style = document.getElementById("pm-team-exact");
-    if (style) style.textContent = "\n.pm-team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:32px}\n.pm-team-card{display:grid;grid-template-columns:38% minmax(0,1fr);align-items:start;background:#fff;scroll-margin-top:120px}\n.pm-team-photo{display:block;overflow:hidden}\n.pm-team-photo img{display:block;width:100%;height:auto;object-fit:contain;object-position:center top;aspect-ratio:1/1}\n.pm-team-copy{padding:24px 18px}\n.pm-team-copy h4{margin:0 0 8px;color:#2d2d2d;font-size:1.25rem;font-weight:700}\n.pm-team-position{margin:0 0 14px;color:#555;font-size:1rem}\n.pm-team-bio{margin:0 0 20px;font-size:.92rem;line-height:1.65;overflow-wrap:anywhere}\n.pm-team-social{display:flex;gap:14px;margin:0;padding:0;list-style:none}\n.pm-team-social li{margin:0!important}\n.pm-team-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;color:#0d0c5c;text-decoration:none}\n.pm-team-social a:hover{color:#ffac33}\n.pm-team-social svg{width:26px;height:26px;fill:currentColor}\n@media(max-width:991px){.pm-team-grid{grid-template-columns:1fr}}\n@media(max-width:575px){\n .pm-team-card{grid-template-columns:1fr}\n .pm-team-photo{width:min(100%,320px);justify-self:center}\n .pm-team-copy{padding:20px 18px 28px}\n}\n";
+    if (style) style.textContent = "\n.pm-team-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:32px}\n.pm-team-card{display:grid;grid-template-columns:38% minmax(0,1fr);align-items:start;background:#fff;scroll-margin-top:120px}\n.pm-team-photo{display:block;overflow:hidden}\n.pm-team-photo img{display:block;width:100%;height:auto;object-fit:contain;object-position:center top;aspect-ratio:1/1}\n.pm-team-copy{padding:24px 18px}\n.pm-team-copy h4{margin:0 0 8px;color:#2d2d2d;font-size:1.25rem;font-weight:700}\n.pm-team-position{margin:0 0 14px;color:#555;font-size:1rem}\n.pm-team-bio{margin:0 0 20px;font-size:.92rem;line-height:1.65;overflow-wrap:anywhere}\n.pm-team-social{display:flex;gap:14px;margin:0;padding:0;list-style:none}\n.pm-team-social li{margin:0!important}\n.pm-team-social a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;color:#0d0c5c;text-decoration:none}\n.pm-team-social a:hover{color:#ffac33}\n.pm-team-social svg{width:26px;height:26px;fill:currentColor}\n@media(max-width:991px){.pm-team-grid{grid-template-columns:1fr}}\n.pm-team-bio-toggle{display:none}\n@media(max-width:767px){\n .pm-team-card:not(.pm-team-card-open) .pm-team-bio-more{display:none}\n .pm-team-card:not(.pm-team-card-open) .pm-team-bio-toggle{display:inline;padding:0;border:0;background:none;color:#0d0c5c;font:inherit;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}\n}\n@media(max-width:575px){\n .pm-team-card{grid-template-columns:1fr}\n .pm-team-photo{width:min(100%,320px);justify-self:center}\n .pm-team-copy{padding:20px 18px 28px}\n}\n";
     section.dataset.inlineBios = "true";
   }
   showHomepageTeam();
