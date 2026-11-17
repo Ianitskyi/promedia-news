@@ -164,14 +164,10 @@
       }[lang] || {};
       const section = document.createElement("section");
       section.className = "section section-featured-news";
+      // No visible heading: the lead story starts right away, each item carries its own rubric.
+      section.setAttribute("aria-label", labels.title || "");
       section.innerHTML = `
         <div class="container">
-          <div class="row g-4 align-items-end mb-4">
-            <div class="col-lg-6">
-              <div class="eyebrow mb-3">${labels.eyebrow}</div>
-              <h2 class="section-title">${labels.title}</h2>
-            </div>
-          </div>
           <div class="pm-featured-news-grid" aria-live="polite"></div>
           <div class="d-flex flex-wrap justify-content-end align-items-end mt-4">
             <a class="btn btn-secondary pm-featured-news-all" href="https://news.promedia.report/">${labels.all} &rarr;</a>
