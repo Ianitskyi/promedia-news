@@ -1,7 +1,7 @@
 # Сайт «Люди ПроМедіа» (people.promedia.report) — досьє людей, про яких пише ПроМедіа.
 # Збирається з people/data/*.json командою `node people-site/build.mjs` у people-site/dist.
 # Субдомен people.promedia.report прив'язується до цього воркера окремо (Cloudflare → Workers → Domains);
-# маршрутів тут навмисно немає. До прив'язки сайт доступний на promedia-people.ianitskyi.workers.dev.
+# маршрутів тут навмисно немає. До прив'язки сайт доступний на promedia-people.a-ianitskyi.workers.dev.
 name = "promedia-people"
 main = "worker.js"
 compatibility_date = "2026-10-06"
