@@ -1,0 +1,65 @@
+{
+  "slug": "natalia-nahorna",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Наталя Нагорна",
+    "en": "Natalia Nahorna"
+  },
+  "sort": {
+    "uk": "Нагорна Наталя",
+    "en": "Nahorna Natalia"
+  },
+  "aliases": [
+    "Наталія Нагорна",
+    "Natalya Nagorna"
+  ],
+  "role": {
+    "uk": "спеціальна кореспондентка ТСН (1+1)",
+    "en": "Special correspondent for TSN (1+1)"
+  },
+  "summary": {
+    "uk": "Воєнна кореспондентка ТСН, висвітлює війну з 2014 року.",
+    "en": "TSN war correspondent covering the war since 2014."
+  },
+  "bio": {
+    "uk": "Наталя Нагорна — спеціальна кореспондентка ТСН на телеканалі 1+1. Вона висвітлює російську війну проти України з 2014 року і стала першою жінкою в редакції ТСН, яка тоді поїхала знімати війну на Донбасі.\n\nУ квітні 2022 року у Вільнюсі отримала особливу нагороду голови Литовської комісії з радіо та телебачення за репортаж про Маріуполь «до» і «після» руйнування. Пані Наталя наголошує, що війна — це передусім історії людей. Модерувала презентацію книжки Діани Буцко «Покровськ»."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "ТСН, 1+1"
+    ],
+    [
+      "Висвітлює війну",
+      "з 2014 року"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Наталя Нагорна",
+      "uk:Наталія Нагорна"
+    ],
+    "check": [
+      "ТСН",
+      "1+1",
+      "журналіст"
+    ]
+  },
+  "sources": [
+    {
+      "title": "1+1 media: Natalya Nagorna received an award in Lithuania",
+      "url": "https://media.1plus1.ua/en/news/spetskor_tsn_na_11_natalia_nahorna_otrymala_nahorodu_u_lytvi"
+    },
+    {
+      "title": "НСЖУ: «Війна — це історії людей»",
+      "url": "https://nsju.org/zhurnalisty-vazhlyvi/nataliya-nagorna-vijna-u-pershu-chergu-cze-ne-rozbyti-budynky-a-istoriyi-lyudej"
+    },
+    {
+      "title": "ПроМедіа: Презентація книжки «Покровськ»",
+      "url": "https://news.promedia.report/article/diana-butsko-prezentuie-knyzhku-pokrovsk-u-kyievi"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

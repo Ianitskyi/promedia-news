@@ -1,0 +1,70 @@
+{
+  "slug": "anna-babinets",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Анна Бабінець",
+    "en": "Anna Babinets"
+  },
+  "sort": {
+    "uk": "Бабінець Анна",
+    "en": "Babinets Anna"
+  },
+  "aliases": [
+    "Анна Бабинець"
+  ],
+  "role": {
+    "uk": "журналістка-розслідувачка, співзасновниця і керівниця «Слідства.Інфо»",
+    "en": "Investigative journalist, co-founder and head of Slidstvo.Info"
+  },
+  "summary": {
+    "uk": "Одна з найвідоміших українських журналісток-розслідувачок, керує агенцією «Слідство.Інфо».",
+    "en": "One of Ukraine's best-known investigative journalists; heads the Slidstvo.Info agency."
+  },
+  "bio": {
+    "uk": "Анна Бабінець працює в розслідувальній журналістиці з 2009 року. Вона співзаснувала й очолює незалежну агенцію журналістських розслідувань «Слідство.Інфо», а також є регіональною редакторкою мережі OCCRP (Проєкт із розслідування організованої злочинності та корупції).\n\nУ 2014 році разом із колегами започаткувала ініціативу YanukovychLeaks. Була співавторкою міжнародного розслідування Panama Papers, яке у 2017 році відзначили Пулітцерівською премією, та фільму-розслідування «Вбивство Павла» про загибель журналіста Павла Шеремета. У 2019 році отримала премію за сміливість у журналістиці від Міжнародної жіночої медіафундації (IWMF).\n\nУ 2024 році була номінанткою Премії імені Георгія Ґонґадзе. Після повномасштабного вторгнення команда «Слідства.Інфо» розслідує, зокрема, воєнні злочини Росії."
+  },
+  "facts": [
+    [
+      "Організація",
+      "«Слідство.Інфо»; OCCRP"
+    ],
+    [
+      "У розслідуваннях",
+      "з 2009 року"
+    ],
+    [
+      "Відзнаки",
+      "IWMF Courage in Journalism (2019)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Анна Бабінець",
+      "en:Anna Babinets"
+    ],
+    "check": [
+      "Слідство",
+      "Slidstvo",
+      "журналіст",
+      "journalist"
+    ],
+    "article": "anna-babinets-dlia-zhurnalistiv-rozsliduvachiv-ne-maie-buty-zaboronenykh-tem-4"
+  },
+  "sources": [
+    {
+      "title": "Слідство.Інфо: Анна Бабінець",
+      "url": "https://www.slidstvo.info/journalists/anna-babinets/"
+    },
+    {
+      "title": "УП.Життя: інтерв'ю з номінанткою Премії Ґонґадзе",
+      "url": "https://life.pravda.com.ua/society/nominantka-premiji-imeni-georgiya-gongadze-anna-babinec-pro-rozsliduvalnu-zhurnalistiku-301424/"
+    },
+    {
+      "title": "ПроМедіа: Анна Бабінець про розслідування",
+      "url": "https://news.promedia.report/article/anna-babinets-dlia-zhurnalistiv-rozsliduvachiv-ne-maie-buty-zaboronenykh-tem-4"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

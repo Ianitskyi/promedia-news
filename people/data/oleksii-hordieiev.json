@@ -1,0 +1,49 @@
+{
+  "slug": "oleksii-hordieiev",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Олексій Гордєєв",
+    "en": "Oleksii Hordieiev"
+  },
+  "sort": {
+    "uk": "Гордєєв Олексій",
+    "en": "Hordieiev Oleksii"
+  },
+  "aliases": [
+    "Олексій Гордеєв"
+  ],
+  "role": {
+    "uk": "журналіст, фахівець із комунікацій, автор книжок про релігію",
+    "en": "Journalist, communications specialist and author of books on religion"
+  },
+  "summary": {
+    "uk": "Журналіст-міжнародник, який досліджує роль релігії під час Майдану та російсько-української війни.",
+    "en": "Journalist researching the role of religion during the Maidan and Russia's war against Ukraine."
+  },
+  "bio": {
+    "uk": "Олексій Гордєєв — журналіст і фахівець із комунікацій. У 2010-х працював міжнародним журналістом на телебаченні, зокрема на «5 каналі».\n\nВін автор книжки «Церква на Майдані» (2016) про роль віри під час Революції гідності. Нова книжка «Релігія на війні» підсумовує його дослідження з 2016 року: роль релігії під час окупації Криму, війни на Донбасі та повномасштабного вторгнення, співпраця частини духовенства УПЦ (МП) з російськими силовиками, служіння українських капеланів. У книжці 14 інтерв'ю з релігійними лідерами й капеланами, передмову написав митрополит Епіфаній. Презентація відбулася в Києві 8 листопада 2026 року."
+  },
+  "facts": [
+    [
+      "Книжки",
+      "«Церква на Майдані» (2016); «Релігія на війні» (2026)"
+    ]
+  ],
+  "photo": {
+    "article": "u-kyievi-prezentuiut-knyhu-zhurnalista-oleksiia-hordieieva-relihiia-na-viini",
+    "articleIsPortrait": false
+  },
+  "sources": [
+    {
+      "title": "LB.ua: «Про релігійні організації в Криму» (Диктофон)",
+      "url": "https://lb.ua/blog/dictaphone/346025_religioznih_organizatsiyah_krimu.html"
+    },
+    {
+      "title": "ПроМедіа: Презентація книги «Релігія на війні»",
+      "url": "https://news.promedia.report/article/u-kyievi-prezentuiut-knyhu-zhurnalista-oleksiia-hordieieva-relihiia-na-viini"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

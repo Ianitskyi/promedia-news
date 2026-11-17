@@ -1,0 +1,63 @@
+{
+  "slug": "diana-butsko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Діана Буцко",
+    "en": "Diana Butsko"
+  },
+  "sort": {
+    "uk": "Буцко Діана",
+    "en": "Butsko Diana"
+  },
+  "aliases": [
+    "Diana Bucko"
+  ],
+  "role": {
+    "uk": "воєнна кореспондентка «Громадського»",
+    "en": "War correspondent for hromadske"
+  },
+  "summary": {
+    "uk": "Репортерка «Громадського», яка кілька років працює в прифронтових містах; авторка книжки «Покровськ».",
+    "en": "hromadske reporter covering frontline towns; author of the book Pokrovsk."
+  },
+  "bio": {
+    "uk": "Діана Буцко — репортерка українського видання «Громадське», має близько восьми років досвіду в медіа. Вивчала політологію, у 2022 році здобула магістерський ступінь в Університеті Південного Іллінойсу (США).\n\nОстанні роки вона висвітлює війну з прифронтових міст і безпосередньо з лінії фронту: військові події, гуманітарну ситуацію та злочини Росії в Україні. Бере участь у міжнародних дискусіях про безпеку журналістів в епоху дронів.\n\nУ видавництві «Фоліо» вийшла її книжка «Покровськ» — про місто на Донеччині та людей, які в ньому живуть. Презентація в Києві запланована на 19 листопада 2026 року."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«Громадське»"
+    ],
+    [
+      "Книжка",
+      "«Покровськ» («Фоліо», 2026)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Діана Буцко"
+    ],
+    "check": [
+      "Громадськ",
+      "hromadske",
+      "журналіст"
+    ]
+  },
+  "sources": [
+    {
+      "title": "B-Future: Diana Butsko",
+      "url": "https://www.b-future.org/en/speaker/diana-butsko"
+    },
+    {
+      "title": "EUobserver: інтерв'ю з Діаною Буцко",
+      "url": "https://euobserver.com/230784/interview-ukrainian-frontline-reporter-diana-bucko-i-have-learned-not-only-to-report-on-the-war-but-also-to-live-in-it/"
+    },
+    {
+      "title": "ПроМедіа: Діана Буцко представить книжку «Покровськ»",
+      "url": "https://news.promedia.report/article/diana-butsko-prezentuie-knyzhku-pokrovsk-u-kyievi"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

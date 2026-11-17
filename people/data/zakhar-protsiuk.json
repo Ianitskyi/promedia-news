@@ -1,0 +1,59 @@
+{
+  "slug": "zakhar-protsiuk",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Захар Процюк",
+    "en": "Zakhar Protsiuk"
+  },
+  "sort": {
+    "uk": "Процюк Захар",
+    "en": "Protsiuk Zakhar"
+  },
+  "role": {
+    "uk": "операційний директор The Kyiv Independent",
+    "en": "Chief operating officer of The Kyiv Independent"
+  },
+  "summary": {
+    "uk": "Медіаменеджер, який розбудовує модель членства The Kyiv Independent; співзасновник The Fix.",
+    "en": "Media manager behind The Kyiv Independent's membership model; co-founder of The Fix."
+  },
+  "bio": {
+    "uk": "Захар Процюк — медіаменеджер, випускник Київського національного університету імені Тараса Шевченка. Співзаснував і був керівним редактором The Fix Media — видання про європейський медіаринок.\n\nУ 2022 році приєднався до The Kyiv Independent як директор з розвитку, згодом став операційним директором. Відповідає за роботу з аудиторією та доходи: понад 70% бюджету видання дають внески читачів, у 2025 році кількість платних членів перевищила 20 тисяч. У 2026 році видання запустило кампанію з залучення членів у Великій Британії."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "The Kyiv Independent"
+    ],
+    [
+      "Співзасновник",
+      "The Fix Media"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Zakhar Protsiuk"
+    ],
+    "check": [
+      "Kyiv Independent"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Zakhar Protsiuk",
+      "url": "https://en.wikipedia.org/wiki/Zakhar_Protsiuk"
+    },
+    {
+      "title": "Press Gazette: how the Kyiv Independent built 20,000 paying members",
+      "url": "https://pressgazette.co.uk/podcast-future-of-media-explained/how-the-kyiv-independent-built-20000-paying-members-in-a-warzone/"
+    },
+    {
+      "title": "ПроМедіа: The Kyiv Independent розпочали кампанію в Британії",
+      "url": "https://news.promedia.report/article/the-kyiv-independent-rozpochali-kampaniyu-v-britaniyi"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}

@@ -1,0 +1,69 @@
+{
+  "slug": "marian-kushnir",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Мар'ян Кушнір",
+    "en": "Maryan Kushnir"
+  },
+  "sort": {
+    "uk": "Кушнір Мар'ян",
+    "en": "Kushnir Maryan"
+  },
+  "aliases": [
+    "Марʼян Кушнір",
+    "Мар’ян Кушнір",
+    "Marian Kushnir"
+  ],
+  "role": {
+    "uk": "воєнний кореспондент Радіо Свобода",
+    "en": "War correspondent for Radio Svoboda (RFE/RL)"
+  },
+  "summary": {
+    "uk": "Кореспондент Радіо Свобода, який з 2015 року працює на фронті; номінант Премії Ґонґадзе 2026.",
+    "en": "Radio Svoboda correspondent reporting from the front line since 2015; 2026 Gongadze Prize nominee."
+  },
+  "bio": {
+    "uk": "Мар'ян Кушнір працює на Радіо Свобода з 2015 року і відтоді документує бої, втрати й життя людей у зоні бойових дій.\n\nУ березні 2022 року під час удару російських військ по Баришівці на Київщині він дістав контузію, але невдовзі повернувся до роботи. У травні 2022 року разом із фотографом потрапив під обстріл поблизу Бахмута. Автор документального фільму про повернення тіл загиблих, їх ідентифікацію та родини зниклих безвісти.\n\nУ січні 2026 року, після влучання російського дрона в житловий будинок на Київщині, він виніс із вогню чотирирічну дівчинку. Номінант Премії імені Георгія Ґонґадзе 2026 року."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Радіо Свобода"
+    ],
+    [
+      "На фронті",
+      "з 2015 року"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Мар'ян Кушнір"
+    ],
+    "check": [
+      "Свобод",
+      "журналіст"
+    ],
+    "article": "mar-ian-kushnir-rozvyvaite-v-sobi-bazhannia-chuty-i-hovoryty-pravdu"
+  },
+  "sources": [
+    {
+      "title": "УП.Життя: номінант Премії Ґонґадзе 2026 Мар'ян Кушнір",
+      "url": "https://life.pravda.com.ua/society/meni-vazhlivo-shchob-zhurnalistika-bula-tim-shcho-mozhe-zminiti-hid-istoriji-nominant-premiji-gongadze-2026-mar-yan-kushnir-314712"
+    },
+    {
+      "title": "IPI: Radio Svoboda correspondent suffers concussion",
+      "url": "https://ipi.media/alerts/radio-svoboda-correspondent-suffers-concussion-after-russian-shelling/"
+    },
+    {
+      "title": "ІМІ: журналісти Радіо Свобода потрапили під обстріл",
+      "url": "https://imi.org.ua/en/news/radio-liberty-journalists-come-under-fire-in-donbas-while-filming-the-hostilities-in-donbas-i45836"
+    },
+    {
+      "title": "ПроМедіа: Мар'ян Кушнір: «Розвивайте в собі бажання чути і говорити правду»",
+      "url": "https://news.promedia.report/article/mar-ian-kushnir-rozvyvaite-v-sobi-bazhannia-chuty-i-hovoryty-pravdu"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

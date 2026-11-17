@@ -1,0 +1,50 @@
+{
+  "slug": "viktoriia-iermolaieva",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Вікторія Єрмолаєва",
+    "en": "Viktoriia Yermolaieva"
+  },
+  "sort": {
+    "uk": "Єрмолаєва Вікторія",
+    "en": "Yermolaieva Viktoriia"
+  },
+  "role": {
+    "uk": "головна редакторка «Громадського радіо»",
+    "en": "Editor-in-chief of Hromadske Radio"
+  },
+  "summary": {
+    "uk": "Головна редакторка «Громадського радіо» і ведуча аналітичного подкасту «Далі заголовків».",
+    "en": "Editor-in-chief of Hromadske Radio and host of the analytical podcast Beyond the Headlines."
+  },
+  "bio": {
+    "uk": "Вікторія Єрмолаєва — головна редакторка «Громадського радіо», незалежного суспільно-політичного радіо, яке працює у форматі news & talk.\n\nВона веде аналітичний подкаст «Далі заголовків», де разом з експертами пояснює причини й наслідки подій зі стрічки новин. В інтерв'ю «ПроМедіа» пані Вікторія розповідала, що завдання журналістики — перевіряти факти й залишати аудиторії простір для власних висновків, а не вирішувати за неї, що думати."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«Громадське радіо»"
+    ],
+    [
+      "Подкаст",
+      "«Далі заголовків»"
+    ]
+  ],
+  "photo": {
+    "article": "viktoriia-iermolaieva-my-ne-vyrishuiemo-za-audytoriiu-shcho-dumaty"
+  },
+  "sources": [
+    {
+      "title": "Громадське радіо: презентація 2024",
+      "url": "https://static.hromadske.radio/2024/11/HromadskeRadio_Presentation-2024.pdf"
+    },
+    {
+      "title": "ПроМедіа: Вікторія Єрмолаєва: «Ми не вирішуємо за аудиторію»",
+      "url": "https://news.promedia.report/article/viktoriia-iermolaieva-my-ne-vyrishuiemo-za-audytoriiu-shcho-dumaty"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}

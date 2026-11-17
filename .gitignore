@@ -4,3 +4,4 @@ node_modules/
 *.log
 pnpm-lock.yaml
 pnpm-workspace.yaml
+people-site/dist/

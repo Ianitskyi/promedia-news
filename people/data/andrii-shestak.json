@@ -1,0 +1,56 @@
+{
+  "slug": "andrii-shestak",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Андрій Шестак",
+    "en": "Andrii Shestak"
+  },
+  "sort": {
+    "uk": "Шестак Андрій",
+    "en": "Shestak Andrii"
+  },
+  "aliases": [
+    "отець Андрій Шестак"
+  ],
+  "role": {
+    "uk": "директор Школи журналістики та комунікацій УКУ, священник УГКЦ",
+    "en": "Director of the UCU School of Journalism and Communications; UGCC priest"
+  },
+  "summary": {
+    "uk": "Отець Андрій Шестак очолює Школу журналістики та комунікацій Українського католицького університету.",
+    "en": "Father Andrii Shestak heads the School of Journalism and Communications at the Ukrainian Catholic University."
+  },
+  "bio": {
+    "uk": "Отець Андрій Шестак — директор Школи журналістики та комунікацій Українського католицького університету (Львів) і священник Української греко-католицької церкви.\n\nВін викладає студентам журналістики й медіакомунікацій дисципліну «Постмодерн: християнська духовність». Після повномасштабного вторгнення розповідав міжнародним медіа, як студенти школи допомагають біженцям і висвітлюють війну для аудиторій в Україні та за кордоном.\n\nВ інтерв'ю «ПроМедіа» отець Андрій назвав найважчими викликами для медіа брак коштів і довіри та порадив молодим журналістам більше читати й вивчати мови."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Український католицький університет"
+    ],
+    [
+      "Місто",
+      "Львів"
+    ]
+  ],
+  "photo": {
+    "article": "andrii-shestak-naivazhchymy-vyklykamy-u-media-zalyshaiutsia-koshty-i-dovira-5"
+  },
+  "sources": [
+    {
+      "title": "National Catholic Register: Ukrainian student-journalists fight information war",
+      "url": "https://ncregister.com/blog/ukrainian-student-journalists-fight-information-war"
+    },
+    {
+      "title": "Еспресо: Екуменічний соціальний тиждень",
+      "url": "https://espreso.tv/ekumenichniy-sotsialniy-tizhden-diskusiya-pro-rol-zmi-ta-komunikatsiy"
+    },
+    {
+      "title": "ПроМедіа: Андрій Шестак: «Найважчими викликами у медіа залишаються кошти і довіра»",
+      "url": "https://news.promedia.report/article/andrii-shestak-naivazhchymy-vyklykamy-u-media-zalyshaiutsia-koshty-i-dovira-5"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

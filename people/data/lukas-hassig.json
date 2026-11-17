@@ -1,0 +1,72 @@
+{
+  "slug": "lukas-hassig",
+  "group": "intl",
+  "country": "Швейцарія",
+  "name": {
+    "uk": "Лукас Гессіг",
+    "en": "Lukas Hässig"
+  },
+  "sort": {
+    "uk": "Гессіг Лукас",
+    "en": "Hassig Lukas"
+  },
+  "aliases": [
+    "Lukas Haessig",
+    "Лукас Хессіг"
+  ],
+  "role": {
+    "uk": "швейцарський економічний журналіст, засновник Inside Paradeplatz",
+    "en": "Swiss business journalist, founder of Inside Paradeplatz"
+  },
+  "summary": {
+    "uk": "Перший журналіст, проти якого у Швейцарії висунули обвинувачення за законом про банківську таємницю.",
+    "en": "The first journalist charged under Switzerland's banking secrecy law."
+  },
+  "bio": {
+    "uk": "Лукас Гессіг — швейцарський економічний журналіст, засновник і редактор цюрихського фінансового сайту Inside Paradeplatz. У 2019 році журнал Schweizer Journalist назвав його журналістом року.\n\nУ 2016 році він опублікував серію статей про ймовірні фінансові зловживання П'єріна Вінценца, колишнього гендиректора банку Raiffeisen Schweiz, і його партнера Беата Штокера; обох згодом засудили за шахрайство. Штокер поскаржився, що публікації порушили банківську таємницю. У червні 2025 року поліція провела обшук у журналіста, у грудні 2025-го прокуратура Цюриха закрила справу, але суд вищої інстанції зобов'язав її продовжити.\n\nУ жовтні 2026 року прокуратура висунула пану Лукасу обвинувачення за статтею 47 закону про банки. Це перший такий випадок щодо журналіста; організації на захист свободи преси, зокрема IPI та «Репортери без кордонів», вимагають зняти обвинувачення. Вироку суду наразі немає."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Швейцарія"
+    ],
+    [
+      "Видання",
+      "Inside Paradeplatz"
+    ],
+    [
+      "Відзнаки",
+      "Journalist of the Year (Schweizer Journalist, 2019)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "de:Lukas Hässig",
+      "en:Lukas Hässig"
+    ],
+    "check": [
+      "Paradeplatz",
+      "Journalist"
+    ]
+  },
+  "sources": [
+    {
+      "title": "IPI: police raid journalist's home under banking secrecy law",
+      "url": "https://ipi.media/switzerland-police-raid-journalists-home-under-draconian-banking-secrecy-law/"
+    },
+    {
+      "title": "swissinfo: Zurich prosecutor charges journalist over Vincenz revelations",
+      "url": "https://www.swissinfo.ch/eng/various/zh-revelations-about-pierin-vincenz-a-journalist-on-trial/92222108"
+    },
+    {
+      "title": "SRF: Staatsanwaltschaft stellt Verfahren ein",
+      "url": "https://www.srf.ch/news/schweiz/bankgeheimnis-inside-paradeplatz-staatsanwaltschaft-stellt-verfahren-ein"
+    },
+    {
+      "title": "ПроМедіа: Швейцарія вперше судитиме журналіста за законом про банківську таємницю",
+      "url": "https://news.promedia.report/article/shveitsariia-vpershe-sudytyme-zhurnalista-za-zakonom-pro-bankivsku-taiemnytsiu"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

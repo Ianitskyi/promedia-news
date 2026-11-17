@@ -1,0 +1,62 @@
+{
+  "slug": "anton-protsiuk",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Антон Процюк",
+    "en": "Anton Protsiuk"
+  },
+  "sort": {
+    "uk": "Процюк Антон",
+    "en": "Protsiuk Anton"
+  },
+  "role": {
+    "uk": "старший редактор The Fix Media, медіааналітик",
+    "en": "Senior editor at The Fix Media, media analyst"
+  },
+  "summary": {
+    "uk": "Медіааналітик і старший редактор The Fix, багаторічний редактор української Вікіпедії.",
+    "en": "Media analyst and senior editor at The Fix; long-time Ukrainian Wikipedia editor."
+  },
+  "bio": {
+    "uk": "Антон Процюк — старший редактор The Fix Media, медіааналітик і менеджер неприбуткових проєктів. Пише про медіа, технології та політику для українських і європейських видань, співпрацює з The Kyiv Independent, веде подкаст FixEd.\n\nКоординує програми ГО «Вікімедіа Україна»; понад десять років є волонтерським редактором і адміністратором україномовної Вікіпедії. «ПроМедіа» переклала й опублікувала його матеріал для The Fix про виклики для українських медіа напередодні зими 2026 року."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "The Fix Media"
+    ],
+    [
+      "Також",
+      "«Вікімедіа Україна»"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Антон Процюк"
+    ],
+    "check": [
+      "Вікі",
+      "Wiki",
+      "журналіст",
+      "The Fix"
+    ]
+  },
+  "sources": [
+    {
+      "title": "The Fix: About us",
+      "url": "https://thefix.media/about-us/"
+    },
+    {
+      "title": "The Kyiv Independent: Anton Protsiuk",
+      "url": "https://kyivindependent.com/author/anton-protsiuk/"
+    },
+    {
+      "title": "ПроМедіа: Українські медіа перед найскладнішою зимою",
+      "url": "https://news.promedia.report/article/ahead-of-ukraines-most-difficult-winter-ukrainian-media-are-trying-to-survive-an"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}

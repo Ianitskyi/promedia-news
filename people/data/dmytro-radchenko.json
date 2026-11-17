@@ -1,0 +1,48 @@
+{
+  "slug": "dmytro-radchenko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Дмитро Радченко",
+    "en": "Dmytro Radchenko"
+  },
+  "sort": {
+    "uk": "Радченко Дмитро",
+    "en": "Radchenko Dmytro"
+  },
+  "role": {
+    "uk": "операційний менеджер Інституту розвитку регіональної преси (ІРРП)",
+    "en": "Operations manager at the Regional Press Development Institute (RPDI)"
+  },
+  "summary": {
+    "uk": "Операційний менеджер ІРРП, один з авторів сервісу фактчекінгу розслідувань Proof.",
+    "en": "RPDI operations manager behind Proof, a pre-publication fact-checking service for investigations."
+  },
+  "bio": {
+    "uk": "Дмитро Радченко — операційний менеджер Інституту розвитку регіональної преси (ІРРП), громадської організації, яка багато років надає журналістам юридичну підтримку й організовує Українську конференцію журналістів-розслідувачів.\n\nУ колонці для «ПроМедіа» він розповів, як команда ІРРП створила Proof — сервіс допублікаційного фактчекінгу журналістських розслідувань для редакцій, які не можуть утримувати власного фактчекера.\n\nВідкритих біографічних даних про пана Дмитра поки небагато; досьє буде доповнено."
+  },
+  "facts": [
+    [
+      "Організація",
+      "ІРРП"
+    ],
+    [
+      "Проєкт",
+      "Proof"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "ПроМедіа: Як ми створили Proof",
+      "url": "https://news.promedia.report/article/iak-my-stvoryly-proof-vid-idei-do-servisu-faktchekinhu-zhurnalistskykh-rozsliduv"
+    },
+    {
+      "title": "ІРРП: Proof",
+      "url": "https://irrp.org.ua/proof"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}

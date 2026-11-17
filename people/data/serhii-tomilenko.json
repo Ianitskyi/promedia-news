@@ -1,0 +1,62 @@
+{
+  "slug": "serhii-tomilenko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Сергій Томіленко",
+    "en": "Serhiy Tomilenko"
+  },
+  "sort": {
+    "uk": "Томіленко Сергій",
+    "en": "Tomilenko Serhiy"
+  },
+  "role": {
+    "uk": "голова Національної спілки журналістів України (НСЖУ)",
+    "en": "President of the National Union of Journalists of Ukraine (NUJU)"
+  },
+  "summary": {
+    "uk": "Очолює НСЖУ; опікується безпекою журналістів і підтримкою місцевих медіа в прифронтових регіонах.",
+    "en": "Heads the NUJU, focusing on journalists' safety and support for local media near the front."
+  },
+  "bio": {
+    "uk": "Сергій Томіленко народився в Черкасах, закінчив фізико-математичний факультет Черкаського національного університету імені Богдана Хмельницького, де згодом працював доцентом кафедри журналістики. Випускник Школи сучасної журналістики (IREX ProMedia Україна, 1998), засновник і керівник черкаського видання Procherk.info.\n\nЗ березня 2014 року виконував обов'язки голови Національної спілки журналістів України, згодом очолив спілку. Після початку повномасштабного вторгнення НСЖУ на чолі з ним зосередилася на безпеці журналістів, допомозі колегам в окупації та полоні, а також на підтримці місцевих газет у прифронтових громадах."
+  },
+  "facts": [
+    [
+      "Організація",
+      "НСЖУ"
+    ],
+    [
+      "Місто",
+      "Черкаси / Київ"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Сергій Томіленко",
+      "uk:Томіленко Сергій Анатолійович"
+    ],
+    "check": [
+      "НСЖУ",
+      "журналіст",
+      "спілк"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Главком: Сергій Томіленко (біографія автора)",
+      "url": "https://glavcom.ua/columns/sergiytomilenko.html"
+    },
+    {
+      "title": "НСЖУ: «Маємо через правду відстоювати Україну»",
+      "url": "https://nsju.org/novini/mayemo-cherez-pravdu-vidstoyuvaty-ukrayinu-v-czij-nespravedlyvij-vijni-sergij-tomilenko"
+    },
+    {
+      "title": "ПроМедіа: Панахида за Георгієм Ґонґадзе",
+      "url": "https://news.promedia.report/article/panakhyda-za-heorhiiem-gongadze-ta-vsima-zahyblymy-mediinykamy"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}

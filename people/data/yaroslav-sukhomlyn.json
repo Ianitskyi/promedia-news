@@ -1,0 +1,48 @@
+{
+  "slug": "yaroslav-sukhomlyn",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Ярослав Сухомлин",
+    "en": "Yaroslav Sukhomlyn"
+  },
+  "sort": {
+    "uk": "Сухомлин Ярослав",
+    "en": "Sukhomlyn Yaroslav"
+  },
+  "role": {
+    "uk": "медіаменеджер, шеф-редактор Чернігівської медіагрупи",
+    "en": "Media manager, chief editor at Chernihiv Media Group"
+  },
+  "summary": {
+    "uk": "Медіаменеджер чернігівського медіа PECHERA.info, розвиває читацьку спільноту Pechera Club.",
+    "en": "Media manager at Chernihiv's PECHERA.info, developing the Pechera Club reader community."
+  },
+  "bio": {
+    "uk": "Ярослав Сухомлин — медіаменеджер і шеф-редактор Чернігівської медіагрупи, до якої належить незалежне міське медіа PECHERA.info.\n\nУ колонці до першої річниці читацької спільноти Pechera Club він розповів, що за рік вона виросла до 174 учасників і з формату щомісячних донатів перетворилася на простір для активних чернігівців. Наступна мета — 200 учасників.\n\nВідкритих біографічних даних поки небагато; досьє буде доповнено."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "PECHERA.info"
+    ],
+    [
+      "Місто",
+      "Чернігів"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "PECHERA.info: колонка про рік Pechera Club",
+      "url": "https://pechera.info/poglad/1623-spilnoti-pechera-club-vze-rik-poperedu-bagato-cikavogo-dojednuites.html"
+    },
+    {
+      "title": "ПроМедіа: Pechera Club виповнився рік",
+      "url": "https://news.promedia.report/article/pechera-club-vypovnyvsia-rik-174-uchasnyky"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}

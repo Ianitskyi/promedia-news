@@ -1,0 +1,70 @@
+{
+  "slug": "bohdan-lohvynenko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Богдан Логвиненко",
+    "en": "Bohdan Lohvynenko"
+  },
+  "sort": {
+    "uk": "Логвиненко Богдан",
+    "en": "Lohvynenko Bohdan"
+  },
+  "aliases": [
+    "Bogdan Logvynenko"
+  ],
+  "role": {
+    "uk": "журналіст, письменник, засновник проєкту Ukraїner",
+    "en": "Journalist, writer, founder of Ukraїner"
+  },
+  "summary": {
+    "uk": "Засновник українознавчого медіапроєкту Ukraїner, лауреат Премії Ґонґадзе 2023; з жовтня 2025 року служить у ЗСУ.",
+    "en": "Founder of the Ukraїner project and 2023 Gongadze Prize laureate; serving in the Armed Forces since October 2025."
+  },
+  "bio": {
+    "uk": "Богдан Логвиненко — український журналіст, письменник, телеведучий і редактор. Навчався в Національному університеті «Києво-Могилянська академія» та Київському університеті театру, кіно і телебачення імені Карпенка-Карого.\n\nУ липні 2016 року він започаткував волонтерський медіапроєкт Ukraїner — експедиції Україною, відео, книжки й переклади багатьма мовами. Автор книжок «Saint Porno» (2016), «Ukraїner. Країна зсередини» (2019) та її продовження (2022). Після початку повномасштабного вторгнення команда Ukraїner висвітлювала життя в деокупованих містах і долучилася до волонтерства.\n\nУ 2023 році отримав Премію імені Георгія Ґонґадзе. У жовтні 2025 року добровільно мобілізувався до Збройних сил України, хоча мав підстави для відстрочки."
+  },
+  "facts": [
+    [
+      "Проєкт",
+      "Ukraїner (з 2016)"
+    ],
+    [
+      "Відзнаки",
+      "Премія імені Георгія Ґонґадзе (2023)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Bohdan Lohvynenko",
+      "uk:Богдан Логвиненко"
+    ],
+    "check": [
+      "Ukra",
+      "журналіст",
+      "writer",
+      "journalist"
+    ],
+    "article": "bohdan-lohvynenko-my-ne-maiemo-zaimatysia-samotsenzuroiu-tam-de-tse-mozhe-nam-na"
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Bohdan Lohvynenko",
+      "url": "https://en.wikipedia.org/wiki/Bohdan_Lohvynenko"
+    },
+    {
+      "title": "ZAXID.NET: засновник Ukraїner долучився до ЗСУ",
+      "url": "https://zaxid.net/zasnovnik_ukrayiner_bogdan_logvinenko_doluchivsya_do_zsu_n1621140"
+    },
+    {
+      "title": "Kyiv Post: Bogdan Logvynenko (Top 30 under 30)",
+      "url": "https://archive.kyivpost.com/tiger-conference/ukraines-top-30-under-30/bogdan-logvynenko-restless-writer-aims-unite-ukrainians-travel-show.html"
+    },
+    {
+      "title": "ПроМедіа: Богдан Логвиненко про самоцензуру",
+      "url": "https://news.promedia.report/article/bohdan-lohvynenko-my-ne-maiemo-zaimatysia-samotsenzuroiu-tam-de-tse-mozhe-nam-na"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

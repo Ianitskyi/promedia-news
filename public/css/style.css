@@ -1306,3 +1306,17 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .article-tag.article-tag--announce,
 .article-card--hero .article-tag.article-tag--announce,
 .article-card--text .article-tag.article-tag--announce { background: #e6f4ea; color: #1e7b34; }
+
+/* ---------- «Люди в матеріалі»: короткі досьє з people.promedia.report ---------- */
+.people-box { margin: 28px 0 8px; padding: 18px 20px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); }
+.people-box h2 { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; font-family: var(--sans); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
+.people-box h2::before { content: ""; width: 22px; height: 3px; background: var(--accent); }
+.people-box ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.people-box-item { display: grid; grid-template-columns: 56px 1fr; gap: 14px; align-items: start; }
+.people-box-photo { position: relative; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; overflow: hidden; background: var(--accent-tint); color: var(--ink); font-weight: 800; text-decoration: none; }
+.people-box-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 25%; }
+.people-box-name { font-weight: 700; color: var(--ink); text-decoration: none; }
+.people-box-name:hover { text-decoration: underline; }
+.people-box-role { margin: 2px 0 4px; font-size: 14px; color: var(--muted); }
+.people-box-summary { margin: 0; font-size: 14.5px; line-height: 1.5; }
+.people-box-summary a { color: var(--ink); font-weight: 700; white-space: nowrap; }

@@ -1,0 +1,69 @@
+{
+  "slug": "kateryna-horchynska",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Катерина Горчинська",
+    "en": "Katya Gorchinskaya"
+  },
+  "sort": {
+    "uk": "Горчинська Катерина",
+    "en": "Gorchinskaya Katya"
+  },
+  "aliases": [
+    "Катя Горчинська",
+    "Kateryna Horchynska"
+  ],
+  "role": {
+    "uk": "медіаконсультантка, колишня очільниця Kyiv Post і «Громадського телебачення»",
+    "en": "Media and strategy consultant; former editor and CEO in Ukrainian media"
+  },
+  "summary": {
+    "uk": "Медійна менеджерка й редакторка з тридцятирічним досвідом, нині — консультантка з медіа та стратегій.",
+    "en": "Media manager and editor with three decades of experience; now a media and strategy consultant."
+  },
+  "bio": {
+    "uk": "Катерина (Катя) Горчинська — медійна та стратегічна консультантка з приблизно тридцятьма роками досвіду в редакційному керівництві, корпоративному врядуванні й медіапідприємництві.\n\nУ 2008–2015 роках вона була заступницею головного редактора Kyiv Post, у 2012–2015 роках писала для The Wall Street Journal, у 2014 році працювала регіональною редакторкою OCCRP. Очолювала «Громадське телебачення», керувала розслідувальними програмами Радіо Свобода, публікувалася у Forbes і The Guardian.\n\nВона авторка дослідницького проєкту JIndex AI про вплив штучного інтелекту на журналістику. У листопаді 2026 року виступала на воркшопі IWPR у Львові з тезою, що головними «читачами» новин незабаром можуть стати машини."
+  },
+  "facts": [
+    [
+      "Раніше",
+      "Kyiv Post, «Громадське», Радіо Свобода"
+    ],
+    [
+      "Проєкт",
+      "JIndex AI"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Katya Gorchinskaya",
+      "uk:Катерина Горчинська"
+    ],
+    "check": [
+      "Kyiv Post",
+      "журналіст",
+      "journalist"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Reuters Institute: Katya Gorchinskaya",
+      "url": "https://reutersinstitute.politics.ox.ac.uk/people/katya-gorchinskaya"
+    },
+    {
+      "title": "European Forum Alpbach: CV",
+      "url": "https://forum.alpbach.org/en/person/katya-gorchinskaya"
+    },
+    {
+      "title": "Сайт Каті Горчинської",
+      "url": "https://gorchinskaya.com"
+    },
+    {
+      "title": "ПроМедіа: Катя Горчинська про ШІ та медіа",
+      "url": "https://news.promedia.report/article/vy-nedostatno-boitesia-katia-horchynska-pro-shi-ta-media"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

@@ -1,0 +1,48 @@
+{
+  "slug": "yaroslav-bondarenko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Ярослав Бондаренко",
+    "en": "Yaroslav Bondarenko"
+  },
+  "sort": {
+    "uk": "Бондаренко Ярослав",
+    "en": "Bondarenko Yaroslav"
+  },
+  "role": {
+    "uk": "оператор «Української правди»",
+    "en": "Camera operator at Ukrainska Pravda"
+  },
+  "summary": {
+    "uk": "Оператор УП, якого разом з Михайлом Ткачем затримали у Відні в жовтні 2026 року.",
+    "en": "Ukrainska Pravda camera operator detained with Mykhailo Tkach in Vienna in October 2026."
+  },
+  "bio": {
+    "uk": "Ярослав Бондаренко — оператор «Української правди». У жовтні 2026 року разом із журналістом-розслідувачем Михайлом Ткачем виконував у Відні редакційне завдання — пошук колишнього генпрокурора Руслана Кравченка.\n\n8 жовтня австрійська поліція затримала обох журналістів; деякий час місцеперебування пана Ярослава було невідоме, і МЗС України з'ясовувало, чи його звільнили. ГО «ПроМедіа» разом з іншими медіа й організаціями закликала австрійську владу розслідувати затримання.\n\nВідкритих біографічних даних поки небагато; досьє буде доповнено."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«Українська правда»"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Kyiv Post: УП вимагає звільнити Михайла Ткача",
+      "url": "https://www.kyivpost.com/uk/post/86532"
+    },
+    {
+      "title": "Forbes Україна: у Відні відпустили Михайла Ткача",
+      "url": "https://forbes.ua/news/u-vidni-vidpustili-zurnalista-mixaila-tkaca-mzs-ziasovuje-obstaviti-zatrimannia-09102026-42811"
+    },
+    {
+      "title": "ПроМедіа: ПроМедіа закликає розслідувати затримання",
+      "url": "https://news.promedia.report/article/promedia-zaklykaie-rozsliduvaty-zatrymannia-mykhaila-tkacha-i-iaroslava-bondaren"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}

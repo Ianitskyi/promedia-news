@@ -1,5 +1,6 @@
 import { escapeHtml, markdownToHtml, markdownToPlainText } from "./markdown.js";
 import { normalizeUkrainianQuotes, normalizeUkrainianTitle } from "./typography.js";
+import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -142,8 +143,50 @@ const TAG_LABEL_LOOKUP = Object.fromEntries(
   ])
 );
 
+// Люди з розділу «Люди» (people.promedia.report): тег новини = ім'я та прізвище людини.
+// typeof — щоб модуль працював і в тестах, які підставляють залежності вручну.
+const PEOPLE_LIST = typeof PEOPLE !== "undefined" && Array.isArray(PEOPLE) ? PEOPLE : [];
+const PEOPLE_BASE_URL = typeof PEOPLE_SITE_URL !== "undefined" ? PEOPLE_SITE_URL : "";
+const PEOPLE_BY_TAG = new Map();
+for (const person of PEOPLE_LIST) {
+  for (const name of [person.tag, ...(person.aliases || [])]) PEOPLE_BY_TAG.set(tagLookupKey(name), person);
+}
+function personForTag(tag) {
+  return PEOPLE_BY_TAG.get(tagLookupKey(tag)) || null;
+}
+
 function tagLabel(tag, lang) {
-  return TAG_LABEL_LOOKUP[lang]?.[tagLookupKey(tag)] || tag;
+  const label = TAG_LABEL_LOOKUP[lang]?.[tagLookupKey(tag)];
+  if (label) return label;
+  // Імена людей в англійській і кримськотатарській версіях пишемо латиницею.
+  const person = lang !== "uk" ? personForTag(tag) : null;
+  return person?.name?.en || tag;
+}
+
+const PEOPLE_BOX_TITLE = { uk: "Люди в матеріалі", en: "People in this story", crh: "Bu materialdaki insanlar" };
+const PEOPLE_BOX_LINK = { uk: "Досьє", en: "Profile", crh: "Dosye" };
+
+function peopleBox(tags, lang) {
+  if (!PEOPLE_BASE_URL) return "";
+  const seen = new Set();
+  const people = tags.map(personForTag).filter(p => p && !seen.has(p.slug) && seen.add(p.slug));
+  if (!people.length) return "";
+  const base = PEOPLE_BASE_URL.replace(/\/$/, "");
+  const prefix = lang === "en" ? "/en" : "";
+  const items = people.map((p) => {
+    const name = lang === "uk" ? p.name.uk : (p.name.en || p.name.uk);
+    const role = lang === "en" ? (p.role.en || p.role.uk) : p.role.uk;
+    const summary = lang === "en" ? (p.summary.en || p.summary.uk) : p.summary.uk;
+    const href = `${base}${prefix}/${p.slug}/`;
+    const initials = name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
+    return `<li class="people-box-item">
+      <a class="people-box-photo" href="${escapeHtml(href)}" aria-hidden="true" tabindex="-1"><span>${escapeHtml(initials)}</span><img src="${escapeHtml(`${base}/photo/${p.slug}`)}" alt="" loading="lazy" onerror="this.remove()"></a>
+      <div><a class="people-box-name" href="${escapeHtml(href)}">${escapeHtml(name)}</a>
+      <p class="people-box-role">${escapeHtml(role)}</p>
+      <p class="people-box-summary">${escapeHtml(summary)} <a href="${escapeHtml(href)}">${pick(PEOPLE_BOX_LINK, lang)} →</a></p></div>
+    </li>`;
+  }).join("");
+  return `<aside class="people-box" aria-label="${escapeHtml(pick(PEOPLE_BOX_TITLE, lang))}"><h2>${pick(PEOPLE_BOX_TITLE, lang)}</h2><ul>${items}</ul></aside>`;
 }
 
 // A press release (someone else's text published with light editing) is marked
@@ -591,6 +634,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   ${articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl })}
   ${cover}
   <div class="article-body">${bodyHtmlContent}</div>
+  ${peopleBox(tags, lang)}
   ${mediaLinksHtml}
   ${projectPromo(lang, "atlas", "article-bottom")}
 </main>`;

@@ -1,0 +1,63 @@
+{
+  "slug": "andrii-kulykov",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Андрій Куликов",
+    "en": "Andriy Kulykov"
+  },
+  "sort": {
+    "uk": "Куликов Андрій",
+    "en": "Kulykov Andriy"
+  },
+  "role": {
+    "uk": "журналіст, співзасновник і голова правління «Громадського радіо»",
+    "en": "Journalist, co-founder and board chair of Hromadske Radio"
+  },
+  "summary": {
+    "uk": "Радіо- і телеведучий, співзасновник «Громадського радіо», колишній ведучий «Свободи слова».",
+    "en": "Radio and TV host, co-founder of Hromadske Radio and former host of Svoboda Slova."
+  },
+  "bio": {
+    "uk": "Андрій Куликов народився 27 вересня 1957 року в Києві. Закінчив факультет міжнародних відносин і міжнародного права Київського державного університету імені Тараса Шевченка.\n\nУ 2013 році він став одним із засновників «Громадського радіо», з 2015 року очолює його правління. Тривалий час вів політичне ток-шоу «Свобода слова» на ICTV (до травня 2016 року), а також авторські музичні програми на радіо. Очолював Комісію з журналістської етики. Медіаексперт і медіатренер.\n\nВедучий програм «Громадського радіо», зокрема разом із Вікторією Єрмолаєвою."
+  },
+  "facts": [
+    [
+      "Народився",
+      "1957, Київ"
+    ],
+    [
+      "Організація",
+      "«Громадське радіо»"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Андрій Куликов",
+      "en:Andriy Kulykov"
+    ],
+    "check": [
+      "Громадськ",
+      "Hromadske",
+      "журналіст",
+      "journalist"
+    ]
+  },
+  "sources": [
+    {
+      "title": "LB.ua: досьє Андрія Куликова",
+      "url": "https://lb.ua/file/person/2176_kulikov_andriy_viktorovich_.html"
+    },
+    {
+      "title": "Громадське радіо: презентація 2024",
+      "url": "https://static.hromadske.radio/2024/11/HromadskeRadio_Presentation-2024.pdf"
+    },
+    {
+      "title": "ПроМедіа: Інтерв'ю з Вікторією Єрмолаєвою",
+      "url": "https://news.promedia.report/article/viktoriia-iermolaieva-my-ne-vyrishuiemo-za-audytoriiu-shcho-dumaty"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}

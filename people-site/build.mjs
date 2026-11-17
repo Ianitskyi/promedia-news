@@ -1,0 +1,369 @@
+#!/usr/bin/env node
+// Будує сайт «Люди ПроМедіа» (people.promedia.report) з досьє у people/data/*.json.
+//
+//   node people-site/build.mjs              — повна збірка в people-site/dist (з пошуком фото у Вікіпедії/Вікісховищі)
+//   node people-site/build.mjs --offline    — без мережі: фото лише з матеріалів ПроМедіа
+//   node people-site/build.mjs --index-only — лише оновити src/data/people-index.js для новинного сайту
+//
+// Фото беремо тільки з вільними ліцензіями (CC BY, CC BY-SA, CC0, суспільне надбання).
+// Ліцензії NC/ND і «добросовісне використання» відкидаємо.
+
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync, existsSync, cpSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const DATA = join(ROOT, "people", "data");
+const DIST = join(ROOT, "people-site", "dist");
+const SITE = "https://people.promedia.report";
+const NEWS = "https://news.promedia.report";
+const CONTACTS = "https://promedia.report/#contacts";
+const args = new Set(process.argv.slice(2));
+const OFFLINE = args.has("--offline");
+const INDEX_ONLY = args.has("--index-only");
+
+const UK_ALPHABET = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЮЯ".split("");
+const LAT_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+const MONTHS = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"];
+const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+const ukCollator = new Intl.Collator("uk");
+const enCollator = new Intl.Collator("en");
+
+// ---------- data ----------
+
+function loadPeople() {
+  const people = readdirSync(DATA).filter(f => f.endsWith(".json")).sort()
+    .map(f => JSON.parse(readFileSync(join(DATA, f), "utf8")));
+  const slugs = new Set();
+  for (const p of people) {
+    for (const key of ["slug", "name", "sort", "role", "summary", "bio", "sources", "updated"]) {
+      if (!p[key]) throw new Error(`${p.slug || "?"}: відсутнє поле ${key}`);
+    }
+    if (slugs.has(p.slug)) throw new Error(`Дубль slug: ${p.slug}`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(p.updated)) throw new Error(`${p.slug}: дата оновлення має бути YYYY-MM-DD`);
+    slugs.add(p.slug);
+  }
+  return people;
+}
+
+function loadArticles() {
+  const map = new Map();
+  const archive = JSON.parse(readFileSync(join(ROOT, "archive", "published-news.json"), "utf8"));
+  for (const a of archive.items || []) {
+    map.set(a.slug, { slug: a.slug, title: a.title, titleEn: a.titleEn, date: (a.publishedAt || "").slice(0, 10), cover: a.coverImageUrl || "" });
+  }
+  const dir = join(ROOT, "content", "articles");
+  for (const f of readdirSync(dir).filter(f => f.endsWith(".json")).sort()) {
+    const a = JSON.parse(readFileSync(join(dir, f), "utf8"));
+    const prev = map.get(a.slug) || {};
+    const cover = a.cover?.url || prev.cover || "";
+    map.set(a.slug, { slug: a.slug, title: a.title || prev.title, titleEn: a.titleEn || prev.titleEn, date: prev.date || f.slice(0, 10), cover });
+  }
+  return map;
+}
+
+function articlesByPerson(articles) {
+  const mapping = JSON.parse(readFileSync(join(ROOT, "people", "article-people.json"), "utf8"));
+  const out = new Map();
+  for (const [slug, people] of Object.entries(mapping)) {
+    const a = articles.get(slug);
+    if (!a) throw new Error(`article-people.json: невідома новина ${slug}`);
+    for (const p of people) {
+      if (!out.has(p)) out.set(p, []);
+      out.get(p).push(a);
+    }
+  }
+  for (const list of out.values()) list.sort((x, y) => (y.date || "").localeCompare(x.date || ""));
+  return { mapping, byPerson: out };
+}
+
+// ---------- photos ----------
+
+const BAD_LICENSE = /(\bnc\b|-nc|\bnd\b|-nd|non-?commercial|no ?deriv|fair use|non-free)/i;
+const FREE_LICENSE = /(cc[ -]?by|cc0|public domain|\bpd\b|attribution|gfdl|free art)/i;
+
+function stripHtml(s) {
+  return String(s || "").replace(/<[^>]*>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, " ").trim();
+}
+
+async function api(lang, params) {
+  const url = `https://${lang}.wikipedia.org/w/api.php?` + new URLSearchParams({ format: "json", formatversion: "2", origin: "*", ...params });
+  const res = await fetch(url, { headers: { "user-agent": "ProMediaPeopleBuilder/1.0 (+https://people.promedia.report)" } });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
+async function wikiPhoto(p) {
+  for (const candidate of p.photo?.wiki || []) {
+    const [lang, ...rest] = candidate.split(":");
+    const title = rest.join(":");
+    try {
+      const q = await api(lang, { action: "query", redirects: "1", prop: "pageimages|extracts", piprop: "name", pilicense: "free", exintro: "1", explaintext: "1", exchars: "1200", titles: title });
+      const page = q.query?.pages?.[0];
+      if (!page || page.missing || !page.pageimage) continue;
+      const extract = (page.extract || "").toLowerCase();
+      const checks = p.photo.check || [];
+      if (checks.length && !checks.some(k => extract.includes(k.toLowerCase()))) {
+        console.warn(`  ${p.slug}: ${candidate} — сторінка не схожа на цю людину, пропускаю`);
+        continue;
+      }
+      const info = await api(lang, { action: "query", prop: "imageinfo", iiprop: "url|extmetadata", iiurlwidth: "600", titles: "File:" + page.pageimage });
+      const ii = info.query?.pages?.[0]?.imageinfo?.[0];
+      if (!ii) continue;
+      const meta = ii.extmetadata || {};
+      const license = stripHtml(meta.LicenseShortName?.value);
+      if (!license || BAD_LICENSE.test(license) || !FREE_LICENSE.test(license)) {
+        console.warn(`  ${p.slug}: ліцензія «${license}» не підходить`);
+        continue;
+      }
+      return {
+        src: ii.thumburl || ii.url,
+        author: stripHtml(meta.Artist?.value) || "автор невідомий",
+        license,
+        licenseUrl: meta.LicenseUrl?.value || "",
+        sourceUrl: ii.descriptionurl,
+        sourceName: "Вікісховище",
+        wikiPage: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(page.title.replace(/ /g, "_"))}`
+      };
+    } catch (err) {
+      console.warn(`  ${p.slug}: ${candidate} — ${err.message}`);
+    }
+  }
+  return null;
+}
+
+function articlePhoto(p, articles) {
+  const slug = p.photo?.article;
+  if (!slug || p.photo.articleIsPortrait === false) return null;
+  const a = articles.get(slug);
+  if (!a?.cover) return null;
+  const src = a.cover.startsWith("http") ? a.cover : NEWS + a.cover;
+  return { src, author: "ГО «ПроМедіа»", license: "", licenseUrl: "", sourceUrl: `${NEWS}/article/${slug}`, sourceName: `матеріал «${a.title}»`, fromArticle: true };
+}
+
+async function resolvePhotos(people, articles) {
+  const out = {};
+  for (const p of people) {
+    let photo = null;
+    if (p.photo?.url) photo = { src: p.photo.url, author: p.photo.author || "", license: p.photo.license || "", licenseUrl: p.photo.licenseUrl || "", sourceUrl: p.photo.sourceUrl || "", sourceName: p.photo.sourceName || "" };
+    if (!photo && !OFFLINE) photo = await wikiPhoto(p);
+    if (!photo) photo = articlePhoto(p, articles);
+    out[p.slug] = photo;
+    console.log(`${p.slug}: ${photo ? (photo.fromArticle ? "фото з матеріалу ПроМедіа" : `фото ${photo.license}`) : "без фото"}`);
+  }
+  return out;
+}
+
+// ---------- html helpers ----------
+
+const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const fmtDate = (iso, lang) => {
+  const [y, m, d] = iso.split("-").map(Number);
+  return lang === "en" ? `${MONTHS_EN[m - 1]} ${d}, ${y}` : `${d} ${MONTHS[m - 1]} ${y} року`;
+};
+const paragraphs = text => String(text || "").split(/\n{2,}/).map(t => `<p>${esc(t.trim())}</p>`).join("\n");
+const initials = name => name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
+function firstLetter(s, alphabet) {
+  const ch = s.trim()[0]?.toLocaleUpperCase("uk") || "";
+  const plain = ch.normalize("NFD").replace(/[̀-ͯ]/g, "");
+  return alphabet.includes(ch) ? ch : alphabet.includes(plain) ? plain : "#";
+}
+function plural(n, forms) { return forms[(n % 10 === 1 && n % 100 !== 11) ? 0 : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? 1 : 2]; }
+
+const T = {
+  uk: {
+    title: "Люди", siteTitle: "Люди — ПроМедіа", lead: "Досьє на журналісток, журналістів та інших людей, про яких пише ПроМедіа. Інформацію зібрано з відкритих джерел; біля кожного досьє — дата оновлення.",
+    search: "Пошук за ім'ям, редакцією чи роллю", cyr: "Кирилиця", lat: "Латиниця", all: "Усі", ua: "Українські", intl: "Міжнародні",
+    updated: "Оновлено", mentions: "Згадки в новинах ПроМедіа", sources: "Джерела", facts: "Коротко", back: "← Усі люди",
+    empty: "Нікого не знайдено.", count: n => `${n} ${plural(n, ["досьє", "досьє", "досьє"])}`,
+    note: "Досьє компілятивне: його складено з відкритих джерел, перелічених вище, і з матеріалів ПроМедіа. Ми не публікуємо приватних даних.",
+    fix: "Помітили неточність або хочете доповнити? Напишіть нам", photo: "Фото", license: "ліцензія", noPhoto: "Фото з вільною ліцензією поки не знайшли",
+    official: "Посадова особа", intlLabel: "Міжнародні", country: "Країна", bioLang: "", news: "Новини"
+  },
+  en: {
+    title: "People", siteTitle: "People — ProMedia", lead: "Profiles of journalists and other people ProMedia writes about, compiled from open sources. Each profile shows when it was last updated.",
+    search: "Search by name, outlet or role", cyr: "Cyrillic", lat: "Latin", all: "All", ua: "Ukrainian", intl: "International",
+    updated: "Updated", mentions: "Mentioned in ProMedia News", sources: "Sources", facts: "At a glance", back: "← All people",
+    empty: "No one found.", count: n => `${n} ${n === 1 ? "profile" : "profiles"}`,
+    note: "This profile is compiled from the open sources listed above and from ProMedia materials. We do not publish private data.",
+    fix: "Spotted an error or want to add something? Contact us", photo: "Photo", license: "licence", noPhoto: "No freely licensed photo found yet",
+    official: "Public official", intlLabel: "International", country: "Country", bioLang: "The full profile is currently available in Ukrainian.", news: "News"
+  }
+};
+
+const prefix = lang => lang === "en" ? "/en" : "";
+
+function shell({ lang, title, description, path, body, image }) {
+  const t = T[lang];
+  const url = SITE + prefix(lang) + path;
+  return `<!doctype html>
+<html lang="${lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${esc(title)}</title>
+<meta name="description" content="${esc(description)}">
+<link rel="canonical" href="${esc(url)}">
+<link rel="alternate" hreflang="uk" href="${esc(SITE + path)}">
+<link rel="alternate" hreflang="en" href="${esc(SITE + "/en" + path)}">
+<link rel="alternate" hreflang="x-default" href="${esc(SITE + path)}">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="${esc(t.siteTitle)}">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(description)}">
+<meta property="og:url" content="${esc(url)}">
+${image ? `<meta property="og:image" content="${esc(image)}">` : ""}
+<link rel="icon" href="${NEWS}/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/people.css">
+</head>
+<body>
+${body}
+<footer class="pp-footer"><div class="pp-wrap">© ГО «ПроМедіа» · <a href="https://promedia.report${lang === "en" ? "/en/" : "/"}">promedia.report</a> · <a href="${NEWS}${lang === "en" ? "/en/" : "/"}">${t.news}</a></div></footer>
+<script defer src="${NEWS}/js/promedia-global-shell.js"></script>
+</body>
+</html>
+`;
+}
+
+function card(p, photo, lang) {
+  const name = p.name[lang] || p.name.uk;
+  const other = lang === "en" ? p.name.uk : p.name.en;
+  const search = [p.name.uk, p.name.en, ...(p.aliases || []), p.role.uk, p.role.en].join(" ").toLowerCase();
+  return `<a class="pp-card" href="${prefix(lang)}/${p.slug}/" data-group="${p.group}" data-cyr="${firstLetter(p.sort.uk, UK_ALPHABET)}" data-lat="${firstLetter(p.sort.en, LAT_ALPHABET)}" data-search="${esc(search)}" data-sort-uk="${esc(p.sort.uk)}" data-sort-en="${esc(p.sort.en)}">
+  <span class="pp-avatar"><span>${esc(initials(name))}</span>${photo ? `<img src="${esc(photo.src)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>
+  <span class="pp-card-text"><strong>${esc(name)}</strong><small class="pp-alt">${esc(other)}</small><span class="pp-role">${esc(p.role[lang] || p.role.uk)}</span><small class="pp-date">${T[lang].updated}: ${fmtDate(p.updated, lang)}</small></span>
+</a>`;
+}
+
+function indexPage(people, photos, lang) {
+  const t = T[lang];
+  const sorted = [...people].sort((a, b) => lang === "en" ? enCollator.compare(a.sort.en, b.sort.en) : ukCollator.compare(a.sort.uk, b.sort.uk));
+  const present = { cyr: new Set(people.map(p => firstLetter(p.sort.uk, UK_ALPHABET))), lat: new Set(people.map(p => firstLetter(p.sort.en, LAT_ALPHABET))) };
+  const letters = (alphabet, key) => alphabet.map(l => `<button type="button" data-letter="${l}"${present[key].has(l) ? "" : " disabled"}>${l}</button>`).join("");
+  const first = lang === "en" ? "lat" : "cyr";
+  const second = lang === "en" ? "cyr" : "lat";
+  const body = `<main class="pp-wrap pp-index">
+  <header class="pp-head">
+    <p class="pp-kicker">ПроМедіа</p>
+    <h1>${t.title}</h1>
+    <p class="pp-lead">${esc(t.lead)}</p>
+  </header>
+  <section class="pp-tools" aria-label="${esc(t.search)}">
+    <input id="pp-search" type="search" placeholder="${esc(t.search)}" autocomplete="off">
+    <div class="pp-switch">
+      <span class="pp-pills"><button type="button" class="is-active" data-alpha="${first}">${t[first]}</button><button type="button" data-alpha="${second}">${t[second]}</button></span>
+      <span class="pp-pills"><button type="button" class="is-active" data-group="all">${t.all}</button><button type="button" data-group="ua">${t.ua}</button><button type="button" data-group="intl">${t.intl}</button></span>
+    </div>
+    <div class="pp-alpha" data-alphabet="cyr"${first === "cyr" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(UK_ALPHABET, "cyr")}</div>
+    <div class="pp-alpha" data-alphabet="lat"${first === "lat" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(LAT_ALPHABET, "lat")}</div>
+  </section>
+  <p class="pp-count" id="pp-count" data-template-one="${esc(t.count(1))}">${t.count(people.length)}</p>
+  <div class="pp-grid" id="pp-grid">
+${sorted.map(p => card(p, photos[p.slug], lang)).join("\n")}
+  </div>
+  <p class="pp-empty" id="pp-empty" hidden>${t.empty}</p>
+</main>
+<script>window.PP_LANG=${JSON.stringify(lang)};</script>
+<script src="/people.js" defer></script>`;
+  return shell({ lang, title: t.siteTitle, description: t.lead, path: "/", body });
+}
+
+function photoBlock(photo, name, t) {
+  if (!photo) return `<div class="pp-photo pp-photo--empty"><span>${esc(initials(name))}</span><small>${t.noPhoto}</small></div>`;
+  const credit = photo.fromArticle
+    ? `<a href="${esc(photo.sourceUrl)}">${esc(photo.sourceName)}</a>, ГО «ПроМедіа»`
+    : `${esc(photo.author)} / <a href="${esc(photo.sourceUrl)}">${esc(photo.sourceName)}</a>${photo.license ? `, ${t.license} ${photo.licenseUrl ? `<a href="${esc(photo.licenseUrl)}">${esc(photo.license)}</a>` : esc(photo.license)}` : ""}`;
+  return `<figure class="pp-photo"><img src="${esc(photo.src)}" alt="${esc(name)}"><figcaption>${t.photo}: ${credit}</figcaption></figure>`;
+}
+
+function personPage(p, photo, mentions, lang) {
+  const t = T[lang];
+  const name = p.name[lang] || p.name.uk;
+  const other = lang === "en" ? p.name.uk : p.name.en;
+  const facts = (p.facts || []).length ? `<section class="pp-facts"><h2>${t.facts}</h2><dl>${p.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}<dt>${t.country}</dt><dd>${esc(p.country)}</dd></dl></section>` : "";
+  const mentionHtml = mentions.length ? `<section class="pp-mentions"><h2>${t.mentions}</h2><ul>${mentions.map(a => `<li><a href="${NEWS}${lang === "en" ? "/en" : ""}/article/${a.slug}">${esc((lang === "en" && a.titleEn) || a.title)}</a>${a.date ? ` <time datetime="${a.date}">${fmtDate(a.date, lang)}</time>` : ""}</li>`).join("")}</ul></section>` : "";
+  const sources = `<section class="pp-sources"><h2>${t.sources}</h2><ol>${p.sources.map(s => `<li><a href="${esc(s.url)}" rel="noopener">${esc(s.title)}</a></li>`).join("")}</ol></section>`;
+  const badge = p.kind === "official" ? `<span class="pp-badge">${t.official}</span>` : p.group === "intl" ? `<span class="pp-badge">${t.intlLabel}</span>` : "";
+  const bio = lang === "en" ? `<p class="pp-note">${t.bioLang}</p><div class="pp-bio" lang="uk">${paragraphs(p.bio.uk)}</div>` : `<div class="pp-bio">${paragraphs(p.bio.uk)}</div>`;
+  const body = `<main class="pp-wrap pp-person">
+  <p class="pp-back"><a href="${prefix(lang)}/">${t.back}</a></p>
+  <article>
+    <header class="pp-person-head">
+      ${photoBlock(photo, name, t)}
+      <div>
+        ${badge}
+        <h1>${esc(name)}</h1>
+        <p class="pp-alt">${esc(other)}</p>
+        <p class="pp-role">${esc(p.role[lang] || p.role.uk)}</p>
+        <p class="pp-updated">${t.updated}: <time datetime="${p.updated}">${fmtDate(p.updated, lang)}</time></p>
+      </div>
+    </header>
+    <p class="pp-summary">${esc(p.summary[lang] || p.summary.uk)}</p>
+    ${bio}
+    ${facts}
+    ${mentionHtml}
+    ${sources}
+    <p class="pp-note">${esc(t.note)} <a href="${CONTACTS}">${t.fix}</a>.</p>
+  </article>
+</main>`;
+  return shell({ lang, title: `${name} — ${t.siteTitle}`, description: p.summary[lang] || p.summary.uk, path: `/${p.slug}/`, body, image: photo?.src });
+}
+
+// ---------- outputs ----------
+
+function writeNewsIndex(people) {
+  const index = people.map(p => ({
+    slug: p.slug, tag: p.name.uk, aliases: p.aliases || [],
+    name: p.name, role: p.role, summary: p.summary
+  })).sort((a, b) => ukCollator.compare(a.tag, b.tag));
+  const file = join(ROOT, "src", "data", "people-index.js");
+  mkdirSync(dirname(file), { recursive: true });
+  writeFileSync(file, `// Згенеровано: node people-site/build.mjs --index-only. Не редагуйте вручну — правте people/data/*.json.\nexport const PEOPLE = ${JSON.stringify(index, null, 2)};\n`);
+  console.log(`src/data/people-index.js: ${index.length} людей`);
+}
+
+async function main() {
+  const people = loadPeople();
+  writeNewsIndex(people);
+  if (INDEX_ONLY) return;
+  const articles = loadArticles();
+  const { byPerson } = articlesByPerson(articles);
+  const photos = await resolvePhotos(people, articles);
+
+  if (existsSync(DIST)) rmSync(DIST, { recursive: true, force: true });
+  mkdirSync(DIST, { recursive: true });
+  cpSync(join(ROOT, "people-site", "assets"), DIST, { recursive: true });
+
+  for (const lang of ["uk", "en"]) {
+    const base = lang === "en" ? join(DIST, "en") : DIST;
+    mkdirSync(base, { recursive: true });
+    writeFileSync(join(base, "index.html"), indexPage(people, photos, lang));
+    for (const p of people) {
+      mkdirSync(join(base, p.slug), { recursive: true });
+      writeFileSync(join(base, p.slug, "index.html"), personPage(p, photos[p.slug], byPerson.get(p.slug) || [], lang));
+    }
+  }
+
+  const apiOut = {
+    schemaVersion: 1,
+    builtAt: new Date().toISOString(),
+    people: people.map(p => ({
+      slug: p.slug, url: `${SITE}/${p.slug}/`, name: p.name, aliases: p.aliases || [], role: p.role, summary: p.summary,
+      group: p.group, country: p.country, updated: p.updated, photo: photos[p.slug] || null,
+      articles: (byPerson.get(p.slug) || []).map(a => a.slug), sources: p.sources
+    }))
+  };
+  mkdirSync(join(DIST, "api"), { recursive: true });
+  writeFileSync(join(DIST, "api", "people.json"), JSON.stringify(apiOut, null, 2));
+  const urls = ["/", "/en/", ...people.flatMap(p => [`/${p.slug}/`, `/en/${p.slug}/`])];
+  writeFileSync(join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${SITE}${u}</loc></url>`).join("\n")}\n</urlset>\n`);
+  writeFileSync(join(DIST, "404.html"), shell({ lang: "uk", title: "Сторінку не знайдено — Люди ПроМедіа", description: "", path: "/", body: `<main class="pp-wrap pp-person"><p class="pp-back"><a href="/">${T.uk.back}</a></p><h1>Сторінку не знайдено</h1></main>` }));
+  writeFileSync(join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);
+  console.log(`Готово: ${people.length} досьє → people-site/dist`);
+}
+
+main().catch(err => { console.error(err); process.exit(1); });

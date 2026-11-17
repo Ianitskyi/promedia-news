@@ -1,0 +1,71 @@
+{
+  "slug": "olha-rudenko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Ольга Руденко",
+    "en": "Olga Rudenko"
+  },
+  "sort": {
+    "uk": "Руденко Ольга",
+    "en": "Rudenko Olga"
+  },
+  "aliases": [
+    "Olha Rudenko"
+  ],
+  "role": {
+    "uk": "головна редакторка і співзасновниця The Kyiv Independent",
+    "en": "Editor-in-chief and co-founder of The Kyiv Independent"
+  },
+  "summary": {
+    "uk": "Очолює англомовне видання The Kyiv Independent; лауреатка Премії Ґонґадзе 2026.",
+    "en": "Editor-in-chief of The Kyiv Independent; 2026 Gongadze Prize laureate."
+  },
+  "bio": {
+    "uk": "Ольга Руденко (нар. 1989) — українська журналістка. Працювала в англомовній газеті Kyiv Post, де була заступницею головного редактора, писала для західних видань.\n\nУ листопаді 2021 року, після звільнення редакції Kyiv Post власником, вона разом із колегами заснувала The Kyiv Independent і стала його головною редакторкою. Видання запустилося за кілька місяців до повномасштабного вторгнення і стало одним з основних англомовних джерел новин про війну. У 2022 році пані Ольга з'явилася на обкладинці журналу TIME, у 2023-му прочитала престижну Cudlipp Lecture у Лондоні.\n\nThe Kyiv Independent існує переважно за кошти читачів. Ольга Руденко тричі поспіль потрапляла до короткого списку Премії імені Георгія Ґонґадзе і стала її лауреаткою у 2026 році."
+  },
+  "facts": [
+    [
+      "Народилася",
+      "1989"
+    ],
+    [
+      "Редакція",
+      "The Kyiv Independent"
+    ],
+    [
+      "Відзнаки",
+      "Премія імені Георгія Ґонґадзе (2026)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Olga Rudenko",
+      "uk:Ольга Руденко (журналістка)"
+    ],
+    "check": [
+      "Kyiv Independent"
+    ],
+    "article": "olha-rudenko-my-ne-pryimaiemo-obmezhennia-iaki-spriamovani-na-zamovchuvannia-neh-7"
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Olga Rudenko",
+      "url": "https://en.wikipedia.org/wiki/Olga_Rudenko"
+    },
+    {
+      "title": "TIME: Olga Rudenko and the Kyiv Independent",
+      "url": "https://redesign.time.com/6174883/olga-rudenko-kyiv-independent"
+    },
+    {
+      "title": "УП.Життя: Ольга Руденко, номінантка Премії Ґонґадзе 2026",
+      "url": "https://life.pravda.com.ua/society/mi-unikayemo-roli-piar-agenciji-ukrajini-ne-prisipayemo-realnist-cukrovoyu-pudroyu-olga-rudenko-nominantka-premiji-gongadze-2026-314810/"
+    },
+    {
+      "title": "ПроМедіа: Ольга Руденко про обмеження й самоцензуру",
+      "url": "https://news.promedia.report/article/olha-rudenko-my-ne-pryimaiemo-obmezhennia-iaki-spriamovani-na-zamovchuvannia-neh-7"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

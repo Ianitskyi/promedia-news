@@ -1,0 +1,48 @@
+{
+  "slug": "nika-yehorova",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Ніка Єгорова",
+    "en": "Nika Yegorova"
+  },
+  "sort": {
+    "uk": "Єгорова Ніка",
+    "en": "Yegorova Nika"
+  },
+  "role": {
+    "uk": "журналістка, головна редакторка Dnipro.media",
+    "en": "Journalist, editor-in-chief of Dnipro.media"
+  },
+  "summary": {
+    "uk": "Співзасновниця і головна редакторка незалежного дніпровського медіа Dnipro.media.",
+    "en": "Co-founder and editor-in-chief of the independent Dnipro outlet Dnipro.media."
+  },
+  "bio": {
+    "uk": "Ніка Єгорова — журналістка, головна (шеф-) редакторка незалежного міського медіа Dnipro.media. Разом з Анною Матвієнко вона заснувала його у 2024 році.\n\nDnipro.media пише про роботу міської влади, закупівлі та життя Дніпра для молодої аудиторії. У 2026 році спільнота читачів, які регулярно підтримують редакцію внесками, перевищила 100 учасників; наступна мета — 250."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Dnipro.media"
+    ],
+    [
+      "Місто",
+      "Дніпро"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "EU NEIGHBOURS east: «Вільна преса для вільного міста»",
+      "url": "https://euneighbourseast.eu/uk/news/stories/vilna-presa-dlya-vilnogo-mista/"
+    },
+    {
+      "title": "ПроМедіа: Спільнота Dnipro.media зібрала понад 100 учасників",
+      "url": "https://news.promedia.report/article/spilnota-dnipro-media-zibrala-ponad-100-uchasnykiv"
+    }
+  ],
+  "updated": "2026-11-17",
+  "aliases": [],
+  "kind": "journalist"
+}
