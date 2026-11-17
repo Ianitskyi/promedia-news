@@ -1,35 +1,35 @@
 /* BRIEF strip on the news home page (owner, 2026-11-17): a narrow "radio" bar that plays the
-   latest BRIEF edition right here. Without JS it stays a plain link to brief.promedia.report. */
+   latest BRIEF edition right here. It shares one player with the "Brief" button in the common header
+   (window.PMBriefPlayer from promedia-global-shell.js), so the two never play over each other.
+   Without JS (or if BRIEF is unreachable) it stays a plain link to brief.promedia.report. */
 (function () {
   var strip = document.querySelector("[data-brief-strip]");
   if (!strip) return;
-  var BASE = "https://brief.promedia.report/";
   var btn = strip.querySelector(".brief-strip__play");
   var meta = strip.querySelector(".brief-strip__meta");
-  var audio = null;
   function fmt(s) { s = Math.max(0, Math.round(s || 0)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
   function date(d) { var p = String(d || "").split("-"); return p.length === 3 ? p[2] + "." + p[1] : ""; }
-  fetch(BASE + "demo/index.json", { cache: "no-store" })
-    .then(function (r) { return r.json(); })
-    .then(function (idx) { return fetch(BASE + idx.demos[0].file, { cache: "no-store" }).then(function (r) { return r.json(); }); })
-    .then(function (d) {
-      if (!d || !d.audio) return;
-      audio = new Audio(BASE + d.audio);
-      audio.preload = "none";
-      var total = d.duration_sec || 0;
-      var label = document.createElement("span"); label.className = "brief-strip__long"; label.textContent = "Випуск за ";
-      var rest = document.createTextNode("");
+  var label = document.createElement("span"); label.className = "brief-strip__long"; label.textContent = "Випуск за ";
+  var rest = document.createTextNode("");
+  function start(player) {
+    player.info().then(function (d) {
       meta.textContent = ""; meta.appendChild(label); meta.appendChild(rest);
-      function show(t) { rest.nodeValue = date(d.date) + " · " + t; }
-      show(fmt(total));
+      rest.nodeValue = date(d.date) + " · " + fmt(d.duration_sec);
       btn.hidden = false;
-      audio.addEventListener("timeupdate", function () {
-        show(fmt(audio.currentTime) + " / " + fmt(audio.duration || total));
+      btn.addEventListener("click", function () { player.toggle(); });
+      window.addEventListener("pm-brief-state", function (e) {
+        var s = e.detail;
+        btn.textContent = s.playing ? "❚❚" : "▶";
+        btn.setAttribute("aria-label", s.playing ? "Пауза" : "Слухати BRIEF");
+        strip.classList.toggle("is-playing", s.playing);
+        rest.nodeValue = date(s.date) + " · " + (s.playing || s.time > 0 ? fmt(s.time) + " / " : "") + fmt(s.duration);
       });
-      audio.addEventListener("play", function () { btn.textContent = "❚❚"; btn.setAttribute("aria-label", "Пауза"); strip.classList.add("is-playing"); });
-      audio.addEventListener("pause", function () { btn.textContent = "▶"; btn.setAttribute("aria-label", "Слухати BRIEF"); strip.classList.remove("is-playing"); });
-      audio.addEventListener("ended", function () { audio.currentTime = 0; });
-      btn.addEventListener("click", function () { if (audio.paused) audio.play(); else audio.pause(); });
-    })
-    .catch(function () { /* keep the plain link */ });
+    }).catch(function () { /* keep the plain link */ });
+  }
+  // The common shell script loads with defer from another host; wait for it briefly.
+  var tries = 0;
+  (function wait() {
+    if (window.PMBriefPlayer) return start(window.PMBriefPlayer);
+    if (++tries < 50) setTimeout(wait, 100);
+  })();
 })();

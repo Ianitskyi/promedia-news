@@ -66,6 +66,13 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-primary a{font-size:15px}.pm-global-secondary a{font-size:12px;color:rgba(13,12,92,.72)}
 .pm-global-primary a:hover,.pm-global-secondary a:hover{color:#e8901a}
 .pm-global-langs{display:flex;gap:2px;align-items:center}
+.pm-global-brief{display:inline-flex;align-items:center;gap:7px;height:30px;padding:0 12px 0 4px;border:1px solid rgba(13,12,92,.18);border-radius:999px;background:#fff;color:var(--pm-shell-ink);font:800 12px/1 Montserrat,Arial,sans-serif;letter-spacing:.04em;cursor:pointer;white-space:nowrap}
+.pm-global-brief i{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--pm-shell-accent);color:var(--pm-shell-ink);font-style:normal;font-size:9px}
+.pm-global-brief:hover{border-color:var(--pm-shell-ink)}
+.pm-global-brief.is-playing{background:var(--pm-shell-ink);color:#fff;border-color:var(--pm-shell-ink)}
+.pm-global-brief.is-playing i{background:#fff}
+.pm-global-brief small{font-size:11px;font-weight:600;letter-spacing:0;opacity:.75;font-variant-numeric:tabular-nums}
+.pm-global-brief small:empty{display:none}
 .pm-global-langs a{padding:4px 8px;border-radius:999px;color:var(--pm-shell-ink);font-size:12px;font-weight:700;text-decoration:none}
 .pm-global-langs a.active{background:var(--pm-shell-ink);color:#fff}
 .pm-global-secondary{display:flex;justify-content:flex-end;gap:clamp(18px,2.2vw,34px);padding:8px clamp(18px,4vw,64px) 10px;background:var(--pm-shell-paper);border-top:1px solid rgba(13,12,92,.08);overflow-x:auto;scrollbar-width:none}
@@ -115,6 +122,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
       this.innerHTML=`<header class="pm-global-header"><div class="pm-global-main">
         <a class="pm-global-logo" href="${mainHome}" aria-label="ProMedia"><img src="https://news.promedia.report/img/promedia-wordmark.svg" alt="ProMedia"></a>
         <nav class="pm-global-primary"><a href="${projectUrl}">${t.projects}</a><a href="${mainHome}#team">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a></nav>
+        ${lang==="uk"&&location.hostname!=="brief.promedia.report"?`<button type="button" class="pm-global-brief" data-pm-brief aria-label="Слухати BRIEF — аудіовипуск новин" title="BRIEF — головні новини за 5 хвилин"><i aria-hidden="true">▶</i>Brief<small></small></button>`:""}
         <div class="pm-global-langs">${available.includes("uk")?`<a class="${lang==="uk"?"active":""}" href="${samePath("uk")}">UA</a>`:""}${available.includes("en")?`<a class="${lang==="en"?"active":""}" href="${samePath("en")}">EN</a>`:""}${available.includes("crh")?`<a class="${lang==="crh"?"active":""}" href="${samePath("crh")}">QT</a>`:""}</div>
         <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div></div></details>
       </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}">${x[1]}</a>`).join("")}</nav></header>`;
@@ -155,6 +163,32 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
       <div class="pm-global-bottom"><div>© 2025–2026 ProMedia. ${t.rights}<div class="pm-global-powered">Created by <a href="https://fabrikastyle.com" target="_blank" rel="noopener"><img src="https://fabrikastyle.com/logo-fa.svg" alt="Fabrika Style"></a></div></div><div><a href="${mainBase+(lang==="uk"?"/privacy-policy/":prefix+"/privacy-policy/")}">${t.privacy}</a> · <button type="button" class="pm-global-analytics-toggle" data-pm-analytics-toggle data-label-on="${t.analyticsOn}" data-label-off="${t.analyticsOff}" aria-pressed="${analyticsOn}">${analyticsOn?t.analyticsOn:t.analyticsOff}</button></div></div>
       </div></footer>`;
     }
+  }
+  // BRIEF radio button in the header (owner, 2026-11-17): plays the latest BRIEF edition in place.
+  // One shared player per page (window.PMBriefPlayer), also used by the BRIEF strip on the news home.
+  if(typeof window!=="undefined"&&!window.PMBriefPlayer){
+    const BRIEF="https://brief.promedia.report/";
+    const fmt=s=>{s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+    let audio=null,loading=null,info=null;
+    const sync=()=>{
+      const playing=!!(audio&&!audio.paused);
+      document.querySelectorAll("[data-pm-brief]").forEach(b=>{
+        b.classList.toggle("is-playing",playing);
+        b.querySelector("i").textContent=playing?"❚❚":"▶";
+        b.setAttribute("aria-label",playing?"Пауза BRIEF":"Слухати BRIEF — аудіовипуск новин");
+        b.querySelector("small").textContent=audio&&(playing||audio.currentTime>0)?fmt(audio.currentTime):"";
+      });
+      window.dispatchEvent(new CustomEvent("pm-brief-state",{detail:{playing,time:audio?audio.currentTime:0,duration:audio&&audio.duration||(info&&info.duration_sec)||0,date:info&&info.date}}));
+    };
+    const load=()=>loading||(loading=fetch(BRIEF+"demo/index.json",{cache:"no-store"}).then(r=>r.json())
+      .then(idx=>fetch(BRIEF+idx.demos[0].file,{cache:"no-store"})).then(r=>r.json())
+      .then(d=>{info=d;audio=new Audio(BRIEF+d.audio);["play","pause","timeupdate","ended"].forEach(e=>audio.addEventListener(e,sync));return d}));
+    window.PMBriefPlayer={
+      info:()=>load(),
+      toggle:()=>load().then(()=>audio.paused?audio.play():audio.pause()).catch(()=>{location.href=BRIEF}),
+      audio:()=>audio
+    };
+    document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest("[data-pm-brief]");if(b){e.preventDefault();window.PMBriefPlayer.toggle()}});
   }
   if(!customElements.get("promedia-global-header")) customElements.define("promedia-global-header",PMHeader);
   if(!customElements.get("promedia-global-footer")) customElements.define("promedia-global-footer",PMFooter);
