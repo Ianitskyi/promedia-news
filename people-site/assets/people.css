@@ -17,17 +17,11 @@ a { color: var(--ink); }
 img { max-width: 100%; }
 .pp-wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
 
-.pp-head { padding: 40px 0 18px; }
-.pp-kicker { display: flex; align-items: center; gap: 12px; margin: 0 0 10px; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
-.pp-kicker::before { content: ""; width: 26px; height: 3px; background: var(--accent); }
-.pp-head h1 { margin: 0 0 10px; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; color: var(--ink); font-weight: 800; }
-.pp-lead { max-width: 720px; margin: 0; font-size: 17px; color: var(--muted); }
-
-.pp-tools { position: sticky; top: 96px; z-index: 5; margin: 18px 0 10px; padding: 14px; background: rgba(255,255,255,.96); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 10px 30px -22px rgba(13,12,92,.5); backdrop-filter: blur(10px); }
+.pp-tools { position: sticky; top: 96px; z-index: 5; margin: 24px 0 10px; padding: 14px; background: rgba(255,255,255,.96); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 10px 30px -22px rgba(13,12,92,.5); backdrop-filter: blur(10px); }
 #pp-search { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 12px; font: inherit; font-size: 16px; background: #fff; }
 #pp-search:focus { outline: 2px solid var(--accent); border-color: transparent; }
 .pp-switch { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; margin: 12px 0 8px; }
-.pp-pills { display: inline-flex; gap: 4px; padding: 3px; background: var(--paper); border-radius: 999px; }
+.pp-pills { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 3px; background: var(--paper); border-radius: 999px; }
 .pp-pills button { border: 0; background: none; padding: 6px 14px; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 700; color: var(--muted); cursor: pointer; }
 .pp-pills button.is-active { background: var(--ink); color: #fff; }
 .pp-alpha { display: flex; flex-wrap: wrap; gap: 4px; }
@@ -87,11 +81,12 @@ img { max-width: 100%; }
 }
 
 /* ---------- Пам'ять ---------- */
-.pp-memorial-band { display: flex; align-items: center; gap: 16px; margin: 8px 0 4px; padding: 16px 20px; border-radius: 16px; background: #1b1b22; color: #e9e9ee; text-decoration: none; }
-.pp-memorial-band strong { display: block; font-size: 16px; letter-spacing: .04em; }
-.pp-memorial-band small { display: block; font-size: 13.5px; color: #b9b9c4; line-height: 1.45; }
-.pp-memorial-band em { margin-left: auto; font-style: normal; font-size: 13px; font-weight: 700; color: #fff; white-space: nowrap; }
-.pp-candle { flex: none; width: 10px; height: 34px; border-radius: 3px; background: linear-gradient(#ffd27a 0 22%, #f3efe6 22%); box-shadow: 0 -6px 14px rgba(255,190,90,.45); }
+.pp-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.pp-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; margin: 16px 0 10px; }
+.pp-meta .pp-count { margin: 0; }
+.pp-memorial-chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 10px; border: 1px solid #d6d6dc; border-radius: 999px; background: #f1f1f3; color: #2a2a33; font-size: 12.5px; font-weight: 600; text-decoration: none; }
+.pp-memorial-chip:hover { background: #e6e6ea; }
+.pp-candle { flex: none; width: 5px; height: 14px; border-radius: 2px; background: linear-gradient(#f2b950 0 30%, #9a9aa6 30%); }
 .pp-card--memorial { background: #f1f1f3; border-color: #d6d6dc; }
 .pp-card--memorial .pp-avatar { background: #dcdce2; color: #2a2a33; }
 .pp-card--memorial .pp-avatar img { filter: grayscale(1); }
@@ -106,4 +101,3 @@ body.pp-view-memorial { background: #ececef; }
 .pp-life-big { margin: 6px 0 0; font-size: 20px; font-weight: 700; color: #1b1b22; letter-spacing: .02em; }
 .pp-person--memorial .pp-summary { color: #1b1b22; }
 .pp-person--memorial h2::before { background: #1b1b22; }
-@media (max-width: 680px) { .pp-memorial-band { flex-wrap: wrap; } .pp-memorial-band em { margin-left: 26px; } }

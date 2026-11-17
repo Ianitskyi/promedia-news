@@ -179,7 +179,7 @@ const T = {
     empty: "Нікого не знайдено.", count: n => `${n} ${plural(n, ["досьє", "досьє", "досьє"])}`,
     note: "Досьє компілятивне: його складено з відкритих джерел, перелічених вище, і з матеріалів ПроМедіа. Ми не публікуємо приватних даних.",
     fix: "Помітили неточність або хочете доповнити? Напишіть нам", photo: "Фото", license: "ліцензія", noPhoto: "Фото з вільною ліцензією поки не знайшли",
-    official: "Посадова особа", memorial: "Пам'ять", memorialLead: "Журналістки й журналісти, яких ми втратили. Пам'ятні картки складено за даними ІМІ, НСЖУ, Премії імені Георгія Ґонґадзе та інших відкритих джерел.", memorialOpen: "Відкрити розділ «Пам'ять» →", intlLabel: "Міжнародні", country: "Країна", bioLang: "", news: "Новини"
+    official: "Посадова особа", memorial: "Пам'ять", memorialLead: "Журналістки й журналісти, яких ми втратили. Пам'ятні картки складено за даними ІМІ, НСЖУ, Премії імені Георгія Ґонґадзе та інших відкритих джерел.", memorialOpen: "Відкрити розділ «Пам'ять» →", memorialChip: "Пам'ять: журналісти, яких ми втратили", intlLabel: "Міжнародні", country: "Країна", bioLang: "", news: "Новини"
   },
   en: {
     title: "People", siteTitle: "People — ProMedia", lead: "Profiles of journalists and other people ProMedia writes about, compiled from open sources. Each profile shows when it was last updated.",
@@ -188,7 +188,7 @@ const T = {
     empty: "No one found.", count: n => `${n} ${n === 1 ? "profile" : "profiles"}`,
     note: "This profile is compiled from the open sources listed above and from ProMedia materials. We do not publish private data.",
     fix: "Spotted an error or want to add something? Contact us", photo: "Photo", license: "licence", noPhoto: "No freely licensed photo found yet",
-    official: "Public official", memorial: "In memoriam", memorialLead: "Journalists we have lost. Memorial cards are compiled from IMI, NUJU, the Gongadze Prize and other open sources.", memorialOpen: "Open In memoriam →", intlLabel: "International", country: "Country", bioLang: "The full profile is currently available in Ukrainian.", news: "News"
+    official: "Public official", memorial: "In memoriam", memorialLead: "Journalists we have lost. Memorial cards are compiled from IMI, NUJU, the Gongadze Prize and other open sources.", memorialOpen: "Open In memoriam →", memorialChip: "In memoriam: journalists we have lost", intlLabel: "International", country: "Country", bioLang: "The full profile is currently available in Ukrainian.", news: "News"
   }
 };
 
@@ -247,12 +247,7 @@ function indexPage(people, photos, lang) {
   const first = lang === "en" ? "lat" : "cyr";
   const second = lang === "en" ? "cyr" : "lat";
   const body = `<main class="pp-wrap pp-index">
-  <header class="pp-head">
-    <p class="pp-kicker">ПроМедіа</p>
-    <h1>${t.title}</h1>
-    <p class="pp-lead">${esc(t.lead)}</p>
-  </header>
-  ${people.some(p => p.memorial) ? `<a class="pp-memorial-band" href="?group=memorial"><span class="pp-candle" aria-hidden="true"></span><span><strong>${t.memorial}</strong><small>${esc(t.memorialLead)}</small></span><em>${t.memorialOpen}</em></a>` : ""}
+  <h1 class="pp-sr">${t.title}</h1>
   <section class="pp-tools" aria-label="${esc(t.search)}">
     <input id="pp-search" type="search" placeholder="${esc(t.search)}" autocomplete="off">
     <div class="pp-switch">
@@ -262,7 +257,7 @@ function indexPage(people, photos, lang) {
     <div class="pp-alpha" data-alphabet="cyr"${first === "cyr" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(UK_ALPHABET, "cyr")}</div>
     <div class="pp-alpha" data-alphabet="lat"${first === "lat" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(LAT_ALPHABET, "lat")}</div>
   </section>
-  <p class="pp-count" id="pp-count" data-template-one="${esc(t.count(1))}">${t.count(people.length)}</p>
+  <div class="pp-meta"><p class="pp-count" id="pp-count">${t.count(people.length)}</p>${people.some(p => p.memorial) ? `<a class="pp-memorial-chip" href="?group=memorial"><span class="pp-candle" aria-hidden="true"></span>${t.memorialChip}</a>` : ""}</div>
   <div class="pp-grid" id="pp-grid">
 ${sorted.map(p => card(p, photos[p.slug], lang)).join("\n")}
   </div>
