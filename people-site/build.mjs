@@ -17,6 +17,9 @@ const DATA = join(ROOT, "people", "data");
 const DIST = join(ROOT, "people-site", "dist");
 const SITE = "https://people.promedia.report";
 const NEWS = "https://news.promedia.report";
+// Поки субдомен people.promedia.report не прив'язано, мовні посилання відносні — так перемикач мов
+// у шапці працює і на тимчасовій адресі workers.dev. Після прив'язки можна поставити SITE.
+const ALT_ORIGIN = "";
 const CONTACTS = "https://promedia.report/#contacts";
 const args = new Set(process.argv.slice(2));
 const OFFLINE = args.has("--offline");
@@ -227,10 +230,10 @@ function shell({ lang, title, description, path, body, image }) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${esc(url)}">
-<link rel="alternate" hreflang="uk" href="${esc(SITE + path)}">
-<link rel="alternate" hreflang="en" href="${esc(SITE + "/en" + path)}">
-<link rel="alternate" hreflang="crh" href="${esc(SITE + "/crh" + path)}">
-<link rel="alternate" hreflang="x-default" href="${esc(SITE + path)}">
+<link rel="alternate" hreflang="uk" href="${esc(ALT_ORIGIN + path)}">
+<link rel="alternate" hreflang="en" href="${esc(ALT_ORIGIN + "/en" + path)}">
+<link rel="alternate" hreflang="crh" href="${esc(ALT_ORIGIN + "/crh" + path)}">
+<link rel="alternate" hreflang="x-default" href="${esc(ALT_ORIGIN + path)}">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="${esc(t.siteTitle)}">
 <meta property="og:title" content="${esc(title)}">
