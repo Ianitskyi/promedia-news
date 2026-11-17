@@ -149,17 +149,17 @@
         uk: {
           eyebrow: "Новини",
           title: "Новини ProMedia",
-          all: "Усі новини"
+          all: "Усі матеріали"
         },
         en: {
           eyebrow: "News",
           title: "ProMedia News",
-          all: "All news"
+          all: "All content"
         },
         crh: {
           eyebrow: "Haberler",
           title: "ProMedia haberleri",
-          all: "Bütün haberler"
+          all: "Bütün materiallar"
         }
       }[lang] || {};
       const section = document.createElement("section");
