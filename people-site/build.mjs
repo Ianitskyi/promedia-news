@@ -252,12 +252,12 @@ function indexPage(people, photos, lang) {
     <input id="pp-search" type="search" placeholder="${esc(t.search)}" autocomplete="off">
     <div class="pp-switch">
       <span class="pp-pills"><button type="button" class="is-active" data-alpha="${first}">${t[first]}</button><button type="button" data-alpha="${second}">${t[second]}</button></span>
-      <span class="pp-pills"><button type="button" class="is-active" data-group="all">${t.all}</button><button type="button" data-group="ua">${t.ua}</button><button type="button" data-group="intl">${t.intl}</button><button type="button" data-group="memorial">${t.memorial}</button></span>
+      <span class="pp-pills"><button type="button" class="is-active" data-group="all">${t.all}</button><button type="button" data-group="memorial"><span class="pp-candle" aria-hidden="true"></span>${t.memorial}</button></span>
     </div>
     <div class="pp-alpha" data-alphabet="cyr"${first === "cyr" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(UK_ALPHABET, "cyr")}</div>
     <div class="pp-alpha" data-alphabet="lat"${first === "lat" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(LAT_ALPHABET, "lat")}</div>
   </section>
-  <div class="pp-meta"><p class="pp-count" id="pp-count">${t.count(people.length)}</p>${people.some(p => p.memorial) ? `<a class="pp-memorial-chip" href="?group=memorial"><span class="pp-candle" aria-hidden="true"></span>${t.memorialChip}</a>` : ""}</div>
+  <div class="pp-meta"><p class="pp-count" id="pp-count">${t.count(people.length)}</p></div>
   <div class="pp-grid" id="pp-grid">
 ${sorted.map(p => card(p, photos[p.slug], lang)).join("\n")}
   </div>

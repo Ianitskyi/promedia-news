@@ -17,7 +17,7 @@ a { color: var(--ink); }
 img { max-width: 100%; }
 .pp-wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
 
-.pp-tools { position: sticky; top: 96px; z-index: 5; margin: 24px 0 10px; padding: 14px; background: rgba(255,255,255,.96); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 10px 30px -22px rgba(13,12,92,.5); backdrop-filter: blur(10px); }
+.pp-tools { position: relative; z-index: 5; margin: 24px 0 10px; padding: 14px; background: rgba(255,255,255,.96); border: 1px solid var(--border); border-radius: 18px; box-shadow: 0 10px 30px -22px rgba(13,12,92,.5); backdrop-filter: blur(10px); }
 #pp-search { width: 100%; padding: 12px 16px; border: 1px solid var(--border); border-radius: 12px; font: inherit; font-size: 16px; background: #fff; }
 #pp-search:focus { outline: 2px solid var(--accent); border-color: transparent; }
 .pp-switch { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; margin: 12px 0 8px; }
@@ -86,6 +86,7 @@ img { max-width: 100%; }
 .pp-meta .pp-count { margin: 0; }
 .pp-memorial-chip { display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 10px; border: 1px solid #d6d6dc; border-radius: 999px; background: #f1f1f3; color: #2a2a33; font-size: 12.5px; font-weight: 600; text-decoration: none; }
 .pp-memorial-chip:hover { background: #e6e6ea; }
+.pp-pills [data-group="memorial"] { display: inline-flex; align-items: center; gap: 7px; }
 .pp-candle { flex: none; width: 5px; height: 14px; border-radius: 2px; background: linear-gradient(#f2b950 0 30%, #9a9aa6 30%); }
 .pp-card--memorial { background: #f1f1f3; border-color: #d6d6dc; }
 .pp-card--memorial .pp-avatar { background: #dcdce2; color: #2a2a33; }
