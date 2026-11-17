@@ -54,14 +54,15 @@ test('The shared header links to Santa on desktop and mobile only in Ukrainian',
  }
 });
 
-test('The shared header has the BRIEF radio button only in Ukrainian and not on BRIEF itself',()=>{
- for(const [lang,host,want] of [['uk','news.promedia.report',true],['en','news.promedia.report',false],['crh','news.promedia.report',false],['uk','brief.promedia.report',false]]){
+test('BRIEF is a separate project for now: no Brief link or button in the shared header',()=>{
+ for(const lang of ['uk','en','crh']){
   const definitions=new Map();class Element{getAttribute(){return null;}}
   runInNewContext(read('public/js/promedia-global-shell.js'),{HTMLElement:Element,URL,
-   location:{hostname:host,pathname:lang==='uk'?'/':'/'+lang+'/',href:'https://'+host+'/'},
-   document:{documentElement:{lang},getElementById:()=>null,querySelector:()=>null,createElement:()=>({setAttribute(){}}),head:{appendChild(){}},body:{prepend(){}}},
+   location:{hostname:'news.promedia.report',pathname:lang==='uk'?'/':'/'+lang+'/',href:'https://news.promedia.report/'},
+   document:{documentElement:{lang},getElementById:()=>null,querySelector:()=>null,createElement:()=>({}),head:{appendChild(){}}},
    customElements:{get:n=>definitions.get(n),define:(n,c)=>definitions.set(n,c)}});
   const Header=definitions.get('promedia-global-header'),header=new Header();header.connectedCallback();
-  assert.equal(header.innerHTML.includes('data-pm-brief'),want,lang+' '+host);
+  assert.equal(header.innerHTML.includes('brief.promedia.report'),false,lang);
+  assert.equal(header.innerHTML.includes('data-pm-brief'),false,lang);
  }
 });
