@@ -27,7 +27,7 @@
     cards.forEach(function (c) {
       var ok = (!q || norm(c.dataset.search).indexOf(q) !== -1)
         && (!state.letter || c.dataset[state.alpha] === state.letter)
-        && (state.group === "all" || c.dataset.group === state.group);
+        && (state.group === "all" || (state.group === "memorial" ? c.dataset.memorial === "1" : c.dataset.group === state.group));
       c.hidden = !ok;
       if (ok) shown++;
     });
@@ -69,13 +69,14 @@
   });
   document.querySelectorAll("[data-group]").forEach(function (b) {
     if (b.classList.contains("pp-card")) return;
-    b.addEventListener("click", function () { state.group = b.getAttribute("data-group"); setActive(".pp-pills [data-group]", "data-group", state.group); apply(); });
+    b.addEventListener("click", function () { state.group = b.getAttribute("data-group"); setActive(".pp-pills [data-group]", "data-group", state.group); document.body.classList.toggle("pp-view-memorial", state.group === "memorial"); apply(); });
   });
   search.addEventListener("input", function () { state.q = search.value; apply(); });
 
   var p = new URLSearchParams(location.search);
   if (p.get("abc") === "lat" || p.get("abc") === "cyr") setAlpha(p.get("abc"));
   if (p.get("group")) { state.group = p.get("group"); setActive(".pp-pills [data-group]", "data-group", state.group); }
+  document.body.classList.toggle("pp-view-memorial", state.group === "memorial");
   if (p.get("letter")) {
     state.letter = p.get("letter");
     var box = document.querySelector('.pp-alpha[data-alphabet="' + state.alpha + '"]');

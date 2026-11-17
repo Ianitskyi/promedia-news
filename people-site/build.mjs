@@ -179,7 +179,7 @@ const T = {
     empty: "Нікого не знайдено.", count: n => `${n} ${plural(n, ["досьє", "досьє", "досьє"])}`,
     note: "Досьє компілятивне: його складено з відкритих джерел, перелічених вище, і з матеріалів ПроМедіа. Ми не публікуємо приватних даних.",
     fix: "Помітили неточність або хочете доповнити? Напишіть нам", photo: "Фото", license: "ліцензія", noPhoto: "Фото з вільною ліцензією поки не знайшли",
-    official: "Посадова особа", intlLabel: "Міжнародні", country: "Країна", bioLang: "", news: "Новини"
+    official: "Посадова особа", memorial: "Пам'ять", memorialLead: "Журналістки й журналісти, яких ми втратили. Пам'ятні картки складено за даними ІМІ, НСЖУ, Премії імені Георгія Ґонґадзе та інших відкритих джерел.", memorialOpen: "Відкрити розділ «Пам'ять» →", intlLabel: "Міжнародні", country: "Країна", bioLang: "", news: "Новини"
   },
   en: {
     title: "People", siteTitle: "People — ProMedia", lead: "Profiles of journalists and other people ProMedia writes about, compiled from open sources. Each profile shows when it was last updated.",
@@ -188,7 +188,7 @@ const T = {
     empty: "No one found.", count: n => `${n} ${n === 1 ? "profile" : "profiles"}`,
     note: "This profile is compiled from the open sources listed above and from ProMedia materials. We do not publish private data.",
     fix: "Spotted an error or want to add something? Contact us", photo: "Photo", license: "licence", noPhoto: "No freely licensed photo found yet",
-    official: "Public official", intlLabel: "International", country: "Country", bioLang: "The full profile is currently available in Ukrainian.", news: "News"
+    official: "Public official", memorial: "In memoriam", memorialLead: "Journalists we have lost. Memorial cards are compiled from IMI, NUJU, the Gongadze Prize and other open sources.", memorialOpen: "Open In memoriam →", intlLabel: "International", country: "Country", bioLang: "The full profile is currently available in Ukrainian.", news: "News"
   }
 };
 
@@ -233,9 +233,9 @@ function card(p, photo, lang) {
   const name = p.name[lang] || p.name.uk;
   const other = lang === "en" ? p.name.uk : p.name.en;
   const search = [p.name.uk, p.name.en, ...(p.aliases || []), p.role.uk, p.role.en].join(" ").toLowerCase();
-  return `<a class="pp-card" href="${prefix(lang)}/${p.slug}/" data-group="${p.group}" data-cyr="${firstLetter(p.sort.uk, UK_ALPHABET)}" data-lat="${firstLetter(p.sort.en, LAT_ALPHABET)}" data-search="${esc(search)}" data-sort-uk="${esc(p.sort.uk)}" data-sort-en="${esc(p.sort.en)}">
+  return `<a class="pp-card${p.memorial ? " pp-card--memorial" : ""}" href="${prefix(lang)}/${p.slug}/" data-group="${p.group}" data-memorial="${p.memorial ? 1 : 0}" data-cyr="${firstLetter(p.sort.uk, UK_ALPHABET)}" data-lat="${firstLetter(p.sort.en, LAT_ALPHABET)}" data-search="${esc(search)}" data-sort-uk="${esc(p.sort.uk)}" data-sort-en="${esc(p.sort.en)}">
   <span class="pp-avatar"><span>${esc(initials(name))}</span>${photo ? `<img src="${esc(photo.src)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>
-  <span class="pp-card-text"><strong>${esc(name)}</strong><small class="pp-alt">${esc(other)}</small><span class="pp-role">${esc(p.role[lang] || p.role.uk)}</span><small class="pp-date">${T[lang].updated}: ${fmtDate(p.updated, lang)}</small></span>
+  <span class="pp-card-text"><strong>${esc(name)}</strong><small class="pp-alt">${esc(other)}</small>${p.memorial ? `<span class="pp-life">${esc(p.life || "")}</span>` : ""}<span class="pp-role">${esc(p.role[lang] || p.role.uk)}</span><small class="pp-date">${T[lang].updated}: ${fmtDate(p.updated, lang)}</small></span>
 </a>`;
 }
 
@@ -252,11 +252,12 @@ function indexPage(people, photos, lang) {
     <h1>${t.title}</h1>
     <p class="pp-lead">${esc(t.lead)}</p>
   </header>
+  ${people.some(p => p.memorial) ? `<a class="pp-memorial-band" href="?group=memorial"><span class="pp-candle" aria-hidden="true"></span><span><strong>${t.memorial}</strong><small>${esc(t.memorialLead)}</small></span><em>${t.memorialOpen}</em></a>` : ""}
   <section class="pp-tools" aria-label="${esc(t.search)}">
     <input id="pp-search" type="search" placeholder="${esc(t.search)}" autocomplete="off">
     <div class="pp-switch">
       <span class="pp-pills"><button type="button" class="is-active" data-alpha="${first}">${t[first]}</button><button type="button" data-alpha="${second}">${t[second]}</button></span>
-      <span class="pp-pills"><button type="button" class="is-active" data-group="all">${t.all}</button><button type="button" data-group="ua">${t.ua}</button><button type="button" data-group="intl">${t.intl}</button></span>
+      <span class="pp-pills"><button type="button" class="is-active" data-group="all">${t.all}</button><button type="button" data-group="ua">${t.ua}</button><button type="button" data-group="intl">${t.intl}</button><button type="button" data-group="memorial">${t.memorial}</button></span>
     </div>
     <div class="pp-alpha" data-alphabet="cyr"${first === "cyr" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(UK_ALPHABET, "cyr")}</div>
     <div class="pp-alpha" data-alphabet="lat"${first === "lat" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(LAT_ALPHABET, "lat")}</div>
@@ -287,9 +288,9 @@ function personPage(p, photo, mentions, lang) {
   const facts = (p.facts || []).length ? `<section class="pp-facts"><h2>${t.facts}</h2><dl>${p.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}<dt>${t.country}</dt><dd>${esc(p.country)}</dd></dl></section>` : "";
   const mentionHtml = mentions.length ? `<section class="pp-mentions"><h2>${t.mentions}</h2><ul>${mentions.map(a => `<li><a href="${NEWS}${lang === "en" ? "/en" : ""}/article/${a.slug}">${esc((lang === "en" && a.titleEn) || a.title)}</a>${a.date ? ` <time datetime="${a.date}">${fmtDate(a.date, lang)}</time>` : ""}</li>`).join("")}</ul></section>` : "";
   const sources = `<section class="pp-sources"><h2>${t.sources}</h2><ol>${p.sources.map(s => `<li><a href="${esc(s.url)}" rel="noopener">${esc(s.title)}</a></li>`).join("")}</ol></section>`;
-  const badge = p.kind === "official" ? `<span class="pp-badge">${t.official}</span>` : p.group === "intl" ? `<span class="pp-badge">${t.intlLabel}</span>` : "";
+  const badge = p.memorial ? `<span class="pp-badge pp-badge--memorial">${t.memorial}</span>` : p.kind === "official" ? `<span class="pp-badge">${t.official}</span>` : p.group === "intl" ? `<span class="pp-badge">${t.intlLabel}</span>` : "";
   const bio = lang === "en" ? `<p class="pp-note">${t.bioLang}</p><div class="pp-bio" lang="uk">${paragraphs(p.bio.uk)}</div>` : `<div class="pp-bio">${paragraphs(p.bio.uk)}</div>`;
-  const body = `<main class="pp-wrap pp-person">
+  const body = `<main class="pp-wrap pp-person${p.memorial ? " pp-person--memorial" : ""}">
   <p class="pp-back"><a href="${prefix(lang)}/">${t.back}</a></p>
   <article>
     <header class="pp-person-head">
@@ -298,6 +299,7 @@ function personPage(p, photo, mentions, lang) {
         ${badge}
         <h1>${esc(name)}</h1>
         <p class="pp-alt">${esc(other)}</p>
+        ${p.memorial ? `<p class="pp-life-big">${esc(p.life || "")}</p>` : ""}
         <p class="pp-role">${esc(p.role[lang] || p.role.uk)}</p>
         <p class="pp-updated">${t.updated}: <time datetime="${p.updated}">${fmtDate(p.updated, lang)}</time></p>
       </div>
@@ -353,7 +355,7 @@ async function main() {
     builtAt: new Date().toISOString(),
     people: people.map(p => ({
       slug: p.slug, url: `${SITE}/${p.slug}/`, name: p.name, aliases: p.aliases || [], role: p.role, summary: p.summary,
-      group: p.group, country: p.country, updated: p.updated, photo: photos[p.slug] || null,
+      group: p.group, memorial: Boolean(p.memorial), life: p.life || null, country: p.country, updated: p.updated, photo: photos[p.slug] || null,
       articles: (byPerson.get(p.slug) || []).map(a => a.slug), sources: p.sources
     }))
   };

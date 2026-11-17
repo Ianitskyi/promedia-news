@@ -145,6 +145,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "volodymyr-ivanov",
+    "tag": "Володимир Іванов",
+    "aliases": [
+      "Владимир Иванов"
+    ],
+    "name": {
+      "uk": "Володимир Іванов",
+      "en": "Volodymyr Ivanov"
+    },
+    "role": {
+      "uk": "головний редактор газети «Слава Севастополя» (1988–1995)",
+      "en": "Editor-in-chief of Slava Sevastopolya (1988–1995)"
+    },
+    "summary": {
+      "uk": "Редактор щоденної газети «Слава Севастополя», убитий вибухом у 1995 році. Злочин досі не розкрито.",
+      "en": "Editor of the Sevastopol daily Slava Sevastopolya, killed by a bomb in 1995. The murder remains unsolved."
+    }
+  },
+  {
     "slug": "heorhii-gongadze",
     "tag": "Георгій Ґонґадзе",
     "aliases": [
@@ -156,8 +175,8 @@ export const PEOPLE = [
       "en": "Georgiy Gongadze"
     },
     "role": {
-      "uk": "журналіст, засновник «Української правди» (1969–2000)",
-      "en": "Journalist, founder of Ukrainska Pravda (1969–2000)"
+      "uk": "журналіст, засновник «Української правди»",
+      "en": "Journalist, founder of Ukrainska Pravda"
     },
     "summary": {
       "uk": "Засновник «Української правди», викрадений і вбитий у 2000 році; його справа стала символом боротьби за свободу слова.",
@@ -310,7 +329,7 @@ export const PEOPLE = [
       "en": "Head of investigations at Ukrainska Pravda"
     },
     "summary": {
-      "uk": "Один із найвідоміших українських журналістів-розслідувачів; у жовтні 2026 року його затримали у Відні під час редакційного завдання.",
+      "uk": "Керівник відділу розслідувань «Української правди», лауреат Премії Ґонґадзе 2026; у жовтні 2026 року його затримали у Відні під час редакційного завдання.",
       "en": "Prominent Ukrainian investigative journalist; detained in Vienna on assignment in October 2026."
     }
   },
