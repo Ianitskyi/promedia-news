@@ -1,0 +1,52 @@
+{
+  "slug": "scott-disavino",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Скотт ДіСавіно",
+    "en": "Scott DiSavino"
+  },
+  "sort": {
+    "uk": "ДіСавіно Скотт",
+    "en": "DiSavino Scott"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "кореспондент Reuters з енергетики, голова профспілкового осередку Reuters Guild",
+    "en": "Reuters energy correspondent, unit chair of the Reuters Guild"
+  },
+  "summary": {
+    "uk": "Кореспондент Reuters з енергетики, очолює профспілковий осередок журналістів Reuters у США.",
+    "en": "Reuters energy correspondent who chairs the union unit of Reuters journalists in the US."
+  },
+  "bio": {
+    "uk": "Скотт ДіСавіно — кореспондент агенції Reuters, який пише про енергетику, і голова осередку Reuters Guild, що об'єднує близько 300 журналістів агенції в США в складі Гільдії журналістів Нью-Йорка.\n\nУ листопаді 2026 року, після понад року переговорів про новий колективний договір, члени осередку 94% голосів підтримали право на страйк. «Ми готові припинити роботу, щоб довести, що без нас Reuters немає», — заявив тоді пан Скотт.",
+    "en": "Scott DiSavino is a Reuters correspondent covering energy and unit chair of the Reuters Guild, which brings together about 300 of the agency's US journalists within The NewsGuild of New York.\n\nIn November 2026, after more than a year of contract talks, 94% of unit members who voted backed a strike authorisation. “We are ready to walk off the job to prove that there is no Reuters without us,” he said."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Reuters"
+    ],
+    [
+      "Місто",
+      "Нью-Йорк"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "The NewsGuild: Unionized journalists at Reuters overwhelmingly authorize strike (17.11.2026)",
+      "url": "https://newsguild.org/unionized-journalists-at-reuters-overwhelmingly-authorize-strike/"
+    },
+    {
+      "title": "TheWrap: Reuters Journalists Overwhelmingly Authorize Strike",
+      "url": "https://www.thewrap.com/media-platforms/journalism/reuters-journalists-authorize-strike/"
+    },
+    {
+      "title": "ПроМедіа: Журналісти Reuters погрожують страйком через ШІ та зарплати",
+      "url": "https://news.promedia.report/article/zhurnalisty-reuters-pohrozhuiut-straikom-cherez-shi-ta-zarplaty"
+    }
+  ],
+  "updated": "2026-11-17"
+}

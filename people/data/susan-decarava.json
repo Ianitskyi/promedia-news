@@ -1,0 +1,52 @@
+{
+  "slug": "susan-decarava",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Сьюзен ДеКарава",
+    "en": "Susan DeCarava"
+  },
+  "sort": {
+    "uk": "ДеКарава Сьюзен",
+    "en": "DeCarava Susan"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "президентка Гільдії журналістів Нью-Йорка (The NewsGuild of New York)",
+    "en": "President of The NewsGuild of New York"
+  },
+  "summary": {
+    "uk": "Очолює Гільдію журналістів Нью-Йорка — профспілку працівників медіа, що представляє зокрема журналістів Reuters.",
+    "en": "Leads The NewsGuild of New York, the media workers' union that represents, among others, Reuters journalists."
+  },
+  "bio": {
+    "uk": "Сьюзен ДеКарава — президентка Гільдії журналістів Нью-Йорка (The NewsGuild of New York, місцевий осередок 31003 профспілки CWA), яка представляє працівників медіа, зокрема журналістів Reuters у США. За даними профспілки, пані Сьюзен вийшла з рядових членів спілки.\n\nУ травні 2025 року вона першою з президентів Гільдії журналістів Нью-Йорка отримала нагороду Visionary Award від Центральної ради праці Нью-Йорка. У листопаді 2026 року, після голосування журналістів Reuters за право на страйк, закликала керівництво агенції «ухвалити правильне рішення й погодитися на справедливий договір».",
+    "en": "Susan DeCarava is president of The NewsGuild of New York (Local 31003 of the CWA), which represents media workers including Reuters journalists in the US. According to the union, she comes from its rank and file.\n\nIn May 2025 she became the first president of The NewsGuild of New York to receive the Visionary Award from the NYC Central Labor Council. In November 2026, after Reuters journalists voted to authorise a strike, she said it was up to Reuters management to “make the right call and agree to a fair contract now”."
+  },
+  "facts": [
+    [
+      "Організація",
+      "The NewsGuild of New York"
+    ],
+    [
+      "Місто",
+      "Нью-Йорк"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "The NewsGuild: Susan DeCarava of NewsGuild of New York makes history (2025)",
+      "url": "https://newsguild.org/newsletter-susan-decarava-of-newsguild-of-new-york-makes-history/"
+    },
+    {
+      "title": "The NewsGuild: Unionized journalists at Reuters overwhelmingly authorize strike (17.11.2026)",
+      "url": "https://newsguild.org/unionized-journalists-at-reuters-overwhelmingly-authorize-strike/"
+    },
+    {
+      "title": "ПроМедіа: Журналісти Reuters погрожують страйком через ШІ та зарплати",
+      "url": "https://news.promedia.report/article/zhurnalisty-reuters-pohrozhuiut-straikom-cherez-shi-ta-zarplaty"
+    }
+  ],
+  "updated": "2026-11-17"
+}

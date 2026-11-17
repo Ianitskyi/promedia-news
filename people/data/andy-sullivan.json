@@ -1,0 +1,52 @@
+{
+  "slug": "andy-sullivan",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Енді Салліван",
+    "en": "Andy Sullivan"
+  },
+  "sort": {
+    "uk": "Салліван Енді",
+    "en": "Sullivan Andy"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "кореспондент вашингтонського бюро Reuters, член переговорної команди Reuters Guild",
+    "en": "Reuters correspondent in Washington, member of the Reuters Guild bargaining committee"
+  },
+  "summary": {
+    "uk": "Кореспондент Reuters у Вашингтоні, пише про внутрішню політику США; член переговорної команди профспілки.",
+    "en": "Reuters correspondent in Washington covering US domestic policy; member of the union's bargaining committee."
+  },
+  "bio": {
+    "uk": "Енді Салліван — кореспондент вашингтонського бюро агенції Reuters. Він висвітлював президентські кампанії, був провідним репортером команди Money & Politics, що пише про гроші в американській політиці, а з 2015 року працює над темою внутрішньої політики США.\n\nЯк член переговорної команди Reuters Guild у листопаді 2026 року він заявив Poynter, що Reuters прибуткова компанія і може платити журналістам більше, а заяви компанії про скрутні часи назвав «очевидно неправдою».",
+    "en": "Andy Sullivan is a correspondent in Reuters' Washington bureau. He covered presidential campaigns and was lead reporter on the Money & Politics team, and in 2015 moved to a broad beat covering US domestic policy.\n\nAs a member of the Reuters Guild bargaining committee, he told Poynter in November 2026 that Reuters is profitable and can afford to pay more, calling the company's claim of tough times “clearly not true”."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Reuters"
+    ],
+    [
+      "Місто",
+      "Вашингтон"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Talking Biz News: Reuters' Sullivan takes new beat covering domestic policy (2015)",
+      "url": "https://talkingbiznews.com/they-talk-biz-news/reuters-sullivan-takes-new-beat-covering-domestic-policy/"
+    },
+    {
+      "title": "Poynter: Reuters journalists authorize strike amid concerns over AI protections and wages (17.11.2026)",
+      "url": "https://www.poynter.org/business-work/2026/reuters-strike-ai-protections-deal-wages/"
+    },
+    {
+      "title": "ПроМедіа: Журналісти Reuters погрожують страйком через ШІ та зарплати",
+      "url": "https://news.promedia.report/article/zhurnalisty-reuters-pohrozhuiut-straikom-cherez-shi-ta-zarplaty"
+    }
+  ],
+  "updated": "2026-11-17"
+}

@@ -430,6 +430,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "andy-sullivan",
+    "tag": "Енді Салліван",
+    "aliases": [],
+    "name": {
+      "uk": "Енді Салліван",
+      "en": "Andy Sullivan"
+    },
+    "role": {
+      "uk": "кореспондент вашингтонського бюро Reuters, член переговорної команди Reuters Guild",
+      "en": "Reuters correspondent in Washington, member of the Reuters Guild bargaining committee"
+    },
+    "summary": {
+      "uk": "Кореспондент Reuters у Вашингтоні, пише про внутрішню політику США; член переговорної команди профспілки.",
+      "en": "Reuters correspondent in Washington covering US domestic policy; member of the union's bargaining committee."
+    }
+  },
+  {
     "slug": "yevhen-karmazin",
     "tag": "Євген Кармазін",
     "aliases": [],
@@ -870,6 +887,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "scott-disavino",
+    "tag": "Скотт ДіСавіно",
+    "aliases": [],
+    "name": {
+      "uk": "Скотт ДіСавіно",
+      "en": "Scott DiSavino"
+    },
+    "role": {
+      "uk": "кореспондент Reuters з енергетики, голова профспілкового осередку Reuters Guild",
+      "en": "Reuters energy correspondent, unit chair of the Reuters Guild"
+    },
+    "summary": {
+      "uk": "Кореспондент Reuters з енергетики, очолює профспілковий осередок журналістів Reuters у США.",
+      "en": "Reuters energy correspondent who chairs the union unit of Reuters journalists in the US."
+    }
+  },
+  {
     "slug": "sofiia-skyba",
     "tag": "Софія Скиба",
     "aliases": [],
@@ -884,6 +918,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює ІРРП — організатора найбільшої в Україні конференції журналістів-розслідувачів.",
       "en": "Heads RPDI, the organiser of Ukraine's largest investigative journalism conference."
+    }
+  },
+  {
+    "slug": "susan-decarava",
+    "tag": "Сьюзен ДеКарава",
+    "aliases": [],
+    "name": {
+      "uk": "Сьюзен ДеКарава",
+      "en": "Susan DeCarava"
+    },
+    "role": {
+      "uk": "президентка Гільдії журналістів Нью-Йорка (The NewsGuild of New York)",
+      "en": "President of The NewsGuild of New York"
+    },
+    "summary": {
+      "uk": "Очолює Гільдію журналістів Нью-Йорка — профспілку працівників медіа, що представляє зокрема журналістів Reuters.",
+      "en": "Leads The NewsGuild of New York, the media workers' union that represents, among others, Reuters journalists."
     }
   },
   {
