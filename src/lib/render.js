@@ -598,7 +598,16 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
       <div class="article-grid restored-feed">${cells.join("")}</div>`;
 
   }
+  // Narrow BRIEF strip (owner, 2026-11-17): Ukrainian home page only, as BRIEF is Ukrainian-only.
+  const briefStrip = !filtered && lang === "uk" ? `<aside class="brief-strip" data-brief-strip aria-label="BRIEF — аудіовипуск новин">
+      <button type="button" class="brief-strip__play" aria-label="Слухати BRIEF" hidden>▶</button>
+      <span class="brief-strip__name">BRIEF</span>
+      <span class="brief-strip__text">Головні новини — послухати за 5 хвилин</span>
+      <span class="brief-strip__meta"></span>
+      <a class="brief-strip__link" href="https://brief.promedia.report/"><span class="brief-strip__long">Текст і джерела</span><span class="brief-strip__short">Джерела</span> →</a>
+    </aside><script defer src="/js/promedia-brief-strip.js"></script>` : "";
   const bodyHtml = `<main class="wrap practice-home magazine-home">
+    ${briefStrip}
     ${list}
   </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js"></script>`;
   return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
