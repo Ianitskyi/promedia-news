@@ -1340,3 +1340,15 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) .article-card-body { padding: 12px 0; gap: 6px; }
   .practice-home .article-excerpt { font-size: 14px; line-height: 1.5; }
 }
+
+/* Mobile rubric pages (?tag=…): news-type cards have no photo, so they use the full width;
+   articles show a full-width photo above the headline. */
+@media (max-width: 620px) {
+  .practice-stream .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"], [data-content-kind="other"]) { grid-template-columns: 1fr; padding: 14px 0; }
+  .practice-stream .article-card { padding: 16px 0; }
+  .practice-stream .article-card[data-content-kind="article"] { display: flex; flex-direction: column; gap: 12px; }
+  .practice-stream .article-card[data-content-kind="article"] .article-card-media { display: block; width: 100%; }
+  .practice-stream .article-card[data-content-kind="article"] .article-card-img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 6px; }
+  .practice-stream .article-card[data-content-kind="article"] .article-excerpt { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .practice-stream .article-card[data-content-kind="article"] h3 { font-size: 18px; line-height: 1.25; }
+}
