@@ -38,8 +38,15 @@
     ]
   ],
   "photo": {
-    "wiki": [],
-    "check": []
+    "wiki": [
+      "uk:Олександра Кувшинова",
+      "en:Oleksandra Kuvshynova"
+    ],
+    "check": [
+      "journalist",
+      "журналіст",
+      "Fox"
+    ]
   },
   "sources": [
     {

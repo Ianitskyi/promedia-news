@@ -63,9 +63,7 @@ img { max-width: 100%; }
 .pp-photo { margin: 0; }
 .pp-photo img { width: 220px; height: 260px; object-fit: cover; object-position: 50% 20%; border-radius: 16px; background: var(--accent-tint); }
 .pp-photo figcaption { margin-top: 6px; font-size: 11.5px; line-height: 1.4; color: var(--muted); }
-.pp-photo--empty { width: 220px; height: 220px; border-radius: 16px; background: var(--accent-tint); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px; color: var(--ink); }
-.pp-photo--empty span { font-size: 54px; font-weight: 800; }
-.pp-photo--empty small { font-size: 12px; color: var(--muted); }
+.pp-avatar--ph img { object-position: 50% 50%; }
 .pp-summary { font-size: 19px; line-height: 1.5; font-weight: 600; color: var(--ink); margin: 0 0 18px; }
 .pp-bio p { font-size: 17px; margin: 0 0 14px; }
 .pp-person h2 { display: flex; align-items: center; gap: 12px; margin: 30px 0 12px; font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); }
@@ -83,7 +81,7 @@ img { max-width: 100%; }
 @media (max-width: 680px) {
   .pp-tools { position: static; padding: 10px; }
   .pp-person-head { grid-template-columns: 1fr; gap: 16px; }
-  .pp-photo img, .pp-photo--empty { width: 160px; height: 190px; }
+  .pp-photo img { width: 160px; height: 190px; }
   .pp-grid { grid-template-columns: 1fr; }
 }
 
@@ -105,7 +103,9 @@ body.pp-view-memorial { background: #ececef; }
 .pp-badge--memorial { background: #1b1b22; color: #f0f0f3; }
 .pp-person--memorial .pp-person-head h1 { color: #1b1b22; }
 .pp-person--memorial .pp-photo img { filter: grayscale(1); }
-.pp-person--memorial .pp-photo--empty { background: #dcdce2; color: #2a2a33; }
+
 .pp-life-big { margin: 6px 0 0; font-size: 20px; font-weight: 700; color: #1b1b22; letter-spacing: .02em; }
 .pp-person--memorial .pp-summary { color: #1b1b22; }
 .pp-person--memorial h2::before { background: #1b1b22; }
+
+.pp-card--memorial .pp-avatar--ph img, .pp-person--memorial .pp-photo--empty img { filter: grayscale(1); opacity: .85; }

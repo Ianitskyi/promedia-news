@@ -43,10 +43,14 @@
   ],
   "photo": {
     "wiki": [
-      "en:Pierre Zakrzewski"
+      "en:Pierre Zakrzewski",
+      "fr:Pierre Zakrzewski"
     ],
     "check": [
-      "Fox"
+      "Fox",
+      "camera",
+      "photograph",
+      "journalist"
     ]
   },
   "sources": [

@@ -43,10 +43,14 @@
   ],
   "photo": {
     "wiki": [
-      "en:Mantas Kvedaravičius"
+      "en:Mantas Kvedaravičius",
+      "lt:Mantas Kvedaravičius",
+      "uk:Мантас Кведаравічюс"
     ],
     "check": [
-      "film"
+      "film",
+      "режис",
+      "režis"
     ]
   },
   "sources": [

@@ -96,10 +96,39 @@ function stripHtml(s) {
 }
 
 async function api(lang, params) {
-  const url = `https://${lang}.wikipedia.org/w/api.php?` + new URLSearchParams({ format: "json", formatversion: "2", origin: "*", ...params });
+  const host = lang.includes(".") ? lang : `${lang}.wikipedia.org`;
+  const url = `https://${host}/w/api.php?` + new URLSearchParams({ format: "json", formatversion: "2", origin: "*", ...params });
   const res = await fetch(url, { headers: { "user-agent": "ProMediaPeopleBuilder/1.0 (+https://people.promedia.report)" } });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.json();
+}
+
+async function fileInfo(host, file) {
+  const info = await api(host, { action: "query", prop: "imageinfo", iiprop: "url|extmetadata", iiurlwidth: "600", titles: "File:" + file });
+  const ii = info.query?.pages?.[0]?.imageinfo?.[0];
+  if (!ii) return null;
+  const meta = ii.extmetadata || {};
+  const license = stripHtml(meta.LicenseShortName?.value);
+  if (!license || BAD_LICENSE.test(license) || !FREE_LICENSE.test(license)) return { rejected: license || "?" };
+  return {
+    src: ii.thumburl || ii.url,
+    author: stripHtml(meta.Artist?.value) || "автор невідомий",
+    license,
+    licenseUrl: meta.LicenseUrl?.value || "",
+    sourceUrl: ii.descriptionurl,
+    sourceName: "Вікісховище"
+  };
+}
+
+// Wikidata P18 («зображення») — часто є навіть тоді, коли в статті Вікіпедії немає головного фото.
+async function wikidataImage(qid) {
+  const c = await api("www.wikidata.org", { action: "wbgetclaims", entity: qid, property: "P18" });
+  const files = (c.claims?.P18 || []).map(x => x.mainsnak?.datavalue?.value).filter(Boolean);
+  for (const f of files) {
+    const r = await fileInfo("commons.wikimedia.org", f);
+    if (r && !r.rejected) return r;
+  }
+  return null;
 }
 
 async function wikiPhoto(p) {
@@ -107,33 +136,26 @@ async function wikiPhoto(p) {
     const [lang, ...rest] = candidate.split(":");
     const title = rest.join(":");
     try {
-      const q = await api(lang, { action: "query", redirects: "1", prop: "pageimages|extracts", piprop: "name", pilicense: "free", exintro: "1", explaintext: "1", exchars: "1200", titles: title });
+      const q = await api(lang, { action: "query", redirects: "1", prop: "pageimages|extracts|pageprops", ppprop: "wikibase_item", piprop: "name", pilicense: "free", exintro: "1", explaintext: "1", exchars: "1200", titles: title });
       const page = q.query?.pages?.[0];
-      if (!page || page.missing || !page.pageimage) continue;
+      if (!page || page.missing) continue;
       const extract = (page.extract || "").toLowerCase();
       const checks = p.photo.check || [];
       if (checks.length && !checks.some(k => extract.includes(k.toLowerCase()))) {
         console.warn(`  ${p.slug}: ${candidate} — сторінка не схожа на цю людину, пропускаю`);
         continue;
       }
-      const info = await api(lang, { action: "query", prop: "imageinfo", iiprop: "url|extmetadata", iiurlwidth: "600", titles: "File:" + page.pageimage });
-      const ii = info.query?.pages?.[0]?.imageinfo?.[0];
-      if (!ii) continue;
-      const meta = ii.extmetadata || {};
-      const license = stripHtml(meta.LicenseShortName?.value);
-      if (!license || BAD_LICENSE.test(license) || !FREE_LICENSE.test(license)) {
-        console.warn(`  ${p.slug}: ліцензія «${license}» не підходить`);
-        continue;
+      const wikiPage = `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(page.title.replace(/ /g, "_"))}`;
+      if (page.pageimage) {
+        const r = await fileInfo(lang, page.pageimage);
+        if (r && !r.rejected) return { ...r, wikiPage };
+        if (r?.rejected) console.warn(`  ${p.slug}: ліцензія «${r.rejected}» не підходить`);
       }
-      return {
-        src: ii.thumburl || ii.url,
-        author: stripHtml(meta.Artist?.value) || "автор невідомий",
-        license,
-        licenseUrl: meta.LicenseUrl?.value || "",
-        sourceUrl: ii.descriptionurl,
-        sourceName: "Вікісховище",
-        wikiPage: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(page.title.replace(/ /g, "_"))}`
-      };
+      const qid = page.pageprops?.wikibase_item;
+      if (qid) {
+        const r = await wikidataImage(qid);
+        if (r) return { ...r, wikiPage };
+      }
     } catch (err) {
       console.warn(`  ${p.slug}: ${candidate} — ${err.message}`);
     }
@@ -188,7 +210,7 @@ const T = {
     updated: "Оновлено", mentions: "Згадки в новинах ПроМедіа", sources: "Джерела", facts: "Коротко", back: "← Усі люди",
     empty: "Нікого не знайдено.", count: n => `${n} ${plural(n, ["досьє", "досьє", "досьє"])}`,
     note: "Досьє компілятивне: його складено з відкритих джерел, перелічених вище, і з матеріалів ПроМедіа. Ми не публікуємо приватних даних.",
-    fix: "Помітили неточність або хочете доповнити? Напишіть нам", photo: "Фото", license: "ліцензія", noPhoto: "Фото з вільною ліцензією поки не знайшли",
+    fix: "Помітили неточність або хочете доповнити? Напишіть нам", photo: "Фото", license: "ліцензія", noPhoto: "Фото ще шукаємо",
     official: "Посадова особа", memorial: "Пам'ять", memorialLead: "Журналістки й журналісти, яких ми втратили. Пам'ятні картки складено за даними ІМІ, НСЖУ, Премії імені Георгія Ґонґадзе та інших відкритих джерел.", memorialOpen: "Відкрити розділ «Пам'ять» →", memorialChip: "Пам'ять: журналісти, яких ми втратили", intlLabel: "Міжнародні", country: "Країна", bioLang: "", news: "Новини"
   },
   en: {
@@ -197,7 +219,7 @@ const T = {
     updated: "Updated", mentions: "Mentioned in ProMedia News", sources: "Sources", facts: "At a glance", back: "← All people",
     empty: "No one found.", count: n => `${n} ${n === 1 ? "profile" : "profiles"}`,
     note: "This profile is compiled from the open sources listed above and from ProMedia materials. We do not publish private data.",
-    fix: "Spotted an error or want to add something? Contact us", photo: "Photo", license: "licence", noPhoto: "No freely licensed photo found yet",
+    fix: "Spotted an error or want to add something? Contact us", photo: "Photo", license: "licence", noPhoto: "Photo coming",
     official: "Public official", memorial: "In memoriam", memorialLead: "Journalists we have lost. Memorial cards are compiled from IMI, NUJU, the Gongadze Prize and other open sources.", memorialOpen: "Open In memoriam →", memorialChip: "In memoriam: journalists we have lost", intlLabel: "International", country: "Country", bioLang: "The full profile is currently available in Ukrainian.", news: "News"
   },
   // Кримськотатарський інтерфейс: потрібна вичитка носієм мови.
@@ -207,7 +229,7 @@ const T = {
     updated: "Yañartıldı", mentions: "ProMedia haberlerinde", sources: "Menbalar", facts: "Qısqadan", back: "← Episi insanlar",
     empty: "Kimse tapılmadı.", count: n => `${n} dosye`,
     note: "Dosye yuqarıda kösterilgen açıq menbalardan ve ProMedia materiallarından toplandı. Şahsiy malümat derc etmeymiz.",
-    fix: "Hata körseñiz ya da bir şey qoşmaq isteseñiz, bizge yazıñız", photo: "Foto", license: "litsenziya", noPhoto: "Serbest litsenziyalı foto şimdilik tapılmadı",
+    fix: "Hata körseñiz ya da bir şey qoşmaq isteseñiz, bizge yazıñız", photo: "Foto", license: "litsenziya", noPhoto: "Foto şimdilik yoq",
     official: "Resmiy şahıs", memorial: "Hatıra", intlLabel: "", country: "Memleket", bioLang: "Tam dosye şimdilik ukrain tilinde.", news: "Haberler"
   }
 };
@@ -239,7 +261,7 @@ function shell({ lang, title, description, path, body, image }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(url)}">
-${image ? `<meta property="og:image" content="${esc(image)}">` : ""}
+<meta property="og:image" content="${esc(image || `${SITE}/og-people${lang === "uk" ? "" : "-" + lang}.png`)}">
 <link rel="icon" href="${NEWS}/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -261,7 +283,7 @@ function card(p, photo, lang) {
   const other = lang === "uk" ? p.name.en : p.name.uk;
   const search = [p.name.uk, p.name.en, ...(p.aliases || []), p.role.uk, p.role.en].join(" ").toLowerCase();
   return `<a class="pp-card${p.memorial ? " pp-card--memorial" : ""}" href="${prefix(lang)}/${p.slug}/" data-group="${p.group}" data-memorial="${p.memorial ? 1 : 0}" data-letter="${firstLetter(sortFor(p, lang), ALPHABETS[lang])}" data-search="${esc(search)}">
-  <span class="pp-avatar"><span>${esc(initials(name))}</span>${photo ? `<img src="${esc(photo.src)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>
+  <span class="pp-avatar${photo ? "" : " pp-avatar--ph"}"><img src="${esc(photo ? photo.src : "/placeholder.svg")}" alt="" loading="lazy" onerror="this.src='/placeholder.svg';this.onerror=null"></span>
   <span class="pp-card-text"><strong>${esc(name)}</strong><small class="pp-alt">${esc(other)}</small>${p.memorial ? `<span class="pp-life">${esc(p.life || "")}</span>` : ""}<span class="pp-role">${esc(textFor(p.role, lang))}</span><small class="pp-date">${T[lang].updated}: ${fmtDate(p.updated, lang)}</small></span>
 </a>`;
 }
@@ -293,7 +315,7 @@ ${sorted.map(p => card(p, photos[p.slug], lang)).join("\n")}
 }
 
 function photoBlock(photo, name, t) {
-  if (!photo) return `<div class="pp-photo pp-photo--empty"><span>${esc(initials(name))}</span><small>${t.noPhoto}</small></div>`;
+  if (!photo) return `<figure class="pp-photo pp-photo--empty"><img src="/placeholder.svg" alt=""><figcaption>${t.noPhoto}</figcaption></figure>`;
   const credit = photo.fromArticle
     ? `<a href="${esc(photo.sourceUrl)}">${esc(photo.sourceName)}</a>, ГО «ПроМедіа»`
     : `${esc(photo.author)} / <a href="${esc(photo.sourceUrl)}">${esc(photo.sourceName)}</a>${photo.license ? `, ${t.license} ${photo.licenseUrl ? `<a href="${esc(photo.licenseUrl)}">${esc(photo.license)}</a>` : esc(photo.license)}` : ""}`;

@@ -32,7 +32,15 @@
       "преса громадянської війни в США"
     ]
   ],
-  "photo": {},
+  "photo": {
+    "wiki": [
+      "en:Ford Risley"
+    ],
+    "check": [
+      "journalism",
+      "professor"
+    ]
+  },
   "sources": [
     {
       "title": "Penn State: Press experience during Civil War helped shape today's media",

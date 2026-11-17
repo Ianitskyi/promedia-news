@@ -41,11 +41,13 @@
   ],
   "photo": {
     "wiki": [
-      "en:Arman Soldin"
+      "en:Arman Soldin",
+      "fr:Arman Soldin"
     ],
     "check": [
       "AFP",
-      "journalist"
+      "journalist",
+      "journaliste"
     ]
   },
   "sources": [

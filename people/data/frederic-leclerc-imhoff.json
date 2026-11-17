@@ -43,11 +43,13 @@
   ],
   "photo": {
     "wiki": [
-      "en:Frédéric Leclerc-Imhoff"
+      "en:Frédéric Leclerc-Imhoff",
+      "fr:Frédéric Leclerc-Imhoff"
     ],
     "check": [
       "journalist",
-      "BFM"
+      "BFM",
+      "journaliste"
     ]
   },
   "sources": [
