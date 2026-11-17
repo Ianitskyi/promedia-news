@@ -155,8 +155,21 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         const audio=new Audio(BRIEF+d.audio);audio.preload="none";
         const show=()=>{rest.nodeValue=day+" · "+(audio.currentTime>0?fmt(audio.currentTime)+" / ":"")+fmt(audio.duration||d.duration_sec)};
         const state=()=>{const on=!audio.paused;btn.textContent=on?"❚❚":"▶";btn.setAttribute("aria-label",on?"Пауза":"Слухати BRIEF");bar.classList.toggle("is-playing",on);show()};
+        // Listening statistics (owner, 2026-11-17): started, half, to the end — once per page view,
+        // in the network's Google Analytics; nothing is sent after "Вимкнути аналітику".
+        const sent={};
+        const track=(name,percent)=>{
+          if(sent[name])return;sent[name]=1;
+          if(/(?:^|;\s*)pm_analytics=denied/.test(document.cookie||""))return;
+          const params={brief_edition:String(d.date||""),brief_place:"network_bar",brief_site:location.hostname,percent};
+          if(window.ProMediaAnalytics&&typeof window.ProMediaAnalytics.track==="function")window.ProMediaAnalytics.track(name,params);
+          else if(typeof window.gtag==="function")window.gtag("event",name,params);
+        };
+        const listen=()=>{const t=audio.duration||d.duration_sec;if(!sent.brief_play||!t)return;const f=audio.currentTime/t;if(f>=.5)track("brief_progress",50);if(f>=.95)track("brief_complete",100)};
+        audio.addEventListener("play",()=>track("brief_play",0));
+        audio.addEventListener("timeupdate",listen);
         ["play","pause","timeupdate"].forEach(e=>audio.addEventListener(e,state));
-        audio.addEventListener("ended",()=>{audio.currentTime=0;state()});
+        audio.addEventListener("ended",()=>{if(sent.brief_play)track("brief_complete",100);audio.currentTime=0;state()});
         btn.addEventListener("click",()=>audio.paused?audio.play():audio.pause());
         show();btn.hidden=false;
       }).catch(()=>{});
