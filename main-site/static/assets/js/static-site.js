@@ -104,28 +104,19 @@
       .then((r) => r.ok ? r.json() : Promise.reject(new Error("Projects API error")))
       .then((data) => {
         const records = Array.isArray(data) ? data : (Array.isArray(data?.items) ? data.items : (Array.isArray(data?.projects) ? data.projects : []));
-        // Active projects first, then upcoming, then completed; at most eight pills.
-        const rank = { active: 0, upcoming: 1, completed: 2 };
+        // Only projects that are running now; everything else lives behind "All projects".
         const statusOf = (p) => p.projectStatus || p.project_status || p.status || "";
         const items = records
-          .filter((p) => p && typeof p.slug === "string" && p.slug.trim())
-          .map((p, i) => ({ p, i }))
-          .sort((x, y) => ((rank[statusOf(x.p)] ?? 1) - (rank[statusOf(y.p)] ?? 1)) || (x.i - y.i))
-          .map((x) => x.p)
-          .slice(0, 8);
+          .filter((p) => p && typeof p.slug === "string" && p.slug.trim() && statusOf(p) === "active");
         if (!items.length) return;
 
-        const statusLabels = {
-          active: { uk: "Триває", en: "Active", crh: "Devam ete" },
-          upcoming: { uk: "Заплановано", en: "Upcoming", crh: "Planlaştırılğan" },
-          completed: { uk: "Завершено", en: "Completed", crh: "Tamamlandı" }
-        };
         const home = grid.dataset.home || "https://projects.promedia.report/";
         const allLabel = grid.dataset.all || "";
 
         // Pills show short project names only; the full title stays on the project page.
         const SHORT_NAMES = [
           { test: /санта|santa/i, uk: "Таємний Санта", en: "Secret Santa", crh: "Gizli Santa" },
+          { test: /спільнот|communit/i, uk: "Карта медійних спільнот", en: "Media Communities Map", crh: "Media cemiyetleri haritası" },
           { test: /атлас|atlas/i, uk: "Атлас медіа", en: "Media Atlas", crh: "Mediya Atlası" },
           { test: /proof|фактчек|fact-?check/i, uk: "Proof", en: "Proof", crh: "Proof" },
           { test: /automation lab/i, uk: "AI and Automation Lab 2.0", en: "AI and Automation Lab 2.0", crh: "AI and Automation Lab 2.0" },
@@ -138,13 +129,11 @@
               ? (p.titleCrh || p.title_crh || p.title)
               : p.title;
           const short = SHORT_NAMES.find((n) => n.test.test(`${p.slug} ${p.title || ""} ${p.titleEn || p.title_en || ""}`));
-          const title = short ? (short[lang] || short.uk) : fullTitle;
-          const status = statusOf(p);
-          const label = statusLabels[status] ? statusLabels[status][lang] || statusLabels[status].uk : "";
-          // Status is shown only by the coloured dot (and the tooltip), with no text in the pill.
-          return `<a class="pm-project-pill" href="${base}${encodeURIComponent(p.slug)}"${label ? ` title="${esc(label)}"` : ""}>`
-            + `<span class="pm-project-dot pm-project-dot--${esc(status || "none")}" aria-hidden="true"></span>${esc(title)}`
-            + `</a>`;
+          // Without a short name, just drop the obvious "of Ukraine" ending.
+          const title = short
+            ? (short[lang] || short.uk)
+            : String(fullTitle || "").replace(/\s+(України|в Україні|of Ukraine|in Ukraine|Ukrainanıñ|Ukrainada)$/i, "");
+          return `<a class="pm-project-pill" href="${base}${encodeURIComponent(p.slug)}" title="${esc(fullTitle)}">${esc(title)}</a>`;
         }).join("") + (allLabel ? `<a class="pm-project-pill pm-project-pill--all" href="${esc(home)}">${esc(allLabel)}&nbsp;&rarr;</a>` : "");
         updateFade();
       })
