@@ -370,11 +370,20 @@ function formatDate(dateStr, lang) {
   return d.toLocaleDateString(lang === "en" ? "en-GB" : "uk-UA", { year: "numeric", month: "long", day: "numeric" });
 }
 
-function articleMeta(article, lang) {
+// Owner decision (2026-11-17): hide the view counter for the first 24 hours after
+// publication, so fresh news never shows "0 views" before GA4 has collected anything.
+const VIEWS_VISIBLE_AFTER_MS = 24 * 60 * 60 * 1000;
+
+export function viewsVisible(publishedAt, now = Date.now()) {
+  const published = Date.parse(publishedAt);
+  return Number.isFinite(published) && now - published >= VIEWS_VISIBLE_AFTER_MS;
+}
+
+function articleMeta(article, lang, now = Date.now()) {
   const count = article.view_count;
   const labels = { uk: "Перегляди", en: "Views", crh: "Baqıluvlar" };
   const hints = { uk: "Перегляди за даними Google Analytics", en: "Page views from Google Analytics", crh: "Google Analytics malümatlarına köre baqıluvlar" };
-  const views = Number.isSafeInteger(count) && count >= 0
+  const views = Number.isSafeInteger(count) && count >= 0 && viewsVisible(article.published_at, now)
     ? `<span class="article-views" title="${pick(hints, lang)}" aria-label="${pick(labels, lang)}: ${count}"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>${new Intl.NumberFormat(lang === "en" ? "en-GB" : "uk-UA").format(count)}</span></span>`
     : "";
   return `<div class="article-meta"><p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>${views}</div>`;

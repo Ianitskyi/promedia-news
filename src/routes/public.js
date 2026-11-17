@@ -1,4 +1,4 @@
-import { renderHomepage, renderArticlePage, renderNotFound, PRACTICE_TOPICS } from "../lib/render.js";
+import { renderHomepage, renderArticlePage, renderNotFound, PRACTICE_TOPICS, viewsVisible } from "../lib/render.js";
 import { handlePublicPushRoute } from "../lib/push.js";
 import { ukrainianTypographyReplacer } from "../lib/typography.js";
 
@@ -209,7 +209,7 @@ ${entries.join("\n")}
       isImportant: Boolean(a.is_important),
       cardStyle: a.card_style || "auto",
       publishedAt: a.published_at,
-      viewCount: a.view_count ?? null,
+      viewCount: viewsVisible(a.published_at) ? (a.view_count ?? null) : null,
       viewsUpdatedAt: a.views_updated_at ?? null,
       url: `https://news.promedia.report/article/${a.slug}`
     }));
@@ -278,7 +278,7 @@ ${entries.join("\n")}
       isImportant: Boolean(article.is_important),
       cardStyle: article.card_style || "auto",
       publishedAt: article.published_at,
-      viewCount: article.view_count ?? null,
+      viewCount: viewsVisible(article.published_at) ? (article.view_count ?? null) : null,
       viewsUpdatedAt: article.views_updated_at ?? null
     });
   }

@@ -5,9 +5,9 @@ import { execFileSync } from "node:child_process";
 
 const source = readFileSync(new URL("../src/routes/public.js", import.meta.url), "utf8")
   .replace(/^import .*?;\s*/gm, "").replace(/export /g, "");
-const { PRACTICE_TOPICS } = await import("../src/lib/render.js");
-const route = new Function("renderHomepage", "ukrainianTypographyReplacer", "PRACTICE_TOPICS", source + "; return handlePublicRoute;")(
-  ({ articles }) => `<html>${articles.length}</html>`, (_key, value) => value, PRACTICE_TOPICS
+const { PRACTICE_TOPICS, viewsVisible } = await import("../src/lib/render.js");
+const route = new Function("renderHomepage", "ukrainianTypographyReplacer", "PRACTICE_TOPICS", "viewsVisible", source + "; return handlePublicRoute;")(
+  ({ articles }) => `<html>${articles.length}</html>`, (_key, value) => value, PRACTICE_TOPICS, viewsVisible
 );
 const longTag = "журналістські розслідування";
 const article = {
