@@ -22,5 +22,8 @@
     "alt": "Іконка застосунку Telegram на екрані смартфона"
   },
   "decision": "Andrii Ianitskyi",
-  "isImportant": false
+  "isImportant": false,
+  "cardStyle": "hero",
+  "revision": "2026-11-17-raise",
+  "raiseToTop": "2026-11-17-raise"
 }
