@@ -10,7 +10,7 @@
   "excerptCrh": "16 noyabrde ProMedia İCT qış bayramlarında anonim olaraq hediye deñiştirmek içün onlayn hızmet işke tüşürdi. Hızmet parasız ve uzaqtan çalışqan komandalar içün faydalı olacaq. Oyunnı santa.promedia.report saytında yaratmaq mümkün.",
   "bodyMdCrh": "16 noyabrde ProMedia İCT qış bayramlarında anonim olaraq hediye deñiştirmek içün onlayn hızmet işke tüşürdi. Hızmet parasız ve uzaqtan çalışqan komandalar içün faydalı olacaq. Oyunnı [santa.promedia.report](https://santa.promedia.report) saytında yaratmaq mümkün.\n\nFikir teşkilâtnıñ öz ihtiyacından doğdı, dep añlattı ProMedia İCT reberi **Andrii Ianitskyi**: «Aktivistlerimiz arasında Odesa, Kolomyia, Mykolaiv, Lviv, Kyiv ve Kyiv vilâyetinden insanlar bar, bu sebepten \"Таємний Санта\" (Gizli Santa) oynamaq — kerçekten zor iş. ==Biz öz işimizni qolaylaştırmağa qarar berdik ve diger komandalarnı da hızmetten faydalanmağa davet etemiz==».\n\nHızmet parasız ve tek ukrain tilinde mevcut. Teşkilâtçılarnıñ sözlerine köre, sistema şahsiy malümatnı tek muvaqqat saqlay ve oyun bitken soñ bütün malümatnı yoq ete.\n\n## Nasıl çalışa\n\n1. Teşkilâtçı [santa.promedia.report](https://santa.promedia.report) saytında oyun yarata. O, hediye büdcesini, qayd olunuvnıñ soñki müddetini ve hediye deñiştirüv tarihını belgiley.\n2. Teşkilâtçı iştirakçilerni elektron poçta ya da qapalı bağlantılar vastasınen davet ete. Episi iştiraknı tasdıqlağan soñ, sistema çekiliş keçire.\n3. Er «gizli Santa» hediye yollamalı olğan insan aqqında malümat ala. Hediyelerni iştirakçiler özleri yollaylar. Anonimlikni saqlamaq içün poçtada yollayıcınıñ adını yazmamağa rica etmek ya da internet-mağazadan hediyeni doğrudan alıcınıñ adına ısmarlamaq kerek.\n\n## ProMedia İCT aqqında\n\nProMedia İCT tedqiqatlar, ögretim, tedbirler ve maslaatlar vastasınen ukrain mediyası ve kommunikatsiyalarınıñ inkişafı üzerinde çalışa. Teşkilâtnıñ diger leyhaları:\n\n- [Jurnalistika fakultetleriniñ reytingi](https://ratings.promedia.report/crh/);\n- [Mediya cemaatleriniñ haritası](https://communities.promedia.report/crh/);\n- [Qayd etilgen mediyalar atlası](https://atlas.promedia.report/crh);\n- [Cemaat inkişafı boyunca qollanma](https://research.promedia.report/membership-guide/) (ukrain tilinde).\n\nHızmet boyunca teklif ve tevsiyelerni [info@promedia.report](mailto:info@promedia.report) adresine yollamaq mümkün.\n\n[Oyun yaratmaq →](https://santa.promedia.report)\n\n---\n\n*İllüstratsiya: ProMedia İCT.*\n\n*ProMedia İCT basın bildirisi esasında.*\n\n*Bu metin ProMedia İCT-niñ texnik vazifesine köre avtomatik olaraq yaratıldı. Derc etüv aqqında qararnı Andrii Ianitskyi qabul etti.*",
   "tags": [
-    "Новини",
+    "Прес-реліз",
     "Таємний Санта",
     "ПроМедіа"
   ],
@@ -20,5 +20,6 @@
   },
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
-  "cardStyle": "hero"
+  "cardStyle": "hero",
+  "revision": "2026-11-17-press-release"
 }
