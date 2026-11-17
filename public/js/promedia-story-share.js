@@ -155,3 +155,14 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
+
+// Кліки на кнопку «Додати в Google» (бажані джерела) → подія GA4 з місцем кнопки,
+// щоб порівнювати, яке розміщення працює краще.
+(function () {
+  "use strict";
+  document.addEventListener("click", function (event) {
+    var link = event.target && event.target.closest ? event.target.closest("[data-google-source]") : null;
+    if (!link || !window.ProMediaAnalytics || typeof window.ProMediaAnalytics.track !== "function") return;
+    window.ProMediaAnalytics.track("google_preferred_source_click", { placement: link.getAttribute("data-google-source") });
+  });
+})();

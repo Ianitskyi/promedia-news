@@ -486,6 +486,45 @@ function shareIcon(network) {
   return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="${SHARE_ICON_PATHS[network]}" /></svg>`;
 }
 
+// «Бажані джерела» Google: читач додає news.promedia.report, і Google частіше
+// показує наші новини в Top Stories / Discover. Звичайне посилання (deeplink),
+// без стороннього скрипту Google; кліки рахує promedia-story-share.js.
+const GOOGLE_SOURCE_URL = "https://www.google.com/preferences/source?q=news.promedia.report";
+const GOOGLE_SOURCE_COPY = {
+  uk: { aria: "Додати «ПроМедіа» до бажаних джерел Google", button: "Додати", text: "Додайте «ПроМедіа» до бажаних джерел Google — і наші новини траплятимуться вам частіше." },
+  en: { aria: "Add ProMedia as a preferred source on Google", button: "Add", text: "Add ProMedia as a preferred source on Google to see our news more often." },
+  crh: { aria: "«ProMedia»-nı Google-da tercih etilgen menbalarğa qoşmaq", button: "Qoşmaq", text: "«ProMedia»-nı Google-da tercih etilgen menbalarğa qoşuñız — haberlerimiz sizge daa sıq rastkelir." }
+};
+const GOOGLE_G_MONO = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.45a5.52 5.52 0 0 1-2.4 3.62v3h3.88c2.27-2.09 3.57-5.17 3.57-8.81Z"/><path d="M12 24c3.24 0 5.96-1.07 7.94-2.91l-3.88-3.01c-1.07.72-2.45 1.15-4.06 1.15-3.12 0-5.77-2.11-6.71-4.95H1.28v3.11A12 12 0 0 0 12 24Z"/><path d="M5.29 14.28a7.2 7.2 0 0 1 0-4.56V6.61H1.28a12 12 0 0 0 0 10.78l4.01-3.11Z"/><path d="M12 4.77c1.76 0 3.34.61 4.59 1.8l3.44-3.44A11.5 11.5 0 0 0 12 0 12 12 0 0 0 1.28 6.61l4.01 3.11C6.23 6.88 8.88 4.77 12 4.77Z"/></svg>';
+
+// Компактна плашка стоїть на місці тонкої лінії між текстом новини й службовими
+// примітками (фото, джерела); лінія лишається в HTML прихованою, бо від неї
+// залежить курсив приміток. Якщо приміток немає — плашка йде після тексту.
+const NOTES_DIVIDER = '<hr class="article-notes-divider" />';
+function withGoogleSourceStrip(html, lang) {
+  const strip = googleSourceCta(lang, "in-text");
+  // Вставка всередині тексту — після третього абзацу, але не серед приміток.
+  const notesAt = html.indexOf(NOTES_DIVIDER);
+  const body = notesAt === -1 ? html : html.slice(0, notesAt);
+  let pos = -1;
+  for (let i = 0, from = 0; i < 3; i += 1) {
+    const at = body.indexOf("</p>", from);
+    if (at === -1) { pos = -1; break; }
+    pos = at + 4; from = pos;
+  }
+  if (pos !== -1 && body.indexOf("</p>", pos) !== -1) return html.slice(0, pos) + strip + html.slice(pos);
+  return notesAt === -1 ? html + strip : html.slice(0, notesAt) + strip + html.slice(notesAt);
+}
+
+function googleSourceCta(lang, placement) {
+  const copy = pick(GOOGLE_SOURCE_COPY, lang);
+  const text = copy.text;
+  return `<aside class="google-source-cta google-source-cta--${escapeHtml(placement)}" aria-label="${escapeHtml(copy.aria)}">
+  <p>${escapeHtml(text)}</p>
+  <a class="google-source-button" href="${GOOGLE_SOURCE_URL}" target="_blank" rel="noopener" data-google-source="${escapeHtml(placement)}" aria-label="${escapeHtml(copy.aria)}">${GOOGLE_G_MONO}<span>${escapeHtml(copy.button)}</span></a>
+</aside>`;
+}
+
 function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl }) {
   const encodedUrl = encodeURIComponent(articleUrl);
   const encodedTitle = encodeURIComponent(title);
@@ -503,6 +542,7 @@ function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl }) {
   <div class="article-share-links">
     ${links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener" aria-label="${escapeHtml(`${labels.title}: ${label}`)}" title="${escapeHtml(label)}">${shareIcon(label)}</a>`).join("")}
     <button type="button" data-share-instagram data-share-cover="${escapeHtml(coverUrl || "")}" data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}" data-copy="${escapeHtml(labels.copy)}" data-copied="${escapeHtml(labels.copied)}" aria-label="${escapeHtml(`${labels.title}: Instagram`)}" title="${escapeHtml(labels.instagram)}">${shareIcon("Instagram")}</button>
+    <a href="${GOOGLE_SOURCE_URL}" target="_blank" rel="noopener" data-google-source="share-row" aria-label="${escapeHtml(pick(GOOGLE_SOURCE_COPY, lang).aria)}" title="${escapeHtml(pick(GOOGLE_SOURCE_COPY, lang).aria)}">${GOOGLE_G_MONO}</a>
   </div>
   <p class="article-share-status" data-share-status role="status"></p>
 </section>`;
@@ -654,7 +694,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   ${articleMeta(article, lang)}
   ${articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl })}
   ${cover}
-  <div class="article-body">${bodyHtmlContent}</div>
+  <div class="article-body">${withGoogleSourceStrip(bodyHtmlContent, lang)}</div>
   ${peopleBox(tags, lang)}
   ${mediaLinksHtml}
   ${projectPromo(lang, "atlas", "article-bottom")}
