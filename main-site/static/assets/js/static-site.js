@@ -92,36 +92,36 @@
       }[m]));
     }
 
-    function projectTagLabel(tag, lang) {
-      const map = {
-        "навчання": { en: "training", crh: "talim" },
-        "спільнота": { en: "community", crh: "cemaat" },
-        "спільноти": { en: "communities", crh: "cemaatlar" },
-        "дослідження": { en: "research", crh: "tedqiqat" },
-        "консалтинг": { en: "consulting", crh: "mesleat" },
-        "медіа": { en: "media", crh: "mediya" },
-        "штучний інтелект": { en: "artificial intelligence", crh: "suniy zekâ" },
-        "автоматизація": { en: "automation", crh: "avtomatlaştırma" },
-        "фактчекінг": { en: "fact-checking", crh: "faktçeking" },
-        "відео": { en: "video", crh: "video" },
-        "модерація": { en: "moderation", crh: "moderatsiya" },
-        "інструмент": { en: "tool", crh: "alet" },
-        "інструменти": { en: "tools", crh: "aletler" },
-        "журналістика": { en: "journalism", crh: "jurnalistika" },
-        "медіаграмотність": { en: "media literacy", crh: "mediya savatlılığı" }
-      };
-      const value = String(tag || "").trim();
-      if (lang === "uk") return value;
-      const key = value.toLocaleLowerCase("uk-UA");
-      return (map[key] && map[key][lang]) || value;
-    }
+    // Fade the right edge while more pills are hidden behind it.
+    const updateFade = () => {
+      grid.classList.toggle("has-more", grid.scrollLeft + grid.clientWidth < grid.scrollWidth - 2);
+    };
+    grid.addEventListener("scroll", updateFade, { passive: true });
+    window.addEventListener("resize", updateFade);
+    updateFade();
 
     fetch(api)
       .then((r) => r.ok ? r.json() : Promise.reject(new Error("Projects API error")))
       .then((data) => {
         const records = Array.isArray(data) ? data : (Array.isArray(data?.items) ? data.items : (Array.isArray(data?.projects) ? data.projects : []));
-        const items = records.filter((p) => p && typeof p.slug === "string" && p.slug.trim()).slice(0, 4);
+        // Active projects first, then upcoming, then completed; at most eight pills.
+        const rank = { active: 0, upcoming: 1, completed: 2 };
+        const statusOf = (p) => p.projectStatus || p.project_status || p.status || "";
+        const items = records
+          .filter((p) => p && typeof p.slug === "string" && p.slug.trim())
+          .map((p, i) => ({ p, i }))
+          .sort((x, y) => ((rank[statusOf(x.p)] ?? 1) - (rank[statusOf(y.p)] ?? 1)) || (x.i - y.i))
+          .map((x) => x.p)
+          .slice(0, 8);
         if (!items.length) return;
+
+        const statusLabels = {
+          active: { uk: "Триває", en: "Active", crh: "Devam ete" },
+          upcoming: { uk: "Заплановано", en: "Upcoming", crh: "Planlaştırılğan" },
+          completed: { uk: "Завершено", en: "Completed", crh: "Tamamlandı" }
+        };
+        const home = grid.dataset.home || "https://projects.promedia.report/";
+        const allLabel = grid.dataset.all || "";
 
         grid.innerHTML = items.map((p) => {
           const title = lang === "en"
@@ -129,55 +129,14 @@
             : lang === "crh"
               ? (p.titleCrh || p.title_crh || p.title)
               : p.title;
-
-          const excerpt = lang === "en"
-            ? (p.excerptEn || p.excerpt_en || p.excerpt || "")
-            : lang === "crh"
-              ? (p.excerptCrh || p.excerpt_crh || p.excerpt || "")
-              : (p.excerpt || "");
-
-          const status = p.projectStatus || p.project_status || p.status || "";
-          const label = status === "active"
-            ? (lang === "uk" ? "Триває" : lang === "en" ? "Active" : "Devam ete")
-            : status === "completed"
-              ? (lang === "uk" ? "Завершено" : lang === "en" ? "Completed" : "Tamamlandı")
-              : status === "upcoming"
-                ? (lang === "uk" ? "Заплановано" : lang === "en" ? "Upcoming" : "Planlaştırılğan")
-                : "";
-
-          const badgeClass = status === "completed"
-            ? "bg-secondary"
-            : status === "upcoming" ? "bg-warning text-dark" : "bg-success";
-          const rawImg = p.coverImageUrl || p.cover_image_url || "";
-          let img = "";
-          if (typeof rawImg === "string" && rawImg.trim()) {
-            try {
-              const url = new URL(rawImg, "https://projects.promedia.report");
-              // Only render ordinary web images; one malformed API record
-              // must not prevent the remaining project cards from loading.
-              if (url.protocol === "https:" || url.protocol === "http:") img = url.toString();
-            } catch (_) {}
-          }
-          let tags = [];
-          if (Array.isArray(p.tags)) tags = p.tags;
-          else {
-            try { tags = JSON.parse(p.tags || "[]"); } catch (_) {}
-          }
-
-          return `<div class="col static-project-card">
-            <a href="${base}${encodeURIComponent(p.slug)}" class="card h-100 text-decoration-none text-dark shadow-sm">
-              <div class="position-relative">
-                <div class="ratio ratio-16x9 bg-light rounded-top overflow-hidden">
-                  ${img ? `<img loading="lazy" decoding="async" src="${esc(img)}" class="w-100 h-100" style="object-fit:cover" alt="${esc(title)}">` : ""}
-                </div>
-                ${label ? `<span class="badge position-absolute top-0 start-0 m-2 ${badgeClass}">${esc(label)}</span>` : ""}
-              </div>
-              <div class="card-body">
-                <h3 class="h5 card-title mb-0">${esc(title)}</h3>
-              </div>
-            </a>
-          </div>`;
-        }).join("");
+          const status = statusOf(p);
+          const label = statusLabels[status] ? statusLabels[status][lang] || statusLabels[status].uk : "";
+          return `<a class="pm-project-pill" href="${base}${encodeURIComponent(p.slug)}">`
+            + `<span class="pm-project-dot pm-project-dot--${esc(status || "none")}" aria-hidden="true"></span>${esc(title)}`
+            + (label ? `<span class="visually-hidden"> — ${esc(label)}</span>` : "")
+            + `</a>`;
+        }).join("") + (allLabel ? `<a class="pm-project-pill pm-project-pill--all" href="${esc(home)}">${esc(allLabel)}&nbsp;&rarr;</a>` : "");
+        updateFade();
       })
       .catch(() => {});
 
