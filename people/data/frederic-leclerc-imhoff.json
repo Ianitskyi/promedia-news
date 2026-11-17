@@ -1,0 +1,68 @@
+{
+  "slug": "frederic-leclerc-imhoff",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2022",
+  "name": {
+    "uk": "Фредерік Леклерк-Імгофф",
+    "en": "Frédéric Leclerc-Imhoff"
+  },
+  "sort": {
+    "uk": "Леклерк-Імгофф Фредерік",
+    "en": "Leclerc-Imhoff Frederic"
+  },
+  "aliases": [
+    "Фредерік Леклерк-Імхофф"
+  ],
+  "role": {
+    "uk": "репортер і оператор французького телеканалу BFMTV",
+    "en": "BFMTV reporter and camera operator"
+  },
+  "summary": {
+    "uk": "Французький журналіст BFMTV, загиблий 30 травня 2022 року біля Сєвєродонецька, коли знімав евакуацію.",
+    "en": "French BFMTV journalist killed near Sievierodonetsk on 30 May 2022 while filming an evacuation."
+  },
+  "bio": {
+    "uk": "Фредерік Леклерк-Імгофф з 2016 року працював оператором і репортером французького телеканалу BFMTV; в Україну він приїхав у друге відрядження після 24 лютого 2022 року.\n\n30 травня 2022 року він супроводжував гуманітарну евакуацію в броньованому автомобілі на дорозі до Лисичанська, коли машина потрапила під російський обстріл. Журналіст загинув від осколкового поранення, його колега Максим Брандштеттер дістав легкі поранення. Евакуацію з Луганщини того дня зупинили. Міністерка закордонних справ Франції заявила, що журналіста вбила російська атака під час виконання ним обов'язку інформувати."
+  },
+  "facts": [
+    [
+      "Загинув",
+      "30 травня 2022, Луганщина"
+    ],
+    [
+      "Редакція",
+      "BFMTV"
+    ],
+    [
+      "Країна",
+      "Франція"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Frédéric Leclerc-Imhoff"
+    ],
+    "check": [
+      "journalist",
+      "BFM"
+    ]
+  },
+  "sources": [
+    {
+      "title": "CPJ: в Україні вбито французького журналіста",
+      "url": "https://cpj.org/?p=198454"
+    },
+    {
+      "title": "НСЖУ: Леклерк-Імгофф став восьмим медійником, загиблим при виконанні",
+      "url": "https://nsju.org/novini/franczuzkyj-zhurnalist-leklerk-imhoff-stav-vosmym-medijnykom-yakyj-zagynuv-na-vijni-pry-vykonanni-obovyazkiv"
+    },
+    {
+      "title": "IPI: Frédéric Leclerc-Imhoff",
+      "url": "https://ipi.media/?p=70988"
+    }
+  ],
+  "updated": "2026-11-17"
+}

@@ -1,0 +1,67 @@
+{
+  "slug": "viktoriia-roshchyna",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2024",
+  "name": {
+    "uk": "Вікторія Рощина",
+    "en": "Viktoriia Roshchyna"
+  },
+  "sort": {
+    "uk": "Рощина Вікторія",
+    "en": "Roshchyna Viktoriia"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "журналістка, працювала на окупованих територіях",
+    "en": "Journalist who reported from occupied territories"
+  },
+  "summary": {
+    "uk": "Журналістка, яка зникла на окупованій території в серпні 2023 року й загинула в російському полоні у вересні 2024 року.",
+    "en": "Journalist who disappeared in occupied territory in August 2023 and died in Russian captivity in September 2024."
+  },
+  "bio": {
+    "uk": "Вікторія Рощина — українська журналістка, яка висвітлювала життя на окупованих територіях. 3 серпня 2023 року вона зникла на тимчасово окупованій території.\n\nЗа даними журналістів-розслідувачів, її утримували в нелегальних в'язницях в окупованих Енергодарі та Мелітополі, а потім у СІЗО №2 Таганрога в Ростовській області Росії; вона систематично зазнавала катувань. 19 вересня 2024 року пані Вікторія померла в полоні; їй було 27 років.\n\nНаприкінці лютого 2025 року її тіло повернули в Україну під час репатріації, особу встановили за ДНК. Офіс генпрокурора повідомив про численні сліди катувань, завданих за життя, ознаки розтину на території Росії та відсутність деяких внутрішніх органів; причину смерті через стан тіла встановити не вдалося."
+  },
+  "facts": [
+    [
+      "Зникла",
+      "3 серпня 2023, окупована територія"
+    ],
+    [
+      "Померла",
+      "19 вересня 2024, у російському полоні"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Viktoriia Roshchyna",
+      "uk:Вікторія Рощина"
+    ],
+    "check": [
+      "journalist",
+      "журналіст"
+    ]
+  },
+  "sources": [
+    {
+      "title": "НСЖУ: висока ймовірність, що до Вікторії Рощиної застосовували катування",
+      "url": "https://nsju.org/novini/vysoka-jmovirnist-shho-do-zhurnalistky-viktoriyi-roshhynoyi-zastosovuvaly-katuvannya-ofis-genprokurora"
+    },
+    {
+      "title": "Mind: Україні повернули тіло Вікторії Рощиної",
+      "url": "https://mind.ua/news/20288342-ukrayini-povernuli-tilo-zhurnalistki-viktoriyi-roshchinoyi-yaku-vbili-u-rosijskomu-poloni"
+    },
+    {
+      "title": "Еспресо: в якому стані повернули тіло журналістки",
+      "url": "https://espreso.tv/viyna-z-rosiyeyu-zi-slidami-katuvan-y-oznakami-roztinu-v-ofisi-genprokurora-rozpovili-v-yakomu-stani-z-rf-povernuli-tilo-zhurnalistki-roshchinoi"
+    },
+    {
+      "title": "Телеграф: що відомо про Вікторію Рощину",
+      "url": "https://news.telegraf.com.ua/ukr/ukraina/2025-04-24/5906688-tilo-viktorii-roshchinoi-povernuli-do-ukraini-shcho-vidomo-pro-zhurnalistku-yaku-vbila-rosiya"
+    }
+  ],
+  "updated": "2026-11-17"
+}

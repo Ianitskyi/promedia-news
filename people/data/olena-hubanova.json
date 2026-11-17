@@ -1,0 +1,64 @@
+{
+  "slug": "olena-hubanova",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2025",
+  "name": {
+    "uk": "Олена Губанова",
+    "en": "Olena Hubanova"
+  },
+  "sort": {
+    "uk": "Губанова Олена",
+    "en": "Hubanova Olena"
+  },
+  "aliases": [
+    "Альона Грамова",
+    "Олена Грамова"
+  ],
+  "role": {
+    "uk": "воєнна кореспондентка телеканалу Freedom",
+    "en": "War correspondent for Freedom TV"
+  },
+  "summary": {
+    "uk": "Воєнна кореспондентка Freedom з Донеччини, загинула від удару дрона в Краматорську 23 жовтня 2025 року.",
+    "en": "Freedom TV war correspondent from Donetsk region, killed by a drone strike in Kramatorsk on 23 October 2025."
+  },
+  "bio": {
+    "uk": "Олена Губанова (Альона Грамова) — журналістка з Донеччини, уродженка Єнакієвого, яка залишила професію фінансистки, щоб розповідати про рідний край. З 2021 року вона працювала воєнною кореспонденткою каналів державного іномовлення України, з перших днів повномасштабного вторгнення — у найгарячіших точках Донбасу. У 2023 році нагороджена орденом княгині Ольги III ступеня.\n\n23 жовтня 2025 року російський дрон «Ланцет» влучив в автомобіль знімальної групи телеканалу Freedom у Краматорську. Пані Олена та оператор Євген Кармазін загинули, журналіст Олександр Количев дістав важкі поранення."
+  },
+  "facts": [
+    [
+      "Загинула",
+      "23 жовтня 2025, Краматорськ"
+    ],
+    [
+      "Редакція",
+      "Freedom"
+    ],
+    [
+      "Відзнаки",
+      "орден княгині Ольги III ст. (2023)"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": []
+  },
+  "sources": [
+    {
+      "title": "Главком: що відомо про загиблих журналістів Freedom",
+      "url": "https://glavcom.ua/kyiv/zahibel-zhurnalistiv-telekanalu-freedom-nazvano-datu-proshchannja-1084910.html"
+    },
+    {
+      "title": "АрміяInform: удари по Краматорську",
+      "url": "https://armyinform.com.ua/2025/10/23/vorog-sogodni-trychi-vdaryv-po-kramatorsku-dronamy-na-optovolokni/"
+    },
+    {
+      "title": "Слово і діло: загибель журналістів у Краматорську",
+      "url": "https://www.slovoidilo.ua/2025/10/23/novyna/bezpeka/zelenskyj-vidreahuvav-zahybel-zhurnalistiv-kramatorsku-vnaslidok-udaru-rf"
+    }
+  ],
+  "updated": "2026-11-17"
+}

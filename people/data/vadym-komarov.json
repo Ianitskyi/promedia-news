@@ -1,0 +1,65 @@
+{
+  "slug": "vadym-komarov",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2019",
+  "name": {
+    "uk": "Вадим Комаров",
+    "en": "Vadym Komarov"
+  },
+  "sort": {
+    "uk": "Комаров Вадим",
+    "en": "Komarov Vadym"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "черкаський журналіст-розслідувач",
+    "en": "Investigative journalist from Cherkasy"
+  },
+  "summary": {
+    "uk": "Черкаський журналіст-розслідувач, якого побили в центрі міста в травні 2019 року; він помер, не приходячи до тями.",
+    "en": "Cherkasy investigative journalist attacked in May 2019; he died without regaining consciousness."
+  },
+  "bio": {
+    "uk": "Вадим Комаров жив і працював у Черкасах, проводив резонансні розслідування, зокрема про корупцію в міській раді.\n\n4 травня 2019 року близько дев'ятої ранку в центрі Черкас на нього напав невідомий і вдарив тупим предметом по голові. Журналіст 46 днів пробув у комі і 20 червня 2019 року помер у лікарні.\n\nПоліція повідомляла, що ймовірного нападника зафіксували 17 камер, і назвала його прикмети, а у справі допитали майже 1700 свідків. Підозр нікому не оголошено. У 2021 році НСЖУ називала пана Вадима останнім убитим медійником в Україні."
+  },
+  "facts": [
+    [
+      "Помер",
+      "20 червня 2019"
+    ],
+    [
+      "Місто",
+      "Черкаси"
+    ],
+    [
+      "Розслідування",
+      "підозрюваних немає"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": []
+  },
+  "sources": [
+    {
+      "title": "Human Rights Watch: розслідувати вбивство журналіста",
+      "url": "https://www.hrw.org/uk/news/2019/07/01/331522"
+    },
+    {
+      "title": "Радіо Свобода: «На 17 камерах зафіксовано ймовірного злочинця»",
+      "url": "https://www.radiosvoboda.org/a/news-politsia-rozsliduvannia-spravy-komarova/30711660.html"
+    },
+    {
+      "title": "Укрінформ: допитали майже 1700 свідків, підозрюваних немає",
+      "url": "https://www.ukrinform.ua/rubric-society/3343493-vbivstvo-zurnalista-komarova-u-spravi-dopitali-majze-1700-svidkiv-pidozruvanih-nemae.html"
+    },
+    {
+      "title": "НСЖУ: перша річниця вбивства Комарова",
+      "url": "https://nsju.org/novini/persha-richnyczya-ubyvstva-zhurnalista-komarova-ni-pidozryuvanyh-ni-progresu-v-rozsliduvanni-nszhu"
+    }
+  ],
+  "updated": "2026-11-17"
+}

@@ -126,6 +126,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "arman-soldin",
+    "tag": "Арман Солдін",
+    "aliases": [],
+    "name": {
+      "uk": "Арман Солдін",
+      "en": "Arman Soldin"
+    },
+    "role": {
+      "uk": "відеожурналіст агенції AFP, координатор відео в Україні",
+      "en": "AFP video journalist, Ukraine video coordinator"
+    },
+    "summary": {
+      "uk": "Відеожурналіст AFP, загиблий від ракетного обстрілу біля Часового Яру 9 травня 2023 року.",
+      "en": "AFP video journalist killed by rocket fire near Chasiv Yar on 9 May 2023."
+    }
+  },
+  {
     "slug": "bohdan-lohvynenko",
     "tag": "Богдан Логвиненко",
     "aliases": [
@@ -145,6 +162,74 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "brent-renaud",
+    "tag": "Брент Рено",
+    "aliases": [],
+    "name": {
+      "uk": "Брент Рено",
+      "en": "Brent Renaud"
+    },
+    "role": {
+      "uk": "американський журналіст і документаліст",
+      "en": "American journalist and documentary filmmaker"
+    },
+    "summary": {
+      "uk": "Перший американський журналіст, загиблий у війні в Україні: його розстріляли російські військові в Ірпені 13 березня 2022 року.",
+      "en": "The first American journalist killed covering the war in Ukraine, shot by Russian troops in Irpin on 13 March 2022."
+    }
+  },
+  {
+    "slug": "viacheslav-veremii",
+    "tag": "В'ячеслав Веремій",
+    "aliases": [],
+    "name": {
+      "uk": "В'ячеслав Веремій",
+      "en": "Viacheslav Veremii"
+    },
+    "role": {
+      "uk": "журналіст газети «Вести»",
+      "en": "Journalist at the Vesti newspaper"
+    },
+    "summary": {
+      "uk": "Журналіст «Вестей», убитий у Києві в ніч на 19 лютого 2014 року, під час Революції гідності.",
+      "en": "Vesti journalist killed in Kyiv on the night of 19 February 2014, during the Revolution of Dignity."
+    }
+  },
+  {
+    "slug": "vadym-komarov",
+    "tag": "Вадим Комаров",
+    "aliases": [],
+    "name": {
+      "uk": "Вадим Комаров",
+      "en": "Vadym Komarov"
+    },
+    "role": {
+      "uk": "черкаський журналіст-розслідувач",
+      "en": "Investigative journalist from Cherkasy"
+    },
+    "summary": {
+      "uk": "Черкаський журналіст-розслідувач, якого побили в центрі міста в травні 2019 року; він помер, не приходячи до тями.",
+      "en": "Cherkasy investigative journalist attacked in May 2019; he died without regaining consciousness."
+    }
+  },
+  {
+    "slug": "vasyl-klymentiev",
+    "tag": "Василь Климентьєв",
+    "aliases": [],
+    "name": {
+      "uk": "Василь Климентьєв",
+      "en": "Vasyl Klymentiev"
+    },
+    "role": {
+      "uk": "головний редактор харківської газети «Новий стиль»",
+      "en": "Editor-in-chief of the Kharkiv weekly Novyi Styl"
+    },
+    "summary": {
+      "uk": "Редактор харківського тижневика, який зник у серпні 2010 року після публікацій про ймовірну корупцію.",
+      "en": "Kharkiv newspaper editor who disappeared in August 2010 after reporting on alleged corruption."
+    }
+  },
+  {
     "slug": "viktoriia-iermolaieva",
     "tag": "Вікторія Єрмолаєва",
     "aliases": [],
@@ -159,6 +244,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Головна редакторка «Громадського радіо» і ведуча аналітичного подкасту «Далі заголовків».",
       "en": "Editor-in-chief of Hromadske Radio and host of the analytical podcast Beyond the Headlines."
+    }
+  },
+  {
+    "slug": "viktoriia-roshchyna",
+    "tag": "Вікторія Рощина",
+    "aliases": [],
+    "name": {
+      "uk": "Вікторія Рощина",
+      "en": "Viktoriia Roshchyna"
+    },
+    "role": {
+      "uk": "журналістка, працювала на окупованих територіях",
+      "en": "Journalist who reported from occupied territories"
+    },
+    "summary": {
+      "uk": "Журналістка, яка зникла на окупованій території в серпні 2023 року й загинула в російському полоні у вересні 2024 року.",
+      "en": "Journalist who disappeared in occupied territory in August 2023 and died in Russian captivity in September 2024."
     }
   },
   {
@@ -328,6 +430,40 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "yevhen-karmazin",
+    "tag": "Євген Кармазін",
+    "aliases": [],
+    "name": {
+      "uk": "Євген Кармазін",
+      "en": "Yevhen Karmazin"
+    },
+    "role": {
+      "uk": "оператор телеканалу Freedom",
+      "en": "Camera operator for Freedom TV"
+    },
+    "summary": {
+      "uk": "Оператор Freedom з Краматорська, загинув разом з Оленою Губановою від удару дрона 23 жовтня 2025 року.",
+      "en": "Freedom TV cameraman from Kramatorsk, killed with Olena Hubanova by a drone strike on 23 October 2025."
+    }
+  },
+  {
+    "slug": "yevhenii-sakun",
+    "tag": "Євгеній Сакун",
+    "aliases": [],
+    "name": {
+      "uk": "Євгеній Сакун",
+      "en": "Yevhenii Sakun"
+    },
+    "role": {
+      "uk": "оператор телеканалу LIVE",
+      "en": "Camera operator for LIVE TV"
+    },
+    "summary": {
+      "uk": "Оператор телеканалу LIVE, один з перших медійників, загиблих від російського вторгнення: удар по київській телевежі 1 березня 2022 року.",
+      "en": "LIVE TV camera operator, among the first media workers killed in the full-scale invasion, in the strike on Kyiv's TV tower on 1 March 2022."
+    }
+  },
+  {
     "slug": "zakhar-protsiuk",
     "tag": "Захар Процюк",
     "aliases": [],
@@ -342,6 +478,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Медіаменеджер, який розбудовує модель членства The Kyiv Independent; співзасновник The Fix.",
       "en": "Media manager behind The Kyiv Independent's membership model; co-founder of The Fix."
+    }
+  },
+  {
+    "slug": "ihor-aleksandrov",
+    "tag": "Ігор Александров",
+    "aliases": [],
+    "name": {
+      "uk": "Ігор Александров",
+      "en": "Ihor Aleksandrov"
+    },
+    "role": {
+      "uk": "директор слов'янської телерадіокомпанії «ТОР»",
+      "en": "Director of the TOR TV company in Sloviansk"
+    },
+    "summary": {
+      "uk": "Керівник незалежної телекомпанії в Слов'янську, побитий біля входу в редакцію в липні 2001 року.",
+      "en": "Head of an independent TV company in Sloviansk, beaten to death outside his newsroom in July 2001."
     }
   },
   {
@@ -382,6 +535,44 @@ export const PEOPLE = [
     "summary": {
       "uk": "Перший журналіст, проти якого у Швейцарії висунули обвинувачення за законом про банківську таємницю.",
       "en": "The first journalist charged under Switzerland's banking secrecy law."
+    }
+  },
+  {
+    "slug": "maks-levin",
+    "tag": "Макс Левін",
+    "aliases": [
+      "Максим Левін"
+    ],
+    "name": {
+      "uk": "Макс Левін",
+      "en": "Maks Levin"
+    },
+    "role": {
+      "uk": "фотограф і документаліст",
+      "en": "Photographer and documentary filmmaker"
+    },
+    "summary": {
+      "uk": "Фотограф і документаліст, понад десять років працював у LB.ua; убитий російськими військовими на Київщині в березні 2022 року.",
+      "en": "Photographer and documentarian, over ten years at LB.ua; killed by Russian troops near Kyiv in March 2022."
+    }
+  },
+  {
+    "slug": "mantas-kvedaravicius",
+    "tag": "Мантас Кведаравічюс",
+    "aliases": [
+      "Мантас Кведаравічус"
+    ],
+    "name": {
+      "uk": "Мантас Кведаравічюс",
+      "en": "Mantas Kvedaravičius"
+    },
+    "role": {
+      "uk": "литовський режисер-документаліст, антрополог",
+      "en": "Lithuanian documentary filmmaker and anthropologist"
+    },
+    "summary": {
+      "uk": "Литовський документаліст, автор «Маріуполіса», убитий у Маріуполі під час облоги 30 березня 2022 року.",
+      "en": "Lithuanian documentarian, author of Mariupolis, killed in besieged Mariupol on 30 March 2022."
     }
   },
   {
@@ -513,6 +704,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "oleksandra-kuvshynova",
+    "tag": "Олександра Кувшинова",
+    "aliases": [
+      "Саша Кувшинова"
+    ],
+    "name": {
+      "uk": "Олександра Кувшинова",
+      "en": "Oleksandra Kuvshynova"
+    },
+    "role": {
+      "uk": "журналістка, працювала зі знімальною групою Fox News",
+      "en": "Journalist working with a Fox News crew"
+    },
+    "summary": {
+      "uk": "Українська журналістка, яка загинула разом з оператором Fox News під обстрілом у Горенці 14 березня 2022 року.",
+      "en": "Ukrainian journalist killed with a Fox News cameraman under shelling in Horenka on 14 March 2022."
+    }
+  },
+  {
     "slug": "oleksii-hordieiev",
     "tag": "Олексій Гордєєв",
     "aliases": [
@@ -532,6 +742,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "olena-hubanova",
+    "tag": "Олена Губанова",
+    "aliases": [
+      "Альона Грамова",
+      "Олена Грамова"
+    ],
+    "name": {
+      "uk": "Олена Губанова",
+      "en": "Olena Hubanova"
+    },
+    "role": {
+      "uk": "воєнна кореспондентка телеканалу Freedom",
+      "en": "War correspondent for Freedom TV"
+    },
+    "summary": {
+      "uk": "Воєнна кореспондентка Freedom з Донеччини, загинула від удару дрона в Краматорську 23 жовтня 2025 року.",
+      "en": "Freedom TV war correspondent from Donetsk region, killed by a drone strike in Kramatorsk on 23 October 2025."
+    }
+  },
+  {
     "slug": "olha-rudenko",
     "tag": "Ольга Руденко",
     "aliases": [
@@ -548,6 +778,44 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює англомовне видання The Kyiv Independent; лауреатка Премії Ґонґадзе 2026.",
       "en": "Editor-in-chief of The Kyiv Independent; 2026 Gongadze Prize laureate."
+    }
+  },
+  {
+    "slug": "pierre-zakrzewski",
+    "tag": "П'єр Закшевський",
+    "aliases": [
+      "П'єр Закжевський"
+    ],
+    "name": {
+      "uk": "П'єр Закшевський",
+      "en": "Pierre Zakrzewski"
+    },
+    "role": {
+      "uk": "оператор Fox News",
+      "en": "Fox News camera operator"
+    },
+    "summary": {
+      "uk": "Ірландський оператор Fox News, який загинув під обстрілом у Горенці на Київщині 14 березня 2022 року.",
+      "en": "Irish Fox News cameraman killed under shelling in Horenka near Kyiv on 14 March 2022."
+    }
+  },
+  {
+    "slug": "pavlo-sheremet",
+    "tag": "Павло Шеремет",
+    "aliases": [
+      "Павел Шеремет"
+    ],
+    "name": {
+      "uk": "Павло Шеремет",
+      "en": "Pavel Sheremet"
+    },
+    "role": {
+      "uk": "журналіст, ведучий, автор «Української правди»",
+      "en": "Journalist, TV host, Ukrainska Pravda columnist"
+    },
+    "summary": {
+      "uk": "Білоруський журналіст, який жив і працював в Україні; загинув від вибуху автомобіля в центрі Києва 20 липня 2016 року.",
+      "en": "Belarusian journalist who lived and worked in Ukraine; killed by a car bomb in central Kyiv on 20 July 2016."
     }
   },
   {
@@ -633,6 +901,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Дослідник преси громадянської війни в США.",
       "en": "Historian of the press during the American Civil War."
+    }
+  },
+  {
+    "slug": "frederic-leclerc-imhoff",
+    "tag": "Фредерік Леклерк-Імгофф",
+    "aliases": [
+      "Фредерік Леклерк-Імхофф"
+    ],
+    "name": {
+      "uk": "Фредерік Леклерк-Імгофф",
+      "en": "Frédéric Leclerc-Imhoff"
+    },
+    "role": {
+      "uk": "репортер і оператор французького телеканалу BFMTV",
+      "en": "BFMTV reporter and camera operator"
+    },
+    "summary": {
+      "uk": "Французький журналіст BFMTV, загиблий 30 травня 2022 року біля Сєвєродонецька, коли знімав евакуацію.",
+      "en": "French BFMTV journalist killed near Sievierodonetsk on 30 May 2022 while filming an evacuation."
     }
   },
   {

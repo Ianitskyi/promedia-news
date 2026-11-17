@@ -1,0 +1,66 @@
+{
+  "slug": "arman-soldin",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2023",
+  "name": {
+    "uk": "Арман Солдін",
+    "en": "Arman Soldin"
+  },
+  "sort": {
+    "uk": "Солдін Арман",
+    "en": "Soldin Arman"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "відеожурналіст агенції AFP, координатор відео в Україні",
+    "en": "AFP video journalist, Ukraine video coordinator"
+  },
+  "summary": {
+    "uk": "Відеожурналіст AFP, загиблий від ракетного обстрілу біля Часового Яру 9 травня 2023 року.",
+    "en": "AFP video journalist killed by rocket fire near Chasiv Yar on 9 May 2023."
+  },
+  "bio": {
+    "uk": "Арман Солдін народився в Сараєві й був громадянином Франції. У 2015 році почав працювати в AFP стажером у римському бюро, згодом перейшов до Лондона. Він був у першій команді AFP, яку відправили в Україну після 24 лютого 2022 року, а з вересня 2022 року координував відеознімання агенції в Україні.\n\n9 травня 2023 року близько 16:30 команда AFP разом з українськими військовими потрапила під обстріл «Градів» біля Часового Яру на Донеччині. 32-річний журналіст загинув, четверо його колег не постраждали. Франція відкрила розслідування можливих воєнних злочинів."
+  },
+  "facts": [
+    [
+      "Загинув",
+      "9 травня 2023, біля Часового Яру"
+    ],
+    [
+      "Редакція",
+      "AFP"
+    ],
+    [
+      "Країна",
+      "Франція"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Arman Soldin"
+    ],
+    "check": [
+      "AFP",
+      "journalist"
+    ]
+  },
+  "sources": [
+    {
+      "title": "НСЖУ: журналіст AFP Арман Солдін загинув від ракетного обстрілу",
+      "url": "https://nsju.org/novini/zhurnalist-afp-arman-soldin-zagynuv-vid-raketnogo-obstrilu-v-ukrayini"
+    },
+    {
+      "title": "CPJ: Arman Soldin",
+      "url": "https://cpj.org/data/people/arman-soldin/"
+    },
+    {
+      "title": "Kyiv Independent: France launches war crimes investigation",
+      "url": "https://kyivindependent.com/nobot/france-opens-up-war-crimes-investigation-after-afp-journalist-killed-by-russian-rockets"
+    }
+  ],
+  "updated": "2026-11-17"
+}

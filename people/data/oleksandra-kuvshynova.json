@@ -1,0 +1,59 @@
+{
+  "slug": "oleksandra-kuvshynova",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2022",
+  "name": {
+    "uk": "Олександра Кувшинова",
+    "en": "Oleksandra Kuvshynova"
+  },
+  "sort": {
+    "uk": "Кувшинова Олександра",
+    "en": "Kuvshynova Oleksandra"
+  },
+  "aliases": [
+    "Саша Кувшинова"
+  ],
+  "role": {
+    "uk": "журналістка, працювала зі знімальною групою Fox News",
+    "en": "Journalist working with a Fox News crew"
+  },
+  "summary": {
+    "uk": "Українська журналістка, яка загинула разом з оператором Fox News під обстрілом у Горенці 14 березня 2022 року.",
+    "en": "Ukrainian journalist killed with a Fox News cameraman under shelling in Horenka on 14 March 2022."
+  },
+  "bio": {
+    "uk": "Олександра (Саша) Кувшинова — 24-річна українська журналістка, яка допомагала знімальній групі американського телеканалу Fox News.\n\n14 березня 2022 року автомобіль групи потрапив під російський обстріл у селі Горенка поблизу Гостомеля на Київщині. Пані Олександра та оператор П'єр Закшевський загинули, кореспондент Бенджамін Голл дістав важкі поранення. НСЖУ наголошувала, що в повідомленнях про трагедію українська журналістка опинилася в тіні іноземних колег.\n\nУ 2024 році батьки пані Олександри подали до суду штату Нью-Йорк позов проти Fox News, звинувативши телеканал у недбалості."
+  },
+  "facts": [
+    [
+      "Загинула",
+      "14 березня 2022, Горенка"
+    ],
+    [
+      "Робота",
+      "знімальна група Fox News"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": []
+  },
+  "sources": [
+    {
+      "title": "Українські новини: загинули американський телеоператор та українська журналістка",
+      "url": "https://ukranews.com/ua/news/841577-pid-rosijskym-artobstrilom-pid-kyyevom-zagynuly-amerykanskyj-teleoperator-ta-ukrayinska-zhurnalistka"
+    },
+    {
+      "title": "ZAXID.NET: під Києвом загинули оператор Fox News і українська журналістка",
+      "url": "https://zaxid.net/pid_kiyevom_unaslidok_vorozhih_obstriliv_zaginuv_operator_telekanalu_foxnews_n1538490"
+    },
+    {
+      "title": "Тексти: у позові проти Fox News сім'ї Олександри Кувшинової",
+      "url": "https://texty.org.ua/fragments/114643/u-pozovi-proty-fox-news-simyi-zahybloyi-zhurnalistky-oleksandry-kuvshynovoyi-advokat-zyasuvav-vazhlyvi-detali/"
+    }
+  ],
+  "updated": "2026-11-17"
+}

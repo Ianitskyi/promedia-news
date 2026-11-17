@@ -1,0 +1,61 @@
+{
+  "slug": "vasyl-klymentiev",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2010",
+  "name": {
+    "uk": "Василь Климентьєв",
+    "en": "Vasyl Klymentiev"
+  },
+  "sort": {
+    "uk": "Климентьєв Василь",
+    "en": "Klymentiev Vasyl"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "головний редактор харківської газети «Новий стиль»",
+    "en": "Editor-in-chief of the Kharkiv weekly Novyi Styl"
+  },
+  "summary": {
+    "uk": "Редактор харківського тижневика, який зник у серпні 2010 року після публікацій про ймовірну корупцію.",
+    "en": "Kharkiv newspaper editor who disappeared in August 2010 after reporting on alleged corruption."
+  },
+  "bio": {
+    "uk": "Василь Климентьєв більшу частину життя працював у музиці: закінчив Харківський інститут культури, був викладачем і директором музичної школи, очолював об'єднання музичних ансамблів. Згодом став головним редактором і репортером харківського тижневика «Новий стиль».\n\n11 серпня 2010 року він вийшов з дому і зник; за даними міліції, востаннє його бачили біля станції метро «Спортивна», коли він сідав в автомобіль з невідомим чоловіком. Міліція порушила справу за статтею «вбивство» і згодом назвала імена підозрюваних.\n\nКолеги пов'язували зникнення з роботою газети, яка писала про ймовірну корупцію щонайменше чотирьох місцевих посадовців і критикувала правоохоронців."
+  },
+  "facts": [
+    [
+      "Зник",
+      "11 серпня 2010, Харків"
+    ],
+    [
+      "Редакція",
+      "«Новий стиль»"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": []
+  },
+  "sources": [
+    {
+      "title": "Українська правда: «Чому зник Василь Климентьєв? Версії»",
+      "url": "https://www.pravda.com.ua/articles/2010/09/23/5408666/"
+    },
+    {
+      "title": "УНІАН: міліція назвала імена підозрюваних у вбивстві Климентьєва",
+      "url": "https://www.unian.ua/kharkiv/amp-469390-militsiya-nazvala-imena-pidozryuvanih-u-vbivstvi-klimenteva.html"
+    },
+    {
+      "title": "RFE/RL: Klymentyev",
+      "url": "https://www.rferl.org/a/ukraine-klymentyev/24621764.html"
+    },
+    {
+      "title": "CPJ: Journalist goes missing in eastern Ukraine",
+      "url": "https://cpj.org/2010/08/journalist-goes-missing-in-eastern-ukraine/"
+    }
+  ],
+  "updated": "2026-11-17"
+}

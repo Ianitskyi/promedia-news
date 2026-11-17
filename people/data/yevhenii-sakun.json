@@ -1,0 +1,61 @@
+{
+  "slug": "yevhenii-sakun",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "1973–2022",
+  "name": {
+    "uk": "Євгеній Сакун",
+    "en": "Yevhenii Sakun"
+  },
+  "sort": {
+    "uk": "Сакун Євгеній",
+    "en": "Sakun Yevhenii"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "оператор телеканалу LIVE",
+    "en": "Camera operator for LIVE TV"
+  },
+  "summary": {
+    "uk": "Оператор телеканалу LIVE, один з перших медійників, загиблих від російського вторгнення: удар по київській телевежі 1 березня 2022 року.",
+    "en": "LIVE TV camera operator, among the first media workers killed in the full-scale invasion, in the strike on Kyiv's TV tower on 1 March 2022."
+  },
+  "bio": {
+    "uk": "Євгеній Сакун народився 24 січня 1973 року і працював оператором телеканалу LIVE, який долучився до інформаційного марафону про війну.\n\n1 березня 2022 року російські війська вдарили ракетами по київській телевежі в районі Дорогожичів. Загинули п'ятеро людей, серед них пан Євгеній: він працював там разом з колегами, і поліція впізнала його за посвідченням преси. Він став першим підтвердженим медійником, який загинув від повномасштабного вторгнення."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "24 січня 1973 — 1 березня 2022"
+    ],
+    [
+      "Редакція",
+      "LIVE"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": []
+  },
+  "sources": [
+    {
+      "title": "НСЖУ: «Кривавий березень 2022 року»",
+      "url": "https://nsju.org/novini/kryvavyj-berezen-2022-roku-najtragichnishyj-misyacz-ukrayinskoyi-zhurnalistyky"
+    },
+    {
+      "title": "CPJ: Yevhenii Sakun",
+      "url": "https://cpj.org/?p=172024"
+    },
+    {
+      "title": "EFJ: Cameraman Yevheniy Sakun killed in Russian TV tower attack",
+      "url": "https://europeanjournalists.org/?p=35408"
+    },
+    {
+      "title": "AUP: Yevhenii Sakun (memorial)",
+      "url": "https://www.aup.com.ua/en/memorial-en/yevhenii-sakun/"
+    }
+  ],
+  "updated": "2026-11-17"
+}

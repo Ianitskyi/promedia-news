@@ -1,0 +1,57 @@
+{
+  "slug": "yevhen-karmazin",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2025",
+  "name": {
+    "uk": "Євген Кармазін",
+    "en": "Yevhen Karmazin"
+  },
+  "sort": {
+    "uk": "Кармазін Євген",
+    "en": "Karmazin Yevhen"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "оператор телеканалу Freedom",
+    "en": "Camera operator for Freedom TV"
+  },
+  "summary": {
+    "uk": "Оператор Freedom з Краматорська, загинув разом з Оленою Губановою від удару дрона 23 жовтня 2025 року.",
+    "en": "Freedom TV cameraman from Kramatorsk, killed with Olena Hubanova by a drone strike on 23 October 2025."
+  },
+  "bio": {
+    "uk": "Євген Кармазін — оператор з Краматорська, який працював оператором каналів державного іномовлення, зокрема Freedom, і знімав війну на Донеччині.\n\n23 жовтня 2025 року російський дрон «Ланцет» влучив в автомобіль знімальної групи Freedom у Краматорську. 33-річний пан Євген і кореспондентка Олена Губанова загинули, журналіст Олександр Количев дістав важкі поранення."
+  },
+  "facts": [
+    [
+      "Загинув",
+      "23 жовтня 2025, Краматорськ"
+    ],
+    [
+      "Редакція",
+      "Freedom"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": []
+  },
+  "sources": [
+    {
+      "title": "Главком: що відомо про загиблих журналістів Freedom",
+      "url": "https://glavcom.ua/kyiv/zahibel-zhurnalistiv-telekanalu-freedom-nazvano-datu-proshchannja-1084910.html"
+    },
+    {
+      "title": "Euromaidan Press: Russian drone strikes civilian vehicle",
+      "url": "https://euromaidanpress.com/?p=369077"
+    },
+    {
+      "title": "Слово і діло: загибель журналістів у Краматорську",
+      "url": "https://www.slovoidilo.ua/2025/10/23/novyna/bezpeka/zelenskyj-vidreahuvav-zahybel-zhurnalistiv-kramatorsku-vnaslidok-udaru-rf"
+    }
+  ],
+  "updated": "2026-11-17"
+}

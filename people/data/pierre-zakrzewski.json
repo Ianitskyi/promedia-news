@@ -1,0 +1,67 @@
+{
+  "slug": "pierre-zakrzewski",
+  "group": "intl",
+  "country": "Ірландія",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "† 2022",
+  "name": {
+    "uk": "П'єр Закшевський",
+    "en": "Pierre Zakrzewski"
+  },
+  "sort": {
+    "uk": "Закшевський П'єр",
+    "en": "Zakrzewski Pierre"
+  },
+  "aliases": [
+    "П'єр Закжевський"
+  ],
+  "role": {
+    "uk": "оператор Fox News",
+    "en": "Fox News camera operator"
+  },
+  "summary": {
+    "uk": "Ірландський оператор Fox News, який загинув під обстрілом у Горенці на Київщині 14 березня 2022 року.",
+    "en": "Irish Fox News cameraman killed under shelling in Horenka near Kyiv on 14 March 2022."
+  },
+  "bio": {
+    "uk": "П'єр Закшевський — досвідчений оператор Fox News, громадянин Ірландії, який базувався в Лондоні. Він висвітлював для каналу майже всі міжнародні події, працював у зонах бойових дій в Іраку, Афганістані та Сирії, а в Україні — з лютого 2022 року.\n\n14 березня 2022 року автомобіль знімальної групи потрапив під російський обстріл у селі Горенка під Києвом. Пан П'єр, якому було 55 років, і українська журналістка Олександра Кувшинова загинули; кореспондент Бенджамін Голл дістав важкі поранення."
+  },
+  "facts": [
+    [
+      "Загинув",
+      "14 березня 2022, Горенка"
+    ],
+    [
+      "Редакція",
+      "Fox News"
+    ],
+    [
+      "Країна",
+      "Ірландія"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Pierre Zakrzewski"
+    ],
+    "check": [
+      "Fox"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Європейська правда: оператор Fox News загинув під Києвом",
+      "url": "https://www.eurointegration.com.ua/news/2022/03/15/7136004/"
+    },
+    {
+      "title": "AP: Two Fox News journalists killed in Ukraine",
+      "url": "https://firstamendment.mtsu.edu/post/two-fox-news-journalists-killed-in-ukraine-underscoring-dangers/"
+    },
+    {
+      "title": "Українські новини: загинули оператор Fox News та українська журналістка",
+      "url": "https://ukranews.com/ua/news/841577-pid-rosijskym-artobstrilom-pid-kyyevom-zagynuly-amerykanskyj-teleoperator-ta-ukrayinska-zhurnalistka"
+    }
+  ],
+  "updated": "2026-11-17"
+}

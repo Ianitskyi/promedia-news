@@ -1,0 +1,71 @@
+{
+  "slug": "mantas-kvedaravicius",
+  "group": "intl",
+  "country": "Литва",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "1976–2022",
+  "name": {
+    "uk": "Мантас Кведаравічюс",
+    "en": "Mantas Kvedaravičius"
+  },
+  "sort": {
+    "uk": "Кведаравічюс Мантас",
+    "en": "Kvedaravicius Mantas"
+  },
+  "aliases": [
+    "Мантас Кведаравічус"
+  ],
+  "role": {
+    "uk": "литовський режисер-документаліст, антрополог",
+    "en": "Lithuanian documentary filmmaker and anthropologist"
+  },
+  "summary": {
+    "uk": "Литовський документаліст, автор «Маріуполіса», убитий у Маріуполі під час облоги 30 березня 2022 року.",
+    "en": "Lithuanian documentarian, author of Mariupolis, killed in besieged Mariupol on 30 March 2022."
+  },
+  "bio": {
+    "uk": "Мантас Кведаравічюс народився 1976 року в Біржаї (Литва), здобув ступінь доктора соціальної антропології в Кембриджі, викладав у Вільнюському університеті. Його фільм «Барзах» (2011) про тортури й викрадення людей у Чечні отримав відзнаку Берлінського кінофестивалю, а «Маріуполіс» (2016) розповідав про життя міста під час війни на Донбасі.\n\nНавесні 2022 року він повернувся до Маріуполя знімати продовження. 30 березня 2022 року його вбили в обложеному місті. Його партнерка, режисерка Анна Білоброва, знайшла тіло, вивезла його й відзнятий матеріал до Литви та завершила фільм «Маріуполіс 2», показаний у Каннах. Литовські правоохоронці розслідують убивство."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1976 — 30 березня 2022"
+    ],
+    [
+      "Фільми",
+      "«Барзах», «Маріуполіс», «Маріуполіс 2»"
+    ],
+    [
+      "Країна",
+      "Литва"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Mantas Kvedaravičius"
+    ],
+    "check": [
+      "film"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Еспресо: у Маріуполі вбили литовського режисера",
+      "url": "https://espreso.tv/u-mariupoli-vbili-litovskogo-rezhisera-mantasa-kvedaravichyusa"
+    },
+    {
+      "title": "JAMnews: вдова Мантаса Кведаравічюса про вбивство",
+      "url": "https://jam-news.net/ru/режиссер-убитый-в-мариуполе/"
+    },
+    {
+      "title": "Wikipedia: Mantas Kvedaravičius",
+      "url": "https://en.wikipedia.org/wiki/Mantas_Kvedaravi%C4%8Dius"
+    },
+    {
+      "title": "CPJ: Lithuanian documentary filmmaker killed in Mariupol",
+      "url": "https://cpj.org/reports/europe/lithuania/page/2/"
+    }
+  ],
+  "updated": "2026-11-17"
+}
