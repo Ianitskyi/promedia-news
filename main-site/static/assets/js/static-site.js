@@ -123,17 +123,27 @@
         const home = grid.dataset.home || "https://projects.promedia.report/";
         const allLabel = grid.dataset.all || "";
 
+        // Pills show short project names only; the full title stays on the project page.
+        const SHORT_NAMES = [
+          { test: /санта|santa/i, uk: "Таємний Санта", en: "Secret Santa", crh: "Gizli Santa" },
+          { test: /атлас|atlas/i, uk: "Атлас медіа", en: "Media Atlas", crh: "Mediya Atlası" },
+          { test: /proof|фактчек|fact-?check/i, uk: "Proof", en: "Proof", crh: "Proof" },
+          { test: /automation lab/i, uk: "AI and Automation Lab 2.0", en: "AI and Automation Lab 2.0", crh: "AI and Automation Lab 2.0" },
+          { test: /журфак|journalism school|faculties of journalism/i, uk: "Рейтинг журфаків", en: "J-school ranking", crh: "Jurnalistika fakultetleri reytingi" }
+        ];
         grid.innerHTML = items.map((p) => {
-          const title = lang === "en"
+          const fullTitle = lang === "en"
             ? (p.titleEn || p.title_en || p.title)
             : lang === "crh"
               ? (p.titleCrh || p.title_crh || p.title)
               : p.title;
+          const short = SHORT_NAMES.find((n) => n.test.test(`${p.slug} ${p.title || ""} ${p.titleEn || p.title_en || ""}`));
+          const title = short ? (short[lang] || short.uk) : fullTitle;
           const status = statusOf(p);
           const label = statusLabels[status] ? statusLabels[status][lang] || statusLabels[status].uk : "";
-          return `<a class="pm-project-pill" href="${base}${encodeURIComponent(p.slug)}">`
+          // Status is shown only by the coloured dot (and the tooltip), with no text in the pill.
+          return `<a class="pm-project-pill" href="${base}${encodeURIComponent(p.slug)}"${label ? ` title="${esc(label)}"` : ""}>`
             + `<span class="pm-project-dot pm-project-dot--${esc(status || "none")}" aria-hidden="true"></span>${esc(title)}`
-            + (label ? `<span class="visually-hidden"> — ${esc(label)}</span>` : "")
             + `</a>`;
         }).join("") + (allLabel ? `<a class="pm-project-pill pm-project-pill--all" href="${esc(home)}">${esc(allLabel)}&nbsp;&rarr;</a>` : "");
         updateFade();
