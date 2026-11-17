@@ -118,8 +118,8 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
   class PMHeader extends HTMLElement{
     connectedCallback(){
       const sec=[
-        ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa]
-      ].filter(([key]) => key !== "santa" || lang === "uk"); // Санта — лише українською; BRIEF поки окремий проєкт, у меню мережі його немає (власник, 17.11.2026)
+        ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa],["brief",t.brief||"Brief",links.brief]
+      ].filter(([key]) => key !== "santa" || lang === "uk"); // Санта — лише українською; BRIEF — у другому меню (власник, 17.11.2026)
       const mobileMain=[[t.projects,projectUrl],[t.about,mainHome+"#team"],[t.contacts,mainHome+"#contacts"]];
       const mobileSub=sec.map(x=>[x[1],x[2]]);
       const available=(this.getAttribute("data-langs")||"uk,en,crh").split(",").map(x=>x.trim()).filter(Boolean);
