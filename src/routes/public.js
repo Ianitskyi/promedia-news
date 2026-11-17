@@ -317,9 +317,11 @@ ${entries.join("\n")}
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS topic_filter WHERE topic_filter.value IN (" + topic.tags.map(() => "?").join(",") + "))";
       binds.push(...topic.tags);
     }
-    query += " ORDER BY published_at DESC LIMIT 60";
+    // ?sort=top — the most-read stories first (GA4 views), newest first among equals.
+    const top = !tag && !topic && url.searchParams.get("sort") === "top";
+    query += top ? " ORDER BY COALESCE(av.ga4_views, 0) DESC, published_at DESC LIMIT 30" : " ORDER BY published_at DESC LIMIT 60";
     const { results } = await db.prepare(query).bind(...binds).all();
-    return html(renderHomepage({ articles: results, lang, activeTag: tag, activeTopic: topic?.id, baseUrl }));
+    return html(renderHomepage({ articles: results, lang, activeTag: tag, activeTopic: topic?.id, activeSort: top ? "top" : null, baseUrl }));
   }
 
   return null;

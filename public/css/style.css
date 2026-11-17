@@ -1365,6 +1365,7 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .practice-home > .category-nav .category-link--articles { --chip-bg: #efeff6; --chip-fg: #45447a; --chip-on: #dddcee; }
 .practice-home > .category-nav .category-link--press { --chip-bg: #f9eeed; --chip-fg: #9c4f49; --chip-on: #f0d8d5; }
 .practice-home > .category-nav .category-link--announce { --chip-bg: #edf5ef; --chip-fg: #4a7a56; --chip-on: #d5e9da; }
+.practice-home > .category-nav .category-link--top { --chip-bg: #f2eef7; --chip-fg: #6a4f8a; --chip-on: #e2d9ee; }
 .practice-home > .category-nav .category-link:hover { color: var(--chip-fg); background: var(--chip-on); }
 .practice-home > .category-nav .category-link.active { background: var(--chip-on); color: var(--chip-fg); box-shadow: inset 0 0 0 1px var(--chip-fg); }
 @media (max-width: 620px) {

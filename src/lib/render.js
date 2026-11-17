@@ -415,11 +415,14 @@ const CATEGORY_NAV_LABELS = {
   "Анонс": { uk: "Анонси", en: "Announcements", crh: "İlânlar" }
 };
 
-function categoryNav(lang, activeTag) {
+const TOP_NAV_LABEL = { uk: "Топ", en: "Top", crh: "Top" };
+
+function categoryNav(lang, activeTag, activeSort) {
   const labels = { all: pick(ALL_LABEL, lang), ...Object.fromEntries(CATEGORIES.map(category => [category, pick(CATEGORY_NAV_LABELS[category], lang)])) };
   const allHref = `${langPrefix(lang)}/`;
   const items = [
-    `<a class="category-link${!activeTag ? " active" : ""}" href="${allHref}">${labels.all}</a>`,
+    `<a class="category-link${!activeTag && !activeSort ? " active" : ""}" href="${allHref}">${labels.all}</a>`,
+    `<a class="category-link category-link--top${activeSort === "top" ? " active" : ""}" href="${langPrefix(lang)}/?sort=top">${pick(TOP_NAV_LABEL, lang)}</a>`,
     ...CATEGORIES.map((category) => {
       const query = `?tag=${encodeURIComponent(category)}`;
       return `<a class="category-link category-link--${CATEGORY_NAV_KIND[category]}${activeTag === category ? " active" : ""}" href="${langPrefix(lang)}/${query}">${labels[category]}</a>`;
@@ -593,15 +596,15 @@ function mosaicPromoTemplates(lang) {
   }).join("");
 }
 
-export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl }) {
+export function renderHomepage({ articles, lang, activeTag, activeTopic, activeSort, baseUrl }) {
   const copy = pick(PRACTICE_COPY, lang);
   const prefix = langPrefix(lang);
   const topic = PRACTICE_TOPICS.find(item => item.id === activeTopic);
-  const filtered = Boolean(activeTag || topic);
+  const filtered = Boolean(activeTag || topic || activeSort);
   const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
   if (articles.length && filtered) {
-    list = heading(topic ? pick(topic.labels, lang) : CATEGORY_NAV_LABELS[activeTag] ? pick(CATEGORY_NAV_LABELS[activeTag], lang) : tagLabel(activeTag, lang), topic ? `${prefix}/` : null) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
+    list = heading(topic ? pick(topic.labels, lang) : activeSort === "top" ? pick(TOP_NAV_LABEL, lang) : CATEGORY_NAV_LABELS[activeTag] ? pick(CATEGORY_NAV_LABELS[activeTag], lang) : tagLabel(activeTag, lang), topic ? `${prefix}/` : null) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
   } else if (articles.length) {
     const featured = articles.filter(a => a.card_style === "hero");
     // Without an explicit hero, lead with the newest automatic card: an editor who chose
@@ -616,11 +619,11 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
 
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
-    ${topic ? "" : categoryNav(lang, activeTag)}
+    ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
     ${list}
   </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js"></script>`;
-  return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
-    url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : ""}`, lang, bodyHtml });
+  return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : activeSort === "top" ? pick(TOP_NAV_LABEL, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
+    url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : activeSort === "top" ? "?sort=top" : ""}`, lang, bodyHtml });
 }
 
 const BACK_TO_NEWS_LABEL = { uk: "← Усі новини", en: "← All news", crh: "← Episi haberler" };
