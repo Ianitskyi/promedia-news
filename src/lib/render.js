@@ -28,7 +28,7 @@ const SITE_EYEBROW = {
 const OG_LOCALE = { uk: "uk_UA", en: "en_US", crh: "crh_UA" };
 const HTML_LOCALE_LABEL = { uk: "Мова / Language", en: "Мова / Language", crh: "Til / Language" };
 const LANG_BUTTON_LABEL = { uk: "UA", en: "EN", crh: "QT" };
-const CATEGORIES = ["Заяви", "Новини", "Статті"];
+const CATEGORIES = ["Новини", "Статті", "Прес-реліз", "Анонс"];
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
@@ -406,9 +406,16 @@ function articleExcerpt(article, lang) {
 
 const ALL_LABEL = { uk: "Усі", en: "All", crh: "Episi" };
 const CATEGORY_NAV_ARIA = { uk: "Рубрики новин", en: "News categories", crh: "Haber kategoriyaları" };
+// Підписи фільтра форматів на головній (множина: «Прес-релізи», «Анонси»).
+const CATEGORY_NAV_LABELS = {
+  "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
+  "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
+  "Прес-реліз": { uk: "Прес-релізи", en: "Press releases", crh: "Basın bildirileri" },
+  "Анонс": { uk: "Анонси", en: "Announcements", crh: "İlânlar" }
+};
 
 function categoryNav(lang, activeTag) {
-  const labels = { all: pick(ALL_LABEL, lang), "Заяви": tagLabel("Заяви", lang), "Новини": tagLabel("Новини", lang), "Статті": tagLabel("Статті", lang) };
+  const labels = { all: pick(ALL_LABEL, lang), ...Object.fromEntries(CATEGORIES.map(category => [category, pick(CATEGORY_NAV_LABELS[category], lang)])) };
   const allHref = `${langPrefix(lang)}/`;
   const items = [
     `<a class="category-link${!activeTag ? " active" : ""}" href="${allHref}">${labels.all}</a>`,
@@ -593,7 +600,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
   if (articles.length && filtered) {
-    list = heading(topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang), `${prefix}/`) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
+    list = heading(topic ? pick(topic.labels, lang) : CATEGORY_NAV_LABELS[activeTag] ? pick(CATEGORY_NAV_LABELS[activeTag], lang) : tagLabel(activeTag, lang), `${prefix}/`) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
   } else if (articles.length) {
     const featured = articles.filter(a => a.card_style === "hero");
     // Without an explicit hero, lead with the newest automatic card: an editor who chose
@@ -608,6 +615,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
 
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
+    ${topic ? "" : categoryNav(lang, activeTag)}
     ${list}
   </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js"></script>`;
   return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
