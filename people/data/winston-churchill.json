@@ -1,0 +1,67 @@
+{
+  "slug": "winston-churchill",
+  "group": "intl",
+  "country": "Велика Британія",
+  "name": {
+    "uk": "Вінстон Черчилль",
+    "en": "Winston Churchill"
+  },
+  "sort": {
+    "uk": "Черчилль Вінстон",
+    "en": "Churchill Winston"
+  },
+  "aliases": [
+    "Вінстон Черчіль"
+  ],
+  "role": {
+    "uk": "воєнний кореспондент, згодом прем'єр-міністр Великої Британії",
+    "en": "War correspondent, later Prime Minister of the United Kingdom"
+  },
+  "summary": {
+    "uk": "До політики — воєнний кореспондент; 1899 року втік із бурського полону, працюючи на The Morning Post.",
+    "en": "Before politics a war correspondent; escaped Boer captivity in 1899 while reporting for The Morning Post."
+  },
+  "bio": {
+    "uk": "Вінстон Черчилль (1874–1965) — британський державний діяч, прем'єр-міністр Великої Британії, лауреат Нобелівської премії з літератури (1953).\n\nДо політичної кар'єри він працював воєнним кореспондентом. У 1899 році 24-річний Черчилль поїхав на англо-бурську війну кореспондентом лондонської газети The Morning Post. Під час засідки на броньований потяг потрапив у полон, 18 листопада його привезли до в'язниці в шкільній будівлі в Преторії. Черчилль утік; бурський посадовець оголосив винагороду в 25 фунтів за втікача «живого чи мертвого», а про втечу писали газети всього світу."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1874–1965"
+    ],
+    [
+      "Видання",
+      "The Morning Post"
+    ],
+    [
+      "Відзнаки",
+      "Нобелівська премія з літератури, 1953"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Winston Churchill",
+      "uk:Вінстон Черчилль"
+    ],
+    "check": [
+      "Churchill",
+      "Черчилль"
+    ]
+  },
+  "sources": [
+    {
+      "title": "International Churchill Society: War correspondent",
+      "url": "https://winstonchurchill.org/old-site/learn/biography/war-correspondent/"
+    },
+    {
+      "title": "International Churchill Society: Autumn 1899",
+      "url": "https://winstonchurchill.org/the-life-of-churchill/young-soldier/1896-1900/autumn-1899-age-24/"
+    },
+    {
+      "title": "Medill, Northwestern University: Winston Churchill, war correspondent",
+      "url": "https://nationalsecurityzone.medill.northwestern.edu/archives/onthebeat/tbt-winston-churchill-war-correspondent/index.html"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

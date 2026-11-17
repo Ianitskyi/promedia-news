@@ -1,0 +1,40 @@
+{
+  "slug": "david-mindich",
+  "group": "intl",
+  "country": "США",
+  "name": {
+    "uk": "Девід Майндіч",
+    "en": "David Mindich"
+  },
+  "sort": {
+    "uk": "Майндіч Девід",
+    "en": "Mindich David"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський дослідник історії журналістики",
+    "en": "American historian of journalism"
+  },
+  "summary": {
+    "uk": "Досліджував походження «перевернутої піраміди» та журналістської об'єктивності.",
+    "en": "Studied the origins of the inverted pyramid and journalistic objectivity."
+  },
+  "bio": {
+    "uk": "Девід Майндіч — американський професор журналістики й дослідник її історії.\n\nУ розділі про Едвіна Стентона й «перевернуту піраміду» він окремо розбирає дві найпоширеніші теорії походження цього формату: про ненадійний телеграф часів громадянської війни і про потребу інформагенцій на кшталт Associated Press бути нейтральними."
+  },
+  "facts": [
+    [
+      "Тема",
+      "історія журналістики, об'єктивність"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Taylor & Francis: Edwin Stanton, the inverted pyramid and information control",
+      "url": "https://www.taylorfrancis.com/chapters/edit/10.4324/9781003417774-15/edwin-stanton-inverted-pyramid-information-control-david-mindich"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

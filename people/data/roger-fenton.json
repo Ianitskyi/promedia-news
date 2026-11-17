@@ -1,0 +1,67 @@
+{
+  "slug": "roger-fenton",
+  "group": "intl",
+  "country": "Велика Британія",
+  "name": {
+    "uk": "Роджер Фентон",
+    "en": "Roger Fenton"
+  },
+  "sort": {
+    "uk": "Фентон Роджер",
+    "en": "Fenton Roger"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "британський фотограф, автор знімків Кримської війни",
+    "en": "British photographer of the Crimean War"
+  },
+  "summary": {
+    "uk": "Фотограф, який 1855 року зробив 360 знімків Кримської війни — першої масштабно задокументованої на фото для широкої публіки.",
+    "en": "Photographer who made 360 pictures of the Crimean War in 1855, the first war widely documented in photographs for the public."
+  },
+  "bio": {
+    "uk": "Роджер Фентон (1819–1869) — британський фотограф, один із засновників Фотографічного товариства в Лондоні.\n\nУ 1855 році видавець Вільям Аґню відправив його до Криму, щоб продавати британцям знімки війни. З 8 березня до 26 червня 1855 року Фентон зробив 360 фотографій. Працював під опікою британського уряду й майже не показував смерті: на знімках — табори, офіцери, укріплення. Друкував негативи у возі-фотолабораторії.\n\nЙого найвідоміший знімок — «Долина тіні смерті» (23 квітня 1855 року). Фентон зробив з одного місця два кадри: з гарматними ядрами в канавах і на дорозі. Документаліст Ерол Морріс дійшов висновку, що кадр із ядрами на дорозі зроблено другим, тож ядра, найімовірніше, перемістили. Хто це зробив, не встановлено; постановочність знімка залишається гіпотезою."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1819–1869"
+    ],
+    [
+      "Відомий за",
+      "фото Кримської війни, 1855"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Roger Fenton"
+    ],
+    "check": [
+      "Fenton"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Бібліотека Конгресу США: Roger Fenton's photographs of the Crimean War",
+      "url": "https://blogs.loc.gov/picturethis/2017/03/witness-to-history-roger-fentons-photographs-of-the-crimean-war/"
+    },
+    {
+      "title": "JSTOR Daily: Seeing is believing — early war photography",
+      "url": "https://www.about.jstor.org/blog/seeing-is-believing-early-war-photography"
+    },
+    {
+      "title": "Public Domain Review: The Valley of the Shadow of Death",
+      "url": "https://publicdomainreview.org/collection/roger-fenton-valley-of-the-shadow-of-death/"
+    },
+    {
+      "title": "Bronx Documentary Center: Altered Images — Roger Fenton",
+      "url": "https://www.bronxdoc.org/bronx-documentary-center/exhibits/altered-images/roger-fenton/"
+    },
+    {
+      "title": "Wikipedia: Roger Fenton",
+      "url": "https://en.wikipedia.org/wiki/Roger_Fenton"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

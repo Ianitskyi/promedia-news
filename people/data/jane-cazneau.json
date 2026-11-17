@@ -1,0 +1,67 @@
+{
+  "slug": "jane-cazneau",
+  "group": "intl",
+  "country": "США",
+  "name": {
+    "uk": "Джейн Казно",
+    "en": "Jane Cazneau"
+  },
+  "sort": {
+    "uk": "Казно Джейн",
+    "en": "Cazneau Jane"
+  },
+  "aliases": [
+    "Кора Монтгомері",
+    "Cora Montgomery",
+    "Jane McManus"
+  ],
+  "role": {
+    "uk": "американська журналістка, кореспондентка американсько-мексиканської війни",
+    "en": "American journalist who reported on the Mexican–American War"
+  },
+  "summary": {
+    "uk": "Журналістка, яку часто називають першою воєнною кореспонденткою; писала під псевдонімом Кора Монтгомері.",
+    "en": "Journalist often called the first female war correspondent; wrote as Cora Montgomery."
+  },
+  "bio": {
+    "uk": "Джейн Казно (у дівоцтві Макманус, 1807–1878) — американська журналістка, яка писала під псевдонімом Кора Монтгомері.\n\nЇї часто називають першою воєнною кореспонденткою. Біографка Лінда Гадсон обережніша: за її оцінкою, Казно була єдиною репортеркою, яка висвітлювала американсько-мексиканську війну з-за лінії фронту, і, можливо, першою жінкою-кореспонденткою. Міжнародна енциклопедія Першої світової нагадує, що приблизно тоді ж про війну в Італії 1848–1849 років писала інша американка, Маргарет Фуллер, тож звання «першої» спірне."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1807–1878"
+    ],
+    [
+      "Псевдонім",
+      "Кора Монтгомері"
+    ],
+    [
+      "Війни",
+      "американсько-мексиканська війна"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Jane Cazneau"
+    ],
+    "check": [
+      "Cazneau"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Linda Hudson, dissertation, University of North Texas",
+      "url": "https://digital.library.unt.edu/ark:/67531/metadc278486/m2/1/high_res_d/1002658825-hudson.pdf"
+    },
+    {
+      "title": "1914-1918-online: Women War Reporters",
+      "url": "https://encyclopedia.1914-1918-online.net/article/women-war-reporters/?format=pdf"
+    },
+    {
+      "title": "Wikipedia: Jane Cazneau",
+      "url": "https://en.wikipedia.org/wiki/Jane_Cazneau"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

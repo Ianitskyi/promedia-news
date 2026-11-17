@@ -1,0 +1,59 @@
+{
+  "slug": "mathew-brady",
+  "group": "intl",
+  "country": "США",
+  "name": {
+    "uk": "Метью Брейді",
+    "en": "Mathew Brady"
+  },
+  "sort": {
+    "uk": "Брейді Метью",
+    "en": "Brady Mathew"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський фотограф, власник студії часів громадянської війни",
+    "en": "American photographer, owner of a Civil War-era studio"
+  },
+  "summary": {
+    "uk": "Власник нью-йоркської галереї, де 1862 року показали «Мертвих під Антітемом».",
+    "en": "Owner of the New York gallery that showed “The Dead of Antietam” in 1862."
+  },
+  "bio": {
+    "uk": "Метью Брейді (близько 1822–1896) — американський фотограф, власник студій у Нью-Йорку та Вашингтоні.\n\nУ жовтні 1862 року в його нью-йоркській галереї з'явилася виставка «Мертві під Антітемом». The New York Times написала тоді, що Брейді начебто приніс тіла й поклав їх біля дверей читачів. Самі знімки загиблих зробили не він, а його працівники Александер Гарднер і Джеймс Гібсон."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "бл. 1822–1896"
+    ],
+    [
+      "Відомий за",
+      "фото громадянської війни в США"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Mathew Brady"
+    ],
+    "check": [
+      "Brady"
+    ]
+  },
+  "sources": [
+    {
+      "title": "American Battlefield Trust: Pictures of the Dead at Antietam (NYT, 1862)",
+      "url": "https://www.battlefields.org/learn/primary-sources/pictures-dead-antietam"
+    },
+    {
+      "title": "HPPR / NPR: Antietam death studies changed how we saw war",
+      "url": "https://www.hppr.org/2012-09-15/antietam-death-studies-changed-how-we-saw-war"
+    },
+    {
+      "title": "Wikipedia: Mathew Brady",
+      "url": "https://en.wikipedia.org/wiki/Mathew_Brady"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

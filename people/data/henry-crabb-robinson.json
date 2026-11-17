@@ -1,0 +1,63 @@
+{
+  "slug": "henry-crabb-robinson",
+  "group": "intl",
+  "country": "Велика Британія",
+  "name": {
+    "uk": "Генрі Крабб Робінсон",
+    "en": "Henry Crabb Robinson"
+  },
+  "sort": {
+    "uk": "Робінсон Генрі Крабб",
+    "en": "Robinson Henry Crabb"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "британський юрист, щоденникар, спецкореспондент The Times",
+    "en": "British lawyer, diarist and special correspondent for The Times"
+  },
+  "summary": {
+    "uk": "Спеціальний кореспондент The Times на війні в Іспанії 1808 року — один із перших воєнних кореспондентів.",
+    "en": "Special correspondent for The Times in the war in Spain in 1808, one of the first war correspondents."
+  },
+  "bio": {
+    "uk": "Генрі Крабб Робінсон (1775–1867) — англійський юрист і щоденникар.\n\nУ 1808 році газета The Times відправила його спеціальним кореспондентом на війну в Іспанії. Тому історики, зокрема з Мейнутського університету, вважають помилкою називати першим воєнним кореспондентом Вільяма Говарда Расселла, який працював у Криму майже на пів століття пізніше."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1775–1867"
+    ],
+    [
+      "Видання",
+      "The Times"
+    ],
+    [
+      "Війни",
+      "війна в Іспанії, 1808"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Henry Crabb Robinson"
+    ],
+    "check": [
+      "Robinson"
+    ]
+  },
+  "sources": [
+    {
+      "title": "EBSCO Research Starters: Henry Crabb Robinson",
+      "url": "https://ebsco.com/research-starters/history/henry-crabb-robinson"
+    },
+    {
+      "title": "Maynooth University: William Howard Russell",
+      "url": "https://maynoothuniversity.ie/node/546930"
+    },
+    {
+      "title": "Wikipedia: Henry Crabb Robinson",
+      "url": "https://en.wikipedia.org/wiki/Henry_Crabb_Robinson"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

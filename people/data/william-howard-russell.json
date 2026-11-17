@@ -1,0 +1,67 @@
+{
+  "slug": "william-howard-russell",
+  "group": "intl",
+  "country": "Ірландія",
+  "name": {
+    "uk": "Вільям Говард Расселл",
+    "en": "William Howard Russell"
+  },
+  "sort": {
+    "uk": "Расселл Вільям Говард",
+    "en": "Russell William Howard"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "ірландський воєнний кореспондент The Times",
+    "en": "Irish war correspondent for The Times"
+  },
+  "summary": {
+    "uk": "Кореспондент The Times у Кримській війні, якого називають «батьком» воєнних кореспондентів.",
+    "en": "The Times correspondent in the Crimean War, regarded as the father of war correspondents."
+  },
+  "bio": {
+    "uk": "Вільям Говард Расселл (1820–1907) — ірландський журналіст, кореспондент лондонської The Times.\n\nПід час Кримської війни він близько двох років провів при британській армії. Писав не лише про битви, а й про хаос, хвороби й погане постачання війська. За оцінкою Cambridge University Press, ці репортажі стали однією з причин реформи британської армії.\n\nРасселла часто називають першим воєнним кореспондентом, але історики Мейнутського університету наголошують, що це не так: ще 1808 року The Times відправила на війну в Іспанії Генрі Крабба Робінсона. Расселл став символом сучасної професійної воєнної журналістики, його вважають «батьком» воєнних кореспондентів."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1820–1907"
+    ],
+    [
+      "Видання",
+      "The Times"
+    ],
+    [
+      "Війни",
+      "Кримська війна"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:William Howard Russell"
+    ],
+    "check": [
+      "Russell"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Maynooth University: William Howard Russell",
+      "url": "https://maynoothuniversity.ie/node/546930"
+    },
+    {
+      "title": "The Irish Times: The greatest war correspondent",
+      "url": "https://www.irishtimes.com/opinion/the-greatest-war-correspondent-an-irishman-s-diary-on-william-howard-russell-1.4227950"
+    },
+    {
+      "title": "Cambridge University Press: The War (W. H. Russell)",
+      "url": "https://cambridge.org/core/books/war-from-the-landing-at-gallipoli-to-the-death-of-lord-raglan/92DA0856237473F5E815A0E32973721F"
+    },
+    {
+      "title": "Wikipedia: William Howard Russell",
+      "url": "https://en.wikipedia.org/wiki/William_Howard_Russell"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

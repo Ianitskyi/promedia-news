@@ -1,0 +1,67 @@
+{
+  "slug": "alexander-gardner",
+  "group": "intl",
+  "country": "США",
+  "name": {
+    "uk": "Александер Гарднер",
+    "en": "Alexander Gardner"
+  },
+  "sort": {
+    "uk": "Гарднер Александер",
+    "en": "Gardner Alexander"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "фотограф громадянської війни в США",
+    "en": "American Civil War photographer"
+  },
+  "summary": {
+    "uk": "Автор знімків загиблих під Антітемом і Геттісбургом; разом з асистентом переніс тіло для знімка «Дім повстанського снайпера».",
+    "en": "Photographed the dead at Antietam and Gettysburg; with his assistant moved a body for “Home of a Rebel Sharpshooter”."
+  },
+  "bio": {
+    "uk": "Александер Гарднер (1821–1882) — фотограф шотландського походження, який працював у США.\n\nЯк працівник студії Метью Брейді у вересні 1862 року він разом із Джеймсом Гібсоном сфотографував загиблих на полі битви при Антітемі — ці знімки показали в Нью-Йорку на виставці «Мертві під Антітемом».\n\nУ липні 1863 року після битви під Геттісбургом Гарднер і його асистент Тімоті О'Салліван сфотографували загиблого конфедерата, а потім перенесли тіло приблизно на 40 ярдів у кам'яну нішу й зробили новий кадр — «Дім повстанського снайпера». За даними MoMA, поруч поклали й гвинтівку. Сумніви щодо знімка вперше публічно висловили лише 1961 року."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1821–1882"
+    ],
+    [
+      "Відомий за",
+      "фото Антітема і Геттісбурга"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Alexander Gardner (photographer)"
+    ],
+    "check": [
+      "Gardner"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Національний архів США: The true story behind the Gettysburg sharpshooter",
+      "url": "https://prologue.blogs.archives.gov/2013/06/20/the-true-story-behind-the-gettysburg-sharpshooter"
+    },
+    {
+      "title": "National Park Service: Gettysburg sharpshooter location",
+      "url": "https://www.nps.gov/places/gettysburg-then-now-sharpshooter-location.htm"
+    },
+    {
+      "title": "MoMA: Home of a Rebel Sharpshooter",
+      "url": "https://www.moma.org/collection/works/86695"
+    },
+    {
+      "title": "HPPR / NPR: Antietam death studies changed how we saw war",
+      "url": "https://www.hppr.org/2012-09-15/antietam-death-studies-changed-how-we-saw-war"
+    },
+    {
+      "title": "Wikipedia: Alexander Gardner (photographer)",
+      "url": "https://en.wikipedia.org/wiki/Alexander_Gardner_(photographer)"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}

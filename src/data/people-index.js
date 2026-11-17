@@ -1,6 +1,23 @@
 // Згенеровано: node people-site/build.mjs --index-only. Не редагуйте вручну — правте people/data/*.json.
 export const PEOPLE = [
   {
+    "slug": "alexander-gardner",
+    "tag": "Александер Гарднер",
+    "aliases": [],
+    "name": {
+      "uk": "Александер Гарднер",
+      "en": "Alexander Gardner"
+    },
+    "role": {
+      "uk": "фотограф громадянської війни в США",
+      "en": "American Civil War photographer"
+    },
+    "summary": {
+      "uk": "Автор знімків загиблих під Антітемом і Геттісбургом; разом з асистентом переніс тіло для знімка «Дім повстанського снайпера».",
+      "en": "Photographed the dead at Antietam and Gettysburg; with his assistant moved a body for “Home of a Rebel Sharpshooter”."
+    }
+  },
+  {
     "slug": "anastasiia-simonova",
     "tag": "Анастасія Сімонова",
     "aliases": [],
@@ -145,6 +162,42 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "william-howard-russell",
+    "tag": "Вільям Говард Расселл",
+    "aliases": [],
+    "name": {
+      "uk": "Вільям Говард Расселл",
+      "en": "William Howard Russell"
+    },
+    "role": {
+      "uk": "ірландський воєнний кореспондент The Times",
+      "en": "Irish war correspondent for The Times"
+    },
+    "summary": {
+      "uk": "Кореспондент The Times у Кримській війні, якого називають «батьком» воєнних кореспондентів.",
+      "en": "The Times correspondent in the Crimean War, regarded as the father of war correspondents."
+    }
+  },
+  {
+    "slug": "winston-churchill",
+    "tag": "Вінстон Черчилль",
+    "aliases": [
+      "Вінстон Черчіль"
+    ],
+    "name": {
+      "uk": "Вінстон Черчилль",
+      "en": "Winston Churchill"
+    },
+    "role": {
+      "uk": "воєнний кореспондент, згодом прем'єр-міністр Великої Британії",
+      "en": "War correspondent, later Prime Minister of the United Kingdom"
+    },
+    "summary": {
+      "uk": "До політики — воєнний кореспондент; 1899 року втік із бурського полону, працюючи на The Morning Post.",
+      "en": "Before politics a war correspondent; escaped Boer captivity in 1899 while reporting for The Morning Post."
+    }
+  },
+  {
     "slug": "volodymyr-ivanov",
     "tag": "Володимир Іванов",
     "aliases": [
@@ -161,6 +214,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Редактор щоденної газети «Слава Севастополя», убитий вибухом у 1995 році. Злочин досі не розкрито.",
       "en": "Editor of the Sevastopol daily Slava Sevastopolya, killed by a bomb in 1995. The murder remains unsolved."
+    }
+  },
+  {
+    "slug": "henry-crabb-robinson",
+    "tag": "Генрі Крабб Робінсон",
+    "aliases": [],
+    "name": {
+      "uk": "Генрі Крабб Робінсон",
+      "en": "Henry Crabb Robinson"
+    },
+    "role": {
+      "uk": "британський юрист, щоденникар, спецкореспондент The Times",
+      "en": "British lawyer, diarist and special correspondent for The Times"
+    },
+    "summary": {
+      "uk": "Спеціальний кореспондент The Times на війні в Іспанії 1808 року — один із перших воєнних кореспондентів.",
+      "en": "Special correspondent for The Times in the war in Spain in 1808, one of the first war correspondents."
     }
   },
   {
@@ -181,6 +251,44 @@ export const PEOPLE = [
     "summary": {
       "uk": "Засновник «Української правди», викрадений і вбитий у 2000 році; його справа стала символом боротьби за свободу слова.",
       "en": "Founder of Ukrainska Pravda, kidnapped and murdered in 2000; his case became a symbol of press freedom in Ukraine."
+    }
+  },
+  {
+    "slug": "david-mindich",
+    "tag": "Девід Майндіч",
+    "aliases": [],
+    "name": {
+      "uk": "Девід Майндіч",
+      "en": "David Mindich"
+    },
+    "role": {
+      "uk": "американський дослідник історії журналістики",
+      "en": "American historian of journalism"
+    },
+    "summary": {
+      "uk": "Досліджував походження «перевернутої піраміди» та журналістської об'єктивності.",
+      "en": "Studied the origins of the inverted pyramid and journalistic objectivity."
+    }
+  },
+  {
+    "slug": "jane-cazneau",
+    "tag": "Джейн Казно",
+    "aliases": [
+      "Кора Монтгомері",
+      "Cora Montgomery",
+      "Jane McManus"
+    ],
+    "name": {
+      "uk": "Джейн Казно",
+      "en": "Jane Cazneau"
+    },
+    "role": {
+      "uk": "американська журналістка, кореспондентка американсько-мексиканської війни",
+      "en": "American journalist who reported on the Mexican–American War"
+    },
+    "summary": {
+      "uk": "Журналістка, яку часто називають першою воєнною кореспонденткою; писала під псевдонімом Кора Монтгомері.",
+      "en": "Journalist often called the first female war correspondent; wrote as Cora Montgomery."
     }
   },
   {
@@ -295,6 +403,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Кореспондент Радіо Свобода, який з 2015 року працює на фронті; номінант Премії Ґонґадзе 2026.",
       "en": "Radio Svoboda correspondent reporting from the front line since 2015; 2026 Gongadze Prize nominee."
+    }
+  },
+  {
+    "slug": "mathew-brady",
+    "tag": "Метью Брейді",
+    "aliases": [],
+    "name": {
+      "uk": "Метью Брейді",
+      "en": "Mathew Brady"
+    },
+    "role": {
+      "uk": "американський фотограф, власник студії часів громадянської війни",
+      "en": "American photographer, owner of a Civil War-era studio"
+    },
+    "summary": {
+      "uk": "Власник нью-йоркської галереї, де 1862 року показали «Мертвих під Антітемом».",
+      "en": "Owner of the New York gallery that showed “The Dead of Antietam” in 1862."
     }
   },
   {
@@ -426,6 +551,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "roger-fenton",
+    "tag": "Роджер Фентон",
+    "aliases": [],
+    "name": {
+      "uk": "Роджер Фентон",
+      "en": "Roger Fenton"
+    },
+    "role": {
+      "uk": "британський фотограф, автор знімків Кримської війни",
+      "en": "British photographer of the Crimean War"
+    },
+    "summary": {
+      "uk": "Фотограф, який 1855 року зробив 360 знімків Кримської війни — першої масштабно задокументованої на фото для широкої публіки.",
+      "en": "Photographer who made 360 pictures of the Crimean War in 1855, the first war widely documented in photographs for the public."
+    }
+  },
+  {
     "slug": "sevgil-musaieva",
     "tag": "Севгіль Мусаєва",
     "aliases": [],
@@ -474,6 +616,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює ІРРП — організатора найбільшої в Україні конференції журналістів-розслідувачів.",
       "en": "Heads RPDI, the organiser of Ukraine's largest investigative journalism conference."
+    }
+  },
+  {
+    "slug": "ford-risley",
+    "tag": "Форд Ріслі",
+    "aliases": [],
+    "name": {
+      "uk": "Форд Ріслі",
+      "en": "Ford Risley"
+    },
+    "role": {
+      "uk": "американський історик журналістики, професор Університету штату Пенсільванія",
+      "en": "American journalism historian, professor at Penn State"
+    },
+    "summary": {
+      "uk": "Дослідник преси громадянської війни в США.",
+      "en": "Historian of the press during the American Civil War."
     }
   },
   {

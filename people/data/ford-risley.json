@@ -1,0 +1,44 @@
+{
+  "slug": "ford-risley",
+  "group": "intl",
+  "country": "США",
+  "name": {
+    "uk": "Форд Ріслі",
+    "en": "Ford Risley"
+  },
+  "sort": {
+    "uk": "Ріслі Форд",
+    "en": "Risley Ford"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський історик журналістики, професор Університету штату Пенсільванія",
+    "en": "American journalism historian, professor at Penn State"
+  },
+  "summary": {
+    "uk": "Дослідник преси громадянської війни в США.",
+    "en": "Historian of the press during the American Civil War."
+  },
+  "bio": {
+    "uk": "Форд Ріслі — американський історик журналістики, професор Університету штату Пенсільванія (Penn State). Досліджує пресу часів громадянської війни в США.\n\nЗа його словами, саме під час громадянської війни Америка стала нацією читачів газет, а досвід преси тієї війни допоміг сформувати сучасні медіа."
+  },
+  "facts": [
+    [
+      "Заклад",
+      "Penn State"
+    ],
+    [
+      "Тема",
+      "преса громадянської війни в США"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Penn State: Press experience during Civil War helped shape today's media",
+      "url": "https://www.psu.edu/news/impact/story/press-experience-during-civil-war-helped-shape-todays-media"
+    }
+  ],
+  "updated": "2026-11-17",
+  "kind": "journalist"
+}
