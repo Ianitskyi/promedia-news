@@ -71,8 +71,11 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-brief:hover{border-color:var(--pm-shell-ink)}
 .pm-global-brief.is-playing{background:var(--pm-shell-ink);color:#fff;border-color:var(--pm-shell-ink)}
 .pm-global-brief.is-playing i{background:#fff}
-.pm-global-brief small{font-size:11px;font-weight:600;letter-spacing:0;opacity:.75;font-variant-numeric:tabular-nums}
+.pm-global-brief b{font-weight:800}.pm-global-brief small{font-size:11px;font-weight:600;letter-spacing:0;opacity:.75;font-variant-numeric:tabular-nums}
 .pm-global-brief small:empty{display:none}
+@media(max-width:980px){.pm-global-main{gap:12px}.pm-global-brief{margin-left:auto}.pm-global-brief+.pm-global-langs+.pm-global-burger{margin-left:0}}
+@media(max-width:420px){.pm-global-main{gap:6px;padding:6px 10px}.pm-global-brief small{display:none}.pm-global-brief{padding-right:10px}.pm-global-langs a{padding:4px 5px}.pm-global-burger summary{width:34px}.pm-global-logo{width:78px}}
+@media(max-width:350px){.pm-global-brief b{display:none}.pm-global-brief{padding:0 3px}}
 .pm-global-langs a{padding:4px 8px;border-radius:999px;color:var(--pm-shell-ink);font-size:12px;font-weight:700;text-decoration:none}
 .pm-global-langs a.active{background:var(--pm-shell-ink);color:#fff}
 .pm-global-secondary{display:flex;justify-content:flex-end;gap:clamp(18px,2.2vw,34px);padding:8px clamp(18px,4vw,64px) 10px;background:var(--pm-shell-paper);border-top:1px solid rgba(13,12,92,.08);overflow-x:auto;scrollbar-width:none}
@@ -122,7 +125,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
       this.innerHTML=`<header class="pm-global-header"><div class="pm-global-main">
         <a class="pm-global-logo" href="${mainHome}" aria-label="ProMedia"><img src="https://news.promedia.report/img/promedia-wordmark.svg" alt="ProMedia"></a>
         <nav class="pm-global-primary"><a href="${projectUrl}">${t.projects}</a><a href="${mainHome}#team">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a></nav>
-        ${lang==="uk"&&location.hostname!=="brief.promedia.report"?`<button type="button" class="pm-global-brief" data-pm-brief aria-label="Слухати BRIEF — аудіовипуск новин" title="BRIEF — головні новини за 5 хвилин"><i aria-hidden="true">▶</i>Brief<small></small></button>`:""}
+        ${lang==="uk"&&location.hostname!=="brief.promedia.report"?`<button type="button" class="pm-global-brief" data-pm-brief aria-label="Слухати BRIEF — аудіовипуск новин" title="BRIEF — головні новини за 5 хвилин"><i aria-hidden="true">▶</i><b>Brief</b><small></small></button>`:""}
         <div class="pm-global-langs">${available.includes("uk")?`<a class="${lang==="uk"?"active":""}" href="${samePath("uk")}">UA</a>`:""}${available.includes("en")?`<a class="${lang==="en"?"active":""}" href="${samePath("en")}">EN</a>`:""}${available.includes("crh")?`<a class="${lang==="crh"?"active":""}" href="${samePath("crh")}">QT</a>`:""}</div>
         <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div></div></details>
       </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}">${x[1]}</a>`).join("")}</nav></header>`;
