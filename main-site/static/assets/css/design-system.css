@@ -283,6 +283,9 @@ body.innerpage main:not(:has(> .slimheader)) {
     white-space: nowrap;
 }
 .pm-projects-pills {
+    /* Keeps the visually-hidden status labels inside the scroller,
+       otherwise they stretch the whole page sideways on phones. */
+    position: relative;
     display: flex;
     gap: 8px;
     flex: 1 1 auto;
