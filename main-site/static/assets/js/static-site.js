@@ -122,6 +122,14 @@
           { test: /automation lab/i, uk: "AI and Automation Lab 2.0", en: "AI and Automation Lab 2.0", crh: "AI and Automation Lab 2.0" },
           { test: /журфак|journalism school|faculties of journalism/i, uk: "Рейтинг журфаків", en: "J-school ranking", crh: "Jurnalistika fakultetleri reytingi" }
         ];
+        // Fixed order on the strip: Santa, Atlas, Communities map, J-school ranking, then the rest as they come.
+        const ORDER = [/санта|santa/i, /атлас|atlas/i, /спільнот|communit/i, /журфак|journalism school|faculties of journalism/i];
+        const orderOf = (p) => {
+          const key = `${p.slug} ${p.title || ""} ${p.titleEn || p.title_en || ""}`;
+          const i = ORDER.findIndex((re) => re.test(key));
+          return i === -1 ? ORDER.length : i;
+        };
+        items.sort((a, b) => orderOf(a) - orderOf(b));
         grid.innerHTML = items.map((p) => {
           const fullTitle = lang === "en"
             ? (p.titleEn || p.title_en || p.title)
