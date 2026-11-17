@@ -54,7 +54,7 @@ test('The shared header links to Santa on desktop and mobile only in Ukrainian',
  }
 });
 
-test('BRIEF is a separate project for now: no Brief link or button in the shared header',()=>{
+test('Brief is linked from the secondary menu, without a header button',()=>{
  for(const lang of ['uk','en','crh']){
   const definitions=new Map();class Element{getAttribute(){return null;}}
   runInNewContext(read('public/js/promedia-global-shell.js'),{HTMLElement:Element,URL,
@@ -62,7 +62,7 @@ test('BRIEF is a separate project for now: no Brief link or button in the shared
    document:{documentElement:{lang},getElementById:()=>null,querySelector:()=>null,createElement:()=>({}),head:{appendChild(){}}},
    customElements:{get:n=>definitions.get(n),define:(n,c)=>definitions.set(n,c)}});
   const Header=definitions.get('promedia-global-header'),header=new Header();header.connectedCallback();
-  assert.equal(header.innerHTML.includes('brief.promedia.report'),false,lang);
+  assert.equal(header.innerHTML.includes('class="" href="https://brief.promedia.report/">Brief</a>'),true,lang);
   assert.equal(header.innerHTML.includes('data-pm-brief'),false,lang);
  }
 });
