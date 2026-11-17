@@ -1321,22 +1321,3 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .people-box-summary { margin: 0; font-size: 14.5px; line-height: 1.5; }
 .people-box-summary a { color: var(--ink); font-weight: 700; white-space: nowrap; }
 
-/* BRIEF strip on the news home page (owner, 2026-11-17) */
-.brief-strip { display: flex; align-items: center; gap: 12px; margin: 0 0 22px; padding: 8px 14px 8px 8px; min-height: 44px; background: #0d0c5c; color: #fff; border-radius: 4px; font-size: 13px; line-height: 1.3; }
-.brief-strip__play { flex: 0 0 auto; width: 30px; height: 30px; border: 0; border-radius: 50%; background: #ffac33; color: #0d0c5c; font-size: 12px; cursor: pointer; display: grid; place-items: center; padding: 0; }
-.brief-strip__play:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
-.brief-strip__play[hidden] { display: none; }
-.brief-strip__name { font-weight: 800; letter-spacing: .06em; padding-left: 6px; }
-.brief-strip__play:not([hidden]) + .brief-strip__name { padding-left: 0; }
-.brief-strip__text { color: #d9d8f2; }
-.brief-strip__meta { color: #b9b8dd; font-variant-numeric: tabular-nums; white-space: nowrap; }
-.brief-strip__link { margin-left: auto; color: #ffac33; text-decoration: none; white-space: nowrap; font-weight: 600; }
-.brief-strip__link:hover { text-decoration: underline; }
-.brief-strip__short { display: none; }
-@media (max-width: 640px) { .brief-strip__short { display: inline; } }
-.brief-strip.is-playing .brief-strip__play { background: #fff; }
-@media (max-width: 640px) {
-  .brief-strip { gap: 10px; }
-  .brief-strip__text, .brief-strip__long { display: none; }
-  .brief-strip__meta { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-}

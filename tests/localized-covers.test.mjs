@@ -66,3 +66,17 @@ test('BRIEF is a separate project for now: no Brief link or button in the shared
   assert.equal(header.innerHTML.includes('data-pm-brief'),false,lang);
  }
 });
+
+test('The BRIEF bar is added under the header only in Ukrainian and not on BRIEF itself',()=>{
+ for(const [lang,host,want] of [['uk','news.promedia.report',1],['uk','research.promedia.report',1],['en','news.promedia.report',0],['crh','atlas.promedia.report',0],['uk','brief.promedia.report',0]]){
+  const definitions=new Map(),added=[];class Element{getAttribute(){return null;}after(x){added.push(x);}}
+  runInNewContext(read('public/js/promedia-global-shell.js'),{HTMLElement:Element,URL,
+   fetch:()=>new Promise(()=>{}),
+   location:{hostname:host,pathname:lang==='uk'?'/':'/'+lang+'/',href:'https://'+host+'/'},
+   document:{documentElement:{lang},getElementById:()=>null,querySelector:()=>null,createElement:()=>({setAttribute(){},querySelector:()=>({})}),head:{appendChild(){}},body:{prepend(){}}},
+   customElements:{get:n=>definitions.get(n),define:(n,c)=>definitions.set(n,c)}});
+  const Header=definitions.get('promedia-global-header'),header=new Header();header.connectedCallback();
+  assert.equal(added.length,want,lang+' '+host);
+  if(want) assert.match(added[0].innerHTML,/brief\.promedia\.report/);
+ }
+});
