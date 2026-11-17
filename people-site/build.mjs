@@ -221,8 +221,9 @@ ${image ? `<meta property="og:image" content="${esc(image)}">` : ""}
 <link rel="stylesheet" href="/people.css">
 </head>
 <body>
+<promedia-global-header></promedia-global-header>
 ${body}
-<footer class="pp-footer"><div class="pp-wrap">© ГО «ПроМедіа» · <a href="https://promedia.report${lang === "en" ? "/en/" : "/"}">promedia.report</a> · <a href="${NEWS}${lang === "en" ? "/en/" : "/"}">${t.news}</a></div></footer>
+<promedia-global-footer></promedia-global-footer>
 <script defer src="${NEWS}/js/promedia-global-shell.js"></script>
 </body>
 </html>
