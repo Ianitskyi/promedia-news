@@ -64,6 +64,16 @@ const files = readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
   const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
   if (!a.slug || !a.title || !a.bodyMd) throw Error('Missing slug/title/bodyMd in ' + f);
+  // Scheduled publication: "publishAt" (ISO 8601 with a time zone offset, e.g. 2026-11-18T03:00:00+02:00)
+  // keeps a new article off the site until that moment; the workflow runs every 15 minutes.
+  if (a.publishAt) {
+    const due = new Date(a.publishAt);
+    if (Number.isNaN(due.getTime())) throw Error(`Invalid publishAt in ${f}: ${a.publishAt}`);
+    if (due > new Date() && !d1(`SELECT id FROM articles WHERE slug = ${q(a.slug)}`).length) {
+      console.log(`Scheduled ${a.slug}: waits until ${due.toISOString()}.`);
+      continue;
+    }
+  }
   if (d1(`SELECT id FROM articles WHERE slug = ${q(a.slug)}`).length) {
     // An approved revision is applied once, then admin edits stay authoritative.
     const marker = a.revision ? `article_revision:${a.slug}:${a.revision}` : null;
@@ -130,7 +140,7 @@ for (const f of files) {
   const author = d1("SELECT id FROM users WHERE role = 'admin' ORDER BY id LIMIT 1")[0];
   if (!author) throw Error('No admin user found');
   const now = new Date().toISOString();
-  const published = a.publishedAt || now;
+  const published = a.publishedAt || (a.publishAt ? new Date(a.publishAt).toISOString() : now);
   const sql = `INSERT INTO articles (slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh,
     body_md, body_md_en, body_md_crh, cover_image_url, cover_crop_data, tags, related_media_ids, is_important, card_style, status, author_id,
     published_at, created_at, updated_at)
