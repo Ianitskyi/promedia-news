@@ -66,6 +66,17 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-primary a{font-size:15px}.pm-global-secondary a{font-size:12px;color:rgba(13,12,92,.72)}
 .pm-global-primary a:hover,.pm-global-secondary a:hover{color:#e8901a}
 .pm-global-langs{display:flex;gap:2px;align-items:center}
+.pm-brief-bar{display:flex;align-items:center;gap:12px;min-height:38px;padding:5px clamp(18px,4vw,64px);background:var(--pm-shell-ink);color:#fff;font:500 13px/1.3 Montserrat,Arial,sans-serif;box-sizing:border-box}
+.pm-brief-bar__play{flex:0 0 auto;display:grid;place-items:center;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:var(--pm-shell-accent);color:var(--pm-shell-ink);font-size:11px;cursor:pointer}
+.pm-brief-bar__play[hidden]{display:none}.pm-brief-bar__play:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.pm-brief-bar.is-playing .pm-brief-bar__play{background:#fff}
+.pm-brief-bar__name{font-weight:800;letter-spacing:.06em}
+.pm-brief-bar__text{color:#d9d8f2}
+.pm-brief-bar__meta{color:#b9b8dd;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.pm-brief-bar a{margin-left:auto;color:var(--pm-shell-accent);text-decoration:none;font-weight:700;white-space:nowrap}
+.pm-brief-bar a:hover{text-decoration:underline}
+.pm-brief-bar__short{display:none}
+@media(max-width:640px){.pm-brief-bar{gap:10px;padding:5px 18px}.pm-brief-bar__text,.pm-brief-bar__long{display:none}.pm-brief-bar__short{display:inline}}
 .pm-global-langs a{padding:4px 8px;border-radius:999px;color:var(--pm-shell-ink);font-size:12px;font-weight:700;text-decoration:none}
 .pm-global-langs a.active{background:var(--pm-shell-ink);color:#fff}
 .pm-global-secondary{display:flex;justify-content:flex-end;gap:clamp(18px,2.2vw,34px);padding:8px clamp(18px,4vw,64px) 10px;background:var(--pm-shell-paper);border-top:1px solid rgba(13,12,92,.08);overflow-x:auto;scrollbar-width:none}
@@ -118,7 +129,37 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         <div class="pm-global-langs">${available.includes("uk")?`<a class="${lang==="uk"?"active":""}" href="${samePath("uk")}">UA</a>`:""}${available.includes("en")?`<a class="${lang==="en"?"active":""}" href="${samePath("en")}">EN</a>`:""}${available.includes("crh")?`<a class="${lang==="crh"?"active":""}" href="${samePath("crh")}">QT</a>`:""}</div>
         <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div></div></details>
       </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}">${x[1]}</a>`).join("")}</nav></header>`;
+      // Narrow BRIEF bar under the header on every ProMedia site (owner, 2026-11-17).
+      // Ukrainian only (BRIEF is Ukrainian); not on BRIEF itself, which has its own player.
+      if(lang==="uk"&&location.hostname!=="brief.promedia.report"&&typeof this.after==="function"&&!document.querySelector(".pm-brief-bar")){
+        const bar=document.createElement("aside");
+        bar.className="pm-brief-bar";bar.setAttribute("aria-label","BRIEF — аудіовипуск новин");
+        bar.innerHTML=`<button type="button" class="pm-brief-bar__play" aria-label="Слухати BRIEF" hidden>▶</button><span class="pm-brief-bar__name">BRIEF</span><span class="pm-brief-bar__text">Головні новини — послухати за 5 хвилин</span><span class="pm-brief-bar__meta"></span><a href="https://brief.promedia.report/"><span class="pm-brief-bar__long">Текст і джерела</span><span class="pm-brief-bar__short">Джерела</span> →</a>`;
+        this.after(bar);
+        briefBar(bar);
+      }
     }
+  }
+  // The latest BRIEF edition plays right on the page; without it the bar stays a plain link.
+  function briefBar(bar){
+    const BRIEF="https://brief.promedia.report/";
+    const btn=bar.querySelector(".pm-brief-bar__play"),meta=bar.querySelector(".pm-brief-bar__meta");
+    const fmt=s=>{s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
+    fetch(BRIEF+"demo/index.json",{cache:"no-store"}).then(r=>r.json())
+      .then(idx=>fetch(BRIEF+idx.demos[0].file,{cache:"no-store"})).then(r=>r.json())
+      .then(d=>{
+        if(!d||!d.audio) return;
+        const p=String(d.date||"").split("-"),day=p.length===3?p[2]+"."+p[1]:"";
+        const label=document.createElement("span");label.className="pm-brief-bar__long";label.textContent="Випуск за ";
+        const rest=document.createTextNode("");meta.append(label,rest);
+        const audio=new Audio(BRIEF+d.audio);audio.preload="none";
+        const show=()=>{rest.nodeValue=day+" · "+(audio.currentTime>0?fmt(audio.currentTime)+" / ":"")+fmt(audio.duration||d.duration_sec)};
+        const state=()=>{const on=!audio.paused;btn.textContent=on?"❚❚":"▶";btn.setAttribute("aria-label",on?"Пауза":"Слухати BRIEF");bar.classList.toggle("is-playing",on);show()};
+        ["play","pause","timeupdate"].forEach(e=>audio.addEventListener(e,state));
+        audio.addEventListener("ended",()=>{audio.currentTime=0;state()});
+        btn.addEventListener("click",()=>audio.paused?audio.play():audio.pause());
+        show();btn.hidden=false;
+      }).catch(()=>{});
   }
   // Партнери й донори — показуються в спільному підвалі всіх сайтів мережі.
   const PARTNERS=[
