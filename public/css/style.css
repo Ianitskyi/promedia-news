@@ -1352,3 +1352,20 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .practice-stream .article-card[data-content-kind="article"] .article-excerpt { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .practice-stream .article-card[data-content-kind="article"] h3 { font-size: 18px; line-height: 1.25; }
 }
+
+/* Format filter on the news homepage: coloured pills in the style of story tags
+   (news — amber, articles — navy, press releases — red, announcements — green). */
+.practice-home > .category-nav .category-link {
+  --chip-bg: #ececf6; --chip-fg: var(--ink);
+  border: 0; background: var(--chip-bg); color: var(--chip-fg);
+  font-size: 13px; font-weight: 700; padding: 7px 15px; min-height: 0;
+}
+.practice-home > .category-nav .category-link--news { --chip-bg: var(--accent-tint); --chip-fg: #b36a00; }
+.practice-home > .category-nav .category-link--articles { --chip-bg: #e8e8f6; --chip-fg: var(--ink); }
+.practice-home > .category-nav .category-link--press { --chip-bg: #fdeaea; --chip-fg: #b3261e; }
+.practice-home > .category-nav .category-link--announce { --chip-bg: #e6f4ea; --chip-fg: #1e7b34; }
+.practice-home > .category-nav .category-link:hover { color: var(--chip-fg); box-shadow: inset 0 0 0 1.5px var(--chip-fg); }
+.practice-home > .category-nav .category-link.active { background: var(--chip-fg); color: #fff; box-shadow: none; }
+@media (max-width: 620px) {
+  .practice-home > .category-nav .category-link { min-height: 34px; padding: 7px 14px; }
+}

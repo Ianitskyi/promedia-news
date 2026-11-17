@@ -406,6 +406,7 @@ function articleExcerpt(article, lang) {
 
 const ALL_LABEL = { uk: "Усі", en: "All", crh: "Episi" };
 const CATEGORY_NAV_ARIA = { uk: "Рубрики новин", en: "News categories", crh: "Haber kategoriyaları" };
+const CATEGORY_NAV_KIND = { "Новини": "news", "Статті": "articles", "Прес-реліз": "press", "Анонс": "announce" };
 // Підписи фільтра форматів на головній (множина: «Прес-релізи», «Анонси»).
 const CATEGORY_NAV_LABELS = {
   "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
@@ -421,7 +422,7 @@ function categoryNav(lang, activeTag) {
     `<a class="category-link${!activeTag ? " active" : ""}" href="${allHref}">${labels.all}</a>`,
     ...CATEGORIES.map((category) => {
       const query = `?tag=${encodeURIComponent(category)}`;
-      return `<a class="category-link${activeTag === category ? " active" : ""}" href="${langPrefix(lang)}/${query}">${labels[category]}</a>`;
+      return `<a class="category-link category-link--${CATEGORY_NAV_KIND[category]}${activeTag === category ? " active" : ""}" href="${langPrefix(lang)}/${query}">${labels[category]}</a>`;
     })
   ];
   return `<nav class="category-nav" aria-label="${pick(CATEGORY_NAV_ARIA, lang)}">${items.join("")}</nav>`;
