@@ -601,7 +601,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, baseUrl
   const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
   if (articles.length && filtered) {
-    list = heading(topic ? pick(topic.labels, lang) : CATEGORY_NAV_LABELS[activeTag] ? pick(CATEGORY_NAV_LABELS[activeTag], lang) : tagLabel(activeTag, lang), `${prefix}/`) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
+    list = heading(topic ? pick(topic.labels, lang) : CATEGORY_NAV_LABELS[activeTag] ? pick(CATEGORY_NAV_LABELS[activeTag], lang) : tagLabel(activeTag, lang), topic ? `${prefix}/` : null) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
   } else if (articles.length) {
     const featured = articles.filter(a => a.card_style === "hero");
     // Without an explicit hero, lead with the newest automatic card: an editor who chose
