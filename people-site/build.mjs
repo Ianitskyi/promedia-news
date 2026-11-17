@@ -24,11 +24,16 @@ const INDEX_ONLY = args.has("--index-only");
 
 const UK_ALPHABET = "АБВГҐДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЮЯ".split("");
 const LAT_ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+// Кримськотатарська латинська абетка.
+const CRH_ALPHABET = ["A", "B", "C", "Ç", "D", "E", "F", "G", "Ğ", "H", "I", "İ", "J", "K", "L", "M", "N", "Ñ", "O", "Ö", "P", "Q", "R", "S", "Ş", "T", "U", "Ü", "V", "Y", "Z"];
+const MONTHS_CRH = ["yanvar", "fevral", "mart", "aprel", "mayıs", "iyun", "iyul", "avgust", "sentâbr", "oktâbr", "noyabr", "dekabr"];
+const LANGS = ["uk", "en", "crh"];
 const MONTHS = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"];
 const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const ukCollator = new Intl.Collator("uk");
 const enCollator = new Intl.Collator("en");
+const crhCollator = new Intl.Collator("tr");
 
 // ---------- data ----------
 
@@ -51,14 +56,14 @@ function loadArticles() {
   const map = new Map();
   const archive = JSON.parse(readFileSync(join(ROOT, "archive", "published-news.json"), "utf8"));
   for (const a of archive.items || []) {
-    map.set(a.slug, { slug: a.slug, title: a.title, titleEn: a.titleEn, date: (a.publishedAt || "").slice(0, 10), cover: a.coverImageUrl || "" });
+    map.set(a.slug, { slug: a.slug, title: a.title, titleEn: a.titleEn, titleCrh: a.titleCrh, date: (a.publishedAt || "").slice(0, 10), cover: a.coverImageUrl || "" });
   }
   const dir = join(ROOT, "content", "articles");
   for (const f of readdirSync(dir).filter(f => f.endsWith(".json")).sort()) {
     const a = JSON.parse(readFileSync(join(dir, f), "utf8"));
     const prev = map.get(a.slug) || {};
     const cover = a.cover?.url || prev.cover || "";
-    map.set(a.slug, { slug: a.slug, title: a.title || prev.title, titleEn: a.titleEn || prev.titleEn, date: prev.date || f.slice(0, 10), cover });
+    map.set(a.slug, { slug: a.slug, title: a.title || prev.title, titleEn: a.titleEn || prev.titleEn, titleCrh: a.titleCrh || prev.titleCrh, date: prev.date || f.slice(0, 10), cover });
   }
   return map;
 }
@@ -160,12 +165,14 @@ async function resolvePhotos(people, articles) {
 const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const fmtDate = (iso, lang) => {
   const [y, m, d] = iso.split("-").map(Number);
-  return lang === "en" ? `${MONTHS_EN[m - 1]} ${d}, ${y}` : `${d} ${MONTHS[m - 1]} ${y} року`;
+  if (lang === "en") return `${MONTHS_EN[m - 1]} ${d}, ${y}`;
+  if (lang === "crh") return `${d} ${MONTHS_CRH[m - 1]} ${y}`;
+  return `${d} ${MONTHS[m - 1]} ${y} року`;
 };
 const paragraphs = text => String(text || "").split(/\n{2,}/).map(t => `<p>${esc(t.trim())}</p>`).join("\n");
 const initials = name => name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
 function firstLetter(s, alphabet) {
-  const ch = s.trim()[0]?.toLocaleUpperCase("uk") || "";
+  const ch = s.trim()[0]?.toLocaleUpperCase(alphabet === CRH_ALPHABET ? "tr" : "uk") || "";
   const plain = ch.normalize("NFD").replace(/[̀-ͯ]/g, "");
   return alphabet.includes(ch) ? ch : alphabet.includes(plain) ? plain : "#";
 }
@@ -189,10 +196,25 @@ const T = {
     note: "This profile is compiled from the open sources listed above and from ProMedia materials. We do not publish private data.",
     fix: "Spotted an error or want to add something? Contact us", photo: "Photo", license: "licence", noPhoto: "No freely licensed photo found yet",
     official: "Public official", memorial: "In memoriam", memorialLead: "Journalists we have lost. Memorial cards are compiled from IMI, NUJU, the Gongadze Prize and other open sources.", memorialOpen: "Open In memoriam →", memorialChip: "In memoriam: journalists we have lost", intlLabel: "International", country: "Country", bioLang: "The full profile is currently available in Ukrainian.", news: "News"
+  },
+  // Кримськотатарський інтерфейс: потрібна вичитка носієм мови.
+  crh: {
+    title: "İnsanlar", siteTitle: "İnsanlar — ProMedia", lead: "ProMedia yazğan jurnalistler ve diger insanlar aqqında dosyeler. Malümat açıq menbalardan toplandı.",
+    search: "Adı, redaktsiyası ya da vazifesi boyunca qıdıruv", all: "Episi",
+    updated: "Yañartıldı", mentions: "ProMedia haberlerinde", sources: "Menbalar", facts: "Qısqadan", back: "← Episi insanlar",
+    empty: "Kimse tapılmadı.", count: n => `${n} dosye`,
+    note: "Dosye yuqarıda kösterilgen açıq menbalardan ve ProMedia materiallarından toplandı. Şahsiy malümat derc etmeymiz.",
+    fix: "Hata körseñiz ya da bir şey qoşmaq isteseñiz, bizge yazıñız", photo: "Foto", license: "litsenziya", noPhoto: "Serbest litsenziyalı foto şimdilik tapılmadı",
+    official: "Resmiy şahıs", memorial: "Hatıra", intlLabel: "", country: "Memleket", bioLang: "Tam dosye şimdilik ukrain tilinde.", news: "Haberler"
   }
 };
 
-const prefix = lang => lang === "en" ? "/en" : "";
+const prefix = lang => lang === "uk" ? "" : "/" + lang;
+const nameFor = (p, lang) => lang === "uk" ? p.name.uk : (p.name[lang] || p.name.en || p.name.uk);
+const sortFor = (p, lang) => lang === "uk" ? p.sort.uk : (p.sort[lang] || p.sort.en);
+const ALPHABETS = { uk: UK_ALPHABET, en: LAT_ALPHABET, crh: CRH_ALPHABET };
+const COLLATORS = { uk: ukCollator, en: enCollator, crh: crhCollator };
+const textFor = (field, lang) => lang === "crh" ? (field.crh || field.uk) : (field[lang] || field.uk);
 
 function shell({ lang, title, description, path, body, image }) {
   const t = T[lang];
@@ -207,6 +229,7 @@ function shell({ lang, title, description, path, body, image }) {
 <link rel="canonical" href="${esc(url)}">
 <link rel="alternate" hreflang="uk" href="${esc(SITE + path)}">
 <link rel="alternate" hreflang="en" href="${esc(SITE + "/en" + path)}">
+<link rel="alternate" hreflang="crh" href="${esc(SITE + "/crh" + path)}">
 <link rel="alternate" hreflang="x-default" href="${esc(SITE + path)}">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="${esc(t.siteTitle)}">
@@ -231,22 +254,21 @@ ${body}
 }
 
 function card(p, photo, lang) {
-  const name = p.name[lang] || p.name.uk;
-  const other = lang === "en" ? p.name.uk : p.name.en;
+  const name = nameFor(p, lang);
+  const other = lang === "uk" ? p.name.en : p.name.uk;
   const search = [p.name.uk, p.name.en, ...(p.aliases || []), p.role.uk, p.role.en].join(" ").toLowerCase();
-  return `<a class="pp-card${p.memorial ? " pp-card--memorial" : ""}" href="${prefix(lang)}/${p.slug}/" data-group="${p.group}" data-memorial="${p.memorial ? 1 : 0}" data-cyr="${firstLetter(p.sort.uk, UK_ALPHABET)}" data-lat="${firstLetter(p.sort.en, LAT_ALPHABET)}" data-search="${esc(search)}" data-sort-uk="${esc(p.sort.uk)}" data-sort-en="${esc(p.sort.en)}">
+  return `<a class="pp-card${p.memorial ? " pp-card--memorial" : ""}" href="${prefix(lang)}/${p.slug}/" data-group="${p.group}" data-memorial="${p.memorial ? 1 : 0}" data-letter="${firstLetter(sortFor(p, lang), ALPHABETS[lang])}" data-search="${esc(search)}">
   <span class="pp-avatar"><span>${esc(initials(name))}</span>${photo ? `<img src="${esc(photo.src)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>
-  <span class="pp-card-text"><strong>${esc(name)}</strong><small class="pp-alt">${esc(other)}</small>${p.memorial ? `<span class="pp-life">${esc(p.life || "")}</span>` : ""}<span class="pp-role">${esc(p.role[lang] || p.role.uk)}</span><small class="pp-date">${T[lang].updated}: ${fmtDate(p.updated, lang)}</small></span>
+  <span class="pp-card-text"><strong>${esc(name)}</strong><small class="pp-alt">${esc(other)}</small>${p.memorial ? `<span class="pp-life">${esc(p.life || "")}</span>` : ""}<span class="pp-role">${esc(textFor(p.role, lang))}</span><small class="pp-date">${T[lang].updated}: ${fmtDate(p.updated, lang)}</small></span>
 </a>`;
 }
 
 function indexPage(people, photos, lang) {
   const t = T[lang];
-  const sorted = [...people].sort((a, b) => lang === "en" ? enCollator.compare(a.sort.en, b.sort.en) : ukCollator.compare(a.sort.uk, b.sort.uk));
-  const present = { cyr: new Set(people.map(p => firstLetter(p.sort.uk, UK_ALPHABET))), lat: new Set(people.map(p => firstLetter(p.sort.en, LAT_ALPHABET))) };
-  const letters = (alphabet, key) => alphabet.map(l => `<button type="button" data-letter="${l}"${present[key].has(l) ? "" : " disabled"}>${l}</button>`).join("");
-  const first = lang === "en" ? "lat" : "cyr";
-  const second = lang === "en" ? "cyr" : "lat";
+  const alphabet = ALPHABETS[lang];
+  const sorted = [...people].sort((a, b) => COLLATORS[lang].compare(sortFor(a, lang), sortFor(b, lang)));
+  const present = new Set(people.map(p => firstLetter(sortFor(p, lang), alphabet)));
+  const letters = alphabet.map(l => `<button type="button" data-letter="${l}"${present.has(l) ? "" : " disabled"}>${l}</button>`).join("");
   const body = `<main class="pp-wrap pp-index">
   <h1 class="pp-sr">${t.title}</h1>
   <section class="pp-tools" aria-label="${esc(t.search)}">
@@ -254,8 +276,7 @@ function indexPage(people, photos, lang) {
     <div class="pp-switch">
       <span class="pp-pills"><button type="button" class="is-active" data-group="all">${t.all}</button><button type="button" data-group="memorial"><span class="pp-candle" aria-hidden="true"></span>${t.memorial}</button></span>
     </div></div>
-    <div class="pp-alpha" data-alphabet="cyr"${first === "cyr" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(UK_ALPHABET, "cyr")}<button type="button" class="pp-globe" data-alpha="lat" title="${esc(t.lat)}" aria-label="${esc(t.lat)}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg><span>ABC</span></button></div>
-    <div class="pp-alpha" data-alphabet="lat"${first === "lat" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(LAT_ALPHABET, "lat")}<button type="button" class="pp-globe" data-alpha="cyr" title="${esc(t.cyr)}" aria-label="${esc(t.cyr)}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg><span>АБВ</span></button></div>
+    <div class="pp-alpha"><button type="button" class="is-active" data-letter="">${t.all}</button>${letters}</div>
   </section>
   <div class="pp-meta"><p class="pp-count" id="pp-count">${t.count(people.length)}</p></div>
   <div class="pp-grid" id="pp-grid">
@@ -278,13 +299,13 @@ function photoBlock(photo, name, t) {
 
 function personPage(p, photo, mentions, lang) {
   const t = T[lang];
-  const name = p.name[lang] || p.name.uk;
-  const other = lang === "en" ? p.name.uk : p.name.en;
+  const name = nameFor(p, lang);
+  const other = lang === "uk" ? p.name.en : p.name.uk;
   const facts = (p.facts || []).length ? `<section class="pp-facts"><h2>${t.facts}</h2><dl>${p.facts.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}<dt>${t.country}</dt><dd>${esc(p.country)}</dd></dl></section>` : "";
-  const mentionHtml = mentions.length ? `<section class="pp-mentions"><h2>${t.mentions}</h2><ul>${mentions.map(a => `<li><a href="${NEWS}${lang === "en" ? "/en" : ""}/article/${a.slug}">${esc((lang === "en" && a.titleEn) || a.title)}</a>${a.date ? ` <time datetime="${a.date}">${fmtDate(a.date, lang)}</time>` : ""}</li>`).join("")}</ul></section>` : "";
+  const mentionHtml = mentions.length ? `<section class="pp-mentions"><h2>${t.mentions}</h2><ul>${mentions.map(a => `<li><a href="${NEWS}${prefix(lang)}/article/${a.slug}">${esc((lang === "en" && a.titleEn) || (lang === "crh" && a.titleCrh) || a.title)}</a>${a.date ? ` <time datetime="${a.date}">${fmtDate(a.date, lang)}</time>` : ""}</li>`).join("")}</ul></section>` : "";
   const sources = `<section class="pp-sources"><h2>${t.sources}</h2><ol>${p.sources.map(s => `<li><a href="${esc(s.url)}" rel="noopener">${esc(s.title)}</a></li>`).join("")}</ol></section>`;
   const badge = p.memorial ? `<span class="pp-badge pp-badge--memorial">${t.memorial}</span>` : p.kind === "official" ? `<span class="pp-badge">${t.official}</span>` : p.group === "intl" ? `<span class="pp-badge">${t.intlLabel}</span>` : "";
-  const bio = lang === "en" ? `<p class="pp-note">${t.bioLang}</p><div class="pp-bio" lang="uk">${paragraphs(p.bio.uk)}</div>` : `<div class="pp-bio">${paragraphs(p.bio.uk)}</div>`;
+  const bio = lang !== "uk" && !(p.bio[lang]) ? `<p class="pp-note">${t.bioLang}</p><div class="pp-bio" lang="uk">${paragraphs(p.bio.uk)}</div>` : `<div class="pp-bio">${paragraphs(p.bio[lang] || p.bio.uk)}</div>`;
   const body = `<main class="pp-wrap pp-person${p.memorial ? " pp-person--memorial" : ""}">
   <p class="pp-back"><a href="${prefix(lang)}/">${t.back}</a></p>
   <article>
@@ -295,11 +316,11 @@ function personPage(p, photo, mentions, lang) {
         <h1>${esc(name)}</h1>
         <p class="pp-alt">${esc(other)}</p>
         ${p.memorial ? `<p class="pp-life-big">${esc(p.life || "")}</p>` : ""}
-        <p class="pp-role">${esc(p.role[lang] || p.role.uk)}</p>
+        <p class="pp-role">${esc(textFor(p.role, lang))}</p>
         <p class="pp-updated">${t.updated}: <time datetime="${p.updated}">${fmtDate(p.updated, lang)}</time></p>
       </div>
     </header>
-    <p class="pp-summary">${esc(p.summary[lang] || p.summary.uk)}</p>
+    <p class="pp-summary">${esc(textFor(p.summary, lang))}</p>
     ${bio}
     ${facts}
     ${mentionHtml}
@@ -307,7 +328,7 @@ function personPage(p, photo, mentions, lang) {
     <p class="pp-note">${esc(t.note)} <a href="${CONTACTS}">${t.fix}</a>.</p>
   </article>
 </main>`;
-  return shell({ lang, title: `${name} — ${t.siteTitle}`, description: p.summary[lang] || p.summary.uk, path: `/${p.slug}/`, body, image: photo?.src });
+  return shell({ lang, title: `${name} — ${t.siteTitle}`, description: textFor(p.summary, lang), path: `/${p.slug}/`, body, image: photo?.src });
 }
 
 // ---------- outputs ----------
@@ -335,8 +356,8 @@ async function main() {
   mkdirSync(DIST, { recursive: true });
   cpSync(join(ROOT, "people-site", "assets"), DIST, { recursive: true });
 
-  for (const lang of ["uk", "en"]) {
-    const base = lang === "en" ? join(DIST, "en") : DIST;
+  for (const lang of LANGS) {
+    const base = lang === "uk" ? DIST : join(DIST, lang);
     mkdirSync(base, { recursive: true });
     writeFileSync(join(base, "index.html"), indexPage(people, photos, lang));
     for (const p of people) {
@@ -356,7 +377,7 @@ async function main() {
   };
   mkdirSync(join(DIST, "api"), { recursive: true });
   writeFileSync(join(DIST, "api", "people.json"), JSON.stringify(apiOut, null, 2));
-  const urls = ["/", "/en/", ...people.flatMap(p => [`/${p.slug}/`, `/en/${p.slug}/`])];
+  const urls = LANGS.flatMap(lang => [`${prefix(lang)}/`, ...people.map(p => `${prefix(lang)}/${p.slug}/`)]);
   writeFileSync(join(DIST, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(u => `  <url><loc>${SITE}${u}</loc></url>`).join("\n")}\n</urlset>\n`);
   writeFileSync(join(DIST, "404.html"), shell({ lang: "uk", title: "Сторінку не знайдено — Люди ПроМедіа", description: "", path: "/", body: `<main class="pp-wrap pp-person"><p class="pp-back"><a href="/">${T.uk.back}</a></p><h1>Сторінку не знайдено</h1></main>` }));
   writeFileSync(join(DIST, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}/sitemap.xml\n`);

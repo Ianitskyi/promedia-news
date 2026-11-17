@@ -25,11 +25,6 @@ export default {
       return out;
     }
 
-    // Кримськотатарської версії ще немає — ведемо на українську.
-    if (url.pathname === "/crh" || url.pathname.startsWith("/crh/")) {
-      return Response.redirect(new URL(url.pathname.replace(/^\/crh/, "") || "/", url).toString(), 302);
-    }
-
     return env.ASSETS.fetch(request);
   }
 };

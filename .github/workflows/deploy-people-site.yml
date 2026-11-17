@@ -56,7 +56,7 @@ jobs:
           set -e
           sleep 5
           base="${{ steps.deploy.outputs.url }}"
-          for p in / /en/ /anna-babinets/ /api/people.json; do
+          for p in / /en/ /crh/ /anna-babinets/ /crh/anna-babinets/ /api/people.json; do
             code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$base$p?smoke=$GITHUB_RUN_ID")
             echo "$p -> $code"; test "$code" = 200
           done
