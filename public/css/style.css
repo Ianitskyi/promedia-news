@@ -1202,12 +1202,12 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 /* Mobile editorial rule: news and statements as headlines, articles with their cover images. The top story always keeps its cover. */
 .article-card-media--mobile-only { display: none; }
 @media (max-width: 620px) {
-  .practice-home .article-card:not(.article-card--hero):is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"]) .article-card-media,
-  .practice-home .article-card:not(.article-card--hero):is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"]) .article-excerpt { display: none; }
+  .practice-home .article-card:not(.article-card--hero):is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) .article-card-media,
+  .practice-home .article-card:not(.article-card--hero):is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) .article-excerpt { display: none; }
   .practice-home .article-card[data-content-kind="article"] .article-card-media--mobile-only { display: block; }
-  .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"]) { background: transparent; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; }
-  .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"]) .article-card-body { padding: 18px 0; gap: 10px; }
-  .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"]) h3 { font-size: 21px; line-height: 1.25; }
+  .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) { background: transparent; border: 0; border-bottom: 1px solid var(--border); border-radius: 0; box-shadow: none; }
+  .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) .article-card-body { padding: 18px 0; gap: 10px; }
+  .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) h3 { font-size: 21px; line-height: 1.25; }
 }
 
 
@@ -1303,3 +1303,6 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .article-tag.article-tag--press,
 .article-card--hero .article-tag.article-tag--press,
 .article-card--text .article-tag.article-tag--press { background: #fdeaea; color: #b3261e; }
+.article-tag.article-tag--announce,
+.article-card--hero .article-tag.article-tag--announce,
+.article-card--text .article-tag.article-tag--announce { background: #e6f4ea; color: #1e7b34; }

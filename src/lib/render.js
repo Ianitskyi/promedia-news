@@ -32,6 +32,7 @@ const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
   "Прес-реліз": "Press release",
+  "Анонс": "Announcement",
   "Заяви": "Statements",
   "Новини": "News",
   "Статті": "Articles",
@@ -83,6 +84,7 @@ const TAG_LABELS_EN = {
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
   "Прес-реліз": "Basın bildirisi",
+  "Анонс": "İlân",
   "Заяви": "Beyanatlar",
   "Новини": "Haberler",
   "Статті": "Maqaleler",
@@ -146,14 +148,25 @@ function tagLabel(tag, lang) {
 
 // A press release (someone else's text published with light editing) is marked
 // with a distinct, muted tag colour so readers don't take it for our own reporting.
+// An announcement (upcoming event) gets a muted green tag the same way.
 const PRESS_RELEASE_KEY = tagLookupKey("Прес-реліз");
+const ANNOUNCEMENT_KEY = tagLookupKey("Анонс");
 function isPressRelease(tags) {
   return tags.some(t => tagLookupKey(t) === PRESS_RELEASE_KEY);
 }
+function isAnnouncement(tags) {
+  return tags.some(t => tagLookupKey(t) === ANNOUNCEMENT_KEY);
+}
+function specialTagClass(tag) {
+  const key = tagLookupKey(tag);
+  if (key === PRESS_RELEASE_KEY) return " article-tag--press";
+  if (key === ANNOUNCEMENT_KEY) return " article-tag--announce";
+  return "";
+}
 function tagLinks(tags, lang) {
-  // The press-release tag always comes first so it is the first thing a reader sees.
-  const ordered = [...tags.filter(t => tagLookupKey(t) === PRESS_RELEASE_KEY), ...tags.filter(t => tagLookupKey(t) !== PRESS_RELEASE_KEY)];
-  return `<div class="article-tags">${ordered.map((t) => `<a class="article-tag${tagLookupKey(t) === PRESS_RELEASE_KEY ? " article-tag--press" : ""}" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>`;
+  // Press-release and announcement tags always come first so they are the first thing a reader sees.
+  const ordered = [...tags.filter(t => specialTagClass(t)), ...tags.filter(t => !specialTagClass(t))];
+  return `<div class="article-tags">${ordered.map((t) => `<a class="article-tag${specialTagClass(t)}" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>`;
 }
 
 function articleCoverMetadata(article, lang) {
@@ -362,7 +375,7 @@ function articleCard(article, lang, baseUrl, variant) {
   const excerpt = articleExcerpt(article, lang);
   const tags = JSON.parse(article.tags || "[]");
   const isArticle = tags.some(t => tagLookupKey(t) === "статті");
-  const contentKind = isArticle ? "article" : isPressRelease(tags) ? "press-release" : tags.some(t => tagLookupKey(t) === "заяви") ? "statement" : tags.some(t => tagLookupKey(t) === "новини") ? "news" : "other";
+  const contentKind = isArticle ? "article" : isPressRelease(tags) ? "press-release" : isAnnouncement(tags) ? "announcement" : tags.some(t => tagLookupKey(t) === "заяви") ? "statement" : tags.some(t => tagLookupKey(t) === "новини") ? "news" : "other";
   const cardVariant = variant || "visual";
   const coverUrl = articleCover(article, lang);
   const showCover = coverUrl && (cardVariant !== "text" || isArticle);

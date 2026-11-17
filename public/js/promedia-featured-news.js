@@ -39,6 +39,7 @@
 
   var RUBRICS = {
     "Прес-реліз": { uk: "Прес-реліз", en: "Press release", crh: "Basın bildirisi" },
+    "Анонс": { uk: "Анонс", en: "Announcement", crh: "İlân" },
     "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
     "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
     "Заяви": { uk: "Заяви", en: "Statements", crh: "Beyanatlar" }
@@ -53,6 +54,7 @@
     var tags = Array.isArray(item.tags) ? item.tags : [];
     // A press release is labelled as such even if it also carries a regular rubric.
     if (tags.indexOf("Прес-реліз") !== -1) return { key: "Прес-реліз", label: RUBRICS["Прес-реліз"][lang] || "Прес-реліз" };
+    if (tags.indexOf("Анонс") !== -1) return { key: "Анонс", label: RUBRICS["Анонс"][lang] || "Анонс" };
     for (var i = 0; i < tags.length; i += 1) {
       if (RUBRICS[tags[i]]) return { key: tags[i], label: RUBRICS[tags[i]][lang] || tags[i] };
     }
@@ -70,7 +72,7 @@
     var line = el("p", "pm-news-lead-meta");
     var r = rubric(item, lang);
     if (r) {
-      line.appendChild(el("span", "pm-news-lead-rubric" + (r.key === "Прес-реліз" ? " pm-news-lead-rubric--press" : r.key === "Новини" ? "" : " pm-news-lead-rubric--alt"), r.label));
+      line.appendChild(el("span", "pm-news-lead-rubric" + (r.key === "Прес-реліз" ? " pm-news-lead-rubric--press" : r.key === "Анонс" ? " pm-news-lead-rubric--announce" : r.key === "Новини" ? "" : " pm-news-lead-rubric--alt"), r.label));
       line.appendChild(document.createTextNode(" · "));
     }
     line.appendChild(document.createTextNode(formatDate(item.publishedAt, lang)));
@@ -99,6 +101,7 @@
       ".pm-news-lead-rubric{font-weight:700;color:#b36a00}",
       ".pm-news-lead-rubric--alt{color:#0d0c5c}",
       ".pm-news-lead-rubric--press{color:#b3261e}",
+      ".pm-news-lead-rubric--announce{color:#1e7b34}",
       ".pm-news-lead-side{flex:1 1 300px;min-width:0;background:#fff;border:1px solid #e7e7ef;border-radius:12px;padding:20px 24px;box-sizing:border-box}",
       ".pm-news-lead-side-title{margin:0;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0d0c5c;padding-bottom:12px;border-bottom:3px solid #ffac33}",
       ".pm-news-lead-list{list-style:none;margin:0;padding:0}",
