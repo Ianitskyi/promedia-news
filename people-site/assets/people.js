@@ -49,7 +49,6 @@
   function setAlpha(alpha) {
     state.alpha = alpha;
     state.letter = "";
-    setActive("[data-alpha]", "data-alpha", alpha);
     document.querySelectorAll(".pp-alpha").forEach(function (el) {
       el.hidden = el.getAttribute("data-alphabet") !== alpha;
       el.querySelectorAll("[data-letter]").forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-letter") === ""); });

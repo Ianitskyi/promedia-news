@@ -250,13 +250,12 @@ function indexPage(people, photos, lang) {
   const body = `<main class="pp-wrap pp-index">
   <h1 class="pp-sr">${t.title}</h1>
   <section class="pp-tools" aria-label="${esc(t.search)}">
-    <input id="pp-search" type="search" placeholder="${esc(t.search)}" autocomplete="off">
+    <div class="pp-row"><input id="pp-search" type="search" placeholder="${esc(t.search)}" autocomplete="off">
     <div class="pp-switch">
-      <span class="pp-pills"><button type="button" class="is-active" data-alpha="${first}">${t[first]}</button><button type="button" data-alpha="${second}">${t[second]}</button></span>
       <span class="pp-pills"><button type="button" class="is-active" data-group="all">${t.all}</button><button type="button" data-group="memorial"><span class="pp-candle" aria-hidden="true"></span>${t.memorial}</button></span>
-    </div>
-    <div class="pp-alpha" data-alphabet="cyr"${first === "cyr" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(UK_ALPHABET, "cyr")}</div>
-    <div class="pp-alpha" data-alphabet="lat"${first === "lat" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(LAT_ALPHABET, "lat")}</div>
+    </div></div>
+    <div class="pp-alpha" data-alphabet="cyr"${first === "cyr" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(UK_ALPHABET, "cyr")}<button type="button" class="pp-globe" data-alpha="lat" title="${esc(t.lat)}" aria-label="${esc(t.lat)}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg><span>ABC</span></button></div>
+    <div class="pp-alpha" data-alphabet="lat"${first === "lat" ? "" : " hidden"}><button type="button" class="is-active" data-letter="">${t.all}</button>${letters(LAT_ALPHABET, "lat")}<button type="button" class="pp-globe" data-alpha="cyr" title="${esc(t.cyr)}" aria-label="${esc(t.cyr)}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3Z"/></svg><span>АБВ</span></button></div>
   </section>
   <div class="pp-meta"><p class="pp-count" id="pp-count">${t.count(people.length)}</p></div>
   <div class="pp-grid" id="pp-grid">
