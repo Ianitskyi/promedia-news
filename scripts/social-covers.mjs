@@ -55,7 +55,7 @@ const pending = [];
 const rows = d1(`SELECT id, slug, ${COLUMNS.flat().join(', ')} FROM articles WHERE status = 'published' AND deleted_at IS NULL`);
 let made = 0;
 for (const row of rows) {
-  for (const [urlCol, dataCol] of COLUMNS) {
+  for (const [urlCol, dataCol] of COLUMNS) try {
     const src = row[urlCol];
     if (!src) continue;
     const meta = parse(row[dataCol]);
@@ -70,19 +70,23 @@ for (const row of rows) {
       console.log(`Skip ${row.slug} (${urlCol}): ${err.message}`);
       continue;
     }
-    const image = sharp(buffer).rotate();
-    const {width, height} = await image.metadata();
+    // Повертаємо за EXIF одразу, щоб розміри й кадр рахувалися для фото як його бачать люди.
+    const upright = await sharp(buffer).rotate().toBuffer({resolveWithObject: true});
+    buffer = upright.data;
+    const image = sharp(buffer);
+    const {width, height} = upright.info;
     if (!width || !height) continue;
     // Кадр ніхто не виставляв — знаходимо найцікавіше місце (обличчя, шкіра, контраст)
     // і записуємо його для всіх форматів: сайт, головна, сторіз, соцмережі.
     let autoPoint = null, focus = manual;
     if (!focus) {
-      const side = 300, scale = side / Math.min(width, height);
-      const {info} = await sharp(buffer).rotate().resize(side, side, {fit: 'cover', position: sharp.strategy.attention}).toBuffer({resolveWithObject: true});
-      autoPoint = focus = {
-        x: Math.round(Math.max(0, Math.min(100, info.attentionX / (width * scale) * 100))),
-        y: Math.round(Math.max(0, Math.min(100, info.attentionY / (height * scale) * 100)))
-      };
+      // Спершу зменшуємо: так координати уваги sharp рахуються в розмірах цього зменшеного фото.
+      const small = await sharp(buffer).resize(600, 600, {fit: 'inside'}).png().toBuffer({resolveWithObject: true});
+      const w = small.info.width, h = small.info.height, side = Math.min(w, h);
+      const {info} = await sharp(small.data).resize(side, side, {fit: 'cover', position: sharp.strategy.attention}).toBuffer({resolveWithObject: true});
+      autoPoint = focus = Number.isFinite(info.attentionX) && Number.isFinite(info.attentionY) && w !== h
+        ? {x: Math.round(Math.max(0, Math.min(100, info.attentionX / w * 100))), y: Math.round(Math.max(0, Math.min(100, info.attentionY / h * 100)))}
+        : {x: 50, y: h > w ? 30 : 49};
       if (autoPoint.x === 50 && autoPoint.y === 50) autoPoint = focus = {x: 50, y: 49};
       console.log(`Auto focus for ${row.slug} (${urlCol}): ${focus.x}% ${focus.y}%`);
     }
@@ -104,6 +108,8 @@ for (const row of rows) {
       console.log(`Social cover for ${row.slug} (${urlCol}): ${og.url}`);
     }
     pending.push({id: row.id, urlCol, dataCol, src, og, autoPoint});
+  } catch (err) {
+    console.log(`Skip ${row.slug} (${urlCol}): ${err.message}`);
   }
 }
 writeFileSync(PENDING, JSON.stringify(pending));
