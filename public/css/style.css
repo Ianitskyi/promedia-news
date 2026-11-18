@@ -1337,14 +1337,15 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .magazine-home .restored-feed h3,
   .practice-stream .article-card h3,
   .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) h3 { font-size: 16px; line-height: 1.3; }
-  .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) .article-card-body { padding: 12px 0; gap: 6px; }
+  .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) .article-card-body { padding: 8px 0; gap: 4px; }
+  .magazine-home .restored-feed { gap: 6px; }
   .practice-home .article-excerpt { font-size: 14px; line-height: 1.5; }
 }
 
 /* Mobile rubric pages (?tag=…): news-type cards have no photo, so they use the full width;
    articles show a full-width photo above the headline. */
 @media (max-width: 620px) {
-  .practice-stream .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"], [data-content-kind="other"]) { grid-template-columns: 1fr; padding: 14px 0; }
+  .practice-stream .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"], [data-content-kind="other"]) { grid-template-columns: 1fr; padding: 9px 0; }
   .practice-stream .article-card { padding: 16px 0; }
   .practice-stream .article-card[data-content-kind="article"] { display: flex; flex-direction: column; gap: 12px; }
   .practice-stream .article-card[data-content-kind="article"] .article-card-media { display: block; width: 100%; }
