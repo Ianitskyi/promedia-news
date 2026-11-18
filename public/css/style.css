@@ -375,7 +375,7 @@ img { max-width: 100%; }
   text-decoration: none;
 }
 
-.article-page h1 { font-family: var(--serif); font-size: clamp(26px, 4vw, 38px); color: var(--ink); margin: 8px 0; }
+.article-page h1 { font-family: var(--serif); font-size: clamp(26px, 4vw, 38px); color: var(--ink); margin: 8px 0; line-height: 1.18; }
 .article-back { margin: 0 0 8px; }
 .article-back a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 700; }
 .article-share {
