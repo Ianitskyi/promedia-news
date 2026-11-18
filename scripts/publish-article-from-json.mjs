@@ -92,6 +92,12 @@ for (const f of files) {
         console.log(`New cover for ${a.slug}: ${credit.page} — ${credit.author}, ${credit.licence}`);
       }
     }
+    // Власне фото (cover.url) як нова обкладинка вже опублікованої новини.
+    if (!newCover && a.cover?.url && a.coverRevision && a.coverRevision === a.revision) {
+      if (!/^\/img\/[a-z0-9/_-]+\.(jpe?g|png|webp)$/i.test(a.cover.url)) throw Error('cover.url must be a same-site /img/ path: ' + f);
+      newCover = a.cover.url;
+      console.log(`New cover for ${a.slug}: ${a.cover.url}`);
+    }
     for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
       if (a[k] && /⟦[^⟧]+⟧/.test(a[k])) throw Error(`Unfilled placeholder in ${k} of ${f}`);
     }
