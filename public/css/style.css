@@ -1449,3 +1449,9 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .article-listen-title { display: flex; align-items: center; gap: 6px; margin: 0 0 8px; font-size: 13px; font-weight: 700; color: var(--ink); }
 .article-listen audio { display: block; width: 100%; }
 .article-listen-note { margin: 6px 0 0; font-size: 11.5px; color: var(--muted); }
+
+/* Важливі новини (прапорець «Важлива новина»): помаранчевий заголовок у стрічці. */
+.article-card.article-card--important h1 a,
+.article-card.article-card--important h3 a { color: #b36a00; }
+.article-card.article-card--important h1 a:hover,
+.article-card.article-card--important h3 a:hover { color: #8a5200; }

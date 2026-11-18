@@ -517,7 +517,7 @@ function articleCard(article, lang, baseUrl, variant) {
       </a>`
     : "";
   return `
-<article class="article-card article-card--${cardVariant}" data-content-kind="${contentKind}">
+<article class="article-card article-card--${cardVariant}${article.is_important ? " article-card--important" : ""}" data-content-kind="${contentKind}">
   ${cover}
   <div class="article-card-body">
     ${tags.length ? tagLinks(tags, lang) : ""}

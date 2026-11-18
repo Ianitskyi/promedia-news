@@ -96,6 +96,8 @@
       ".pm-news-lead-title{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:clamp(22px,2.2vw,30px);line-height:1.18;font-weight:700}",
       ".pm-news-lead-title a,.pm-news-lead-item a{color:#0d0c5c;text-decoration:none}",
       ".pm-news-lead-title a:hover,.pm-news-lead-item a:hover{color:#b36a00}",
+      ".pm-news-lead-item--important a,.pm-news-lead-title--important a{color:#b36a00}",
+      ".pm-news-lead-item--important a:hover,.pm-news-lead-title--important a:hover{color:#8a5200}",
       ".pm-news-lead-excerpt{margin:0;font-size:16px;line-height:1.6;color:#44435e;max-width:720px}",
       ".pm-news-lead-meta{margin:0;font-size:12px;color:#6b6a85}",
       ".pm-news-lead-rubric{font-weight:400;color:#a88a5e}",
@@ -137,7 +139,7 @@
       main.appendChild(media);
     }
     main.appendChild(metaLine(hero, lang));
-    var h = el("h3", "pm-news-lead-title");
+    var h = el("h3", "pm-news-lead-title" + (hero.isImportant ? " pm-news-lead-title--important" : ""));
     var link = el("a", "", title);
     link.href = href;
     h.appendChild(link);
@@ -151,7 +153,7 @@
       side.setAttribute("aria-label", lang === "en" ? "Latest" : lang === "crh" ? "Soñki" : "Останні");
       var list = el("ol", "pm-news-lead-list");
       rest.forEach(function (item) {
-        var li = el("li", "pm-news-lead-item");
+        var li = el("li", "pm-news-lead-item" + (item.isImportant ? " pm-news-lead-item--important" : ""));
         li.appendChild(metaLine(item, lang));
         var a = el("a", "", localized(item, "title", lang));
         a.href = articleUrl(item, lang);
