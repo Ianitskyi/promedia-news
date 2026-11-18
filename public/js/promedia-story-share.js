@@ -82,16 +82,17 @@
       var f = String(focus || "").split(" ").map(Number);
       var fx = isFinite(f[0]) && f.length === 2 ? f[0] / 100 : 0.5;
       var fy = isFinite(f[1]) && f.length === 2 ? f[1] / 100 : 0.3;
-      var visibleTop = top + 360;
+      var visibleTop = top + 180;
       var dx = Math.min(0, Math.max(W - dw, W / 2 - fx * dw));
       var dy = Math.min(top, Math.max(H - dh, visibleTop + (H - visibleTop) * 0.4 - fy * dh));
       ctx.drawImage(img, dx, dy, dw, dh);
       ctx.restore();
-      var g = ctx.createLinearGradient(0, top, 0, top + 420);
+      // Короткий перехід (180 px): довший затіняв голови на портретах (19.11.2026).
+      var g = ctx.createLinearGradient(0, top, 0, top + 180);
       g.addColorStop(0, "rgba(13,12,92,1)");
       g.addColorStop(1, "rgba(13,12,92,0)");
       ctx.fillStyle = g;
-      ctx.fillRect(0, top, W, 420);
+      ctx.fillRect(0, top, W, 180);
     }
     return c;
   }
