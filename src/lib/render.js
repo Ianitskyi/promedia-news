@@ -726,14 +726,15 @@ function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl, coverFo
     ["Facebook", `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`],
     ["X", `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`],
     ["Threads", `https://www.threads.net/intent/post?text=${encodedText}`],
-    // share-offsite у мобільному застосунку LinkedIn видає помилку; вікно допису з текстом і посиланням працює і в застосунку, і в браузері.
-    ["LinkedIn", `https://www.linkedin.com/feed/?shareActive=true&text=${encodedText}`]
+    // На телефоні LinkedIn відкриваємо через системне меню «Поділитися» (promedia-story-share.js):
+    // застосунок LinkedIn не приймає посилання share-offsite. На комп'ютері — share-offsite.
+    ["LinkedIn", `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`]
   ];
   return `
 <section class="article-share" aria-label="${escapeHtml(labels.title)}">
   <span>${escapeHtml(labels.title)}</span>
   <div class="article-share-links">
-    ${links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener" aria-label="${escapeHtml(`${labels.title}: ${label}`)}" title="${escapeHtml(label)}">${shareIcon(label)}</a>`).join("")}
+    ${links.map(([label, href]) => `<a href="${escapeHtml(href)}"${label === "LinkedIn" ? ` data-share-native data-share-title="${escapeHtml(title)}" data-share-url="${escapeHtml(articleUrl)}"` : ""} target="_blank" rel="noopener" aria-label="${escapeHtml(`${labels.title}: ${label}`)}" title="${escapeHtml(label)}">${shareIcon(label)}</a>`).join("")}
     <button type="button" data-share-instagram data-share-cover="${escapeHtml(coverUrl || "")}" data-share-focus="${escapeHtml(coverFocus || "")}" data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}" data-copy="${escapeHtml(labels.copy)}" data-copied="${escapeHtml(labels.copied)}" aria-label="${escapeHtml(`${labels.title}: Instagram`)}" title="${escapeHtml(labels.instagram)}">${shareIcon("Instagram")}</button>
     <a href="${GOOGLE_SOURCE_URL}" target="_blank" rel="noopener" data-google-source="share-row" aria-label="${escapeHtml(pick(GOOGLE_SOURCE_COPY, lang).aria)}" title="${escapeHtml(pick(GOOGLE_SOURCE_COPY, lang).aria)}">${GOOGLE_G_MONO}</a>
   </div>

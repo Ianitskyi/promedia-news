@@ -174,4 +174,12 @@
     if (!link || !window.ProMediaAnalytics || typeof window.ProMediaAnalytics.track !== "function") return;
     window.ProMediaAnalytics.track("google_preferred_source_click", { placement: link.getAttribute("data-google-source") });
   });
+
+  // LinkedIn на телефоні: системне меню «Поділитися» передає застосунку посилання з прев'ю.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[data-share-native]");
+    if (!a || !navigator.share || !window.matchMedia("(pointer: coarse)").matches) return;
+    e.preventDefault();
+    navigator.share({ title: a.dataset.shareTitle, url: a.dataset.shareUrl }).catch(function () {});
+  });
 })();
