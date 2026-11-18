@@ -410,12 +410,12 @@ export function viewsVisible(publishedAt, now = Date.now()) {
 const MEDIA_LABELS = {
   photo: { uk: (n) => `У тексті ${n} фото`, en: (n) => `${n} photos in the story`, crh: (n) => `Metinde ${n} fotoresim` },
   video: { uk: () => "У тексті є відео", en: () => "Video in the story", crh: () => "Metinde video bar" },
-  audio: { uk: () => "У тексті є аудіо", en: () => "Audio in the story", crh: () => "Metinde audio bar" }
+  audio: { uk: () => "У тексті є аудіозапис", en: () => "Audio recording in the story", crh: () => "Metinde audio yazı bar" }
 };
 const MEDIA_ICONS = {
   photo: '<path d="M4 8h3l2-2.5h6L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.5"/>',
-  video: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="m10 9.5 5 2.5-5 2.5z" fill="currentColor"/>',
-  audio: '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>'
+  video: '<rect x="2.5" y="7" width="13" height="10" rx="2"/><path d="m15.5 10.5 6-3.5v10l-6-3.5z"/>',
+  audio: '<circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5z" fill="currentColor"/>'
 };
 function articleMediaBadges(article, lang) {
   let photos = Number(article.media_photos), video = Boolean(Number(article.media_video)), audio = Boolean(Number(article.media_audio));
