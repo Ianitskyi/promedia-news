@@ -21,11 +21,15 @@
   "decision": "Andrii Ianitskyi",
   "isImportant": true,
   "cardStyle": "image",
-  "revision": "2026-11-19-cover",
+  "revision": "2026-11-19-cover2",
   "cover": {
     "url": "/img/news/khrystyna-lysenko.jpg",
     "alt": "Христина Лисенко",
-    "caption": "Фото: Христина Лисенко / Facebook"
+    "caption": {
+      "uk": "Фото: Христина Лисенко / Facebook",
+      "en": "Photo: Khrystyna Lysenko / Facebook",
+      "crh": "Resim: Hrıstına Lısenko / Facebook"
+    }
   },
-  "coverRevision": "2026-11-19-cover"
+  "coverRevision": "2026-11-19-cover2"
 }
