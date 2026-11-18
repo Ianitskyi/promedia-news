@@ -166,13 +166,44 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
           else if(typeof window.gtag==="function")window.gtag("event",name,params);
         };
         const listen=()=>{const t=audio.duration||d.duration_sec;if(!sent.brief_play||!t)return;const f=audio.currentTime/t;if(f>=.5)track("brief_progress",50);if(f>=.95)track("brief_complete",100)};
+        // Keeps playing across pages (owner, 2026-11-18): the bar remembers the edition, the second and
+        // whether it was playing in a cookie for all *.promedia.report sites and picks up on the next page.
+        // If the browser blocks sound without a tap (iPhone), the bar waits at the same second.
+        const resumed=resumeState(d.date);
+        if(resumed){audio.preload="auto";audio.currentTime=resumed.t;sent.brief_play=1} // the start was already counted
+        let saved=0,leaving=false; // the browser pauses the sound while leaving — that pause is not the listener's
+        const save=force=>{const now=Date.now();if(leaving||(!force&&now-saved<2000))return;saved=now;
+          if(audio.ended||!audio.currentTime){saveState("");return}
+          saveState([d.date,Math.floor(audio.currentTime),audio.paused?0:1,now].join("|"))};
         audio.addEventListener("play",()=>track("brief_play",0));
         audio.addEventListener("timeupdate",listen);
         ["play","pause","timeupdate"].forEach(e=>audio.addEventListener(e,state));
-        audio.addEventListener("ended",()=>{if(sent.brief_play)track("brief_complete",100);audio.currentTime=0;state()});
+        audio.addEventListener("timeupdate",()=>save(false));
+        audio.addEventListener("pause",()=>save(true));
+        addEventListener("pagehide",()=>{save(true);leaving=true});
+        addEventListener("pageshow",e=>{if(e.persisted)leaving=false});
+        audio.addEventListener("ended",()=>{if(sent.brief_play)track("brief_complete",100);audio.currentTime=0;saveState("");state()});
         btn.addEventListener("click",()=>audio.paused?audio.play():audio.pause());
         show();btn.hidden=false;
+        if(resumed){
+          audio.addEventListener("loadedmetadata",()=>{if(audio.currentTime<resumed.t-1)audio.currentTime=resumed.t},{once:true});
+          if(resumed.playing){const p=audio.play();if(p&&p.catch)p.catch(()=>state())}
+        }
       }).catch(()=>{});
+  }
+  // Where the BRIEF bar stopped: "date|second|playing|time" in a cookie shared by *.promedia.report.
+  const BRIEF_STATE="pm_brief_bar";
+  function saveState(value){
+    const domain=/(^|\.)promedia\.report$/.test(location.hostname)?";domain=.promedia.report":"";
+    document.cookie=BRIEF_STATE+"="+encodeURIComponent(value)+";path=/;SameSite=Lax"+(location.protocol==="https:"?";Secure":"")+domain+";max-age="+(value?6*3600:0);
+  }
+  function resumeState(date){
+    const m=(document.cookie||"").match(/(?:^|;\s*)pm_brief_bar=([^;]*)/);
+    if(!m)return null;
+    const [d,t,playing,at]=decodeURIComponent(m[1]).split("|");
+    if(d!==String(date)||!(+t>0))return null; // a new edition starts from the beginning
+    // Keep playing only right after a page change; after a long break just wait at the same second.
+    return {t:+t,playing:playing==="1"&&Date.now()-(+at)<2*60*1000};
   }
   // Партнери й донори — показуються в спільному підвалі всіх сайтів мережі.
   const PARTNERS=[

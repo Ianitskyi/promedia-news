@@ -80,3 +80,51 @@ test('The BRIEF bar is added under the header only in Ukrainian and not on BRIEF
   if(want) assert.match(added[0].innerHTML,/brief\.promedia\.report/);
  }
 });
+
+test('The BRIEF bar keeps playing from the same second on the next page (owner, 2026-11-18)',async()=>{
+ const jar={};const cookie={get value(){return Object.entries(jar).map(([k,v])=>k+'='+v).join('; ')},
+  set value(s){const [kv,...attrs]=s.split(';');const [k,v]=kv.split('=');if(attrs.some(a=>a.trim()==='max-age=0'))delete jar[k];else jar[k]=v;assert(attrs.includes('domain=.promedia.report'))}};
+ const page=(host,{blockAutoplay=false}={})=>{
+  const definitions=new Map(),added=[],win={},audios=[];
+  class Element{getAttribute(){return null;}after(x){added.push(x);}}
+  class Audio{constructor(src){this.src=src;this.paused=true;this.currentTime=0;this.duration=300;this.l={};audios.push(this)}
+   addEventListener(e,f){(this.l[e]=this.l[e]||[]).push(f)}emit(e){(this.l[e]||[]).forEach(f=>f({}))}
+   play(){if(blockAutoplay&&!this.tapped)return Promise.reject(new Error('NotAllowedError'));this.paused=false;this.emit('play');return Promise.resolve()}
+   pause(){this.paused=true;this.emit('pause')}}
+  const el=()=>({hidden:true,textContent:'',setAttribute(){},append(){},addEventListener(e,f){this['on'+e]=f}});
+  const btn=el(),meta=el();
+  const files={'https://brief.promedia.report/demo/index.json':{demos:[{file:'demo/2026-11-18-daily.json'}]},
+   'https://brief.promedia.report/demo/2026-11-18-daily.json':{date:'2026-11-18',audio:'demo/2026-11-18-daily.mp3',duration_sec:300}};
+  const doc={documentElement:{lang:'uk'},getElementById:()=>null,querySelector:()=>null,head:{appendChild(){}},body:{prepend(){}},
+   createElement:()=>({setAttribute(){},classList:{toggle(){}},querySelector:s=>s.includes('play')?btn:meta,textContent:''}),
+   createTextNode:()=>({nodeValue:''})};
+  Object.defineProperty(doc,'cookie',{get:()=>cookie.value,set:v=>{cookie.value=v}});
+  runInNewContext(read('public/js/promedia-global-shell.js'),{HTMLElement:Element,URL,Audio,Date,Promise,
+   fetch:u=>Promise.resolve({json:()=>Promise.resolve(files[u])}),
+   addEventListener:(e,f)=>{win[e]=f},window:{},String,Math,Number,
+   location:{hostname:host,pathname:'/',href:'https://'+host+'/',protocol:'https:'},document:doc,
+   customElements:{get:n=>definitions.get(n),define:(n,c)=>definitions.set(n,c)}});
+  new (definitions.get('promedia-global-header'))().connectedCallback();
+  return {btn,audios,win};
+ };
+ const tick=()=>new Promise(r=>setTimeout(r,10));
+ // Page 1: the listener presses play and listens to 1:40, then opens another page.
+ const a=page('news.promedia.report');await tick();
+ const one=a.audios[0];a.btn.onclick();one.currentTime=100;one.emit('timeupdate');
+ a.win.pagehide({});one.pause(); // the browser stops the sound while leaving: not the listener's pause
+ // Page 2, another ProMedia site: same edition, same second, already playing.
+ const b=page('ratings.promedia.report');await tick();
+ const two=b.audios[0];assert.equal(two.currentTime,100);assert.equal(two.paused,false);
+ // The listener pauses at 2:30: the next page waits at 2:30 instead of playing.
+ two.currentTime=150;two.pause();
+ const c=page('atlas.promedia.report');await tick();
+ assert.equal(c.audios[0].currentTime,150);assert.equal(c.audios[0].paused,true);
+ // iPhone: sound needs a tap — the bar waits at the same second, one tap continues.
+ c.audios[0].tapped=1;c.btn.onclick();c.audios[0].emit('timeupdate');c.win.pagehide({});
+ const d=page('news.promedia.report',{blockAutoplay:true});await tick();
+ assert.equal(d.audios[0].currentTime,150);assert.equal(d.audios[0].paused,true);
+ // To the end: the next page starts from the beginning.
+ d.audios[0].tapped=1;d.btn.onclick();d.audios[0].emit('ended');
+ const e=page('news.promedia.report');await tick();
+ assert.equal(e.audios[0].currentTime,0);assert.equal(e.audios[0].paused,true);
+});
