@@ -834,6 +834,9 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const { caption: coverCaptionText, bodyMd } = coverCaption(article, lang, localizedField(article, "body_md", lang));
   const bodyHtmlContent = markdownToHtml(bodyMd);
   const tags = JSON.parse(article.tags || "[]");
+  // Рубрика (Новини, Статті, Прес-реліз, Анонс…) — у рядку з датою; тематичні теги — під текстом.
+  const rubricTags = tags.filter(t => LEAD_RUBRICS[t] || specialTagClass(t));
+  const topicTags = tags.filter(t => !rubricTags.includes(t));
   const coverUrl = articleCover(article, lang);
   const coverAlt = articleCoverAlt(article, lang, title);
   const coverImg = coverUrl
@@ -851,13 +854,13 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const bodyHtml = `
 <main class="wrap article-page">
   <p class="article-back"><a href="${langPrefix(lang)}/">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
-  ${tags.length ? tagLinks(tags, lang) : ""}
   <h1>${escapeHtml(title)}</h1>
-  ${articleMeta(article, lang)}
+  ${articleMeta(article, lang).replace('<p class="article-date">', `<p class="article-date">${rubricTags.length ? rubricTags.map(t => `<a class="article-rubric${specialTagClass(t)}" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join(" · ") + " · " : ""}`)}
   ${articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl, coverFocus: coverFocusPoint(article, lang) })}
   ${cover}
   ${listenPlayer(article, lang)}
   <div class="article-body">${withGoogleSourceStrip(bodyHtmlContent, lang)}</div>
+  ${topicTags.length ? `<div class="article-tags-bottom">${tagLinks(topicTags, lang)}</div>` : ""}
   ${peopleBox(tags, lang)}
   ${mediaLinksHtml}
   ${projectPromo(lang, "atlas", "article-bottom")}

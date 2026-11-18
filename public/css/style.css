@@ -1511,3 +1511,8 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .feed-more { display: block; width: 100%; margin: 8px 0 24px; padding: 14px; font: inherit; font-weight: 700; color: var(--ink); background: var(--card); border: 1.5px solid var(--border); border-radius: 999px; cursor: pointer; }
 }
 @media (min-width: 621px) { .feed-more { display: none; } }
+
+/* Тематичні теги — під текстом новини (19.11.2026). */
+.article-tags-bottom { margin: 28px 0 8px; padding-top: 18px; border-top: 1px solid var(--border); }
+.article-rubric { color: #a88a5e; text-decoration: none; }
+.article-rubric:hover { color: #b36a00; }
