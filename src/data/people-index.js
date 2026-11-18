@@ -646,6 +646,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "zhanna-bezpiatchuk",
+    "tag": "Жанна Безп’ятчук",
+    "aliases": [
+      "Жанна Безп'ятчук",
+      "Жанна Безпятчук"
+    ],
+    "name": {
+      "uk": "Жанна Безп’ятчук",
+      "en": "Zhanna Bezpiatchuk"
+    },
+    "role": {
+      "uk": "журналістка-міжнародниця й медіаменеджерка; працювала в BBC News Україна, тепер — у Суспільному",
+      "en": "International affairs journalist and media manager; formerly with BBC News Ukrainian, now at Suspilne"
+    },
+    "summary": {
+      "uk": "Журналістка-міжнародниця з досвідом у «Радіо Свобода», «Українському тижні», hromadske та BBC News Україна.",
+      "en": "International affairs journalist who has worked for Radio Liberty, Ukrainian Week, hromadske and BBC News Ukrainian."
+    }
+  },
+  {
     "slug": "zakhar-protsiuk",
     "tag": "Захар Процюк",
     "aliases": [],

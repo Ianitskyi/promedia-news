@@ -1,0 +1,77 @@
+{
+  "slug": "zhanna-bezpiatchuk",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Жанна Безп’ятчук",
+    "en": "Zhanna Bezpiatchuk"
+  },
+  "sort": {
+    "uk": "Безп’ятчук Жанна",
+    "en": "Bezpiatchuk Zhanna"
+  },
+  "aliases": [
+    "Жанна Безп'ятчук",
+    "Жанна Безпятчук"
+  ],
+  "role": {
+    "uk": "журналістка-міжнародниця й медіаменеджерка; працювала в BBC News Україна, тепер — у Суспільному",
+    "en": "International affairs journalist and media manager; formerly with BBC News Ukrainian, now at Suspilne"
+  },
+  "summary": {
+    "uk": "Журналістка-міжнародниця з досвідом у «Радіо Свобода», «Українському тижні», hromadske та BBC News Україна.",
+    "en": "International affairs journalist who has worked for Radio Liberty, Ukrainian Week, hromadske and BBC News Ukrainian."
+  },
+  "bio": {
+    "uk": "Жанна Безп’ятчук вивчала політологію в Києво-Могилянській академії, здобула магістерський ступінь з європейських студій у Колегіумі Європи (Польща), навчалася журналістики в Данській школі журналістики та Університеті Суонсі (Велика Британія).\n\nПрацювала журналісткою інтернет-видання «ПіК України», кореспонденткою й редакторкою журналу «Український тиждень», де писала про міжнародну політику, з 2013 року — кореспонденткою «Радіо Свобода», згодом — у hromadske. Була кореспонденткою BBC News Україна. Викладала в Школі журналістики та комунікацій Українського католицького університету.\n\nУ листопаді 2026 року в інтерв’ю ПроМедіа розповіла про свій шлях від BBC до Суспільного та про міжнародну журналістику."
+  },
+  "facts": [
+    [
+      "Медіа",
+      "«Український тиждень», «Радіо Свобода», hromadske, BBC News Україна, Суспільне"
+    ],
+    [
+      "Спеціалізація",
+      "міжнародна журналістика"
+    ],
+    [
+      "Освіта",
+      "НаУКМА (політологія), Колегіум Європи"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Жанна Безп'ятчук"
+    ],
+    "check": [
+      "журналіст",
+      "journalist",
+      "BBC"
+    ],
+    "article": "vid-vvs-do-suspilnoho-zhanna-bezpiatchuk-pro-mizhnarodnu-zhurnalystyku"
+  },
+  "sources": [
+    {
+      "title": "Wiki УКУ: Жанна Безп'ятчук",
+      "url": "https://wiki.ucu.edu.ua/zhanna_bezp_iatchuk"
+    },
+    {
+      "title": "Радіо Свобода: матеріали Жанни Безп’ятчук",
+      "url": "https://www.radiosvoboda.org/a/25197605.html"
+    },
+    {
+      "title": "Український тиждень: авторка Жанна Безп’ятчук",
+      "url": "https://tyzhden.ua/person/bezp-iatchuk-zhanna/"
+    },
+    {
+      "title": "JTA: BBC (згадка про Жанну Безп’ятчук)",
+      "url": "https://e-courses.jta.com.ua/e-manuals/svitovi-media/bbc/"
+    },
+    {
+      "title": "ПроМедіа: Від BBC до Суспільного — інтерв’ю",
+      "url": "https://news.promedia.report/article/vid-vvs-do-suspilnoho-zhanna-bezpiatchuk-pro-mizhnarodnu-zhurnalystyku"
+    }
+  ],
+  "updated": "2026-11-18",
+  "kind": "journalist"
+}
