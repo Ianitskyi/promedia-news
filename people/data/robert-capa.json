@@ -1,0 +1,67 @@
+{
+  "slug": "robert-capa",
+  "group": "intl",
+  "country": "Угорщина / США",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "1913–1954",
+  "name": {
+    "uk": "Роберт Капа",
+    "en": "Robert Capa"
+  },
+  "sort": {
+    "uk": "Капа Роберт",
+    "en": "Capa Robert"
+  },
+  "aliases": [
+    "Ендре Фрідман"
+  ],
+  "role": {
+    "uk": "фотограф, воєнний фотожурналіст",
+    "en": "War photographer"
+  },
+  "summary": {
+    "uk": "Один із найвідоміших воєнних фотографів XX століття; загинув 1954 року в Індокитаї.",
+    "en": "One of the best-known war photographers of the 20th century; killed in Indochina in 1954."
+  },
+  "bio": {
+    "uk": "Роберт Капа (справжнє ім'я — Ендре Фрідман, 1913–1954) — фотограф, уродженець Будапешта. У 1930-х у Парижі він і фотографиня Ґерда Таро придумали бренд «Роберт Капа» — нібито знаменитого американського фотографа, чиї знімки легше продати редакціям.\n\nЙого «Падіння солдата» (Іспанія, 1936) — одна з найвідоміших воєнних фотографій, але її справжність десятиліттями ставлять під сумнів, а історик Фернандо Пенко вважає, що кадр зробила Таро. 6 червня 1944 року Капа знімав висадку на пляжі Омаха. Легенду про те, що лаборант зіпсував майже всі негативи й вціліло 11 кадрів, критик Ей Ді Коулман 2014 року поставив під сумнів.\n\n1947 року Капа став одним із засновників агенції Magnum Photos. 25 травня 1954 року він загинув, підірвавшись на міні в Індокитаї, де знімав війну."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1913–1954"
+    ],
+    [
+      "Загинув",
+      "25 травня 1954, Індокитай"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Robert Capa"
+    ],
+    "check": [
+      "Capa"
+    ]
+  },
+  "sources": [
+    {
+      "title": "ARA: розслідування про Роберта Капу і Ґерду Таро",
+      "url": "https://en.ara.cat/sunday/the-investigation-that-gives-away-robert-capa_129_5862434.html"
+    },
+    {
+      "title": "A. D. Coleman: Alternate History — Robert Capa on D-Day",
+      "url": "https://www.nearbycafe.com/artandphoto/photocritic/2014/10/19/alternate-history-robert-capa-on-d-day-14/"
+    },
+    {
+      "title": "Wikipedia: Robert Capa",
+      "url": "https://en.wikipedia.org/wiki/Robert_Capa"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

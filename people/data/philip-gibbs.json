@@ -1,0 +1,59 @@
+{
+  "slug": "philip-gibbs",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Філіп Гіббс",
+    "en": "Philip Gibbs"
+  },
+  "sort": {
+    "uk": "Гіббс Філіп",
+    "en": "Gibbs Philip"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "британський журналіст, воєнний кореспондент Першої світової",
+    "en": "British journalist, First World War correspondent"
+  },
+  "summary": {
+    "uk": "Один із п'яти офіційно акредитованих британських воєнних кореспондентів на Західному фронті з 1915 року.",
+    "en": "One of five officially accredited British war correspondents on the Western Front from 1915."
+  },
+  "bio": {
+    "uk": "Філіп Гіббс (1877–1962) — британський журналіст і письменник.\n\nНа початку Першої світової війни Британія заборонила репортерам супроводжувати свої війська у Франції. Заборона не втрималася, насамперед через опір лондонських газет, і в травні 1915 року Гіббс став одним із п'яти офіційно акредитованих воєнних кореспондентів при штабі британських військ. Акредитація давала доступ до фронту, але його тексти проходили військову цензуру."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1877–1962"
+    ],
+    [
+      "Відомий за",
+      "репортажі з Першої світової"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Philip Gibbs"
+    ],
+    "check": [
+      "Gibbs"
+    ]
+  },
+  "sources": [
+    {
+      "title": "1914-1918-online: Philip Gibbs",
+      "url": "https://encyclopedia.1914-1918-online.net/article/gibbs_philip"
+    },
+    {
+      "title": "Wikipedia: Philip Gibbs",
+      "url": "https://en.wikipedia.org/wiki/Philip_Gibbs"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

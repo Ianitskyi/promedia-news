@@ -356,6 +356,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "gerda-taro",
+    "tag": "Ґерда Таро",
+    "aliases": [
+      "Ґерта Похорилле",
+      "Герда Таро"
+    ],
+    "name": {
+      "uk": "Ґерда Таро",
+      "en": "Gerda Taro"
+    },
+    "role": {
+      "uk": "фотожурналістка, знімала громадянську війну в Іспанії",
+      "en": "Photojournalist who covered the Spanish Civil War"
+    },
+    "summary": {
+      "uk": "Фотожурналістка, співавторка бренду «Роберт Капа»; загинула в Іспанії в липні 1937 року.",
+      "en": "Photojournalist, co-creator of the “Robert Capa” brand; killed in Spain in July 1937."
+    }
+  },
+  {
     "slug": "david-mindich",
     "tag": "Девід Майндіч",
     "aliases": [],
@@ -430,6 +450,42 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "edward-murrow",
+    "tag": "Едвард Марроу",
+    "aliases": [
+      "Едвард Р. Марроу"
+    ],
+    "name": {
+      "uk": "Едвард Марроу",
+      "en": "Edward R. Murrow"
+    },
+    "role": {
+      "uk": "американський радіо- й тележурналіст CBS",
+      "en": "American broadcast journalist, CBS"
+    },
+    "summary": {
+      "uk": "Кореспондент CBS, чиї прямі радіорепортажі з Лондона під час бомбардувань 1940 року почули мільйони американців.",
+      "en": "CBS correspondent whose live radio reports from London during the 1940 bombing were heard by millions of Americans."
+    }
+  },
+  {
+    "slug": "a-d-coleman",
+    "tag": "Ей Ді Коулман",
+    "aliases": [],
+    "name": {
+      "uk": "Ей Ді Коулман",
+      "en": "A. D. Coleman"
+    },
+    "role": {
+      "uk": "американський критик фотографії",
+      "en": "American photography critic"
+    },
+    "summary": {
+      "uk": "Критик фотографії, який 2014 року поставив під сумнів легенду про 11 уцілілих кадрів Роберта Капи з дня «Д».",
+      "en": "Photography critic who in 2014 questioned the legend of Robert Capa's 11 surviving D-Day frames."
+    }
+  },
+  {
     "slug": "andy-sullivan",
     "tag": "Енді Салліван",
     "aliases": [],
@@ -447,6 +503,43 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "ernest-hemingway",
+    "tag": "Ернест Гемінґвей",
+    "aliases": [
+      "Ернест Хемінгуей",
+      "Ернест Гемінгвей"
+    ],
+    "name": {
+      "uk": "Ернест Гемінґвей",
+      "en": "Ernest Hemingway"
+    },
+    "role": {
+      "uk": "американський письменник і воєнний кореспондент",
+      "en": "American writer and war correspondent"
+    },
+    "summary": {
+      "uk": "Письменник, лауреат Нобелівської премії, який працював воєнним кореспондентом у Другу світову.",
+      "en": "Nobel Prize-winning writer who worked as a war correspondent in the Second World War."
+    }
+  },
+  {
+    "slug": "ernie-pyle",
+    "tag": "Ерні Пайл",
+    "aliases": [],
+    "name": {
+      "uk": "Ерні Пайл",
+      "en": "Ernie Pyle"
+    },
+    "role": {
+      "uk": "американський воєнний кореспондент",
+      "en": "American war correspondent"
+    },
+    "summary": {
+      "uk": "Лауреат Пулітцерівської премії, який писав про рядових піхотинців; загинув на острові Іе-Сіма 1945 року.",
+      "en": "Pulitzer Prize-winning columnist who wrote about ordinary infantrymen; killed on Ie Shima in 1945."
+    }
+  },
+  {
     "slug": "yevhen-karmazin",
     "tag": "Євген Кармазін",
     "aliases": [],
@@ -461,6 +554,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Оператор Freedom з Краматорська, загинув разом з Оленою Губановою від удару дрона 23 жовтня 2025 року.",
       "en": "Freedom TV cameraman from Kramatorsk, killed with Olena Hubanova by a drone strike on 23 October 2025."
+    }
+  },
+  {
+    "slug": "yevhen-khaldei",
+    "tag": "Євген Халдей",
+    "aliases": [
+      "Євгеній Халдей"
+    ],
+    "name": {
+      "uk": "Євген Халдей",
+      "en": "Yevgeny Khaldei"
+    },
+    "role": {
+      "uk": "радянський фотокореспондент, автор фото прапора над Рейхстагом",
+      "en": "Soviet photojournalist, author of the flag over the Reichstag photo"
+    },
+    "summary": {
+      "uk": "Фотокореспондент із Юзівки (нині Донецьк), автор інсценізованого знімка прапора над Рейхстагом 1945 року.",
+      "en": "Photojournalist from Yuzivka (now Donetsk), author of the staged 1945 photograph of the flag over the Reichstag."
     }
   },
   {
@@ -611,6 +723,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Кореспондент Радіо Свобода, який з 2015 року працює на фронті; номінант Премії Ґонґадзе 2026.",
       "en": "Radio Svoboda correspondent reporting from the front line since 2015; 2026 Gongadze Prize nominee."
+    }
+  },
+  {
+    "slug": "martha-gellhorn",
+    "tag": "Марта Ґеллгорн",
+    "aliases": [
+      "Марта Геллгорн"
+    ],
+    "name": {
+      "uk": "Марта Ґеллгорн",
+      "en": "Martha Gellhorn"
+    },
+    "role": {
+      "uk": "американська журналістка, воєнна кореспондентка",
+      "en": "American journalist and war correspondent"
+    },
+    "summary": {
+      "uk": "Воєнна кореспондентка, яка таємно потрапила до Нормандії під час висадки союзників 1944 року.",
+      "en": "War correspondent who smuggled herself to Normandy during the 1944 Allied landings."
     }
   },
   {
@@ -836,6 +967,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "robert-capa",
+    "tag": "Роберт Капа",
+    "aliases": [
+      "Ендре Фрідман"
+    ],
+    "name": {
+      "uk": "Роберт Капа",
+      "en": "Robert Capa"
+    },
+    "role": {
+      "uk": "фотограф, воєнний фотожурналіст",
+      "en": "War photographer"
+    },
+    "summary": {
+      "uk": "Один із найвідоміших воєнних фотографів XX століття; загинув 1954 року в Індокитаї.",
+      "en": "One of the best-known war photographers of the 20th century; killed in Indochina in 1954."
+    }
+  },
+  {
     "slug": "roger-fenton",
     "tag": "Роджер Фентон",
     "aliases": [],
@@ -954,6 +1104,40 @@ export const PEOPLE = [
     "summary": {
       "uk": "Співзасновник Denník N, відповідає за цифровий напрям видання й платформу передплат REMP.",
       "en": "Co-founder of Denník N, responsible for its digital operations and the REMP subscription platform."
+    }
+  },
+  {
+    "slug": "philip-gibbs",
+    "tag": "Філіп Гіббс",
+    "aliases": [],
+    "name": {
+      "uk": "Філіп Гіббс",
+      "en": "Philip Gibbs"
+    },
+    "role": {
+      "uk": "британський журналіст, воєнний кореспондент Першої світової",
+      "en": "British journalist, First World War correspondent"
+    },
+    "summary": {
+      "uk": "Один із п'яти офіційно акредитованих британських воєнних кореспондентів на Західному фронті з 1915 року.",
+      "en": "One of five officially accredited British war correspondents on the Western Front from 1915."
+    }
+  },
+  {
+    "slug": "phillip-knightley",
+    "tag": "Філліп Найтлі",
+    "aliases": [],
+    "name": {
+      "uk": "Філліп Найтлі",
+      "en": "Phillip Knightley"
+    },
+    "role": {
+      "uk": "австралійський журналіст, історик воєнної журналістики",
+      "en": "Australian journalist, historian of war reporting"
+    },
+    "summary": {
+      "uk": "Автор класичної книжки «Перша жертва» — історії воєнних кореспондентів від Кримської війни до наших днів.",
+      "en": "Author of the classic book “The First Casualty”, a history of war correspondents from the Crimean War onwards."
     }
   },
   {

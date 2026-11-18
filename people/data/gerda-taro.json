@@ -1,0 +1,64 @@
+{
+  "slug": "gerda-taro",
+  "group": "intl",
+  "country": "Німеччина",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "1910–1937",
+  "name": {
+    "uk": "Ґерда Таро",
+    "en": "Gerda Taro"
+  },
+  "sort": {
+    "uk": "Таро Ґерда",
+    "en": "Taro Gerda"
+  },
+  "aliases": [
+    "Ґерта Похорилле",
+    "Герда Таро"
+  ],
+  "role": {
+    "uk": "фотожурналістка, знімала громадянську війну в Іспанії",
+    "en": "Photojournalist who covered the Spanish Civil War"
+  },
+  "summary": {
+    "uk": "Фотожурналістка, співавторка бренду «Роберт Капа»; загинула в Іспанії в липні 1937 року.",
+    "en": "Photojournalist, co-creator of the “Robert Capa” brand; killed in Spain in July 1937."
+  },
+  "bio": {
+    "uk": "Ґерда Таро (справжнє ім'я — Ґерта Похорилле, 1910–1937) — фотожурналістка, уродженка Штутгарта. У 1930-х у Парижі вона разом з Ендре Фрідманом придумала бренд «Роберт Капа», а собі взяла ім'я Ґерда Таро.\n\nВона знімала громадянську війну в Іспанії. Історик Фернандо Пенко вважає, що відомий кадр «Падіння солдата» (1936) зробила саме вона, а не Капа; остаточного доказу немає. У липні 1937 року пані Ґерда загинула на фронті біля Брунете: її смертельно травмував танк."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1910–1937"
+    ],
+    [
+      "Загинула",
+      "липень 1937, біля Брунете, Іспанія"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Gerda Taro"
+    ],
+    "check": [
+      "Taro"
+    ]
+  },
+  "sources": [
+    {
+      "title": "ARA: розслідування про Роберта Капу і Ґерду Таро",
+      "url": "https://en.ara.cat/sunday/the-investigation-that-gives-away-robert-capa_129_5862434.html"
+    },
+    {
+      "title": "Wikipedia: Gerda Taro",
+      "url": "https://en.wikipedia.org/wiki/Gerda_Taro"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "phillip-knightley",
+  "group": "intl",
+  "country": "Австралія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Філліп Найтлі",
+    "en": "Phillip Knightley"
+  },
+  "sort": {
+    "uk": "Найтлі Філліп",
+    "en": "Knightley Phillip"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "австралійський журналіст, історик воєнної журналістики",
+    "en": "Australian journalist, historian of war reporting"
+  },
+  "summary": {
+    "uk": "Автор класичної книжки «Перша жертва» — історії воєнних кореспондентів від Кримської війни до наших днів.",
+    "en": "Author of the classic book “The First Casualty”, a history of war correspondents from the Crimean War onwards."
+  },
+  "bio": {
+    "uk": "Філліп Найтлі (1929–2016) — австралійський журналіст, багато років працював у британській газеті The Sunday Times.\n\nЙого книжка «Перша жертва» (The First Casualty, 1975) — класична історія воєнних кореспондентів і пропаганди від Кримської війни. Назву книжки взято з вислову «Перша жертва війни — правда», який приписують американському сенатору Гайраму Джонсону; дослідники цитат сумніваються, що він його вигадав."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1929–2016"
+    ],
+    [
+      "Книжка",
+      "«Перша жертва» (1975)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Phillip Knightley"
+    ],
+    "check": [
+      "Knightley"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Quote Investigator: The first casualty when war comes is truth",
+      "url": "https://quoteinvestigator.com/?p=437628"
+    },
+    {
+      "title": "Wikipedia: Phillip Knightley",
+      "url": "https://en.wikipedia.org/wiki/Phillip_Knightley"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

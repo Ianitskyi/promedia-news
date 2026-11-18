@@ -1,0 +1,65 @@
+{
+  "slug": "yevhen-khaldei",
+  "group": "intl",
+  "country": "СРСР (уродженець Юзівки, нині Донецьк)",
+  "kind": "journalist",
+  "name": {
+    "uk": "Євген Халдей",
+    "en": "Yevgeny Khaldei"
+  },
+  "sort": {
+    "uk": "Халдей Євген",
+    "en": "Khaldei Yevgeny"
+  },
+  "aliases": [
+    "Євгеній Халдей"
+  ],
+  "role": {
+    "uk": "радянський фотокореспондент, автор фото прапора над Рейхстагом",
+    "en": "Soviet photojournalist, author of the flag over the Reichstag photo"
+  },
+  "summary": {
+    "uk": "Фотокореспондент із Юзівки (нині Донецьк), автор інсценізованого знімка прапора над Рейхстагом 1945 року.",
+    "en": "Photojournalist from Yuzivka (now Donetsk), author of the staged 1945 photograph of the flag over the Reichstag."
+  },
+  "bio": {
+    "uk": "Євген Халдей (1917–1997) — радянський фотокореспондент, уродженець Юзівки (нині Донецьк).\n\nВін автор найвідомішого радянського фото Другої світової. Побачивши знімок американців на Іводзімі, Халдей попросив дядька пошити великий прапор зі скатертин і 2 травня 1945 року інсценізував його підняття над Рейхстагом. Перед публікацією цензори помітили на руках бійця два годинники — ознаку мародерства, — і один прибрали з негатива; згодом на фото ще й додали диму."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1917–1997"
+    ],
+    [
+      "Відомий за",
+      "«Прапор над Рейхстагом», 1945"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Yevgeny Khaldei"
+    ],
+    "check": [
+      "Khaldei"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Яд Вашем: Євген Халдей",
+      "url": "https://www.yadvashem.org/research/research-projects/soldiers/evgenii-efim-khaldei"
+    },
+    {
+      "title": "Bronx Documentary Center",
+      "url": "https://www.bronxdoc.org/?p=3123"
+    },
+    {
+      "title": "Wikipedia: Yevgeny Khaldei",
+      "url": "https://en.wikipedia.org/wiki/Yevgeny_Khaldei"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

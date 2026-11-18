@@ -1,0 +1,69 @@
+{
+  "slug": "ernie-pyle",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "1900–1945",
+  "name": {
+    "uk": "Ерні Пайл",
+    "en": "Ernie Pyle"
+  },
+  "sort": {
+    "uk": "Пайл Ерні",
+    "en": "Pyle Ernie"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський воєнний кореспондент",
+    "en": "American war correspondent"
+  },
+  "summary": {
+    "uk": "Лауреат Пулітцерівської премії, який писав про рядових піхотинців; загинув на острові Іе-Сіма 1945 року.",
+    "en": "Pulitzer Prize-winning columnist who wrote about ordinary infantrymen; killed on Ie Shima in 1945."
+  },
+  "bio": {
+    "uk": "Ерні Пайл (1900–1945) — американський журналіст, колумніст газетного об'єднання Scripps-Howard.\n\nУ Другу світову він писав не про генералів, а про піхотинців. Його найвідоміша колонка — про те, як тіло капітана Генрі Васкова спустили з гір Італії на мулі і бійці по одному прощалися з командиром. 1944 року пан Ерні отримав Пулітцерівську премію за воєнну кореспонденцію; його колонки друкували понад 400 щоденних газет.\n\n18 квітня 1945 року він загинув від кулеметного вогню на острові Іе-Сіма біля Окінави."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1900–1945"
+    ],
+    [
+      "Загинув",
+      "18 квітня 1945, Іе-Сіма"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Ernie Pyle"
+    ],
+    "check": [
+      "Pyle"
+    ]
+  },
+  "sources": [
+    {
+      "title": "PBS: Reporting America at War",
+      "url": "https://www.pbs.org/weta/reportingamericaatwar/chronology/12131943.html"
+    },
+    {
+      "title": "Pulitzer.org",
+      "url": "https://www.pulitzer.org/winners/ernest-taylor-ernie-pyle-scripps-howard-newspaper-alliance"
+    },
+    {
+      "title": "Університет Індіани",
+      "url": "https://honorsandawards.iu.edu/awards/honoree/362.html"
+    },
+    {
+      "title": "Fallen Journalists Memorial: Ernie Pyle",
+      "url": "https://fallenjournalists.org/story/ernie-pyle/"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

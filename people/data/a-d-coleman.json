@@ -1,0 +1,59 @@
+{
+  "slug": "a-d-coleman",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Ей Ді Коулман",
+    "en": "A. D. Coleman"
+  },
+  "sort": {
+    "uk": "Коулман Ей Ді",
+    "en": "Coleman A. D."
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський критик фотографії",
+    "en": "American photography critic"
+  },
+  "summary": {
+    "uk": "Критик фотографії, який 2014 року поставив під сумнів легенду про 11 уцілілих кадрів Роберта Капи з дня «Д».",
+    "en": "Photography critic who in 2014 questioned the legend of Robert Capa's 11 surviving D-Day frames."
+  },
+  "bio": {
+    "uk": "Ей Ді Коулман (нар. 1943) — американський критик та історик фотографії, автор багатьох книжок і колонок про фотографію.\n\n2014 року він дослідив негативи Роберта Капи з висадки на пляжі Омаха 6 червня 1944 року й дійшов висновку, що аварії в лабораторії, яка нібито знищила майже всі кадри, не було: за його версією, Капа зняв на пляжі лише одну плівку. Суперечка не завершена."
+  },
+  "facts": [
+    [
+      "Рік народження",
+      "1943"
+    ],
+    [
+      "Сфера",
+      "критика фотографії"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:A. D. Coleman"
+    ],
+    "check": [
+      "Coleman"
+    ]
+  },
+  "sources": [
+    {
+      "title": "A. D. Coleman: Alternate History — Robert Capa on D-Day",
+      "url": "https://www.nearbycafe.com/artandphoto/photocritic/2014/10/19/alternate-history-robert-capa-on-d-day-14/"
+    },
+    {
+      "title": "Wikipedia: A. D. Coleman",
+      "url": "https://en.wikipedia.org/wiki/A._D._Coleman"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

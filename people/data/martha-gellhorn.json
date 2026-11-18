@@ -1,0 +1,65 @@
+{
+  "slug": "martha-gellhorn",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Марта Ґеллгорн",
+    "en": "Martha Gellhorn"
+  },
+  "sort": {
+    "uk": "Ґеллгорн Марта",
+    "en": "Gellhorn Martha"
+  },
+  "aliases": [
+    "Марта Геллгорн"
+  ],
+  "role": {
+    "uk": "американська журналістка, воєнна кореспондентка",
+    "en": "American journalist and war correspondent"
+  },
+  "summary": {
+    "uk": "Воєнна кореспондентка, яка таємно потрапила до Нормандії під час висадки союзників 1944 року.",
+    "en": "War correspondent who smuggled herself to Normandy during the 1944 Allied landings."
+  },
+  "bio": {
+    "uk": "Марта Ґеллгорн (1908–1998) — американська журналістка й письменниця, одна з найвідоміших воєнних кореспонденток XX століття.\n\nЖінок-кореспонденток до висадки в Нормандії не допустили. Пані Марта сказала військовій поліції, що хоче взяти інтерв'ю в медсестер, пробралася на госпітальне судно й замкнулася в туалеті, доки воно не вийшло в море. У перші дні висадки (джерела називають дати від 6 до 8 червня 1944 року) вона зійшла на пляж Омаха й допомагала виносити поранених."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1908–1998"
+    ],
+    [
+      "Відома за",
+      "репортажі з Іспанії, Другої світової, В'єтнаму"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Martha Gellhorn"
+    ],
+    "check": [
+      "Gellhorn"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Smithsonian",
+      "url": "https://www.smithsonianmag.com/history/martha-gellhorn-was-the-only-woman-to-report-on-the-d-day-landings-from-the-ground-180984456/"
+    },
+    {
+      "title": "Національний музей Другої світової, США",
+      "url": "https://www.nationalww2museum.org/war/articles/martha-gellhorn-eyewitness-war"
+    },
+    {
+      "title": "Wikipedia: Martha Gellhorn",
+      "url": "https://en.wikipedia.org/wiki/Martha_Gellhorn"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

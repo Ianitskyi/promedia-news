@@ -1,0 +1,62 @@
+{
+  "slug": "ernest-hemingway",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Ернест Гемінґвей",
+    "en": "Ernest Hemingway"
+  },
+  "sort": {
+    "uk": "Гемінґвей Ернест",
+    "en": "Hemingway Ernest"
+  },
+  "aliases": [
+    "Ернест Хемінгуей",
+    "Ернест Гемінгвей"
+  ],
+  "role": {
+    "uk": "американський письменник і воєнний кореспондент",
+    "en": "American writer and war correspondent"
+  },
+  "summary": {
+    "uk": "Письменник, лауреат Нобелівської премії, який працював воєнним кореспондентом у Другу світову.",
+    "en": "Nobel Prize-winning writer who worked as a war correspondent in the Second World War."
+  },
+  "bio": {
+    "uk": "Ернест Гемінґвей (1899–1961) — американський письменник, лауреат Нобелівської премії з літератури (1954), який також працював журналістом і воєнним кореспондентом.\n\n1944 року він став кореспондентом журналу Collier's, зайнявши місце своєї тодішньої дружини Марти Ґеллгорн. 6 червня 1944 року пан Ернест бачив висадку в Нормандії з десантного катера, але, за даними American Heritage, ступив на французьку землю лише за кілька тижнів."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1899–1961"
+    ],
+    [
+      "Нагорода",
+      "Нобелівська премія з літератури, 1954"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Ernest Hemingway"
+    ],
+    "check": [
+      "Hemingway"
+    ]
+  },
+  "sources": [
+    {
+      "title": "American Heritage",
+      "url": "https://www.americanheritage.com/node/133758?issue=133727"
+    },
+    {
+      "title": "Wikipedia: Ernest Hemingway",
+      "url": "https://en.wikipedia.org/wiki/Ernest_Hemingway"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}

@@ -1,0 +1,65 @@
+{
+  "slug": "edward-murrow",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Едвард Марроу",
+    "en": "Edward R. Murrow"
+  },
+  "sort": {
+    "uk": "Марроу Едвард",
+    "en": "Murrow Edward"
+  },
+  "aliases": [
+    "Едвард Р. Марроу"
+  ],
+  "role": {
+    "uk": "американський радіо- й тележурналіст CBS",
+    "en": "American broadcast journalist, CBS"
+  },
+  "summary": {
+    "uk": "Кореспондент CBS, чиї прямі радіорепортажі з Лондона під час бомбардувань 1940 року почули мільйони американців.",
+    "en": "CBS correspondent whose live radio reports from London during the 1940 bombing were heard by millions of Americans."
+  },
+  "bio": {
+    "uk": "Едвард Марроу (1908–1965) — американський радіо- й тележурналіст, багаторічний кореспондент CBS.\n\n21 вересня 1940 року він уперше вийшов у прямий ефір з даху під час нальоту німецької авіації на Лондон; його репортажі відкривалися словами «Це Лондон». CBS тоді забороняла записи, тож воєнні репортажі звучали наживо, і мільйони американців чули війну ще до того, як США в неї вступили."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1908–1965"
+    ],
+    [
+      "Редакція",
+      "CBS"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Edward R. Murrow"
+    ],
+    "check": [
+      "Murrow"
+    ]
+  },
+  "sources": [
+    {
+      "title": "American Heritage: London",
+      "url": "https://americanheritage.com/london"
+    },
+    {
+      "title": "International Churchill Society",
+      "url": "https://winstonchurchill.org/?p=3085"
+    },
+    {
+      "title": "Wikipedia: Edward R. Murrow",
+      "url": "https://en.wikipedia.org/wiki/Edward_R._Murrow"
+    },
+    {
+      "title": "Прапор зі скатертин. Міфи воєнної журналістики 1914–1945 років",
+      "url": "https://news.promedia.report/article/prapor-zi-skatertyn-mify-voiennoi-zhurnalistyky-1914-1945-rokiv"
+    }
+  ],
+  "updated": "2026-11-18"
+}
