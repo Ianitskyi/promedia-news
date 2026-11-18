@@ -20,6 +20,9 @@ database_id = "b5471e04-ad38-45d7-a306-0c6f8c47c14b"
 
 [vars]
 GA_PROPERTY_ID = "366614690"
+# Сервісний акаунт у Google Cloud (проєкт promedia-pulse); ключ — власний, приватна частина лише в D1
+GA_SA_EMAIL = "pulse-894@promedia-pulse.iam.gserviceaccount.com"
+GA_KEY_ID = "a422b16f45e1fea39b75031415a330abdce0c106"
 # У скільки разів трафік має перевищити звичайний рівень, щоб прийшла тривога
 ALERT_MULTIPLIER = "3"
 # Мінімум людей на сайтах за останні 5 хвилин, нижче якого тривог не буває
