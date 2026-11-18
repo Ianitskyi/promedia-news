@@ -815,6 +815,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "nataliia-movshovych",
+    "tag": "Наталія Мовшович",
+    "aliases": [],
+    "name": {
+      "uk": "Наталія Мовшович",
+      "en": "Nataliia Movshovych"
+    },
+    "role": {
+      "uk": "заступниця міністра культури України з питань європейської інтеграції",
+      "en": "Deputy Minister of Culture of Ukraine for European Integration"
+    },
+    "summary": {
+      "uk": "Колишня продюсерка Суспільного; у Мінкульті відповідає за європейську інтеграцію, зокрема за питання підтримки медіа.",
+      "en": "Former Suspilne producer; at the Ministry of Culture she is responsible for European integration, including media support."
+    }
+  },
+  {
     "slug": "natalia-nahorna",
     "tag": "Наталя Нагорна",
     "aliases": [

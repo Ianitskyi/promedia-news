@@ -1,0 +1,64 @@
+{
+ "slug": "nataliia-movshovych",
+ "group": "ua",
+ "country": "Україна",
+ "kind": "official",
+ "name": {
+  "uk": "Наталія Мовшович",
+  "en": "Nataliia Movshovych"
+ },
+ "sort": {
+  "uk": "Мовшович Наталія",
+  "en": "Movshovych Nataliia"
+ },
+ "role": {
+  "uk": "заступниця міністра культури України з питань європейської інтеграції",
+  "en": "Deputy Minister of Culture of Ukraine for European Integration"
+ },
+ "summary": {
+  "uk": "Колишня продюсерка Суспільного; у Мінкульті відповідає за європейську інтеграцію, зокрема за питання підтримки медіа.",
+  "en": "Former Suspilne producer; at the Ministry of Culture she is responsible for European integration, including media support."
+ },
+ "bio": {
+  "uk": "Наталія Мовшович працювала продюсеркою Суспільного мовлення, а згодом стала заступницею міністра культури України, повідомляла «Українська правда. Життя». Нині вона заступниця міністра культури з питань європейської інтеграції.\n\nУ липні 2026 року пані Наталія говорила про підготовку пропозицій Мінкульту щодо підтримки незалежних медіа до Конференції з питань відновлення України 2027 року, повідомляв Інститут масової інформації. У листопаді 2026 року на форумі «Стійкість у дії: люди, права, держава» вона заявила, що міністерство пропонує збільшити підтримку прифронтових медіа й поширити її на онлайн-медіа."
+ },
+ "facts": [
+  [
+   "Посада",
+   "заступниця міністра культури України з питань європейської інтеграції"
+  ],
+  [
+   "Попередня робота",
+   "продюсерка Суспільного"
+  ]
+ ],
+ "photo": {
+  "wiki": [
+   "uk:Наталія Мовшович"
+  ],
+  "check": [
+   "Мовшович",
+   "Movshovych"
+  ],
+  "article": "minkult-ukrainy-proponuie-zbilshyty-pidtrymku-pryfrontovykh-media"
+ },
+ "sources": [
+  {
+   "title": "Українська правда. Життя: Продюсерка «Суспільного» Наталія Мовшович стала заступницею міністерки культури",
+   "url": "https://life.pravda.com.ua/culture/prodyuserka-suspilnogo-nataliya-movshovich-stala-zastupniceyu-ministerki-kulturi-311798"
+  },
+  {
+   "title": "Детектор медіа: Мінкульт планує збільшити фінансову підтримку прифронтових медіа, — Наталія Мовшович",
+   "url": "https://detector.media/infospace/article/254071/2026-11-17-minkult-planuie-zbilshyty-finansovu-pidtrymku-pryfrontovykh-media-nataliya-movshovych/"
+  },
+  {
+   "title": "ІМІ: Мінкульт готує пропозиції щодо підтримки медіа в рамках підготовки до URC 2027",
+   "url": "https://imi.org.ua/news/minkult-napratsovuye-model-pidtrymky-nezalezhnyh-media-v-mezhah-pidgotovky-do-urc-2027"
+  },
+  {
+   "title": "ПроМедіа: Мінкульт України пропонує збільшити підтримку прифронтових медіа",
+   "url": "https://news.promedia.report/article/minkult-ukrainy-proponuie-zbilshyty-pidtrymku-pryfrontovykh-media"
+  }
+ ],
+ "updated": "2026-11-18"
+}
