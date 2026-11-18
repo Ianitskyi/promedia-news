@@ -82,9 +82,15 @@ for (const f of files) {
       console.log(`Skip ${a.slug}: already exists.`);
       continue;
     }
+    // A new cover for a published article: set "coverRevision" to the same value as "revision".
+    let newCover = null;
     if (a.cover?.commonsFile) {
       const credit = await commonsInfo(a.cover.commonsFile, a.cover.width);
       for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) if (a[k]) a[k] = fillCredit(a[k], credit);
+      if (a.coverRevision && a.coverRevision === a.revision) {
+        newCover = credit.thumb;
+        console.log(`New cover for ${a.slug}: ${credit.page} — ${credit.author}, ${credit.licence}`);
+      }
     }
     for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
       if (a[k] && /⟦[^⟧]+⟧/.test(a[k])) throw Error(`Unfilled placeholder in ${k} of ${f}`);
@@ -100,6 +106,7 @@ for (const f of files) {
       tags = ${q(JSON.stringify(a.tags || []))},
       is_important = ${a.isImportant === undefined ? 'is_important' : (a.isImportant ? 1 : 0)},
       card_style = ${cardStyle ? q(cardStyle) : 'card_style'},
+      ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(a.cover?.alt ? JSON.stringify({alt: a.cover.alt}) : null)},` : ''}
       updated_at = ${q(new Date().toISOString())}
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
     ${raise ? `UPDATE articles SET card_style = 'auto', updated_at = ${q(new Date().toISOString())}
