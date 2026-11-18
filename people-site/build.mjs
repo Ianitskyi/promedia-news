@@ -319,7 +319,7 @@ function photoBlock(photo, name, t) {
   if (!photo) return `<figure class="pp-photo pp-photo--empty"><img src="/placeholder.svg" alt=""><figcaption>${t.noPhoto}</figcaption></figure>`;
   const credit = photo.fromArticle
     ? `<a href="${esc(photo.sourceUrl)}">${esc(photo.sourceName)}</a>, ГО «ПроМедіа»`
-    : `${esc(photo.author)} / <a href="${esc(photo.sourceUrl)}">${esc(photo.sourceName)}</a>${photo.license ? `, ${t.license} ${photo.licenseUrl ? `<a href="${esc(photo.licenseUrl)}">${esc(photo.license)}</a>` : esc(photo.license)}` : ""}`;
+    : `${photo.author ? `${esc(photo.author)} / ` : ""}${photo.sourceUrl ? `<a href="${esc(photo.sourceUrl)}">${esc(photo.sourceName)}</a>` : esc(photo.sourceName)}${photo.license ? `, ${t.license} ${photo.licenseUrl ? `<a href="${esc(photo.licenseUrl)}">${esc(photo.license)}</a>` : esc(photo.license)}` : ""}`;
   return `<figure class="pp-photo"><img src="${esc(photo.src)}" alt="${esc(name)}"><figcaption>${t.photo}: ${credit}</figcaption></figure>`;
 }
 

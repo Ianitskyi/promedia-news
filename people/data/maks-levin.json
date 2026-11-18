@@ -42,15 +42,8 @@
     ]
   ],
   "photo": {
-    "wiki": [
-      "en:Maks Levin",
-      "uk:Максим Левін",
-      "uk:Левін Максим Ілліч"
-    ],
-    "check": [
-      "photograph",
-      "фотограф"
-    ]
+    "url": "https://people.promedia.report/img/maks-levin.webp",
+    "sourceName": "з відкритих джерел"
   },
   "sources": [
     {
@@ -70,5 +63,5 @@
       "url": "https://life.pravda.com.ua/society/2022/05/18/248677/"
     }
   ],
-  "updated": "2026-11-17"
+  "updated": "2026-11-18"
 }
