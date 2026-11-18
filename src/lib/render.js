@@ -33,6 +33,48 @@ const CATEGORIES = ["Новини", "Статті", "Прес-реліз", "Ан
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "Атлас медіа": "Media Atlas",
+  "реєстр медіа": "media register",
+  "Нацрада": "National Council on Television and Radio",
+  "Чехія": "Czech Republic",
+  "суспільні медіа": "public service media",
+  "свобода медіа": "media freedom",
+  "НАБУ": "NABU (National Anti-Corruption Bureau)",
+  "САП": "SAPO (Anti-Corruption Prosecutor's Office)",
+  "антикорупція": "anti-corruption",
+  "підзвітність влади": "government accountability",
+  "Мідас": "Operation Midas",
+  "Карфаген": "Carthage",
+  "ПроМедіа": "ProMedia",
+  "Швейцарія": "Switzerland",
+  "банківська таємниця": "banking secrecy",
+  "Таємний Санта": "Secret Santa",
+  "бізнес-моделі медіа": "media business models",
+  "Можливості": "Opportunities",
+  "стипендії": "fellowships",
+  "Нідерланди": "Netherlands",
+  "комунальні медіа": "municipal media",
+  "Війна в об'єктиві": "War Through the Lens",
+  "історія журналістики": "history of journalism",
+  "воєнна журналістика": "war journalism",
+  "фотожурналістика": "photojournalism",
+  "ЄС": "EU",
+  "санкції": "sanctions",
+  "дезінформація": "disinformation",
+  "Росія": "Russia",
+  "свобода слова": "freedom of speech",
+  "регулювання платформ": "platform regulation",
+  "Близький Схід": "Middle East",
+  "Одеса": "Odesa",
+  "Перший міський": "Pershyi Miskyi (Odesa TV)",
+  "Репортери без кордонів": "Reporters Without Borders",
+  "Мексика": "Mexico",
+  "Коста-Рика": "Costa Rica",
+  "державна підтримка медіа": "state support for media",
+  "прифронтові медіа": "frontline media",
+  "Мінкульт": "Ministry of Culture",
+  "телемарафон": "TV marathon",
+  "профспілки": "trade unions",
   "Прес-реліз": "Press release",
   "Анонс": "Announcement",
   "Заяви": "Statements",
@@ -85,6 +127,48 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "Атлас медіа": "Medya Atlası",
+  "реєстр медіа": "medya reyestri",
+  "Нацрада": "Milliy Televideniye ve Radio Şurası",
+  "Чехія": "Çehiya",
+  "суспільні медіа": "cemaatçilik medyası",
+  "свобода медіа": "medya serbestligi",
+  "НАБУ": "NABU",
+  "САП": "SAP",
+  "антикорупція": "korruptsiyağa qarşı küreş",
+  "підзвітність влади": "akimiyetniñ esap berüvi",
+  "Мідас": "«Midas» işi",
+  "Карфаген": "Karfagen",
+  "ПроМедіа": "ProMedia",
+  "Швейцарія": "İsveçriya",
+  "банківська таємниця": "bank sırı",
+  "Таємний Санта": "Gizli Santa",
+  "бізнес-моделі медіа": "medya biznes-modelleri",
+  "Можливості": "İmkânlar",
+  "стипендії": "stipendiyalar",
+  "Нідерланди": "Niderlandlar",
+  "комунальні медіа": "munitsipal medya",
+  "Війна в об'єктиві": "Obyektivde cenk",
+  "історія журналістики": "jurnalistika tarihı",
+  "воєнна журналістика": "cenk jurnalistikası",
+  "фотожурналістика": "fotojurnalistika",
+  "ЄС": "AB",
+  "санкції": "sanktsiyalar",
+  "дезінформація": "dezinformatsiya",
+  "Росія": "Rusiye",
+  "свобода слова": "söz serbestligi",
+  "регулювання платформ": "platformalarnı tertipleştirüv",
+  "Близький Схід": "Yaqın Şarq",
+  "Одеса": "Odessa",
+  "Перший міський": "Perşıy Miskıy",
+  "Репортери без кордонів": "Sıñırsız muhbirler",
+  "Мексика": "Meksika",
+  "Коста-Рика": "Kosta-Rika",
+  "державна підтримка медіа": "devlet medya destegi",
+  "прифронтові медіа": "cebe yanı medya",
+  "Мінкульт": "Medeniyet nazirligi",
+  "телемарафон": "telemarafon",
+  "профспілки": "kasaba birlikleri",
   "Прес-реліз": "Basın bildirisi",
   "Анонс": "İlân",
   "Заяви": "Beyanatlar",
@@ -161,7 +245,20 @@ function tagLabel(tag, lang) {
   if (label) return label;
   // Імена людей в англійській і кримськотатарській версіях пишемо латиницею.
   const person = lang !== "uk" ? personForTag(tag) : null;
-  return person?.name?.en || tag;
+  if (person?.name?.en) return person.name.en;
+  // Тег без перекладу в словнику: в англійській і кримськотатарській версіях не лишаємо кирилицю —
+  // даємо латиницею (офіційна транслітерація). Новим тегам додаємо переклад у TAG_LABELS_EN/CRH.
+  return lang !== "uk" && /[а-яіїєґ]/i.test(tag) ? transliterateTag(tag) : tag;
+}
+
+const TAG_TRANSLIT = { а: "a", б: "b", в: "v", г: "h", ґ: "g", д: "d", е: "e", є: "ie", ж: "zh", з: "z", и: "y", і: "i", ї: "i", й: "i", к: "k", л: "l", м: "m", н: "n", о: "o", п: "p", р: "r", с: "s", т: "t", у: "u", ф: "f", х: "kh", ц: "ts", ч: "ch", ш: "sh", щ: "shch", ь: "", ю: "iu", я: "ia", "’": "", "'": "" };
+function transliterateTag(tag) {
+  return [...String(tag)].map((ch) => {
+    const low = ch.toLowerCase();
+    if (!Object.prototype.hasOwnProperty.call(TAG_TRANSLIT, low)) return ch;
+    const out = TAG_TRANSLIT[low];
+    return ch !== low && out ? out[0].toUpperCase() + out.slice(1) : out;
+  }).join("");
 }
 
 const PEOPLE_BOX_TITLE = { uk: "Люди в матеріалі", en: "People in this story", crh: "Bu materialdaki insanlar" };
