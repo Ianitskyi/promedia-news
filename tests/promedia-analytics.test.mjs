@@ -63,6 +63,10 @@ test('site_section is derived from the host', () => {
   assert.equal(pure.siteSection('ratings.promedia.report'), 'ratings');
   assert.equal(pure.siteSection('santa.promedia.report'), 'santa');
   assert.equal(pure.siteSection('labs.promedia.report'), 'labs');
+  assert.equal(pure.siteSection('people.promedia.report'), 'people');
+  assert.equal(pure.contentType('people', '/andrii-ianitskyi/'), 'profile');
+  assert.equal(pure.contentType('people', '/en/andrii-ianitskyi/'), 'profile');
+  assert.equal(pure.contentType('people', '/'), 'page');
   assert.equal(pure.siteSection('localhost'), 'other');
 });
 
