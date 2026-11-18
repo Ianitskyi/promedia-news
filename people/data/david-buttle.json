@@ -1,0 +1,67 @@
+{
+  "slug": "david-buttle",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Девід Баттл",
+    "en": "David Buttle"
+  },
+  "sort": {
+    "uk": "Баттл Девід",
+    "en": "Buttle David"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "засновник консалтингової компанії DJB Strategies і коаліції видавців SPUR",
+    "en": "Founder of DJB Strategies and of the SPUR publisher coalition"
+  },
+  "summary": {
+    "uk": "Медіаконсультант, колишній директор зі стратегії щодо платформ Financial Times; засновник коаліції SPUR.",
+    "en": "Media consultant, former FT director of platform strategy; founder of the SPUR coalition."
+  },
+  "bio": {
+    "uk": "Девід Баттл — засновник DJB Strategies, незалежної консалтингової компанії, що допомагає медіа реагувати на зміни у стратегії, технологіях і ринку. Багато працює над темами штучного інтелекту й технологічних платформ. До заснування компанії був директором зі зв'язків із громадськістю та стратегії щодо платформ у Financial Times. Член правління Independent Publishers Alliance.\n\nГалузеві видання називають пана Девіда засновником SPUR, коаліції видавців, що розробляє стандарти використання новинного контенту штучним інтелектом. У листопаді 2026 року він сказав, що жоден видавець не може запровадити такі стандарти сам.",
+    "en": "David Buttle is the founder of DJB Strategies, an independent consultancy helping media companies respond to change in strategy, technology and markets. Much of his work focuses on artificial intelligence and technology platforms. Before founding the firm, he was Director of Public Affairs and Platform Strategy at the Financial Times. He is a board member of the Independent Publishers Alliance.\n\nThe trade press describes him as the founder of SPUR, a publisher coalition developing standards for how AI uses news content. In November 2026 he said no publisher can put such standards in place alone."
+  },
+  "facts": [
+    [
+      "Організація",
+      "DJB Strategies; SPUR"
+    ],
+    [
+      "Місто",
+      "Лондон"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "David Buttle",
+      "DJB Strategies"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Digital Content Next: David Buttle, speaker bio",
+      "url": "https://events.digitalcontentnext.org/legal-leg-meeting-2026-03/speaker/2193957/david-buttle"
+    },
+    {
+      "title": "AOP: David Buttle profile",
+      "url": "https://www.ukaop.org/publishing-tech-talk/profile/david-buttle"
+    },
+    {
+      "title": "Press Gazette: AI licensing coalition SPUR in huge expansion",
+      "url": "https://pressgazette.co.uk/news/ai-licensing-coalition-spur-in-huge-expansion/"
+    },
+    {
+      "title": "Press Gazette: Daily Mail joins coalition of publishers taking on AI news scrapers (17.11.2026)",
+      "url": "https://pressgazette.co.uk/news/daily-mail-joins-coalition-of-publishers-taking-on-ai-news-scrapers/"
+    },
+    {
+      "title": "ПроМедіа: Видавець Daily Mail увійшов до «НАТО новин» проти безконтрольного ШІ",
+      "url": "https://news.promedia.report/article/vydavets-daily-mail-uviishov-do-nato-novyn-proty-bezkontrolnoho-shi"
+    }
+  ],
+  "updated": "2026-11-18"
+}

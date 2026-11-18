@@ -1,0 +1,67 @@
+{
+  "slug": "owen-meredith",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Оуен Мередіт",
+    "en": "Owen Meredith"
+  },
+  "sort": {
+    "uk": "Мередіт Оуен",
+    "en": "Meredith Owen"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "керівник напряму публічної політики dmg media (DMGT)",
+    "en": "Managing director, public policy, dmg media (DMGT)"
+  },
+  "summary": {
+    "uk": "Керівник публічної політики видавця Daily Mail; раніше очолював британські асоціації видавців NMA і PPA.",
+    "en": "Public policy chief at the Daily Mail's publisher; previously led the UK publisher associations NMA and PPA."
+  },
+  "bio": {
+    "uk": "Оуен Мередіт — керівник напряму публічної політики dmg media, видавця Daily Mail, що входить до медіагрупи DMGT. Обійняв цю посаду в травні 2026 року.\n\nДо того він очолював News Media Association (NMA), британську асоціацію видавців національних і регіональних новин, а ще раніше — Professional Publishers Association (PPA), асоціацію видавців журналів і ділових медіа. В NMA керував кампанією Make It Fair проти урядових планів звільнити ШІ-компанії від дії авторського права.\n\nУ листопаді 2026 року, коли DMGT увійшла до правління коаліції видавців SPUR, пан Оуен заявив, що лише спільна робота дає видавцям важелі впливу на розробників ШІ.",
+    "en": "Owen Meredith is managing director, public policy, at dmg media, the Daily Mail's publisher within the DMGT group. He took up the role in May 2026.\n\nHe previously led the News Media Association (NMA), the UK trade body for national and regional news publishers, and before that the Professional Publishers Association (PPA), the magazine and business media trade body. At the NMA he led the Make It Fair campaign against government plans to exempt AI companies from copyright law.\n\nIn November 2026, when DMGT joined the board of the SPUR publisher coalition, he said only collaborative work gives publishers leverage over AI developers."
+  },
+  "facts": [
+    [
+      "Організація",
+      "dmg media / DMGT"
+    ],
+    [
+      "Місто",
+      "Лондон"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Owen Meredith",
+      "NMA"
+    ]
+  },
+  "sources": [
+    {
+      "title": "journalism.co.uk: Owen Meredith to lead public policy at dmg media",
+      "url": "https://www.journalism.co.uk/owen-meredith-to-lead-public-policy-at-dmg-media/"
+    },
+    {
+      "title": "News Media Association: Owen Meredith appointed managing director, public policy, at dmg media (19.11.2025)",
+      "url": "https://newsmediauk.org/blog/2025/11/19/owen-meredith-appointed-managing-director-public-policy-at-dmg-media/"
+    },
+    {
+      "title": "Hold the Front Page: NMA appoints Owen Meredith as chief executive",
+      "url": "https://www.holdthefrontpage.co.uk/?p=1736895"
+    },
+    {
+      "title": "Press Gazette: Daily Mail joins coalition of publishers taking on AI news scrapers (17.11.2026)",
+      "url": "https://pressgazette.co.uk/news/daily-mail-joins-coalition-of-publishers-taking-on-ai-news-scrapers/"
+    },
+    {
+      "title": "ПроМедіа: Видавець Daily Mail увійшов до «НАТО новин» проти безконтрольного ШІ",
+      "url": "https://news.promedia.report/article/vydavets-daily-mail-uviishov-do-nato-novyn-proty-bezkontrolnoho-shi"
+    }
+  ],
+  "updated": "2026-11-18"
+}
