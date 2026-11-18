@@ -83,7 +83,7 @@
     if (document.getElementById("pm-news-lead-styles")) return;
     var font = document.createElement("link");
     font.rel = "stylesheet";
-    font.href = "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap";
+    font.href = "https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap";
     document.head.appendChild(font);
     var style = document.createElement("style");
     style.id = "pm-news-lead-styles";
@@ -93,7 +93,7 @@
       ".pm-news-lead-main{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:14px}",
       ".pm-news-lead-media{display:block}",
       ".pm-news-lead-media img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px}",
-      ".pm-news-lead-title{margin:0;font-family:'Playfair Display',Georgia,serif;font-size:clamp(22px,2.2vw,30px);line-height:1.18;font-weight:700}",
+      ".pm-news-lead-title{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:clamp(22px,2.2vw,30px);line-height:1.18;font-weight:700}",
       ".pm-news-lead-title a,.pm-news-lead-item a{color:#0d0c5c;text-decoration:none}",
       ".pm-news-lead-title a:hover,.pm-news-lead-item a:hover{color:#b36a00}",
       ".pm-news-lead-excerpt{margin:0;font-size:16px;line-height:1.6;color:#44435e;max-width:720px}",
@@ -108,7 +108,7 @@
       ".pm-news-lead-item{padding:14px 0;border-bottom:1px solid #e7e7ef;display:flex;flex-direction:column;gap:6px}",
       ".pm-news-lead-item:first-child{padding-top:0}",
       ".pm-news-lead-item:last-child{border-bottom:0}",
-      ".pm-news-lead-item a{font-family:'Playfair Display',Georgia,serif;font-size:16px;line-height:1.3;font-weight:700}",
+      ".pm-news-lead-item a{font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.3;font-weight:700}",
       "@media (max-width:620px){.pm-news-lead{gap:24px}.pm-news-lead-excerpt{font-size:15px}.pm-news-lead-side{padding:16px 20px}}"
     ].join("\n");
     document.head.appendChild(style);
