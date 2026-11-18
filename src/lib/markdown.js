@@ -138,6 +138,18 @@ export function markdownToHtml(md) {
       continue;
     }
 
+    // Звукова доріжка: [audio](https://…/file.mp3) на окремому рядку; рядок курсивом під нею — підпис.
+    const audio = line.match(/^\[audio\]\((https?:\/\/[^\s)]+\.(?:mp3|m4a|ogg|oga|wav|aac)(?:\?[^\s)]*)?)\)$/i);
+    if (audio) {
+      flushParagraph(); flushList();
+      const next = (lines[i + 1] || "").trim();
+      const caption = /^\*[^*].*[^*]\*$/.test(next) ? next.slice(1, -1) : "";
+      if (caption) i++;
+      htmlBlocks.push('<figure class="article-audio"><audio controls preload="none" src="' + escapeHtml(audio[1]) + '"></audio>' +
+        (caption ? '<figcaption class="article-caption">' + inline(caption) + "</figcaption>" : "") + "</figure>");
+      continue;
+    }
+
     const youtube = line.match(/^\[youtube\]\((https?:\/\/[^\s)]+)\)$/i);
     if (youtube) {
       flushParagraph(); flushList();
@@ -193,6 +205,7 @@ export function markdownToPlainText(md, maxLength) {
   const text = String(md ?? "")
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
     .replace(/\[youtube\]\([^)]+\)/gi, "")
+    .replace(/\[audio\]\([^)]+\)/gi, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/==([^\n]+?)==/g, "$1")
     .replace(/[#>*_`]/g, "")
