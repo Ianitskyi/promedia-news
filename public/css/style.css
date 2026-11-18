@@ -1434,3 +1434,6 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 /* ---------- Звукова доріжка в тексті: [audio](…mp3) ---------- */
 .article-body .article-audio { margin: 22px 0; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--card); }
 .article-body .article-audio audio { display: block; width: 100%; }
+
+.article-body .article-video { margin: 22px 0; }
+.article-body .article-video .youtube-embed { margin: 0; }

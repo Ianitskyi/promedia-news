@@ -154,7 +154,12 @@ export function markdownToHtml(md) {
     if (youtube) {
       flushParagraph(); flushList();
       const embed = youtubeEmbed(youtube[1]);
-      htmlBlocks.push(embed || "<p>" + inline(line) + "</p>");
+      const next = (lines[i + 1] || "").trim();
+      const caption = embed && /^\*[^*].*[^*]\*$/.test(next) ? next.slice(1, -1) : "";
+      if (caption) i++;
+      htmlBlocks.push(embed
+        ? (caption ? '<figure class="article-video">' + embed + '<figcaption class="article-caption">' + inline(caption) + "</figcaption></figure>" : embed)
+        : "<p>" + inline(line) + "</p>");
       continue;
     }
 
