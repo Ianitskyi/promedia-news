@@ -1310,6 +1310,9 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .article-tag.article-tag--announce,
 .article-card--hero .article-tag.article-tag--announce,
 .article-card--text .article-tag.article-tag--announce { background: #e6f4ea; color: #1e7b34; }
+.article-tag.article-tag--articles,
+.article-card--hero .article-tag.article-tag--articles,
+.article-card--text .article-tag.article-tag--articles { background: #efeff6; color: #45447a; }
 
 /* ---------- «Люди в матеріалі»: короткі досьє з people.promedia.report ---------- */
 .people-box { margin: 28px 0 8px; padding: 18px 20px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); }

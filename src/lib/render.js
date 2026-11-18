@@ -194,6 +194,8 @@ function peopleBox(tags, lang) {
 // An announcement (upcoming event) gets a muted green tag the same way.
 const PRESS_RELEASE_KEY = tagLookupKey("Прес-реліз");
 const ANNOUNCEMENT_KEY = tagLookupKey("Анонс");
+// «Статті» (long reads) get a muted violet tag, matching the «Статті» chip on the home page.
+const ARTICLES_KEY = tagLookupKey("Статті");
 function isPressRelease(tags) {
   return tags.some(t => tagLookupKey(t) === PRESS_RELEASE_KEY);
 }
@@ -204,10 +206,11 @@ function specialTagClass(tag) {
   const key = tagLookupKey(tag);
   if (key === PRESS_RELEASE_KEY) return " article-tag--press";
   if (key === ANNOUNCEMENT_KEY) return " article-tag--announce";
+  if (key === ARTICLES_KEY) return " article-tag--articles";
   return "";
 }
 function tagLinks(tags, lang) {
-  // Press-release and announcement tags always come first so they are the first thing a reader sees.
+  // Format tags (press release, announcement, articles) always come first so they are the first thing a reader sees.
   const ordered = [...tags.filter(t => specialTagClass(t)), ...tags.filter(t => !specialTagClass(t))];
   return `<div class="article-tags">${ordered.map((t) => `<a class="article-tag${specialTagClass(t)}" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join("")}</div>`;
 }
