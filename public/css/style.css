@@ -1139,6 +1139,10 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .magazine-home .magazine-lead .article-card--hero { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: center; gap: 0; background: var(--accent-tint); border-radius: 4px; }
 .magazine-home .magazine-lead .article-card-media { padding: 0; }
 .magazine-home .magazine-lead .article-card-img { display: block; width: 100%; height: auto; border-radius: 0; object-fit: contain; }
+/* Десктоп: головна новина в кадрі 3:2 за точкою фокусу — вертикальне фото не розтягує блок на весь екран. */
+@media (min-width: 861px) {
+  .magazine-home .magazine-lead .article-card-img { aspect-ratio: 3 / 2; object-fit: cover; object-position: var(--cover-desktop-position, 50% 25%); }
+}
 .magazine-home .magazine-lead .article-card-body { padding: 32px; gap: 18px; justify-content: center; }
 .magazine-home .magazine-lead h1 { margin: 0; font-family: var(--serif); font-size: clamp(28px, 3.2vw, 40px); line-height: 1.14; letter-spacing: -.6px; }
 .magazine-home .magazine-lead h1 a { text-decoration: none; color: var(--ink); }
