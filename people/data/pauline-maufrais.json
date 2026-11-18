@@ -1,0 +1,49 @@
+{
+ "slug": "pauline-maufrais",
+ "group": "intl",
+ "country": "Франція (RSF)",
+ "kind": "journalist",
+ "name": {
+  "uk": "Полін Мофре",
+  "en": "Pauline Maufrais"
+ },
+ "sort": {
+  "uk": "Мофре Полін",
+  "en": "Maufrais Pauline"
+ },
+ "role": {
+  "uk": "регіональна координаторка «Репортерів без кордонів» з України",
+  "en": "Reporters Without Borders' regional officer for Ukraine"
+ },
+ "summary": {
+  "uk": "Відповідає за Україну в міжнародній організації «Репортери без кордонів» (RSF).",
+  "en": "Responsible for Ukraine at Reporters Without Borders (RSF)."
+ },
+ "bio": {
+  "uk": "Полін Мофре — регіональна координаторка міжнародної організації «Репортери без кордонів» (RSF) з України. Після загибелі одеської продюсерки Христини Лисенко 18 листопада 2026 року вона заявила, що безкарність за злочини проти медійників в Україні має припинитися."
+ },
+ "facts": [
+  [
+   "Організація",
+   "Репортери без кордонів (RSF)"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Maufrais",
+   "RSF"
+  ]
+ },
+ "sources": [
+  {
+   "title": "RSF: Ukraine: TV producer Khrystyna Lysenko killed in Russian strike on Odesa",
+   "url": "https://rsf.org/en/ukraine-tv-producer-khrystyna-lysenko-killed-russian-strike-odesa"
+  },
+  {
+   "title": "ПроМедіа: Росіяни вбили в Одесі продюсерку «Першого міського»",
+   "url": "https://news.promedia.report/article/rosiiany-vbyly-v-odesi-prodiuserku-pershoho-miskoho"
+  }
+ ],
+ "updated": "2026-11-18"
+}

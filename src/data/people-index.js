@@ -1148,6 +1148,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "pauline-maufrais",
+    "tag": "Полін Мофре",
+    "aliases": [],
+    "name": {
+      "uk": "Полін Мофре",
+      "en": "Pauline Maufrais"
+    },
+    "role": {
+      "uk": "регіональна координаторка «Репортерів без кордонів» з України",
+      "en": "Reporters Without Borders' regional officer for Ukraine"
+    },
+    "summary": {
+      "uk": "Відповідає за Україну в міжнародній організації «Репортери без кордонів» (RSF).",
+      "en": "Responsible for Ukraine at Reporters Without Borders (RSF)."
+    }
+  },
+  {
     "slug": "robert-capa",
     "tag": "Роберт Капа",
     "aliases": [
@@ -1355,6 +1372,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Французький журналіст BFMTV, загиблий 30 травня 2022 року біля Сєвєродонецька, коли знімав евакуацію.",
       "en": "French BFMTV journalist killed near Sievierodonetsk on 30 May 2022 while filming an evacuation."
+    }
+  },
+  {
+    "slug": "khrystyna-lysenko",
+    "tag": "Христина Лисенко",
+    "aliases": [],
+    "name": {
+      "uk": "Христина Лисенко",
+      "en": "Khrystyna Lysenko"
+    },
+    "role": {
+      "uk": "координаторка, адміністраторка й продюсерка телеканалу «Перший міський» (Одеса)",
+      "en": "Coordinator, administrator and producer at Pershyi Miskyi (First City), a local TV channel in Odesa"
+    },
+    "summary": {
+      "uk": "Продюсерка одеського телеканалу «Перший міський», загинула 18 листопада 2026 року під час російської атаки на Одесу, коли йшла на роботу.",
+      "en": "Producer at the Odesa TV channel Pershyi Miskyi, killed in a Russian attack on Odesa on 18 November 2026 while walking to work."
     }
   },
   {

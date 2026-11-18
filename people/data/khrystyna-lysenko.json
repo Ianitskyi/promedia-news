@@ -1,0 +1,61 @@
+{
+ "slug": "khrystyna-lysenko",
+ "group": "ua",
+ "country": "Україна",
+ "kind": "journalist",
+ "memorial": true,
+ "life": "† 2026",
+ "name": {
+  "uk": "Христина Лисенко",
+  "en": "Khrystyna Lysenko"
+ },
+ "sort": {
+  "uk": "Лисенко Христина",
+  "en": "Lysenko Khrystyna"
+ },
+ "role": {
+  "uk": "координаторка, адміністраторка й продюсерка телеканалу «Перший міський» (Одеса)",
+  "en": "Coordinator, administrator and producer at Pershyi Miskyi (First City), a local TV channel in Odesa"
+ },
+ "summary": {
+  "uk": "Продюсерка одеського телеканалу «Перший міський», загинула 18 листопада 2026 року під час російської атаки на Одесу, коли йшла на роботу.",
+  "en": "Producer at the Odesa TV channel Pershyi Miskyi, killed in a Russian attack on Odesa on 18 November 2026 while walking to work."
+ },
+ "bio": {
+  "uk": "Христина Лисенко багато років працювала на одеському телеканалі «Перший міський» координаторкою, адміністраторкою й продюсеркою. Колеги називали її стрижнем команди.\n\nУранці 18 листопада 2026 року вона йшла пішки на роботу Європейською вулицею, коли Росія атакувала Одесу. До редакції їй залишалося три квартали. Міжнародна організація «Репортери без кордонів» повідомила, що пані Христину вбив російський дрон Shahed, і назвала її 17-ю медійницею, яка загинула під час виконання своєї роботи в Україні після початку повномасштабного вторгнення, і першою такою жертвою в Одесі. 19 листопада в Одесі оголосили днем жалоби."
+ },
+ "facts": [
+  [
+   "Загинула",
+   "18 листопада 2026, Одеса"
+  ],
+  [
+   "Редакція",
+   "«Перший міський», Одеса"
+  ]
+ ],
+ "photo": {
+  "url": "https://people.promedia.report/img/khrystyna-lysenko.webp",
+  "author": "Христина Лисенко",
+  "sourceName": "взято з Facebook"
+ },
+ "sources": [
+  {
+   "title": "RSF: Ukraine: TV producer Khrystyna Lysenko killed in Russian strike on Odesa",
+   "url": "https://rsf.org/en/ukraine-tv-producer-khrystyna-lysenko-killed-russian-strike-odesa"
+  },
+  {
+   "title": "Суспільне Одеса: Йшла на роботу: під час ранкової атаки на Одесу загинула співробітниця «Першого міського» Христина Лисенко",
+   "url": "https://suspilne.media/odesa/1454649-jsla-na-robotu-pid-cas-rankovoi-ataki-na-odesu-zaginula-spivrobitnica-persogo-miskogo-hristina-lisenko/"
+  },
+  {
+   "title": "Укрінформ: В Одесі під час атаки РФ загинула продюсерка «Першого міського» Христина Лисенко",
+   "url": "https://ukrinform.ua/rubric-regions/4186074-v-odesi-pid-cas-ataki-rf-zaginula-produserka-persogo-miskogo-hristina-lisenko.html"
+  },
+  {
+   "title": "ПроМедіа: Росіяни вбили в Одесі продюсерку «Першого міського»",
+   "url": "https://news.promedia.report/article/rosiiany-vbyly-v-odesi-prodiuserku-pershoho-miskoho"
+  }
+ ],
+ "updated": "2026-11-18"
+}
