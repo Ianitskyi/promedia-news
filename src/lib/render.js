@@ -3,6 +3,9 @@ import { normalizeUkrainianQuotes, normalizeUkrainianTitle } from "./typography.
 import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
+// Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
+const ASSET_V = "20261119b";
+
 const LANGS = ["uk", "en", "crh"];
 
 function pick(dict, lang) {
@@ -438,7 +441,7 @@ ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(
 <link rel="alternate" hreflang="crh" href="${escapeHtml(crhUrl)}" />
 <link rel="alternate" hreflang="x-default" href="${escapeHtml(ukUrl)}" />
 <link rel="icon" href="/favicon.png" type="image/png" />
-<link rel="stylesheet" href="/css/style.css" />`;
+<link rel="stylesheet" href="/css/style.css?v=${ASSET_V}" />`;
 }
 
 const NAV_ARIA = { uk: "Проєкти ПроМедіа", en: "ProMedia projects", crh: "ProMedia leyhaları" };
@@ -503,7 +506,7 @@ ${bodyHtml}
 ${footer(lang)}
 <script defer src="/js/promedia-language-suggest.js"></script>
 <script defer src="/js/promedia-memorial-popup.js"></script>
-<script defer src="/js/promedia-story-share.js"></script>
+<script defer src="/js/promedia-story-share.js?v=${ASSET_V}"></script>
 <script defer src="/js/promedia-global-shell.js"></script>
 </body>
 </html>`;
@@ -866,7 +869,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
     ${list}
-  </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js"></script><script defer src="/js/promedia-feed-more.js"></script>`;
+  </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js?v=${ASSET_V}"></script><script defer src="/js/promedia-feed-more.js?v=${ASSET_V}"></script>`;
   return pageShell({ title: filtered ? `${topic ? pick(topic.labels, lang) : activeSort === "top" ? pick(TOP_NAV_LABEL, lang) : tagLabel(activeTag, lang)} — ПроМедіа` : `${pick({ uk: "ПроМедіа", en: "ProMedia", crh: "ProMedia" }, lang)}. ${copy.title}`, description: copy.intro,
     url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : activeSort === "top" ? "?sort=top" : ""}`, lang, bodyHtml });
 }
