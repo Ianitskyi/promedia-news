@@ -95,6 +95,12 @@
       // Без точки фокусу з адмінки тримаємо верхню частину кадру: на портретах там обличчя.
       ".pm-news-lead-media img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:var(--pm-pos-d,50% 20%);border-radius:8px}",
       "@media (max-width:620px){.pm-news-lead-media img{aspect-ratio:4/3;object-position:var(--pm-pos-m,50% 20%)}}",
+      // Вертикальне фото на десктопі: показуємо його цілим, а по боках — розмита копія того ж фото,
+      // інакше в кадрі 16:9 лишається завелике обличчя.
+      "@media (min-width:621px){.pm-news-lead-media--portrait{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:16/9}" +
+        ".pm-news-lead-media--portrait .pm-news-lead-blur{position:absolute;inset:-24px;width:calc(100% + 48px);height:calc(100% + 48px);object-fit:cover;filter:blur(24px) brightness(.9);aspect-ratio:auto;border-radius:0}" +
+        ".pm-news-lead-media--portrait .pm-news-lead-photo{position:relative;height:100%;width:auto;max-width:100%;margin:0 auto;object-fit:contain;aspect-ratio:auto;border-radius:0}}",
+      "@media (max-width:620px){.pm-news-lead-blur{display:none!important}}",
       ".pm-news-lead-title{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:clamp(22px,2.2vw,30px);line-height:1.18;font-weight:700}",
       ".pm-news-lead-title a,.pm-news-lead-item a{color:#0d0c5c;text-decoration:none}",
       ".pm-news-lead-title a:hover,.pm-news-lead-item a:hover{color:#b36a00}",
@@ -142,7 +148,16 @@
         img.style.setProperty("--pm-pos-m", hero.coverPosition.mobile);
       }
       if (hero.coverFit === "contain") { img.style.objectFit = "contain"; img.style.background = "#f1f2fa"; }
+      img.className = "pm-news-lead-photo";
       media.appendChild(img);
+      img.addEventListener("load", function () {
+        if (!img.naturalWidth || img.naturalHeight / img.naturalWidth < 0.9 || media.querySelector(".pm-news-lead-blur")) return;
+        var blur = document.createElement("img");
+        blur.className = "pm-news-lead-blur";
+        blur.src = img.src; blur.alt = ""; blur.setAttribute("aria-hidden", "true");
+        media.insertBefore(blur, img);
+        media.classList.add("pm-news-lead-media--portrait");
+      });
       main.appendChild(media);
     }
     main.appendChild(metaLine(hero, lang));
