@@ -5,3 +5,4 @@ node_modules/
 pnpm-lock.yaml
 pnpm-workspace.yaml
 people-site/dist/
+social-covers-pending.json

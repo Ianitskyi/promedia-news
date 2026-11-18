@@ -2,16 +2,17 @@
 // і ріжуть його по центру, тож на портретах лишається тулуб без голови.
 // Для кожної опублікованої статті з вертикальною чи квадратною обкладинкою скрипт робить
 // окрему картинку 1200×630 з урахуванням точки фокусу з адмінки (інакше — верхня третина,
-// де на портретах обличчя), кладе її в R2 і записує в дані обкладинки як social.
+// де на портретах обличчя) у public/img/social/. Робочий процес комітить і викладає ці файли,
+// а потім `--apply` записує їх у дані обкладинки як social (токен Cloudflare не має запису в R2).
 // Картинку перероблено, коли змінилася обкладинка або точка фокусу.
 import {execFileSync} from 'node:child_process';
-import {writeFileSync, mkdtempSync} from 'node:fs';
-import {join} from 'node:path';
-import {tmpdir} from 'node:os';
+import {writeFileSync, readFileSync, mkdirSync, existsSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import sharp from 'sharp';
 
 const DB = 'promedia-news';
-const BUCKET = 'promedia-news-images';
+const OUT_DIR = 'public/img/social';
+const PENDING = 'social-covers-pending.json';
 const ORIGIN = 'https://news.promedia.report';
 const OUT_W = 1200, OUT_H = 630;
 
@@ -33,6 +34,17 @@ const point = p => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p
 
 const COLUMNS = [['cover_image_url', 'cover_crop_data'], ['cover_image_url_en', 'cover_crop_data_en'], ['cover_image_url_crh', 'cover_crop_data_crh']];
 
+// Оновлюємо лише поле social, щоб не зачепити правки з адмінки, зроблені тим часом.
+const save = ({id, urlCol, dataCol, src, social}) => d1(`UPDATE articles SET ${dataCol} = json_set(CASE WHEN json_valid(${dataCol}) THEN ${dataCol} ELSE '{}' END, '$.social', json(${q(JSON.stringify(social))})) WHERE id = ${Number(id)} AND ${urlCol} = ${q(src)}`);
+
+if (process.argv.includes('--apply')) {
+  const pending = existsSync(PENDING) ? JSON.parse(readFileSync(PENDING, 'utf8')) : [];
+  pending.forEach(save);
+  console.log(`Applied ${pending.length} social cover(s).`);
+  process.exit(0);
+}
+
+const pending = [];
 const rows = d1(`SELECT id, slug, ${COLUMNS.flat().join(', ')} FROM articles WHERE status = 'published' AND deleted_at IS NULL`);
 let made = 0;
 for (const row of rows) {
@@ -63,16 +75,15 @@ for (const row of rows) {
       const left = Math.round(Math.max(0, Math.min(width - cropW, focus.x / 100 * width - cropW / 2)));
       const top = Math.round(Math.max(0, Math.min(height - cropH, focus.y / 100 * height - cropH / 2)));
       const jpeg = await image.extract({left, top, width: cropW, height: cropH}).resize(OUT_W, OUT_H).jpeg({quality: 85}).toBuffer();
-      const key = `social/${row.id}-${urlCol.replace(/_/g, '-')}-${Date.now()}.jpg`;
-      const tmp = join(mkdtempSync(join(tmpdir(), 'social-')), 'cover.jpg');
-      writeFileSync(tmp, jpeg);
-      wrangler(['r2', 'object', 'put', `${BUCKET}/${key}`, '--file', tmp, '--content-type', 'image/jpeg', '--remote']);
-      social = {signature, url: `/img-storage/${key}`};
+      const name = `${row.id}-${urlCol.replace(/_/g, '-')}-${createHash('sha1').update(signature).digest('hex').slice(0, 10)}.jpg`;
+      mkdirSync(OUT_DIR, {recursive: true});
+      writeFileSync(`${OUT_DIR}/${name}`, jpeg);
+      social = {signature, url: `/img/social/${name}`};
       made++;
       console.log(`Social cover for ${row.slug} (${urlCol}): ${social.url}`);
     }
-    // Оновлюємо лише поле social, щоб не зачепити правки з адмінки, зроблені тим часом.
-    d1(`UPDATE articles SET ${dataCol} = json_set(CASE WHEN json_valid(${dataCol}) THEN ${dataCol} ELSE '{}' END, '$.social', json(${q(JSON.stringify(social))})) WHERE id = ${Number(row.id)} AND ${urlCol} = ${q(src)}`);
+    pending.push({id: row.id, urlCol, dataCol, src, social});
   }
 }
+writeFileSync(PENDING, JSON.stringify(pending));
 console.log(`Done: ${made} new social cover(s).`);
