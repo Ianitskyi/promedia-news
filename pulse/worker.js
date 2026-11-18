@@ -618,8 +618,10 @@ async function handleSetup(request, env) {
       notes.push(`<p class=bad>Бот не прийнято: ${esc(e.message)}</p>`);
     }
   }
-  if (!(await kvGet(env, "mcp_key"))) await kvSet(env, "mcp_key", randomToken(20));
-  return setupForm(await setupStatus(env), notes.join("") || "<p class=hint>Нічого не змінено.</p>");
+  let mcp = await kvGet(env, "mcp_key");
+  if (!mcp) { mcp = randomToken(20); await kvSet(env, "mcp_key", mcp); }
+  notes.push(`<p><b>Адреса конектора для Claude</b> (нікому не пересилайте):<br><code id=mcp-url>${esc(new URL(request.url).origin)}/mcp/${mcp}</code></p>`);
+  return setupForm(await setupStatus(env), notes.join(""));
 }
 
 // ───────────────────────── вхідна точка ─────────────────────────
