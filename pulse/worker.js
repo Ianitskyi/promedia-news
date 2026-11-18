@@ -400,6 +400,7 @@ async function scheduled(env, scheduledTime) {
   const users = await activeUsersLast(env, 5);
   const baseline = await baselineFor(env, when);
   await saveSample(env, ts, users);
+  await kvSet(env, "last_ok", { at: new Date(ts).toISOString(), users });
 
   const mult = Number(env.ALERT_MULTIPLIER) || 3;
   const minUsers = Number(env.ALERT_MIN_USERS) || 10;
@@ -632,7 +633,7 @@ export default {
       if (url.pathname === "/tg" && request.method === "POST") return await handleTelegram(request, env);
       const m = url.pathname.match(/^\/mcp\/([a-f0-9]{20,64})\/?$/);
       if (m) return await handleMcp(request, env, m[1]);
-      if (url.pathname === "/health") return json({ ok: true, ...(await setupStatus(env)) });
+      if (url.pathname === "/health") return json({ ok: true, ...(await setupStatus(env)), last_check: await kvGetJson(env, "last_ok"), last_error: await kvGetJson(env, "last_error") });
       if (url.pathname === "/") return html(`<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Пульс ПроМедіа</title><style>${PAGE_CSS}</style><h1>Пульс ПроМедіа</h1><p>Службовий сервіс відвідуваності сайтів ПроМедіа.</p>`);
       return new Response("not found", { status: 404 });
     } catch (e) {
@@ -642,6 +643,7 @@ export default {
   async scheduled(event, env, ctx) {
     ctx.waitUntil(scheduled(env, event.scheduledTime).catch(async (e) => {
       console.error("pulse cron:", e.message);
+      await kvSet(env, "last_error", { at: new Date().toISOString(), message: e.message }).catch(() => {});
       // про збій повідомляємо не частіше ніж раз на 6 годин
       try {
         const last = Number(await kvGet(env, "error_notified_at")) || 0;
