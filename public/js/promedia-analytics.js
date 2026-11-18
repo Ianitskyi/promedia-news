@@ -11,6 +11,11 @@
  * - shares the GA cookie across subdomains (cookie_domain: auto);
  * - adds site_section, content_type, content_language and, for articles,
  *   author / publish_date to every event;
+ * - never sends private links: ticket/invite/feedback/kiosk tokens and other random
+ *   ids in the path become ":token", the query keeps only utm_* and search terms,
+ *   the #fragment is dropped (page_location and page_referrer);
+ * - sends page_view itself, also for in-app navigation (history.pushState) —
+ *   the stream's "page changes based on browser history" setting is off;
  * - shows a one-time notice with an opt-out; the choice is stored in a cookie
  *   on .promedia.report and applies to all subdomains;
  * - exposes window.ProMediaAnalytics { optOut, optIn, isEnabled, track }.
@@ -149,6 +154,56 @@
     return params;
   }
 
+
+  // ---------- private-link protection ----------
+  // A path segment right after one of these is a secret (QR ticket, invitation,
+  // feedback link, kiosk/event id) and is never sent to Google Analytics.
+  var TOKEN_ROUTES = ["t", "ticket", "tickets", "feedback", "invite", "invitation", "token", "confirm", "verify", "reset-password", "unsubscribe", "kiosk", "checkin"];
+  var KEEP_PARAMS = /^(utm_(source|medium|campaign|term|content|id)|q|s|search|query)$/;
+
+  function looksLikeToken(segment) {
+    segment = String(segment || "");
+    if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(segment)) return true;
+    if (/^[0-9a-f]{24,}$/i.test(segment)) return true;
+    // Random base64url tokens mix cases and digits; readable slugs are lowercase.
+    return segment.length >= 20 && /^[A-Za-z0-9_-]+$/.test(segment) &&
+      /[A-Z]/.test(segment) && /[a-z]/.test(segment) && /[0-9]/.test(segment);
+  }
+
+  function sanitizePath(pathname) {
+    var parts = String(pathname || "/").split("/");
+    for (var i = 1; i < parts.length; i++) {
+      if (!parts[i]) continue;
+      var prev = (parts[i - 1] || "").toLowerCase();
+      if (TOKEN_ROUTES.indexOf(prev) !== -1 || looksLikeToken(parts[i])) parts[i] = ":token";
+    }
+    return parts.join("/") || "/";
+  }
+
+  function sanitizeUrl(href) {
+    var URLCtor = root.URL;
+    if (!href || typeof URLCtor !== "function") return "";
+    var url;
+    try { url = new URLCtor(String(href)); } catch (e) { return ""; }
+    var kept = [];
+    url.searchParams.forEach(function (value, key) {
+      if (KEEP_PARAMS.test(key) && !looksLikeToken(value)) kept.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
+    });
+    return url.protocol + "//" + url.host + sanitizePath(url.pathname) + (kept.length ? "?" + kept.join("&") : "");
+  }
+
+  // Referrers from ProMedia sites are cleaned the same way; other sites keep only their origin and path.
+  function sanitizeReferrer(referrer) {
+    if (!referrer) return "";
+    var URLCtor = root.URL;
+    if (typeof URLCtor !== "function") return "";
+    try {
+      var url = new URLCtor(String(referrer));
+      if (isProductionHost(url.hostname)) return sanitizeUrl(referrer);
+      return url.protocol + "//" + url.host + url.pathname;
+    } catch (e) { return ""; }
+  }
+
   var api = {
     MEASUREMENT_ID: MEASUREMENT_ID,
     isProductionHost: isProductionHost,
@@ -156,7 +211,11 @@
     contentLanguage: contentLanguage,
     contentType: contentType,
     readCookie: readCookie,
-    pageContext: pageContext
+    pageContext: pageContext,
+    looksLikeToken: looksLikeToken,
+    sanitizePath: sanitizePath,
+    sanitizeUrl: sanitizeUrl,
+    sanitizeReferrer: sanitizeReferrer
   };
 
   // ---------- browser runtime ----------
@@ -208,22 +267,67 @@
     });
   }
 
+  function assign(target, source) {
+    for (var key in source) target[key] = source[key];
+    return target;
+  }
+
+  var lastLocation = "";
+
+  function sendPageView(referrer) {
+    var params = pageContext(loc, doc);
+    var location = sanitizeUrl(loc.href);
+    lastLocation = location;
+    root.gtag("set", assign({ page_location: location, page_referrer: referrer }, params));
+    root.gtag("event", "page_view", assign({ page_location: location, page_referrer: referrer, page_title: doc.title }, params));
+  }
+
+  // In-app navigation (Next.js and other single-page apps): one cleaned page_view per new address.
+  function watchHistory() {
+    var history = root.history;
+    function changed() {
+      root.setTimeout(function () {
+        if (!loaded || !isEnabled()) return;
+        var next = sanitizeUrl(loc.href);
+        if (!next || next === lastLocation) return;
+        sendPageView(lastLocation);
+      }, 150);
+    }
+    ["pushState", "replaceState"].forEach(function (method) {
+      var original = history && history[method];
+      if (typeof original !== "function") return;
+      history[method] = function () {
+        var result = original.apply(this, arguments);
+        changed();
+        return result;
+      };
+    });
+    if (root.addEventListener) root.addEventListener("popstate", changed);
+  }
+
   function load() {
     if (loaded) return;
     loaded = true;
     root["ga-disable-" + MEASUREMENT_ID] = false;
     var params = pageContext(loc, doc);
     root.gtag("js", new Date());
-    root.gtag("set", params);
-    var config = { cookie_domain: "auto" };
-    for (var key in params) config[key] = params[key];
+    var config = {
+      cookie_domain: "auto",
+      send_page_view: false,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false
+    };
+    assign(config, params);
     if (debug) config.debug_mode = true;
     root.gtag("config", MEASUREMENT_ID, config);
+    sendPageView(sanitizeReferrer(doc.referrer));
+    watchHistory();
     var script = doc.createElement("script");
     script.async = true;
     script.src = "https://www.googletagmanager.com/gtag/js?id=" + MEASUREMENT_ID;
     (doc.head || doc.documentElement).appendChild(script);
   }
+
 
   function optOut() {
     setCookie(CHOICE_COOKIE, "denied", YEAR);
