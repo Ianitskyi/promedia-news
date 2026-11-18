@@ -415,12 +415,11 @@ ${footer(lang)}
 const CRH_MONTHS = ["yanvar", "fevral", "mart", "aprel", "mayıs", "iyün", "iyül", "avgust", "sentâbr", "oktâbr", "noyabr", "dekabr"];
 
 function formatDate(dateStr, lang) {
+  // Коротка дата цифрами (17.11.2026) — як на promedia.report (рішення редактора 19.11.2026).
   if (!dateStr) return "";
   const d = new Date(dateStr);
-  if (lang === "crh") {
-    return `${d.getUTCDate()} ${CRH_MONTHS[d.getUTCMonth()]} ${d.getUTCFullYear()} senesi`;
-  }
-  return d.toLocaleDateString(lang === "en" ? "en-GB" : "uk-UA", { year: "numeric", month: "long", day: "numeric" });
+  if (isNaN(d.getTime())) return "";
+  return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "uk-UA", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Europe/Kyiv" }).format(d);
 }
 
 // Owner decision (2026-11-17): hide the view counter for the first 24 hours after
@@ -740,7 +739,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
   const mosaic = (items, withPromo, mobileListed) => {
-    const cells = items.map((a, i) => `<div class="mosaic-cell${mobileListed?.has(a.slug) ? " mosaic-cell--mobile-listed" : ""}">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
+    const cells = items.map((a, i) => `<div class="mosaic-cell${mobileListed?.has(a.slug) ? " mosaic-cell--mobile-listed" : ""}" data-published="${escapeHtml(a.published_at || "")}">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
     if (withPromo) cells.splice(Math.min(2, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
     return cells.length ? `<div class="article-grid restored-feed">${cells.join("")}</div>` : "";
   };
@@ -769,7 +768,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
     ${list}
-  </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js"></script>`;
+  </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js"></script><script defer src="/js/promedia-feed-more.js"></script>`;
   return pageShell({ title: filtered ? `${topic ? pick(topic.labels, lang) : activeSort === "top" ? pick(TOP_NAV_LABEL, lang) : tagLabel(activeTag, lang)} — ПроМедіа` : `${pick({ uk: "ПроМедіа", en: "ProMedia", crh: "ProMedia" }, lang)}. ${copy.title}`, description: copy.intro,
     url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : activeSort === "top" ? "?sort=top" : ""}`, lang, bodyHtml });
 }
@@ -814,7 +813,7 @@ function newsLead(hero, side, lang, baseUrl, isTop) {
     </aside>` : "";
   return `<section class="feed-lead" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">
     ${newerBlock}
-    <article class="feed-lead-main">
+    <article class="feed-lead-main${media ? " feed-lead-main--media" : ""}">
       ${media}
       <div class="feed-lead-hero-meta">${leadMeta(hero, lang)}${articleViews(hero, lang)}${articleMediaBadges(hero, lang)}</div>
       <h1 class="feed-lead-title${hero.is_important ? " feed-lead-title--important" : ""}"><a href="${href(hero)}">${escapeHtml(title)}</a></h1>

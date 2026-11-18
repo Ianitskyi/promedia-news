@@ -195,6 +195,12 @@ ${entries.join("\n")}
     if (important === "1" || important === "true") {
       query += " AND is_important = 1";
     }
+    // ?before=<published_at> — наступна сторінка стрічки («Показати ще» на мобільному).
+    const before = url.searchParams.get("before");
+    if (before) {
+      query += " AND published_at < ?";
+      binds.push(before);
+    }
     query += " ORDER BY published_at DESC LIMIT ?";
     binds.push(limit);
 

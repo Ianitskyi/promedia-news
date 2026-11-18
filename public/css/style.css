@@ -1500,4 +1500,14 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .feed-lead-item--extra { display: flex; }
   .feed-lead-side .feed-lead-item--newer, .mosaic-cell--mobile-listed { display: none; }
   .feed-lead-side .feed-lead-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  /* Головна з фото — окремою карткою на білій підкладці, як картки статей у стрічці. */
+  .feed-lead-main--media { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow); padding: 16px 16px 20px; gap: 12px; }
+  .feed-lead-main--media .feed-lead-media { border-radius: var(--radius-sm); }
+  .feed-lead-main--media > :not(.feed-lead-media) { padding: 0 6px; }
+  /* Теги — лише всередині новини; список під головною — звичайна стрічка без рамки. */
+  .feed-lead-main .article-tags { display: none; }
+  .feed-lead-side { background: transparent; border: 0; border-radius: 0; padding: 0; }
+  .mosaic-cell--later { display: none !important; }
+  .feed-more { display: block; width: 100%; margin: 8px 0 24px; padding: 14px; font: inherit; font-weight: 700; color: var(--ink); background: var(--card); border: 1.5px solid var(--border); border-radius: 999px; cursor: pointer; }
 }
+@media (min-width: 621px) { .feed-more { display: none; } }
