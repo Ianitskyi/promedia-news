@@ -149,7 +149,8 @@ export async function handleStat(request, env, api) {
     if (url.pathname === "/api/today") {
       const host = url.searchParams.get("host") || "";
       const days = Number(url.searchParams.get("days")) || 1;
-      return send(await api.todayPart(env, "", { host, days }));
+      const start_date = url.searchParams.get("start") || "", end_date = url.searchParams.get("end") || "";
+      return send(await api.todayPart(env, "", { host, days, start_date, end_date }));
     }
     if (url.pathname === "/api/history") return send(await api.pulseHistory(env, Number(url.searchParams.get("hours")) || 24));
   } catch (e) {

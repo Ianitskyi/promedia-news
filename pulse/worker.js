@@ -236,9 +236,22 @@ async function pulseNow(env) {
 }
 
 // Зведення за сьогодні (стандартні звіти GA4: тут є джерела трафіку й адреси сторінок; дані з затримкою)
-async function pulseToday(env, { host = "", days = 1 } = {}) {
-  const d = Math.max(1, Math.min(31, Number(days) || 1));
-  const dateRanges = [{ startDate: d === 1 ? "today" : `${d - 1}daysAgo`, endDate: "today" }];
+const GA_DATE = /^(today|yesterday|[0-9]{1,4}daysAgo|20[0-9]{2}-[01][0-9]-[0-3][0-9])$/;
+
+function periodOf({ days = 1, start_date = "", end_date = "" } = {}) {
+  if (start_date || end_date) {
+    const s = String(start_date || "today"), e = String(end_date || "today");
+    if (!GA_DATE.test(s) || !GA_DATE.test(e)) throw new Error("Дати періоду: YYYY-MM-DD, today, yesterday або NdaysAgo.");
+    const label = s === e ? (s === "today" ? "сьогодні" : s) : `${s} — ${e}`;
+    return { range: { startDate: s, endDate: e }, label };
+  }
+  const d = Math.max(1, Math.min(730, Number(days) || 1));
+  return { range: { startDate: d === 1 ? "today" : `${d - 1}daysAgo`, endDate: "today" }, label: d === 1 ? "сьогодні (за Києвом)" : `останні ${d} дн.` };
+}
+
+async function pulseToday(env, { host = "", days = 1, start_date = "", end_date = "" } = {}) {
+  const per = periodOf({ days, start_date, end_date });
+  const dateRanges = [per.range];
   const filter = host ? { dimensionFilter: { filter: { fieldName: "hostName", stringFilter: { matchType: "EXACT", value: host } } } } : {};
   const rep = (dims, metrics, limit, extra = {}) =>
     ga(env, "runReport", {
@@ -255,7 +268,7 @@ async function pulseToday(env, { host = "", days = 1 } = {}) {
   const t = totals[0] || {};
   return {
     generated_at: new Date().toISOString(),
-    period: d === 1 ? "сьогодні (за Києвом)" : `останні ${d} дн.`,
+    period: per.label,
     scope: host || "усі сайти ПроМедіа",
     note: "Стандартні звіти GA4 оновлюються із затримкою (зазвичай кілька десятків хвилин).",
     users: t.activeUsers || 0,
@@ -475,6 +488,17 @@ async function nowPart(env, part) {
 }
 
 async function todayPart(env, part, args) {
+  if (part === "daily") {
+    const per = periodOf(args);
+    const host = args.host || "";
+    const rep = await ga(env, "runReport", {
+      dateRanges: [per.range], dimensions: [{ name: "date" }],
+      metrics: [{ name: "activeUsers" }, { name: "screenPageViews" }],
+      orderBys: [{ dimension: { dimensionName: "date" } }], limit: 1000,
+      ...(host ? { dimensionFilter: { filter: { fieldName: "hostName", stringFilter: { matchType: "EXACT", value: host } } } } : {}),
+    });
+    return { rows: rowsOf(rep).map((r) => ({ date: `${r.date.slice(0, 4)}-${r.date.slice(4, 6)}-${r.date.slice(6, 8)}`, users: r.activeUsers, views: r.screenPageViews })) };
+  }
   if (!part) return pulseToday(env, args);
   const t = await pulseToday(env, args);
   if (part === "summary") return { rows: [{ users: t.users, pageviews: t.pageviews, sessions: t.sessions, period: t.period }] };
@@ -496,14 +520,16 @@ const TOOLS = [
   },
   {
     name: "pulse_today",
-    title: "Пульс: підсумок за сьогодні чи кілька днів",
-    description: "Стандартний звіт GA4 за сьогодні (або за останні N днів): читачі, перегляди, сайти, джерела трафіку (Google, Facebook, Telegram…), найпопулярніші сторінки з адресами, країни. Дані GA оновлює із затримкою. Можна обмежити одним сайтом через host, напр. news.promedia.report.",
+    title: "Пульс: звіт за будь-який період",
+    description: "Стандартний звіт GA4 за сьогодні, за останні N днів або за довільний період (start_date/end_date, напр. для звіту донору): читачі, перегляди, сайти, джерела трафіку (Google, Facebook, Telegram…), найпопулярніші сторінки з адресами, країни. Дані GA оновлює із затримкою. Можна обмежити одним сайтом через host, напр. news.promedia.report.",
     inputSchema: {
       type: "object",
       properties: {
         host: { type: "string", description: "Сайт, напр. news.promedia.report. Порожньо — усі сайти." },
-        days: { type: "integer", minimum: 1, maximum: 31, description: "1 — лише сьогодні (типово)." },
-        part: { type: "string", enum: ["summary", "sites", "sources", "pages", "countries"], description: "Лише одна частина у вигляді {rows}. Порожньо — усе разом." },
+        days: { type: "integer", minimum: 1, maximum: 730, description: "1 — лише сьогодні (типово). Ігнорується, якщо задано start_date/end_date." },
+        start_date: { type: "string", description: "Початок періоду: YYYY-MM-DD, today, yesterday або NdaysAgo." },
+        end_date: { type: "string", description: "Кінець періоду: YYYY-MM-DD, today, yesterday або NdaysAgo." },
+        part: { type: "string", enum: ["summary", "daily", "sites", "sources", "pages", "countries"], description: "Лише одна частина у вигляді {rows}; daily — читачі й перегляди по днях. Порожньо — усе разом." },
       },
       additionalProperties: false,
     },
