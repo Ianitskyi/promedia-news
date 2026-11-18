@@ -412,6 +412,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "david-buttle",
+    "tag": "Девід Баттл",
+    "aliases": [],
+    "name": {
+      "uk": "Девід Баттл",
+      "en": "David Buttle"
+    },
+    "role": {
+      "uk": "засновник консалтингової компанії DJB Strategies і коаліції видавців SPUR",
+      "en": "Founder of DJB Strategies and of the SPUR publisher coalition"
+    },
+    "summary": {
+      "uk": "Медіаконсультант, колишній директор зі стратегії щодо платформ Financial Times; засновник коаліції SPUR.",
+      "en": "Media consultant, former FT director of platform strategy; founder of the SPUR coalition."
+    }
+  },
+  {
     "slug": "david-mindich",
     "tag": "Девід Майндіч",
     "aliases": [],
@@ -1073,6 +1090,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює англомовне видання The Kyiv Independent; лауреатка Премії Ґонґадзе 2026.",
       "en": "Editor-in-chief of The Kyiv Independent; 2026 Gongadze Prize laureate."
+    }
+  },
+  {
+    "slug": "owen-meredith",
+    "tag": "Оуен Мередіт",
+    "aliases": [],
+    "name": {
+      "uk": "Оуен Мередіт",
+      "en": "Owen Meredith"
+    },
+    "role": {
+      "uk": "керівник напряму публічної політики dmg media (DMGT)",
+      "en": "Managing director, public policy, dmg media (DMGT)"
+    },
+    "summary": {
+      "uk": "Керівник публічної політики видавця Daily Mail; раніше очолював британські асоціації видавців NMA і PPA.",
+      "en": "Public policy chief at the Daily Mail's publisher; previously led the UK publisher associations NMA and PPA."
     }
   },
   {
