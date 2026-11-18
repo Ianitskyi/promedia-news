@@ -142,7 +142,6 @@ ${body}
 ${footer(lang)}
 <script defer src="/js/promedia-language-suggest.js"></script>
 <script defer src="/js/promedia-memorial-popup.js"></script>
-<script defer src="/js/promedia-push-bell.js"></script>
 <script defer src="/js/promedia-global-shell.js"></script>
 </body>
 </html>`;

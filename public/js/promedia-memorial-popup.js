@@ -203,7 +203,7 @@
 
   function start() {
     loadLanguageSuggest();
-    loadPushBell();
+    // Дзвіночок push-сповіщень вимкнено (18.11.2026).
     installInteractionGuards();
     sync();
     window.setInterval(sync, 1000);

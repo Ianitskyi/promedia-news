@@ -167,7 +167,7 @@
   function init() {
     loadLanguageSuggest();
     loadMemorialPopup();
-    loadPushBell();
+    // Дзвіночок push-сповіщень вимкнено (18.11.2026).
 
     var grid = document.querySelector(".pm-featured-news-grid");
     if (!grid) {
