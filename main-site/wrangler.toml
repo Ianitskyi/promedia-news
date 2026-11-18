@@ -13,3 +13,6 @@ keep_vars = true
 directory = "./static"
 binding = "ASSETS"
 html_handling = "auto-trailing-slash"
+# Сторінки йдуть через воркер (потрібно для заглушки MAINTENANCE у static-worker.js);
+# картинки, стилі й скрипти з /assets/ віддаються напряму.
+run_worker_first = ["/*", "!/assets/*"]
