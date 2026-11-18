@@ -1,6 +1,5 @@
 // stat.promedia.report — закрита сторінка статистики для команди ПроМедіа.
-// Вхід одноразовим кодом на пошту (лист надсилає воркер новин через службовий маршрут),
-// сесія — cookie на 30 днів. Хто має доступ — див. allowed() і STAT_ALLOWED у wrangler.toml.
+// Вхід через Google (Google Identity Services, без пароля), сесія — cookie на 30 днів. Хто має доступ — див. allowed() і STAT_ALLOWED у wrangler.toml.
 
 const STAT_HOST = "stat.promedia.report";
 const COOKIE = "pm_stat";
@@ -19,7 +18,6 @@ async function schema(env) {
   if (ready) return;
   await env.DB.batch([
     env.DB.prepare("CREATE TABLE IF NOT EXISTS pulse_kv (key TEXT PRIMARY KEY, value TEXT NOT NULL, updated_at INTEGER NOT NULL)"),
-    env.DB.prepare("CREATE TABLE IF NOT EXISTS stat_codes (email TEXT NOT NULL, code_hash TEXT NOT NULL, expires INTEGER NOT NULL, attempts INTEGER NOT NULL DEFAULT 0, created INTEGER NOT NULL)"),
     env.DB.prepare("CREATE TABLE IF NOT EXISTS stat_sessions (token_hash TEXT PRIMARY KEY, email TEXT NOT NULL, expires INTEGER NOT NULL)"),
   ]);
   ready = true;
@@ -45,80 +43,81 @@ async function sessionUser(request, env) {
   return row && row.expires > Date.now() ? row.email : null;
 }
 
-async function mailKey(env) {
-  const row = await env.DB.prepare("SELECT value FROM pulse_kv WHERE key = 'internal_mail_key'").first();
-  if (row) return row.value;
-  const k = rnd(32);
-  await env.DB.prepare("INSERT INTO pulse_kv (key, value, updated_at) VALUES ('internal_mail_key', ?, ?)").bind(k, Date.now()).run();
-  return k;
-}
+const LOGIN_CSS = "body{font:16px/1.5 system-ui,-apple-system,sans-serif;max-width:420px;margin:14vh auto;padding:0 20px;color:#1a1a1a;text-align:center}h1{font-size:22px}.m{color:#666;font-size:14px}.e{color:#b3261e}#g{display:flex;justify-content:center;margin:24px 0}@media (prefers-color-scheme:dark){body{background:#161616;color:#eee}}";
 
-async function sendCode(env, email, code) {
-  if (!env.NEWS) throw new Error("no NEWS binding");
-  const res = await env.NEWS.fetch("https://news.promedia.report/api/auth/internal-mail", {
-    method: "POST",
-    headers: { "content-type": "application/json", "x-internal-key": await mailKey(env) },
-    body: JSON.stringify({
-      to: email,
-      subject: "Статистика ПроМедіа: код входу " + code,
-      text: "Ваш код входу на stat.promedia.report: " + code + "\nКод дійсний 10 хвилин. Якщо це були не ви, просто проігноруйте лист.",
-      html: "<p>Ваш код входу на stat.promedia.report:</p><p style=\"font-size:28px;font-weight:600;letter-spacing:4px\">" + code + "</p><p>Код дійсний 10 хвилин. Якщо це були не ви, просто проігноруйте лист.</p>",
-    }),
-  });
-  if (!res.ok) throw new Error("mail " + res.status + " " + (await res.text()).slice(0, 200));
-}
-
-const LOGIN_CSS = "body{font:16px/1.5 system-ui,-apple-system,sans-serif;max-width:420px;margin:12vh auto;padding:0 20px;color:#1a1a1a}h1{font-size:22px}input{width:100%;box-sizing:border-box;font:inherit;padding:11px;border:1px solid #bbb;border-radius:8px;margin:6px 0 12px}button{width:100%;padding:12px;font:inherit;font-weight:600;background:#c8102e;color:#fff;border:0;border-radius:8px}.m{color:#666;font-size:14px}.e{color:#b3261e}@media (prefers-color-scheme:dark){body{background:#161616;color:#eee}input{background:#222;color:#eee;border-color:#444}}";
-
-function loginPage(step, email = "", note = "") {
-  const body = step === "code"
-    ? `<p class=m>Якщо адреса <b>${esc(email)}</b> має доступ, на неї надіслано код із 6 цифр. Перевірте також «Спам».</p>
-       <form method=post action="/login/verify"><input type=hidden name=email value="${esc(email)}"><label>Код із листа</label><input name=code inputmode=numeric autocomplete=one-time-code pattern="[0-9]{6}" maxlength=6 required autofocus><button>Увійти</button></form>
-       <p class=m><a href="/">Інша адреса</a></p>`
-    : `<p class=m>Сторінка для команди ПроМедіа. Введіть робочу пошту, і ми надішлемо код входу.</p>
-       <form method=post action="/login"><label>Пошта</label><input name=email type=email autocomplete=email required autofocus value="${esc(email)}"><button>Отримати код</button></form>`;
-  return new Response(`<!doctype html><html lang=uk><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content=noindex><title>Вхід — Статистика ПроМедіа</title><style>${LOGIN_CSS}</style><h1>Статистика ПроМедіа</h1>${note ? `<p class=e>${esc(note)}</p>` : ""}${body}</html>`,
-    { status: 200, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
+function loginPage(env, note = "") {
+  const cid = esc(env.GOOGLE_CLIENT_ID || "");
+  return new Response(`<!doctype html><html lang=uk><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content=noindex><title>Вхід — Статистика ПроМедіа</title><style>${LOGIN_CSS}</style>
+<h1>Статистика ПроМедіа</h1>
+<p class=m>Для команди ПроМедіа. Увійдіть своїм Google-акаунтом (пошта @promedia.report).</p>
+<p class=e id=err>${esc(note)}</p>
+<div id=g></div>
+<script src="https://accounts.google.com/gsi/client" async></script>
+<script>
+window.onGoogle = function (r) {
+  document.getElementById('err').textContent = 'Перевіряю…';
+  fetch('/login/google', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ credential: r.credential }) })
+    .then(function (x) { return x.json(); })
+    .then(function (j) { if (j.ok) location.replace('/'); else document.getElementById('err').textContent = j.error || 'Не вдалося увійти.'; })
+    .catch(function () { document.getElementById('err').textContent = 'Не вдалося увійти. Спробуйте ще раз.'; });
+};
+window.addEventListener('load', function () {
+  google.accounts.id.initialize({ client_id: '${cid}', callback: window.onGoogle, ux_mode: 'popup', auto_select: true });
+  google.accounts.id.renderButton(document.getElementById('g'), { theme: 'outline', size: 'large', text: 'signin_with', locale: 'uk' });
+  google.accounts.id.prompt();
+});
+</script></html>`, { status: 200, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
 }
 
 function esc(s) {
-  return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 }
 
-async function handleLogin(request, env, url) {
-  const form = await request.formData().catch(() => null);
-  if (!form) return loginPage("email");
-  const email = String(form.get("email") || "").trim().toLowerCase().slice(0, 200);
-  if (url.pathname === "/login") {
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return loginPage("email", email, "Перевірте адресу.");
-    if (await allowed(env, email)) {
-      const recent = await env.DB.prepare("SELECT COUNT(*) AS n FROM stat_codes WHERE email = ? AND created > ?").bind(email, Date.now() - 3600_000).first();
-      if ((recent?.n || 0) < 5) {
-        const code = String(100000 + (crypto.getRandomValues(new Uint32Array(1))[0] % 900000));
-        await env.DB.batch([
-          env.DB.prepare("DELETE FROM stat_codes WHERE expires < ?").bind(Date.now() - DAY),
-          env.DB.prepare("INSERT INTO stat_codes (email, code_hash, expires, attempts, created) VALUES (?, ?, ?, 0, ?)").bind(email, await sha(email + ":" + code), Date.now() + 600_000, Date.now()),
-        ]);
-        try { await sendCode(env, email, code); } catch (e) { console.error("stat login mail:", e.message); return loginPage("email", email, "Не вдалося надіслати лист. Спробуйте ще раз за хвилину."); }
-      }
-    }
-    return loginPage("code", email); // однакова відповідь, щоб не видавати, які адреси мають доступ
-  }
-  // /login/verify
-  const code = String(form.get("code") || "").trim();
-  const row = await env.DB.prepare("SELECT rowid AS id, code_hash, expires, attempts FROM stat_codes WHERE email = ? ORDER BY created DESC LIMIT 1").bind(email).first();
-  if (!row || row.expires < Date.now() || row.attempts >= 5) return loginPage("email", email, "Код недійсний або застарів. Отримайте новий.");
-  if ((await sha(email + ":" + code)) !== row.code_hash) {
-    await env.DB.prepare("UPDATE stat_codes SET attempts = attempts + 1 WHERE rowid = ?").bind(row.id).run();
-    return loginPage("code", email, "Невірний код.");
-  }
+let gCerts = null; // { keys, at }
+async function googleKeys() {
+  if (gCerts && Date.now() - gCerts.at < 3600_000) return gCerts.keys;
+  const res = await fetch("https://www.googleapis.com/oauth2/v3/certs");
+  if (!res.ok) throw new Error("google certs " + res.status);
+  gCerts = { keys: (await res.json()).keys, at: Date.now() };
+  return gCerts.keys;
+}
+
+function b64urlBytes(s) {
+  s = s.replace(/-/g, "+").replace(/_/g, "/");
+  while (s.length % 4) s += "=";
+  return Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
+}
+
+// Перевіряє Google ID-токен і повертає підтверджену пошту або null
+async function verifyGoogle(env, token) {
+  const [h, p, sig] = String(token || "").split(".");
+  if (!h || !p || !sig) return null;
+  const header = JSON.parse(new TextDecoder().decode(b64urlBytes(h)));
+  const claims = JSON.parse(new TextDecoder().decode(b64urlBytes(p)));
+  if (claims.aud !== env.GOOGLE_CLIENT_ID) return null;
+  if (!["accounts.google.com", "https://accounts.google.com"].includes(claims.iss)) return null;
+  if (!claims.exp || claims.exp * 1000 < Date.now()) return null;
+  if (claims.email_verified !== true && claims.email_verified !== "true") return null;
+  const jwk = (await googleKeys()).find((k) => k.kid === header.kid);
+  if (!jwk) return null;
+  const key = await crypto.subtle.importKey("jwk", jwk, { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" }, false, ["verify"]);
+  const ok = await crypto.subtle.verify("RSASSA-PKCS1-v1_5", key, b64urlBytes(sig), new TextEncoder().encode(h + "." + p));
+  return ok ? String(claims.email || "").toLowerCase() : null;
+}
+
+async function handleGoogleLogin(request, env) {
+  const reply = (data, status = 200, headers = {}) => new Response(JSON.stringify(data), { status, headers: { "content-type": "application/json; charset=utf-8", ...headers } });
+  const body = await request.json().catch(() => null);
+  let email = null;
+  try { email = await verifyGoogle(env, body && body.credential); } catch (e) { console.error("google verify:", e.message); }
+  if (!email) return reply({ error: "Google не підтвердив вхід. Спробуйте ще раз." }, 401);
+  if (!(await allowed(env, email))) return reply({ error: `Акаунт ${email} не має доступу. Увійдіть робочою поштою @promedia.report.` }, 403);
   const token = rnd(32);
   await env.DB.batch([
-    env.DB.prepare("DELETE FROM stat_codes WHERE email = ?").bind(email),
     env.DB.prepare("DELETE FROM stat_sessions WHERE expires < ?").bind(Date.now()),
     env.DB.prepare("INSERT INTO stat_sessions (token_hash, email, expires) VALUES (?, ?, ?)").bind(await sha(token), email, Date.now() + 30 * DAY),
   ]);
-  return new Response(null, { status: 303, headers: { location: "/", "set-cookie": `${COOKIE}=${token}; Path=/; Max-Age=${30 * 86400}; HttpOnly; Secure; SameSite=Lax` } });
+  return reply({ ok: true }, 200, { "set-cookie": `${COOKIE}=${token}; Path=/; Max-Age=${30 * 86400}; HttpOnly; Secure; SameSite=Lax` });
 }
 
 export function isStatHost(url) {
@@ -129,7 +128,7 @@ export async function handleStat(request, env, api) {
   const url = new URL(request.url);
   await schema(env);
   if (url.pathname === "/robots.txt") return new Response("User-agent: *\nDisallow: /\n");
-  if ((url.pathname === "/login" || url.pathname === "/login/verify") && request.method === "POST") return handleLogin(request, env, url);
+  if (url.pathname === "/login/google" && request.method === "POST") return handleGoogleLogin(request, env);
   if (url.pathname === "/logout") {
     const t = cookieOf(request);
     if (t) await env.DB.prepare("DELETE FROM stat_sessions WHERE token_hash = ?").bind(await sha(t)).run();
@@ -138,7 +137,7 @@ export async function handleStat(request, env, api) {
   const user = await sessionUser(request, env);
   if (!user) {
     if (url.pathname.startsWith("/api/")) return new Response(JSON.stringify({ error: "login" }), { status: 401, headers: { "content-type": "application/json" } });
-    return loginPage("email");
+    return loginPage(env);
   }
   const send = (data) => new Response(JSON.stringify(data), { headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
   try {

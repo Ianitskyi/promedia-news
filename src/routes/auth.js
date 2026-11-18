@@ -44,24 +44,6 @@ async function sendPasswordResetEmail(env, recipient, resetUrl) {
 export async function handleAuthRoute(request, env, url) {
   const db = env.DB;
 
-  // POST /api/auth/internal-mail — службовий маршрут для воркера «Пульс ПроМедіа»
-  // (stat.promedia.report надсилає коди входу). Ключ лежить у спільній D1 (pulse_kv),
-  // його знає лише «Пульс»; без ключа маршрут відповідає 404.
-  if (url.pathname === "/api/auth/internal-mail" && request.method === "POST") {
-    const row = await db.prepare("SELECT value FROM pulse_kv WHERE key = 'internal_mail_key'").first().catch(() => null);
-    const key = request.headers.get("x-internal-key") || "";
-    if (!row || !row.value || key.length < 32 || key !== row.value) return json({ error: "not_found" }, 404);
-    const body = await request.json().catch(() => null);
-    if (!body || !body.to || !body.subject || !body.text || !String(body.subject).startsWith("Статистика ПроМедіа")) return json({ error: "bad_request" }, 400);
-    if (!env.RESEND_API_KEY || !env.RESET_EMAIL_FROM) return json({ error: "mail_not_configured" }, 503);
-    const r = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { "Authorization": `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from: env.RESET_EMAIL_FROM, to: [String(body.to)], subject: String(body.subject), text: String(body.text), html: body.html ? String(body.html) : undefined })
-    });
-    if (!r.ok) { console.error("internal mail failed", r.status, await r.text()); return json({ error: "send_failed" }, 502); }
-    return json({ ok: true });
-  }
 
   // POST /api/setup — працює лише один раз, поки таблиця users порожня.
   // Створює першого адміністратора. Приклад виклику — у README.
