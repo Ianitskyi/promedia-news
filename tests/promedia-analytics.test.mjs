@@ -14,7 +14,7 @@ function element(tag) {
   return el;
 }
 
-function run({href, lang = 'uk', cookie = '', metas = {}, storage = {}, popupOpen = false}) {
+function run({href, lang = 'uk', cookie = '', metas = {}, storage = {}, popupOpen = false, referrer = ''}) {
   const url = new URL(href);
   const head = element('head');
   const body = element('body');
@@ -23,6 +23,8 @@ function run({href, lang = 'uk', cookie = '', metas = {}, storage = {}, popupOpe
     readyState: 'complete',
     head, body,
     documentElement: {lang},
+    referrer,
+    title: 'Page title',
     get cookie() { return cookie; },
     set cookie(value) { cookies.push(value); },
     createElement: element,
@@ -35,7 +37,10 @@ function run({href, lang = 'uk', cookie = '', metas = {}, storage = {}, popupOpe
   let timers = 0;
   const window = {
     document,
-    location: {hostname: url.hostname, pathname: url.pathname, search: url.search},
+    location: {href: url.href, hostname: url.hostname, pathname: url.pathname, search: url.search},
+    URL,
+    history: {pushState(state, title, next) { const u = new URL(next, window.location.href); Object.assign(window.location, {href: u.href, pathname: u.pathname, search: u.search}); }, replaceState() {}},
+    addEventListener: () => {},
     sessionStorage: {getItem: (k) => store[k] ?? null, setItem: (k, v) => { store[k] = String(v); }, removeItem: (k) => { delete store[k]; }},
     setTimeout: (fn) => { if (timers++ < 5) fn(); }
   };
@@ -46,7 +51,7 @@ function run({href, lang = 'uk', cookie = '', metas = {}, storage = {}, popupOpe
   return {window, calls, scripts, notice, cookies};
 }
 
-const pure = (() => { const w = {}; runInNewContext(source, {window: w}); return w.ProMediaAnalytics; })();
+const pure = (() => { const w = {URL}; runInNewContext(source, {window: w}); return w.ProMediaAnalytics; })();
 
 test('GA loads only on promedia.report and its subdomains', () => {
   for (const host of ['promedia.report', 'news.promedia.report', 'atlas.promedia.report', 'brief.promedia.report', 'NEWS.PROMEDIA.REPORT']) {
@@ -162,4 +167,44 @@ test('notice is shown once, in the page language, and opt-out writes a domain-wi
   const later = run({href: 'https://atlas.promedia.report/', cookie: 'pm_analytics_notice=1'});
   assert.equal(later.notice, undefined);
   assert.equal(later.scripts.length, 1);
+});
+
+test('private links never reach Google Analytics', () => {
+  const token = 'Kq3xV9pL2mZ8rT4wY7bN1cD5fG6hJ0aS-eU_iO';
+  assert.equal(pure.sanitizeUrl(`https://events.promedia.report/t/${token}`), 'https://events.promedia.report/t/:token');
+  assert.equal(pure.sanitizeUrl('https://events.promedia.report/feedback/abc?x=1#y'), 'https://events.promedia.report/feedback/:token');
+  assert.equal(pure.sanitizeUrl('https://events.promedia.report/invite/abc'), 'https://events.promedia.report/invite/:token');
+  assert.equal(pure.sanitizeUrl('https://events.promedia.report/kiosk/0b7c3f0e-1a2b-4c3d-8e9f-001122334455'), 'https://events.promedia.report/kiosk/:token');
+  assert.equal(pure.sanitizeUrl('https://events.promedia.report/auth/confirm?token_hash=abc&type=email'), 'https://events.promedia.report/auth/confirm');
+  assert.equal(pure.sanitizeUrl('https://santa.promedia.report/room/' + token), 'https://santa.promedia.report/room/:token');
+  // Readable slugs, search terms and campaign tags stay.
+  const slug = 'https://news.promedia.report/article/andrii-shestak-naivazhchymy-vyklykamy-u-media-zalyshaiutsia-koshty-i-dovira-5';
+  assert.equal(pure.sanitizeUrl(slug), slug);
+  assert.equal(pure.sanitizeUrl('https://jobs.promedia.report/?q=редактор&utm_source=fb&fbclid=XYZ'), 'https://jobs.promedia.report/?q=%D1%80%D0%B5%D0%B4%D0%B0%D0%BA%D1%82%D0%BE%D1%80&utm_source=fb');
+  assert.equal(pure.sanitizeReferrer(`https://events.promedia.report/t/${token}`), 'https://events.promedia.report/t/:token');
+  assert.equal(pure.sanitizeReferrer('https://www.google.com/search?q=promedia'), 'https://www.google.com/search');
+});
+
+test('page_view is sent once, with a cleaned address and referrer', () => {
+  const {calls} = run({href: 'https://events.promedia.report/t/Kq3xV9pL2mZ8rT4wY7bN1cD5?utm_source=email', referrer: 'https://mail.example.com/inbox?id=7'});
+  const config = calls.find((c) => c[0] === 'config')[2];
+  assert.equal(config.send_page_view, false);
+  assert.equal(config.allow_google_signals, false);
+  assert.equal(config.allow_ad_personalization_signals, false);
+  const views = calls.filter((c) => c[0] === 'event' && c[1] === 'page_view');
+  assert.equal(views.length, 1);
+  assert.equal(views[0][2].page_location, 'https://events.promedia.report/t/:token?utm_source=email');
+  assert.equal(views[0][2].page_referrer, 'https://mail.example.com/inbox');
+  assert.equal(views[0][2].site_section, 'events');
+  assert(!JSON.stringify(calls).includes('Kq3xV9pL2mZ8rT4wY7bN1cD5'), 'token must not be in any GA call');
+});
+
+test('in-app navigation sends one cleaned page_view per new address', () => {
+  const r = run({href: 'https://events.promedia.report/e/winter-school'});
+  r.window.history.pushState({}, '', '/t/Kq3xV9pL2mZ8rT4wY7bN1cD5');
+  r.window.history.pushState({}, '', '/t/Kq3xV9pL2mZ8rT4wY7bN1cD5');
+  const views = Array.from(r.window.dataLayer).map((a) => Array.from(a)).filter((c) => c[0] === 'event' && c[1] === 'page_view');
+  assert.equal(views.length, 2);
+  assert.equal(views[1][2].page_location, 'https://events.promedia.report/t/:token');
+  assert.equal(views[1][2].page_referrer, 'https://events.promedia.report/e/winter-school');
 });
