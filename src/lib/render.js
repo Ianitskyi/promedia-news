@@ -244,9 +244,8 @@ function articleFocalStyle(article, lang, format) {
 // Точка фокусу обкладинки «x y» у відсотках (мобільна, інакше десктопна) — для сторіз і соцмереж.
 function coverFocusPoint(article, lang) {
   const data = articleCoverMetadata(article, lang);
-  const ok = (p) => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p.y));
-  const p = ok(data.mobile) ? data.mobile : ok(data.desktop) ? data.desktop : null;
-  return p ? Math.max(0, Math.min(100, Number(p.x))) + " " + Math.max(0, Math.min(100, Number(p.y))) : "";
+  const p = manualFocus(data.mobile) || manualFocus(data.desktop);
+  return p ? p.x + " " + p.y : "";
 }
 
 // Окрема картинка 1200×630 для соцмереж (scripts/social-covers.mjs) — лише якщо вона
@@ -254,12 +253,17 @@ function coverFocusPoint(article, lang) {
 function socialCover(article, lang) {
   const src = articleCover(article, lang);
   const data = articleCoverMetadata(article, lang);
-  const social = data.social;
-  if (!src || !social || !social.url) return "";
-  const ok = (p) => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p.y));
-  const raw = ok(data.desktop) ? data.desktop : ok(data.feed) ? data.feed : { x: 50, y: 30 };
-  const clamp = (v) => Math.max(0, Math.min(100, Number(v)));
-  return social.signature === `${src}|${clamp(raw.x)}|${clamp(raw.y)}` ? social.url : "";
+  const og = data.og;
+  if (!src || !og || !og.url) return "";
+  const p = manualFocus(data.social) || manualFocus(data.desktop) || manualFocus(data.feed) || { x: 50, y: 50 };
+  return og.signature === `${src}|${p.x}|${p.y}` ? og.url : "";
+}
+
+// Точка фокусу з адмінки; 50/50 — значення за замовчуванням, тобто кадр ніхто не виставляв.
+function manualFocus(p) {
+  if (!p || !Number.isFinite(Number(p.x)) || !Number.isFinite(Number(p.y))) return null;
+  const v = { x: Math.max(0, Math.min(100, Number(p.x))), y: Math.max(0, Math.min(100, Number(p.y))) };
+  return v.x === 50 && v.y === 50 ? null : v;
 }
 
 // Підпис під обкладинкою: поле caption у даних обкладинки (адмінка), інакше — рядок

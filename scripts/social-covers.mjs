@@ -3,7 +3,7 @@
 // Для кожної опублікованої статті з вертикальною чи квадратною обкладинкою скрипт робить
 // окрему картинку 1200×630 з урахуванням точки фокусу з адмінки (інакше — верхня третина,
 // де на портретах обличчя) у public/img/social/. Робочий процес комітить і викладає ці файли,
-// а потім `--apply` записує їх у дані обкладинки як social (токен Cloudflare не має запису в R2).
+// а потім `--apply` записує їх у дані обкладинки як og (токен Cloudflare не має запису в R2).
 // Картинку перероблено, коли змінилася обкладинка або точка фокусу.
 import {execFileSync} from 'node:child_process';
 import {writeFileSync, readFileSync, mkdirSync, existsSync} from 'node:fs';
@@ -29,13 +29,20 @@ function d1(sql) {
 }
 const q = value => value == null ? 'NULL' : `'${String(value).replace(/'/g, "''")}'`;
 const parse = v => { try { return (typeof v === 'string' ? JSON.parse(v) : v) || {}; } catch { return {}; } };
+// 50/50 — значення адмінки за замовчуванням, тобто кадр ніхто не виставляв.
+const chosen = p => { const v = point(p); return v && !(v.x === 50 && v.y === 50) ? v : null; };
+const FORMATS = ['desktop', 'mobile', 'social', 'feed'];
 const point = p => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p.y))
   ? {x: Math.max(0, Math.min(100, Number(p.x))), y: Math.max(0, Math.min(100, Number(p.y)))} : null;
 
 const COLUMNS = [['cover_image_url', 'cover_crop_data'], ['cover_image_url_en', 'cover_crop_data_en'], ['cover_image_url_crh', 'cover_crop_data_crh']];
 
 // Оновлюємо лише поле social, щоб не зачепити правки з адмінки, зроблені тим часом.
-const save = ({id, urlCol, dataCol, src, social}) => d1(`UPDATE articles SET ${dataCol} = json_set(CASE WHEN json_valid(${dataCol}) THEN ${dataCol} ELSE '{}' END, '$.social', json(${q(JSON.stringify(social))})) WHERE id = ${Number(id)} AND ${urlCol} = ${q(src)}`);
+const save = ({id, urlCol, dataCol, src, og, autoPoint}) => {
+  const base = `CASE WHEN json_valid(${dataCol}) THEN ${dataCol} ELSE '{}' END`;
+  const points = autoPoint ? FORMATS.map(f => `, '$.${f}', json(${q(JSON.stringify(autoPoint))})`).join('') : '';
+  d1(`UPDATE articles SET ${dataCol} = json_set(${base}, '$.og', json(${q(JSON.stringify(og))})${points}) WHERE id = ${Number(id)} AND ${urlCol} = ${q(src)}`);
+};
 
 if (process.argv.includes('--apply')) {
   const pending = existsSync(PENDING) ? JSON.parse(readFileSync(PENDING, 'utf8')) : [];
@@ -52,9 +59,8 @@ for (const row of rows) {
     const src = row[urlCol];
     if (!src) continue;
     const meta = parse(row[dataCol]);
-    const focus = point(meta.desktop) || point(meta.feed) || {x: 50, y: 30};
-    const signature = `${src}|${focus.x}|${focus.y}`;
-    if (meta.social && meta.social.signature === signature) continue;
+    const manual = chosen(meta.social) || chosen(meta.desktop) || chosen(meta.feed);
+    if (manual && meta.og && meta.og.signature === `${src}|${manual.x}|${manual.y}`) continue;
     let buffer;
     try {
       const res = await fetch(new URL(src, ORIGIN), {headers: {'User-Agent': 'ProMediaSocialCovers/1.0 (https://news.promedia.report)'}});
@@ -67,7 +73,22 @@ for (const row of rows) {
     const image = sharp(buffer).rotate();
     const {width, height} = await image.metadata();
     if (!width || !height) continue;
-    let social = {signature};
+    // Кадр ніхто не виставляв — знаходимо найцікавіше місце (обличчя, шкіра, контраст)
+    // і записуємо його для всіх форматів: сайт, головна, сторіз, соцмережі.
+    let autoPoint = null, focus = manual;
+    if (!focus) {
+      const side = 300, scale = side / Math.min(width, height);
+      const {info} = await sharp(buffer).rotate().resize(side, side, {fit: 'cover', position: sharp.strategy.attention}).toBuffer({resolveWithObject: true});
+      autoPoint = focus = {
+        x: Math.round(Math.max(0, Math.min(100, info.attentionX / (width * scale) * 100))),
+        y: Math.round(Math.max(0, Math.min(100, info.attentionY / (height * scale) * 100)))
+      };
+      if (autoPoint.x === 50 && autoPoint.y === 50) autoPoint = focus = {x: 50, y: 49};
+      console.log(`Auto focus for ${row.slug} (${urlCol}): ${focus.x}% ${focus.y}%`);
+    }
+    const signature = `${src}|${focus.x}|${focus.y}`;
+    if (!autoPoint && meta.og && meta.og.signature === signature) continue;
+    let og = {signature};
     // Широкі фото соцмережі й так показують цілими — окрема картинка не потрібна.
     if (width / height < 1.6) {
       const cropW = Math.min(width, Math.round(height * OUT_W / OUT_H));
@@ -78,11 +99,11 @@ for (const row of rows) {
       const name = `${row.id}-${urlCol.replace(/_/g, '-')}-${createHash('sha1').update(signature).digest('hex').slice(0, 10)}.jpg`;
       mkdirSync(OUT_DIR, {recursive: true});
       writeFileSync(`${OUT_DIR}/${name}`, jpeg);
-      social = {signature, url: `/img/social/${name}`};
+      og = {signature, url: `/img/social/${name}`};
       made++;
-      console.log(`Social cover for ${row.slug} (${urlCol}): ${social.url}`);
+      console.log(`Social cover for ${row.slug} (${urlCol}): ${og.url}`);
     }
-    pending.push({id: row.id, urlCol, dataCol, src, social});
+    pending.push({id: row.id, urlCol, dataCol, src, og, autoPoint});
   }
 }
 writeFileSync(PENDING, JSON.stringify(pending));

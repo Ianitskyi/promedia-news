@@ -43,7 +43,7 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: |
-          git add public/img/social
+          mkdir -p public/img/social && git add public/img/social
           if ! git diff --cached --quiet; then
             git -c user.name="github-actions[bot]" -c user.email="41898099+github-actions[bot]@users.noreply.github.com" commit -m "Обкладинки для соцмереж (1200×630)"
             git pull --rebase origin main && git push origin main

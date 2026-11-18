@@ -32,7 +32,8 @@ function coverMetadata(data) {
 }
 
 function coverPosition(meta) {
-  const point = (p) => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p.y))
+  // 50/50 — значення адмінки за замовчуванням: кадр не виставлено, лишаємо типове для сайту.
+  const point = (p) => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p.y)) && !(Number(p.x) === 50 && Number(p.y) === 50)
     ? Math.max(0, Math.min(100, Number(p.x))) + "% " + Math.max(0, Math.min(100, Number(p.y))) + "%" : null;
   const desktop = point(meta.desktop) || point(meta.feed);
   const mobile = point(meta.mobile) || desktop;
