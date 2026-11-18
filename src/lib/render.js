@@ -406,6 +406,36 @@ export function viewsVisible(publishedAt, now = Date.now()) {
   return Number.isFinite(published) && now - published >= VIEWS_VISIBLE_AFTER_MS;
 }
 
+// Значки «у тексті є фото / відео / аудіо» біля дати.
+const MEDIA_LABELS = {
+  photo: { uk: (n) => `У тексті ${n} фото`, en: (n) => `${n} photos in the story`, crh: (n) => `Metinde ${n} fotoresim` },
+  video: { uk: () => "У тексті є відео", en: () => "Video in the story", crh: () => "Metinde video bar" },
+  audio: { uk: () => "У тексті є аудіо", en: () => "Audio in the story", crh: () => "Metinde audio bar" }
+};
+const MEDIA_ICONS = {
+  photo: '<path d="M4 8h3l2-2.5h6L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.5"/>',
+  video: '<rect x="3" y="6" width="18" height="12" rx="2"/><path d="m10 9.5 5 2.5-5 2.5z" fill="currentColor"/>',
+  audio: '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>'
+};
+function articleMediaBadges(article, lang) {
+  let photos = Number(article.media_photos), video = Boolean(Number(article.media_video)), audio = Boolean(Number(article.media_audio));
+  if (!Number.isFinite(photos) && typeof article.body_md === "string") {
+    const md = article.body_md;
+    photos = (md.match(/!\[/g) || []).length;
+    video = /\[youtube\]\(/i.test(md);
+    audio = /\[audio\]\(/i.test(md);
+  }
+  const items = [];
+  if (photos >= 2) items.push(["photo", photos]);
+  if (video) items.push(["video"]);
+  if (audio) items.push(["audio"]);
+  if (!items.length) return "";
+  return `<span class="article-media-badges">${items.map(([kind, n]) => {
+    const label = pick(MEDIA_LABELS[kind], lang)(n);
+    return `<span class="article-media-badge" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${MEDIA_ICONS[kind]}</svg>${kind === "photo" ? `<span>${n}</span>` : ""}</span>`;
+  }).join("")}</span>`;
+}
+
 function articleMeta(article, lang, now = Date.now()) {
   const count = article.view_count;
   const labels = { uk: "Перегляди", en: "Views", crh: "Baqıluvlar" };
@@ -413,7 +443,7 @@ function articleMeta(article, lang, now = Date.now()) {
   const views = Number.isSafeInteger(count) && count >= 0 && viewsVisible(article.published_at, now)
     ? `<span class="article-views" title="${pick(hints, lang)}" aria-label="${pick(labels, lang)}: ${count}"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>${new Intl.NumberFormat(lang === "en" ? "en-GB" : "uk-UA").format(count)}</span></span>`
     : "";
-  return `<div class="article-meta"><p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>${views}</div>`;
+  return `<div class="article-meta"><p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>${views}${articleMediaBadges(article, lang)}</div>`;
 }
 
 function localizedField(article, field, lang) {
