@@ -175,11 +175,17 @@
     window.ProMediaAnalytics.track("google_preferred_source_click", { placement: link.getAttribute("data-google-source") });
   });
 
-  // LinkedIn на телефоні: системне меню «Поділитися» передає застосунку посилання з прев'ю.
+  // LinkedIn на Android: застосунок LinkedIn перехоплює посилання share-offsite і показує помилку.
+  // Тому відкриваємо саме застосунок LinkedIn із готовим текстом (заголовок + посилання) через intent;
+  // якщо застосунку немає, Chrome відкриє звичайне вікно LinkedIn (browser_fallback_url).
+  // На iPhone і комп'ютері лишається share-offsite.
   document.addEventListener("click", function (e) {
     var a = e.target.closest && e.target.closest("a[data-share-native]");
-    if (!a || !navigator.share || !window.matchMedia("(pointer: coarse)").matches) return;
+    if (!a || !/Android/i.test(navigator.userAgent)) return;
     e.preventDefault();
-    navigator.share({ title: a.dataset.shareTitle, url: a.dataset.shareUrl }).catch(function () {});
+    var text = a.dataset.shareTitle + " " + a.dataset.shareUrl;
+    location.href = "intent:#Intent;action=android.intent.action.SEND;type=text/plain;package=com.linkedin.android;" +
+      "S.android.intent.extra.TEXT=" + encodeURIComponent(text) + ";" +
+      "S.browser_fallback_url=" + encodeURIComponent(a.href) + ";end";
   });
 })();

@@ -726,8 +726,7 @@ function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl, coverFo
     ["Facebook", `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`],
     ["X", `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`],
     ["Threads", `https://www.threads.net/intent/post?text=${encodedText}`],
-    // На телефоні LinkedIn відкриваємо через системне меню «Поділитися» (promedia-story-share.js):
-    // застосунок LinkedIn не приймає посилання share-offsite. На комп'ютері — share-offsite.
+    // На Android — прямо в застосунок LinkedIn (promedia-story-share.js); на iPhone і комп'ютері — share-offsite.
     ["LinkedIn", `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`]
   ];
   return `
