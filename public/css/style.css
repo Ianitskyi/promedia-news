@@ -1485,6 +1485,9 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .feed-lead-item:first-child { padding-top: 0; }
 .feed-lead-item:last-child { border-bottom: 0; padding-bottom: 0; }
 .feed-lead-item a { font-size: 16px; line-height: 1.3; font-weight: 700; }
+/* Мобільна перша: новіші за головну — над нею; у списку 9 заголовків. На комп'ютері — 5, як раніше. */
+.feed-lead-newer, .feed-lead-item--extra { display: none; }
+.feed-lead-newer { flex: 1 1 100%; min-width: 0; }
 @media (max-width: 620px) {
   .feed-lead { gap: 24px; margin-bottom: 28px; }
   .feed-lead-media { aspect-ratio: 4 / 3; }
@@ -1493,4 +1496,8 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .feed-lead-media--portrait .feed-lead-photo { width: 100%; object-fit: cover; }
   .feed-lead-excerpt { font-size: 15px; }
   .feed-lead-side { padding: 16px 20px; }
+  .feed-lead-newer { display: block; }
+  .feed-lead-item--extra { display: flex; }
+  .feed-lead-side .feed-lead-item--newer, .mosaic-cell--mobile-listed { display: none; }
+  .feed-lead-side .feed-lead-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
 }

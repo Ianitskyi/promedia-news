@@ -739,8 +739,8 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   const filtered = Boolean(activeTag || topic || activeSort);
   const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
-  const mosaic = (items, withPromo) => {
-    const cells = items.map((a, i) => `<div class="mosaic-cell">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
+  const mosaic = (items, withPromo, mobileListed) => {
+    const cells = items.map((a, i) => `<div class="mosaic-cell${mobileListed?.has(a.slug) ? " mosaic-cell--mobile-listed" : ""}">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
     if (withPromo) cells.splice(Math.min(2, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
     return cells.length ? `<div class="article-grid restored-feed">${cells.join("")}</div>` : "";
   };
@@ -759,10 +759,12 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
       hero = activeSort === "top" ? articles[0] : (articles.find(a => a.card_style === "hero") || articles[0]);
     }
     const remaining = articles.filter(a => a.slug !== hero.slug);
-    const side = remaining.slice(0, 5);
+    // На комп'ютері поруч із головною 5 заголовків, на мобільному — 9 (разом із головною 10).
+    const side = remaining.slice(0, 9);
     const rest = remaining.slice(5);
+    const mobileListed = new Set(side.slice(5).map(a => a.slug));
     const tagHeading = filtered && !activeSort && !CATEGORY_NAV_LABELS[activeTag] ? heading(tagLabel(activeTag, lang), null) : "";
-    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top") + mosaic(rest, !filtered);
+    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top") + mosaic(rest, !filtered, mobileListed);
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
@@ -800,10 +802,18 @@ function newsLead(hero, side, lang, baseUrl, isTop) {
       <img class="feed-lead-photo" src="${escapeHtml(cover)}" alt="${escapeHtml(articleCoverAlt(hero, lang, title))}"${articleFocalStyle(hero, lang, "desktop")} loading="eager" onload="if(this.naturalHeight/this.naturalWidth>=0.9)this.parentNode.classList.add('feed-lead-media--portrait')" />
     </a>` : "";
   const excerpt = articleExcerpt(hero, lang);
+  // Мобільний: новини, що вийшли після головної, стоять над нею (найсвіжіша зверху).
+  const isNewer = (a) => !isTop && (a.published_at || "") > (hero.published_at || "");
+  const item = (a, extra) => `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}${extra}">${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`;
+  const newer = side.filter(isNewer);
+  const newerBlock = newer.length ? `<aside class="feed-lead-newer" aria-label="${escapeHtml(pick(LEAD_SIDE_LABEL, lang))}">
+      <ol class="feed-lead-list">${newer.map(a => item(a, "")).join("")}</ol>
+    </aside>` : "";
   const aside = side.length ? `<aside class="feed-lead-side" aria-label="${escapeHtml(pick(isTop ? LEAD_SIDE_TOP_LABEL : LEAD_SIDE_LABEL, lang))}">
-      <ol class="feed-lead-list">${side.map(a => `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}">${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`).join("")}</ol>
+      <ol class="feed-lead-list">${side.map((a, i) => item(a, `${isNewer(a) ? " feed-lead-item--newer" : ""}${i >= 5 ? " feed-lead-item--extra" : ""}`)).join("")}</ol>
     </aside>` : "";
   return `<section class="feed-lead" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">
+    ${newerBlock}
     <article class="feed-lead-main">
       ${media}
       <div class="feed-lead-hero-meta">${leadMeta(hero, lang)}${articleViews(hero, lang)}${articleMediaBadges(hero, lang)}</div>

@@ -4,7 +4,7 @@
   var NEWS_ORIGIN = "https://news.promedia.report";
   // Головна новина (card_style "hero", інакше найсвіжіша) + п'ять наступних заголовків.
   var API_URL = NEWS_ORIGIN + "/api/articles?limit=12&withHero=1";
-  var LIST_SIZE = 5;
+  var LIST_SIZE = 9; // на комп'ютері видно 5, на мобільному всі 9
   var retryCount = 0;
   var maxRetries = 3;
 
@@ -119,7 +119,11 @@
       ".pm-news-lead-item:first-child{padding-top:0}",
       ".pm-news-lead-item:last-child{border-bottom:0}",
       ".pm-news-lead-item a{font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.3;font-weight:700}",
-      "@media (max-width:620px){.pm-news-lead{gap:24px}.pm-news-lead-excerpt{font-size:15px}.pm-news-lead-side{padding:16px 20px}}"
+      "@media (max-width:620px){.pm-news-lead{gap:24px}.pm-news-lead-excerpt{font-size:15px}.pm-news-lead-side{padding:16px 20px}}",
+      // Мобільний: новини, що вийшли після головної, — над нею; у списку 9 заголовків замість 5.
+      ".pm-news-lead-newer,.pm-news-lead-item--extra{display:none}",
+      ".pm-news-lead-newer{flex:1 1 100%;min-width:0}",
+      "@media (max-width:620px){.pm-news-lead-newer{display:block}.pm-news-lead-item--extra{display:flex}.pm-news-lead-side .pm-news-lead-item--newer{display:none}.pm-news-lead-side .pm-news-lead-item{padding:14px 0;border-bottom:1px solid #e7e7ef}}"
     ].join("\n");
     document.head.appendChild(style);
   }
@@ -132,6 +136,23 @@
     var rest = items.filter(function (item) { return item.slug !== hero.slug; }).slice(0, LIST_SIZE);
 
     var wrap = el("div", "pm-news-lead");
+    function isNewer(item) { return (item.publishedAt || "") > (hero.publishedAt || ""); }
+    function listItem(item, extra) {
+      var li = el("li", "pm-news-lead-item" + (item.isImportant ? " pm-news-lead-item--important" : "") + extra);
+      li.appendChild(metaLine(item, lang));
+      var a = el("a", "", localized(item, "title", lang));
+      a.href = articleUrl(item, lang);
+      li.appendChild(a);
+      return li;
+    }
+    var newer = rest.filter(isNewer);
+    if (newer.length) {
+      var newerBox = el("aside", "pm-news-lead-newer");
+      var newerList = el("ol", "pm-news-lead-list");
+      newer.forEach(function (item) { newerList.appendChild(listItem(item, "")); });
+      newerBox.appendChild(newerList);
+      wrap.appendChild(newerBox);
+    }
     var main = el("article", "pm-news-lead-main");
     var href = articleUrl(hero, lang);
     var title = localized(hero, "title", lang);
@@ -174,13 +195,8 @@
       var side = el("aside", "pm-news-lead-side");
       side.setAttribute("aria-label", lang === "en" ? "Latest" : lang === "crh" ? "Soñki" : "Останні");
       var list = el("ol", "pm-news-lead-list");
-      rest.forEach(function (item) {
-        var li = el("li", "pm-news-lead-item" + (item.isImportant ? " pm-news-lead-item--important" : ""));
-        li.appendChild(metaLine(item, lang));
-        var a = el("a", "", localized(item, "title", lang));
-        a.href = articleUrl(item, lang);
-        li.appendChild(a);
-        list.appendChild(li);
+      rest.forEach(function (item, i) {
+        list.appendChild(listItem(item, (isNewer(item) ? " pm-news-lead-item--newer" : "") + (i >= 5 ? " pm-news-lead-item--extra" : "")));
       });
       side.appendChild(list);
       wrap.appendChild(side);
