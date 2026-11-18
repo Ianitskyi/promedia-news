@@ -469,6 +469,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "dmytro-labutkin",
+    "tag": "Дмитро Лабуткін",
+    "aliases": [
+      "Дмитро Віталійович Лабуткін",
+      "Лабуткін Дмитро Віталійович"
+    ],
+    "name": {
+      "uk": "Дмитро Лабуткін",
+      "en": "Dmytro Labutkin"
+    },
+    "role": {
+      "uk": "військовий журналіст, заступник редактора ТРК МОУ «Бриз» ВМС ЗСУ, капітан 3 рангу (посмертно)",
+      "en": "Military journalist, deputy editor of the Ukrainian Navy's Bryz TV and radio company; Captain 3rd Rank (posthumously)"
+    },
+    "summary": {
+      "uk": "Перший український військовий журналіст, який загинув під час виконання завдання в російсько-українській війні; на його честь 16 лютого — День вшанування військових журналістів.",
+      "en": "The first Ukrainian military journalist killed on duty in the Russian-Ukrainian war; 16 February, Military Journalists' Day in Ukraine, honours him."
+    }
+  },
+  {
     "slug": "dmytro-radchenko",
     "tag": "Дмитро Радченко",
     "aliases": [],
