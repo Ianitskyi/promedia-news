@@ -172,7 +172,6 @@ function tagLabel(tag, lang) {
     "фактчекінг": { en: "fact-checking", crh: "faktçeking" },
     "відео": { en: "video", crh: "video" },
     "модерація": { en: "moderation", crh: "moderatsiya" },
-    "інструмент": { en: "tool", crh: "alet" },
     "інструменти": { en: "tools", crh: "aletler" },
     "журналістика": { en: "journalism", crh: "jurnalistika" },
     "медіаграмотність": { en: "media literacy", crh: "mediya savatlılığı" },
