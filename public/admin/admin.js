@@ -1451,7 +1451,7 @@
       '</select><span class="admin-hint">«З фото на першій» — головна новина з великим фото вгорі news.promedia.report і promedia.report. Така може бути лише одна: попередня автоматично стане звичайною.</span></div>' +
       '<div class="admin-field"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">' +
       '<input type="checkbox" name="isImportant" style="width:auto;margin-top:3px"' + (a.isImportant ? " checked" : "") + ' />' +
-      '<span><strong>Важлива новина</strong><br><span class="admin-hint">Додати матеріал до добору «Вибрані новини» на головному сайті</span></span>' +
+      '<span><strong>Важлива новина</strong><br><span class="admin-hint">Заголовок помаранчевим кольором у стрічці news.promedia.report і на promedia.report. На фото й місце на першій не впливає.</span></span>' +
       "</label></div>" +
       '<div class="admin-field"><label>Пов’язані медіа (пошук за назвою з каталогу карти спільнот)</label>' +
       '<input type="text" id="media-search" placeholder="Почніть вводити назву медіа…" autocomplete="off" />' +
