@@ -79,20 +79,72 @@ function html(body, status = 200) {
   return new Response(body, { status, headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" } });
 }
 
+// ───────────────────────── власний ключ сервісного акаунта ─────────────────────────
+// Пара ключів генерується тут, у воркері; приватний ключ не покидає D1.
+// Публічний сертифікат (GET /setup/cert) завантажується в Google Cloud
+// («Сервісний акаунт → Ключі → Додати ключ → Завантажити наявний ключ»).
+function der(tag, content) {
+  const len = content.length;
+  let lenBytes;
+  if (len < 0x80) lenBytes = [len];
+  else { const b = []; let n = len; while (n > 0) { b.unshift(n & 0xff); n >>= 8; } lenBytes = [0x80 | b.length, ...b]; }
+  const out = new Uint8Array(1 + lenBytes.length + len);
+  out[0] = tag; out.set(lenBytes, 1); out.set(content, 1 + lenBytes.length);
+  return out;
+}
+const cat = (...parts) => { const n = parts.reduce((s, p) => s + p.length, 0); const o = new Uint8Array(n); let i = 0; for (const p of parts) { o.set(p, i); i += p.length; } return o; };
+const seq = (...p) => der(0x30, cat(...p));
+const oid = (bytes) => der(0x06, new Uint8Array(bytes));
+const utf8 = (s) => der(0x0c, new TextEncoder().encode(s));
+const utc = (d) => { const p = (n) => String(n).padStart(2, "0"); return der(0x17, new TextEncoder().encode(`${p(d.getUTCFullYear() % 100)}${p(d.getUTCMonth() + 1)}${p(d.getUTCDate())}${p(d.getUTCHours())}${p(d.getUTCMinutes())}${p(d.getUTCSeconds())}Z`)); };
+async function selfSignedCert(keyPair, cn) {
+  const spki = new Uint8Array(await crypto.subtle.exportKey("spki", keyPair.publicKey));
+  const sha256rsa = seq(oid([0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01, 0x0b]), new Uint8Array([0x05, 0x00]));
+  const name = seq(der(0x31, seq(oid([0x55, 0x04, 0x03]), utf8(cn))));
+  const serial = crypto.getRandomValues(new Uint8Array(16)); serial[0] = (serial[0] & 0x7f) | 0x01;
+  const now = new Date(Date.now() - 3600_000), until = new Date(Date.UTC(2036, 0, 1));
+  const tbs = seq(der(0xa0, der(0x02, new Uint8Array([2]))), der(0x02, serial), sha256rsa, name, seq(utc(now), utc(until)), name, spki);
+  const sig = new Uint8Array(await crypto.subtle.sign("RSASSA-PKCS1-v1_5", keyPair.privateKey, tbs));
+  const cert = seq(tbs, sha256rsa, der(0x03, cat(new Uint8Array([0]), sig)));
+  let s = ""; for (const b of cert) s += String.fromCharCode(b);
+  const b64 = btoa(s).match(/.{1,64}/g).join("\n");
+  return `-----BEGIN CERTIFICATE-----\n${b64}\n-----END CERTIFICATE-----\n`;
+}
+
+async function ensureOwnKey(env) {
+  let pem = await kvGet(env, "ga_cert_pem");
+  if (pem) return pem;
+  const kp = await crypto.subtle.generateKey({ name: "RSASSA-PKCS1-v1_5", modulusLength: 2048, publicExponent: new Uint8Array([1, 0, 1]), hash: "SHA-256" }, true, ["sign", "verify"]);
+  const pkcs8 = new Uint8Array(await crypto.subtle.exportKey("pkcs8", kp.privateKey));
+  let s = ""; for (const b of pkcs8) s += String.fromCharCode(b);
+  pem = await selfSignedCert(kp, "promedia-pulse");
+  await kvSet(env, "ga_private_pkcs8", btoa(s));
+  await kvSet(env, "ga_cert_pem", pem);
+  return pem;
+}
+
+async function serviceAccount(env) {
+  const sa = await kvGetJson(env, "ga_sa_key");
+  if (sa && sa.private_key && sa.client_email) return sa;
+  const pkcs8 = await kvGet(env, "ga_private_pkcs8");
+  if (pkcs8 && env.GA_SA_EMAIL) return { client_email: env.GA_SA_EMAIL, private_key: pkcs8, private_key_id: env.GA_KEY_ID || undefined };
+  return null;
+}
+
 // ───────────────────────── Google Analytics ─────────────────────────
 
 let tokenCache = null; // { token, exp }
 
 async function googleToken(env) {
   if (tokenCache && tokenCache.exp > Date.now() + 60_000) return tokenCache.token;
-  const sa = await kvGetJson(env, "ga_sa_key");
-  if (!sa || !sa.private_key || !sa.client_email) throw new Error("Ключ Google ще не налаштовано (сторінка /setup).");
+  const sa = await serviceAccount(env);
+  if (!sa) throw new Error("Доступ до Google ще не налаштовано (сторінка /setup).");
   return fetchGoogleToken(sa);
 }
 
 async function fetchGoogleToken(sa) {
   const now = Math.floor(Date.now() / 1000);
-  const header = b64url(JSON.stringify({ alg: "RS256", typ: "JWT" }));
+  const header = b64url(JSON.stringify(sa.private_key_id ? { alg: "RS256", typ: "JWT", kid: sa.private_key_id } : { alg: "RS256", typ: "JWT" }));
   const claims = b64url(JSON.stringify({ iss: sa.client_email, scope: GA_SCOPE, aud: "https://oauth2.googleapis.com/token", iat: now, exp: now + 3600 }));
   const pem = sa.private_key.replace(/-----[^-]+-----/g, "").replace(/\s+/g, "");
   const der = Uint8Array.from(atob(pem), (c) => c.charCodeAt(0));
@@ -342,7 +394,7 @@ function inQuietHours(env, hour) {
 }
 
 async function scheduled(env, scheduledTime) {
-  if (!(await kvGet(env, "ga_sa_key"))) return; // ще не налаштовано
+  if (!(await serviceAccount(env))) return; // ще не налаштовано
   const when = new Date(scheduledTime);
   const ts = Math.floor(scheduledTime / 300_000) * 300_000;
   const users = await activeUsersLast(env, 5);
@@ -505,11 +557,12 @@ ${message}
 <p class=hint>Або вставте вміст файлу:</p><textarea name=sa_text placeholder='{"type":"service_account", ...}'></textarea>
 <label>Токен бота Telegram (від @BotFather)</label><input name=bot_token autocomplete=off placeholder="123456789:AA...">
 <p class=hint>Можна заповнити лише одне поле — інше залишиться як є.</p>
-<button>Зберегти й перевірити</button></form></html>`);
+<button>Зберегти й перевірити</button></form>
+<script>var c=decodeURIComponent((location.hash||"").slice(1));if(c){document.querySelector('[name=code]').value=c;}</script></html>`);
 }
 
 async function setupStatus(env) {
-  return { ga: !!(await kvGet(env, "ga_sa_key")), bot: !!(await kvGet(env, "tg_token")), chat: !!(await kvGet(env, "tg_chat_id")) };
+  return { ga: !!(await serviceAccount(env)), bot: !!(await kvGet(env, "tg_token")), chat: !!(await kvGet(env, "tg_chat_id")) };
 }
 
 async function handleSetup(request, env) {
@@ -540,7 +593,7 @@ async function handleSetup(request, env) {
     } catch (e) {
       notes.push(`<p class=bad>Ключ Google не прийнято: ${esc(e.message)}</p>`);
     }
-  } else if (await kvGet(env, "ga_sa_key")) {
+  } else if (await serviceAccount(env)) {
     try {
       const u = await activeUsersLast(env, 30);
       notes.push(`<p class=ok>✓ Google Analytics працює. Зараз на сайтах: <b>${u}</b> людей за 30 хв.</p>`);
@@ -574,6 +627,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     try {
+      if (url.pathname === "/setup/cert") return new Response(await ensureOwnKey(env), { headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" } });
       if (url.pathname === "/setup") return await handleSetup(request, env);
       if (url.pathname === "/tg" && request.method === "POST") return await handleTelegram(request, env);
       const m = url.pathname.match(/^\/mcp\/([a-f0-9]{20,64})\/?$/);
