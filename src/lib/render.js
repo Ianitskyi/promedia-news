@@ -1,6 +1,7 @@
 import { escapeHtml, markdownToHtml, markdownToPlainText, inlineMarkdown } from "./markdown.js";
 import { normalizeUkrainianQuotes, normalizeUkrainianTitle } from "./typography.js";
 import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
+import { TTS } from "../data/tts-index.js";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -436,6 +437,17 @@ function articleMediaBadges(article, lang) {
   }).join("")}</span>`;
 }
 
+// Плеєр «Слухати статтю»: озвучка синтезатором мовлення (лише українська й англійська).
+const LISTEN_LABEL = { uk: "Слухати статтю", en: "Listen to this story" };
+const LISTEN_NOTE = { uk: "Озвучено синтезатором мовлення Google", en: "Read by a Google text-to-speech voice" };
+const MINUTES = { uk: "хв", en: "min" };
+function listenPlayer(article, lang) {
+  const tts = typeof TTS !== "undefined" ? TTS : {};
+  const entry = tts[article.slug] && tts[article.slug][lang];
+  if (!entry || !LISTEN_LABEL[lang]) return "";
+  return `<div class="article-listen"><p class="article-listen-title"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5z" fill="currentColor"/></svg>${LISTEN_LABEL[lang]} · ${entry.minutes} ${MINUTES[lang]}</p><audio controls preload="none" src="${escapeHtml(entry.file)}"></audio><p class="article-listen-note">${LISTEN_NOTE[lang]}</p></div>`;
+}
+
 function articleMeta(article, lang, now = Date.now()) {
   const count = article.view_count;
   const labels = { uk: "Перегляди", en: "Views", crh: "Baqıluvlar" };
@@ -755,6 +767,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   ${articleMeta(article, lang)}
   ${articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl })}
   ${cover}
+  ${listenPlayer(article, lang)}
   <div class="article-body">${withGoogleSourceStrip(bodyHtmlContent, lang)}</div>
   ${peopleBox(tags, lang)}
   ${mediaLinksHtml}

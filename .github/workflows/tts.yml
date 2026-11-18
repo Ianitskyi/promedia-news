@@ -1,0 +1,46 @@
+name: Text-to-speech (Google)
+
+# Озвучує статті з "tts": true українською й англійською, кладе MP3 у public/audio/,
+# комітить їх і запускає розгортання сайту.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'content/articles/**'
+      - 'scripts/tts-generate.mjs'
+      - '.github/workflows/tts.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: promedia-tts
+  cancel-in-progress: false
+
+jobs:
+  tts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Synthesize audio
+        env:
+          GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+        run: node scripts/tts-generate.mjs
+      - name: Commit audio and deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain public/audio src/data/tts-index.js)" ]; then echo "No new audio."; exit 0; fi
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add public/audio src/data/tts-index.js
+          git commit -m "Озвучка статей (Google Text-to-Speech)" --author="Andrii Ianitskyi <info@promedia.report>"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          gh workflow run deploy-worker.yml --ref main
