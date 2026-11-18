@@ -320,7 +320,7 @@ ${entries.join("\n")}
   // GET / (homepage, optional ?tag=)
   if (pagePath === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, card_style, published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, instr(body_md, '[youtube](') > 0 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, is_important, card_style, published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, instr(body_md, '[youtube](') > 0 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";

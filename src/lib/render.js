@@ -474,13 +474,17 @@ function listenPlayer(article, lang) {
 }
 
 function articleMeta(article, lang, now = Date.now()) {
+  return `<div class="article-meta"><p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>${articleViews(article, lang, now)}${articleMediaBadges(article, lang)}</div>`;
+}
+
+function articleViews(article, lang, now = Date.now()) {
   const count = article.view_count;
   const labels = { uk: "Перегляди", en: "Views", crh: "Baqıluvlar" };
   const hints = { uk: "Перегляди за даними Google Analytics", en: "Page views from Google Analytics", crh: "Google Analytics malümatlarına köre baqıluvlar" };
   const views = Number.isSafeInteger(count) && count >= 0 && viewsVisible(article.published_at, now)
     ? `<span class="article-views" title="${pick(hints, lang)}" aria-label="${pick(labels, lang)}: ${count}"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>${new Intl.NumberFormat(lang === "en" ? "en-GB" : "uk-UA").format(count)}</span></span>`
     : "";
-  return `<div class="article-meta"><p class="article-date">${escapeHtml(formatDate(article.published_at, lang))}</p>${views}${articleMediaBadges(article, lang)}</div>`;
+  return views;
 }
 
 function localizedField(article, field, lang) {
@@ -735,25 +739,30 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   const filtered = Boolean(activeTag || topic || activeSort);
   const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
-  if (articles.length && filtered) {
-    list = heading(topic ? pick(topic.labels, lang) : activeSort === "top" ? pick(TOP_NAV_LABEL, lang) : CATEGORY_NAV_LABELS[activeTag] ? pick(CATEGORY_NAV_LABELS[activeTag], lang) : tagLabel(activeTag, lang), topic ? `${prefix}/` : null) + (topic
-      ? `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`
-      // Tabs (Топ, Статті, Прес-релізи, Анонси…) use the same desktop mosaic as the main feed.
-      : `<div class="article-grid restored-feed">${articles.map((a, i) => `<div class="mosaic-cell">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`).join("")}</div>`);
+  const mosaic = (items, withPromo) => {
+    const cells = items.map((a, i) => `<div class="mosaic-cell">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
+    if (withPromo) cells.splice(Math.min(2, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
+    return cells.length ? `<div class="article-grid restored-feed">${cells.join("")}</div>` : "";
+  };
+  if (articles.length && topic) {
+    list = heading(pick(topic.labels, lang), `${prefix}/`) + `<div class="practice-stream">${articles.map(a => articleCard(a, lang, baseUrl, "visual")).join("")}</div>`;
   } else if (articles.length) {
-    // The editor's lead story may be older than the newest 60; it still leads.
-    const featured = articles.filter(a => a.card_style === "hero");
-    if (!featured.length && leadArticle) { featured.push(leadArticle); articles = [leadArticle, ...articles]; }
-    // Without an explicit hero, lead with the newest automatic card: an editor who chose
-    // "image" or "text" for a story has asked for it not to lead the feed.
-    const hero = featured.length ? featured.reduce((latest, article) => (article.published_at || "") > (latest.published_at || "") ? article : latest)
-      : articles.find(a => (a.card_style || "auto") === "auto") || articles[0];
+    // Усі вкладки — як на promedia.report: головна новина з великим фото, поруч 5 наступних
+    // заголовків, далі мозаїка з рештою.
+    let hero;
+    if (!filtered) {
+      // The editor's lead story may be older than the newest 60; it still leads.
+      const featured = articles.filter(a => a.card_style === "hero");
+      if (!featured.length && leadArticle) { featured.push(leadArticle); articles = [leadArticle, ...articles]; }
+      hero = featured.length ? featured.reduce((latest, article) => (article.published_at || "") > (latest.published_at || "") ? article : latest) : articles[0];
+    } else {
+      hero = activeSort === "top" ? articles[0] : (articles.find(a => a.card_style === "hero") || articles[0]);
+    }
     const remaining = articles.filter(a => a.slug !== hero.slug);
-    const cells = remaining.map((a, i) => `<div class="mosaic-cell">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
-    cells.splice(Math.min(2, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
-    list = `<section class="magazine-lead" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">${articleCard(hero, lang, baseUrl, "hero")}</section>
-      <div class="article-grid restored-feed">${cells.join("")}</div>`;
-
+    const side = remaining.slice(0, 5);
+    const rest = remaining.slice(5);
+    const tagHeading = filtered && !activeSort && !CATEGORY_NAV_LABELS[activeTag] ? heading(tagLabel(activeTag, lang), null) : "";
+    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top") + mosaic(rest, !filtered);
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
@@ -761,6 +770,49 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js"></script>`;
   return pageShell({ title: `${filtered ? (topic ? pick(topic.labels, lang) : activeSort === "top" ? pick(TOP_NAV_LABEL, lang) : tagLabel(activeTag, lang)) : copy.title} — ПроМедіа`, description: copy.intro,
     url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : activeSort === "top" ? "?sort=top" : ""}`, lang, bodyHtml });
+}
+
+const LEAD_SIDE_LABEL = { uk: "Останні", en: "Latest", crh: "Soñki" };
+const LEAD_SIDE_TOP_LABEL = { uk: "Найчитаніші", en: "Most read", crh: "Eñ çoq oqulğanlar" };
+const LEAD_RUBRICS = {
+  "Прес-реліз": { uk: "Прес-реліз", en: "Press release", crh: "Basın bildirisi" },
+  "Анонс": { uk: "Анонс", en: "Announcement", crh: "İlân" },
+  "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
+  "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
+  "Заяви": { uk: "Заяви", en: "Statements", crh: "Beyanatlar" }
+};
+
+function leadMeta(article, lang) {
+  const tags = JSON.parse(article.tags || "[]");
+  const key = tags.includes("Прес-реліз") ? "Прес-реліз" : tags.includes("Анонс") ? "Анонс" : tags.find(t => LEAD_RUBRICS[t]);
+  const kind = key === "Прес-реліз" ? " feed-lead-rubric--press" : key === "Анонс" ? " feed-lead-rubric--announce" : key && key !== "Новини" ? " feed-lead-rubric--alt" : "";
+  const rubric = key ? `<span class="feed-lead-rubric${kind}">${escapeHtml(pick(LEAD_RUBRICS[key], lang))}</span> · ` : "";
+  return `<p class="feed-lead-meta">${rubric}${escapeHtml(formatDate(article.published_at, lang))}</p>`;
+}
+
+// Блок угорі стрічки — такий самий, як на promedia.report.
+function newsLead(hero, side, lang, baseUrl, isTop) {
+  const href = (a) => `${baseUrl}${langPrefix(lang)}/article/${escapeHtml(a.slug)}`;
+  const title = articleTitle(hero, lang);
+  const cover = articleCover(hero, lang);
+  const media = cover ? `<a class="feed-lead-media" href="${href(hero)}">
+      <img class="feed-lead-blur" src="${escapeHtml(cover)}" alt="" aria-hidden="true" />
+      <img class="feed-lead-photo" src="${escapeHtml(cover)}" alt="${escapeHtml(articleCoverAlt(hero, lang, title))}"${articleFocalStyle(hero, lang, "desktop")} loading="eager" onload="if(this.naturalHeight/this.naturalWidth>=0.9)this.parentNode.classList.add('feed-lead-media--portrait')" />
+    </a>` : "";
+  const excerpt = articleExcerpt(hero, lang);
+  const aside = side.length ? `<aside class="feed-lead-side" aria-label="${escapeHtml(pick(isTop ? LEAD_SIDE_TOP_LABEL : LEAD_SIDE_LABEL, lang))}">
+      <ol class="feed-lead-list">${side.map(a => `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}">${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`).join("")}</ol>
+    </aside>` : "";
+  return `<section class="feed-lead" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">
+    <article class="feed-lead-main">
+      ${media}
+      <div class="feed-lead-hero-meta">${leadMeta(hero, lang)}${articleViews(hero, lang)}${articleMediaBadges(hero, lang)}</div>
+      <h1 class="feed-lead-title${hero.is_important ? " feed-lead-title--important" : ""}"><a href="${href(hero)}">${escapeHtml(title)}</a></h1>
+      ${excerpt ? `<p class="feed-lead-excerpt">${escapeHtml(excerpt)}</p>` : ""}
+      ${(() => { const tags = JSON.parse(hero.tags || "[]"); return tags.length ? tagLinks(tags, lang) : ""; })()}
+    </article>
+    ${aside}
+  </section>`;
 }
 
 const BACK_TO_NEWS_LABEL = { uk: "← Усі новини", en: "← All news", crh: "← Episi haberler" };
