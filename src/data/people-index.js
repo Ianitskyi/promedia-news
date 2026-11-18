@@ -162,6 +162,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "artur-romeu",
+    "tag": "Артур Ромеу",
+    "aliases": [],
+    "name": {
+      "uk": "Артур Ромеу",
+      "en": "Artur Romeu"
+    },
+    "role": {
+      "uk": "директор латиноамериканського бюро «Репортерів без кордонів»",
+      "en": "Director of RSF's Latin America bureau"
+    },
+    "summary": {
+      "uk": "Очолює латиноамериканське бюро RSF, коментує загрози журналістам у регіоні.",
+      "en": "Heads RSF's Latin America bureau and comments on threats to journalists in the region."
+    }
+  },
+  {
     "slug": "bohdan-lohvynenko",
     "tag": "Богдан Логвиненко",
     "aliases": [
@@ -488,6 +505,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "eduardo-flores-salado",
+    "tag": "Едуардо Флорес Саладо",
+    "aliases": [],
+    "name": {
+      "uk": "Едуардо Флорес Саладо",
+      "en": "Eduardo Flores Salado"
+    },
+    "role": {
+      "uk": "журналіст Enfoque Informativo (Акапулько)",
+      "en": "Journalist at Enfoque Informativo (Acapulco)"
+    },
+    "summary": {
+      "uk": "Мексиканський журналіст з Акапулько, якого знайшли мертвим 14 листопада 2026 року.",
+      "en": "Mexican journalist from Acapulco found dead on 14 November 2026."
+    }
+  },
+  {
     "slug": "a-d-coleman",
     "tag": "Ей Ді Коулман",
     "aliases": [],
@@ -643,6 +677,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Керівник незалежної телекомпанії в Слов'янську, побитий біля входу в редакцію в липні 2001 року.",
       "en": "Head of an independent TV company in Sloviansk, beaten to death outside his newsroom in July 2001."
+    }
+  },
+  {
+    "slug": "camilo-rodriguez-chaverri",
+    "tag": "Каміло Родрігес Чаверрі",
+    "aliases": [],
+    "name": {
+      "uk": "Каміло Родрігес Чаверрі",
+      "en": "Camilo Rodríguez Chaverri"
+    },
+    "role": {
+      "uk": "журналіст, засновник газети El Guapileño",
+      "en": "Journalist, founder of El Guapileño"
+    },
+    "summary": {
+      "uk": "Коста-риканський журналіст і письменник, застрелений 16 листопада 2026 року.",
+      "en": "Costa Rican journalist and writer shot dead on 16 November 2026."
     }
   },
   {

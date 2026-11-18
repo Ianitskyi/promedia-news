@@ -1,0 +1,54 @@
+{
+ "slug": "eduardo-flores-salado",
+ "group": "intl",
+ "country": "Мексика",
+ "kind": "journalist",
+ "memorial": true,
+ "life": "† 2026",
+ "name": {
+  "uk": "Едуардо Флорес Саладо",
+  "en": "Eduardo Flores Salado"
+ },
+ "sort": {
+  "uk": "Флорес Саладо Едуардо",
+  "en": "Flores Salado Eduardo"
+ },
+ "role": {
+  "uk": "журналіст Enfoque Informativo (Акапулько)",
+  "en": "Journalist at Enfoque Informativo (Acapulco)"
+ },
+ "summary": {
+  "uk": "Мексиканський журналіст з Акапулько, якого знайшли мертвим 14 листопада 2026 року.",
+  "en": "Mexican journalist from Acapulco found dead on 14 November 2026."
+ },
+ "bio": {
+  "uk": "Едуардо Флорес Саладо мав понад 15 років досвіду в журналістиці. Він працював у щоденній газеті Novedades Acapulco, а потім близько десяти років — у виданні Enfoque Informativo в Акапулько (штат Герреро, Мексика). Писав про комунальні послуги й нестачу води, протести освітян, безпеку і зниклих безвісти. Був одним із засновників колективу ЛГБТ+ журналістів Герреро Prensa Rosa, повідомляють «Репортери без кордонів».\n\nЙого тіло знайшли ввечері 14 листопада 2026 року на околиці Акапулько; пану Едуардо було 42 роки. Прокуратура штату Герреро 15 листопада відкрила розслідування. Станом на 17 листопада причину смерті, затриманих чи мотив не оприлюднили. За даними RSF, колеги не знали про погрози йому, і він не був у державній програмі захисту журналістів."
+ },
+ "facts": [
+  [
+   "Загинув",
+   "14 листопада 2026, Акапулько"
+  ],
+  [
+   "Редакція",
+   "Enfoque Informativo"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Flores Salado"
+  ]
+ },
+ "sources": [
+  {
+   "title": "RSF: Mexico: Eduardo Flores Salado killed in Acapulco",
+   "url": "https://rsf.org/en/mexico-eduardo-flores-salado-killed-acapulco"
+  },
+  {
+   "title": "ПроМедіа: У Мексиці та Коста-Риці за кілька днів убили двох журналістів",
+   "url": "https://news.promedia.report/article/u-meksytsi-ta-kosta-rytsi-za-kilka-dniv-ubyly-dvokh-zhurnalistiv"
+  }
+ ],
+ "updated": "2026-11-18"
+}

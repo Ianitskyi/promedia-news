@@ -1,0 +1,53 @@
+{
+ "slug": "artur-romeu",
+ "group": "intl",
+ "country": "Латинська Америка (регіональне бюро RSF)",
+ "kind": "journalist",
+ "name": {
+  "uk": "Артур Ромеу",
+  "en": "Artur Romeu"
+ },
+ "sort": {
+  "uk": "Ромеу Артур",
+  "en": "Romeu Artur"
+ },
+ "role": {
+  "uk": "директор латиноамериканського бюро «Репортерів без кордонів»",
+  "en": "Director of RSF's Latin America bureau"
+ },
+ "summary": {
+  "uk": "Очолює латиноамериканське бюро RSF, коментує загрози журналістам у регіоні.",
+  "en": "Heads RSF's Latin America bureau and comments on threats to journalists in the region."
+ },
+ "bio": {
+  "uk": "Артур Ромеу — директор латиноамериканського бюро міжнародної організації «Репортери без кордонів» (RSF). У листопаді 2026 року він вимагав швидкого розслідування вбивства мексиканського журналіста Едуардо Флореса Саладо і назвав убивство коста-риканського журналіста Каміло Родрігеса Чаверрі «тривожним дзвінком» для країни, яку довго вважали зразком свободи преси в Центральній Америці. За його словами, з 22 зобов'язань, які президентка Мексики Клаудія Шейнбаум дала RSF, прогрес є менш ніж у третині."
+ },
+ "facts": [
+  [
+   "Організація",
+   "Репортери без кордонів (RSF)"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Romeu",
+   "RSF"
+  ]
+ },
+ "sources": [
+  {
+   "title": "RSF: Mexico: Eduardo Flores Salado killed in Acapulco",
+   "url": "https://rsf.org/en/mexico-eduardo-flores-salado-killed-acapulco"
+  },
+  {
+   "title": "RSF: Murder of Camilo Rodríguez challenges Costa Rica's reputation",
+   "url": "https://rsf.org/en/murder-camilo-rodriguez-challenges-costa-rica-s-reputation-regional-model-press-freedom"
+  },
+  {
+   "title": "ПроМедіа: У Мексиці та Коста-Риці за кілька днів убили двох журналістів",
+   "url": "https://news.promedia.report/article/u-meksytsi-ta-kosta-rytsi-za-kilka-dniv-ubyly-dvokh-zhurnalistiv"
+  }
+ ],
+ "updated": "2026-11-18"
+}

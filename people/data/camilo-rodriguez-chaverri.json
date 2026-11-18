@@ -1,0 +1,54 @@
+{
+ "slug": "camilo-rodriguez-chaverri",
+ "group": "intl",
+ "country": "Коста-Рика",
+ "kind": "journalist",
+ "memorial": true,
+ "life": "† 2026",
+ "name": {
+  "uk": "Каміло Родрігес Чаверрі",
+  "en": "Camilo Rodríguez Chaverri"
+ },
+ "sort": {
+  "uk": "Родрігес Чаверрі Каміло",
+  "en": "Rodríguez Chaverri Camilo"
+ },
+ "role": {
+  "uk": "журналіст, засновник газети El Guapileño",
+  "en": "Journalist, founder of El Guapileño"
+ },
+ "summary": {
+  "uk": "Коста-риканський журналіст і письменник, застрелений 16 листопада 2026 року.",
+  "en": "Costa Rican journalist and writer shot dead on 16 November 2026."
+ },
+ "bio": {
+  "uk": "Каміло Родрігес Чаверрі — коста-риканський журналіст і письменник. Він заснував і очолював регіональну газету El Guapileño, а згодом публікував новини у своїх соцмережах, передусім у TikTok, де писав про ймовірні зв'язки наркоторгівців із політиками й колишніми посадовцями сил безпеки, повідомляють «Репортери без кордонів».\n\n16 листопада 2026 року пана Каміло, якому було 50 років, застрелили в Санто-Домінго-де-Еередія. За словами заступника директора Агентства судових розслідувань Коста-Рики, двоє чоловіків на мотоциклі перегородили дорогу його автомобілю, вистрілили й утекли. Генеральний прокурор Карло Діас сказав, що журналіст заявляв про погрози й був зареєстрований у програмі допомоги жертвам і свідкам, а від добровільної програми захисту відмовився. Мотиву влада не називала. Це перше вбивство журналіста в Коста-Риці з 2001 року."
+ },
+ "facts": [
+  [
+   "Загинув",
+   "16 листопада 2026, Санто-Домінго-де-Еередія"
+  ],
+  [
+   "Редакція",
+   "El Guapileño (засновник)"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Rodríguez Chaverri"
+  ]
+ },
+ "sources": [
+  {
+   "title": "RSF: Murder of Camilo Rodríguez challenges Costa Rica's reputation as a regional model for press freedom",
+   "url": "https://rsf.org/en/murder-camilo-rodriguez-challenges-costa-rica-s-reputation-regional-model-press-freedom"
+  },
+  {
+   "title": "ПроМедіа: У Мексиці та Коста-Риці за кілька днів убили двох журналістів",
+   "url": "https://news.promedia.report/article/u-meksytsi-ta-kosta-rytsi-za-kilka-dniv-ubyly-dvokh-zhurnalistiv"
+  }
+ ],
+ "updated": "2026-11-18"
+}
