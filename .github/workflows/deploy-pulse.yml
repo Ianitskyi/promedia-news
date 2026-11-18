@@ -1,0 +1,46 @@
+name: Deploy Pulse (GA4 realtime + Telegram alerts)
+
+# «Пульс ПроМедіа» — окремий воркер promedia-pulse (див. pulse/wrangler.toml).
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pulse/**'
+      - '.github/workflows/deploy-pulse.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promedia-pulse-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Syntax check
+        run: node --check pulse/worker.js
+      - name: Deploy pulse worker
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler deploy --config pulse/wrangler.toml 2>&1 | tee deploy.log
+      - name: Smoke test
+        run: |
+          set -e
+          url=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' deploy.log | head -1)
+          echo "Pulse URL: $url"
+          sleep 5
+          curl -fsS --max-time 30 "$url/health"
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$url/setup")
+          echo "/setup -> $code"; test "$code" = 200
