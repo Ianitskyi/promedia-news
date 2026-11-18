@@ -31,7 +31,7 @@
     ],
     [
       "Організація",
-      "ГО «ПроМедіа»"
+      "ГО «ПроМедіа», співзасновник (2025) і голова правління"
     ],
     [
       "Книжка",
@@ -65,8 +65,12 @@
     {
       "title": "ПроМедіа: Круглий стіл про ейджизм у медіа",
       "url": "https://news.promedia.report/article/1-zhovtnia-vidbudetsia-kruhlyi-stil-pro-podolannia-eidzhyzmu-v-media"
+    },
+    {
+      "title": "ГО «ПроМедіа»: Команда",
+      "url": "https://promedia.report/#team"
     }
   ],
-  "updated": "2026-11-17",
+  "updated": "2026-11-18",
   "kind": "journalist"
 }

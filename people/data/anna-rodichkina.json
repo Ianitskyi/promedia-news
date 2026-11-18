@@ -1,0 +1,55 @@
+{
+  "slug": "anna-rodichkina",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Анна Родічкіна",
+    "en": "Anna Rodichkina"
+  },
+  "sort": {
+    "uk": "Родічкіна Анна",
+    "en": "Rodichkina Anna"
+  },
+  "role": {
+    "uk": "журналістка й редакторка, співзасновниця ГО «ПроМедіа»",
+    "en": "Journalist and editor, co-founder of NGO ProMedia"
+  },
+  "summary": {
+    "uk": "Журналістка й редакторка, яка писала про бізнес, економіку та фінанси; співзасновниця ГО «ПроМедіа», де відповідає за тексти й сторітелінг.",
+    "en": "Journalist and editor covering business, economy and finance; co-founder of NGO ProMedia, responsible for copy and storytelling."
+  },
+  "bio": {
+    "uk": "Анна Родічкіна — журналістка й редакторка. Має багаторічний досвід роботи з темами бізнесу, економіки та фінансів, зокрема у Forbes Ukraine та «Інтерфакс-Україна».\n\nУ 2019 році разом з Андрієм Яніцьким запустила розсилку про медіа та комунікації ProMedia Report, яка згодом стала YouTube-проєктом. Влітку 2025 року стала однією з чотирьох співзасновників громадської організації «ПроМедіа».\n\nУ команді «ПроМедіа» відповідає за копірайтинг і сторітелінг."
+  },
+  "facts": [
+    [
+      "ГО «ПроМедіа»",
+      "співзасновниця (2025), сторітелінг і тексти"
+    ],
+    [
+      "ProMedia Report",
+      "співзасновниця розсилки (2019)"
+    ],
+    [
+      "Досвід",
+      "Forbes Ukraine, «Інтерфакс-Україна»"
+    ]
+  ],
+  "photo": {
+    "url": "https://promedia.report/assets/team/rodichkina-anna.jpg",
+    "author": "ГО «ПроМедіа»",
+    "sourceUrl": "https://promedia.report/#team",
+    "sourceName": "сайт ГО «ПроМедіа», розділ «Команда»"
+  },
+  "sources": [
+    {
+      "title": "ГО «ПроМедіа»: Команда",
+      "url": "https://promedia.report/#team"
+    }
+  ],
+  "updated": "2026-11-18",
+  "aliases": [
+    "Anna Rodichkina"
+  ],
+  "kind": "journalist"
+}

@@ -26,12 +26,12 @@ export const PEOPLE = [
       "en": "Anastasiia Simonova"
     },
     "role": {
-      "uk": "журналістка, співзасновниця фестивалю «Тиждень воєнного кіно»",
-      "en": "Journalist, co-founder of the Military Film Week festival"
+      "uk": "журналістка й редакторка, співзасновниця ГО «ПроМедіа» і фестивалю «Тиждень воєнного кіно»",
+      "en": "Journalist and editor, co-founder of NGO ProMedia and the Military Film Week festival"
     },
     "summary": {
-      "uk": "Журналістка з Одеси, співзасновниця «Тижня воєнного кіно» та членкиня правління ГО «ПроМедіа».",
-      "en": "Odesa-based journalist, co-founder of Military Film Week and board member of NGO ProMedia."
+      "uk": "Журналістка й редакторка з Одеси, співзасновниця ГО «ПроМедіа» та «Тижня воєнного кіно».",
+      "en": "Odesa-based journalist and editor, co-founder of NGO ProMedia and Military Film Week."
     }
   },
   {
@@ -106,6 +106,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Одна з найвідоміших українських журналісток-розслідувачок, керує агенцією «Слідство.Інфо».",
       "en": "One of Ukraine's best-known investigative journalists; heads the Slidstvo.Info agency."
+    }
+  },
+  {
+    "slug": "anna-rodichkina",
+    "tag": "Анна Родічкіна",
+    "aliases": [
+      "Anna Rodichkina"
+    ],
+    "name": {
+      "uk": "Анна Родічкіна",
+      "en": "Anna Rodichkina"
+    },
+    "role": {
+      "uk": "журналістка й редакторка, співзасновниця ГО «ПроМедіа»",
+      "en": "Journalist and editor, co-founder of NGO ProMedia"
+    },
+    "summary": {
+      "uk": "Журналістка й редакторка, яка писала про бізнес, економіку та фінанси; співзасновниця ГО «ПроМедіа», де відповідає за тексти й сторітелінг.",
+      "en": "Journalist and editor covering business, economy and finance; co-founder of NGO ProMedia, responsible for copy and storytelling."
     }
   },
   {
@@ -644,6 +663,26 @@ export const PEOPLE = [
     "summary": {
       "uk": "Медійна менеджерка й редакторка з тридцятирічним досвідом, нині — консультантка з медіа та стратегій.",
       "en": "Media manager and editor with three decades of experience; now a media and strategy consultant."
+    }
+  },
+  {
+    "slug": "kateryna-hryshchenko",
+    "tag": "Катерина Грищенко",
+    "aliases": [
+      "Kateryna Hryshchenko",
+      "Катерина Гришенко"
+    ],
+    "name": {
+      "uk": "Катерина Грищенко",
+      "en": "Kateryna Hryshchenko"
+    },
+    "role": {
+      "uk": "комунікаційниця, відео та SMM, співзасновниця ГО «ПроМедіа»",
+      "en": "Communications, video and social media, co-founder of NGO ProMedia"
+    },
+    "summary": {
+      "uk": "Фахівчиня з комунікацій, відео та дизайну; співзасновниця ГО «ПроМедіа», де працює з SMM і відеоконтентом.",
+      "en": "Communications, video and design specialist; co-founder of NGO ProMedia, working on social media and video."
     }
   },
   {

@@ -1,0 +1,48 @@
+{
+  "slug": "kateryna-hryshchenko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Катерина Грищенко",
+    "en": "Kateryna Hryshchenko"
+  },
+  "sort": {
+    "uk": "Грищенко Катерина",
+    "en": "Hryshchenko Kateryna"
+  },
+  "role": {
+    "uk": "комунікаційниця, відео та SMM, співзасновниця ГО «ПроМедіа»",
+    "en": "Communications, video and social media, co-founder of NGO ProMedia"
+  },
+  "summary": {
+    "uk": "Фахівчиня з комунікацій, відео та дизайну; співзасновниця ГО «ПроМедіа», де працює з SMM і відеоконтентом.",
+    "en": "Communications, video and design specialist; co-founder of NGO ProMedia, working on social media and video."
+  },
+  "bio": {
+    "uk": "Катерина Грищенко має досвід у комунікаціях, відеозйомці та дизайні — від розробки візуального стилю до роботи з людськими історіями.\n\nВлітку 2025 року разом з Андрієм Яніцьким, Анною Родічкіною та Анастасією Сімоновою заснувала громадську організацію «ПроМедіа». У команді відповідає за SMM і креативний відеоконтент."
+  },
+  "facts": [
+    [
+      "ГО «ПроМедіа»",
+      "співзасновниця (2025), відео та контент"
+    ]
+  ],
+  "photo": {
+    "url": "https://promedia.report/assets/team/gryshchenko-kateryna.jpg",
+    "author": "ГО «ПроМедіа»",
+    "sourceUrl": "https://promedia.report/#team",
+    "sourceName": "сайт ГО «ПроМедіа», розділ «Команда»"
+  },
+  "sources": [
+    {
+      "title": "ГО «ПроМедіа»: Команда",
+      "url": "https://promedia.report/#team"
+    }
+  ],
+  "updated": "2026-11-18",
+  "aliases": [
+    "Kateryna Hryshchenko",
+    "Катерина Гришенко"
+  ],
+  "kind": "journalist"
+}

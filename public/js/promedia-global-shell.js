@@ -7,12 +7,13 @@
     research:"research.promedia.report",
     atlas:"atlas.promedia.report",
     santa:"santa.promedia.report",
-    brief:"brief.promedia.report"
+    brief:"brief.promedia.report",
+    people:"people.promedia.report"
   };
   const L={
-    uk:{partners:"Партнери та донори",projects:"Проєкти",about:"Про нас",contacts:"Контакти",news:"Новини",communities:"Карта спільнот",ratings:"Рейтинг журфаків",research:"Дослідження",atlas:"Атлас медіа",santa:"Санта",proof:"Proof",brief:"Brief",details:"Дані про організацію",official:"Офіційна назва",officialValue:"ГО «ПроМедіа»",reg:"Реєстраційний номер",address:"Юридична адреса",addressValue:"вул. Володимира Самійленка 19/44, Київ, Україна, 03118",chair:"Голова правління",chairValue:"Андрій Яніцький",privacy:"Приватність і cookie",analyticsOn:"Вимкнути аналітику",analyticsOff:"Увімкнути аналітику",support:"Підтримати ПроМедіа",donationOffer:"Умови пожертви",rights:"Усі права захищені"},
-    en:{partners:"Partners and donors",projects:"Projects",about:"About us",contacts:"Contacts",news:"News",communities:"Communities Map",ratings:"Journalism Schools",research:"Research",atlas:"Media Atlas",santa:"Santa",proof:"Proof",details:"Organization details",official:"Official name",officialValue:"NGO “ProMedia”",reg:"Registration number",address:"Legal address",addressValue:"19/44 Volodymyr Samiilenko St, Kyiv, Ukraine, 03118",chair:"Chair of the Board",chairValue:"Andrii Ianitskyi",privacy:"Privacy and cookies",analyticsOn:"Turn off analytics",analyticsOff:"Turn on analytics",support:"Support ProMedia",donationOffer:"Donation terms",rights:"All rights reserved"},
-    crh:{partners:"Ortaqlar ve donorlar",projects:"Leyhalar",about:"Biz aqqımızda",contacts:"Kontaktlar",news:"Haberler",communities:"Cemaatlar haritası",ratings:"Jurnalistika fakülteleri reytingi",research:"Tedqiqatlar",atlas:"Mediya Atlası",santa:"Santa",proof:"Proof",details:"Teşkilât aqqında malümat",official:"Resmiy adı",officialValue:"«ProMedia» İCT",reg:"Qayd nomeri",address:"Yuridik adres",addressValue:"Volodymyr Samiilenko soqağı, 19/44, Kyiv, Ukrayina, 03118",chair:"İdare Keñeşi reisi",chairValue:"Andrii Ianitskyi",privacy:"Mahremiyet ve cookie",analyticsOn:"Analitikanı söndürmek",analyticsOff:"Analitikanı qabuzmaq",support:"ProMediağa yardım et",donationOffer:"Bağış şartları",rights:"Er aqqı saqlıdır"}
+    uk:{partners:"Партнери та донори",projects:"Проєкти",about:"Про нас",contacts:"Контакти",news:"Новини",communities:"Карта спільнот",ratings:"Рейтинг журфаків",research:"Дослідження",atlas:"Атлас медіа",santa:"Санта",proof:"Proof",brief:"Brief",people:"Люди",details:"Дані про організацію",official:"Офіційна назва",officialValue:"ГО «ПроМедіа»",reg:"Реєстраційний номер",address:"Юридична адреса",addressValue:"вул. Володимира Самійленка 19/44, Київ, Україна, 03118",chair:"Голова правління",chairValue:"Андрій Яніцький",privacy:"Приватність і cookie",analyticsOn:"Вимкнути аналітику",analyticsOff:"Увімкнути аналітику",support:"Підтримати ПроМедіа",donationOffer:"Умови пожертви",rights:"Усі права захищені"},
+    en:{partners:"Partners and donors",projects:"Projects",about:"About us",contacts:"Contacts",news:"News",communities:"Communities Map",ratings:"Journalism Schools",research:"Research",atlas:"Media Atlas",santa:"Santa",proof:"Proof",people:"People",details:"Organization details",official:"Official name",officialValue:"NGO “ProMedia”",reg:"Registration number",address:"Legal address",addressValue:"19/44 Volodymyr Samiilenko St, Kyiv, Ukraine, 03118",chair:"Chair of the Board",chairValue:"Andrii Ianitskyi",privacy:"Privacy and cookies",analyticsOn:"Turn off analytics",analyticsOff:"Turn on analytics",support:"Support ProMedia",donationOffer:"Donation terms",rights:"All rights reserved"},
+    crh:{partners:"Ortaqlar ve donorlar",projects:"Leyhalar",about:"Biz aqqımızda",contacts:"Kontaktlar",news:"Haberler",communities:"Cemaatlar haritası",ratings:"Jurnalistika fakülteleri reytingi",research:"Tedqiqatlar",atlas:"Mediya Atlası",santa:"Santa",proof:"Proof",people:"İnsanlar",details:"Teşkilât aqqında malümat",official:"Resmiy adı",officialValue:"«ProMedia» İCT",reg:"Qayd nomeri",address:"Yuridik adres",addressValue:"Volodymyr Samiilenko soqağı, 19/44, Kyiv, Ukrayina, 03118",chair:"İdare Keñeşi reisi",chairValue:"Andrii Ianitskyi",privacy:"Mahremiyet ve cookie",analyticsOn:"Analitikanı söndürmek",analyticsOff:"Analitikanı qabuzmaq",support:"ProMediağa yardım et",donationOffer:"Bağış şartları",rights:"Er aqqı saqlıdır"}
   };
   const lang=(()=>{
     const p=location.pathname.split("/").filter(Boolean)[0];
@@ -34,7 +35,8 @@
     research:localize("https://research.promedia.report"),
     atlas:localize("https://atlas.promedia.report"),
     santa:"https://santa.promedia.report/",
-    brief:"https://brief.promedia.report/"
+    brief:"https://brief.promedia.report/",
+    people:localize("https://people.promedia.report")
   };
   const current=Object.keys(HOSTS).find(k=>location.hostname===HOSTS[k])||"";
   const samePath=(targetLang)=>{
@@ -118,7 +120,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
   class PMHeader extends HTMLElement{
     connectedCallback(){
       const sec=[
-        ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa],["brief",t.brief||"Brief",links.brief]
+        ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa],["brief",t.brief||"Brief",links.brief],["people",t.people,links.people]
       ].filter(([key]) => key !== "santa" || lang === "uk"); // Санта — лише українською; BRIEF — у другому меню (власник, 17.11.2026)
       const mobileMain=[[t.projects,projectUrl],[t.about,mainHome+"#team"],[t.contacts,mainHome+"#contacts"]];
       const mobileSub=sec.map(x=>[x[1],x[2]]);
