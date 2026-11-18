@@ -60,7 +60,7 @@ for (const row of rows) {
     if (!src) continue;
     const meta = parse(row[dataCol]);
     const manual = chosen(meta.social) || chosen(meta.desktop) || chosen(meta.feed);
-    if (manual && meta.og && meta.og.signature === `${src}|${manual.x}|${manual.y}`) continue;
+    if (manual && meta.og && meta.og.signature === `v2|${src}|${manual.x}|${manual.y}`) continue;
     let buffer;
     try {
       const res = await fetch(new URL(src, ORIGIN), {headers: {'User-Agent': 'ProMediaSocialCovers/1.0 (https://news.promedia.report)'}});
@@ -90,15 +90,16 @@ for (const row of rows) {
       if (autoPoint.x === 50 && autoPoint.y === 50) autoPoint = focus = {x: 50, y: 49};
       console.log(`Auto focus for ${row.slug} (${urlCol}): ${focus.x}% ${focus.y}%`);
     }
-    const signature = `${src}|${focus.x}|${focus.y}`;
+    const signature = `v2|${src}|${focus.x}|${focus.y}`;
     if (!autoPoint && meta.og && meta.og.signature === signature) continue;
     let og = {signature};
     // Широкі фото соцмережі й так показують цілими — окрема картинка не потрібна.
     if (width / height < 1.6) {
       const cropW = Math.min(width, Math.round(height * OUT_W / OUT_H));
       const cropH = Math.round(cropW * OUT_H / OUT_W);
-      const left = Math.round(Math.max(0, Math.min(width - cropW, focus.x / 100 * width - cropW / 2)));
-      const top = Math.round(Math.max(0, Math.min(height - cropH, focus.y / 100 * height - cropH / 2)));
+      // Як CSS object-position: 0% — край зліва/згори, 100% — справа/знизу (так само кадрує адмінка).
+      const left = Math.round(focus.x / 100 * (width - cropW));
+      const top = Math.round(focus.y / 100 * (height - cropH));
       const jpeg = await image.extract({left, top, width: cropW, height: cropH}).resize(OUT_W, OUT_H).jpeg({quality: 85}).toBuffer();
       const name = `${row.id}-${urlCol.replace(/_/g, '-')}-${createHash('sha1').update(signature).digest('hex').slice(0, 10)}.jpg`;
       mkdirSync(OUT_DIR, {recursive: true});

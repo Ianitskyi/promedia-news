@@ -256,7 +256,7 @@ function socialCover(article, lang) {
   const og = data.og;
   if (!src || !og || !og.url) return "";
   const p = manualFocus(data.social) || manualFocus(data.desktop) || manualFocus(data.feed) || { x: 50, y: 50 };
-  return og.signature === `${src}|${p.x}|${p.y}` ? og.url : "";
+  return og.signature === `v2|${src}|${p.x}|${p.y}` ? og.url : "";
 }
 
 // Точка фокусу з адмінки; 50/50 — значення за замовчуванням, тобто кадр ніхто не виставляв.
