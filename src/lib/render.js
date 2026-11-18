@@ -325,6 +325,7 @@ function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt,
 <meta property="og:description" content="${escapeHtml(description)}" />
 <meta property="og:image" content="${escapeHtml(socialImage)}" />
 <meta property="og:image:secure_url" content="${escapeHtml(socialImage)}" />
+${/\/img\/social\//.test(socialImage) ? `<meta property="og:image:width" content="1200" />\n<meta property="og:image:height" content="630" />\n<meta property="og:image:type" content="image/jpeg" />` : ""}
 ${imageAlt ? `<meta property="og:image:alt" content="${escapeHtml(imageAlt)}" />` : ""}
 <meta property="og:locale" content="${locale}" />
 ${alternateLocales.map((l) => `<meta property="og:locale:alternate" content="${l}" />`).join("\n")}

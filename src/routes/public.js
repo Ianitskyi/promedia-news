@@ -147,7 +147,6 @@ Disallow: /api/admin/
 Disallow: /api/auth/
 Disallow: /api/me
 Disallow: /api/setup
-Disallow: /img-storage/
 
 Sitemap: ${baseUrl}/sitemap.xml
 `);
