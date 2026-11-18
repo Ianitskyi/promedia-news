@@ -303,7 +303,7 @@ async function pulseHistory(env, hours = 24) {
   return {
     hours: h,
     note: "Кожна точка — скільки людей було на сайтах ПроМедіа за 5 хвилин до цього моменту (перевірка кожні 5 хвилин).",
-    points: (results || []).map((r) => ({ time: new Date(r.ts).toISOString(), kyiv: kyivParts(new Date(r.ts)).hm, users: r.users })),
+    rows: (results || []).map((r) => ({ time: new Date(r.ts).toISOString(), kyiv: kyivParts(new Date(r.ts)).hm, users: r.users })),
   };
 }
 
@@ -451,12 +451,46 @@ async function scheduled(env, scheduledTime) {
 
 // ───────────────────────── MCP-конектор для Claude ─────────────────────────
 
+// Частини для дашборда: кожна віддає {rows: [...]} і робить лише потрібний запит до GA.
+async function nowPart(env, part) {
+  switch (part) {
+    case "summary": {
+      const [a30, a5, base] = await Promise.all([activeUsersLast(env, 30), activeUsersLast(env, 5), baselineFor(env, new Date())]);
+      return { rows: [{ active_30min: a30, active_5min: a5, usual_5min: base, kyiv_time: kyivParts().hm }] };
+    }
+    case "minutes": {
+      const per = await rt(env, ["minutesAgo"], 30, 30);
+      return { rows: Array.from({ length: 30 }, (_, i) => {
+        const ago = 29 - i; const r = per.find((x) => Number(x.minutesAgo) === ago);
+        return { minutes_ago: ago, users: r ? r.activeUsers : 0 };
+      }) };
+    }
+    case "countries": return { rows: (await rt(env, ["country"], 30, 10)).map((r) => ({ country: r.country, users: r.activeUsers })) };
+    case "cities": return { rows: (await rt(env, ["city"], 30, 10)).map((r) => ({ city: r.city, users: r.activeUsers })) };
+    case "pages": return { rows: (await rt(env, ["unifiedScreenName"], 30, 10, "screenPageViews")).map((r) => ({ title: r.unifiedScreenName, views: r.screenPageViews })) };
+    case "devices": return { rows: (await rt(env, ["deviceCategory"], 30, 5)).map((r) => ({ device: r.deviceCategory, users: r.activeUsers })) };
+    default: return pulseNow(env);
+  }
+}
+
+async function todayPart(env, part, args) {
+  if (!part) return pulseToday(env, args);
+  const t = await pulseToday(env, args);
+  if (part === "summary") return { rows: [{ users: t.users, pageviews: t.pageviews, sessions: t.sessions, period: t.period }] };
+  if (["sites", "sources", "pages", "countries"].includes(part)) return { rows: t[part] };
+  return t;
+}
+
 const TOOLS = [
   {
     name: "pulse_now",
     title: "Пульс: хто зараз на сайтах",
     description: "Відвідуваність усіх сайтів ПроМедіа (promedia.report, news.promedia.report, atlas, ratings тощо — один ресурс GA4) у реальному часі за останні 30 хвилин: скільки людей зараз, графік по хвилинах, країни, міста, що читають (заголовки сторінок), пристрої, і «звичайний рівень» для цієї години. Джерел трафіку тут немає — для них pulse_today.",
-    inputSchema: { type: "object", properties: {}, additionalProperties: false },
+    inputSchema: {
+      type: "object",
+      properties: { part: { type: "string", enum: ["summary", "minutes", "countries", "cities", "pages", "devices"], description: "Лише одна частина зведення у вигляді {rows}. Порожньо — усе разом." } },
+      additionalProperties: false,
+    },
     annotations: { readOnlyHint: true },
   },
   {
@@ -468,6 +502,7 @@ const TOOLS = [
       properties: {
         host: { type: "string", description: "Сайт, напр. news.promedia.report. Порожньо — усі сайти." },
         days: { type: "integer", minimum: 1, maximum: 31, description: "1 — лише сьогодні (типово)." },
+        part: { type: "string", enum: ["summary", "sites", "sources", "pages", "countries"], description: "Лише одна частина у вигляді {rows}. Порожньо — усе разом." },
       },
       additionalProperties: false,
     },
@@ -487,8 +522,8 @@ const TOOLS = [
 ];
 
 async function callTool(env, name, args = {}) {
-  if (name === "pulse_now") return pulseNow(env);
-  if (name === "pulse_today") return pulseToday(env, args);
+  if (name === "pulse_now") return nowPart(env, args.part);
+  if (name === "pulse_today") return todayPart(env, args.part, args);
   if (name === "pulse_history") return pulseHistory(env, args.hours);
   throw Object.assign(new Error(`Невідомий інструмент: ${name}`), { code: -32602 });
 }
