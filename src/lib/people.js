@@ -5,4 +5,4 @@ export { PEOPLE } from "../data/people-index.js";
 // Адреса сайту досьє. Поки субдомен не прив'язано, лишаємо порожньою —
 // тоді блок «Люди в матеріалі» не показується, а теги з іменами вже працюють.
 // Після прив'язки: "https://people.promedia.report".
-export const PEOPLE_SITE_URL = "";
+export const PEOPLE_SITE_URL = "https://people.promedia.report";

@@ -19,7 +19,7 @@ const SITE = "https://people.promedia.report";
 const NEWS = "https://news.promedia.report";
 // Поки субдомен people.promedia.report не прив'язано, мовні посилання відносні — так перемикач мов
 // у шапці працює і на тимчасовій адресі workers.dev. Після прив'язки можна поставити SITE.
-const ALT_ORIGIN = "";
+const ALT_ORIGIN = SITE;
 const CONTACTS = "https://promedia.report/#contacts";
 const args = new Set(process.argv.slice(2));
 const OFFLINE = args.has("--offline");
