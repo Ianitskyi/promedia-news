@@ -42,8 +42,10 @@
     ]
   ],
   "photo": {
-    "url": "https://people.promedia.report/img/maks-levin.webp",
-    "sourceName": "з відкритих джерел"
+    "url": "https://people.promedia.report/img/maks-levin.webp?v=2",
+    "author": "Євген Даценко",
+    "sourceName": "взято з Facebook",
+    "sourceUrl": "https://www.facebook.com/photo/?fbid=10221530475824298&set=a.1510003263069"
   },
   "sources": [
     {
