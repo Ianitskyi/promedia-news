@@ -827,6 +827,10 @@
 
   // ---------- Editor ----------
 
+  function audioPlaceholderHtml(url) {
+    return '<div data-audio-url="' + escapeHtml(url) + '" class="admin-youtube-placeholder" contenteditable="false">♪ Аудіо: ' + escapeHtml(url) + '</div>';
+  }
+
   function uploadImage(file) {
     return fetch("/api/admin/upload", {
       method: "POST",
@@ -951,6 +955,9 @@
       match = line.match(/^\[youtube\]\((https?:\/\/[^\s)]+)\)$/i);
       if (match) { flushParagraph(); flushList(); blocks.push('<div data-youtube-url="' + escapeHtml(match[1]) + '" class="admin-youtube-placeholder" contenteditable="false">▶ YouTube: ' + escapeHtml(match[1]) + '</div>'); return; }
 
+      match = line.match(/^\[audio\]\((https?:\/\/[^\s)]+)\)$/i);
+      if (match) { flushParagraph(); flushList(); blocks.push(audioPlaceholderHtml(match[1])); return; }
+
       match = line.match(/^(#{1,6})\s+(.*)$/);
       if (match) {
         flushParagraph();
@@ -1043,6 +1050,7 @@
       return text ? Array(Number(levelMatch[1]) + 1).join("#") + " " + text : "";
     }
     if (node.dataset && node.dataset.youtubeUrl) return "[youtube](" + node.dataset.youtubeUrl + ")";
+    if (node.dataset && node.dataset.audioUrl) return "[audio](" + node.dataset.audioUrl + ")";
     if (tag === "table") {
       var rows = Array.prototype.slice.call(node.querySelectorAll("tr"));
       if (!rows.length) return "";
@@ -1107,6 +1115,7 @@
       commandButton("“”", "Цитата", "blockquote") +
       commandButton("URL", "Додати посилання", "link") +
       commandButton("▶", "Вставити відео YouTube", "youtube") +
+      commandButton("♪", "Вставити аудіо (файл або посилання)", "audio") +
       commandButton("↶", "Скасувати", "undo") +
       commandButton("↷", "Повторити", "redo") +
       commandButton("Tx", "Очистити форматування", "removeFormat") +
@@ -1229,6 +1238,32 @@
       restoreSelection(editor);
       document.execCommand("insertHTML", false, html);
       syncRichEditors();
+      return;
+    }
+    if (command === "audio") {
+      var insertAudio = function (audioUrl) {
+        var caption = window.prompt("Підпис під аудіо (необов'язково): що це за запис, автор, джерело, рік", "");
+        var html = audioPlaceholderHtml(audioUrl) + (caption && caption.trim() ? "<p><em>" + escapeHtml(caption.trim()) + "</em></p>" : "<p><br></p>");
+        restoreSelection(editor); document.execCommand("insertHTML", false, html);
+        syncRichEditors();
+      };
+      var link = window.prompt("Вставте посилання на аудіофайл (MP3, M4A, OGG, WAV, AAC).\nЩоб завантажити файл з комп'ютера, залиште поле порожнім і натисніть OK.", "");
+      if (link === null) return;
+      link = link.trim();
+      if (link) {
+        if (!/^https:\/\/[^\s]+\.(mp3|m4a|ogg|oga|wav|aac)(\?[^\s]*)?$/i.test(link)) { window.alert("Потрібне пряме посилання https на аудіофайл, що закінчується на .mp3, .m4a, .ogg, .wav або .aac."); return; }
+        insertAudio(link); return;
+      }
+      var picker = document.createElement("input");
+      picker.type = "file"; picker.accept = "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/ogg,audio/wav,.mp3,.m4a,.ogg,.wav,.aac";
+      picker.addEventListener("change", function () {
+        var file = picker.files && picker.files[0];
+        if (!file) return;
+        uploadImage(file).then(function (uploaded) {
+          insertAudio(new URL(uploaded, window.location.origin).toString());
+        }).catch(function (err) { window.alert(err.message || "Не вдалося завантажити аудіо"); });
+      });
+      picker.click();
       return;
     }
     if (command === "youtube") {

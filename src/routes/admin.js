@@ -45,7 +45,10 @@ function serializeArticle(a) {
   };
 }
 
+const AUDIO_TYPES = { "audio/mpeg": "mp3", "audio/mp3": "mp3", "audio/mp4": "m4a", "audio/x-m4a": "m4a", "audio/aac": "aac", "audio/ogg": "ogg", "audio/wav": "wav", "audio/x-wav": "wav", "audio/wave": "wav" };
+
 function extFromContentType(ct) {
+  if (AUDIO_TYPES[ct]) return AUDIO_TYPES[ct];
   if (ct === "image/png") return "png";
   if (ct === "image/webp") return "webp";
   if (ct === "image/gif") return "gif";
@@ -384,12 +387,14 @@ export async function handleAdminRoute(request, env, url) {
 
   if (url.pathname === "/api/admin/upload" && request.method === "POST") {
     const contentType = request.headers.get("Content-Type") || "";
-    if (!contentType.startsWith("image/")) {
-      return json({ error: "Дозволені лише зображення" }, 400);
+    const isAudio = Boolean(AUDIO_TYPES[contentType]);
+    if (!contentType.startsWith("image/") && !isAudio) {
+      return json({ error: "Дозволені лише зображення та аудіо (MP3, M4A, OGG, WAV, AAC)" }, 400);
     }
     const bodyBuffer = await request.arrayBuffer();
-    if (bodyBuffer.byteLength > 8 * 1024 * 1024) {
-      return json({ error: "Файл завеликий (максимум 8 МБ)" }, 400);
+    const maxBytes = (isAudio ? 40 : 8) * 1024 * 1024;
+    if (bodyBuffer.byteLength > maxBytes) {
+      return json({ error: `Файл завеликий (максимум ${isAudio ? 40 : 8} МБ)` }, 400);
     }
     const ext = extFromContentType(contentType);
     const key = `articles/${crypto.randomUUID()}.${ext}`;
