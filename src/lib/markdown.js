@@ -26,6 +26,11 @@ function inline(text) {
   return out.replace(new RegExp(prefix + "(\\d+)\\u0000", "g"), (_, index) => tokens[Number(index)]);
 }
 
+// Підпис або коротка примітка: той самий безпечний inline-рендер.
+export function inlineMarkdown(text) {
+  return inline(text);
+}
+
 function formatInline(text) {
   let out = text;
   // жирний / курсив
@@ -118,6 +123,18 @@ export function markdownToHtml(md) {
       flushParagraph();
       flushList();
       htmlBlocks.push('<hr class="article-notes-divider" />');
+      continue;
+    }
+
+    // Фото на окремому рядку → <figure>; наступний рядок курсивом (*…*) → підпис одразу під фото.
+    const image = line.match(/^!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)$/);
+    if (image) {
+      flushParagraph(); flushList();
+      const next = (lines[i + 1] || "").trim();
+      const caption = /^\*[^*].*[^*]\*$/.test(next) ? next.slice(1, -1) : "";
+      if (caption) i++;
+      htmlBlocks.push('<figure class="article-figure">' + inline(line) +
+        (caption ? '<figcaption class="article-caption">' + inline(caption) + "</figcaption>" : "") + "</figure>");
       continue;
     }
 

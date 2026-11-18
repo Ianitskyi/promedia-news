@@ -106,7 +106,7 @@ for (const f of files) {
       tags = ${q(JSON.stringify(a.tags || []))},
       is_important = ${a.isImportant === undefined ? 'is_important' : (a.isImportant ? 1 : 0)},
       card_style = ${cardStyle ? q(cardStyle) : 'card_style'},
-      ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(a.cover?.alt ? JSON.stringify({alt: a.cover.alt}) : null)},` : ''}
+      ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null)},` : ''}
       updated_at = ${q(new Date().toISOString())}
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
     ${raise ? `UPDATE articles SET card_style = 'auto', updated_at = ${q(new Date().toISOString())}
@@ -152,7 +152,7 @@ for (const f of files) {
     body_md, body_md_en, body_md_crh, cover_image_url, cover_crop_data, tags, related_media_ids, is_important, card_style, status, author_id,
     published_at, created_at, updated_at)
   SELECT ${[a.slug, a.title, a.titleEn, a.titleCrh, a.excerpt || '', a.excerptEn, a.excerptCrh,
-    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, a.cover?.alt ? JSON.stringify({alt: a.cover.alt}) : null,
+    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null,
     JSON.stringify(a.tags || []), '[]'].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
     'published', ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});`;

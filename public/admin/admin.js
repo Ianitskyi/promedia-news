@@ -1365,6 +1365,12 @@
       (a.coverImageUrl ? '<img class="admin-cover-preview" id="cover-preview" src="' + escapeHtml(a.coverImageUrl) + '" />' : '<img class="admin-cover-preview" id="cover-preview" style="display:none" />') +
       '<div class="cover-editor" id="news-cover-crop"></div><input type="hidden" id="news-cover-crop-value" name="coverCropData" value="' + escapeHtml(JSON.stringify(a.coverCropData || {})) + '" />' +
       "</div>" +
+      '<div class="admin-field"><label>Підпис під обкладинкою</label>' +
+      '<span class="admin-hint">Показується дрібно одразу під фото. Формат: автор / джерело, ліцензія, що на фото, де й коли. Посилання — як у тексті: [Wikimedia Commons](https://…). Порожнє поле — сайт візьме рядок «Фото на обкладинці: …» з приміток.</span>' +
+      '<input type="text" id="cover-caption-uk" placeholder="Українською" value="' + escapeHtml(((a.coverCropData || {}).caption || {}).uk || "") + '" />' +
+      '<input type="text" id="cover-caption-en" placeholder="English" value="' + escapeHtml(((a.coverCropData || {}).caption || {}).en || "") + '" />' +
+      '<input type="text" id="cover-caption-crh" placeholder="Qırımtatarca" value="' + escapeHtml(((a.coverCropData || {}).caption || {}).crh || "") + '" />' +
+      "</div>" +
       '<div class="admin-field"><label>Обкладинка (англ, за потреби)</label>' +
       '<input type="file" id="cover-input-en" accept="image/*" />' +
       '<span class="admin-hint">За наявності англомовної версії зображення завантажте її сюди. Інакше використовуватиметься основна обкладинка.</span>' +
@@ -1633,7 +1639,16 @@
         coverImageUrl: fields.coverImageUrl.value || null,
         coverImageUrlEn: fields.coverImageUrlEn.value || null,
         coverImageUrlCrh: fields.coverImageUrlCrh.value || null,
-        coverCropData: newsCrop.getValue(), coverCropDataEn: newsCropEn.getValue(), coverCropDataCrh: newsCropCrh.getValue(),
+        coverCropData: (function () {
+          var data = newsCrop.getValue();
+          var caption = {};
+          ["uk", "en", "crh"].forEach(function (l) {
+            var el = document.getElementById("cover-caption-" + l);
+            if (el && el.value.trim()) caption[l] = el.value.trim().slice(0, 600);
+          });
+          if (Object.keys(caption).length) data.caption = caption;
+          return data;
+        })(), coverCropDataEn: newsCropEn.getValue(), coverCropDataCrh: newsCropCrh.getValue(),
         tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,
         isImportant: fields.isImportant.checked,

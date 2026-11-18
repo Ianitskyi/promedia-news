@@ -1419,3 +1419,11 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .google-source-cta { padding: 10px 10px 10px 14px; }
   .google-source-cta p { font-size: 13px; }
 }
+
+/* ---------- Підписи під фото: одразу під зображенням, дрібно (обкладинка й фото в тексті) ---------- */
+.article-cover-figure, .article-body .article-figure { margin: 0 0 22px; }
+.article-cover-figure .article-cover { margin-bottom: 0; }
+.article-body .article-figure img { display: block; margin: 0; }
+.article-caption { margin: 7px 0 0; font-family: var(--sans); font-size: 12.5px; font-style: normal; line-height: 1.45; color: var(--muted); }
+.article-caption a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.article-caption em { font-style: normal; }

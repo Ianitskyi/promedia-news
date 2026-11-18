@@ -1,4 +1,4 @@
-import { escapeHtml, markdownToHtml, markdownToPlainText } from "./markdown.js";
+import { escapeHtml, markdownToHtml, markdownToPlainText, inlineMarkdown } from "./markdown.js";
 import { normalizeUkrainianQuotes, normalizeUkrainianTitle } from "./typography.js";
 import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 
@@ -237,6 +237,26 @@ function articleFocalStyle(article, lang, format) {
   return ' style="' + fit + 'object-position:' + clamped(point) + '"';
 }
 
+// Підпис під обкладинкою: поле caption у даних обкладинки (адмінка), інакше — рядок
+// «Фото на обкладинці: …» / «Фото: …» з приміток під тонкою лінією (тоді він переїжджає під фото).
+const COVER_CAPTION_LINE = /^\*(Фото на обкладинці|Фото|Cover photo|Photo|Qapaqtaki resim|Resim|Fotoresim):\s*(.+)\*$/;
+function coverCaption(article, lang, bodyMd) {
+  const meta = articleCoverMetadata(article, "uk");
+  const own = meta.caption && typeof meta.caption === "object" ? String(meta.caption[lang] || "").trim() : "";
+  const lines = String(bodyMd || "").split("\n");
+  const divider = lines.findIndex((l) => /^(-{3,}|\*{3,})$/.test(l.trim()));
+  if (own) return { caption: String(own).replace(/^\*|\*$/g, ""), bodyMd };
+  if (divider < 0) return { caption: "", bodyMd };
+  for (let i = divider + 1; i < lines.length; i++) {
+    const m = lines[i].trim().match(COVER_CAPTION_LINE);
+    if (m) {
+      const rest = lines.slice(0, i).concat(lines.slice(i + 1));
+      return { caption: m[2], bodyMd: rest.join("\n") };
+    }
+  }
+  return { caption: "", bodyMd };
+}
+
 function articleCover(article, lang) {
   if (lang === "crh" && article.cover_image_url_crh) return article.cover_image_url_crh;
   return lang === "en" && article.cover_image_url_en
@@ -253,7 +273,7 @@ function localizedUrls(url) {
   return { ukUrl: withLang("uk"), enUrl: withLang("en"), crhUrl: withLang("crh") };
 }
 
-function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt }) {
+function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd }) {
   const { ukUrl, enUrl, crhUrl } = localizedUrls(url);
   const canonicalUrl = lang === "en" ? enUrl : (lang === "crh" ? crhUrl : ukUrl);
   const defaultImage = lang === "crh" || lang === "en"
@@ -267,6 +287,7 @@ function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt 
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${escapeHtml(title)}</title>
 <meta name="description" content="${escapeHtml(description)}" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
 <meta property="og:type" content="${escapeHtml(ogType || "website")}" />
 <meta property="og:site_name" content="${escapeHtml(pick(SITE_NAME, lang))}" />
@@ -275,9 +296,12 @@ function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt 
 <meta property="og:description" content="${escapeHtml(description)}" />
 <meta property="og:image" content="${escapeHtml(socialImage)}" />
 <meta property="og:image:secure_url" content="${escapeHtml(socialImage)}" />
+${imageAlt ? `<meta property="og:image:alt" content="${escapeHtml(imageAlt)}" />` : ""}
 <meta property="og:locale" content="${locale}" />
 ${alternateLocales.map((l) => `<meta property="og:locale:alternate" content="${l}" />`).join("\n")}
 ${publishedAt ? `<meta property="article:published_time" content="${escapeHtml(publishedAt)}" />` : ""}
+${modifiedAt ? `<meta property="article:modified_time" content="${escapeHtml(modifiedAt)}" />` : ""}
+${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>` : ""}
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="${escapeHtml(title)}" />
 <meta name="twitter:description" content="${escapeHtml(description)}" />
@@ -339,11 +363,11 @@ function footer() {
   return `<promedia-global-footer></promedia-global-footer>`;
 }
 
-function pageShell({ title, description, url, ogImage, lang, ogType, publishedAt, bodyHtml }) {
+function pageShell({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd, bodyHtml }) {
   return `<!doctype html>
 <html lang="${lang}">
 <head>
-${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt })}
+${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd })}
 <script async src="https://news.promedia.report/js/promedia-analytics.js"></script>
 </head>
 <body>
@@ -673,13 +697,17 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
   const articleUrl = `${baseUrl}${langPrefix(lang)}/article/${article.slug}`;
-  const bodyMd = localizedField(article, "body_md", lang);
+  const { caption: coverCaptionText, bodyMd } = coverCaption(article, lang, localizedField(article, "body_md", lang));
   const bodyHtmlContent = markdownToHtml(bodyMd);
   const tags = JSON.parse(article.tags || "[]");
   const coverUrl = articleCover(article, lang);
-  const cover = coverUrl
-    ? `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(articleCoverAlt(article, lang, title))}"${articleFocalStyle(article, lang, "desktop")} />`
+  const coverAlt = articleCoverAlt(article, lang, title);
+  const coverImg = coverUrl
+    ? `<img class="article-cover" src="${escapeHtml(coverUrl)}" alt="${escapeHtml(coverAlt)}"${articleFocalStyle(article, lang, "desktop")} />`
     : "";
+  const cover = coverImg && coverCaptionText
+    ? `<figure class="article-cover-figure">${coverImg}<figcaption class="article-caption">${inlineMarkdown(coverCaptionText)}</figcaption></figure>`
+    : coverImg;
   const mediaLinksHtml = relatedMediaNames.length
     ? `<div class="article-related-media">
         <span>${pick(ABOUT_LABEL, lang)}</span>
@@ -706,6 +734,24 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
     ogImage: coverUrl || undefined,
     ogType: "article",
     publishedAt: article.published_at,
+    modifiedAt: article.updated_at || undefined,
+    imageAlt: coverUrl ? coverAlt : undefined,
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      headline: title.slice(0, 110),
+      description: excerpt,
+      inLanguage: lang === "crh" ? "crh" : lang,
+      mainEntityOfPage: articleUrl,
+      url: articleUrl,
+      datePublished: article.published_at || undefined,
+      dateModified: article.updated_at || article.published_at || undefined,
+      image: coverUrl ? [new URL(coverUrl, articleUrl).toString()] : undefined,
+      keywords: tags.join(", ") || undefined,
+      author: { "@type": "Organization", name: "ГО «ПроМедіа»", url: "https://promedia.report" },
+      publisher: { "@type": "Organization", name: "ГО «ПроМедіа»", url: "https://promedia.report",
+        logo: { "@type": "ImageObject", url: new URL("/favicon.png", articleUrl).toString() } }
+    },
     lang,
     bodyHtml
   });
