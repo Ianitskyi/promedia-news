@@ -10,6 +10,14 @@ main = "worker.js"
 compatibility_date = "2026-10-06"
 workers_dev = true
 
+# stat.promedia.report — закрита сторінка статистики для команди
+routes = [{ pattern = "stat.promedia.report", custom_domain = true }]
+
+# Листи з кодами входу надсилає воркер новин (у нього є ключ Resend)
+[[services]]
+binding = "NEWS"
+service = "promedia-news"
+
 [triggers]
 crons = ["*/5 * * * *"]
 
@@ -32,4 +40,6 @@ DAILY_SUMMARY_HOUR = "21"
 # Тихі години за Києвом, напр. "0-7"; порожньо — без тихих годин
 QUIET_HOURS = ""
 # SHA-256 коду налаштування (сам код є лише в Андрія)
+# Хто може входити на stat.promedia.report (крім користувачів адмінки новин): адреси або «@домен» через кому
+STAT_ALLOWED = "a.ianitskyi@gmail.com,@promedia.report"
 SETUP_HASH = "7d671abc00ea70231b0f1d81f33299d6af1bea151385ef1ed126845f6992645d"

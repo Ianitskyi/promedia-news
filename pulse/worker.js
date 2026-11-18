@@ -1,3 +1,4 @@
+import { handleStat, isStatHost } from "./stat.js";
 // «Пульс ПроМедіа» — див. wrangler.toml.
 // Маршрути:
 //   GET  /            — коротка сторінка-статус
@@ -665,6 +666,7 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     try {
+      if (isStatHost(url)) return await handleStat(request, env, { nowPart, todayPart, pulseHistory });
       if (url.pathname === "/setup/cert") return new Response(await ensureOwnKey(env), { headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" } });
       if (url.pathname === "/setup") return await handleSetup(request, env);
       if (url.pathname === "/tg" && request.method === "POST") return await handleTelegram(request, env);
