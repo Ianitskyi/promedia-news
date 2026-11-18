@@ -38,6 +38,9 @@ jobs:
         run: |
           node people-site/build.mjs --index-only
           git diff --exit-code src/data/people-index.js || { echo "::error::src/data/people-index.js застарів — запустіть node people-site/build.mjs --index-only"; exit 1; }
+      # Нічний архів може ще не знати сьогоднішніх новин — беремо свіжий список із сайту.
+      - name: Fetch fresh list of published news
+        run: curl --fail --silent --show-error --retry 3 https://news.promedia.report/api/export/published-news.json --output archive/published-news.json || echo "::warning::Використовую нічний архів"
       - name: Build the site
         run: node people-site/build.mjs
       - name: Deploy people worker
