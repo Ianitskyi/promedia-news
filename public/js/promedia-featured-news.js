@@ -123,6 +123,8 @@
       // Мобільний: новини, що вийшли після головної, — над нею; у списку 9 заголовків замість 5.
       ".pm-news-lead-newer,.pm-news-lead-item--extra{display:none}",
       ".pm-news-lead-newer{flex:1 1 100%;min-width:0}",
+      // Мобільний: головна з фото — на білій картці, список під нею — без рамки (як на news.promedia.report).
+      "@media (max-width:620px){.pm-news-lead-main--media{background:#fff;border:1.5px solid #e7e7ef;border-radius:16px;box-shadow:0 18px 40px -26px rgba(23,19,33,.35);padding:16px 16px 20px;gap:12px}.pm-news-lead-main--media>:not(.pm-news-lead-media){padding:0 6px}.pm-news-lead-side{background:transparent;border:0;border-radius:0;padding:0}}",
       "@media (max-width:620px){.pm-news-lead-newer{display:block}.pm-news-lead-item--extra{display:flex}.pm-news-lead-side .pm-news-lead-item--newer{display:none}.pm-news-lead-side .pm-news-lead-item{padding:14px 0;border-bottom:1px solid #e7e7ef}}"
     ].join("\n");
     document.head.appendChild(style);
@@ -158,6 +160,7 @@
     var title = localized(hero, "title", lang);
     var cover = localized(hero, "coverImageUrl", lang);
     if (cover) {
+      main.classList.add("pm-news-lead-main--media");
       var media = el("a", "pm-news-lead-media");
       media.href = href;
       var img = document.createElement("img");
