@@ -1,6 +1,6 @@
 // Озвучка статей синтезатором мовлення Google Cloud Text-to-Speech (українська й англійська).
 // Запускається в GitHub Actions (tts.yml) з ключем GOOGLE_TTS_API_KEY.
-// Озвучуємо статті з полем "tts": true. Готові MP3 лежать у public/audio/<slug>-<lang>.mp3,
+// Озвучуємо матеріали рубрики «Статті» (новини — ні). Готові MP3 лежать у public/audio/<slug>-<lang>.mp3,
 // а src/data/tts-index.js каже сайту, для яких статей і мов є запис (і хеш тексту, щоб
 // перегенерувати озвучку лише тоді, коли текст змінився).
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
@@ -91,7 +91,9 @@ mkdirSync(AUDIO_DIR, { recursive: true });
 let changed = false;
 for (const f of readdirSync(DIR).filter((x) => x.endsWith(".json")).sort()) {
   const a = JSON.parse(readFileSync(join(DIR, f), "utf8"));
-  if (a.tts !== true) continue;
+  // Озвучуємо лише статті (рубрика «Статті»); новини — ні. "tts": false вимикає, "tts": true вмикає вручну.
+  const isArticle = Array.isArray(a.tags) && a.tags.includes("Статті");
+  if (a.tts === false || !(isArticle || a.tts === true)) continue;
   for (const [lang, cfg] of Object.entries(LANGS)) {
     if (!a[cfg.body]) continue;
     const text = speakableText(a[cfg.title] || a.title, a[cfg.body]);
