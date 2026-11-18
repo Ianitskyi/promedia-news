@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Про нас — ГО «ПроМедіа»</title>
-<meta name="description" content="ГО «ПроМедіа» розвиває українські медіа та комунікації й посилює українську демократію. Хто ми, що робимо, наша історія, команда та проєкти.">
+<meta name="description" content="ГО «ПроМедіа» розвиває незалежні медіа та комунікації в Україні: дослідження, інструменти на основі відкритих даних, навчання. Хто ми, результати, проєкти, команда.">
 <meta property="og:title" content="Про нас — ГО «ПроМедіа»">
 <meta property="og:description" content="Посилюємо медіа та громадські організації: розвиток медіа, дослідження, комунікації, навчання.">
 <meta property="og:image" content="https://news.promedia.report/img/og-share.png">
@@ -100,6 +100,19 @@ section{padding:72px 0}
 .org a{color:var(--accent)}.org a.btn{color:var(--ink)}
 .org p{margin:0 0 14px;font-size:16px;color:rgba(255,255,255,.85)}
 .btn{display:inline-block;margin-top:10px;background:var(--accent);color:var(--ink);font-weight:800;text-decoration:none;padding:13px 24px;border-radius:6px}
+.offer-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.offer{background:var(--paper);border-radius:8px;padding:24px 26px}
+.offer h3{font-size:18px;margin-bottom:10px}
+.offer ul{margin:0;padding-left:18px;font-size:15px;color:var(--ink2)}
+.offer li{margin-bottom:6px}
+.res-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.res{border-top:3px solid var(--accent);padding-top:16px}
+.res b{display:block;font-size:40px;font-weight:800;line-height:1.1}
+.res p{margin:6px 0 0;font-size:15px;color:var(--ink2)}
+.res a{font-size:14px;font-weight:700;text-decoration:none;border-bottom:1px solid var(--accent)}
+.sub{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:28px 0 12px}
+.partners span.role{font-weight:400;color:var(--muted)}
+@media(max-width:991px){.offer-grid,.res-grid{grid-template-columns:1fr}}
 footer{padding:28px 0;font-size:13.5px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 footer a{font-weight:700;text-decoration:none}
@@ -128,19 +141,19 @@ footer a{font-weight:700;text-decoration:none}
 <header class="top"><div class="wrap">
  <a href="https://promedia.report/" aria-label="ПроМедіа — на головну"><img src="/assets/logo.svg" alt="ПроМедіа"></a>
  <nav aria-label="Розділи сторінки">
-  <a href="#who">Хто ми</a><a href="#directions">Напрями</a><a href="#history">Історія</a><a href="#team">Команда</a><a href="#voices">Що ми кажемо</a><a href="#projects">Проєкти</a><a href="#details">Реквізити</a>
+  <a href="#who">Хто ми</a><a href="#directions">Що робимо</a><a href="#results">Результати</a><a href="#projects">Проєкти</a><a href="#team">Команда</a><a href="#partners">Партнери</a><a href="#details">Контакти</a>
  </nav>
 </div></header>
 
 <main>
 <section class="hero"><div class="wrap">
- <h1>Посилюємо <em>медіа</em> та громадські організації</h1>
- <p>«ПроМедіа» — громадська організація журналістів і комунікаційників. Ми розвиваємо українські медіа та комунікації, щоб посилювати українську демократію.</p>
+ <h1>Розвиваємо <em>незалежні медіа</em> та комунікації в Україні</h1>
+ <p>«ПроМедіа» — громадська організація журналістів і фахівців із комунікацій. Ми допомагаємо українським медіа ставати сильнішими: краще розуміти свою аудиторію, розвивати нові продукти й зміцнювати організаційну стійкість.</p>
  <div class="facts">
   <div><b>2019</b><span>перша розсилка ProMedia Report</span></div>
-  <div><b>2025</b><span>заснування громадської організації</span></div>
-  <div><b>4</b><span>співзасновники</span></div>
-  <div><b>6</b><span>проєктів у 2026 році</span></div>
+  <div><b>2025</b><span>реєстрація ГО «ПроМедіа»</span></div>
+  <div><b>3</b><span>відкриті інструменти на основі даних</span></div>
+  <div><b>4</b><span>навчальні воркшопи у 2026 році</span></div>
  </div>
 </div></section>
 
@@ -148,9 +161,9 @@ footer a{font-weight:700;text-decoration:none}
  <h2 class="eyebrow">Хто ми</h2>
  <div class="who">
   <div>
-   <p>Ми почали як розсилка про медіа та комунікації, яку у 2019 році запустили журналісти Андрій Яніцький та Анна Родічкіна. У 2025 році вона стала YouTube-проєктом, а влітку того ж року переросла в громадську організацію.</p>
-   <p>Сьогодні «ПроМедіа» працює з незалежними й регіональними медіа, громадськими організаціями та донорами. Ми досліджуємо медіаринок, робимо відкриті інструменти на основі даних, навчаємо команди й виступаємо за державну політику, яка підтримує незалежну журналістику.</p>
-   <p>Наші активісти живуть і працюють в Одесі, Коломиї, Миколаєві, Львові, Києві та області.</p>
+   <p>Для цього ми досліджуємо медіаринок, створюємо загальнодоступні аналітичні інструменти на основі відкритих даних, проводимо навчання та підтримуємо рішення, які сприяють розвитку незалежної журналістики.</p>
+   <p>Ми віримо, що сильні незалежні медіа — одна з необхідних умов демократичного суспільства.</p>
+   <p>Наша команда працює в Одесі, Коломиї, Миколаєві, Львові, Києві та Київській області.</p>
   </div>
   <figure class="pull" style="margin:0">
    <q>Демократія неможлива без медіа. Медіа — це інфраструктура демократії.</q>
@@ -162,79 +175,97 @@ footer a{font-weight:700;text-decoration:none}
 <section class="dirs" id="directions"><div class="wrap">
  <h2 class="eyebrow">Що робимо</h2>
  <div class="dirs-grid">
-  <div><h3>Розвиток медіа</h3><p>Допомагаємо незалежним медіа краще розуміти себе, аудиторії, розвивати продукти, будувати спільноти та посилювати організаційну стійкість.</p></div>
-  <div><h3>Дослідження</h3><p>Досліджуємо медіаринок, аудиторії, контент і комунікації, щоб рішення спиралися на дані, а не інтуїцію.</p></div>
-  <div><h3>Комунікації</h3><p>Допомагаємо громадським організаціям і суспільно важливим ініціативам перетворювати складну роботу на зрозумілі, сильні та етичні комунікації.</p></div>
-  <div><h3>Навчання</h3><p>Створюємо академічні та практичні навчальні програми: читаємо лекції, проводимо семінари, організовуємо ситуаційні ігри та запускаємо лабораторії для розвитку команд.</p></div>
+  <div><h3>Розвиток медіа</h3><p>Допомагаємо незалежним медіа краще розуміти себе та свою аудиторію, розвивати продукти, будувати спільноти й зміцнювати організаційну стійкість.</p></div>
+  <div><h3>Дослідження</h3><p>Досліджуємо медіаринок, аудиторії, контент і комунікації, щоб допомагати командам ухвалювати обґрунтовані рішення.</p></div>
+  <div><h3>Комунікації</h3><p>Допомагаємо громадським організаціям і суспільно важливим ініціативам зрозуміло й переконливо розповідати про свою роботу — з дотриманням етичних стандартів.</p></div>
+  <div><h3>Навчання</h3><p>Розробляємо навчальні програми, що поєднують наукові підходи з практикою: лекції, семінари, ситуаційні ігри та лабораторії для розвитку команд.</p></div>
  </div>
 </div></section>
 
-<section id="history"><div class="wrap">
+<section id="offer"><div class="wrap">
+ <h2 class="eyebrow">Чим можемо бути корисні</h2>
+ <div class="offer-grid">
+  <div class="offer"><h3>Редакціям</h3><ul><li>дослідження аудиторії та ринку</li><li>навчання команди: ШІ, автоматизація, продукти</li><li>розвиток спільноти навколо медіа</li></ul></div>
+  <div class="offer"><h3>Громадським організаціям</h3><ul><li>стратегії та тексти для комунікацій</li><li>навчання з комунікацій і роботи з медіа</li><li>цифрові інструменти для команд</li></ul></div>
+  <div class="offer"><h3>Донорам і партнерам</h3><ul><li>аналітика медіаринку на основі відкритих даних</li><li>навчальні програми під завдання партнера</li><li>спільні проєкти на підтримку незалежних медіа</li></ul></div>
+ </div>
+</div></section>
+
+<section id="results" style="padding-top:0"><div class="wrap">
+ <h2 class="eyebrow">Результати</h2>
+ <div class="res-grid">
+  <div class="res"><b>51</b><p>медіа, які гуртують спільноти, на Карті медійних спільнот на момент запуску; список поповнюється. <a href="https://news.promedia.report/article/karta-mediinykh-spilnot-ukrainy">Про карту</a></p></div>
+  <div class="res"><b>Щомісяця</b><p>оновлюємо Атлас медіа за даними Реєстру суб'єктів у сфері медіа Нацради. <a href="https://news.promedia.report/article/atlas-media-instrument-dlia-doslidzhennia-zareiestrovanykh-media">Про Атлас</a></p></div>
+  <div class="res"><b>4</b><p>воркшопи для журналістів та активістів за 2026 рік; останній — AI &amp; Automation Lab 2.0 з IWPR. <a href="https://news.promedia.report/article/promedia-provela-navchannia-zi-shtuchnoho-intelektu-ta-avtomatyzatsii-dlia-zhurn">Як це було</a></p></div>
+ </div>
+</div></section>
+
+<section id="projects" style="padding-top:0"><div class="wrap">
+ <h2 class="eyebrow">Ключові проєкти</h2>
+ <div class="proj-grid">
+  <a class="proj" href="https://atlas.promedia.report/"><small>Триває · з вересня 2026</small><b>Атлас медіа</b><span>Аналітичний інструмент для дослідження зареєстрованих в Україні медіа на основі відкритих даних Нацради.</span></a>
+  <a class="proj" href="https://projects.promedia.report/project/journalism-program-ranking"><small>Триває · з липня 2026</small><b>Рейтинг журфаків України</b><span>Інтерактивне порівняння університетів за кількістю заяв і середнім конкурсним балом вступників.</span></a>
+  <a class="proj" href="https://projects.promedia.report/project/map-of-ukrainian-media-communities"><small>Триває · з серпня 2026</small><b>Карта медійних спільнот</b><span>Медіа, які гуртують людей навколо себе, на одній карті.</span></a>
+  <a class="proj" href="https://irrp.org.ua/proof"><small>Серпень — жовтень 2026</small><b>Proof</b><span>Фактчекінг журналістських розслідувань на замовлення Інституту розвитку регіональної преси.</span></a>
+  <a class="proj" href="https://projects.promedia.report/project/ai-automation-lab-2-0-praktychni-shi-rishennia-dlia-media-ta-ho"><small>30 жовтня — 1 листопада 2026</small><b>AI &amp; Automation Lab 2.0</b><span>Навчання з практичних ШІ-рішень для медіа та громадських організацій на запрошення IWPR.</span></a>
+  <a class="proj" href="https://santa.promedia.report/"><small>Триває · з листопада 2026</small><b>«Таємний Санта»</b><span>Безкоштовний цифровий інструмент для розподілених команд: ми зробили його для себе й відкрили для всіх.</span></a>
+ </div>
+ <p style="margin:24px 0 0"><a style="font-weight:700;text-decoration:none;border-bottom:1px solid var(--accent)" href="https://projects.promedia.report/">Усі проєкти →</a></p>
+</div></section>
+
+<section id="history" style="padding-top:0"><div class="wrap">
  <h2 class="eyebrow">Історія</h2>
  <ol class="tl">
-  <li class="key"><time>2019</time><div><h3>Розсилка ProMedia Report</h3><p>Журналісти Андрій Яніцький та Анна Родічкіна запускають розсилку про медіа та комунікації.</p></div></li>
-  <li><time>2025</time><div><h3>YouTube-проєкт</h3><p>Розсилка перетворюється на відеопроєкт про медіа на YouTube.</p></div></li>
-  <li class="key"><time>Літо 2025</time><div><h3>Громадська організація «ПроМедіа»</h3><p>До Андрія та Анни приєднуються Катерина Грищенко й Анастасія Сімонова. Разом вони засновують громадську організацію, щоб розвивати українські медіа та комунікації.</p></div></li>
-  <li><time>Липень 2026</time><div><h3>Рейтинг журфаків України</h3><p>Перший в Україні інтерактивний рейтинг, що дозволяє порівнювати університети за кількістю заяв і середнім конкурсним балом вступників на журналістику. <a class="more" href="https://news.promedia.report/article/go-promedia-zapustila-rejting-zhurfakiv-ukrayini">Новина про запуск</a></p></div></li>
-  <li><time>Липень 2026</time><div><h3>3,9 млрд грн для Суспільного</h3><p>Закликаємо уряд і парламент передбачити в бюджеті 2027 року фінансування Суспільного мовлення в обсязі, якого вимагає закон. <a class="more" href="https://news.promedia.report/article/promedia-calls-to-allocate-uah-39-billion-to-suspilne-2027">Звернення</a></p></div></li>
-  <li><time>Серпень 2026</time><div><h3>Карта медійних спільнот України</h3><p>Інтерактивна карта медіа, які гуртують навколо себе спільноти: на старті — 51 видання. <a class="more" href="https://news.promedia.report/article/karta-mediinykh-spilnot-ukrainy">Новина про запуск</a></p></div></li>
-  <li><time>Серпень — жовтень 2026</time><div><h3>Proof</h3><p>Сервіс фактчекінгу журналістських розслідувань на замовлення Інституту розвитку регіональної преси за підтримки International Media Support.</p></div></li>
-  <li><time>Вересень 2026</time><div><h3>Атлас медіа</h3><p>Онлайн-інструмент для дослідження медіа з Реєстру суб'єктів у сфері медіа Нацради; оновлюється щомісяця. <a class="more" href="https://news.promedia.report/article/atlas-media-instrument-dlia-doslidzhennia-zareiestrovanykh-media">Новина про запуск</a></p></div></li>
-  <li><time>Жовтень 2026</time><div><h3>Donbas Media Forum</h3><p>Беремо участь у форумі «Я_МЕДІА: людина — для людини — про людину». <a class="more" href="https://news.promedia.report/article/promedia-bere-uchast-u-donbas-media-forum-2026">Детальніше</a></p></div></li>
-  <li><time>30 жовтня — 1 листопада 2026</time><div><h3>AI &amp; Automation Lab 2.0</h3><p>Четвертий за рік воркшоп «ПроМедіа» про штучний інтелект і автоматизацію для журналістів та активістів — на запрошення IWPR, за підтримки Norad. <a class="more" href="https://news.promedia.report/article/promedia-provela-navchannia-zi-shtuchnoho-intelektu-ta-avtomatyzatsii-dlia-zhurn">Як це було</a></p></div></li>
-  <li><time>Листопад 2026</time><div><h3>«Таємний Санта»</h3><p>Безкоштовний онлайн-сервіс для анонімного обміну подарунками для команд, які працюють дистанційно. <a class="more" href="https://news.promedia.report/article/promedia-zapustyla-onlain-servis-taiemnyi-santa">Прес-реліз</a></p></div></li>
+  <li class="key"><time>2019</time><div><h3>Розсилка ProMedia Report</h3><p>Журналісти Андрій Яніцький та Анна Родічкіна запускають розсилку про медіа та комунікації — з неї починається бренд ProMedia.</p></div></li>
+  <li><time>2025</time><div><h3>Відеопроєкт на YouTube</h3><p>На основі розсилки з'являється відеопроєкт про медіа на YouTube.</p></div></li>
+  <li class="key"><time>Літо 2025</time><div><h3>Громадська організація «ПроМедіа»</h3><p>До Андрія та Анни приєднуються Катерина Грищенко й Анастасія Сімонова. Четверо однодумців реєструють громадську організацію.</p></div></li>
+  <li><time>Липень — вересень 2026</time><div><h3>Перші власні інструменти</h3><p>Запускаємо Рейтинг журфаків України, Карту медійних спільнот і Атлас медіа.</p></div></li>
+  <li><time>2026</time><div><h3>Навчання та замовлення від партнерів</h3><p>Проводимо чотири воркшопи для журналістів і активістів, виконуємо проєкти на замовлення IWPR та ІРРП.</p></div></li>
  </ol>
 </div></section>
 
-<section id="team"><div class="wrap">
+<section id="team" style="padding-top:0"><div class="wrap">
  <h2 class="eyebrow">Команда</h2>
- <p class="team-intro">Четверо співзасновників із досвідом у журналістиці, редагуванні, комунікаціях, відео та управлінні медіа.</p>
+ <p class="team-intro">Четверо співзасновників із досвідом у журналістиці, редагуванні, комунікаціях, відеовиробництві та управлінні медіа.</p>
  <div class="team-grid">
   <article class="person"><img src="/assets/team/yanitskyi-andriy.jpg" alt="Андрій Яніцький"><h3>Андрій Яніцький</h3><p class="role">Голова правління · стратегія та партнерства</p><p>Відповідає за організаційний розвиток і фандрейзинг. Медіа- та комунікаційний менеджер. Раніше очолював комунікації у Державній службі зайнятості, керував розвитком цифрових платформ на телеканалі «Еспресо», очолював Центр журналістики Київської школи економіки та Київську незалежну медіапрофспілку.</p></article>
   <article class="person"><img src="/assets/team/simonova-anastasia.jpg" alt="Анастасія Сімонова"><h3>Анастасія Сімонова</h3><p class="role">Політики та стандарти</p><p>Відповідає за організаційний розвиток і дотримання етичних та професійних стандартів. Редакторка і журналістка з 20-річним досвідом. Керувала благодійними проєктами та великими подіями. Співзасновниця Military Film Week в Одесі.</p></article>
-  <article class="person"><img src="/assets/team/rodichkina-anna.jpg" alt="Анна Родічкіна"><h3>Анна Родічкіна</h3><p class="role">Сторітелінг і тексти</p><p>Відповідає за копірайтинг і сторітелінг у команді. Журналістка й редакторка з досвідом роботи з темами бізнесу, економіки та фінансів, зокрема у Forbes Ukraine та Interfax-Ukraine.</p></article>
-  <article class="person"><img src="/assets/team/gryshchenko-kateryna.jpg" alt="Катерина Грищенко"><h3>Катерина Грищенко</h3><p class="role">Відео та контент</p><p>Працює з SMM і креативним відеоконтентом. Має досвід у комунікаціях, відеозйомці та дизайні — від розробки візуального стилю до роботи з людськими історіями.</p></article>
+  <article class="person"><img src="/assets/team/rodichkina-anna.jpg" alt="Анна Родічкіна"><h3>Анна Родічкіна</h3><p class="role">Сторітелінг і тексти</p><p>Відповідає за тексти та сторітелінг у команді. Журналістка й редакторка з досвідом роботи з темами бізнесу, економіки та фінансів, зокрема у Forbes Ukraine та Interfax-Ukraine.</p></article>
+  <article class="person"><img src="/assets/team/gryshchenko-kateryna.jpg" alt="Катерина Грищенко"><h3>Катерина Грищенко</h3><p class="role">Відео та контент</p><p>Відповідає за соціальні мережі та створення відеоконтенту. Має досвід у комунікаціях, відеозйомці та дизайні — від розробки візуального стилю до роботи з людськими історіями.</p></article>
  </div>
 </div></section>
 
 <section class="voices" id="voices"><div class="wrap">
- <h2 class="eyebrow">Що ми кажемо</h2>
+ <h2 class="eyebrow">Позиції та публікації</h2>
  <div class="q-grid">
-  <div class="q"><blockquote>За ці гроші можна було б підтримати сотні незалежних медіа по всій країні.</blockquote><p class="src">Андрій Яніцький — про 738 млн грн на телемарафон «Єдині новини», колонка для LIGA.net. <a href="https://news.promedia.report/article/minkult-ukrainy-proponuie-zbilshyty-pidtrymku-pryfrontovykh-media">Новина</a></p></div>
-  <div class="q"><blockquote>Ми хотіли перетворити великий масив відкритих державних даних на зручний інструмент для журналістів, дослідників і медіаменеджерів.</blockquote><p class="src">Андрій Яніцький — про «Атлас медіа». <a href="https://news.promedia.report/article/atlas-media-instrument-dlia-doslidzhennia-zareiestrovanykh-media">Новина</a></p></div>
+  <div class="q"><blockquote>За ці гроші можна було б підтримати сотні незалежних медіа по всій країні.</blockquote><p class="src">Андрій Яніцький, голова ГО «ПроМедіа», — про 738 млн грн на телемарафон «Єдині новини», колонка для LIGA.net. <a href="https://news.promedia.report/article/minkult-ukrainy-proponuie-zbilshyty-pidtrymku-pryfrontovykh-media">Новина</a></p></div>
   <div class="q"><blockquote>Спільноти медіа перестали бути чимось рідкісним та експериментальним. Сьогодні це один з варіантів норми, одне з джерел доходів для медіа.</blockquote><p class="src">Андрій Яніцький — про Карту медійних спільнот. <a href="https://news.promedia.report/article/karta-mediinykh-spilnot-ukrainy">Новина</a></p></div>
-  <div class="q"><blockquote>Рейтинг журфаків буде корисним для вступників, які обирають, де вчитися. Для викладачів, які обирають, де працювати.</blockquote><p class="src">Андрій Яніцький — про Рейтинг журфаків України. <a href="https://news.promedia.report/article/go-promedia-zapustila-rejting-zhurfakiv-ukrayini">Новина</a></p></div>
-  <div class="q"><blockquote>І можна не лише запізнитися — можна просто загинути дорогою.</blockquote><p class="src">Андрій Яніцький — про репортерські поїздки воєнної зими, інтерв'ю The Fix. <a href="https://news.promedia.report/article/ahead-of-ukraines-most-difficult-winter-ukrainian-media-are-trying-to-survive-an">Стаття</a></p></div>
-  <div class="q"><blockquote>Серед наших активістів є люди з Одеси, Коломиї, Миколаєва, Львова, Києва та області, тому пограти в «Таємного Санту» — ще той виклик.</blockquote><p class="src">Андрій Яніцький — про те, звідки взялася ідея сервісу. <a href="https://news.promedia.report/article/promedia-zapustyla-onlain-servis-taiemnyi-santa">Прес-реліз</a></p></div>
  </div>
  <ul class="pubs">
   <li><time>10.11.2026</time><a href="https://news.promedia.report/article/ahead-of-ukraines-most-difficult-winter-ukrainian-media-are-trying-to-survive-an">Напередодні суворої зими. Як медіа працюють в Україні<span>Розмова з Андрієм Яніцьким для The Fix Media</span></a></li>
   <li><time>26.10.2026</time><a href="https://news.promedia.report/article/andrii-ianitskyi-koly-media-breshe-tse-mozhe-koshtuvaty-zhyttia">«Коли медіа бреше, це може коштувати життя»<span>Інтерв'ю «Українській Службі Інформації»</span></a></li>
+  <li><time>25.07.2026</time><a href="https://news.promedia.report/article/promedia-calls-to-allocate-uah-39-billion-to-suspilne-2027">Закликаємо передбачити 3,9 млрд грн на Суспільне мовлення у 2027 році<span>Звернення ГО «ПроМедіа» до уряду й парламенту</span></a></li>
   <li><time>25.07.2026</time><a href="https://news.promedia.report/article/ukrayinski-media-demonstruyut-vinahidlivist-pid-podvijnim-tiskom">Українські медіа демонструють винахідливість під подвійним тиском<span>Колонка Андрія Яніцького для Press Emblem Campaign</span></a></li>
  </ul>
 </div></section>
 
-<section id="projects"><div class="wrap">
- <h2 class="eyebrow">Проєкти</h2>
- <div class="proj-grid">
-  <a class="proj" href="https://atlas.promedia.report/"><small>Триває · з вересня 2026</small><b>Атлас медіа</b><span>Усе про зареєстровані медіа в Україні на основі відкритих даних Нацради.</span></a>
-  <a class="proj" href="https://projects.promedia.report/project/journalism-program-ranking"><small>Триває · з липня 2026</small><b>Рейтинг журфаків України</b><span>Порівняння університетів за заявами вступників і конкурсним балом.</span></a>
-  <a class="proj" href="https://projects.promedia.report/project/map-of-ukrainian-media-communities"><small>Триває · з серпня 2026</small><b>Карта медійних спільнот</b><span>Медіа, які гуртують людей навколо себе, на одній карті.</span></a>
-  <a class="proj" href="https://irrp.org.ua/proof"><small>Серпень — жовтень 2026</small><b>Proof</b><span>Фактчекінг журналістських розслідувань для ІРРП за підтримки IMS.</span></a>
-  <a class="proj" href="https://projects.promedia.report/project/ai-automation-lab-2-0-praktychni-shi-rishennia-dlia-media-ta-ho"><small>30 жовтня — 1 листопада 2026</small><b>AI &amp; Automation Lab 2.0</b><span>Практичні ШІ-рішення для медіа та ГО з IWPR, за підтримки Norad.</span></a>
-  <a class="proj" href="https://santa.promedia.report/"><small>Триває · з листопада 2026</small><b>«Таємний Санта»</b><span>Безкоштовний обмін подарунками для розподілених команд.</span></a>
- </div>
- <p style="margin:24px 0 0"><a class="more" style="font-weight:700;text-decoration:none;border-bottom:1px solid var(--accent)" href="https://projects.promedia.report/">Усі проєкти →</a></p>
-</div></section>
-
-<section id="partners" style="padding-top:0"><div class="wrap">
+<section id="partners"><div class="wrap">
  <h2 class="eyebrow">Партнери та донори</h2>
+ <p class="sub">Замовники наших проєктів</p>
  <div class="partners">
-  <a href="https://iwpr.net/">Інститут висвітлення війни та миру (IWPR)</a>
-  <a href="https://irrp.org.ua/about-rpdi-eng/">Інститут розвитку регіональної преси</a>
-  <a href="https://recovery.win/">Recovery Window</a>
+  <a href="https://iwpr.net/">Інститут висвітлення війни та миру (IWPR) <span class="role">· AI &amp; Automation Lab</span></a>
+  <a href="https://irrp.org.ua/about-rpdi-eng/">Інститут розвитку регіональної преси <span class="role">· Proof</span></a>
+ </div>
+ <p class="sub">Донори проєктів, у яких ми працювали</p>
+ <div class="partners">
+  <a href="https://www.norad.no/en/">Norad <span class="role">· AI &amp; Automation Lab</span></a>
+  <a href="https://www.mediasupport.org/">International Media Support <span class="role">· Proof</span></a>
+ </div>
+ <p class="sub">Партнери</p>
+ <div class="partners">
   <a href="https://nsju.org/">Національна спілка журналістів України</a>
   <a href="https://lvivmediaforum.com/">Lviv Media Forum</a>
+  <a href="https://recovery.win/">Recovery Window</a>
  </div>
 </div></section>
 
@@ -249,7 +280,7 @@ footer a{font-weight:700;text-decoration:none}
    <tr><td>E-mail</td><td><a href="mailto:info@promedia.report">info@promedia.report</a></td></tr>
   </table>
   <div>
-   <p>Пропонуєте партнерство, хочете замовити дослідження чи навчання для команди, або маєте ідею для спільного проєкту — напишіть нам.</p>
+   <p>Хочете запропонувати партнерство, замовити дослідження чи навчання або обговорити спільний проєкт? Напишіть нам.</p>
    <a class="btn" href="mailto:info@promedia.report">Написати нам</a>
   </div>
  </div>
