@@ -1470,7 +1470,8 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .feed-lead-media--portrait .feed-lead-photo { position: relative; width: auto; max-width: 100%; margin: 0 auto; object-fit: contain; }
 .feed-lead-title { margin: 0; font-family: var(--sans); font-size: clamp(22px, 2.2vw, 30px); line-height: 1.18; font-weight: 700; }
 .feed-lead-title a, .feed-lead-item a { color: var(--ink); text-decoration: none; }
-.feed-lead-title a:hover, .feed-lead-item a:hover { color: #b36a00; }
+/* Наведення — лише там, де є миша: на телефоні «липкий» hover фарбував прочитану новину в помаранчевий. */
+@media (hover: hover) { .feed-lead-title a:hover, .feed-lead-item a:hover { color: #b36a00; } }
 .feed-lead-title--important a, .feed-lead-item--important a { color: #b36a00; }
 .feed-lead-excerpt { margin: 0; font-size: 16px; line-height: 1.6; color: #44435e; max-width: 720px; }
 .feed-lead-meta { margin: 0; font-size: 12px; color: #6b6a85; }
