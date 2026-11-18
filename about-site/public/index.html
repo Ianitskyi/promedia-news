@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Про нас — ГО «ПроМедіа»</title>
+<meta name="description" content="ГО «ПроМедіа» розвиває українські медіа та комунікації й посилює українську демократію. Хто ми, що робимо, наша історія, команда та проєкти.">
+<meta property="og:title" content="Про нас — ГО «ПроМедіа»">
+<meta property="og:description" content="Посилюємо медіа та громадські організації: розвиток медіа, дослідження, комунікації, навчання.">
+<meta property="og:image" content="https://news.promedia.report/img/og-share.png">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d0c5c;--ink2:#3d3d78;--muted:#6b6b93;--accent:#ffac33;--accent-d:#b36a00;--paper:#f5f2ea;--line:#e4e0d4;--white:#fff;--wrap:1120px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Montserrat,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px}
+.eyebrow{display:flex;align-items:center;gap:14px;margin:0 0 22px;font-size:13px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.eyebrow::before{content:"";width:26px;height:3px;background:var(--accent);flex:none}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+h1,h2,h3{line-height:1.15;margin:0}
+section{padding:72px 0}
+.top{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.97);border-bottom:1px solid rgba(13,12,92,.08)}
+.top .wrap{display:flex;align-items:center;gap:24px;height:68px}
+.top img{height:38px;width:auto;display:block}
+.top nav{margin-left:auto;display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap}
+.top nav a:hover{color:var(--accent-d)}
+.hero{background:var(--ink);color:#fff;padding:96px 0 84px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;border:56px solid rgba(255,172,51,.14)}
+.hero h1{font-size:clamp(34px,5.4vw,60px);font-weight:800;max-width:820px;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:clamp(17px,2vw,21px);max-width:720px;margin:24px 0 0;color:rgba(255,255,255,.86)}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:56px;max-width:860px;position:relative;z-index:1}
+.facts div{border-top:1px solid rgba(255,255,255,.25);padding-top:14px}
+.facts b{display:block;font-size:34px;font-weight:800;color:var(--accent);line-height:1.1}
+.facts span{font-size:14px;color:rgba(255,255,255,.75)}
+.who{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+.who p{font-size:18px;margin:0 0 16px}
+.pull{background:var(--paper);padding:32px 34px;border-left:4px solid var(--accent)}
+.pull q{display:block;font-size:24px;font-weight:700;line-height:1.35;quotes:"«" "»"}
+.pull cite{display:block;margin-top:16px;font-style:normal;font-size:14px;color:var(--muted)}
+.pull cite a{font-weight:700;color:var(--ink)}
+.dirs{background:var(--ink);color:#fff}
+.dirs .eyebrow::after{background:rgba(255,255,255,.2)}
+.dirs-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.dirs-grid div{border-top:1px solid rgba(255,255,255,.25);padding-top:18px}
+.dirs-grid h3{font-size:19px;margin-bottom:10px}
+.dirs-grid div:first-child h3{color:var(--accent)}
+.dirs-grid p{margin:0;font-size:15px;line-height:1.55;color:rgba(255,255,255,.82)}
+.tl{position:relative;margin:0;padding:0;list-style:none}
+.tl::before{content:"";position:absolute;left:150px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.tl li{display:grid;grid-template-columns:150px 1fr;gap:0 36px;position:relative;padding:0 0 34px}
+.tl li::before{content:"";position:absolute;left:144px;top:7px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--ink)}
+.tl li.key::before{background:var(--accent);border-color:var(--accent)}
+.tl time{font-size:14px;font-weight:800;color:var(--muted);text-align:right;padding-right:30px;padding-top:2px;line-height:1.35}
+.tl h3{font-size:19px;margin-bottom:6px}
+.tl p{margin:0;font-size:15.5px;color:var(--ink2)}
+.tl a.more{font-size:14px;font-weight:700;text-decoration:none;color:var(--ink);border-bottom:1px solid var(--accent)}
+.tl .todo{display:inline-block;margin-left:6px;font-size:12px;font-weight:700;color:var(--accent-d);background:#fff3df;padding:1px 8px;border-radius:4px}
+.team-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.person img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:8px;display:block;background:var(--paper)}
+.person h3{font-size:18px;margin:16px 0 2px}
+.person .role{font-size:14px;font-weight:700;color:var(--accent-d);margin:0 0 10px}
+.person p{font-size:14.5px;line-height:1.55;margin:0;color:var(--ink2)}
+.team-intro{font-size:18px;max-width:760px;margin:0 0 36px}
+.voices{background:var(--paper)}
+.q-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.q{background:#fff;padding:26px 28px;border-radius:8px;display:flex;flex-direction:column}
+.q blockquote{margin:0;font-size:17px;line-height:1.5;font-weight:500}
+.q blockquote::before{content:"“";display:block;font-size:44px;line-height:.6;color:var(--accent);font-weight:800;margin-bottom:8px}
+.q .src{margin-top:auto;padding-top:16px;font-size:13.5px;color:var(--muted)}
+.q .src a{color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--accent)}
+.pubs{margin:40px 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.pubs li{display:flex;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.pubs time{flex:none;width:110px;font-size:13px;font-weight:700;color:var(--muted)}
+.pubs a{font-weight:700;text-decoration:none}
+.pubs a:hover{color:var(--accent-d)}
+.pubs span{display:block;font-size:14px;color:var(--muted);font-weight:400}
+.proj-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.proj{border:1px solid var(--line);border-radius:8px;padding:22px 24px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:border-color .15s}
+.proj:hover{border-color:var(--ink)}
+.proj small{font-size:12.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.proj b{font-size:17px;line-height:1.3}
+.proj span{font-size:14px;color:var(--ink2);line-height:1.5}
+.partners{display:flex;flex-wrap:wrap;gap:12px}
+.partners a{padding:10px 18px;border:1px solid var(--line);border-radius:999px;font-size:14.5px;font-weight:600;text-decoration:none}
+.partners a:hover{border-color:var(--ink)}
+.org{background:var(--ink);color:#fff}
+.org .eyebrow::after{background:rgba(255,255,255,.2)}
+.org-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.org table{width:100%;border-collapse:collapse;font-size:15.5px}
+.org td{padding:12px 0;border-bottom:1px solid rgba(255,255,255,.18);vertical-align:top}
+.org td:first-child{width:42%;color:rgba(255,255,255,.65);padding-right:16px}
+.org a{color:var(--accent)}.org a.btn{color:var(--ink)}
+.org p{margin:0 0 14px;font-size:16px;color:rgba(255,255,255,.85)}
+.btn{display:inline-block;margin-top:10px;background:var(--accent);color:var(--ink);font-weight:800;text-decoration:none;padding:13px 24px;border-radius:6px}
+footer{padding:28px 0;font-size:13.5px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{font-weight:700;text-decoration:none}
+@media(max-width:991px){
+ .facts,.dirs-grid,.team-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .who,.org-grid{grid-template-columns:1fr;gap:36px}
+ .proj-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+ section{padding:52px 0}
+ .hero{padding:64px 0 56px}
+ .top nav{display:none}
+ .q-grid,.proj-grid,.dirs-grid{grid-template-columns:1fr}
+ .team-grid{grid-template-columns:1fr 1fr;gap:20px}
+ .tl::before{left:7px}
+ .tl li{grid-template-columns:1fr;padding-left:34px}
+ .tl li::before{left:1px}
+ .tl time{text-align:left;padding:0 0 4px}
+ .pubs li{flex-direction:column;gap:2px}
+ .pull q{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<header class="top"><div class="wrap">
+ <a href="https://promedia.report/" aria-label="ПроМедіа — на головну"><img src="/assets/logo.svg" alt="ПроМедіа"></a>
+ <nav aria-label="Розділи сторінки">
+  <a href="#who">Хто ми</a><a href="#directions">Напрями</a><a href="#history">Історія</a><a href="#team">Команда</a><a href="#voices">Що ми кажемо</a><a href="#projects">Проєкти</a><a href="#details">Реквізити</a>
+ </nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+ <h1>Посилюємо <em>медіа</em> та громадські організації</h1>
+ <p>«ПроМедіа» — громадська організація журналістів і комунікаційників. Ми розвиваємо українські медіа та комунікації, щоб посилювати українську демократію.</p>
+ <div class="facts">
+  <div><b>2019</b><span>перша розсилка ProMedia Report</span></div>
+  <div><b>2025</b><span>заснування громадської організації</span></div>
+  <div><b>4</b><span>співзасновники</span></div>
+  <div><b>6</b><span>проєктів у 2026 році</span></div>
+ </div>
+</div></section>
+
+<section id="who"><div class="wrap">
+ <h2 class="eyebrow">Хто ми</h2>
+ <div class="who">
+  <div>
+   <p>Ми почали як розсилка про медіа та комунікації, яку у 2019 році запустили журналісти Андрій Яніцький та Анна Родічкіна. З часом вона стала YouTube-проєктом, а влітку 2025 року переросла в громадську організацію.</p>
+   <p>Сьогодні «ПроМедіа» працює з незалежними й регіональними медіа, громадськими організаціями та донорами. Ми досліджуємо медіаринок, робимо відкриті інструменти на основі даних, навчаємо команди й виступаємо за державну політику, яка підтримує незалежну журналістику.</p>
+   <p>Наші активісти живуть і працюють в Одесі, Коломиї, Миколаєві, Львові, Києві та області.</p>
+  </div>
+  <figure class="pull" style="margin:0">
+   <q>Демократія неможлива без медіа. Медіа — це інфраструктура демократії.</q>
+   <cite>Андрій Яніцький, голова ГО «ПроМедіа», в інтерв'ю «Українській Службі Інформації». <a href="https://news.promedia.report/article/andrii-ianitskyi-koly-media-breshe-tse-mozhe-koshtuvaty-zhyttia">Читати інтерв'ю →</a></cite>
+  </figure>
+ </div>
+</div></section>
+
+<section class="dirs" id="directions"><div class="wrap">
+ <h2 class="eyebrow">Що робимо</h2>
+ <div class="dirs-grid">
+  <div><h3>Розвиток медіа</h3><p>Допомагаємо незалежним медіа краще розуміти себе, аудиторії, розвивати продукти, будувати спільноти та посилювати організаційну стійкість.</p></div>
+  <div><h3>Дослідження</h3><p>Досліджуємо медіаринок, аудиторії, контент і комунікації, щоб рішення спиралися на дані, а не інтуїцію.</p></div>
+  <div><h3>Комунікації</h3><p>Допомагаємо громадським організаціям і суспільно важливим ініціативам перетворювати складну роботу на зрозумілі, сильні та етичні комунікації.</p></div>
+  <div><h3>Навчання</h3><p>Створюємо академічні та практичні навчальні програми: читаємо лекції, проводимо семінари, організовуємо ситуаційні ігри та запускаємо лабораторії для розвитку команд.</p></div>
+ </div>
+</div></section>
+
+<section id="history"><div class="wrap">
+ <h2 class="eyebrow">Історія</h2>
+ <ol class="tl">
+  <li class="key"><time>2019</time><div><h3>Розсилка ProMedia Report</h3><p>Журналісти Андрій Яніцький та Анна Родічкіна запускають розсилку про медіа та комунікації.</p></div></li>
+  <li><time>Згодом</time><div><h3>YouTube-проєкт</h3><p>Розсилка перетворюється на відеопроєкт про медіа на YouTube. <span class="todo">уточнити рік</span></p></div></li>
+  <li class="key"><time>Літо 2025</time><div><h3>Громадська організація «ПроМедіа»</h3><p>До Андрія та Анни приєднуються Катерина Грищенко й Анастасія Сімонова. Разом вони засновують громадську організацію, щоб розвивати українські медіа та комунікації.</p></div></li>
+  <li><time>Липень 2026</time><div><h3>Рейтинг журфаків України</h3><p>Перший в Україні інтерактивний рейтинг, що дозволяє порівнювати університети за кількістю заяв і середнім конкурсним балом вступників на журналістику. <a class="more" href="https://news.promedia.report/article/go-promedia-zapustila-rejting-zhurfakiv-ukrayini">Новина про запуск</a></p></div></li>
+  <li><time>Липень 2026</time><div><h3>3,9 млрд грн для Суспільного</h3><p>Закликаємо уряд і парламент передбачити в бюджеті 2027 року фінансування Суспільного мовлення в обсязі, якого вимагає закон. <a class="more" href="https://news.promedia.report/article/promedia-calls-to-allocate-uah-39-billion-to-suspilne-2027">Звернення</a></p></div></li>
+  <li><time>Серпень 2026</time><div><h3>Карта медійних спільнот України</h3><p>Інтерактивна карта медіа, які гуртують навколо себе спільноти: на старті — 51 видання. <a class="more" href="https://news.promedia.report/article/karta-mediinykh-spilnot-ukrainy">Новина про запуск</a></p></div></li>
+  <li><time>Серпень — жовтень 2026</time><div><h3>Proof</h3><p>Сервіс фактчекінгу журналістських розслідувань на замовлення Інституту розвитку регіональної преси за підтримки International Media Support.</p></div></li>
+  <li><time>Вересень 2026</time><div><h3>Атлас медіа</h3><p>Онлайн-інструмент для дослідження медіа з Реєстру суб'єктів у сфері медіа Нацради; оновлюється щомісяця. <a class="more" href="https://news.promedia.report/article/atlas-media-instrument-dlia-doslidzhennia-zareiestrovanykh-media">Новина про запуск</a></p></div></li>
+  <li><time>Жовтень 2026</time><div><h3>Donbas Media Forum</h3><p>Беремо участь у форумі «Я_МЕДІА: людина — для людини — про людину». <a class="more" href="https://news.promedia.report/article/promedia-bere-uchast-u-donbas-media-forum-2026">Детальніше</a></p></div></li>
+  <li><time>30 жовтня — 1 листопада 2026</time><div><h3>AI &amp; Automation Lab 2.0</h3><p>Четвертий за рік воркшоп «ПроМедіа» про штучний інтелект і автоматизацію для журналістів та активістів — на запрошення IWPR, за підтримки Norad. <a class="more" href="https://news.promedia.report/article/promedia-provela-navchannia-zi-shtuchnoho-intelektu-ta-avtomatyzatsii-dlia-zhurn">Як це було</a></p></div></li>
+  <li><time>Листопад 2026</time><div><h3>«Таємний Санта»</h3><p>Безкоштовний онлайн-сервіс для анонімного обміну подарунками для команд, які працюють дистанційно. <a class="more" href="https://news.promedia.report/article/promedia-zapustyla-onlain-servis-taiemnyi-santa">Прес-реліз</a></p></div></li>
+ </ol>
+</div></section>
+
+<section id="team"><div class="wrap">
+ <h2 class="eyebrow">Команда</h2>
+ <p class="team-intro">Четверо співзасновників із досвідом у журналістиці, редагуванні, комунікаціях, відео та управлінні медіа.</p>
+ <div class="team-grid">
+  <article class="person"><img src="/assets/team/yanitskyi-andriy.jpg" alt="Андрій Яніцький"><h3>Андрій Яніцький</h3><p class="role">Голова правління · стратегія та партнерства</p><p>Відповідає за організаційний розвиток і фандрейзинг. Медіа- та комунікаційний менеджер. Раніше очолював комунікації у Державній службі зайнятості, керував розвитком цифрових платформ на телеканалі «Еспресо», очолював Центр журналістики Київської школи економіки та Київську незалежну медіапрофспілку.</p></article>
+  <article class="person"><img src="/assets/team/simonova-anastasia.jpg" alt="Анастасія Сімонова"><h3>Анастасія Сімонова</h3><p class="role">Політики та стандарти</p><p>Відповідає за організаційний розвиток і дотримання етичних та професійних стандартів. Редакторка і журналістка з 20-річним досвідом. Керувала благодійними проєктами та великими подіями. Співзасновниця Military Film Week в Одесі.</p></article>
+  <article class="person"><img src="/assets/team/rodichkina-anna.jpg" alt="Анна Родічкіна"><h3>Анна Родічкіна</h3><p class="role">Сторітелінг і тексти</p><p>Відповідає за копірайтинг і сторітелінг у команді. Журналістка й редакторка з досвідом роботи з темами бізнесу, економіки та фінансів, зокрема у Forbes Ukraine та Interfax-Ukraine.</p></article>
+  <article class="person"><img src="/assets/team/gryshchenko-kateryna.jpg" alt="Катерина Грищенко"><h3>Катерина Грищенко</h3><p class="role">Відео та контент</p><p>Працює з SMM і креативним відеоконтентом. Має досвід у комунікаціях, відеозйомці та дизайні — від розробки візуального стилю до роботи з людськими історіями.</p></article>
+ </div>
+</div></section>
+
+<section class="voices" id="voices"><div class="wrap">
+ <h2 class="eyebrow">Що ми кажемо</h2>
+ <div class="q-grid">
+  <div class="q"><blockquote>За ці гроші можна було б підтримати сотні незалежних медіа по всій країні.</blockquote><p class="src">Андрій Яніцький — про 738 млн грн на телемарафон «Єдині новини», колонка для LIGA.net. <a href="https://news.promedia.report/article/minkult-ukrainy-proponuie-zbilshyty-pidtrymku-pryfrontovykh-media">Новина</a></p></div>
+  <div class="q"><blockquote>Ми хотіли перетворити великий масив відкритих державних даних на зручний інструмент для журналістів, дослідників і медіаменеджерів.</blockquote><p class="src">Андрій Яніцький — про «Атлас медіа». <a href="https://news.promedia.report/article/atlas-media-instrument-dlia-doslidzhennia-zareiestrovanykh-media">Новина</a></p></div>
+  <div class="q"><blockquote>Спільноти медіа перестали бути чимось рідкісним та експериментальним. Сьогодні це один з варіантів норми, одне з джерел доходів для медіа.</blockquote><p class="src">Андрій Яніцький — про Карту медійних спільнот. <a href="https://news.promedia.report/article/karta-mediinykh-spilnot-ukrainy">Новина</a></p></div>
+  <div class="q"><blockquote>Рейтинг журфаків буде корисним для вступників, які обирають, де вчитися. Для викладачів, які обирають, де працювати.</blockquote><p class="src">Андрій Яніцький — про Рейтинг журфаків України. <a href="https://news.promedia.report/article/go-promedia-zapustila-rejting-zhurfakiv-ukrayini">Новина</a></p></div>
+  <div class="q"><blockquote>І можна не лише запізнитися — можна просто загинути дорогою.</blockquote><p class="src">Андрій Яніцький — про репортерські поїздки воєнної зими, інтерв'ю The Fix. <a href="https://news.promedia.report/article/ahead-of-ukraines-most-difficult-winter-ukrainian-media-are-trying-to-survive-an">Стаття</a></p></div>
+  <div class="q"><blockquote>Серед наших активістів є люди з Одеси, Коломиї, Миколаєва, Львова, Києва та області, тому пограти в «Таємного Санту» — ще той виклик.</blockquote><p class="src">Андрій Яніцький — про те, звідки взялася ідея сервісу. <a href="https://news.promedia.report/article/promedia-zapustyla-onlain-servis-taiemnyi-santa">Прес-реліз</a></p></div>
+ </div>
+ <ul class="pubs">
+  <li><time>10.11.2026</time><a href="https://news.promedia.report/article/ahead-of-ukraines-most-difficult-winter-ukrainian-media-are-trying-to-survive-an">Напередодні суворої зими. Як медіа працюють в Україні<span>Розмова з Андрієм Яніцьким для The Fix Media</span></a></li>
+  <li><time>26.10.2026</time><a href="https://news.promedia.report/article/andrii-ianitskyi-koly-media-breshe-tse-mozhe-koshtuvaty-zhyttia">«Коли медіа бреше, це може коштувати життя»<span>Інтерв'ю «Українській Службі Інформації»</span></a></li>
+  <li><time>25.07.2026</time><a href="https://news.promedia.report/article/ukrayinski-media-demonstruyut-vinahidlivist-pid-podvijnim-tiskom">Українські медіа демонструють винахідливість під подвійним тиском<span>Колонка Андрія Яніцького для Press Emblem Campaign</span></a></li>
+ </ul>
+</div></section>
+
+<section id="projects"><div class="wrap">
+ <h2 class="eyebrow">Проєкти</h2>
+ <div class="proj-grid">
+  <a class="proj" href="https://atlas.promedia.report/"><small>Триває · з вересня 2026</small><b>Атлас медіа</b><span>Усе про зареєстровані медіа в Україні на основі відкритих даних Нацради.</span></a>
+  <a class="proj" href="https://projects.promedia.report/project/journalism-program-ranking"><small>Триває · з липня 2026</small><b>Рейтинг журфаків України</b><span>Порівняння університетів за заявами вступників і конкурсним балом.</span></a>
+  <a class="proj" href="https://projects.promedia.report/project/map-of-ukrainian-media-communities"><small>Триває · з серпня 2026</small><b>Карта медійних спільнот</b><span>Медіа, які гуртують людей навколо себе, на одній карті.</span></a>
+  <a class="proj" href="https://irrp.org.ua/proof"><small>Серпень — жовтень 2026</small><b>Proof</b><span>Фактчекінг журналістських розслідувань для ІРРП за підтримки IMS.</span></a>
+  <a class="proj" href="https://projects.promedia.report/project/ai-automation-lab-2-0-praktychni-shi-rishennia-dlia-media-ta-ho"><small>30 жовтня — 1 листопада 2026</small><b>AI &amp; Automation Lab 2.0</b><span>Практичні ШІ-рішення для медіа та ГО з IWPR, за підтримки Norad.</span></a>
+  <a class="proj" href="https://santa.promedia.report/"><small>Триває · з листопада 2026</small><b>«Таємний Санта»</b><span>Безкоштовний обмін подарунками для розподілених команд.</span></a>
+ </div>
+ <p style="margin:24px 0 0"><a class="more" style="font-weight:700;text-decoration:none;border-bottom:1px solid var(--accent)" href="https://projects.promedia.report/">Усі проєкти →</a></p>
+</div></section>
+
+<section id="partners" style="padding-top:0"><div class="wrap">
+ <h2 class="eyebrow">Партнери та донори</h2>
+ <div class="partners">
+  <a href="https://iwpr.net/">Інститут висвітлення війни та миру (IWPR)</a>
+  <a href="https://irrp.org.ua/about-rpdi-eng/">Інститут розвитку регіональної преси</a>
+  <a href="https://recovery.win/">Recovery Window</a>
+  <a href="https://nsju.org/">Національна спілка журналістів України</a>
+  <a href="https://lvivmediaforum.com/">Lviv Media Forum</a>
+ </div>
+</div></section>
+
+<section class="org" id="details"><div class="wrap">
+ <h2 class="eyebrow">Реквізити та контакти</h2>
+ <div class="org-grid">
+  <table>
+   <tr><td>Офіційна назва</td><td>ГО «ПроМедіа»</td></tr>
+   <tr><td>Реєстраційний номер</td><td>45995408</td></tr>
+   <tr><td>Юридична адреса</td><td>вул. Володимира Самійленка 19/44, Київ, Україна, 03118</td></tr>
+   <tr><td>Голова правління</td><td>Андрій Яніцький</td></tr>
+   <tr><td>E-mail</td><td><a href="mailto:info@promedia.report">info@promedia.report</a></td></tr>
+  </table>
+  <div>
+   <p>Пропонуєте партнерство, хочете замовити дослідження чи навчання для команди, або маєте ідею для спільного проєкту — напишіть нам.</p>
+   <a class="btn" href="mailto:info@promedia.report">Написати нам</a>
+  </div>
+ </div>
+</div></section>
+</main>
+
+<footer><div class="wrap"><span>© 2025–2026 ГО «ПроМедіа»</span><span><a href="https://news.promedia.report/">Новини</a> · <a href="https://projects.promedia.report/">Проєкти</a> · <a href="https://promedia.report/">promedia.report</a></span></div></footer>
+</body>
+</html>
