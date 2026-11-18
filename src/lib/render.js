@@ -241,6 +241,27 @@ function articleFocalStyle(article, lang, format) {
   return ' style="' + fit + 'object-position:' + clamped(point) + '"';
 }
 
+// Точка фокусу обкладинки «x y» у відсотках (мобільна, інакше десктопна) — для сторіз і соцмереж.
+function coverFocusPoint(article, lang) {
+  const data = articleCoverMetadata(article, lang);
+  const ok = (p) => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p.y));
+  const p = ok(data.mobile) ? data.mobile : ok(data.desktop) ? data.desktop : null;
+  return p ? Math.max(0, Math.min(100, Number(p.x))) + " " + Math.max(0, Math.min(100, Number(p.y))) : "";
+}
+
+// Окрема картинка 1200×630 для соцмереж (scripts/social-covers.mjs) — лише якщо вона
+// зроблена з поточної обкладинки й поточної точки фокусу.
+function socialCover(article, lang) {
+  const src = articleCover(article, lang);
+  const data = articleCoverMetadata(article, lang);
+  const social = data.social;
+  if (!src || !social || !social.url) return "";
+  const ok = (p) => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p.y));
+  const raw = ok(data.desktop) ? data.desktop : ok(data.feed) ? data.feed : { x: 50, y: 30 };
+  const clamp = (v) => Math.max(0, Math.min(100, Number(v)));
+  return social.signature === `${src}|${clamp(raw.x)}|${clamp(raw.y)}` ? social.url : "";
+}
+
 // Підпис під обкладинкою: поле caption у даних обкладинки (адмінка), інакше — рядок
 // «Фото на обкладинці: …» / «Фото: …» з приміток під тонкою лінією (тоді він переїжджає під фото).
 const COVER_CAPTION_LINE = /^\*(Фото на обкладинці|Фото|Cover photo|Photo|Qapaqtaki resim|Resim|Fotoresim):\s*(.+)\*$/;
@@ -528,11 +549,9 @@ function articleCard(article, lang, baseUrl, variant) {
 </article>`;
 }
 
-function articleCardVariant(article, automaticVariant) {
-  const style = article.card_style || "auto";
-  if (style === "image" || style === "hero") return "visual";
-  if (style === "text") return style;
-  return automaticVariant;
+// Картка у стрічці завжди з фото: варіантів «без фото» більше немає.
+function articleCardVariant() {
+  return "visual";
 }
 
 const SHARE_LABELS = {
@@ -593,7 +612,7 @@ function googleSourceCta(lang, placement) {
 </aside>`;
 }
 
-function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl }) {
+function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl, coverFocus }) {
   const encodedUrl = encodeURIComponent(articleUrl);
   const encodedTitle = encodeURIComponent(title);
   const encodedText = encodeURIComponent(`${title}\n\n${articleUrl}`);
@@ -609,7 +628,7 @@ function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl }) {
   <span>${escapeHtml(labels.title)}</span>
   <div class="article-share-links">
     ${links.map(([label, href]) => `<a href="${escapeHtml(href)}" target="_blank" rel="noopener" aria-label="${escapeHtml(`${labels.title}: ${label}`)}" title="${escapeHtml(label)}">${shareIcon(label)}</a>`).join("")}
-    <button type="button" data-share-instagram data-share-cover="${escapeHtml(coverUrl || "")}" data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}" data-copy="${escapeHtml(labels.copy)}" data-copied="${escapeHtml(labels.copied)}" aria-label="${escapeHtml(`${labels.title}: Instagram`)}" title="${escapeHtml(labels.instagram)}">${shareIcon("Instagram")}</button>
+    <button type="button" data-share-instagram data-share-cover="${escapeHtml(coverUrl || "")}" data-share-focus="${escapeHtml(coverFocus || "")}" data-share-title="${escapeHtml(title)}" data-share-text="${escapeHtml(excerpt)}" data-share-url="${escapeHtml(articleUrl)}" data-copy="${escapeHtml(labels.copy)}" data-copied="${escapeHtml(labels.copied)}" aria-label="${escapeHtml(`${labels.title}: Instagram`)}" title="${escapeHtml(labels.instagram)}">${shareIcon("Instagram")}</button>
     <a href="${GOOGLE_SOURCE_URL}" target="_blank" rel="noopener" data-google-source="share-row" aria-label="${escapeHtml(pick(GOOGLE_SOURCE_COPY, lang).aria)}" title="${escapeHtml(pick(GOOGLE_SOURCE_COPY, lang).aria)}">${GOOGLE_G_MONO}</a>
   </div>
   <p class="article-share-status" data-share-status role="status"></p>
@@ -704,7 +723,7 @@ function mosaicPromoTemplates(lang) {
   }).join("");
 }
 
-export function renderHomepage({ articles, lang, activeTag, activeTopic, activeSort, baseUrl }) {
+export function renderHomepage({ articles, lang, activeTag, activeTopic, activeSort, baseUrl, leadArticle }) {
   const copy = pick(PRACTICE_COPY, lang);
   const prefix = langPrefix(lang);
   const topic = PRACTICE_TOPICS.find(item => item.id === activeTopic);
@@ -717,7 +736,9 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
       // Tabs (Топ, Статті, Прес-релізи, Анонси…) use the same desktop mosaic as the main feed.
       : `<div class="article-grid restored-feed">${articles.map((a, i) => `<div class="mosaic-cell">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`).join("")}</div>`);
   } else if (articles.length) {
+    // The editor's lead story may be older than the newest 60; it still leads.
     const featured = articles.filter(a => a.card_style === "hero");
+    if (!featured.length && leadArticle) { featured.push(leadArticle); articles = [leadArticle, ...articles]; }
     // Without an explicit hero, lead with the newest automatic card: an editor who chose
     // "image" or "text" for a story has asked for it not to lead the feed.
     const hero = featured.length ? featured.reduce((latest, article) => (article.published_at || "") > (latest.published_at || "") ? article : latest)
@@ -767,7 +788,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   ${tags.length ? tagLinks(tags, lang) : ""}
   <h1>${escapeHtml(title)}</h1>
   ${articleMeta(article, lang)}
-  ${articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl })}
+  ${articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl, coverFocus: coverFocusPoint(article, lang) })}
   ${cover}
   ${listenPlayer(article, lang)}
   <div class="article-body">${withGoogleSourceStrip(bodyHtmlContent, lang)}</div>
@@ -779,7 +800,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
     title: `${title} — ${pick(SITE_NAME, lang)}`,
     description: excerpt,
     url: articleUrl,
-    ogImage: coverUrl || undefined,
+    ogImage: socialCover(article, lang) || coverUrl || undefined,
     ogType: "article",
     publishedAt: article.published_at,
     modifiedAt: article.updated_at || undefined,

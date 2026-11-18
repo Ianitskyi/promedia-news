@@ -31,6 +31,14 @@ function coverMetadata(data) {
   try { return (typeof data === "string" ? JSON.parse(data) : data) || {}; } catch (_) { return {}; }
 }
 
+function coverPosition(meta) {
+  const point = (p) => p && Number.isFinite(Number(p.x)) && Number.isFinite(Number(p.y))
+    ? Math.max(0, Math.min(100, Number(p.x))) + "% " + Math.max(0, Math.min(100, Number(p.y))) + "%" : null;
+  const desktop = point(meta.desktop) || point(meta.feed);
+  const mobile = point(meta.mobile) || desktop;
+  return desktop ? { desktop, mobile } : null;
+}
+
 function corsJson(data, status) {
   return new Response(JSON.stringify(data, ukrainianTypographyReplacer), {
     status: status || 200,
@@ -190,7 +198,12 @@ ${entries.join("\n")}
     query += " ORDER BY published_at DESC LIMIT ?";
     binds.push(limit);
 
-    const { results } = await db.prepare(query).bind(...binds).all();
+    let { results } = await db.prepare(query).bind(...binds).all();
+    // ?withHero=1 (promedia.report): add the editor's lead story even if it is older than the list.
+    if (url.searchParams.get("withHero") === "1" && !tag && !mediaId && !results.some(a => a.card_style === "hero")) {
+      const lead = await db.prepare(query.replace(" WHERE status = 'published'", " WHERE card_style = 'hero' AND status = 'published'").replace(/LIMIT \?$/, "LIMIT 1")).bind(...binds.slice(0, -1)).first();
+      if (lead) results = [...results, lead];
+    }
     const items = results.map((a) => ({
       slug: a.slug,
       title: a.title,
@@ -204,6 +217,7 @@ ${entries.join("\n")}
       coverImageUrlCrh: a.cover_image_url_crh,
       coverAlt: coverMetadata(a.cover_crop_data).alt || "",
       coverFit: coverMetadata(a.cover_crop_data).fit || "cover",
+      coverPosition: coverPosition(coverMetadata(a.cover_crop_data)),
       tags: parseJsonArray(a.tags),
       relatedMediaIds: parseJsonArray(a.related_media_ids),
       isImportant: Boolean(a.is_important),
@@ -321,7 +335,11 @@ ${entries.join("\n")}
     const top = !tag && !topic && url.searchParams.get("sort") === "top";
     query += top ? " ORDER BY COALESCE(av.ga4_views, 0) DESC, published_at DESC LIMIT 30" : " ORDER BY published_at DESC LIMIT 60";
     const { results } = await db.prepare(query).bind(...binds).all();
-    return html(renderHomepage({ articles: results, lang, activeTag: tag, activeTopic: topic?.id, activeSort: top ? "top" : null, baseUrl }));
+    let leadArticle = null;
+    if (!tag && !topic && !top && !results.some(a => a.card_style === "hero")) {
+      leadArticle = await db.prepare(query.replace(" WHERE status = 'published'", " WHERE card_style = 'hero' AND status = 'published'").replace(/LIMIT \d+$/, "LIMIT 1")).bind(...binds).first();
+    }
+    return html(renderHomepage({ articles: results, leadArticle, lang, activeTag: tag, activeTopic: topic?.id, activeSort: top ? "top" : null, baseUrl }));
   }
 
   return null;

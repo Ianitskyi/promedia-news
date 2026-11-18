@@ -1,0 +1,40 @@
+name: Social covers (1200×630)
+
+# Вертикальні обкладинки соцмережі ріжуть по центру — робимо окрему картинку
+# з урахуванням точки фокусу. Щогодини, після публікацій і вручну.
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_run:
+    workflows: ['Publish approved articles', 'Deploy ProMedia News Worker']
+    types: [completed]
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/social-covers.mjs'
+      - '.github/workflows/social-covers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promedia-social-covers
+  cancel-in-progress: false
+
+jobs:
+  covers:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci && npm i --no-save sharp
+      - name: Make social covers
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/social-covers.mjs

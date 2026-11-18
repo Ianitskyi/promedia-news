@@ -56,7 +56,7 @@ function extFromContentType(ct) {
 }
 
 function normalizeCardStyle(value) {
-  return ["auto", "hero", "image", "text"].includes(value) ? value : "auto";
+  return value === "hero" ? "hero" : "auto";
 }
 
 function articleAssistErrorMessage(err) {

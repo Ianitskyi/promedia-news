@@ -98,6 +98,8 @@ for (const f of files) {
     // Editing a published article never moves it to the top: the order follows the first
     // publication date. It becomes the lead story again only when the editor asks for it,
     // by setting "raiseToTop" to the same value as this "revision".
+    // Лише два варіанти: «З фото на першій» (hero) і звичайна картка (auto).
+    if (a.cardStyle && a.cardStyle !== 'hero') a.cardStyle = 'auto';
     const raise = a.cardStyle === 'hero' && a.raiseToTop === a.revision;
     const cardStyle = a.cardStyle === 'hero' && !raise ? null : a.cardStyle;
     const sql = `UPDATE articles SET title = ${q(a.title)}, title_en = ${q(a.titleEn)}, title_crh = ${q(a.titleCrh)},

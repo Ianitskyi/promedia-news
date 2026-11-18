@@ -1115,6 +1115,7 @@
       commandButton("“”", "Цитата", "blockquote") +
       commandButton("URL", "Додати посилання", "link") +
       commandButton("▶", "Вставити відео YouTube", "youtube") +
+      commandButton("Фото", "Вставити фото з підписом", "image") +
       commandButton("♪", "Вставити аудіо (файл або посилання)", "audio") +
       commandButton("↶", "Скасувати", "undo") +
       commandButton("↷", "Повторити", "redo") +
@@ -1238,6 +1239,27 @@
       restoreSelection(editor);
       document.execCommand("insertHTML", false, html);
       syncRichEditors();
+      return;
+    }
+    if (command === "image") {
+      var insertImage = function (imageUrl) {
+        var caption = window.prompt("Підпис під фото (необов'язково): хто чи що на фото, автор, джерело", "");
+        caption = caption ? caption.trim().replace(/\*/g, "") : "";
+        var html = '<p><img src="' + escapeHtml(imageUrl) + '" alt="' + escapeHtml(caption) + '" /></p>' +
+          (caption ? "<p><em>" + escapeHtml(caption) + "</em></p>" : "") + "<p><br></p>";
+        restoreSelection(editor); document.execCommand("insertHTML", false, html);
+        syncRichEditors();
+      };
+      var imagePicker = document.createElement("input");
+      imagePicker.type = "file"; imagePicker.accept = "image/*";
+      imagePicker.addEventListener("change", function () {
+        var file = imagePicker.files && imagePicker.files[0];
+        if (!file) return;
+        uploadImage(file).then(function (uploaded) {
+          insertImage(new URL(uploaded, window.location.origin).toString());
+        }).catch(function (err) { window.alert(err.message || "Не вдалося завантажити фото"); });
+      });
+      imagePicker.click();
       return;
     }
     if (command === "audio") {
@@ -1422,13 +1444,11 @@
       "</div>" +
       '<div class="admin-field"><button class="admin-btn secondary" type="button" id="santa-covers-preset">Вставити обкладинки «Таємного Санти» · UK / EN / QT</button><span class="admin-hint">Підставляє три мовні версії ілюстрації. Зміни застосуються лише після збереження статті.</span></div>' +
       '<div class="admin-field"><label>Теги (через кому)</label><input type="text" name="tags" value="' + escapeHtml(a.tags.join(", ")) + '" /></div>' +
-      '<div class="admin-field"><label>Оформлення картки на головній сторінці новин</label>' +
+      '<div class="admin-field"><label>Перша сторінка</label>' +
       '<select name="cardStyle">' +
-      '<option value="auto"' + ((a.cardStyle || "auto") === "auto" ? " selected" : "") + '>Автоматично — за позицією</option>' +
-      '<option value="hero"' + (a.cardStyle === "hero" ? " selected" : "") + '>Велика головна новина</option>' +
-      '<option value="image"' + (a.cardStyle === "image" ? " selected" : "") + '>Картка з фото</option>' +
-      '<option value="text"' + (a.cardStyle === "text" ? " selected" : "") + '>Картка без фото</option>' +
-      '</select><span class="admin-hint">Ручний вибір має пріоритет над автоматичним шаблоном. Велика головна новина може бути лише одна.</span></div>' +
+      '<option value="auto"' + (a.cardStyle !== "hero" ? " selected" : "") + '>Без фото на першій</option>' +
+      '<option value="hero"' + (a.cardStyle === "hero" ? " selected" : "") + '>З фото на першій</option>' +
+      '</select><span class="admin-hint">«З фото на першій» — головна новина з великим фото вгорі news.promedia.report і promedia.report. Така може бути лише одна: попередня автоматично стане звичайною.</span></div>' +
       '<div class="admin-field"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">' +
       '<input type="checkbox" name="isImportant" style="width:auto;margin-top:3px"' + (a.isImportant ? " checked" : "") + ' />' +
       '<span><strong>Важлива новина</strong><br><span class="admin-hint">Додати матеріал до добору «Вибрані новини» на головному сайті</span></span>' +

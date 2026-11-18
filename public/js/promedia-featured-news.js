@@ -3,7 +3,7 @@
 
   var NEWS_ORIGIN = "https://news.promedia.report";
   // Головна новина (card_style "hero", інакше найсвіжіша) + п'ять наступних заголовків.
-  var API_URL = NEWS_ORIGIN + "/api/articles?limit=12";
+  var API_URL = NEWS_ORIGIN + "/api/articles?limit=12&withHero=1";
   var LIST_SIZE = 5;
   var retryCount = 0;
   var maxRetries = 3;
@@ -92,7 +92,9 @@
       ".pm-news-lead{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-start;color:#15142f;text-align:left}",
       ".pm-news-lead-main{flex:999 1 520px;min-width:0;display:flex;flex-direction:column;gap:14px}",
       ".pm-news-lead-media{display:block}",
-      ".pm-news-lead-media img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px}",
+      // Без точки фокусу з адмінки тримаємо верхню частину кадру: на портретах там обличчя.
+      ".pm-news-lead-media img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;object-position:var(--pm-pos-d,50% 20%);border-radius:8px}",
+      "@media (max-width:620px){.pm-news-lead-media img{aspect-ratio:4/3;object-position:var(--pm-pos-m,50% 20%)}}",
       ".pm-news-lead-title{margin:0;font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:clamp(22px,2.2vw,30px);line-height:1.18;font-weight:700}",
       ".pm-news-lead-title a,.pm-news-lead-item a{color:#0d0c5c;text-decoration:none}",
       ".pm-news-lead-title a:hover,.pm-news-lead-item a:hover{color:#b36a00}",
@@ -135,6 +137,11 @@
       img.src = absoluteNewsUrl(cover);
       img.alt = hero.coverAlt || title;
       img.loading = "lazy";
+      if (hero.coverPosition) {
+        img.style.setProperty("--pm-pos-d", hero.coverPosition.desktop);
+        img.style.setProperty("--pm-pos-m", hero.coverPosition.mobile);
+      }
+      if (hero.coverFit === "contain") { img.style.objectFit = "contain"; img.style.background = "#f1f2fa"; }
       media.appendChild(img);
       main.appendChild(media);
     }
