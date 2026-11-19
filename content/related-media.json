@@ -1,11 +1,30 @@
 {
-  "_comment": "Медіа (id з Атласу чи карти спільнот) і університети (univ:<id> з рейтингу журфаків) для карток під уже опублікованими новинами. Кожен список застосовується один раз.",
-  "rosiiany-vbyly-v-odesi-prodiuserku-pershoho-miskoho": ["atlas-a05b1cc7008c76"],
-  "vid-vvs-do-suspilnoho-zhanna-bezpiatchuk-pro-mizhnarodnu-zhurnalistyku": ["atlas-b5df53ff189de9"],
-  "promedia-calls-to-allocate-uah-39-billion-to-suspilne-2027": ["atlas-b5df53ff189de9"],
-  "promedia-zaklykaie-rozsliduvaty-zatrymannia-mykhaila-tkacha-i-iaroslava-bondaren": ["atlas-ukrainska-pravda"],
-  "panakhyda-za-heorhiiem-gongadze-ta-vsima-zahyblymy-mediinykamy": ["atlas-ukrainska-pravda"],
-  "andrii-shestak-naivazhchymy-vyklykamy-u-media-zalyshaiutsia-koshty-i-dovira-5": ["univ:ucu"],
-  "ukrayinska-studentka-povernulasya-z-yaponiyi-dodomu-pid-chas-vijni": ["univ:naukma"],
-  "mar-ian-kushnir-rozvyvaite-v-sobi-bazhannia-chuty-i-hovoryty-pravdu": ["univ:edbo120"]
+ "_comment": "Медіа (id з Атласу чи карти спільнот) і університети (univ:<id> з рейтингу журфаків) для карток під уже опублікованими новинами. Кожен список застосовується один раз.",
+ "rosiiany-vbyly-v-odesi-prodiuserku-pershoho-miskoho": [
+  "atlas-a05b1cc7008c76"
+ ],
+ "vid-vvs-do-suspilnoho-zhanna-bezpiatchuk-pro-mizhnarodnu-zhurnalistyku": [
+  "atlas-b5df53ff189de9"
+ ],
+ "promedia-calls-to-allocate-uah-39-billion-to-suspilne-2027": [
+  "atlas-b5df53ff189de9"
+ ],
+ "promedia-zaklykaie-rozsliduvaty-zatrymannia-mykhaila-tkacha-i-iaroslava-bondaren": [
+  "atlas-ukrainska-pravda"
+ ],
+ "panakhyda-za-heorhiiem-gongadze-ta-vsima-zahyblymy-mediinykamy": [
+  "atlas-ukrainska-pravda"
+ ],
+ "andrii-shestak-naivazhchymy-vyklykamy-u-media-zalyshaiutsia-koshty-i-dovira-5": [
+  "univ:ucu"
+ ],
+ "ukrayinska-studentka-povernulasya-z-yaponiyi-dodomu-pid-chas-vijni": [
+  "univ:naukma"
+ ],
+ "mar-ian-kushnir-rozvyvaite-v-sobi-bazhannia-chuty-i-hovoryty-pravdu": [
+  "univ:edbo120"
+ ],
+ "novyi-chernihiv-druhyi-rik-bez-biudzhetnykh-hroshei-na-zarplaty": [
+  "atlas-34ad5d9f302983"
+ ]
 }
