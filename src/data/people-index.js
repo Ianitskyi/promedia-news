@@ -1392,6 +1392,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "funda-tuncer-sidali",
+    "tag": "Фунда Тунджер Сидали",
+    "aliases": [
+      "Фунда Тунчер Сідалі"
+    ],
+    "name": {
+      "uk": "Фунда Тунджер Сидали",
+      "en": "Funda Tuncer Sıdalı"
+    },
+    "role": {
+      "uk": "голова правління турецького телеканалу Sözcü TV",
+      "en": "Board chair of the Turkish TV channel Sözcü TV"
+    },
+    "summary": {
+      "uk": "Голова правління опозиційного Sözcü TV; затримана 17 листопада 2026 року, коли канал передали під державне управління.",
+      "en": "Board chair of the opposition channel Sözcü TV; detained on 17 November 2026 when the channel was placed under state management."
+    }
+  },
+  {
     "slug": "khrystyna-lysenko",
     "tag": "Христина Лисенко",
     "aliases": [],
