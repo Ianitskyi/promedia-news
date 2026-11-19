@@ -117,9 +117,6 @@ for (const f of files) {
       ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null)},` : ''}
       updated_at = ${q(new Date().toISOString())}
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
-    ${raise ? `UPDATE articles SET card_style = 'auto', updated_at = ${q(new Date().toISOString())}
-    WHERE slug != ${q(a.slug)} AND status = 'published' AND card_style = 'hero'
-      AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});` : ''}
     INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`;
     const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'update.sql');
     writeFileSync(sqlFile, sql);

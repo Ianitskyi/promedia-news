@@ -125,7 +125,9 @@
       ".pm-news-lead-newer{flex:1 1 100%;min-width:0}",
       // Мобільний: головна з фото — на білій картці, список під нею — без рамки (як на news.promedia.report).
       "@media (max-width:620px){.pm-news-lead-main--media{background:#fff;border:1.5px solid #e7e7ef;border-radius:16px;box-shadow:0 18px 40px -26px rgba(23,19,33,.35);padding:16px 16px 20px;gap:12px}.pm-news-lead-main--media>:not(.pm-news-lead-media){padding:0 6px}.pm-news-lead-side{background:transparent;border:0;border-radius:0;padding:0}}",
-      "@media (max-width:620px){.pm-news-lead-newer{display:block}.pm-news-lead-item--extra{display:flex}.pm-news-lead-side .pm-news-lead-item--newer{display:none}.pm-news-lead-side .pm-news-lead-item{padding:14px 0;border-bottom:1px solid #e7e7ef}}"
+      "@media (max-width:620px){.pm-news-lead-newer{display:block}.pm-news-lead-item--extra{display:flex}.pm-news-lead-side .pm-news-lead-item--newer{display:none}.pm-news-lead-side .pm-news-lead-item{padding:14px 0;border-bottom:1px solid #e7e7ef}}",
+      ".pm-news-lead-item-photo{display:none}",
+      "@media (max-width:620px){.pm-news-lead .pm-news-lead-item.pm-news-lead-item--photo{background:#fff;border:1.5px solid #e7e7ef;border-radius:16px;box-shadow:0 18px 40px -26px rgba(23,19,33,.35);padding:16px 16px 20px;margin:14px 0;gap:10px}.pm-news-lead-item--photo>:not(.pm-news-lead-item-photo){padding:0 6px}.pm-news-lead .pm-news-lead-item--photo a{font-size:20px;line-height:1.2}.pm-news-lead-item--photo .pm-news-lead-item-photo{display:block;overflow:hidden;border-radius:10px;aspect-ratio:4/3;background:#eceaf3}.pm-news-lead-item--photo .pm-news-lead-item-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 25%}}"
     ].join("\n");
     document.head.appendChild(style);
   }
@@ -141,6 +143,20 @@
     function isNewer(item) { return (item.publishedAt || "") > (hero.publishedAt || ""); }
     function listItem(item, extra) {
       var li = el("li", "pm-news-lead-item" + (item.isImportant ? " pm-news-lead-item--important" : "") + extra);
+      // «З фото на першій»: на смартфоні кожна така новина — з фото (на комп'ютері фото сховане).
+      var photo = item.cardStyle === "hero" ? localized(item, "coverImageUrl", lang) : "";
+      if (photo) {
+        li.className += " pm-news-lead-item--photo";
+        var pa = el("a", "pm-news-lead-item-photo");
+        pa.href = articleUrl(item, lang);
+        pa.setAttribute("tabindex", "-1");
+        pa.setAttribute("aria-hidden", "true");
+        var pimg = document.createElement("img");
+        pimg.src = photo; pimg.alt = ""; pimg.loading = "lazy";
+        if (item.coverPosition) pimg.style.objectPosition = item.coverPosition.mobile;
+        pa.appendChild(pimg);
+        li.appendChild(pa);
+      }
       li.appendChild(metaLine(item, lang));
       var a = el("a", "", localized(item, "title", lang));
       a.href = articleUrl(item, lang);

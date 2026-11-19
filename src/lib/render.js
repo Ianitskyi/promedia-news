@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261119b";
+const ASSET_V = "20261119c";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -649,7 +649,7 @@ function articleCard(article, lang, baseUrl, variant) {
       </a>`
     : "";
   return `
-<article class="article-card article-card--${cardVariant}${article.is_important ? " article-card--important" : ""}" data-content-kind="${contentKind}">
+<article class="article-card article-card--${cardVariant}${article.card_style === "hero" ? " article-card--photo" : ""}${article.is_important ? " article-card--important" : ""}" data-content-kind="${contentKind}">
   ${cover}
   <div class="article-card-body">
     ${tags.length ? tagLinks(tags, lang) : ""}
@@ -907,7 +907,13 @@ function newsLead(hero, side, lang, baseUrl, isTop) {
   const excerpt = articleExcerpt(hero, lang);
   // Мобільний: новини, що вийшли після головної, стоять над нею (найсвіжіша зверху).
   const isNewer = (a) => !isTop && (a.published_at || "") > (hero.published_at || "");
-  const item = (a, extra) => `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}${extra}">${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`;
+  // «З фото на першій»: на комп'ютері головна одна, а на смартфоні кожна така новина
+  // стоїть у стрічці з фото (фото в списку сховане на комп'ютері).
+  const itemPhoto = (a) => {
+    const c = a.card_style === "hero" ? articleCover(a, lang) : "";
+    return c ? `<a class="feed-lead-item-photo" href="${href(a)}" tabindex="-1" aria-hidden="true"><img src="${escapeHtml(c)}" alt=""${articleFocalStyle(a, lang, "feed")} loading="lazy" /></a>` : "";
+  };
+  const item = (a, extra) => { const photo = itemPhoto(a); return `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}${photo ? " feed-lead-item--photo" : ""}${extra}">${photo}${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`; };
   const newer = side.filter(isNewer);
   const newerBlock = newer.length ? `<aside class="feed-lead-newer" aria-label="${escapeHtml(pick(LEAD_SIDE_LABEL, lang))}">
       <ol class="feed-lead-list">${newer.map(a => item(a, "")).join("")}</ol>
