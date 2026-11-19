@@ -962,6 +962,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "michele-benbunan",
+    "tag": "Мішель Бенбюнан",
+    "aliases": [],
+    "name": {
+      "uk": "Мішель Бенбюнан",
+      "en": "Michèle Benbunan"
+    },
+    "role": {
+      "uk": "генеральна директорка медійного підрозділу LVMH (група Les Echos — Le Parisien)",
+      "en": "Chief executive of LVMH's media division (Les Echos – Le Parisien group)"
+    },
+    "summary": {
+      "uk": "Очолює медійний підрозділ LVMH з січня 2026 року; раніше була генеральною директоркою видавничої групи Editis.",
+      "en": "Head of LVMH's media division since January 2026; previously chief executive of the publishing group Editis."
+    }
+  },
+  {
     "slug": "nataliia-movshovych",
     "tag": "Наталія Мовшович",
     "aliases": [],
@@ -1372,6 +1389,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Французький журналіст BFMTV, загиблий 30 травня 2022 року біля Сєвєродонецька, коли знімав евакуацію.",
       "en": "French BFMTV journalist killed near Sievierodonetsk on 30 May 2022 while filming an evacuation."
+    }
+  },
+  {
+    "slug": "funda-tuncer-sidali",
+    "tag": "Фунда Тунджер Сидали",
+    "aliases": [
+      "Фунда Тунчер Сідалі"
+    ],
+    "name": {
+      "uk": "Фунда Тунджер Сидали",
+      "en": "Funda Tuncer Sıdalı"
+    },
+    "role": {
+      "uk": "голова правління турецького телеканалу Sözcü TV",
+      "en": "Board chair of the Turkish TV channel Sözcü TV"
+    },
+    "summary": {
+      "uk": "Голова правління опозиційного Sözcü TV; затримана 17 листопада 2026 року, коли канал передали під державне управління.",
+      "en": "Board chair of the opposition channel Sözcü TV; detained on 17 November 2026 when the channel was placed under state management."
     }
   },
   {
