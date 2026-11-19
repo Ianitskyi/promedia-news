@@ -152,7 +152,7 @@
         pa.setAttribute("tabindex", "-1");
         pa.setAttribute("aria-hidden", "true");
         var pimg = document.createElement("img");
-        pimg.src = photo; pimg.alt = ""; pimg.loading = "lazy";
+        pimg.src = absoluteNewsUrl(photo); pimg.alt = ""; pimg.loading = "lazy";
         if (item.coverPosition) pimg.style.objectPosition = item.coverPosition.mobile;
         pa.appendChild(pimg);
         li.appendChild(pa);
