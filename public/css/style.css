@@ -1332,6 +1332,11 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .people-box-role { margin: 2px 0 4px; font-size: 14px; color: var(--muted); }
 .people-box-summary { margin: 0; font-size: 14.5px; line-height: 1.5; }
 .people-box-summary a { color: var(--ink); font-weight: 700; white-space: nowrap; }
+/* «Медіа в матеріалі»: та сама картка, що «Люди в матеріалі», але з квадратним логотипом */
+.media-box-logo { border-radius: 12px; background: #fff; border: 1px solid var(--border); }
+.media-box-logo img { object-fit: contain; padding: 8px; background: #fff; }
+.media-box-links { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 6px 0 0; font-size: 14px; }
+.media-box-links a { color: var(--ink); font-weight: 700; white-space: nowrap; }
 
 
 /* Mobile feed: same compact type scale as the news block on promedia.report

@@ -110,11 +110,21 @@ async function fetchRelatedMediaNames(mediaIds, env, baseUrl) {
     ]);
     const all = communityRes.status === "fulfilled" ? communityRes.value : [];
     const atlas = atlasRes.status === "fulfilled" ? atlasRes.value : [];
+    // Одне медіа може бути і в Атласі, і на карті спільнот: Атлас зберігає id спільноти в newsIds.
     return mediaIds.map((id) => {
       const brand = atlas.find(m => m.id === id || (m.newsIds || []).includes(id));
-      if (brand) return { id, name: brand.name, url: brand.url };
-      const found = all.find((m) => m.id === id);
-      return { id, name: found ? found.name : id };
+      const linkIds = new Set([id, ...(brand ? [brand.id, ...(brand.newsIds || [])] : [])]);
+      const community = all.find((m) => linkIds.has(m.id) && m.status !== "rejected" && !m.example);
+      if (!brand && !community) return { id, name: id };
+      return {
+        id,
+        // На карті спільнот назва написана по-людськи, в Атласі — як у реєстрі Нацради (часто великими літерами).
+        name: (community && community.name) || brand.name,
+        city: (brand && brand.city) || "",
+        url: brand ? brand.url : undefined,
+        atlasUrl: brand ? brand.url : undefined,
+        community: community || null
+      };
     });
   } catch (err) {
     return mediaIds.map((id) => ({ id, name: id }));

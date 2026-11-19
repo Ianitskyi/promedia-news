@@ -13,9 +13,21 @@ try{
  html=await (await handlePublicRoute(req,env,new URL(req.url))).text();
  assert.ok(html.includes('https://atlas.promedia.report/media/atlas-test'));
  env.ASSETS.fetch=async()=>{throw Error('Atlas unavailable')};
- globalThis.fetch=async()=>Response.json([{id:'legacy-id',name:'Старе медіа'}]);
+ globalThis.fetch=async()=>Response.json([{id:'legacy-id',name:'Старе медіа',status:'approved'}]);
  html=await (await handlePublicRoute(req,env,new URL(req.url))).text();
  assert.ok(html.includes('https://communities.promedia.report/media/?id=legacy-id'));
  assert.ok(html.includes('Старе медіа'));
+ assert.ok(html.includes('Медіа в матеріалі'));
+ // Медіа і в Атласі, і на карті спільнот: картка веде на обидва.
+ env.ASSETS.fetch=async()=>Response.json([{id:'atlas-test',name:'МЕДІА ТЕСТ',city:'м. Київ',newsIds:['atlas-test','legacy-id'],url:'https://atlas.promedia.report/media/atlas-test'}]);
+ globalThis.fetch=async()=>Response.json([{id:'legacy-id',name:'Медіа Тест',description:'Опис медіа',website:'https://example.org/',status:'approved'}]);
+ article.related_media_ids='["atlas-test"]';
+ html=await (await handlePublicRoute(req,env,new URL(req.url))).text();
+ assert.ok(html.includes('https://atlas.promedia.report/media/atlas-test'));
+ assert.ok(html.includes('https://communities.promedia.report/media/?id=legacy-id'));
+ assert.ok(html.includes('Опис медіа') && html.includes('Медіа Тест'));
+ const en=new Request('https://news.promedia.report/en/article/test');
+ html=await (await handlePublicRoute(en,env,new URL(en.url))).text();
+ assert.ok(html.includes('https://atlas.promedia.report/en/media/atlas-test') && html.includes('Media in this story'));
  console.log('Atlas article links, legacy tags and independent catalog failure fallbacks verified.');
 }finally{globalThis.fetch=original}

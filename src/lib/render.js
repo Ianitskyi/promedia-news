@@ -937,6 +937,45 @@ function newsLead(hero, side, lang, baseUrl, isTop) {
 const BACK_TO_NEWS_LABEL = { uk: "← Усі новини", en: "← All news", crh: "← Episi haberler" };
 const ABOUT_LABEL = { uk: "Про кого:", en: "About:", crh: "Kimler aqqında:" };
 
+// Картка «Медіа в матеріалі» під новиною — поруч із карткою «Люди в матеріалі».
+// Показуємо лише медіа, які є в Атласі медіа або на карті спільнот, з посиланнями на обидва.
+const MEDIA_BOX_TITLE = { uk: "Медіа в матеріалі", en: "Media in this story", crh: "Bu materialdaki mediyalar" };
+const MEDIA_BOX_ATLAS = { uk: "В Атласі медіа", en: "In the Media Atlas", crh: "Mediya Atlasında" };
+const MEDIA_BOX_MAP = { uk: "На карті спільнот", en: "On the community map", crh: "Cemaatlar haritasında" };
+const MEDIA_BOX_SITE = { uk: "Сайт", en: "Website", crh: "Sayt" };
+
+function localizedAtlasUrl(url, lang) {
+  if (!url || lang === "uk") return url;
+  return url.replace(/^(https:\/\/atlas\.promedia\.report)\//, `$1/${lang}/`);
+}
+
+function mediaBox(media, lang) {
+  const items = (media || []).filter(m => m && (m.atlasUrl || m.community));
+  if (!items.length) return "";
+  const rows = items.map((m) => {
+    const c = m.community || {};
+    const description = lang === "en" ? (c.descriptionEn || c.description) : lang === "crh" ? (c.descriptionCrh || c.description) : c.description;
+    const city = lang === "uk" ? (c.city || m.city) : (c.cityEn || c.city || m.city);
+    const mapUrl = m.community ? `https://communities.promedia.report${langPrefix(lang)}/media/?id=${encodeURIComponent(c.id)}` : "";
+    const atlasUrl = localizedAtlasUrl(m.atlasUrl, lang);
+    const main = mapUrl || atlasUrl;
+    const initials = String(m.name || "").replace(/[«»"'.]/g, "").split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+    const links = [
+      atlasUrl ? `<a href="${escapeHtml(atlasUrl)}">${pick(MEDIA_BOX_ATLAS, lang)} →</a>` : "",
+      mapUrl ? `<a href="${escapeHtml(mapUrl)}">${pick(MEDIA_BOX_MAP, lang)} →</a>` : "",
+      c.website ? `<a href="${escapeHtml(c.website)}" rel="noopener">${pick(MEDIA_BOX_SITE, lang)} ↗</a>` : ""
+    ].filter(Boolean).join("");
+    return `<li class="people-box-item media-box-item">
+      <a class="people-box-photo media-box-logo" href="${escapeHtml(main)}" aria-hidden="true" tabindex="-1"><span>${escapeHtml(initials)}</span>${c.logo ? `<img src="${escapeHtml(c.logo)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</a>
+      <div><a class="people-box-name" href="${escapeHtml(main)}">${escapeHtml(m.name)}</a>
+      ${city ? `<p class="people-box-role">${escapeHtml(city)}</p>` : ""}
+      ${description ? `<p class="people-box-summary">${escapeHtml(description)}</p>` : ""}
+      <p class="media-box-links">${links}</p></div>
+    </li>`;
+  }).join("");
+  return `<aside class="people-box media-box" aria-label="${escapeHtml(pick(MEDIA_BOX_TITLE, lang))}"><h2>${pick(MEDIA_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
+}
+
 export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames }) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
@@ -955,12 +994,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   const cover = coverImg && coverCaptionText
     ? `<figure class="article-cover-figure">${coverImg}<figcaption class="article-caption">${inlineMarkdown(coverCaptionText)}</figcaption></figure>`
     : coverImg;
-  const mediaLinksHtml = relatedMediaNames.length
-    ? `<div class="article-related-media">
-        <span>${pick(ABOUT_LABEL, lang)}</span>
-        ${relatedMediaNames.map((m) => `<a href="${escapeHtml(m.url || `https://communities.promedia.report${langPrefix(lang)}/media/?id=${encodeURIComponent(m.id)}`)}">${escapeHtml(m.name)}</a>`).join(", ")}
-      </div>`
-    : "";
+  const mediaLinksHtml = mediaBox(relatedMediaNames, lang);
   const bodyHtml = `
 <main class="wrap article-page">
   <p class="article-back"><a href="${langPrefix(lang)}/">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>

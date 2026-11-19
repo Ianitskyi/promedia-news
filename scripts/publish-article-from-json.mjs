@@ -112,6 +112,7 @@ for (const f of files) {
       excerpt = ${q(a.excerpt || '')}, excerpt_en = ${q(a.excerptEn)}, excerpt_crh = ${q(a.excerptCrh)},
       body_md = ${q(a.bodyMd)}, body_md_en = ${q(a.bodyMdEn)}, body_md_crh = ${q(a.bodyMdCrh)},
       tags = ${q(JSON.stringify(a.tags || []))},
+      ${Array.isArray(a.relatedMediaIds) ? `related_media_ids = ${q(JSON.stringify(a.relatedMediaIds))},` : ''}
       is_important = ${a.isImportant === undefined ? 'is_important' : (a.isImportant ? 1 : 0)},
       card_style = ${cardStyle ? q(cardStyle) : 'card_style'},
       ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null)},` : ''}
@@ -158,7 +159,7 @@ for (const f of files) {
     published_at, created_at, updated_at)
   SELECT ${[a.slug, a.title, a.titleEn, a.titleCrh, a.excerpt || '', a.excerptEn, a.excerptCrh,
     a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null,
-    JSON.stringify(a.tags || []), '[]'].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
+    JSON.stringify(a.tags || []), JSON.stringify(Array.isArray(a.relatedMediaIds) ? a.relatedMediaIds : [])].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
     'published', ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});`;
   const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'insert.sql');
