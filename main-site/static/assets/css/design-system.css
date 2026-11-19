@@ -340,9 +340,13 @@ body.innerpage main:not(:has(> .slimheader)) {
 }
 .pm-projects-all:hover { color: var(--pm-accent-deep); }
 @media (max-width: 767px) {
-    .section-lastprojects.pm-projects-strip { padding: 12px 0; }
-    .pm-projects-strip > .container { padding-right: 0; gap: 10px; }
-    .pm-projects-strip-title { font-size: 14px; flex: none; }
+    /* Phones: pills the size of the rubric chips on news.promedia.report
+       (11.5px, 5px 11px; 1px less padding to make room for the border) */
+    .section-lastprojects.pm-projects-strip { padding: 8px 0; }
+    .pm-projects-strip > .container { padding-right: 0; gap: 8px; }
+    .pm-projects-strip-title { font-size: 11.5px; flex: none; }
+    .pm-projects-pills { gap: 6px; }
+    .pm-project-pill { padding: 4px 10px; font-size: 11.5px; line-height: 1.5; }
     .pm-projects-all { display: none; }
     .pm-project-pill--all { display: inline-flex; }
     .pm-projects-pills { padding-right: 12px; }
