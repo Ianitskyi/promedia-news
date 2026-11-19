@@ -33,6 +33,6 @@ try{
  env.ASSETS.fetch=async(r)=>String(r.url).includes('ratings-universities')?Response.json([{id:'knu',name:'КНУ',nameEn:'KNU',short:'КНУ',ranks:{master:{year:2026,rank:3}}}]):Response.json([]);
  article.related_media_ids='["univ:knu"]';
  html=await (await handlePublicRoute(req,env,new URL(req.url))).text();
- assert.ok(html.includes('https://ratings.promedia.report/university.html?id=knu') && html.includes('Університети в матеріалі') && html.includes('№3'));
+ assert.ok(html.includes('https://ratings.promedia.report/university.html?id=knu') && html.includes('Університети в матеріалі') && !html.includes('№3'));
  console.log('Atlas article links, legacy tags and independent catalog failure fallbacks verified.');
 }finally{globalThis.fetch=original}

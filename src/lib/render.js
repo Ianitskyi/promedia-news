@@ -952,8 +952,6 @@ function localizedAtlasUrl(url, lang) {
 // Картка «Університети в матеріалі»: посилання на сторінку закладу в рейтингу журфаків.
 const UNI_BOX_TITLE = { uk: "Університети в матеріалі", en: "Universities in this story", crh: "Bu materialdaki universitetler" };
 const UNI_BOX_LINK = { uk: "У рейтингу журфаків", en: "In the journalism schools ranking", crh: "Jurnalistika fakülteleri reytinginde" };
-const UNI_DEGREE = { uk: { bachelor: "бакалаврат", master: "магістратура" }, en: { bachelor: "bachelor's", master: "master's" }, crh: { bachelor: "bakalavriat", master: "magistratura" } };
-const UNI_RANK = { uk: "Місце в рейтингу", en: "Ranking position", crh: "Reytingdeki yeri" };
 
 function universitiesBox(universities, lang) {
   if (!universities || !universities.length) return "";
@@ -961,13 +959,10 @@ function universitiesBox(universities, lang) {
   const rows = universities.map((u) => {
     const href = base + encodeURIComponent(u.id);
     const name = lang === "uk" ? u.name : (u.nameEn || u.name);
-    const degrees = pick(UNI_DEGREE, lang);
-    const ranks = ["bachelor", "master"].filter(d => u.ranks && u.ranks[d]).map(d => `${degrees[d]} — №${u.ranks[d].rank} (${u.ranks[d].year})`).join(", ");
     const initials = u.short || String(name).split(/\s+/).map(w => w[0]).slice(0, 2).join("");
     return `<li class="people-box-item media-box-item">
       <a class="people-box-photo media-box-logo" href="${escapeHtml(href)}" aria-hidden="true" tabindex="-1"><span>${escapeHtml(initials)}</span>${u.logo ? `<img src="${escapeHtml(u.logo)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</a>
       <div><a class="people-box-name" href="${escapeHtml(href)}">${escapeHtml(name)}</a>
-      ${ranks ? `<p class="people-box-role">${pick(UNI_RANK, lang)}: ${escapeHtml(ranks)}</p>` : ""}
       <p class="media-box-links"><a href="${escapeHtml(href)}">${pick(UNI_BOX_LINK, lang)} →</a></p></div>
     </li>`;
   }).join("");
