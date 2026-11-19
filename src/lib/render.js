@@ -949,6 +949,31 @@ function localizedAtlasUrl(url, lang) {
   return url.replace(/^(https:\/\/atlas\.promedia\.report)\//, `$1/${lang}/`);
 }
 
+// Картка «Університети в матеріалі»: посилання на сторінку закладу в рейтингу журфаків.
+const UNI_BOX_TITLE = { uk: "Університети в матеріалі", en: "Universities in this story", crh: "Bu materialdaki universitetler" };
+const UNI_BOX_LINK = { uk: "У рейтингу журфаків", en: "In the journalism schools ranking", crh: "Jurnalistika fakülteleri reytinginde" };
+const UNI_DEGREE = { uk: { bachelor: "бакалаврат", master: "магістратура" }, en: { bachelor: "bachelor's", master: "master's" }, crh: { bachelor: "bakalavriat", master: "magistratura" } };
+const UNI_RANK = { uk: "Місце в рейтингу", en: "Ranking position", crh: "Reytingdeki yeri" };
+
+function universitiesBox(universities, lang) {
+  if (!universities || !universities.length) return "";
+  const base = `https://ratings.promedia.report${lang === "uk" ? "" : `/${lang}`}/university.html?id=`;
+  const rows = universities.map((u) => {
+    const href = base + encodeURIComponent(u.id);
+    const name = lang === "uk" ? u.name : (u.nameEn || u.name);
+    const degrees = pick(UNI_DEGREE, lang);
+    const ranks = ["bachelor", "master"].filter(d => u.ranks && u.ranks[d]).map(d => `${degrees[d]} — №${u.ranks[d].rank} (${u.ranks[d].year})`).join(", ");
+    const initials = u.short || String(name).split(/\s+/).map(w => w[0]).slice(0, 2).join("");
+    return `<li class="people-box-item media-box-item">
+      <a class="people-box-photo media-box-logo" href="${escapeHtml(href)}" aria-hidden="true" tabindex="-1"><span>${escapeHtml(initials)}</span>${u.logo ? `<img src="${escapeHtml(u.logo)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</a>
+      <div><a class="people-box-name" href="${escapeHtml(href)}">${escapeHtml(name)}</a>
+      ${ranks ? `<p class="people-box-role">${pick(UNI_RANK, lang)}: ${escapeHtml(ranks)}</p>` : ""}
+      <p class="media-box-links"><a href="${escapeHtml(href)}">${pick(UNI_BOX_LINK, lang)} →</a></p></div>
+    </li>`;
+  }).join("");
+  return `<aside class="people-box media-box" aria-label="${escapeHtml(pick(UNI_BOX_TITLE, lang))}"><h2>${pick(UNI_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
+}
+
 function mediaBox(media, lang) {
   const items = (media || []).filter(m => m && (m.atlasUrl || m.community));
   if (!items.length) return "";
@@ -960,13 +985,14 @@ function mediaBox(media, lang) {
     const atlasUrl = localizedAtlasUrl(m.atlasUrl, lang);
     const main = mapUrl || atlasUrl;
     const initials = String(m.name || "").replace(/[«»"'.]/g, "").split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+    const website = m.website || c.website;
     const links = [
       atlasUrl ? `<a href="${escapeHtml(atlasUrl)}">${pick(MEDIA_BOX_ATLAS, lang)} →</a>` : "",
       mapUrl ? `<a href="${escapeHtml(mapUrl)}">${pick(MEDIA_BOX_MAP, lang)} →</a>` : "",
-      c.website ? `<a href="${escapeHtml(c.website)}" rel="noopener">${pick(MEDIA_BOX_SITE, lang)} ↗</a>` : ""
+      website ? `<a href="${escapeHtml(website)}" rel="noopener">${pick(MEDIA_BOX_SITE, lang)} ↗</a>` : ""
     ].filter(Boolean).join("");
     return `<li class="people-box-item media-box-item">
-      <a class="people-box-photo media-box-logo" href="${escapeHtml(main)}" aria-hidden="true" tabindex="-1"><span>${escapeHtml(initials)}</span>${c.logo ? `<img src="${escapeHtml(c.logo)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</a>
+      <a class="people-box-photo media-box-logo" href="${escapeHtml(main)}" aria-hidden="true" tabindex="-1"><span>${escapeHtml(initials)}</span>${(m.logo || c.logo) ? `<img src="${escapeHtml(m.logo || c.logo)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</a>
       <div><a class="people-box-name" href="${escapeHtml(main)}">${escapeHtml(m.name)}</a>
       ${city ? `<p class="people-box-role">${escapeHtml(city)}</p>` : ""}
       ${description ? `<p class="people-box-summary">${escapeHtml(description)}</p>` : ""}
@@ -976,7 +1002,7 @@ function mediaBox(media, lang) {
   return `<aside class="people-box media-box" aria-label="${escapeHtml(pick(MEDIA_BOX_TITLE, lang))}"><h2>${pick(MEDIA_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
 }
 
-export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames }) {
+export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = [], relatedUniversities = [] }) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
   const articleUrl = `${baseUrl}${langPrefix(lang)}/article/${article.slug}`;
@@ -1007,6 +1033,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames })
   ${topicTags.length ? `<div class="article-tags-bottom">${tagLinks(topicTags, lang)}</div>` : ""}
   ${peopleBox(tags, lang)}
   ${mediaLinksHtml}
+  ${universitiesBox(relatedUniversities, lang)}
   ${projectPromo(lang, "atlas", "article-bottom")}
 </main>`;
   return pageShell({

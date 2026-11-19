@@ -101,34 +101,73 @@ function parseJsonArray(value) {
   }
 }
 
-async function fetchRelatedMediaNames(mediaIds, env, baseUrl) {
+async function loadAsset(env, baseUrl, path, fallback) {
+  try {
+    const res = await env.ASSETS.fetch(new Request(`${baseUrl}${path}`));
+    return res.ok ? await res.json() : fallback;
+  } catch { return fallback; }
+}
+
+// relatedMediaIds: id медіа з Атласу чи карти спільнот, а також «univ:<id>» — університет
+// з рейтингу журфаків (ratings.promedia.report).
+async function fetchRelatedMediaNames(allIds, env, baseUrl) {
+  const mediaIds = allIds.filter(id => !String(id).startsWith("univ:"));
   if (!mediaIds.length) return [];
   try {
-    const [communityRes, atlasRes] = await Promise.allSettled([
+    const [communityRes, atlasRes, sitesRes] = await Promise.allSettled([
       fetch("https://communities.promedia.report/data/communities.json").then(res => res.ok ? res.json() : []),
-      env.ASSETS.fetch(new Request(`${baseUrl}/data/atlas-brands.json`)).then(res => res.ok ? res.json() : [])
+      env.ASSETS.fetch(new Request(`${baseUrl}/data/atlas-brands.json`)).then(res => res.ok ? res.json() : []),
+      env.ASSETS.fetch(new Request(`${baseUrl}/data/media-sites.json`)).then(res => res.ok ? res.json() : {})
     ]);
-    const all = communityRes.status === "fulfilled" ? communityRes.value : [];
-    const atlas = atlasRes.status === "fulfilled" ? atlasRes.value : [];
+    const all = communityRes.status === "fulfilled" && Array.isArray(communityRes.value) ? communityRes.value : [];
+    const atlas = atlasRes.status === "fulfilled" && Array.isArray(atlasRes.value) ? atlasRes.value : [];
+    const sites = sitesRes.status === "fulfilled" && sitesRes.value && typeof sitesRes.value === "object" ? sitesRes.value : {};
     // Одне медіа може бути і в Атласі, і на карті спільнот: Атлас зберігає id спільноти в newsIds.
     return mediaIds.map((id) => {
       const brand = atlas.find(m => m.id === id || (m.newsIds || []).includes(id));
       const linkIds = new Set([id, ...(brand ? [brand.id, ...(brand.newsIds || [])] : [])]);
       const community = all.find((m) => linkIds.has(m.id) && m.status !== "rejected" && !m.example);
       if (!brand && !community) return { id, name: id };
+      // Сайт медіа: з карти спільнот або з ручного довідника public/data/media-sites.json.
+      // Значення в media-sites.json — адреса сайту або {"site": "...", "name": "..."}.
+      const curated = [...linkIds].map(k => sites[k]).find(Boolean);
+      const curatedSite = typeof curated === "string" ? curated : (curated && curated.site) || "";
+      const website = (community && community.website) || curatedSite;
       return {
         id,
         // На карті спільнот назва написана по-людськи, в Атласі — як у реєстрі Нацради (часто великими літерами).
-        name: (community && community.name) || brand.name,
+        name: (curated && curated.name) || (community && community.name) || readableRegistryName(brand.name),
         city: (brand && brand.city) || "",
         url: brand ? brand.url : undefined,
         atlasUrl: brand ? brand.url : undefined,
+        website,
+        logo: (community && community.logo) || faviconFor(website),
         community: community || null
       };
     });
   } catch (err) {
     return mediaIds.map((id) => ({ id, name: id }));
   }
+}
+
+// Назва з реєстру Нацради: прибираємо опис логотипа («та графічний елемент…») і великі літери.
+function readableRegistryName(name) {
+  let n = String(name || "").replace(/\s+та\s+графічн.*$/iu, "").trim();
+  if (n && n === n.toUpperCase() && /[А-ЯІЇЄҐ]{2}/u.test(n)) {
+    n = n.toLowerCase().replace(/(^|[\s«"(-])(\p{L})/gu, (m, a, b) => a + b.toUpperCase());
+  }
+  return n || name;
+}
+
+function faviconFor(website) {
+  try { return website ? `https://www.google.com/s2/favicons?domain=${new URL(website).hostname}&sz=128` : ""; } catch { return ""; }
+}
+
+async function fetchRelatedUniversities(allIds, env, baseUrl) {
+  const ids = allIds.filter(id => String(id).startsWith("univ:")).map(id => String(id).slice(5));
+  if (!ids.length) return [];
+  const list = await loadAsset(env, baseUrl, "/data/ratings-universities.json", []);
+  return ids.map(id => (Array.isArray(list) ? list : []).find(u => u.id === id)).filter(Boolean);
 }
 
 export async function handlePublicRoute(request, env, url) {
@@ -329,8 +368,12 @@ ${entries.join("\n")}
         headers: { "Content-Type": "text/html; charset=utf-8" }
       });
     }
-    const relatedMediaNames = await fetchRelatedMediaNames(parseJsonArray(article.related_media_ids), env, baseUrl);
-    return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames }));
+    const relatedIds = parseJsonArray(article.related_media_ids);
+    const [relatedMediaNames, relatedUniversities] = await Promise.all([
+      fetchRelatedMediaNames(relatedIds, env, baseUrl),
+      fetchRelatedUniversities(relatedIds, env, baseUrl)
+    ]);
+    return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames, relatedUniversities }));
   }
 
   // GET / (homepage, optional ?tag=)

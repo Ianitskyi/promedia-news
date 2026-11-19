@@ -1,0 +1,1211 @@
+[
+ {
+  "id": "cpu",
+  "name": "\"Класичний приватний університет\"",
+  "nameEn": "Classic Private University (Zaporizhzhia)",
+  "short": "К",
+  "ranks": {
+   "bachelor": {
+    "year": 2021,
+    "rank": 54,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo193",
+  "name": "Бердянський державний педагогічний університет",
+  "nameEn": "",
+  "short": "БП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 19,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo318",
+  "name": "Вищий навчальний заклад \"Університет економіки та права \"КРОК\"",
+  "nameEn": "",
+  "short": "ЕПК",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 54,
+    "final": true
+   },
+   "master": {
+    "year": 2024,
+    "rank": 34,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo252",
+  "name": "Вінницький державний педагогічний університет імені Михайла Коцюбинського",
+  "nameEn": "",
+  "short": "ВПМК",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 42,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 32,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "vnu",
+  "name": "Волинський національний університет імені Лесі Українки",
+  "nameEn": "Lesya Ukrainka Volyn National University",
+  "short": "ВЛУ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 22,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 16,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "uzhnu",
+  "name": "Державний вищий навчальний заклад \"Ужгородський національний університет\"",
+  "nameEn": "Uzhhorod National University",
+  "short": "У",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 35,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 15,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo216",
+  "name": "Державний вищий навчальний заклад \"Український державний хіміко-технологічний університет\"",
+  "nameEn": "",
+  "short": "УХТ",
+  "ranks": {
+   "bachelor": {
+    "year": 2023,
+    "rank": 14,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "lnu-shev",
+  "name": "Державний заклад \"Луганський національний університет імені Тараса Шевченка\"",
+  "nameEn": "Taras Shevchenko National University of Luhansk (Poltava)",
+  "short": "ЛТШ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 2,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 20,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo6540",
+  "name": "Державний податковий університет",
+  "nameEn": "",
+  "short": "П",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 51,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 28,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Udfsu.png?width=200"
+ },
+ {
+  "id": "edbo208",
+  "name": "Державний університет \"Житомирська політехніка\"",
+  "nameEn": "",
+  "short": "ЖП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 37,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo5780",
+  "name": "Державний університет інтелектуальних технологій і зв'язку",
+  "nameEn": "",
+  "short": "ІТЗЯ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 18,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "dnu",
+  "name": "Дніпровський національний університет імені Олеся Гончара",
+  "nameEn": "Oles Honchar Dnipro National University",
+  "short": "ДОГ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 27,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "donnu",
+  "name": "Донецький національний університет імені Василя Стуса",
+  "nameEn": "Vasyl' Stus Donetsk National University (Vinnytsia)",
+  "short": "ДВС",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 28,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 4,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Donetsk_National_University.png?width=200"
+ },
+ {
+  "id": "edbo109",
+  "name": "Житомирський державний університет імені Івана Франка",
+  "nameEn": "",
+  "short": "ЖІФ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 39,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 25,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Gerb_zu_edu_ua.gif?width=200"
+ },
+ {
+  "id": "edbo1139",
+  "name": "Заклад вищої освіти \"Львівський університет бізнесу та права\"",
+  "nameEn": "",
+  "short": "ЛБП",
+  "ranks": {
+   "bachelor": {
+    "year": 2022,
+    "rank": 52,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "ucu",
+  "name": "Заклад вищої освіти “Український католицький університет”",
+  "nameEn": "Ukrainian Catholic University",
+  "short": "УК",
+  "ranks": {
+   "master": {
+    "year": 2026,
+    "rank": 1,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/UkrainianCatholicUniversitylogo.png?width=200"
+ },
+ {
+  "id": "edbo144",
+  "name": "Заклад вищої освіти \"Університет Короля Данила\"",
+  "nameEn": "",
+  "short": "КД",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 46,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo217",
+  "name": "Заклад вищої освіти «Відкритий міжнародний університет розвитку людини «Україна»",
+  "nameEn": "",
+  "short": "ВМРЛ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 57,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 35,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "znu",
+  "name": "Запорізький національний університет",
+  "nameEn": "Zaporizhzhia National University",
+  "short": "З",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 9,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 29,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo171",
+  "name": "Західноукраїнський національний університет",
+  "nameEn": "",
+  "short": "З",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 32,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%9B%D0%BE%D0%B3%D0%BE_%D0%97%D0%A3%D0%9D%D0%A3_-_%D1%84%D0%BE%D0%BD.png?width=200"
+ },
+ {
+  "id": "edbo178",
+  "name": "Кам'янець-Подільський національний університет імені Івана Огієнка",
+  "nameEn": "",
+  "short": "КЯІО",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 36,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Kamianets-Podilskyi_Ukrainian_State_University_logo.png?width=200"
+ },
+ {
+  "id": "edbo341",
+  "name": "Карпатський національний університет імені Василя Стефаника",
+  "nameEn": "",
+  "short": "КВС",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 20,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 7,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "kneu",
+  "name": "Київський національний економічний університет імені Вадима Гетьмана",
+  "nameEn": "",
+  "short": "КНЕУ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 30,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "knu",
+  "name": "Київський національний університет імені Тараса Шевченка",
+  "nameEn": "Taras Shevchenko National University of Kyiv (Institute of Journalism)",
+  "short": "КТШ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 8,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 3,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/KNU_logo.svg?width=200"
+ },
+ {
+  "id": "edbo308",
+  "name": "Київський національний університет культури і мистецтв",
+  "nameEn": "",
+  "short": "ККМ",
+  "ranks": {
+   "bachelor": {
+    "year": 2022,
+    "rank": 31,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 19,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%9A%D0%9D%D0%A3%D0%9A%D0%86%D0%9C.svg?width=200"
+ },
+ {
+  "id": "kubg",
+  "name": "Київський столичний університет імені Бориса Грінченка",
+  "nameEn": "Borys Grinchenko Kyiv University",
+  "short": "КСБГ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 16,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 12,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo56",
+  "name": "Київський університет імені Бориса Грінченка",
+  "nameEn": "",
+  "short": "КБГ",
+  "ranks": {
+   "bachelor": {
+    "year": 2023,
+    "rank": 21,
+    "final": true
+   },
+   "master": {
+    "year": 2023,
+    "rank": 7,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo5691",
+  "name": "Київський університет інтелектуальної власності та права",
+  "nameEn": "",
+  "short": "КІВП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 48,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo218",
+  "name": "Кременчуцький національний університет імені Михайла Остроградського",
+  "nameEn": "",
+  "short": "КМО",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 44,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo126",
+  "name": "Львівський національний університет ветеринарної медицини та біотехнологій імені С. З. Ґжицького",
+  "nameEn": "",
+  "short": "ЛВМБ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 43,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "lnu",
+  "name": "Львівський національний університет імені Івана Франка",
+  "nameEn": "Ivan Franko National University of Lviv",
+  "short": "ЛІФ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 5,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 10,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "mdu",
+  "name": "Маріупольський державний університет",
+  "nameEn": "Mariupol State University (Kyiv)",
+  "short": "М",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 24,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 23,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo353",
+  "name": "Міжнародний університет",
+  "nameEn": "",
+  "short": "М",
+  "ranks": {
+   "bachelor": {
+    "year": 2024,
+    "rank": 15,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo183",
+  "name": "Національний авіаційний університет",
+  "nameEn": "",
+  "short": "А",
+  "ranks": {
+   "bachelor": {
+    "year": 2024,
+    "rank": 31,
+    "final": true
+   },
+   "master": {
+    "year": 2024,
+    "rank": 8,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo36",
+  "name": "Національний технічний університет \"Дніпровська політехніка\"",
+  "nameEn": "",
+  "short": "ТДП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 13,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 26,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/National_Mining_University%2C_Dnipropetrovsk_logo.png?width=200"
+ },
+ {
+  "id": "edbo91",
+  "name": "Національний університет \"Запорізька політехніка\"",
+  "nameEn": "",
+  "short": "ЗП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 7,
+    "final": true
+   },
+   "master": {
+    "year": 2025,
+    "rank": 37,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "naukma",
+  "name": "Національний університет \"Києво-Могилянська академія\"",
+  "nameEn": "National University of Kyiv-Mohyla Academy (Mohyla School of Journalism)",
+  "short": "КМ",
+  "ranks": {
+   "master": {
+    "year": 2026,
+    "rank": 2,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/NaUKMA_sym.png?width=200"
+ },
+ {
+  "id": "edbo97",
+  "name": "Національний університет \"Львівська політехніка\"",
+  "nameEn": "",
+  "short": "ЛП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 14,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 21,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Nulp_logo_ukr.svg?width=200"
+ },
+ {
+  "id": "edbo5754",
+  "name": "Національний університет \"Одеська політехніка\"",
+  "nameEn": "",
+  "short": "ОП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 12,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo192",
+  "name": "Національний університет \"Одеська юридична академія\"",
+  "nameEn": "",
+  "short": "ОЮ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 3,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 30,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%93%D0%B5%D1%80%D0%B1_%D0%9D%D0%A3%D0%9E%D0%AE%D0%90.jpg?width=200"
+ },
+ {
+  "id": "edbo120",
+  "name": "Національний університет \"Острозька академія\"",
+  "nameEn": "",
+  "short": "О",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 11,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 8,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo158",
+  "name": "Національний університет \"Чернігівський колегіум\" імені Т.Г. Шевченка",
+  "nameEn": "",
+  "short": "ЧКТШ",
+  "ranks": {
+   "master": {
+    "year": 2026,
+    "rank": 27,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo7208",
+  "name": "Національний університет «Київський авіаційний інститут»",
+  "nameEn": "",
+  "short": "КА",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 29,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 13,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/KAI_logo.svg?width=200"
+ },
+ {
+  "id": "edbo7",
+  "name": "Національний університет біоресурсів і природокористування України",
+  "nameEn": "",
+  "short": "БПУ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 25,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 18,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/GERB_NUBIP_color.svg?width=200"
+ },
+ {
+  "id": "edbo9",
+  "name": "Національний університет водного господарства та природокористування",
+  "nameEn": "",
+  "short": "ВГП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 41,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 24,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/LogoNUWM.png?width=200"
+ },
+ {
+  "id": "edbo105",
+  "name": "Національний університет кораблебудування імені адмірала Макарова",
+  "nameEn": "",
+  "short": "КАМ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 26,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo155",
+  "name": "Ніжинський державний університет імені Миколи Гоголя",
+  "nameEn": "",
+  "short": "НМГ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 40,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Coat_of_arms_of_Nizhyn_Gogol_State_University_(in_Ukrainian).png?width=200"
+ },
+ {
+  "id": "edbo220",
+  "name": "Одеський національний морський університет",
+  "nameEn": "",
+  "short": "ОМ",
+  "ranks": {
+   "bachelor": {
+    "year": 2025,
+    "rank": 10,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "onu",
+  "name": "Одеський національний університет імені І. І. Мечникова",
+  "nameEn": "Odesa I. I. Mechnikov National University",
+  "short": "ОІІМ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 4,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 17,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Odesa_University.png?width=200"
+ },
+ {
+  "id": "edbo3",
+  "name": "Полтавський національний педагогічний університет імені В.Г. Короленка",
+  "nameEn": "",
+  "short": "ППВК",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 15,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 14,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo249",
+  "name": "Приватне акціонерне товариство \"Вищий навчальний заклад \"Міжрегіональна Академія управління персоналом\"",
+  "nameEn": "",
+  "short": "ПАТМ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 38,
+    "final": true
+   },
+   "master": {
+    "year": 2025,
+    "rank": 33,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/MAUP_horizontal.svg?width=200"
+ },
+ {
+  "id": "edbo310",
+  "name": "Приватний вищий навчальний заклад \"Київський університет культури\"",
+  "nameEn": "",
+  "short": "КК",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 55,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 34,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo215",
+  "name": "Приватний вищий навчальний заклад \"Міжнародний економіко-гуманітарний університет імені академіка Степана Дем'янчука\"",
+  "nameEn": "",
+  "short": "МЕАС",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 53,
+    "final": true
+   },
+   "master": {
+    "year": 2024,
+    "rank": 37,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo868",
+  "name": "Приватний вищий навчальний заклад \"Український гуманітарний інститут\"",
+  "nameEn": "",
+  "short": "УГ",
+  "ranks": {
+   "bachelor": {
+    "year": 2021,
+    "rank": 44,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo344",
+  "name": "Приватний заклад вищої освіти \"Київський міжнародний університет\"",
+  "nameEn": "",
+  "short": "КМ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 52,
+    "final": true
+   },
+   "master": {
+    "year": 2024,
+    "rank": 9,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo1365",
+  "name": "Приватний заклад вищої освіти \"Міжнародний класичний університет імені Пилипа Орлика\"",
+  "nameEn": "",
+  "short": "МКПО",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 59,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "sumdu",
+  "name": "Сумський державний університет",
+  "nameEn": "Sumy State University",
+  "short": "С",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 6,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 22,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%A1%D1%83%D0%BC%D1%81%D1%8C%D0%BA%D0%B8%D0%B9_%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%B2%D0%BD%D0%B8%D0%B9_%D1%83%D0%BD%D1%96%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82.png?width=200"
+ },
+ {
+  "id": "edbo21",
+  "name": "Східноукраїнський національний університет імені Володимира Даля",
+  "nameEn": "",
+  "short": "СВД",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 50,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 5,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo892",
+  "name": "Таврійський національний університет імені В.І.Вернадського",
+  "nameEn": "",
+  "short": "ТВ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 23,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 33,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo96",
+  "name": "Тернопільський національний педагогічний університет імені Володимира Гнатюка",
+  "nameEn": "",
+  "short": "ТПВГ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 31,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 11,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo167",
+  "name": "Українська академія друкарства",
+  "nameEn": "",
+  "short": "УД",
+  "ranks": {
+   "bachelor": {
+    "year": 2023,
+    "rank": 28,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "npu",
+  "name": "Український державний університет імені Михайла Драгоманова",
+  "nameEn": "M. P. Drahomanov Ukrainian State University",
+  "short": "УМД",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 33,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 31,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/National_Pedagogical_Dragomanov_University.jpg?width=200"
+ },
+ {
+  "id": "edbo6507",
+  "name": "Український державний університет науки і технологій",
+  "nameEn": "",
+  "short": "УНТ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 34,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo88",
+  "name": "Уманський державний педагогічний університет імені Павла Тичини",
+  "nameEn": "",
+  "short": "УППТ",
+  "ranks": {
+   "bachelor": {
+    "year": 2025,
+    "rank": 54,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo268",
+  "name": "Уманський національний університет",
+  "nameEn": "",
+  "short": "У",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 58,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo340",
+  "name": "Університет Григорія Сковороди в Переяславі",
+  "nameEn": "",
+  "short": "ГСП",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 56,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%95%D0%BC%D0%B1%D0%BB%D0%B5%D0%BC%D0%B0_%D0%A3%D0%BD%D1%96%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82%D1%83_%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D1%96%D1%8F_%D0%A1%D0%BA%D0%BE%D0%B2%D0%BE%D1%80%D0%BE%D0%B4%D0%B8_%D0%B2_%D0%9F%D0%B5%D1%80%D0%B5%D1%8F%D1%81%D0%BB%D0%B0%D0%B2%D1%96.png?width=200"
+ },
+ {
+  "id": "edbo3457",
+  "name": "Університет державної фіскальної служби України",
+  "nameEn": "",
+  "short": "ДФСУ",
+  "ranks": {
+   "bachelor": {
+    "year": 2021,
+    "rank": 53,
+    "final": true
+   },
+   "master": {
+    "year": 2021,
+    "rank": 27,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo1486",
+  "name": "Університет митної справи та фінансів",
+  "nameEn": "",
+  "short": "МСФ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 21,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo87",
+  "name": "Харківська державна академія культури",
+  "nameEn": "",
+  "short": "ХДК",
+  "ranks": {
+   "bachelor": {
+    "year": 2023,
+    "rank": 47,
+    "final": true
+   },
+   "master": {
+    "year": 2021,
+    "rank": 6,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "karazin",
+  "name": "Харківський національний університет імені В.Н. Каразіна",
+  "nameEn": "V. N. Karazin Kharkiv National University",
+  "short": "ХВК",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 1,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 6,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Etalon-big.jpg?width=200"
+ },
+ {
+  "id": "edbo48",
+  "name": "Херсонський державний університет",
+  "nameEn": "",
+  "short": "Х",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 45,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "edbo55",
+  "name": "Центральноукраїнський державний університет імені Володимира Винниченка",
+  "nameEn": "",
+  "short": "ЦВВ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 49,
+    "final": true
+   }
+  }
+ },
+ {
+  "id": "cnu",
+  "name": "Черкаський національний університет імені Богдана Хмельницького",
+  "nameEn": "Bohdan Khmelnytsky National University of Cherkasy",
+  "short": "ЧБХ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 47,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/%D0%93%D0%B5%D1%80%D0%B1_%D0%A7%D0%B5%D1%80%D0%BA%D0%B0%D1%81%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE_%D0%BD%D0%B0%D1%86%D1%96%D0%BE%D0%BD%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D0%B3%D0%BE_%D1%83%D0%BD%D1%96%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%82%D0%B5%D1%82%D1%83_%D1%96%D0%BC._%D0%91._%D0%A5%D0%BC%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D1%86%D1%8C%D0%BA%D0%BE%D0%B3%D0%BE.jpg?width=200"
+ },
+ {
+  "id": "chnu",
+  "name": "Чернівецький національний університет імені Юрія Федьковича",
+  "nameEn": "Yuriy Fedkovych Chernivtsi National University",
+  "short": "ЧЮФ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 17,
+    "final": true
+   },
+   "master": {
+    "year": 2026,
+    "rank": 9,
+    "final": true
+   }
+  },
+  "logo": "https://commons.wikimedia.org/wiki/Special:FilePath/Chernivtsi_National_University_arms.png?width=200"
+ },
+ {
+  "id": "edbo265",
+  "name": "Чорноморський національний університет імені Петра Могили",
+  "nameEn": "",
+  "short": "ЧПМ",
+  "ranks": {
+   "bachelor": {
+    "year": 2026,
+    "rank": 10,
+    "final": true
+   },
+   "master": {
+    "year": 2025,
+    "rank": 6,
+    "final": true
+   }
+  }
+ }
+]
