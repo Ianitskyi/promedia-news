@@ -597,7 +597,10 @@ function articleTitle(article, lang) {
   return localizedField(article, "title", lang);
 }
 function articleExcerpt(article, lang) {
-  const raw = localizedField(article, "excerpt", lang);
+  // The excerpt is shown as plain text (cards, lead, share text, meta description),
+  // so markdown links in it become just their label instead of raw [text](url).
+  const raw = String(localizedField(article, "excerpt", lang) || "")
+    .replace(/\[([^\]]+)\]\((?:https?:\/\/|\/)[^\s)]+\)/g, "$1");
   return raw || markdownToPlainText(localizedField(article, "body_md", lang), 200);
 }
 
