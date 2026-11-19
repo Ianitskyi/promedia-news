@@ -32,12 +32,12 @@
     ]
   ],
   "photo": {
-    "wiki": [
-      "en:Zakhar Protsiuk"
-    ],
-    "check": [
-      "Kyiv Independent"
-    ]
+    "url": "https://news.promedia.report/img/news/zakhar-protsiuk-kyiv-independent.jpg",
+    "author": "",
+    "license": "",
+    "licenseUrl": "",
+    "sourceUrl": "",
+    "sourceName": "Facebook Захара Процюка"
   },
   "sources": [
     {
@@ -51,9 +51,13 @@
     {
       "title": "ПроМедіа: The Kyiv Independent розпочали кампанію в Британії",
       "url": "https://news.promedia.report/article/the-kyiv-independent-rozpochali-kampaniyu-v-britaniyi"
+    },
+    {
+      "title": "Press Gazette: Kyiv Independent sees future beyond Ukraine in 'age of confrontation' (19.11.2026)",
+      "url": "https://pressgazette.co.uk/news/kyiv-independent-sees-future-beyond-ukraine-in-age-of-confrontation/"
     }
   ],
-  "updated": "2026-11-17",
+  "updated": "2026-11-19",
   "aliases": [],
   "kind": "journalist"
 }
