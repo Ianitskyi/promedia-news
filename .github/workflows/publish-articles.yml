@@ -7,6 +7,7 @@ on:
     branches: [main]
     paths:
       - 'content/articles/**'
+      - 'content/related-media.json'
       - 'scripts/publish-article-from-json.mjs'
       - '.github/workflows/publish-articles.yml'
   workflow_dispatch:

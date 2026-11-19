@@ -1,1 +1,13 @@
-{}
+{
+ "atlas-a05b1cc7008c76": {
+  "name": "Перший міський"
+ },
+ "atlas-b5df53ff189de9": {
+  "site": "https://suspilne.media/",
+  "name": "Суспільне"
+ },
+ "atlas-ukrainska-pravda": {
+  "site": "https://www.pravda.com.ua/",
+  "name": "Українська правда"
+ }
+}

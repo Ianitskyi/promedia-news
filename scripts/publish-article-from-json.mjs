@@ -169,3 +169,18 @@ for (const f of files) {
   if (!row || row.status !== 'published') throw Error('Insert not verified for ' + a.slug);
   console.log(`Published ${a.slug} (id ${row.id}).`);
 }
+
+// Картки «Медіа в матеріалі» / «Університети в матеріалі» для вже опублікованих новин
+// (зокрема з адмінки): content/related-media.json — { "slug": ["atlas-…", "univ:…"] }.
+// Змінює лише related_media_ids, текст не чіпає. Кожен список застосовується один раз,
+// тож пізніші правки в адмінці не перезаписуються.
+const RELATED_FILE = join(DIR, '..', 'related-media.json');
+let related = {};
+try { related = JSON.parse(readFileSync(RELATED_FILE, 'utf8')); } catch (e) { if (e.code !== 'ENOENT') throw e; }
+for (const [slug, ids] of Object.entries(related)) {
+  if (slug.startsWith('_') || !Array.isArray(ids)) continue;
+  const value = JSON.stringify(ids);
+  const marker = `related_media:${slug}:${value}`;
+  d1(`UPDATE articles SET related_media_ids = ${q(value)} WHERE slug = ${q(slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)}); INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`);
+  console.log(`Related media for ${slug}: ${value}`);
+}
