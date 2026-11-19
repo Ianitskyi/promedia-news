@@ -1,0 +1,58 @@
+{
+  "slug": "michele-benbunan",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "journalist",
+  "name": {
+    "uk": "Мішель Бенбюнан",
+    "en": "Michèle Benbunan"
+  },
+  "sort": {
+    "uk": "Бенбюнан Мішель",
+    "en": "Benbunan Michèle"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "генеральна директорка медійного підрозділу LVMH (група Les Echos — Le Parisien)",
+    "en": "Chief executive of LVMH's media division (Les Echos – Le Parisien group)"
+  },
+  "summary": {
+    "uk": "Очолює медійний підрозділ LVMH з січня 2026 року; раніше була генеральною директоркою видавничої групи Editis.",
+    "en": "Head of LVMH's media division since January 2026; previously chief executive of the publishing group Editis."
+  },
+  "bio": {
+    "uk": "Мішель Бенбюнан — генеральна директорка медійного підрозділу французького концерну LVMH, до якого входять Les Echos, Le Parisien, Paris Match, Radio Classique та інші видання. Вона змінила на чолі групи Les Echos — Le Parisien П'єра Луетта; про призначення LVMH оголосив 16 січня 2026 року. Раніше пані Мішель була генеральною директоркою видавничої групи Editis.\n\nУ листопаді 2026 року медійний підрозділ LVMH під її керівництвом уклав угоду з OpenAI. Пані Мішель заявила, що інтеграція ШІ стане щоденною перевагою для всіх команд.",
+    "en": "Michèle Benbunan is chief executive of the media division of the French group LVMH, which includes Les Echos, Le Parisien, Paris Match, Radio Classique and other titles. She succeeded Pierre Louette at the head of the Les Echos – Le Parisien group; LVMH announced the appointment on 16 January 2026. She was previously chief executive of the publishing group Editis.\n\nIn November 2026 LVMH's media division under her leadership signed an agreement with OpenAI. She said integrating AI would become an everyday asset for all teams."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Медійний підрозділ LVMH (Les Echos — Le Parisien)"
+    ],
+    [
+      "Місто",
+      "Париж"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Michèle Benbunan"
+    ]
+  },
+  "sources": [
+    {
+      "title": "The Media Leader: Michèle Benbunan remplace Pierre Louette à la tête du groupe Les Échos – Le Parisien",
+      "url": "https://fr.themedialeader.com/michele-benbunan-remplace-pierre-louette-a-la-tete-du-groupe-les-echos-le-parisien/"
+    },
+    {
+      "title": "OpenAI: LVMH media division partnership (16.11.2026)",
+      "url": "https://openai.com/index/lvmh-media-division-partnership/"
+    },
+    {
+      "title": "ПроМедіа: OpenAI уклала угоду з 17 медіа LVMH, зокрема Les Echos і Le Parisien",
+      "url": "https://news.promedia.report/article/openai-uklala-uhodu-z-17-media-lvmh"
+    }
+  ],
+  "updated": "2026-11-19"
+}

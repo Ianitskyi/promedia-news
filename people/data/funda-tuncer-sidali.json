@@ -1,0 +1,64 @@
+{
+  "slug": "funda-tuncer-sidali",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "journalist",
+  "name": {
+    "uk": "Фунда Тунджер Сидали",
+    "en": "Funda Tuncer Sıdalı"
+  },
+  "sort": {
+    "uk": "Сидали Фунда Тунджер",
+    "en": "Sıdalı Funda Tuncer"
+  },
+  "aliases": [
+    "Фунда Тунчер Сідалі"
+  ],
+  "role": {
+    "uk": "голова правління турецького телеканалу Sözcü TV",
+    "en": "Board chair of the Turkish TV channel Sözcü TV"
+  },
+  "summary": {
+    "uk": "Голова правління опозиційного Sözcü TV; затримана 17 листопада 2026 року, коли канал передали під державне управління.",
+    "en": "Board chair of the opposition channel Sözcü TV; detained on 17 November 2026 when the channel was placed under state management."
+  },
+  "bio": {
+    "uk": "Фунда Тунджер Сидали — голова правління турецького опозиційного телеканалу Sözcü TV. Раніше очолювала рекламну групу медіахолдингу Sözcü, повідомляють турецькі медіа.\n\n17 листопада 2026 року, після обшуків в офісі Sözcü TV і призначення державного управителя, пані Фунду затримали разом з іще трьома керівниками групи, пишуть Bianet і Hürriyet Daily News. Прокуратура пов'язує справу з обвинуваченнями проти власника групи Бурака Акбая; адвокат Sözcü ставить під сумнів її правову основу.",
+    "en": "Funda Tuncer Sıdalı is board chair of the Turkish opposition TV channel Sözcü TV. She previously headed the advertising group of the Sözcü media group, Turkish media report.\n\nOn 17 November 2026, after police searched Sözcü TV's office and a state trustee was appointed, she was detained along with three other executives of the group, Bianet and Hürriyet Daily News report. Prosecutors link the case to accusations against the group's owner, Burak Akbay; Sözcü's lawyer questions its legal basis."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Sözcü TV"
+    ],
+    [
+      "Місто",
+      "Стамбул"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Funda Tuncer Sıdalı"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Bianet: Police raid pro-opposition Sözcü media group as trustee is appointed (17.11.2026)",
+      "url": "https://bianet.org/haber/police-raid-pro-opposition-sozcu-media-group-as-trustee-is-appointed-325506"
+    },
+    {
+      "title": "Hürriyet Daily News: Sözcü TV placed under trustee control after police raid",
+      "url": "https://www.hurriyetdailynews.com/sozcu-tv-placed-under-trustee-control-after-police-raid-229507"
+    },
+    {
+      "title": "Timeturk: Funda Tuncer Sıdalı kimdir",
+      "url": "https://www.timeturk.com/funda-tuncer-sidali-kimdir-neden-gozaltinda-sozcu-tv-yk-baskani"
+    },
+    {
+      "title": "ПроМедіа: Туреччина забрала опозиційний Sözcü TV під державне управління",
+      "url": "https://news.promedia.report/article/turechchyna-zabrala-opozytsiinyi-sozcu-tv-pid-derzhavne-upravlinnia"
+    }
+  ],
+  "updated": "2026-11-19"
+}
