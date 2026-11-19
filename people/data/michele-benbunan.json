@@ -35,10 +35,12 @@
     ]
   ],
   "photo": {
-    "wiki": [],
-    "check": [
-      "Michèle Benbunan"
-    ]
+    "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Mich%C3%A8le_Benbunan_%2849582689938%29.jpg/960px-Mich%C3%A8le_Benbunan_%2849582689938%29.jpg",
+    "author": "ActuaLitté",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Mich%C3%A8le_Benbunan_(49582689938).jpg",
+    "sourceName": "Wikimedia Commons"
   },
   "sources": [
     {
