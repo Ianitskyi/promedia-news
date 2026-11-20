@@ -72,6 +72,9 @@ section{padding:72px 0}
 .pubs{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
 .pubs li{display:flex;gap:20px;padding:16px 0;border-bottom:1px solid var(--line);align-items:baseline}
 .pubs time{flex:none;width:110px;font-size:13px;font-weight:700;color:var(--muted)}
+.pubs.is-collapsed li:nth-child(n+6){display:none}
+.pubs-more{margin-top:18px;background:none;border:1px solid var(--line);padding:10px 18px;font:inherit;font-size:14px;font-weight:700;cursor:pointer;color:inherit}
+.pubs-more:hover{border-color:currentColor}
 .pubs a{font-weight:700;text-decoration:none}
 .pubs a:hover{color:var(--accent-d)}
 .pubs span{display:block;font-size:14px;color:var(--muted);font-weight:400}
@@ -212,6 +215,16 @@ section{padding:72px 0}
 </main>
 
 <promedia-global-footer></promedia-global-footer>
+<script>
+document.querySelectorAll('ul.pubs').forEach(function(ul){
+ var n=ul.children.length;if(n<=5)return;
+ ul.classList.add('is-collapsed');
+ var b=document.createElement('button');b.type='button';b.className='pubs-more';
+ b.textContent='Розгорнути ('+(n-5)+')';
+ b.onclick=function(){var c=ul.classList.toggle('is-collapsed');b.textContent=c?'Розгорнути ('+(n-5)+')':'Згорнути';};
+ ul.after(b);
+});
+</script>
 <script defer src="https://news.promedia.report/js/promedia-global-shell.js"></script>
 </body>
 </html>
