@@ -27,7 +27,7 @@
   const localize=(base)=>base+prefix+"/";
   const mainBase="https://promedia.report";
   const mainHome=mainBase+(lang==="uk"?"/":prefix+"/");
-  const aboutUrl=lang==="uk"?"https://about.promedia.report/":mainHome+"#team"; // «Про нас» — окремий сайт, поки лише українською
+  const aboutUrl="https://about.promedia.report/"; // «Про нас» — окремий сайт (поки лише українською); команди на головній більше немає
   const projectUrl=localize("https://projects.promedia.report");
   const links={
     news:localize("https://news.promedia.report"),
