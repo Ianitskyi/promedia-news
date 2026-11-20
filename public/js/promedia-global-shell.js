@@ -27,6 +27,7 @@
   const localize=(base)=>base+prefix+"/";
   const mainBase="https://promedia.report";
   const mainHome=mainBase+(lang==="uk"?"/":prefix+"/");
+  const aboutUrl=lang==="uk"?"https://about.promedia.report/":mainHome+"#team"; // «Про нас» — окремий сайт, поки лише українською
   const projectUrl=localize("https://projects.promedia.report");
   const links={
     news:localize("https://news.promedia.report"),
@@ -122,12 +123,12 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
       const sec=[
         ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa],["brief",t.brief||"Brief",links.brief],["people",t.people,links.people]
       ].filter(([key]) => key !== "santa" || lang === "uk"); // Санта — лише українською; BRIEF — у другому меню (власник, 17.11.2026)
-      const mobileMain=[[t.projects,projectUrl],[t.about,mainHome+"#team"],[t.contacts,mainHome+"#contacts"]];
+      const mobileMain=[[t.projects,projectUrl],[t.about,aboutUrl],[t.contacts,mainHome+"#contacts"]];
       const mobileSub=sec.map(x=>[x[1],x[2]]);
       const available=(this.getAttribute("data-langs")||"uk,en,crh").split(",").map(x=>x.trim()).filter(Boolean);
       this.innerHTML=`<header class="pm-global-header"><div class="pm-global-main">
         <a class="pm-global-logo" href="${mainHome}" aria-label="ProMedia"><img src="https://news.promedia.report/img/promedia-wordmark.svg" alt="ProMedia"></a>
-        <nav class="pm-global-primary"><a href="${projectUrl}">${t.projects}</a><a href="${mainHome}#team">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a></nav>
+        <nav class="pm-global-primary"><a href="${projectUrl}">${t.projects}</a><a href="${aboutUrl}">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a></nav>
         <div class="pm-global-langs">${available.includes("uk")?`<a class="${lang==="uk"?"active":""}" href="${samePath("uk")}">UA</a>`:""}${available.includes("en")?`<a class="${lang==="en"?"active":""}" href="${samePath("en")}">EN</a>`:""}${available.includes("crh")?`<a class="${lang==="crh"?"active":""}" href="${samePath("crh")}">QT</a>`:""}</div>
         <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div></div></details>
       </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}">${x[1]}</a>`).join("")}</nav></header>`;
@@ -229,7 +230,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
           <a href="https://www.linkedin.com/company/promediaukraine" target="_blank" rel="noopener" aria-label="LinkedIn">${socialIcon("linkedin")}</a>
           <a href="https://www.facebook.com/promediaukraine" target="_blank" rel="noopener" aria-label="Facebook">${socialIcon("facebook")}</a>
         </div></div>
-        <nav class="pm-global-footer-nav"><a href="${projectUrl}">${t.projects}</a><a href="${mainHome}#team">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a><a href="${mainBase}${prefix}/support/">${t.support}</a><a href="${mainBase}${prefix}/donation-offer/">${t.donationOffer}</a></nav>
+        <nav class="pm-global-footer-nav"><a href="${projectUrl}">${t.projects}</a><a href="${aboutUrl}">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a><a href="${mainBase}${prefix}/support/">${t.support}</a><a href="${mainBase}${prefix}/donation-offer/">${t.donationOffer}</a></nav>
       </div>
       <div class="pm-global-partners"><h3>${t.partners}</h3><div class="pm-global-partners-grid">${PARTNERS.map(p=>`<a class="pm-global-partner${p.img?"":" pm-global-partner-text"}" href="${p.href}" target="_blank" rel="noopener">${p.img?`<img loading="lazy" decoding="async" src="https://promedia.report/assets/partners/${p.img}" alt="${p.name}">`:p.name}</a>`).join("")}</div></div>
       <details class="pm-global-org"${orgOpen?" open":""}><summary><h3>${t.details}</h3></summary><table>
