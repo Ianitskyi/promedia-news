@@ -854,7 +854,8 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
   const mosaic = (items, withPromo, mobileListed) => {
     const cells = items.map((a, i) => `<div class="mosaic-cell${mobileListed?.has(a.slug) ? " mosaic-cell--mobile-listed" : ""}" data-published="${escapeHtml(a.published_at || "")}">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
-    if (withPromo) cells.splice(Math.min(2, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
+    // Atlas promo a few cards lower, so it does not sit right under the newsletter strip (owner, 2026-11-20).
+    if (withPromo) cells.splice(Math.min(6, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
     return cells.length ? `<div class="article-grid restored-feed">${cells.join("")}</div>` : "";
   };
   if (articles.length && topic) {
@@ -1082,14 +1083,14 @@ export function renderNewsletterPage({ baseUrl }) {
   const bodyHtml = `
 <main class="wrap article-page newsletter-page">
   <p class="article-back"><a href="/">${pick(BACK_TO_NEWS_LABEL, "uk")}</a></p>
-  <h1>Розсилка ПроМедіа</h1>
+  <h1>Розсилка ProMedia Report</h1>
   <div class="article-body">
     <p>Раз на тиждень надсилаємо головне про медіа та комунікації: найважливіші новини, дослідження й можливості для журналістів і комунікаційників. На початку кожного листа — коротке слово від редакції.</p>
     <p>Лист приходить лише тим, хто підтвердив підписку. Відписатися можна в один клік у будь-якому листі.</p>
   </div>
   <div data-pm-newsletter="page"><p class="newsletter-page-soon">Підписка відкриється найближчим часом.</p></div>
 </main>`;
-  return pageShell({ title: "Розсилка — ПроМедіа", description: "Головне про медіа та комунікації — раз на тиждень у вашій пошті.", url: `${baseUrl}/rozsylka/`, lang: "uk", bodyHtml });
+  return pageShell({ title: "Розсилка ProMedia Report — ПроМедіа", description: "Головне про медіа та комунікації — раз на тиждень у вашій пошті.", url: `${baseUrl}/rozsylka/`, lang: "uk", bodyHtml });
 }
 
 const NOT_FOUND_LABEL = { uk: "Сторінку не знайдено.", en: "Page not found.", crh: "Saife tapılmadı." };
