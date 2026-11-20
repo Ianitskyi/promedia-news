@@ -57,6 +57,7 @@
     });
     if (value && typeof value.alt === "string") result.alt = value.alt.slice(0, 500);
     if (value && value.fit === "contain") result.fit = "contain";
+    if (value && value.hideMobile === true) result.hideMobile = true;
     // Готова картинка для соцмереж (scripts/social-covers.mjs) переживає збереження з адмінки.
     if (value && value.og && typeof value.og === "object" && typeof value.og.signature === "string") result.og = value.og;
     return result;

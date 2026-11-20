@@ -1510,6 +1510,10 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .feed-lead-main--media { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow); padding: 16px 16px 20px; gap: 12px; }
   .feed-lead-main--media .feed-lead-media { border-radius: var(--radius-sm); }
   .feed-lead-main--media > :not(.feed-lead-media) { padding: 0 6px; }
+  /* «Без фото на смартфоні» (cover_crop_data.hideMobile): головна лише заголовком. */
+  .feed-lead-main--no-mobile-photo .feed-lead-media { display: none; }
+  .feed-lead-main--media.feed-lead-main--no-mobile-photo { background: transparent; border: 0; box-shadow: none; padding: 0; }
+  .feed-lead-main--no-mobile-photo > :not(.feed-lead-media) { padding: 0; }
   /* Теги — лише всередині новини; список під головною — звичайна стрічка без рамки. */
   .feed-lead-main .article-tags { display: none; }
   .feed-lead-side { background: transparent; border: 0; border-radius: 0; padding: 0; }

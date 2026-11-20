@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261119c";
+const ASSET_V = "20261120a";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -910,7 +910,7 @@ function newsLead(hero, side, lang, baseUrl, isTop) {
   // «З фото на першій»: на комп'ютері головна одна, а на смартфоні кожна така новина
   // стоїть у стрічці з фото (фото в списку сховане на комп'ютері).
   const itemPhoto = (a) => {
-    const c = a.card_style === "hero" ? articleCover(a, lang) : "";
+    const c = a.card_style === "hero" && !articleCoverMetadata(a, lang).hideMobile ? articleCover(a, lang) : "";
     return c ? `<a class="feed-lead-item-photo" href="${href(a)}" tabindex="-1" aria-hidden="true"><img src="${escapeHtml(c)}" alt=""${articleFocalStyle(a, lang, "feed")} loading="lazy" /></a>` : "";
   };
   const item = (a, extra) => { const photo = itemPhoto(a); return `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}${photo ? " feed-lead-item--photo" : ""}${extra}">${photo}${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`; };
@@ -923,7 +923,7 @@ function newsLead(hero, side, lang, baseUrl, isTop) {
     </aside>` : "";
   return `<section class="feed-lead" aria-label="${escapeHtml(pick(TOP_STORIES_ARIA, lang))}">
     ${newerBlock}
-    <article class="feed-lead-main${media ? " feed-lead-main--media" : ""}">
+    <article class="feed-lead-main${media ? " feed-lead-main--media" : ""}${media && articleCoverMetadata(hero, lang).hideMobile ? " feed-lead-main--no-mobile-photo" : ""}">
       ${media}
       <div class="feed-lead-hero-meta">${leadMeta(hero, lang)}${articleViews(hero, lang)}${articleMediaBadges(hero, lang)}</div>
       <h1 class="feed-lead-title${hero.is_important ? " feed-lead-title--important" : ""}"><a href="${href(hero)}">${escapeHtml(title)}</a></h1>

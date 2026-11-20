@@ -1450,6 +1450,10 @@
       '<option value="hero"' + (a.cardStyle === "hero" ? " selected" : "") + '>З фото на першій</option>' +
       '</select><span class="admin-hint">«З фото на першій» — головна новина з великим фото вгорі news.promedia.report і promedia.report. Така може бути лише одна: попередня автоматично стане звичайною.</span></div>' +
       '<div class="admin-field"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">' +
+      '<input type="checkbox" id="cover-hide-mobile" style="width:auto;margin-top:3px"' + ((a.coverCropData || {}).hideMobile ? " checked" : "") + ' />' +
+      '<span><strong>Без фото на смартфоні</strong><br><span class="admin-hint">На першій сторінці на телефоні новина стоїть лише заголовком. На комп\'ютері фото лишається.</span></span>' +
+      "</label></div>" +
+      '<div class="admin-field"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">' +
       '<input type="checkbox" name="isImportant" style="width:auto;margin-top:3px"' + (a.isImportant ? " checked" : "") + ' />' +
       '<span><strong>Важлива новина</strong><br><span class="admin-hint">Заголовок помаранчевим кольором у стрічці news.promedia.report і на promedia.report. На фото й місце на першій не впливає.</span></span>' +
       "</label></div>" +
@@ -1702,6 +1706,8 @@
             if (el && el.value.trim()) caption[l] = el.value.trim().slice(0, 600);
           });
           if (Object.keys(caption).length) data.caption = caption;
+          var hideMobile = document.getElementById("cover-hide-mobile");
+          if (hideMobile && hideMobile.checked) data.hideMobile = true; else delete data.hideMobile;
           return data;
         })(), coverCropDataEn: newsCropEn.getValue(), coverCropDataCrh: newsCropCrh.getValue(),
         tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),

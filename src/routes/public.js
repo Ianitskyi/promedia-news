@@ -272,6 +272,7 @@ ${entries.join("\n")}
       coverImageUrlCrh: a.cover_image_url_crh,
       coverAlt: coverMetadata(a.cover_crop_data).alt || "",
       coverFit: coverMetadata(a.cover_crop_data).fit || "cover",
+      coverHideMobile: Boolean(coverMetadata(a.cover_crop_data).hideMobile),
       coverPosition: coverPosition(coverMetadata(a.cover_crop_data)),
       tags: parseJsonArray(a.tags),
       relatedMediaIds: parseJsonArray(a.related_media_ids),
