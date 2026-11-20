@@ -5,7 +5,11 @@ on:
     branches: [main]
     paths:
       - 'main-site/**'
+      - 'people/data/**'
+      - 'scripts/build-home-stats.mjs'
       - '.github/workflows/deploy-main-site.yml'
+  schedule:
+    - cron: '17 */6 * * *'   # оновлюємо цифри блоку «У цифрах» (Карта, Атлас, Рейтинг, Люди)
   workflow_dispatch:
 
 permissions:
@@ -30,6 +34,8 @@ jobs:
       - name: Check HTML pages exist
         run: |
           for f in index.html en/index.html crh/index.html; do test -s "main-site/static/$f" || { echo "::error::missing $f"; exit 1; }; done
+      - name: Refresh homepage numbers
+        run: node scripts/build-home-stats.mjs
       - name: Deploy main site worker
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
