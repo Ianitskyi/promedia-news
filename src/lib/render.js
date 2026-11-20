@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261121a";
+const ASSET_V = "20261121b";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -939,7 +939,7 @@ function newsLead(hero, side, lang, baseUrl, isTop, pinnedSlug) {
   // Мобільний: новини, що вийшли після головної, стоять над нею (найсвіжіша зверху).
   // Закріплена на телефоні теж угорі — над головною.
   const isNewer = (a) => !isTop && (isPinned(a) || (a.published_at || "") > (hero.published_at || ""));
-  const pinMark = (a) => isPinned(a) ? `<span class="feed-lead-pin"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 3a1 1 0 0 1 .7 1.7L15.4 6l2.6 5.2 1.3-1.3a1 1 0 0 1 1.4 1.4l-3.5 3.5-1.4-1.4-2.6 2.6L14 21l-1.4 1.4-3.9-3.9-4.3 4.3-1.4-1.4 4.3-4.3-3.9-3.9L4.8 12l4.9.8 2.6-2.6-1.4-1.4 3.5-3.5A1 1 0 0 1 16 3Z"/></svg>${escapeHtml(pick(PINNED_LABEL, lang))}</span>` : "";
+  const pinMark = (a) => isPinned(a) ? `<span class="feed-lead-pin" title="${escapeHtml(pick(PINNED_LABEL, lang))}" aria-label="${escapeHtml(pick(PINNED_LABEL, lang))}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 3a1 1 0 0 1 .7 1.7L15.4 6l2.6 5.2 1.3-1.3a1 1 0 0 1 1.4 1.4l-3.5 3.5-1.4-1.4-2.6 2.6L14 21l-1.4 1.4-3.9-3.9-4.3 4.3-1.4-1.4 4.3-4.3-3.9-3.9L4.8 12l4.9.8 2.6-2.6-1.4-1.4 3.5-3.5A1 1 0 0 1 16 3Z"/></svg></span>` : "";
   // «З фото на першій»: на комп'ютері головна одна, а на смартфоні кожна така новина
   // стоїть у стрічці з фото (фото в списку сховане на комп'ютері).
   const itemPhoto = (a) => {
