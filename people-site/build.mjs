@@ -396,7 +396,7 @@ async function main() {
     schemaVersion: 1,
     builtAt: new Date().toISOString(),
     people: people.map(p => ({
-      slug: p.slug, url: `${SITE}/${p.slug}/`, name: p.name, aliases: p.aliases || [], role: p.role, summary: p.summary,
+      slug: p.slug, url: `${SITE}/${p.slug}/`, name: p.name, sort: p.sort || null, aliases: p.aliases || [], role: p.role, summary: p.summary,
       group: p.group, memorial: Boolean(p.memorial), life: p.life || null, country: p.country, updated: p.updated, photo: photos[p.slug] || null,
       articles: (byPerson.get(p.slug) || []).map(a => a.slug), sources: p.sources
     }))
