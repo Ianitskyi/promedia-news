@@ -266,6 +266,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "viktoriia-hubareva",
+    "tag": "Вікторія Губарева",
+    "aliases": [],
+    "name": {
+      "uk": "Вікторія Губарева",
+      "en": "Viktoriia Hubareva"
+    },
+    "role": {
+      "uk": "екологічна журналістка медіа «Рубрика»",
+      "en": "Environmental journalist at Rubryka"
+    },
+    "summary": {
+      "uk": "Пише про науку й довкілля в «Рубриці», засновниця Школи екологічної журналістики рішень.",
+      "en": "Covers science and the environment at Rubryka; founder of a School of Solutions-Oriented Environmental Journalism."
+    }
+  },
+  {
     "slug": "viktoriia-iermolaieva",
     "tag": "Вікторія Єрмолаєва",
     "aliases": [],
@@ -1266,6 +1283,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Кореспондент Reuters з енергетики, очолює профспілковий осередок журналістів Reuters у США.",
       "en": "Reuters energy correspondent who chairs the union unit of Reuters journalists in the US."
+    }
+  },
+  {
+    "slug": "sofiia-dubik",
+    "tag": "Софія Дубік",
+    "aliases": [],
+    "name": {
+      "uk": "Софія Дубік",
+      "en": "Sofiia Dubik"
+    },
+    "role": {
+      "uk": "менеджерка ГО «ПроМедіа», авторка інтерв'ю",
+      "en": "Manager at the NGO ProMedia; interviewer"
+    },
+    "summary": {
+      "uk": "Готує для ПроМедіа інтерв'ю з українськими журналістками й журналістами та медіаменеджерами.",
+      "en": "Interviews Ukrainian journalists and media managers for ProMedia."
     }
   },
   {

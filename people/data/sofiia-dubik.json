@@ -1,0 +1,52 @@
+{
+  "slug": "sofiia-dubik",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Софія Дубік",
+    "en": "Sofiia Dubik"
+  },
+  "sort": {
+    "uk": "Дубік Софія",
+    "en": "Dubik Sofiia"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "менеджерка ГО «ПроМедіа», авторка інтерв'ю",
+    "en": "Manager at the NGO ProMedia; interviewer"
+  },
+  "summary": {
+    "uk": "Готує для ПроМедіа інтерв'ю з українськими журналістками й журналістами та медіаменеджерами.",
+    "en": "Interviews Ukrainian journalists and media managers for ProMedia."
+  },
+  "bio": {
+    "uk": "Софія Дубік — менеджерка громадської організації «ПроМедіа», яка підтримує незалежні регіональні медіа. Готує для сайту новин ПроМедіа інтерв'ю з українськими журналістками, журналістами й медіаменеджерами: з Софією Скибою з Інституту регіональної преси та інформації — про спроможність регіональних медіа до змін, з Андрієм Шестаком — про кошти й довіру в медіа, з екологічною журналісткою «Рубрики» Вікторією Губаревою — про довкілля й розслідування чорного ринку диких тварин."
+  },
+  "facts": [
+    [
+      "Організація",
+      "ГО «ПроМедіа»"
+    ],
+    [
+      "Жанр",
+      "інтерв'ю"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "ПроМедіа: Як Вікторія Губарева пише про довкілля та рятує білого тигра на Київщині (20.11.2026)",
+      "url": "https://news.promedia.report/article/iak-viktoriia-hubareva-pyshe-pro-dovkillia-ta-riatuie-biloho-tyhra-na-kyivshchyn"
+    },
+    {
+      "title": "ПроМедіа: Андрій Шестак: Найважчими викликами у медіа залишаються кошти і довіра (13.11.2026)",
+      "url": "https://news.promedia.report/article/andrii-shestak-naivazhchymy-vyklykamy-u-media-zalyshaiutsia-koshty-i-dovira-5"
+    },
+    {
+      "title": "ПроМедіа: Софія Скиба: Для регіональних медіа спроможність до змін — це питання виживання (28.10.2026)",
+      "url": "https://news.promedia.report/article/sofiia-skyba-dlia-rehionalnykh-media-spromozhnist-do-zmin-tse-pytannia-vyzhyvann"
+    }
+  ],
+  "updated": "2026-11-20"
+}
