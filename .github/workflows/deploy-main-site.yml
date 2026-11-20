@@ -5,11 +5,10 @@ on:
     branches: [main]
     paths:
       - 'main-site/**'
-      - 'people/data/**'
       - 'scripts/build-home-stats.mjs'
       - '.github/workflows/deploy-main-site.yml'
   schedule:
-    - cron: '17 */6 * * *'   # оновлюємо цифри блоку «У цифрах» (Карта, Атлас, Рейтинг, Люди)
+    - cron: '17 5 * * 1'   # щопонеділка оновлюємо цифри блоку «У цифрах» (Карта, Атлас, Рейтинг, Люди)
   workflow_dispatch:
 
 permissions:
