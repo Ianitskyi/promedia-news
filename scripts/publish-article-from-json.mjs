@@ -118,6 +118,7 @@ for (const f of files) {
       ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null)},` : ''}
       updated_at = ${q(new Date().toISOString())}
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
+    ${pinSql(a, marker)}
     INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`;
     const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'update.sql');
     writeFileSync(sqlFile, sql);
@@ -161,7 +162,8 @@ for (const f of files) {
     a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null,
     JSON.stringify(a.tags || []), JSON.stringify(Array.isArray(a.relatedMediaIds) ? a.relatedMediaIds : [])].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
     'published', ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
-  WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});`;
+  WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});
+  ${pinSql(a)}`;
   const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'insert.sql');
   writeFileSync(sqlFile, sql);
   d1(sqlFile, true);
@@ -183,4 +185,14 @@ for (const [slug, ids] of Object.entries(related)) {
   const marker = `related_media:${slug}:${value}`;
   d1(`UPDATE articles SET related_media_ids = ${q(value)} WHERE slug = ${q(slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)}); INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`);
   console.log(`Related media for ${slug}: ${value}`);
+}
+
+// "pinned": true — закріпити новину вгорі стрічки (знімає закріплення з попередньої);
+// "pinned": false — відкріпити. Без поля закріплення не змінюється.
+function pinSql(a, marker) {
+  if (a.pinned === undefined) return '';
+  const guard = marker ? ` AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)})` : '';
+  if (!a.pinned) return `UPDATE articles SET pinned_at = NULL WHERE slug = ${q(a.slug)}${guard};`;
+  return `UPDATE articles SET pinned_at = NULL WHERE pinned_at IS NOT NULL AND slug != ${q(a.slug)}${guard};
+    UPDATE articles SET pinned_at = ${q(new Date().toISOString())} WHERE slug = ${q(a.slug)}${guard};`;
 }

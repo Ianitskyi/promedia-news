@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261120a";
+const ASSET_V = "20261121a";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -88,6 +88,7 @@ const TAG_LABELS_EN = {
   "профспілки": "trade unions",
   "Прес-реліз": "Press release",
   "Анонс": "Announcement",
+  "Ексклюзив": "Exclusive",
   "Заяви": "Statements",
   "Новини": "News",
   "Статті": "Articles",
@@ -190,6 +191,7 @@ const TAG_LABELS_CRH = {
   "профспілки": "kasaba birlikleri",
   "Прес-реліз": "Basın bildirisi",
   "Анонс": "İlân",
+  "Ексклюзив": "Eksklüziv",
   "Заяви": "Beyanatlar",
   "Новини": "Haberler",
   "Статті": "Maqaleler",
@@ -313,6 +315,11 @@ const PRESS_RELEASE_KEY = tagLookupKey("Прес-реліз");
 const ANNOUNCEMENT_KEY = tagLookupKey("Анонс");
 // «Статті» (long reads) get a muted violet tag, matching the «Статті» chip on the home page.
 const ARTICLES_KEY = tagLookupKey("Статті");
+// «Ексклюзив» — власні тексти ПроМедіа (не компіляція з інших видань): помітний тег кольору бренду.
+const EXCLUSIVE_KEY = tagLookupKey("Ексклюзив");
+function isExclusive(tags) {
+  return tags.some(t => tagLookupKey(t) === EXCLUSIVE_KEY);
+}
 function isPressRelease(tags) {
   return tags.some(t => tagLookupKey(t) === PRESS_RELEASE_KEY);
 }
@@ -324,6 +331,7 @@ function specialTagClass(tag) {
   if (key === PRESS_RELEASE_KEY) return " article-tag--press";
   if (key === ANNOUNCEMENT_KEY) return " article-tag--announce";
   if (key === ARTICLES_KEY) return " article-tag--articles";
+  if (key === EXCLUSIVE_KEY) return " article-tag--exclusive";
   return "";
 }
 function tagLinks(tags, lang) {
@@ -851,7 +859,7 @@ function mosaicPromoTemplates(lang) {
   }).join("");
 }
 
-export function renderHomepage({ articles, lang, activeTag, activeTopic, activeSort, baseUrl, leadArticle }) {
+export function renderHomepage({ articles, lang, activeTag, activeTopic, activeSort, baseUrl, leadArticle, pinnedArticle }) {
   const copy = pick(PRACTICE_COPY, lang);
   const prefix = langPrefix(lang);
   const topic = PRACTICE_TOPICS.find(item => item.id === activeTopic);
@@ -878,13 +886,16 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
     } else {
       hero = activeSort === "top" ? articles[0] : (articles.find(a => a.card_style === "hero") || articles[0]);
     }
-    const remaining = articles.filter(a => a.slug !== hero.slug);
+    // Закріплена новина (лише в загальній стрічці): завжди перша в списку заголовків,
+    // з булавкою й заливкою; у мозаїці не дублюється.
+    const pinned = !filtered && pinnedArticle && pinnedArticle.slug !== hero.slug ? pinnedArticle : null;
+    const remaining = articles.filter(a => a.slug !== hero.slug && (!pinned || a.slug !== pinned.slug));
     // На комп'ютері поруч із головною 5 заголовків, на мобільному — 9 (разом із головною 10).
-    const side = remaining.slice(0, 9);
-    const rest = remaining.slice(5);
+    const side = pinned ? [pinned, ...remaining.slice(0, 8)] : remaining.slice(0, 9);
+    const rest = remaining.slice(pinned ? 4 : 5);
     const mobileListed = new Set(side.slice(5).map(a => a.slug));
     const tagHeading = filtered && !activeSort && !CATEGORY_NAV_LABELS[activeTag] ? heading(tagLabel(activeTag, lang), null) : "";
-    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top") + (filtered ? "" : newsletterSlot(lang, "strip")) + mosaic(rest, !filtered, mobileListed);
+    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top", pinned?.slug) + (filtered ? "" : newsletterSlot(lang, "strip")) + mosaic(rest, !filtered, mobileListed);
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
@@ -895,6 +906,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
 }
 
 const LEAD_SIDE_LABEL = { uk: "Останні", en: "Latest", crh: "Soñki" };
+const PINNED_LABEL = { uk: "Закріплено", en: "Pinned", crh: "Bekitilgen" };
 const LEAD_SIDE_TOP_LABEL = { uk: "Найчитаніші", en: "Most read", crh: "Eñ çoq oqulğanlar" };
 const LEAD_RUBRICS = {
   "Прес-реліз": { uk: "Прес-реліз", en: "Press release", crh: "Basın bildirisi" },
@@ -909,11 +921,13 @@ function leadMeta(article, lang) {
   const key = tags.includes("Прес-реліз") ? "Прес-реліз" : tags.includes("Анонс") ? "Анонс" : tags.find(t => LEAD_RUBRICS[t]);
   const kind = key === "Прес-реліз" ? " feed-lead-rubric--press" : key === "Анонс" ? " feed-lead-rubric--announce" : key && key !== "Новини" ? " feed-lead-rubric--alt" : "";
   const rubric = key ? `<span class="feed-lead-rubric${kind}">${escapeHtml(pick(LEAD_RUBRICS[key], lang))}</span> · ` : "";
-  return `<p class="feed-lead-meta">${rubric}${escapeHtml(formatDate(article.published_at, lang))}</p>`;
+  const exclusive = isExclusive(tags) ? `<span class="feed-lead-exclusive">${escapeHtml(tagLabel("Ексклюзив", lang))}</span> · ` : "";
+  return `<p class="feed-lead-meta">${exclusive}${rubric}${escapeHtml(formatDate(article.published_at, lang))}</p>`;
 }
 
 // Блок угорі стрічки — такий самий, як на promedia.report.
-function newsLead(hero, side, lang, baseUrl, isTop) {
+function newsLead(hero, side, lang, baseUrl, isTop, pinnedSlug) {
+  const isPinned = (a) => Boolean(pinnedSlug) && a.slug === pinnedSlug;
   const href = (a) => `${baseUrl}${langPrefix(lang)}/article/${escapeHtml(a.slug)}`;
   const title = articleTitle(hero, lang);
   const cover = articleCover(hero, lang);
@@ -923,14 +937,16 @@ function newsLead(hero, side, lang, baseUrl, isTop) {
     </a>` : "";
   const excerpt = articleExcerpt(hero, lang);
   // Мобільний: новини, що вийшли після головної, стоять над нею (найсвіжіша зверху).
-  const isNewer = (a) => !isTop && (a.published_at || "") > (hero.published_at || "");
+  // Закріплена на телефоні теж угорі — над головною.
+  const isNewer = (a) => !isTop && (isPinned(a) || (a.published_at || "") > (hero.published_at || ""));
+  const pinMark = (a) => isPinned(a) ? `<span class="feed-lead-pin"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 3a1 1 0 0 1 .7 1.7L15.4 6l2.6 5.2 1.3-1.3a1 1 0 0 1 1.4 1.4l-3.5 3.5-1.4-1.4-2.6 2.6L14 21l-1.4 1.4-3.9-3.9-4.3 4.3-1.4-1.4 4.3-4.3-3.9-3.9L4.8 12l4.9.8 2.6-2.6-1.4-1.4 3.5-3.5A1 1 0 0 1 16 3Z"/></svg>${escapeHtml(pick(PINNED_LABEL, lang))}</span>` : "";
   // «З фото на першій»: на комп'ютері головна одна, а на смартфоні кожна така новина
   // стоїть у стрічці з фото (фото в списку сховане на комп'ютері).
   const itemPhoto = (a) => {
     const c = a.card_style === "hero" && !articleCoverMetadata(a, lang).hideMobile ? articleCover(a, lang) : "";
     return c ? `<a class="feed-lead-item-photo" href="${href(a)}" tabindex="-1" aria-hidden="true"><img src="${escapeHtml(c)}" alt=""${articleFocalStyle(a, lang, "feed")} loading="lazy" /></a>` : "";
   };
-  const item = (a, extra) => { const photo = itemPhoto(a); return `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}${photo ? " feed-lead-item--photo" : ""}${extra}">${photo}${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`; };
+  const item = (a, extra) => { const photo = itemPhoto(a); return `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}${isPinned(a) ? " feed-lead-item--pinned" : ""}${photo ? " feed-lead-item--photo" : ""}${extra}">${pinMark(a)}${photo}${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`; };
   const newer = side.filter(isNewer);
   const newerBlock = newer.length ? `<aside class="feed-lead-newer" aria-label="${escapeHtml(pick(LEAD_SIDE_LABEL, lang))}">
       <ol class="feed-lead-list">${newer.map(a => item(a, "")).join("")}</ol>

@@ -139,10 +139,14 @@
 
     var rows = state.articles.map(function (a) {
       return "<tr>" +
-        "<td>" + (a.isImportant ? '<span title="Важлива новина" aria-label="Важлива новина">★ </span>' : "") + escapeHtml(a.title) + "</td>" +
+        "<td>" + (a.isPinned ? '<span title="Закріплена вгорі стрічки" aria-label="Закріплена вгорі стрічки">📌 </span>' : "") + (a.isImportant ? '<span title="Важлива новина" aria-label="Важлива новина">★ </span>' : "") + escapeHtml(a.title) + "</td>" +
         "<td>" + statusBadge(a.status) + "</td>" +
         "<td>" + escapeHtml(new Date(a.updatedAt).toLocaleDateString("uk-UA")) + "</td>" +
-        '<td><div class="admin-row"><a href="#/edit/' + a.id + '">Редагувати</a></div></td>' +
+        '<td><div class="admin-row"><a href="#/edit/' + a.id + '">Редагувати</a>' +
+        (state.user.role === "admin" && a.status === "published"
+          ? '<button class="admin-btn secondary admin-pin-btn" type="button" data-pin-id="' + a.id + '" data-pinned="' + (a.isPinned ? "1" : "0") + '" title="' + (a.isPinned ? "Відкріпити" : "Закріпити вгорі стрічки") + '">📌 ' + (a.isPinned ? "Відкріпити" : "Закріпити") + "</button>"
+          : "") +
+        "</div></td>" +
         "</tr>";
     }).join("");
 
@@ -152,6 +156,17 @@
 
     root.innerHTML = tabsHtml + '<div class="admin-card">' + tableHtml + "</div>";
     document.getElementById("new-article-btn").addEventListener("click", function () { navigate("#/new"); });
+    Array.prototype.forEach.call(root.querySelectorAll("[data-pin-id]"), function (btn) {
+      btn.addEventListener("click", function () {
+        var pin = btn.getAttribute("data-pinned") !== "1";
+        if (pin && state.articles.some(function (x) { return x.isPinned; }) &&
+          !window.confirm("Закріплена може бути лише одна новина. Попередню буде відкріплено. Продовжити?")) return;
+        btn.disabled = true;
+        api("/api/admin/articles/" + btn.getAttribute("data-pin-id") + "/pin", { method: "POST", body: { pinned: pin } })
+          .then(function () { return loadArticles().then(renderRoute); })
+          .catch(function (err) { btn.disabled = false; window.alert(err.message || "Не вдалося змінити закріплення."); });
+      });
+    });
     var translateArchiveBtn = document.getElementById("translate-archive-btn");
     if (translateArchiveBtn) translateArchiveBtn.addEventListener("click", function () {
       if (!window.confirm("Перекласти всі опубліковані матеріали, у яких бракує англійської або кримськотатарської версії? Тексти буде надіслано до OpenAI. Наявні переклади не змінюватимуться.")) return;
@@ -1457,6 +1472,10 @@
       '<input type="checkbox" name="isImportant" style="width:auto;margin-top:3px"' + (a.isImportant ? " checked" : "") + ' />' +
       '<span><strong>Важлива новина</strong><br><span class="admin-hint">Заголовок помаранчевим кольором у стрічці news.promedia.report і на promedia.report. На фото й місце на першій не впливає.</span></span>' +
       "</label></div>" +
+      (state.user.role === "admin" ? '<div class="admin-field"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">' +
+      '<input type="checkbox" name="isPinned" style="width:auto;margin-top:3px"' + (a.isPinned ? " checked" : "") + ' />' +
+      '<span><strong>📌 Закріпити вгорі стрічки</strong><br><span class="admin-hint">Як закріплене повідомлення в Telegram: новина стоїть першою в списку заголовків зі світлою заливкою й позначкою «Закріплено», нові новини йдуть під нею. Закріплена може бути лише одна — попередня відкріпиться. Діє лише для опублікованих.</span></span>' +
+      "</label></div>" : "") +
       '<div class="admin-field"><label>Пов’язані медіа (пошук за назвою з каталогу карти спільнот)</label>' +
       '<input type="text" id="media-search" placeholder="Почніть вводити назву медіа…" autocomplete="off" />' +
       '<div id="media-search-results"></div>' +
@@ -1713,6 +1732,7 @@
         tags: fields.tags.value.split(",").map(function (t) { return t.trim(); }).filter(Boolean),
         relatedMediaIds: selectedMediaIds,
         isImportant: fields.isImportant.checked,
+        isPinned: fields.isPinned ? fields.isPinned.checked : undefined,
         cardStyle: fields.cardStyle.value
       };
     }

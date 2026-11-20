@@ -35,6 +35,8 @@ function serializeArticle(a) {
     tags: JSON.parse(a.tags || "[]"),
     relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
     isImportant: Boolean(a.is_important),
+    isPinned: Boolean(a.pinned_at),
+    pinnedAt: a.pinned_at || null,
     cardStyle: a.card_style || "auto",
     status: a.status,
     authorId: a.author_id,
@@ -254,6 +256,20 @@ export async function handleAdminRoute(request, env, url) {
     return json({ ok: true });
   }
 
+  // Закріплення новини вгорі стрічки (як «закріплене повідомлення» в Telegram/WhatsApp).
+  // Закріплена може бути лише одна: нове закріплення знімає попереднє. Лише для адміністраторів.
+  const pinMatch = url.pathname.match(/^\/api\/admin\/articles\/(\d+)\/pin$/);
+  if (pinMatch && request.method === "POST") {
+    if (user.role !== "admin") return json({ error: "forbidden" }, 403);
+    const id = parseInt(pinMatch[1], 10);
+    const body = await request.json().catch(() => ({}));
+    const article = await db.prepare("SELECT id FROM articles WHERE id = ? AND deleted_at IS NULL").bind(id).first();
+    if (!article) return json({ error: "not_found" }, 404);
+    await setArticlePinned(db, id, body.pinned !== false);
+    const updated = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
+    return json({ item: serializeArticle(updated) });
+  }
+
   if (url.pathname === "/api/admin/articles" && request.method === "POST") {
     let body = await request.json().catch(() => null);
     if (!body || !body.title) return json({ error: "title обов'язковий" }, 400);
@@ -332,13 +348,16 @@ export async function handleAdminRoute(request, env, url) {
         new Date().toISOString(),
         id
       ).run();
+      if (body.isPinned !== undefined && user.role === "admin" && Boolean(body.isPinned) !== Boolean(article.pinned_at)) {
+        await setArticlePinned(db, id, Boolean(body.isPinned));
+      }
       const updated = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
       return json({ item: serializeArticle(updated) });
     }
 
     if (request.method === "DELETE") {
       const now = new Date().toISOString();
-      await db.prepare("UPDATE articles SET deleted_at = ?, updated_at = ? WHERE id = ?")
+      await db.prepare("UPDATE articles SET deleted_at = ?, updated_at = ?, pinned_at = NULL WHERE id = ?")
         .bind(now, now, id).run();
       return json({ ok: true, deletedAt: now });
     }
@@ -364,7 +383,7 @@ export async function handleAdminRoute(request, env, url) {
     const article = await db.prepare("SELECT * FROM articles WHERE id = ? AND deleted_at IS NULL").bind(id).first();
     if (!article) return json({ error: "not_found" }, 404);
     if (user.role !== "admin" && article.author_id !== user.id) return json({ error: "forbidden" }, 403);
-    await db.prepare("UPDATE articles SET status = 'draft', updated_at = ? WHERE id = ?")
+    await db.prepare("UPDATE articles SET status = 'draft', pinned_at = NULL, updated_at = ? WHERE id = ?")
       .bind(new Date().toISOString(), id).run();
     return json({ ok: true });
   }
@@ -447,4 +466,16 @@ export async function handleAdminRoute(request, env, url) {
   }
 
   return null;
+}
+
+
+async function setArticlePinned(db, id, pinned) {
+  if (pinned) {
+    await db.batch([
+      db.prepare("UPDATE articles SET pinned_at = NULL WHERE pinned_at IS NOT NULL AND id != ?").bind(id),
+      db.prepare("UPDATE articles SET pinned_at = ? WHERE id = ?").bind(new Date().toISOString(), id)
+    ]);
+  } else {
+    await db.prepare("UPDATE articles SET pinned_at = NULL WHERE id = ?").bind(id).run();
+  }
 }

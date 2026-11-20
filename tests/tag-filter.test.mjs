@@ -15,7 +15,7 @@ const article = {
   excerpt: "Опис", excerpt_en: "Description", excerpt_crh: "Tarif",
   cover_image_url: "", cover_image_url_en: "", cover_image_url_crh: "", cover_crop_data_crh: "{}", cover_crop_data: "{}", cover_crop_data_en: "{}",
   tags: JSON.stringify(["автоматизація", longTag, 'Тег "із лапками" та % _']), related_media_ids: JSON.stringify(["long-media-id-".repeat(8)]),
-  is_important: 0, card_style: "auto", published_at: "2026-11-05", status: "published", deleted_at: null, body_md: "Текст"
+  is_important: 0, card_style: "auto", pinned_at: null, published_at: "2026-11-05", status: "published", deleted_at: null, body_md: "Текст"
 };
 const sqlite = `
 import sqlite3, json, sys

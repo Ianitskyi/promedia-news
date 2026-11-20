@@ -1318,6 +1318,10 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .article-tag.article-tag--articles,
 .article-card--hero .article-tag.article-tag--articles,
 .article-card--text .article-tag.article-tag--articles { background: #efeff6; color: #45447a; }
+/* «Ексклюзив» — власні тексти ПроМедіа: тег у кольорі бренду, напівжирний. */
+.article-tag.article-tag--exclusive,
+.article-card--hero .article-tag.article-tag--exclusive,
+.article-card--text .article-tag.article-tag--exclusive { background: #e4e6fa; color: var(--ink); font-weight: 700; }
 
 /* ---------- «Люди в матеріалі»: короткі досьє з people.promedia.report ---------- */
 .people-box { margin: 28px 0 8px; padding: 18px 20px; border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--card); }
@@ -1485,6 +1489,13 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .feed-lead-rubric--alt { color: #7f7ea3; }
 .feed-lead-rubric--press { color: #ad7d78; }
 .feed-lead-rubric--announce { color: #739a7d; }
+.feed-lead-exclusive { color: var(--ink); font-weight: 700; }
+/* Закріплена новина (адмінка: «Закріпити вгорі стрічки») — як закріплене повідомлення в месенджерах:
+   булавка, підпис «Закріплено» і світла заливка під заголовком. */
+.feed-lead-list .feed-lead-item--pinned { background: #eef0fb; border-radius: 10px; padding: 12px 14px; margin: 0 -14px 6px; border-bottom: 0; }
+.feed-lead-list .feed-lead-item--pinned:first-child { padding-top: 12px; }
+.feed-lead-pin { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); }
+.feed-lead-pin svg { width: 14px; height: 14px; fill: currentColor; transform: rotate(-12deg); }
 .feed-lead-side { flex: 1 1 300px; min-width: 0; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; box-sizing: border-box; }
 .feed-lead-list { list-style: none; margin: 0; padding: 0; }
 .feed-lead-item { padding: 14px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
@@ -1506,6 +1517,7 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .feed-lead-item--extra { display: flex; }
   .feed-lead-side .feed-lead-item--newer, .mosaic-cell--mobile-listed { display: none; }
   .feed-lead-side .feed-lead-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+  .feed-lead-newer .feed-lead-item--pinned { margin: 0 0 6px; }
   /* Головна з фото — окремою карткою на білій підкладці, як картки статей у стрічці. */
   .feed-lead-main--media { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow); padding: 16px 16px 20px; gap: 12px; }
   .feed-lead-main--media .feed-lead-media { border-radius: var(--radius-sm); }
