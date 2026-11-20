@@ -428,6 +428,16 @@ body.homepage #services .eyebrow{display:none!important}
 
   // One low-page cross-promotion slot on public services; news has its own slots.
   const promoHosts = ["promedia.report", "www.promedia.report", "projects.promedia.report", "communities.promedia.report", "ratings.promedia.report", "research.promedia.report", "guide.promedia.report", "atlas.promedia.report", "jobs.promedia.report", "events.promedia.report", "brief.promedia.report", "santa.promedia.report"];
+  // Newsletter signup (owner, 2026-11-20): header link (desktop), footer link, story-end block
+  // and homepage strip. The script itself stays silent until the Events list goes live.
+  if (/(^|\.)promedia\.report$/.test(location.hostname) && !document.getElementById("pm-newsletter-loader")) {
+    const nl = document.createElement("script");
+    nl.id = "pm-newsletter-loader";
+    nl.src = "https://news.promedia.report/js/promedia-newsletter.js?v=20261120a";
+    nl.defer = true;
+    document.head.appendChild(nl);
+  }
+
   if (promoHosts.includes(location.hostname) && !document.getElementById("pm-network-promo-loader")) {
     const promo = document.createElement("script");
     promo.id = "pm-network-promo-loader";

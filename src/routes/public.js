@@ -1,4 +1,4 @@
-import { renderHomepage, renderArticlePage, renderNotFound, PRACTICE_TOPICS, viewsVisible } from "../lib/render.js";
+import { renderHomepage, renderArticlePage, renderNewsletterPage, renderNotFound, PRACTICE_TOPICS, viewsVisible } from "../lib/render.js";
 import { handlePublicPushRoute } from "../lib/push.js";
 import { ukrainianTypographyReplacer } from "../lib/typography.js";
 
@@ -355,6 +355,12 @@ ${entries.join("\n")}
 
   if (url.pathname === "/api/articles" && request.method === "OPTIONS") {
     return corsJson({}, 204);
+  }
+
+  // GET /rozsylka/ — newsletter signup page (Ukrainian only).
+  if ((url.pathname === "/rozsylka" || url.pathname === "/rozsylka/") && request.method === "GET") {
+    if (url.pathname === "/rozsylka") return Response.redirect(`${url.origin}/rozsylka/${url.search}`, 301);
+    return html(renderNewsletterPage({ baseUrl }));
   }
 
   // GET /article/:slug

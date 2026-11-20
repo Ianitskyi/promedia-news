@@ -877,7 +877,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
     const rest = remaining.slice(5);
     const mobileListed = new Set(side.slice(5).map(a => a.slug));
     const tagHeading = filtered && !activeSort && !CATEGORY_NAV_LABELS[activeTag] ? heading(tagLabel(activeTag, lang), null) : "";
-    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top") + mosaic(rest, !filtered, mobileListed);
+    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top") + (filtered ? "" : newsletterSlot(lang, "strip")) + mosaic(rest, !filtered, mobileListed);
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
@@ -1036,6 +1036,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   ${listenPlayer(article, lang)}
   <div class="article-body">${withGoogleSourceStrip(bodyHtmlContent, lang)}</div>
   ${topicTags.length ? `<div class="article-tags-bottom">${tagLinks(topicTags, lang)}</div>` : ""}
+  ${newsletterSlot(lang, "article-end")}
   ${peopleBox(tags, lang)}
   ${mediaLinksHtml}
   ${universitiesBox(relatedUniversities, lang)}
@@ -1069,6 +1070,26 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
     lang,
     bodyHtml
   });
+}
+
+// Newsletter (owner, 2026-11-20): empty, hidden slots filled by /js/promedia-newsletter.js
+// only after the Events list goes live (or in ?pm_newsletter=preview). Ukrainian only.
+function newsletterSlot(lang, placement) {
+  return lang === "uk" ? `<div class="pm-nl-slot" data-pm-newsletter="${placement}" hidden></div>` : "";
+}
+
+export function renderNewsletterPage({ baseUrl }) {
+  const bodyHtml = `
+<main class="wrap article-page newsletter-page">
+  <p class="article-back"><a href="/">${pick(BACK_TO_NEWS_LABEL, "uk")}</a></p>
+  <h1>Розсилка ПроМедіа</h1>
+  <div class="article-body">
+    <p>Раз на тиждень надсилаємо головне про медіа та комунікації: найважливіші новини, дослідження й можливості для журналістів і комунікаційників. На початку кожного листа — коротке слово від редакції.</p>
+    <p>Лист приходить лише тим, хто підтвердив підписку. Відписатися можна в один клік у будь-якому листі.</p>
+  </div>
+  <div data-pm-newsletter="page"><p class="newsletter-page-soon">Підписка відкриється найближчим часом.</p></div>
+</main>`;
+  return pageShell({ title: "Розсилка — ПроМедіа", description: "Головне про медіа та комунікації — раз на тиждень у вашій пошті.", url: `${baseUrl}/rozsylka/`, lang: "uk", bodyHtml });
 }
 
 const NOT_FOUND_LABEL = { uk: "Сторінку не знайдено.", en: "Page not found.", crh: "Saife tapılmadı." };
