@@ -1,0 +1,71 @@
+{
+  "slug": "andrii-boborykin",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Андрій Боборикін",
+    "en": "Andrii Boborykin"
+  },
+  "sort": {
+    "uk": "Боборикін Андрій",
+    "en": "Boborykin Andrii"
+  },
+  "role": {
+    "uk": "виконавчий директор «Української правди»",
+    "en": "Executive director of Ukrainska Pravda"
+  },
+  "summary": {
+    "uk": "Медіаменеджер, який відповідає за стратегію й доходи «Української правди», зокрема за запуск платної підписки у 2026 році.",
+    "en": "Media manager responsible for Ukrainska Pravda's strategy and revenue, including the launch of its paywall in 2026."
+  },
+  "bio": {
+    "uk": "Андрій Боборикін — медіаменеджер і фахівець із розвитку аудиторії з понад десятирічним досвідом. Раніше керував цифровими продуктами Національної суспільної телерадіокомпанії України та працював видавцем і консультантом нових цифрових медіапроєктів.\n\nЗ 2021 року — виконавчий директор «Української правди», відповідає за стратегію зростання, монетизацію й операційну роботу. Також працював керівником напряму розвитку в Media Development Foundation, де створював програми для незалежних локальних видань.\n\nУ 2026 році «Українська правда» під його керівництвом запустила платну підписку на платформі REMP; за пів року видання зібрало 8200 передплатників.",
+    "en": "Andrii Boborykin is a media manager and audience development expert with more than ten years of experience. He previously led digital products at Ukraine's National Public Broadcasting Company and worked as a publisher and consultant for new digital media projects.\n\nSince 2021 he has been executive director of Ukrainska Pravda, in charge of growth strategy, monetisation and operations. He has also worked as head of growth at the Media Development Foundation, creating programmes for independent local publishers.\n\nIn 2026 Ukrainska Pravda launched its paywall on the REMP platform; within six months it had 8,200 paying subscribers."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«Українська правда»"
+    ],
+    [
+      "Посада",
+      "виконавчий директор (з 2021 року)"
+    ]
+  ],
+  "photo": {
+    "url": "https://news.promedia.report/img/news/andrii-boborykin.jpg",
+    "author": "",
+    "license": "",
+    "licenseUrl": "",
+    "sourceUrl": "",
+    "sourceName": "Facebook Андрія Боборикіна"
+  },
+  "sources": [
+    {
+      "title": "International Journalism Festival: Andrey Boborykin",
+      "url": "https://festivaldelgiornalismo.com/speaker/andrey-boborykin"
+    },
+    {
+      "title": "LinkedIn: Andrey Boborykin",
+      "url": "https://ua.linkedin.com/in/boborukin"
+    },
+    {
+      "title": "Інтерфакс-Україна: «Українська правда» залучила майже 1,5 тис. платних підписників за 4 дні",
+      "url": "https://interfax.com.ua/news/telecom/1166096.html"
+    },
+    {
+      "title": "FatChilli for Publishers: Ukrainska Pravda's paywall (інтерв'ю, 2026)",
+      "url": "https://fatchillimedia.com/3493/ukrainska-pravda-paywall-reader-revenue-remp/"
+    },
+    {
+      "title": "ПроМедіа: «Українська правда» набрала 8200 передплатників за пів року",
+      "url": "https://news.promedia.report/article/ukrainska-pravda-nabrala-8200-peredplatnykiv-za-piv-roku"
+    }
+  ],
+  "updated": "2026-11-20",
+  "aliases": [
+    "Андрей Боборыкин",
+    "Andrey Boborykin"
+  ],
+  "kind": "journalist"
+}
