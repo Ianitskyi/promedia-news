@@ -35,6 +35,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "andrii-boborykin",
+    "tag": "Андрій Боборикін",
+    "aliases": [
+      "Андрей Боборыкин",
+      "Andrey Boborykin"
+    ],
+    "name": {
+      "uk": "Андрій Боборикін",
+      "en": "Andrii Boborykin"
+    },
+    "role": {
+      "uk": "виконавчий директор «Української правди»",
+      "en": "Executive director of Ukrainska Pravda"
+    },
+    "summary": {
+      "uk": "Медіаменеджер, який відповідає за стратегію й доходи «Української правди», зокрема за запуск платної підписки у 2026 році.",
+      "en": "Media manager responsible for Ukrainska Pravda's strategy and revenue, including the launch of its paywall in 2026."
+    }
+  },
+  {
     "slug": "andrii-kulykov",
     "tag": "Андрій Куликов",
     "aliases": [],
