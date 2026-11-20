@@ -47,14 +47,12 @@
     ]
   ],
   "photo": {
-    "wiki": [
-      "uk:Лабуткін Дмитро Віталійович",
-      "uk:Дмитро Лабуткін"
-    ],
-    "check": [
-      "Лабуткін",
-      "Labutkin"
-    ]
+    "url": "https://news.promedia.report/img/news/dmytro-labutkin-portrait.jpg",
+    "author": "",
+    "license": "",
+    "licenseUrl": "",
+    "sourceUrl": "",
+    "sourceName": ""
   },
   "sources": [
     {
@@ -82,5 +80,5 @@
       "url": "https://nsju.org/novini/gerojsky-zagynuv-pid-debalczevym-pamyati-vijskovogo-zhurnalista-dmytra-labutkina"
     }
   ],
-  "updated": "2026-11-18"
+  "updated": "2026-11-20"
 }
