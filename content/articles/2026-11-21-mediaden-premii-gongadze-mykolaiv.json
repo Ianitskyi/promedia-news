@@ -19,7 +19,7 @@
     "регіональні медіа"
   ],
   "cover": {
-    "url": "/img/news/mediaden-mykolaiv-2026-11-21.jpg",
+    "url": "/img/news/mediaden-mykolaiv-2026-11-21-v2.jpg",
     "alt": "Учасники дискусії на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві",
     "caption": {
       "uk": "Учасники дискусії «Редакційний консиліум: три виклики, три рішення» на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві, 21.11.2026. Фото: Софія Завтонова / ГО «ПроМедіа».",
@@ -35,6 +35,7 @@
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
   "cardStyle": "hero",
-  "revision": "2026-11-21-hero",
-  "raiseToTop": "2026-11-21-hero"
+  "revision": "2026-11-21-cover-crop",
+  "raiseToTop": "2026-11-21-hero",
+  "coverRevision": "2026-11-21-cover-crop"
 }
