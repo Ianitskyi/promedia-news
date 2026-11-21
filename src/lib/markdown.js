@@ -17,7 +17,7 @@ function inline(text) {
   while (out.includes(prefix)) prefix += "X";
   const token = (html) => prefix + (tokens.push(html) - 1) + "\u0000";
   // зображення: ![alt](url)
-  out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g,
+  out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+|\/img\/[^\s)]+)\)/g,
     (_, alt, url) => token('<img src="' + url + '" alt="' + alt + '" loading="lazy" />'));
   // посилання: [text](url)
   out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
@@ -127,12 +127,16 @@ export function markdownToHtml(md) {
     }
 
     // Фото на окремому рядку → <figure>; наступний рядок курсивом (*…*) → підпис одразу під фото.
-    const image = line.match(/^!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)$/);
+    const image = line.match(/^!\[([^\]]*)\]\((https?:\/\/[^\s)]+|\/img\/[^\s)]+)\)$/);
     if (image) {
       flushParagraph(); flushList();
-      const next = (lines[i + 1] || "").trim();
+      // Підпис — рядок курсивом одразу під фото або через один порожній рядок
+      // (так зберігає адмінка: фото й підпис — окремі абзаци).
+      let captionAt = i + 1;
+      if (!(lines[captionAt] || "").trim() && /^\*[^*].*[^*]\*$/.test((lines[captionAt + 1] || "").trim())) captionAt++;
+      const next = (lines[captionAt] || "").trim();
       const caption = /^\*[^*].*[^*]\*$/.test(next) ? next.slice(1, -1) : "";
-      if (caption) i++;
+      if (caption) i = captionAt;
       htmlBlocks.push('<figure class="article-figure">' + inline(line) +
         (caption ? '<figcaption class="article-caption">' + inline(caption) + "</figcaption>" : "") + "</figure>");
       continue;
@@ -202,7 +206,27 @@ export function markdownToHtml(md) {
   flushParagraph();
   flushList();
 
-  return htmlBlocks.join("\n");
+  return groupGalleries(htmlBlocks).join("\n");
+}
+
+// Галерея: два й більше фото поспіль (між ними лише порожні рядки) → карусель.
+// Кожне фото зберігає свій підпис. Без JS гортається свайпом (scroll-snap);
+// стрілки й лічильник додає public/js/promedia-gallery.js.
+const FIGURE_PREFIX = '<figure class="article-figure">';
+function groupGalleries(blocks) {
+  const out = [];
+  for (let i = 0; i < blocks.length; i++) {
+    if (!blocks[i].startsWith(FIGURE_PREFIX)) { out.push(blocks[i]); continue; }
+    const run = [];
+    while (i < blocks.length && blocks[i].startsWith(FIGURE_PREFIX)) run.push(blocks[i++]);
+    i--;
+    if (run.length < 2) { out.push(run[0]); continue; }
+    const slides = run.map((fig, n) => fig.replace(FIGURE_PREFIX,
+      '<figure class="article-figure article-gallery-slide" data-index="' + (n + 1) + '">')).join("");
+    out.push('<div class="article-gallery" data-gallery data-count="' + run.length + '">' +
+      '<div class="article-gallery-track" tabindex="0">' + slides + '</div></div>');
+  }
+  return out;
 }
 
 // Проста версія без розмітки — для excerpt/OG-опису, коли він не задан вручну.

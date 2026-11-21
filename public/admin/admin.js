@@ -1131,6 +1131,7 @@
       commandButton("URL", "Додати посилання", "link") +
       commandButton("▶", "Вставити відео YouTube", "youtube") +
       commandButton("Фото", "Вставити фото з підписом", "image") +
+      commandButton("Галерея", "Вставити галерею: кілька фото з підписами, на сайті — карусель", "gallery") +
       commandButton("♪", "Вставити аудіо (файл або посилання)", "audio") +
       commandButton("↶", "Скасувати", "undo") +
       commandButton("↷", "Повторити", "redo") +
@@ -1139,7 +1140,7 @@
       '</div>' +
       '<div class="admin-editor-surface" data-editor-surface="true" contenteditable="true" role="textbox" aria-multiline="true" aria-label="' + escapeHtml(langLabel) + '"></div>' +
       '<textarea class="admin-editor-source" name="' + name + '">' + escapeHtml(value) + "</textarea>" +
-      '<p class="admin-editor-note">Пишіть як у звичайному документі. Щоб виділити фразу жовтим, оберіть текст і натисніть «Маркер». Повторне натискання знімає виділення.</p>' +
+      '<p class="admin-editor-note">Пишіть як у звичайному документі. Щоб виділити фразу жовтим, оберіть текст і натисніть «Маркер». Повторне натискання знімає виділення. Кілька фото поспіль (кнопка «Галерея») сайт покаже каруселлю.</p>' +
       '</div>';
   }
 
@@ -1275,6 +1276,34 @@
         }).catch(function (err) { window.alert(err.message || "Не вдалося завантажити фото"); });
       });
       imagePicker.click();
+      return;
+    }
+    if (command === "gallery") {
+      // Кілька фото поспіль сайт показує каруселлю (src/lib/markdown.js → groupGalleries).
+      var galleryPicker = document.createElement("input");
+      galleryPicker.type = "file"; galleryPicker.accept = "image/*"; galleryPicker.multiple = true;
+      galleryPicker.addEventListener("change", function () {
+        var files = Array.prototype.slice.call(galleryPicker.files || []);
+        if (files.length < 2) { window.alert("Для галереї оберіть щонайменше два фото. Одне фото вставляйте кнопкою «Фото»."); return; }
+        var uploads = [];
+        files.reduce(function (chain, file) {
+          return chain.then(function () {
+            return uploadImage(file).then(function (uploaded) {
+              uploads.push({ url: new URL(uploaded, window.location.origin).toString(), name: file.name });
+            });
+          });
+        }, Promise.resolve()).then(function () {
+          var html = uploads.map(function (item, index) {
+            var caption = window.prompt("Підпис до фото " + (index + 1) + " з " + uploads.length + " (" + item.name + "): хто чи що на фото, потім джерело", "");
+            caption = caption ? caption.trim().replace(/\*/g, "") : "";
+            return '<p><img src="' + escapeHtml(item.url) + '" alt="' + escapeHtml(caption) + '" /></p>' +
+              (caption ? "<p><em>" + escapeHtml(caption) + "</em></p>" : "");
+          }).join("") + "<p><br></p>";
+          restoreSelection(editor); document.execCommand("insertHTML", false, html);
+          syncRichEditors();
+        }).catch(function (err) { window.alert(err.message || "Не вдалося завантажити фото"); });
+      });
+      galleryPicker.click();
       return;
     }
     if (command === "audio") {

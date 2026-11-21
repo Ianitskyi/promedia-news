@@ -1445,6 +1445,30 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .article-caption a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .article-caption em { font-style: normal; }
 
+/* ---------- Галерея фото в тексті: кілька фото поспіль → карусель (markdown.js + js/promedia-gallery.js) ---------- */
+.article-body .article-gallery { margin: 0 0 22px; }
+.article-gallery-track {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none; gap: 0; outline: none;
+}
+.article-gallery-track::-webkit-scrollbar { display: none; }
+.article-gallery-track:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.article-body .article-gallery-slide { flex: 0 0 100%; min-width: 0; margin: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+.article-body .article-gallery-slide img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; margin: 0;
+  background: #ececf3; border-radius: var(--radius-sm);
+}
+.article-gallery-nav { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 10px; }
+.article-gallery-btn {
+  display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; padding: 0;
+  border: 1px solid var(--border); border-radius: var(--radius-pill); background: var(--card); color: var(--ink); cursor: pointer;
+}
+.article-gallery-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.article-gallery-btn:hover:not(:disabled) { background: var(--accent-tint); border-color: var(--accent); }
+.article-gallery-btn:focus-visible { outline: 3px solid var(--accent-dark); outline-offset: 2px; }
+.article-gallery-btn:disabled { opacity: .35; cursor: default; }
+.article-gallery-count { min-width: 48px; text-align: center; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+
 /* ---------- Звукова доріжка в тексті: [audio](…mp3) ---------- */
 .article-body .article-audio { margin: 22px 0; padding: 14px 16px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--card); }
 .article-body .article-audio audio { display: block; width: 100%; }

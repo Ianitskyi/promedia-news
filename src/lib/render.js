@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261121b";
+const ASSET_V = "20261122a";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -102,6 +102,9 @@ const TAG_LABELS_EN = {
   "українські медіа": "Ukrainian media",
   "війна": "war",
   "безпека журналістів": "journalist safety",
+  "екологічна журналістика": "environmental journalism",
+  "ЮНЕСКО": "UNESCO",
+  "Рубрика": "Rubryka",
   "дослідження": "research",
   "медіаграмотність": "media literacy",
   "штучний інтелект": "artificial intelligence",
@@ -208,6 +211,9 @@ const TAG_LABELS_CRH = {
   "українські медіа": "Ukrayina mediyası",
   "війна": "urış",
   "безпека журналістів": "jurnalistlerniñ emniyeti",
+  "екологічна журналістика": "ekologiya jurnalistikası",
+  "ЮНЕСКО": "YUNESKO",
+  "Рубрика": "Rubryka",
   "дослідження": "tedqiqat",
   "медіаграмотність": "mediya savatlılığı",
   "штучний інтелект": "suniy zekâ",
@@ -537,6 +543,7 @@ ${footer(lang)}
 <script defer src="/js/promedia-language-suggest.js"></script>
 <script defer src="/js/promedia-memorial-popup.js"></script>
 <script defer src="/js/promedia-story-share.js?v=${ASSET_V}"></script>
+<script defer src="/js/promedia-gallery.js?v=${ASSET_V}"></script>
 <script defer src="/js/promedia-global-shell.js"></script>
 </body>
 </html>`;
