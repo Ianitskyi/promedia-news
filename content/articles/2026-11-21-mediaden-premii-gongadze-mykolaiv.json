@@ -34,5 +34,7 @@
   ],
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
-  "cardStyle": "image"
+  "cardStyle": "hero",
+  "revision": "2026-11-21-hero",
+  "raiseToTop": "2026-11-21-hero"
 }
