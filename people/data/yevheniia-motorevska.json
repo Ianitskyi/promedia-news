@@ -1,0 +1,65 @@
+{
+  "slug": "yevheniia-motorevska",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Євгенія Моторевська",
+    "en": "Yevheniia Motorevska"
+  },
+  "sort": {
+    "uk": "Моторевська Євгенія",
+    "en": "Motorevska Yevheniia"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "керівниця відділу розслідувань воєнних злочинів The Kyiv Independent",
+    "en": "Head of the War Crimes Investigations Unit at The Kyiv Independent"
+  },
+  "summary": {
+    "uk": "Журналістка-розслідувачка, яка з 2023 року очолює відділ розслідувань воєнних злочинів The Kyiv Independent.",
+    "en": "Investigative journalist who has led The Kyiv Independent's War Crimes Investigations Unit since 2023."
+  },
+  "bio": {
+    "uk": "Євгенія Моторевська — українська журналістка-розслідувачка. Працювала на телеканалах TVi та ICTV, до повномасштабного вторгнення спеціалізувалася на юридичних та антикорупційних темах для «Громадського» та «Слідство.Інфо». З липня 2021 до лютого 2023 року була головною редакторкою «Громадського».\n\nЗ березня 2023 року очолює відділ розслідувань воєнних злочинів англомовного видання The Kyiv Independent: координує роботу команди, розробляє концепції документальних фільмів, відповідає за дотримання етичних стандартів. З 2018 року — медіатренерка Інституту розвитку регіональної преси.\n\n21 листопада 2026 року модерувала дискусію про журналістські розслідування під час війни на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Yevheniia Motorevska is a Ukrainian investigative journalist. She worked for the TV channels TVi and ICTV and, before the full-scale invasion, covered legal and anti-corruption topics for Hromadske and Slidstvo.Info. From July 2021 to February 2023 she was editor-in-chief of Hromadske.\n\nSince March 2023 she has led the War Crimes Investigations Unit of The Kyiv Independent, coordinating the team, developing documentary concepts and overseeing ethical standards. Since 2018 she has been a media trainer at the Institute for Regional Press Development.\n\nOn 21 November 2026 she moderated a discussion on wartime investigative journalism at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "The Kyiv Independent"
+    ],
+    [
+      "Посада",
+      "керівниця відділу розслідувань воєнних злочинів (з 2023 року)"
+    ],
+    [
+      "Раніше",
+      "головна редакторка «Громадського» (2021–2023)"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "The Kyiv Independent: Yevheniia Motorevska",
+      "url": "https://www.kyivindependent.com/author/yevheniia-motorevska"
+    },
+    {
+      "title": "The Kyiv Independent launches war investigations department (2023)",
+      "url": "https://kyivindependent.com/the-kyiv-independent-launches-war-investigations-department"
+    },
+    {
+      "title": "IWPR: Yevheniia Motorevska",
+      "url": "https://iwpr.net/about/people/yevheniia-motorevska"
+    },
+    {
+      "title": "CV Yevheniia Motorevska (SEEMF)",
+      "url": "https://seemf.org/pdf/Motorevska_Ukraine_CV.pdf"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "journalist"
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "natalia-mazharova",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Наталя Мажарова",
+    "en": "Natalia Mazharova"
+  },
+  "sort": {
+    "uk": "Мажарова Наталя",
+    "en": "Mazharova Natalia"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "засновниця Вишиванкового фестивалю в Одесі",
+    "en": "Founder of the Vyshyvanka Festival in Odesa"
+  },
+  "summary": {
+    "uk": "Одеська культурна менеджерка, засновниця Вишиванкового фестивалю та співорганізаторка літературного фестивалю PORT.",
+    "en": "Odesa cultural manager, founder of the Vyshyvanka Festival and co-organiser of the PORT literary festival."
+  },
+  "bio": {
+    "uk": "Наталя Мажарова — одеська громадська й культурна діячка, голова правління ГО «Вишиванковий фестиваль». 2009 року заснувала в Одесі Вишиванковий фестиваль, щоб спростувати стереотип про «неукраїнську» Одесу.\n\nЇї організація проводить також літературний фестиваль PORT (заснований 2025 року), присвячений сучасному літературному процесу Півдня України, та різдвяну ходу в Одесі. Наталя Мажарова — операційна директорка фестивалю PORT.\n\n21 листопада 2026 року виступила на заключній панелі про голос Півдня на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Natalia Mazharova is an Odesa civic and cultural figure and chair of the board of the NGO Vyshyvanka Festival. In 2009 she founded the Vyshyvanka Festival in Odesa to challenge the stereotype of a 'non-Ukrainian' Odesa.\n\nHer organisation also runs the PORT literary festival (founded in 2025), focused on contemporary literature of southern Ukraine, and a Christmas procession in Odesa; she is PORT's operational director.\n\nOn 21 November 2026 she spoke on the closing panel about the voice of the South at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Організація",
+      "ГО «Вишиванковий фестиваль» (Одеса)"
+    ],
+    [
+      "Проєкти",
+      "Вишиванковий фестиваль (з 2009), фестиваль PORT (з 2025)"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Kyiv Post: Natalya Mazharova, Top 30 under 30",
+      "url": "https://www.kyivpost.com/tiger-conference/ukraines-top-30-under-30/natalya-mazharova-organizer-popular-vyshyvanka-festival-organizer-promotes-patriotic-odesa.html"
+    },
+    {
+      "title": "Book Arsenal: Natalia Mazharova",
+      "url": "https://book.artarsenal.in.ua/?p=30853"
+    },
+    {
+      "title": "Суспільне Одеса: акція пам'яті героїв на Біржовій площі",
+      "url": "https://suspilne.media/odesa/1097752-v-odesi-vidbulasa-akcia-pamati-geroiv-na-birzovij-plosi/"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "other"
+}

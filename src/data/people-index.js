@@ -18,6 +18,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "anastasiia-abramets",
+    "tag": "Анастасія Абрамець",
+    "aliases": [],
+    "name": {
+      "uk": "Анастасія Абрамець",
+      "en": "Anastasiia Abramets"
+    },
+    "role": {
+      "uk": "директорка Премії імені Георгія Ґонґадзе",
+      "en": "Director of the Georgiy Gongadze Prize"
+    },
+    "summary": {
+      "uk": "Директорка Премії імені Георгія Ґонґадзе, яка проводить регіональні Медіадні Премії.",
+      "en": "Director of the Georgiy Gongadze Prize, which runs the Prize's regional Media Days."
+    }
+  },
+  {
     "slug": "anastasiia-simonova",
     "tag": "Анастасія Сімонова",
     "aliases": [],
@@ -32,6 +49,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Журналістка й редакторка з Одеси, співзасновниця ГО «ПроМедіа» та «Тижня воєнного кіно».",
       "en": "Odesa-based journalist and editor, co-founder of NGO ProMedia and Military Film Week."
+    }
+  },
+  {
+    "slug": "anastasiia-stanko",
+    "tag": "Анастасія Станко",
+    "aliases": [],
+    "name": {
+      "uk": "Анастасія Станко",
+      "en": "Anastasiia Stanko"
+    },
+    "role": {
+      "uk": "головна редакторка «Слідство.Інфо»",
+      "en": "Editor-in-chief of Slidstvo.Info"
+    },
+    "summary": {
+      "uk": "Журналістка, воєнна репортерка й телеведуча, співзасновниця «Громадського», головна редакторка агенції журналістських розслідувань «Слідство.Інфо».",
+      "en": "Journalist, war reporter and TV presenter, co-founder of Hromadske and editor-in-chief of the investigative agency Slidstvo.Info."
     }
   },
   {
@@ -266,6 +300,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Черкаський журналіст-розслідувач, якого побили в центрі міста в травні 2019 року; він помер, не приходячи до тями.",
       "en": "Cherkasy investigative journalist attacked in May 2019; he died without regaining consciousness."
+    }
+  },
+  {
+    "slug": "valentyna-hurova",
+    "tag": "Валентина Гурова",
+    "aliases": [],
+    "name": {
+      "uk": "Валентина Гурова",
+      "en": "Valentyna Hurova"
+    },
+    "role": {
+      "uk": "головна редакторка «Суспільне Миколаїв»",
+      "en": "Editor-in-chief of Suspilne Mykolaiv"
+    },
+    "summary": {
+      "uk": "Миколаївська тележурналістка, яка документувала воєнні злочини росіян на Миколаївщині; головна редакторка «Суспільне Миколаїв».",
+      "en": "Mykolaiv TV journalist who documented Russian war crimes in the region; editor-in-chief of Suspilne Mykolaiv."
     }
   },
   {
@@ -739,6 +790,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "yevheniia-motorevska",
+    "tag": "Євгенія Моторевська",
+    "aliases": [],
+    "name": {
+      "uk": "Євгенія Моторевська",
+      "en": "Yevheniia Motorevska"
+    },
+    "role": {
+      "uk": "керівниця відділу розслідувань воєнних злочинів The Kyiv Independent",
+      "en": "Head of the War Crimes Investigations Unit at The Kyiv Independent"
+    },
+    "summary": {
+      "uk": "Журналістка-розслідувачка, яка з 2023 року очолює відділ розслідувань воєнних злочинів The Kyiv Independent.",
+      "en": "Investigative journalist who has led The Kyiv Independent's War Crimes Investigations Unit since 2023."
+    }
+  },
+  {
     "slug": "zhanna-bezpiatchuk",
     "tag": "Жанна Безп’ятчук",
     "aliases": [
@@ -866,6 +934,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Фахівчиня з комунікацій, відео та дизайну; співзасновниця ГО «ПроМедіа», де працює з SMM і відеоконтентом.",
       "en": "Communications, video and design specialist; co-founder of NGO ProMedia, working on social media and video."
+    }
+  },
+  {
+    "slug": "kateryna-sereda",
+    "tag": "Катерина Середа",
+    "aliases": [],
+    "name": {
+      "uk": "Катерина Середа",
+      "en": "Kateryna Sereda"
+    },
+    "role": {
+      "uk": "головна редакторка «МикВістей», координаторка хабу «Медіабаза Миколаїв»",
+      "en": "Editor-in-chief of MykVisti, coordinator of the Mediabaza Mykolaiv hub"
+    },
+    "summary": {
+      "uk": "Головна редакторка миколаївського видання «МикВісті», регіональна представниця ІМІ на Миколаївщині й координаторка хабу «Медіабаза Миколаїв».",
+      "en": "Editor-in-chief of Mykolaiv outlet MykVisti, IMI's regional representative and coordinator of the Mediabaza Mykolaiv hub."
     }
   },
   {
@@ -1003,6 +1088,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "mykhailo-kryhel",
+    "tag": "Михайло Кригель",
+    "aliases": [],
+    "name": {
+      "uk": "Михайло Кригель",
+      "en": "Mykhailo Kryhel"
+    },
+    "role": {
+      "uk": "заступник головної редакторки «Української правди»",
+      "en": "Deputy editor-in-chief of Ukrainska Pravda"
+    },
+    "summary": {
+      "uk": "Журналіст і редактор, заступник головної редакторки «Української правди», член Наглядової ради Премії імені Георгія Ґонґадзе.",
+      "en": "Journalist and editor, deputy editor-in-chief of Ukrainska Pravda and member of the Supervisory Board of the Georgiy Gongadze Prize."
+    }
+  },
+  {
     "slug": "mykhailo-tkach",
     "tag": "Михайло Ткач",
     "aliases": [],
@@ -1071,6 +1173,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "natalia-mazharova",
+    "tag": "Наталя Мажарова",
+    "aliases": [],
+    "name": {
+      "uk": "Наталя Мажарова",
+      "en": "Natalia Mazharova"
+    },
+    "role": {
+      "uk": "засновниця Вишиванкового фестивалю в Одесі",
+      "en": "Founder of the Vyshyvanka Festival in Odesa"
+    },
+    "summary": {
+      "uk": "Одеська культурна менеджерка, засновниця Вишиванкового фестивалю та співорганізаторка літературного фестивалю PORT.",
+      "en": "Odesa cultural manager, founder of the Vyshyvanka Festival and co-organiser of the PORT literary festival."
+    }
+  },
+  {
     "slug": "natalia-nahorna",
     "tag": "Наталя Нагорна",
     "aliases": [
@@ -1105,6 +1224,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Співзасновниця і головна редакторка незалежного дніпровського медіа Dnipro.media.",
       "en": "Co-founder and editor-in-chief of the independent Dnipro outlet Dnipro.media."
+    }
+  },
+  {
+    "slug": "oleh-dereniuha",
+    "tag": "Олег Деренюга",
+    "aliases": [],
+    "name": {
+      "uk": "Олег Деренюга",
+      "en": "Oleh Dereniuha"
+    },
+    "role": {
+      "uk": "засновник і керівник «МикВістей»",
+      "en": "Founder and head of MykVisti"
+    },
+    "summary": {
+      "uk": "Миколаївський медіаменеджер, співвласник і виконавчий директор онлайн-медіа «МикВісті», у журналістиці з 2012 року.",
+      "en": "Mykolaiv media manager, co-owner and executive director of the online outlet MykVisti, in journalism since 2012."
     }
   },
   {
@@ -1163,6 +1299,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Воєнна кореспондентка Freedom з Донеччини, загинула від удару дрона в Краматорську 23 жовтня 2025 року.",
       "en": "Freedom TV war correspondent from Donetsk region, killed by a drone strike in Kramatorsk on 23 October 2025."
+    }
+  },
+  {
+    "slug": "olesia-boreiko",
+    "tag": "Олеся Борейко",
+    "aliases": [],
+    "name": {
+      "uk": "Олеся Борейко",
+      "en": "Olesia Boreiko"
+    },
+    "role": {
+      "uk": "журналістка-розслідувачка NikCenter",
+      "en": "Investigative journalist at NikCenter"
+    },
+    "summary": {
+      "uk": "Миколаївська журналістка-розслідувачка видання NikCenter, пише про корупцію та воєнні злочини росіян на Півдні України.",
+      "en": "Mykolaiv-based investigative journalist at NikCenter covering corruption and Russian war crimes in southern Ukraine."
     }
   },
   {
@@ -1395,6 +1548,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "tetiana-troshchynska",
+    "tag": "Тетяна Трощинська",
+    "aliases": [],
+    "name": {
+      "uk": "Тетяна Трощинська",
+      "en": "Tetiana Troshchynska"
+    },
+    "role": {
+      "uk": "журналістка, ведуча, лауреатка Премії імені Георгія Ґонґадзе 2024 року",
+      "en": "Journalist, presenter, 2024 Georgiy Gongadze Prize laureate"
+    },
+    "summary": {
+      "uk": "Журналістка, продюсерка й радіоведуча, директорка департаменту на Суспільному, лауреатка Премії імені Георгія Ґонґадзе 2024 року.",
+      "en": "Journalist, producer and radio host at Suspilne, laureate of the 2024 Georgiy Gongadze Prize."
+    }
+  },
+  {
     "slug": "tomas-bella",
     "tag": "Томаш Белла",
     "aliases": [
@@ -1534,6 +1704,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Засновник і директор Polis — центру досліджень журналістики при Лондонській школі економіки, керівник проєкту JournalismAI.",
       "en": "Founding director of Polis, the journalism think tank at the London School of Economics, and director of the JournalismAI project."
+    }
+  },
+  {
+    "slug": "yulia-mcguffie",
+    "tag": "Юлія МакГаффі",
+    "aliases": [
+      "Юлія Макгаффі"
+    ],
+    "name": {
+      "uk": "Юлія МакГаффі",
+      "en": "Yulia McGuffie"
+    },
+    "role": {
+      "uk": "головна редакторка сайту NV",
+      "en": "Editor-in-chief of the NV website"
+    },
+    "summary": {
+      "uk": "Журналістка й медіаменеджерка, головна редакторка сайту NV, раніше вісім років очолювала сайт «Корреспондент.net».",
+      "en": "Journalist and media manager, editor-in-chief of the NV website; previously led Korrespondent.net for eight years."
     }
   },
   {

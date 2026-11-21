@@ -1,0 +1,53 @@
+{
+  "slug": "kateryna-sereda",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Катерина Середа",
+    "en": "Kateryna Sereda"
+  },
+  "sort": {
+    "uk": "Середа Катерина",
+    "en": "Sereda Kateryna"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "головна редакторка «МикВістей», координаторка хабу «Медіабаза Миколаїв»",
+    "en": "Editor-in-chief of MykVisti, coordinator of the Mediabaza Mykolaiv hub"
+  },
+  "summary": {
+    "uk": "Головна редакторка миколаївського видання «МикВісті», регіональна представниця ІМІ на Миколаївщині й координаторка хабу «Медіабаза Миколаїв».",
+    "en": "Editor-in-chief of Mykolaiv outlet MykVisti, IMI's regional representative and coordinator of the Mediabaza Mykolaiv hub."
+  },
+  "bio": {
+    "uk": "Катерина Середа — миколаївська журналістка, з жовтня 2023 року головна редакторка онлайн-медіа «МикВісті». Регіональна представниця Інституту масової інформації (ІМІ) в Миколаївській області та координаторка хабу «Медіабаза Миколаїв».\n\nСпеціалізується на політиці, публічних закупівлях, роботі органів місцевого самоврядування, аналізі бюджету й рішень міської ради та доступі до інформації.\n\n21 листопада 2026 року модерувала заключну панель про голос Півдня на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Kateryna Sereda is a Mykolaiv journalist and, since October 2023, editor-in-chief of the online outlet MykVisti. She is the regional representative of the Institute of Mass Information (IMI) in Mykolaiv region and coordinator of the Mediabaza Mykolaiv hub.\n\nShe specialises in politics, public procurement, local government, budget analysis and access to information.\n\nOn 21 November 2026 she moderated the closing panel on the voice of the South at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«МикВісті» (Миколаїв)"
+    ],
+    [
+      "Посада",
+      "головна редакторка (з 2023 року)"
+    ],
+    [
+      "Також",
+      "регіональна представниця ІМІ, координаторка «Медіабази Миколаїв»"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "NikVesti: Kateryna Sereda",
+      "url": "https://demo.nikvesti.com/en/author/22"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "journalist"
+}

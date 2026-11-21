@@ -1,0 +1,59 @@
+{
+  "slug": "yulia-mcguffie",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Юлія МакГаффі",
+    "en": "Yulia McGuffie"
+  },
+  "sort": {
+    "uk": "МакГаффі Юлія",
+    "en": "McGuffie Yulia"
+  },
+  "aliases": [
+    "Юлія Макгаффі"
+  ],
+  "role": {
+    "uk": "головна редакторка сайту NV",
+    "en": "Editor-in-chief of the NV website"
+  },
+  "summary": {
+    "uk": "Журналістка й медіаменеджерка, головна редакторка сайту NV, раніше вісім років очолювала сайт «Корреспондент.net».",
+    "en": "Journalist and media manager, editor-in-chief of the NV website; previously led Korrespondent.net for eight years."
+  },
+  "bio": {
+    "uk": "Юлія МакГаффі — українська журналістка й медіаменеджерка, головна редакторка сайту NV. Закінчила Інститут журналістики Київського університету імені Тараса Шевченка (1999), навчалася в агенції Reuters у Лондоні.\n\nУ професії з 1994 року: шість років працювала в англійській редакції Radio Ukraine International — від репортерки до заступниці головного редактора. З 2000 року брала участь у створенні сайту «Корреспондент.net» і журналу «Корреспондент», вісім років очолювала сайт і пішла 2013 року після його продажу Сергієві Курченку. У 2014–2017 роках була консультанткою з діджиталу у Фонді Олени Пінчук, співпрацювала з «Громадським» і «Радіо Аристократи». Заслужена журналістка України (2009).\n\n21 листопада 2026 року взяла участь у дискусії «Редакційний консиліум: три виклики, три рішення» на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Yulia McGuffie is a Ukrainian journalist and media manager, editor-in-chief of the NV website. She graduated from the Institute of Journalism at Taras Shevchenko University of Kyiv (1999) and trained at Reuters in London.\n\nShe started in 1994 at the English service of Radio Ukraine International, rising from reporter to deputy editor-in-chief over six years. From 2000 she helped launch Korrespondent.net and Korrespondent magazine, led the website for eight years and left in 2013 after it was sold to Serhiy Kurchenko. In 2014–2017 she was a digital consultant at the Victor Pinchuk Foundation and worked with Hromadske and Radio Aristocrats. Honoured Journalist of Ukraine (2009).\n\nOn 21 November 2026 she took part in the discussion 'Editorial council: three challenges, three solutions' at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "NV"
+    ],
+    [
+      "Посада",
+      "головна редакторка сайту"
+    ],
+    [
+      "У професії",
+      "з 1994 року"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "NV: Юлія МакГаффі",
+      "url": "https://nv.ua/ukr/korrespondents/yuliya-makgaffi.html"
+    },
+    {
+      "title": "NV: контакти редакції",
+      "url": "https://nv.ua/ukr/page/contacts.html"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "journalist"
+}

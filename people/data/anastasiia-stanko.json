@@ -1,0 +1,71 @@
+{
+  "slug": "anastasiia-stanko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Анастасія Станко",
+    "en": "Anastasiia Stanko"
+  },
+  "sort": {
+    "uk": "Станко Анастасія",
+    "en": "Stanko Anastasiia"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "головна редакторка «Слідство.Інфо»",
+    "en": "Editor-in-chief of Slidstvo.Info"
+  },
+  "summary": {
+    "uk": "Журналістка, воєнна репортерка й телеведуча, співзасновниця «Громадського», головна редакторка агенції журналістських розслідувань «Слідство.Інфо».",
+    "en": "Journalist, war reporter and TV presenter, co-founder of Hromadske and editor-in-chief of the investigative agency Slidstvo.Info."
+  },
+  "bio": {
+    "uk": "Анастасія Станко — українська журналістка, воєнна репортерка й телеведуча, учасниця руху «Стоп цензурі!». Закінчила Львівський університет, працювала на телеканалах «Перший» і TVi. 2013 року стала однією із засновниць «Громадського».\n\nВисвітлювала Революцію гідності, анексію Криму та війну на Донбасі. У червні 2014 року її разом з оператором утримували в полоні так званої «ЛНР» у Луганську. 2018 року отримала Міжнародну премію за свободу преси від Комітету захисту журналістів (CPJ). Нині — головна редакторка агенції журналістських розслідувань «Слідство.Інфо».\n\n21 листопада 2026 року взяла участь у дискусії про розслідування під час війни на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Anastasiia Stanko is a Ukrainian journalist, war reporter and TV presenter and a member of the Stop Censorship movement. A graduate of Lviv University, she worked for the channels Pershyi and TVi and in 2013 co-founded Hromadske.\n\nShe covered the Revolution of Dignity, the annexation of Crimea and the war in Donbas; in June 2014 she and her cameraman were held captive by the so-called 'LPR' in Luhansk. In 2018 she received the International Press Freedom Award of the Committee to Protect Journalists (CPJ). She is now editor-in-chief of the investigative agency Slidstvo.Info.\n\nOn 21 November 2026 she spoke on wartime investigations at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«Слідство.Інфо»"
+    ],
+    [
+      "Посада",
+      "головна редакторка"
+    ],
+    [
+      "Нагороди",
+      "Міжнародна премія за свободу преси CPJ (2018)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Анастасія Станко",
+      "en:Anastasia Stanko"
+    ],
+    "check": [
+      "журналіст",
+      "journalist",
+      "Stanko"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Вікіпедія: Anastasia Stanko",
+      "url": "https://en.wikipedia.org/wiki/Anastasia_Stanko"
+    },
+    {
+      "title": "CPJ: Anastasiya Stanko, International Press Freedom Awards 2018",
+      "url": "https://cpj.org/awards/anastasiya-stanko-ukraine/"
+    },
+    {
+      "title": "International Journalism Festival: Anastasiya Stanko",
+      "url": "https://www.journalismfestival.com/speaker/anastasiya-stanko"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "journalist"
+}

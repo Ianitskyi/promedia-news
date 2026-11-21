@@ -1,0 +1,57 @@
+{
+  "slug": "oleh-dereniuha",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Олег Деренюга",
+    "en": "Oleh Dereniuha"
+  },
+  "sort": {
+    "uk": "Деренюга Олег",
+    "en": "Dereniuha Oleh"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "засновник і керівник «МикВістей»",
+    "en": "Founder and head of MykVisti"
+  },
+  "summary": {
+    "uk": "Миколаївський медіаменеджер, співвласник і виконавчий директор онлайн-медіа «МикВісті», у журналістиці з 2012 року.",
+    "en": "Mykolaiv media manager, co-owner and executive director of the online outlet MykVisti, in journalism since 2012."
+  },
+  "bio": {
+    "uk": "Олег Деренюга — миколаївський журналіст і медіаменеджер. Здобув освіту в Чорноморському державному університеті імені Петра Могили (історія, публічне управління). Навчався в освітніх програмах Ради Європи, Стокгольмської школи економіки та Фонду Фрідріха Науманна.\n\nЗ 2012 року — кореспондент онлайн-медіа «МикВісті», з 2013 року — головний редактор. 2016 року заснував студію MykVisti Production, яка знімає телепрограми, фільми й журналістські розслідування. Спеціалізується на темах місцевого самоврядування, публічних фінансів, відбудови й підзвітності влади. Нині — співвласник і виконавчий директор «МикВістей».\n\n21 листопада 2026 року взяв участь у дискусії «Редакційний консиліум: три виклики, три рішення» на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Oleh Dereniuha is a Mykolaiv journalist and media manager. He studied history and public administration at Petro Mohyla Black Sea State University and took part in programmes of the Council of Europe, the Stockholm School of Economics and the Friedrich Naumann Foundation.\n\nHe joined the online outlet MykVisti as a correspondent in 2012 and became editor-in-chief in 2013. In 2016 he set up MykVisti Production, which makes TV programmes, films and investigations. He specialises in local government, public finance, recovery and government accountability. He is now co-owner and executive director of MykVisti.\n\nOn 21 November 2026 he took part in the discussion 'Editorial council: three challenges, three solutions' at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«МикВісті» (Миколаїв)"
+    ],
+    [
+      "Посада",
+      "співвласник і виконавчий директор"
+    ],
+    [
+      "У журналістиці",
+      "з 2012 року"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "NikVesti: Oleh Dereniuha",
+      "url": "https://www.nikvesti.com/en/author/10"
+    },
+    {
+      "title": "B-Future: Oleh Dereniuha",
+      "url": "https://b-future.org/en/speaker/oleh-dereniuha"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "manager"
+}

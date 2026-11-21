@@ -1,0 +1,61 @@
+{
+  "slug": "tetiana-troshchynska",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Тетяна Трощинська",
+    "en": "Tetiana Troshchynska"
+  },
+  "sort": {
+    "uk": "Трощинська Тетяна",
+    "en": "Troshchynska Tetiana"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "журналістка, ведуча, лауреатка Премії імені Георгія Ґонґадзе 2024 року",
+    "en": "Journalist, presenter, 2024 Georgiy Gongadze Prize laureate"
+  },
+  "summary": {
+    "uk": "Журналістка, продюсерка й радіоведуча, директорка департаменту на Суспільному, лауреатка Премії імені Георгія Ґонґадзе 2024 року.",
+    "en": "Journalist, producer and radio host at Suspilne, laureate of the 2024 Georgiy Gongadze Prize."
+  },
+  "bio": {
+    "uk": "Тетяна Трощинська — українська журналістка, продюсерка й ведуча. У 2018–2024 роках була головною редакторкою «Громадського радіо», веде лінійні ефіри та авторські програми, проводить тренінги зі стратегічної та кризової комунікації.\n\nДиректорка департаменту стратегічного аналізу та розвитку соціально впливового контенту на Суспільному, продюсерка ток-шоу «Новий відлік», ведуча «Радіо Культура». 2024 року стала лауреаткою Премії імені Георгія Ґонґадзе.\n\n21 листопада 2026 року модерувала дискусію «Редакційний консиліум: три виклики, три рішення» на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Tetiana Troshchynska is a Ukrainian journalist, producer and presenter. In 2018–2024 she was editor-in-chief of Hromadske Radio; she hosts live and authored programmes and runs trainings in strategic and crisis communication.\n\nShe heads the department of strategic analysis and socially impactful content at Suspilne, Ukraine's public broadcaster, produces the talk show 'Novyi Vidlik' and hosts on Radio Kultura. In 2024 she won the Georgiy Gongadze Prize.\n\nOn 21 November 2026 she moderated the discussion 'Editorial council: three challenges, three solutions' at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Суспільне мовлення"
+    ],
+    [
+      "Нагороди",
+      "Премія імені Георгія Ґонґадзе (2024)"
+    ],
+    [
+      "Раніше",
+      "головна редакторка «Громадського радіо» (2018–2024)"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Радіо Свобода: «Ми не маємо втомлюватися» — Тетяна Трощинська",
+      "url": "https://www.radiosvoboda.org/a/32959378.html"
+    },
+    {
+      "title": "УП. Життя: Тетяна Трощинська стала лауреаткою Премії Ґонґадзе",
+      "url": "https://life.pravda.com.ua/society/tetyana-troshchinska-stala-laureatkoyu-premiji-imeni-georgiya-gongadze-301661/"
+    },
+    {
+      "title": "УП. Життя: інтерв'ю з Тетяною Трощинською",
+      "url": "https://life.pravda.com.ua/society/interv-yu-z-tetyanoyu-troshchinskoyu-nominantkoyu-premiji-imeni-gongadze-301448/"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "journalist"
+}

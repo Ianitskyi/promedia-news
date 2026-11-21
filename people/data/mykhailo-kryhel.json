@@ -1,0 +1,61 @@
+{
+  "slug": "mykhailo-kryhel",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Михайло Кригель",
+    "en": "Mykhailo Kryhel"
+  },
+  "sort": {
+    "uk": "Кригель Михайло",
+    "en": "Kryhel Mykhailo"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "заступник головної редакторки «Української правди»",
+    "en": "Deputy editor-in-chief of Ukrainska Pravda"
+  },
+  "summary": {
+    "uk": "Журналіст і редактор, заступник головної редакторки «Української правди», член Наглядової ради Премії імені Георгія Ґонґадзе.",
+    "en": "Journalist and editor, deputy editor-in-chief of Ukrainska Pravda and member of the Supervisory Board of the Georgiy Gongadze Prize."
+  },
+  "bio": {
+    "uk": "Михайло Кригель — український журналіст і редактор, заступник головної редакторки «Української правди». Член Наглядової ради Премії імені Георгія Ґонґадзе.\n\nПереможець конкурсу «Честь професії» в номінації «Найкращий репортаж», член ради експертів цього конкурсу у 2026 році. Був членом журі проєкту «УП 100».\n\n21 листопада 2026 року взяв участь у дискусії «Редакційний консиліум: три виклики, три рішення» на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Mykhailo Kryhel is a Ukrainian journalist and editor, deputy editor-in-chief of Ukrainska Pravda and a member of the Supervisory Board of the Georgiy Gongadze Prize.\n\nHe won the 'Best report' category of the Honour of the Profession competition and sits on its 2026 expert council. He was also on the jury of the 'UP 100' project.\n\nOn 21 November 2026 he took part in the discussion 'Editorial council: three challenges, three solutions' at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«Українська правда»"
+    ],
+    [
+      "Посада",
+      "заступник головної редакторки"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Українська правда: Михайло Кригель, «Ви – кубло гадюк і злодіїв» (2025)",
+      "url": "https://www.pravda.com.ua/articles/2025/02/9/7497243/"
+    },
+    {
+      "title": "Українська правда: УП 100. Поза межами можливого",
+      "url": "https://www.pravda.com.ua/cdn/cd1/up100_2024/"
+    },
+    {
+      "title": "Честь професії 2026: рада експертів",
+      "url": "https://journalismaward.in.ua/files/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%A0%D0%B0%D0%B4%D0%B8_%D0%B5%D0%BA%D1%81%D0%BF%D0%B5%D1%80%D1%82%D1%96%D0%B2_%D0%A7%D0%B5%D1%81%D1%82%D1%8C_%D0%9F%D1%80%D0%BE%D1%84%D0%B5%D1%81%D1%96%D1%96%CC%88_2026.pdf"
+    },
+    {
+      "title": "NV: медіадень Премії імені Георгія Ґонґадзе в Миколаєві (анонс)",
+      "url": "https://nv.ua/ukr/ukraine/events/mediaden-premiji-gongadze-v-mikolayevi-dialog-zhurnalistiv-ta-mediaekspertiv-50660155.html"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "journalist"
+}

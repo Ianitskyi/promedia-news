@@ -1,0 +1,53 @@
+{
+  "slug": "valentyna-hurova",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Валентина Гурова",
+    "en": "Valentyna Hurova"
+  },
+  "sort": {
+    "uk": "Гурова Валентина",
+    "en": "Hurova Valentyna"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "головна редакторка «Суспільне Миколаїв»",
+    "en": "Editor-in-chief of Suspilne Mykolaiv"
+  },
+  "summary": {
+    "uk": "Миколаївська тележурналістка, яка документувала воєнні злочини росіян на Миколаївщині; головна редакторка «Суспільне Миколаїв».",
+    "en": "Mykolaiv TV journalist who documented Russian war crimes in the region; editor-in-chief of Suspilne Mykolaiv."
+  },
+  "bio": {
+    "uk": "Валентина Гурова — українська тележурналістка з Миколаєва. Перші зйомки в зоні бойових дій зробила 2016 року на Донеччині, коли їздила з місцевими волонтерами знімати історії захисників і мешканців прифронтових територій.\n\nЯк кореспондентка Миколаївської філії Суспільного мовлення після повномасштабного вторгнення щодня документувала воєнні злочини росіян у рідному регіоні. Нині — головна редакторка «Суспільне Миколаїв».\n\n21 листопада 2026 року взяла участь у дискусії «Редакційний консиліум: три виклики, три рішення» на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Valentyna Hurova is a Ukrainian TV journalist from Mykolaiv. She first filmed in a combat zone in 2016 in Donetsk region, travelling with local volunteers to tell the stories of soldiers and frontline residents.\n\nAs a correspondent of the Mykolaiv branch of Suspilne, Ukraine's public broadcaster, she documented Russian war crimes in her home region daily after the full-scale invasion. She is now editor-in-chief of Suspilne Mykolaiv.\n\nOn 21 November 2026 she took part in the discussion 'Editorial council: three challenges, three solutions' at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«Суспільне Миколаїв»"
+    ],
+    [
+      "Посада",
+      "головна редакторка"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Суспільне: Валентина Гурова, «Над нами летіли білі парашути…» (2023)",
+      "url": "https://corp.suspilne.media/newsdetails/5932"
+    },
+    {
+      "title": "NUJU: TV reporter Valentyna Hurova",
+      "url": "https://nuju.org.ua/tv-reporter-valentyna-hurova-while-the-cameraperson-sets-up-the-shot-the-journalist-looks-all-around-and-up-at-the-sky-to-check-if-anything-is-flying-overhead"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "journalist"
+}

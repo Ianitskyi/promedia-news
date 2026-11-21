@@ -1,0 +1,49 @@
+{
+  "slug": "olesia-boreiko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Олеся Борейко",
+    "en": "Olesia Boreiko"
+  },
+  "sort": {
+    "uk": "Борейко Олеся",
+    "en": "Boreiko Olesia"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "журналістка-розслідувачка NikCenter",
+    "en": "Investigative journalist at NikCenter"
+  },
+  "summary": {
+    "uk": "Миколаївська журналістка-розслідувачка видання NikCenter, пише про корупцію та воєнні злочини росіян на Півдні України.",
+    "en": "Mykolaiv-based investigative journalist at NikCenter covering corruption and Russian war crimes in southern Ukraine."
+  },
+  "bio": {
+    "uk": "Олеся Борейко — українська журналістка-розслідувачка з Миколаєва, працює в онлайн-виданні NikCenter (ГО «Миколаївський центр журналістських розслідувань»).\n\nПише про корупцію та воєнні злочини російських окупантів на Півдні України. Співавторка розслідувань про встановлення російських воєнних злочинців і транскордонних розслідувань про статки українських посадовців у Чехії.\n\n21 листопада 2026 року взяла участь у дискусії про розслідування під час війни на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Olesia Boreiko is a Ukrainian investigative journalist from Mykolaiv working for the online outlet NikCenter (NGO Mykolaiv Center for Investigative Reporting).\n\nShe covers corruption and war crimes committed by Russian occupiers in southern Ukraine and has co-authored investigations identifying Russian war criminals and cross-border investigations into Ukrainian officials' assets in the Czech Republic.\n\nOn 21 November 2026 she spoke on wartime investigations at the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "NikCenter (Миколаїв)"
+    ],
+    [
+      "Теми",
+      "корупція, воєнні злочини на Півдні"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Journalismfund Europe: Olesia Boreiko",
+      "url": "https://www.journalismfund.eu/journalists/olesia-boreiko"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "journalist"
+}

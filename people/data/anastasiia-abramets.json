@@ -1,0 +1,53 @@
+{
+  "slug": "anastasiia-abramets",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Анастасія Абрамець",
+    "en": "Anastasiia Abramets"
+  },
+  "sort": {
+    "uk": "Абрамець Анастасія",
+    "en": "Abramets Anastasiia"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "директорка Премії імені Георгія Ґонґадзе",
+    "en": "Director of the Georgiy Gongadze Prize"
+  },
+  "summary": {
+    "uk": "Директорка Премії імені Георгія Ґонґадзе, яка проводить регіональні Медіадні Премії.",
+    "en": "Director of the Georgiy Gongadze Prize, which runs the Prize's regional Media Days."
+  },
+  "bio": {
+    "uk": "Анастасія Абрамець — директорка Премії імені Георгія Ґонґадзе. Премію 2019 року заснували Український ПЕН, родина Георгія Ґонґадзе, видання «Українська правда» та Києво-Могилянська бізнес-школа.\n\nВідкривала регіональні Медіадні Премії, зокрема в Харкові. 21 листопада 2026 року модерувала Медіадень Премії імені Георгія Ґонґадзе в Миколаєві.",
+    "en": "Anastasiia Abramets is director of the Georgiy Gongadze Prize, founded in 2019 by PEN Ukraine, Georgiy Gongadze's family, Ukrainska Pravda and the Kyiv-Mohyla Business School.\n\nShe has opened the Prize's regional Media Days, including in Kharkiv, and on 21 November 2026 moderated the Georgiy Gongadze Prize Media Day in Mykolaiv."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Премія імені Георгія Ґонґадзе"
+    ],
+    [
+      "Посада",
+      "директорка"
+    ]
+  ],
+  "photo": {},
+  "sources": [
+    {
+      "title": "Фонд Фрідріха Науманна: як минули Медіадні Премії Ґонґадзе в Харкові",
+      "url": "https://www.freiheit.org/ukr/ukraine-and-belarus/treba-pratsyuvaty-braty-kameru-do-ruk-i-dokumentuvaty-istoriyu-yak-mynuly"
+    },
+    {
+      "title": "Український ПЕН: Премія імені Георгія Ґонґадзе",
+      "url": "https://pen.org.ua/en/premiya-imeni-georgiya-gongadze"
+    },
+    {
+      "title": "Новини ПроМедіа: Медіадень Премії Ґонґадзе в Миколаєві (21.11.2026)",
+      "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
+    }
+  ],
+  "updated": "2026-11-21",
+  "kind": "manager"
+}
