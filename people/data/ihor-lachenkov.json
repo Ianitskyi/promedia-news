@@ -1,0 +1,68 @@
+{
+  "slug": "ihor-lachenkov",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Ігор Лаченков",
+    "en": "Ihor Lachenkov"
+  },
+  "sort": {
+    "uk": "Лаченков Ігор",
+    "en": "Lachenkov Ihor"
+  },
+  "aliases": [
+    "Лачен"
+  ],
+  "role": {
+    "uk": "блогер, автор телеграм-каналу «Лачен пише», волонтер",
+    "en": "Blogger, author of the Lachen Pyshe Telegram channel, volunteer"
+  },
+  "summary": {
+    "uk": "Автор одного з найбільших новинних телеграм-каналів України «Лачен пише», співорганізатор збору «Народний Байрактар».",
+    "en": "Author of Lachen Pyshe, one of Ukraine's largest news Telegram channels, and co-organiser of the People's Bayraktar fundraiser."
+  },
+  "bio": {
+    "uk": "Ігор Лаченков народився 1999 року в Дніпрі. Навчався в Національному юридичному університеті імені Ярослава Мудрого.\n\nУ 2019 році запустив телеграм-канали ProDnipro з новинами Дніпра та гумористичний «Бро скинув мем». До повномасштабної війни створював телеграм-проєкти на замовлення. 10 січня 2022 року заснував канал «Лачен пише», який за пів року увійшов до десятки найбільших новинних телеграм-каналів України (за Forbes Україна); команда каналу — троє людей.\n\nУ червні 2022 року разом із Сергієм Притулою запустив збір «Народний Байрактар», у жовтні 2022 року разом з monobank та United24 — збір на систему протидії дронам. 2022 року увійшов до рейтингу Forbes Україна «30 до 30».\n\nУ листопаді 2026 року на оприлюднених НАБУ записах у справі «Карфаген» фігуранти, за версією слідства, обговорювали можливий напад на пана Ігоря. Нацполіція відкрила провадження через погрози йому та Денису Бігусу; сам пан Ігор раніше заявив, що не планує звертатися до поліції.",
+    "en": "Ihor Lachenkov was born in 1999 in Dnipro, a large city in central-eastern Ukraine. He studied at Yaroslav Mudryi National Law University.\n\nIn 2019 he launched the Telegram channels ProDnipro, with news from Dnipro, and the humour channel Bro Posted a Meme. Before the full-scale war he built Telegram projects for clients. On 10 January 2022 he founded Lachen Pyshe (Lachen Writes), which within six months entered the top ten news Telegram channels in Ukraine (per Forbes Ukraine); the channel is run by a team of three.\n\nIn June 2022 he and TV host Serhii Prytula launched the People's Bayraktar fundraiser, and in October 2022 he ran a fundraiser for a counter-drone system with monobank and United24. In 2022 he was named in Forbes Ukraine's 30 Under 30.\n\nIn November 2026, recordings released by the anti-corruption bureau NABU in the Carthage case showed suspects, according to investigators, discussing a possible attack on Mr Lachenkov. The National Police opened proceedings over threats to him and Denys Bihus; Mr Lachenkov had earlier said he did not plan to go to the police."
+  },
+  "facts": [
+    [
+      "Народився",
+      "1999, Дніпро"
+    ],
+    [
+      "Проєкт",
+      "«Лачен пише»"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Ігор Лаченков",
+      "en:Ihor Lachenkov"
+    ],
+    "check": [
+      "Лаченков",
+      "Lachenkov"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Ihor Lachenkov",
+      "url": "https://en.wikipedia.org/wiki/Ihor_Lachenkov"
+    },
+    {
+      "title": "Forbes Україна: Ігор Лаченков, «30 до 30»",
+      "url": "https://forbes.ua/profile/igor-lachenkov-694"
+    },
+    {
+      "title": "ZMINA: Блогер Лачен не планує звертатися до поліції",
+      "url": "https://zmina.info/news/bloger-lachen-ne-planuye-zvertatysya-do-policziyi-cherez-obgovorennya-mozhlyvogo-napadu-na-nogo/"
+    },
+    {
+      "title": "ІМІ: Юрчишин: Нацполіція відкрила провадження через погрози Денису Бігусу та Ігорю Лаченкову",
+      "url": "https://imi.org.ua/news/yurchyshyn-natspolitsiya-vidkryla-provadzhennya-cherez-pogrozy-denysu-bigusu-ta-igoryu-lachenkovu"
+    }
+  ],
+  "updated": "2026-11-21"
+}

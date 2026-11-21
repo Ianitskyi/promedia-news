@@ -1,0 +1,62 @@
+{
+  "slug": "victor-pickard",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Віктор Пікард",
+    "en": "Victor Pickard"
+  },
+  "sort": {
+    "uk": "Пікард Віктор",
+    "en": "Pickard Victor"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "професор медіаполітики Анненберзької школи комунікацій Пенсільванського університету",
+    "en": "C. Edwin Baker Professor of Media Policy and Political Economy, Annenberg School for Communication, University of Pennsylvania"
+  },
+  "summary": {
+    "uk": "Американський дослідник медіаполітики, автор книжки «Демократія без журналістики?» і проєкту нової системи суспільних медіа США.",
+    "en": "US media policy scholar, author of Democracy Without Journalism? and of a blueprint for a new US public media system."
+  },
+  "bio": {
+    "uk": "Віктор Пікард — американський дослідник медіаполітики й політичної економії медіа, професор Анненберзької школи комунікацій Пенсільванського університету, де працює з 2011 року, і співдиректор Центру медіа, нерівності та змін. Здобув ступінь доктора філософії в Іллінойському університеті (2008).\n\nДо академічної кар'єри працював старшим дослідником в організації Free Press, яка обстоює реформу медіа в США, та в аналітичному центрі New America. Викладав у Нью-Йоркському університеті. Автор і співавтор книжок, зокрема «Битва Америки за медійну демократію» (2014) і «Демократія без журналістики? Протистояння дезінформаційному суспільству» (2020).\n\nУ 2026 році — запрошений дослідник Інституту Рузвельта. 19 листопада 2026 року оприлюднив там доповідь про створення нової системи суспільних медіа США з фінансуванням близько 30 млрд доларів на рік.",
+    "en": "Victor Pickard is a US scholar of media policy and political economy, C. Edwin Baker Professor at the University of Pennsylvania's Annenberg School for Communication, where he has worked since 2011, and co-director of its Media, Inequality & Change Center. He received his PhD from the University of Illinois (2008).\n\nBefore academia he was a senior researcher at Free Press, a US media reform group, and at the New America think tank. He has taught at New York University. His books include America's Battle for Media Democracy (2014) and Democracy Without Journalism? Confronting the Misinformation Society (2020).\n\nIn 2026 he is a Think Tank Fellow at the Roosevelt Institute, where on 19 November 2026 he published a proposal for a new US public media system funded at about $30 billion a year."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Пенсільванський університет"
+    ],
+    [
+      "Місто",
+      "Філадельфія"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Victor Pickard (professor)"
+    ],
+    "check": [
+      "Pickard",
+      "media",
+      "professor"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Annenberg School for Communication: Victor Pickard",
+      "url": "https://www.asc.upenn.edu/people/faculty/victor-pickard-phd"
+    },
+    {
+      "title": "Wikipedia: Victor Pickard (professor)",
+      "url": "https://en.wikipedia.org/wiki/Victor_Pickard_(professor)"
+    },
+    {
+      "title": "Nieman Lab: Federal funding for public media is coming back… (19.11.2026)",
+      "url": "https://www.niemanlab.org/2026/11/federal-funding-for-public-media-is-coming-back-one-way-or-another-but-is-it-time-for-a-deeper-rethink/"
+    }
+  ],
+  "updated": "2026-11-21"
+}

@@ -1,0 +1,66 @@
+{
+  "slug": "yaroslav-yurchyshyn",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "official",
+  "name": {
+    "uk": "Ярослав Юрчишин",
+    "en": "Yaroslav Yurchyshyn"
+  },
+  "sort": {
+    "uk": "Юрчишин Ярослав",
+    "en": "Yurchyshyn Yaroslav"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "народний депутат, голова Комітету Верховної Ради з питань свободи слова",
+    "en": "MP, chair of the Verkhovna Rada Committee on Freedom of Speech"
+  },
+  "summary": {
+    "uk": "Народний депутат IX скликання, з грудня 2023 року очолює парламентський комітет з питань свободи слова; колишній очільник Transparency International Ukraine.",
+    "en": "Member of Ukraine's 9th parliament who has chaired the freedom of speech committee since December 2023; former head of Transparency International Ukraine."
+  },
+  "bio": {
+    "uk": "Ярослав Юрчишин народився 1980 року. Закінчив історичний факультет Львівського університету імені Івана Франка (2002), здобув ступінь магістра політології в Національному університеті «Києво-Могилянська академія».\n\nПрацював у «Пласті», в громадському секторі й з питань адвокації: був тренером з лобіювання та медіа, менеджером з адвокації коаліції «Реанімаційний пакет реформ», членом Ради громадського контролю при НАБУ. У 2016–2018 роках — виконавчий директор, у 2018–2019 роках — голова правління Transparency International Ukraine.\n\nУ 2019 році обраний народним депутатом від партії «Голос». У грудні 2023 року очолив Комітет Верховної Ради з питань свободи слова. У листопаді 2026 року після його депутатського звернення Нацполіція відкрила провадження через погрози Денису Бігусу та Ігорю Лаченкову, які прозвучали на записах НАБУ у справі «Карфаген».",
+    "en": "Yaroslav Yurchyshyn was born in 1980. He graduated from the history faculty of Ivan Franko University in Lviv (2002) and holds a master's degree in political science from the National University of Kyiv-Mohyla Academy.\n\nHe worked in the Plast scouting organisation and in civil society and advocacy: as a trainer in lobbying and media, advocacy manager of the Reanimation Package of Reforms coalition, and a member of the Public Oversight Council at the anti-corruption bureau NABU. In 2016–2018 he was executive director and in 2018–2019 chair of the board of Transparency International Ukraine.\n\nIn 2019 he was elected to parliament for the Holos party. In December 2023 he became chair of the Verkhovna Rada (parliament) Committee on Freedom of Speech. In November 2026, following his official appeal, the National Police opened proceedings over threats to Denys Bihus and Ihor Lachenkov heard on NABU recordings in the Carthage case."
+  },
+  "facts": [
+    [
+      "Народився",
+      "1980"
+    ],
+    [
+      "Посада",
+      "Голова Комітету ВР з питань свободи слова"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Юрчишин Ярослав Романович",
+      "en:Yaroslav Yurchyshyn"
+    ],
+    "check": [
+      "Юрчишин",
+      "Yurchyshyn"
+    ]
+  },
+  "sources": [
+    {
+      "title": "LB.ua: досьє Ярослава Юрчишина",
+      "url": "https://lb.ua/file/person/4639_yurchishin_yaroslav_romanovich.html"
+    },
+    {
+      "title": "Слово і Діло: Юрчишин Ярослав Романович",
+      "url": "https://www.slovoidilo.ua/persony/yurchyshyn-yaroslav-romanovych"
+    },
+    {
+      "title": "Укрінформ: Юрчишин очолив Комітет ВР з питань свободи слова",
+      "url": "https://www.ukrinform.ua/rubric-polytics/3797863-urcisin-ocoliv-komitet-vr-z-pitan-svobodi-slova.html"
+    },
+    {
+      "title": "ІМІ: Юрчишин: Нацполіція відкрила провадження через погрози Денису Бігусу та Ігорю Лаченкову",
+      "url": "https://imi.org.ua/news/yurchyshyn-natspolitsiya-vidkryla-provadzhennya-cherez-pogrozy-denysu-bigusu-ta-igoryu-lachenkovu"
+    }
+  ],
+  "updated": "2026-11-21"
+}
