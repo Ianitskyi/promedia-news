@@ -483,6 +483,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "denys-bihus",
+    "tag": "Денис Бігус",
+    "aliases": [
+      "Бігус"
+    ],
+    "name": {
+      "uk": "Денис Бігус",
+      "en": "Denys Bihus"
+    },
+    "role": {
+      "uk": "журналіст-розслідувач, засновник Bihus.Info",
+      "en": "Investigative journalist, founder of Bihus.Info"
+    },
+    "summary": {
+      "uk": "Автор телепрограми розслідувань «Наші гроші», засновник редакції Bihus.Info.",
+      "en": "Creator of the investigative TV programme Nashi Hroshi (Our Money) and founder of the Bihus.Info newsroom."
+    }
+  },
+  {
     "slug": "jane-cazneau",
     "tag": "Джейн Казно",
     "aliases": [
@@ -771,6 +790,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Керівник незалежної телекомпанії в Слов'янську, побитий біля входу в редакцію в липні 2001 року.",
       "en": "Head of an independent TV company in Sloviansk, beaten to death outside his newsroom in July 2001."
+    }
+  },
+  {
+    "slug": "ihor-lachenkov",
+    "tag": "Ігор Лаченков",
+    "aliases": [
+      "Лачен"
+    ],
+    "name": {
+      "uk": "Ігор Лаченков",
+      "en": "Ihor Lachenkov"
+    },
+    "role": {
+      "uk": "блогер, автор телеграм-каналу «Лачен пише», волонтер",
+      "en": "Blogger, author of the Lachen Pyshe Telegram channel, volunteer"
+    },
+    "summary": {
+      "uk": "Автор одного з найбільших новинних телеграм-каналів України «Лачен пише», співорганізатор збору «Народний Байрактар».",
+      "en": "Author of Lachen Pyshe, one of Ukraine's largest news Telegram channels, and co-organiser of the People's Bayraktar fundraiser."
     }
   },
   {
@@ -1530,6 +1568,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Медіаменеджер чернігівського медіа PECHERA.info, розвиває читацьку спільноту Pechera Club.",
       "en": "Media manager at Chernihiv's PECHERA.info, developing the Pechera Club reader community."
+    }
+  },
+  {
+    "slug": "yaroslav-yurchyshyn",
+    "tag": "Ярослав Юрчишин",
+    "aliases": [],
+    "name": {
+      "uk": "Ярослав Юрчишин",
+      "en": "Yaroslav Yurchyshyn"
+    },
+    "role": {
+      "uk": "народний депутат, голова Комітету Верховної Ради з питань свободи слова",
+      "en": "MP, chair of the Verkhovna Rada Committee on Freedom of Speech"
+    },
+    "summary": {
+      "uk": "Народний депутат IX скликання, з грудня 2023 року очолює парламентський комітет з питань свободи слова; колишній очільник Transparency International Ukraine.",
+      "en": "Member of Ukraine's 9th parliament who has chaired the freedom of speech committee since December 2023; former head of Transparency International Ukraine."
     }
   }
 ];

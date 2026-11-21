@@ -1,0 +1,68 @@
+{
+  "slug": "denys-bihus",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Денис Бігус",
+    "en": "Denys Bihus"
+  },
+  "sort": {
+    "uk": "Бігус Денис",
+    "en": "Bihus Denys"
+  },
+  "aliases": [
+    "Бігус"
+  ],
+  "role": {
+    "uk": "журналіст-розслідувач, засновник Bihus.Info",
+    "en": "Investigative journalist, founder of Bihus.Info"
+  },
+  "summary": {
+    "uk": "Автор телепрограми розслідувань «Наші гроші», засновник редакції Bihus.Info.",
+    "en": "Creator of the investigative TV programme Nashi Hroshi (Our Money) and founder of the Bihus.Info newsroom."
+  },
+  "bio": {
+    "uk": "Денис Бігус — український журналіст-розслідувач. З 2013 року робить програму журналістських розслідувань про корупцію «Наші гроші». Двічі ставав переможцем національного журналістського конкурсу «Честь професії», повідомляє Глобальна мережа журналістів-розслідувачів (GIJN).\n\nУ 2015 році запустив телепрограму про суди й судову реформу. Того ж року створив волонтерську ініціативу «Біла сотня» (The White Collar Hundred). У 2018 році ці проєкти об'єдналися під брендом Bihus.Info — некомерційної редакції, яка робить телевізійні й онлайн-розслідування, розвиває пошукову систему за відкритими реєстрами «Кільце» та надає юридичну підтримку журналістам. Серед відомих розслідувань редакції — серія про корупцію в оборонній сфері.\n\nУ червні 2025 року, після публікації депутатом Олексієм Гончаренком документів, пан Денис у відеозверненні заявив, що безоплатно й неофіційно допомагає Департаменту військової контррозвідки СБУ, і наголосив, що це не пов'язано з редакційною роботою (за Euromaidan Press). У вересні 2025 року медіа повідомили про його мобілізацію до Збройних сил України.\n\nУ листопаді 2026 року НАБУ та САП оприлюднили записи у справі «Карфаген», на яких фігуранти, за версією слідства, обговорювали напад на пана Дениса через розслідування Bihus.Info про мережу U420. Після звернення голови парламентського комітету з питань свободи слова Ярослава Юрчишина Нацполіція відкрила провадження за статтею 345-1 Кримінального кодексу.",
+    "en": "Denys Bihus is a Ukrainian investigative journalist. Since 2013 he has produced Nashi Hroshi (Our Money), an investigative programme about corruption. He twice won Ukraine's national journalism contest Honour of the Profession, according to the Global Investigative Journalism Network (GIJN).\n\nIn 2015 he launched a TV programme on courts and judicial reform and set up the volunteer initiative The White Collar Hundred. In 2018 these projects merged under the Bihus.Info brand, a non-profit newsroom producing TV and online investigations, running the open-registry search engine The Ring and offering legal support to journalists. Its best-known work includes a series on corruption in the defence sector.\n\nIn June 2025, after MP Oleksii Honcharenko published documents, Mr Bihus said in a video address that he helps the SBU's military counterintelligence department unofficially and without pay, stressing that this was unrelated to his editorial work (per Euromaidan Press). In September 2025 media reported that he had been mobilised into the Armed Forces of Ukraine.\n\nIn November 2026 Ukraine's anti-corruption bureau NABU and prosecutors released recordings in the Carthage case in which suspects, according to investigators, discussed attacking Mr Bihus over a Bihus.Info investigation into the U420 retail network. After an appeal by Yaroslav Yurchyshyn, head of parliament's freedom of speech committee, the National Police opened proceedings under Article 345-1 of the Criminal Code."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Bihus.Info"
+    ],
+    [
+      "Місто",
+      "Київ"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Денис Бігус",
+      "en:Denys Bihus"
+    ],
+    "check": [
+      "Бігус",
+      "Bihus"
+    ]
+  },
+  "sources": [
+    {
+      "title": "GIJN: A Ukrainian Investigative News Team Fights for Media Freedom",
+      "url": "https://gijn.org/stories/a-ukrainian-investigative-news-team-fights-for-media-freedom/"
+    },
+    {
+      "title": "Euromaidan Press: Denys Bihus confirms intelligence work after MP leak (20.06.2025)",
+      "url": "https://euromaidanpress.com/2025/06/20/denys-bihus-intelligence-confirmation-leak/"
+    },
+    {
+      "title": "Телеграф: Дениса Бігуса мобілізують до ЗСУ (22.09.2025)",
+      "url": "https://news.telegraf.com.ua/ukr/ukraina/2025-09-22/5921358-sdelali-predlozhenie-ot-kotorogo-slozhno-otkazatsya-denisa-bigusa-mobilizuyut-v-vsu"
+    },
+    {
+      "title": "ІМІ: Юрчишин: Нацполіція відкрила провадження через погрози Денису Бігусу та Ігорю Лаченкову",
+      "url": "https://imi.org.ua/news/yurchyshyn-natspolitsiya-vidkryla-provadzhennya-cherez-pogrozy-denysu-bigusu-ta-igoryu-lachenkovu"
+    }
+  ],
+  "updated": "2026-11-21"
+}
