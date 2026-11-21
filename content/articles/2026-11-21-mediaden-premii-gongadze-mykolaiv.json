@@ -30,12 +30,16 @@
   "relatedMediaIds": [
     "atlas-27b7d112ac9f10",
     "atlas-d4cd3b7fe667a6",
-    "atlas-3971f2ae49d18a"
+    "миквісті",
+    "atlas-3971f2ae49d18a",
+    "kyiv-independent",
+    "atlas-549cdb294ad783",
+    "atlas-ukrainska-pravda"
   ],
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
   "cardStyle": "hero",
-  "revision": "2026-11-21-moderators",
+  "revision": "2026-11-21-media-cards",
   "raiseToTop": "2026-11-21-hero",
   "coverRevision": "2026-11-21-cover-crop"
 }
