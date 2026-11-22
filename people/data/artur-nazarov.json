@@ -1,0 +1,76 @@
+{
+ "slug": "artur-nazarov",
+ "group": "ua",
+ "country": "Україна",
+ "kind": "journalist",
+ "memorial": true,
+ "life": "† 2026",
+ "name": {
+  "uk": "Артур Назаров",
+  "en": "Artur Nazarov"
+ },
+ "sort": {
+  "uk": "Назаров Артур",
+  "en": "Nazarov Artur"
+ },
+ "role": {
+  "uk": "фотограф і відеограф із Сум, учасник Революції Гідності, військовий",
+  "en": "Photographer and videographer from Sumy, Revolution of Dignity participant, soldier"
+ },
+ "summary": {
+  "uk": "Фотограф, який документував Майдан і війну на сході, з 2022 року служив у ЗСУ. Загинув 19 листопада 2026 року на Східному напрямку.",
+  "en": "Photographer who documented the Maidan and the war in the east; served in the Armed Forces from 2022. Killed on the eastern front on 19 November 2026."
+ },
+ "bio": {
+  "uk": "Артур Назаров виріс у Сумах, вивчився на інженера в Сумському державному університеті й працював на заводі. Під час Революції Гідності фотографував Майдан: людей, їхній побут, протистояння, ротацію снайперів на вулиці Грушевського; сам дістав поранення.\n\nУ 2014–2015 роках воював на сході України у складі добровольчих формувань і фотографував там. Разом із сумською газетою «Панорама» працював над меморіальним проєктом «Слава Героям» про загиблих в АТО уродженців Сумщини. 2016 року в Сумах відбулася виставка його робіт «Пробудження нації».\n\nЗ 24 лютого 2022 року служив у 150-му батальйоні ЗСУ, співорганізував у Сумах групу «Гарячі бармени». У квітні 2023 року отримав відзнаку «Захисник України. Герой міста Суми». Загинув 19 листопада 2026 року на Східному напрямку. У нього залишилися дружина й двоє дітей.",
+  "en": "Artur Nazarov grew up in Sumy, trained as an engineer at Sumy State University and worked at a factory. During the Revolution of Dignity he photographed the Maidan: the people, their daily life, the clashes, and snipers changing positions on Hrushevskoho Street; he was wounded himself.\n\nIn 2014–2015 he fought in eastern Ukraine with volunteer units and took pictures there. With the Sumy newspaper Panorama he worked on the memorial project “Glory to the Heroes”. In 2016 his exhibition “Awakening of a Nation” was held in Sumy.\n\nFrom 24 February 2022 he served in the 150th Battalion of the Armed Forces and co-founded the “Hot Bartenders” group in Sumy. In April 2023 he received the award “Defender of Ukraine. Hero of the City of Sumy”. He was killed on the eastern front on 19 November 2026. He is survived by his wife and two children."
+ },
+ "facts": [
+  [
+   "Загинув",
+   "19 листопада 2026, Східний напрямок"
+  ],
+  [
+   "Місто",
+   "Суми"
+  ],
+  [
+   "Відзнака",
+   "«Захисник України. Герой міста Суми» (2023)"
+  ]
+ ],
+ "photo": {
+  "article": "na-fronti-zahynuv-sumskyi-fotohraf-yakyi-znimav-maidan"
+ },
+ "sources": [
+  {
+   "title": "Цензор.НЕТ: Захищаючи Україну, загинув учасник Революції гідності, військовий та фотограф з Сум Артур Назаров",
+   "url": "https://censor.net/ua/news/4034853/zakhyshchaiuchy-ukrainu-zahynuv-uchasnyk-revoliutsii-hidnosti-viiskovyi-ta-fotohraf-z-sum-artur"
+  },
+  {
+   "title": "Еспресо: На війні загинув фотограф, учасник Революції гідності Артур Назаров",
+   "url": "https://espreso.tv/news-na-viyni-zaginuv-fotograf-uchasnyk-revolyutsii-gidnosti-artur-nazarov"
+  },
+  {
+   "title": "Дзеркало тижня: На фронті загинув учасник Революції Гідності та фотограф Майдану Артур Назаров",
+   "url": "https://zn.ua/ukr/war/na-fronti-zahinuv-uchasnik-revoljutsiji-hidnosti-ta-fotohraf-majdanu-artur-nazarov.html"
+  },
+  {
+   "title": "EveryDay: Близькі згадують фотографа і військового Артура Назарова",
+   "url": "https://everyday.sumy.ua/blyzki-zhaduiut-fotohrafa-i-viiskovoho-artura-nazarova/"
+  },
+  {
+   "title": "0542.ua: Загинув військовослужбовець із Сум Артур Назаров",
+   "url": "https://www.0542.ua/news/4181885/zaginuv-vijskovosluzbovec-iz-sum-artur-nazarov"
+  },
+  {
+   "title": "Суспільне Суми: Артур Назаров згадує події Майдану",
+   "url": "https://suspilne.media/sumy/321210-artur/"
+  },
+  {
+   "title": "ПроМедіа: На фронті загинув сумський фотограф, який знімав Майдан",
+   "url": "https://news.promedia.report/article/na-fronti-zahynuv-sumskyi-fotohraf-yakyi-znimav-maidan"
+  }
+ ],
+ "updated": "2026-11-22"
+}

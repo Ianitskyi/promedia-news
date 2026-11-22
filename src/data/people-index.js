@@ -216,6 +216,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "artur-nazarov",
+    "tag": "Артур Назаров",
+    "aliases": [],
+    "name": {
+      "uk": "Артур Назаров",
+      "en": "Artur Nazarov"
+    },
+    "role": {
+      "uk": "фотограф і відеограф із Сум, учасник Революції Гідності, військовий",
+      "en": "Photographer and videographer from Sumy, Revolution of Dignity participant, soldier"
+    },
+    "summary": {
+      "uk": "Фотограф, який документував Майдан і війну на сході, з 2022 року служив у ЗСУ. Загинув 19 листопада 2026 року на Східному напрямку.",
+      "en": "Photographer who documented the Maidan and the war in the east; served in the Armed Forces from 2022. Killed on the eastern front on 19 November 2026."
+    }
+  },
+  {
     "slug": "artur-romeu",
     "tag": "Артур Ромеу",
     "aliases": [],
