@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
 
 const KEY = process.env.GOOGLE_TTS_API_KEY;
 if (!KEY) { console.log("GOOGLE_TTS_API_KEY is not set; skipping."); process.exit(0); }
@@ -15,6 +16,16 @@ const AUDIO_DIR = "public/audio";
 const INDEX = "src/data/tts-index.js";
 const LANGS = { uk: { code: "uk-UA", title: "title", body: "bodyMd" }, en: { code: "en-GB", title: "titleEn", body: "bodyMdEn" } };
 const API = "https://texttospeech.googleapis.com/v1";
+// Затримка за замовчуванням: озвучуємо статтю лише тоді, коли її файл не змінювався TTS_DELAY_HOURS годин
+// (час останнього коміту, що його торкався). Так ранні правки після публікації не потрапляють в аудіо.
+// "ttsNow": true у JSON статті — озвучити без затримки.
+const DELAY_HOURS = Number(process.env.TTS_DELAY_HOURS || 2);
+function lastEditMs(path) {
+  try {
+    const s = execFileSync("git", ["log", "-1", "--format=%ct", "--", path], { encoding: "utf8" }).trim();
+    return s ? Number(s) * 1000 : 0;
+  } catch { return 0; }
+}
 
 function loadIndex() {
   if (!existsSync(INDEX)) return {};
@@ -94,6 +105,7 @@ for (const f of readdirSync(DIR).filter((x) => x.endsWith(".json")).sort()) {
   // Озвучуємо лише статті (рубрика «Статті»); новини — ні. "tts": false вимикає, "tts": true вмикає вручну.
   const isArticle = Array.isArray(a.tags) && a.tags.includes("Статті");
   if (a.tts === false || !(isArticle || a.tts === true)) continue;
+  const ageMs = Date.now() - lastEditMs(join(DIR, f));
   for (const [lang, cfg] of Object.entries(LANGS)) {
     if (!a[cfg.body]) continue;
     const text = speakableText(a[cfg.title] || a.title, a[cfg.body]);
@@ -101,6 +113,10 @@ for (const f of readdirSync(DIR).filter((x) => x.endsWith(".json")).sort()) {
     const file = `${a.slug}-${lang}.mp3`;
     const entry = index[a.slug]?.[lang];
     if (entry && entry.hash === hash && existsSync(join(AUDIO_DIR, file))) continue;
+    if (a.ttsNow !== true && ageMs < DELAY_HOURS * 3600 * 1000) {
+      console.log(`TTS ${a.slug} [${lang}]: wait, last edit ${Math.round(ageMs / 60000)} min ago (< ${DELAY_HOURS} h)`);
+      continue;
+    }
     const voice = await pickVoice(cfg.code);
     const audio = await synthesize(text, cfg.code, voice);
     writeFileSync(join(AUDIO_DIR, file), audio);
