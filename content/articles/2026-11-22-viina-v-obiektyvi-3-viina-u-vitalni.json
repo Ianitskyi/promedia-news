@@ -43,6 +43,8 @@
   },
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
-  "cardStyle": "auto",
-  "tts": true
+  "cardStyle": "hero",
+  "tts": true,
+  "revision": "2026-11-22-hero",
+  "raiseToTop": "2026-11-22-hero"
 }
