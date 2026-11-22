@@ -1581,3 +1581,24 @@ h1, h2, h3, h4 { line-height: 1.2; }
   .magazine-home .restored-feed .article-card.article-card--photo[data-content-kind] { background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow); }
   .magazine-home .restored-feed .article-card.article-card--photo[data-content-kind] .article-card-body { padding: 12px 18px 18px; gap: 8px; }
 }
+
+/* Стаття на десктопі: текст + права колонка (owner, 2026-11-22). На вужчих екранах колонку приховано. */
+.article-aside { display: none; }
+@media (min-width: 1100px) {
+  .wrap.article-page--with-aside { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start; }
+  .article-page--with-aside .article-main { min-width: 0; max-width: 760px; }
+  .article-aside { display: flex; flex-direction: column; gap: 28px; align-self: stretch; padding-top: 30px; }
+  .article-aside-title { margin: 0 0 12px; font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+  .article-aside-title::before { content: ""; width: 22px; height: 3px; background: var(--accent); flex: none; }
+  .article-aside-popular ol { list-style: none; counter-reset: pop; margin: 0; padding: 0; }
+  .article-aside-popular li { counter-increment: pop; display: grid; grid-template-columns: 26px 1fr; padding: 11px 0; border-top: 1px solid var(--border); font-size: 15px; line-height: 1.35; font-weight: 700; }
+  .article-aside-popular li::before { content: counter(pop); color: var(--accent-dark); font-weight: 800; }
+  .article-aside-popular a { color: var(--ink); text-decoration: none; }
+  .article-aside-popular a:hover { color: #b36a00; }
+  .article-aside-sticky { position: sticky; top: 90px; display: flex; flex-direction: column; gap: 10px; }
+  .article-aside-service { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; background: var(--ink); color: #fff; text-decoration: none; border-radius: 6px; border-left: 3px solid var(--accent); }
+  .article-aside-service strong { font-size: 15px; line-height: 1.25; }
+  .article-aside-service strong span { color: var(--accent); font-weight: 400; }
+  .article-aside-service > span { font-size: 13px; line-height: 1.4; color: rgba(255,255,255,.75); }
+  .article-aside-service:hover { background: var(--ink-soft); }
+}

@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261122a";
+const ASSET_V = "20261122b";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -1046,7 +1046,7 @@ function mediaBox(media, lang) {
   return `<aside class="people-box media-box" aria-label="${escapeHtml(pick(MEDIA_BOX_TITLE, lang))}"><h2>${pick(MEDIA_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
 }
 
-export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = [], relatedUniversities = [] }) {
+export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = [], relatedUniversities = [], popularArticles = [] }) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
   const articleUrl = `${baseUrl}${langPrefix(lang)}/article/${article.slug}`;
@@ -1066,7 +1066,8 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
     : coverImg;
   const mediaLinksHtml = mediaBox(relatedMediaNames, lang);
   const bodyHtml = `
-<main class="wrap article-page">
+<main class="wrap article-page article-page--with-aside">
+  <div class="article-main">
   <p class="article-back"><a href="${langPrefix(lang)}/">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
   <h1>${escapeHtml(title)}</h1>
   ${articleMeta(article, lang).replace('<p class="article-date">', `<p class="article-date">${rubricTags.length ? rubricTags.map(t => `<a class="article-rubric${specialTagClass(t)}" href="${langPrefix(lang)}/?tag=${encodeURIComponent(t)}">${escapeHtml(tagLabel(t, lang))}</a>`).join(" · ") + " · " : ""}`)}
@@ -1080,6 +1081,8 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   ${mediaLinksHtml}
   ${universitiesBox(relatedUniversities, lang)}
   ${projectPromo(lang, "atlas", "article-bottom")}
+  </div>
+  ${articleAside(popularArticles, lang)}
 </main>`;
   return pageShell({
     title: `${title} — ${pick(SITE_NAME, lang)}`,
@@ -1109,6 +1112,45 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
     lang,
     bodyHtml
   });
+}
+
+// Права колонка статті на десктопі (owner, 2026-11-22): «Найчитаніше», підписка на розсилку
+// і липкий блок плоских банерів сервісів ПроМедіа. На мобільних колонку приховано.
+const ASIDE_POPULAR_LABEL = { uk: "Найчитаніше", en: "Most read", crh: "En çoq oqulğanlar" };
+const ASIDE_SERVICES_LABEL = { uk: "Сервіси ПроМедіа", en: "ProMedia services", crh: "ProMedia hizmetleri" };
+const ASIDE_SERVICES = [
+  { key: "atlas", url: NETWORK_URLS.atlas,
+    title: { uk: "Атлас медіа", en: "Media Atlas", crh: "Mediya atlası" },
+    text: { uk: "Хто володіє українськими медіа — реєстр Нацради щомісяця", en: "Who owns Ukrainian media — the regulator's registry, monthly", crh: "Ukrain mediyalarına kim saip" } },
+  { key: "communities", url: NETWORK_URLS.communities,
+    title: { uk: "Карта медійних спільнот", en: "Media communities map", crh: "Mediya cemaatları haritası" },
+    text: { uk: "Місцеві медіа та спільноти навколо них по всій Україні", en: "Local media and their communities across Ukraine", crh: "Bütün Ukrainadaki yerli mediyalar" } },
+  { key: "ratings", url: NETWORK_URLS.ratings,
+    title: { uk: "Рейтинг журфаків", en: "Journalism schools ranking", crh: "Jurnalistika fakultetleri reytingi" },
+    text: { uk: "Де вчитися журналістики: рейтинг за даними вступу", en: "Where to study journalism: a ranking based on admissions data", crh: "Jurnalistikanı qayda ögrenmeli" } },
+  { key: "people", url: { uk: "https://people.promedia.report/", en: "https://people.promedia.report/", crh: "https://people.promedia.report/" },
+    title: { uk: "Люди", en: "People", crh: "İnsanlar" },
+    text: { uk: "Досьє журналістів, медійників і комунікаційників", en: "Profiles of journalists and media people", crh: "Jurnalistlerniñ dosyeleri" } }
+];
+
+function articleAside(popular, lang) {
+  const items = (popular || []).slice(0, 5);
+  const popularHtml = items.length ? `<section class="article-aside-block article-aside-popular">
+      <h2 class="article-aside-title">${escapeHtml(pick(ASIDE_POPULAR_LABEL, lang))}</h2>
+      <ol>${items.map(a => `<li><a href="${langPrefix(lang)}/article/${escapeHtml(a.slug)}">${escapeHtml(articleTitle(a, lang))}</a></li>`).join("")}</ol>
+    </section>` : "";
+  const services = ASIDE_SERVICES.map(sv => `<a class="article-aside-service article-aside-service--${sv.key}" href="${escapeHtml(pick(sv.url, lang))}">
+        <strong>${escapeHtml(pick(sv.title, lang))} <span aria-hidden="true">↗</span></strong>
+        <span>${escapeHtml(pick(sv.text, lang))}</span>
+      </a>`).join("");
+  return `<aside class="article-aside" aria-label="${escapeHtml(pick(ASIDE_SERVICES_LABEL, lang))}">
+    ${popularHtml}
+    ${newsletterSlot(lang, "sidebar")}
+    <div class="article-aside-sticky">
+      <h2 class="article-aside-title">${escapeHtml(pick(ASIDE_SERVICES_LABEL, lang))}</h2>
+      ${services}
+    </div>
+  </aside>`;
 }
 
 // Newsletter (owner, 2026-11-20): empty, hidden slots filled by /js/promedia-newsletter.js

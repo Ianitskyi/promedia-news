@@ -377,11 +377,15 @@ ${entries.join("\n")}
       });
     }
     const relatedIds = parseJsonArray(article.related_media_ids);
-    const [relatedMediaNames, relatedUniversities] = await Promise.all([
+    const [relatedMediaNames, relatedUniversities, popularArticles] = await Promise.all([
       fetchRelatedMediaNames(relatedIds, env, baseUrl),
-      fetchRelatedUniversities(relatedIds, env, baseUrl)
+      fetchRelatedUniversities(relatedIds, env, baseUrl),
+      // «Найчитаніше» у правій колонці: найпопулярніші (GA4) за останні 30 днів, без поточної.
+      db.prepare(
+        "SELECT slug, title, title_en, title_crh FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL AND id != ? AND published_at >= datetime('now', '-30 days') ORDER BY COALESCE(av.ga4_views, 0) DESC, published_at DESC LIMIT 5"
+      ).bind(article.id).all().then(r => r.results || []).catch(() => [])
     ]);
-    return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames, relatedUniversities }));
+    return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames, relatedUniversities, popularArticles }));
   }
 
   // GET / (homepage, optional ?tag=)
