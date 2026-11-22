@@ -1,0 +1,68 @@
+{
+ "slug": "larysa-yakubenko",
+ "group": "ua",
+ "country": "Україна",
+ "kind": "official",
+ "name": {
+  "uk": "Лариса Якубенко",
+  "en": "Larysa Yakubenko"
+ },
+ "sort": {
+  "uk": "Якубенко Лариса",
+  "en": "Yakubenko Larysa"
+ },
+ "aliases": [],
+ "role": {
+  "uk": "представниця Національної ради з питань телебачення і радіомовлення в Сумській області",
+  "en": "Representative of the National Council of Television and Radio Broadcasting in Sumy region"
+ },
+ "summary": {
+  "uk": "Представляє медіарегулятора на Сумщині: моніторить місцеві медіа, працює з громадами прикордоння й протидіє російській дезінформації в регіоні.",
+  "en": "Represents Ukraine's media regulator in Sumy region: monitors local media, works with border communities and counters Russian disinformation in the region."
+ },
+ "bio": {
+  "uk": "Лариса Якубенко — представниця Національної ради України з питань телебачення і радіомовлення в Сумській області; на цій посаді вона щонайменше з 2022 року. Представництво регулятора моніторить програми місцевих теле- й радіомовників і перевіряє, як вони дотримуються законодавства, зокрема щодо мови ворожнечі й дискримінації.\n\nПані Лариса багато працює з прикордонними громадами Сумщини: їздить у Шосткинський район і Краснопілля, говорить з місцевими редакціями й владою про те, як протидіяти російській інформаційній експансії, і веде програму «Стратегічний вектор – медіапростір районів Сумщини» (2025). Вона розповідає в ефірах місцевих медіа про російські фейки, спрямовані на жителів Сумщини, а іноземним журналістам — про обстріли інформаційної інфраструктури регіону.\n\nУ листопаді 2026 року саме пані Лариса повідомила про загибель сумського фотографа й військового Артура Назарова.",
+  "en": "Larysa Yakubenko is the representative of the National Council of Television and Radio Broadcasting of Ukraine in Sumy region, a post she has held since at least 2022. The regulator's office there monitors local TV and radio broadcasters and checks their compliance with the law, including on hate speech and discrimination.\n\nShe works extensively with the border communities of Sumy region, travelling to Shostka district and Krasnopillia to discuss with local newsrooms and authorities how to counter Russian information expansion, and runs the programme “Strategic Vector – the Media Space of Sumy Region's Districts” (2025). She explains Russian fakes aimed at residents of the region on local media and has briefed foreign journalists about strikes on the region's information infrastructure.\n\nIn November 2026 she announced the death of Sumy photographer and soldier Artur Nazarov."
+ },
+ "facts": [
+  [
+   "Посада",
+   "представниця Нацради в Сумській області"
+  ],
+  [
+   "Регіон",
+   "Сумщина"
+  ]
+ ],
+ "sources": [
+  {
+   "title": "Нацрада: Новини Національної ради з областей (протидія дезінформації, ТРК «Відікон»)",
+   "url": "https://webportal.nrada.gov.ua/novyny-natsionalnoyi-rady-z-oblastej-6/"
+  },
+  {
+   "title": "Нацрада: Новини з областей (форум «Захист прав людини на Сумщині»)",
+   "url": "https://webportal.nrada.gov.ua/novyny-natsionalnoyi-rady-z-oblastej-2/"
+  },
+  {
+   "title": "Нацрада: Регіональний вимір («Стратегічний вектор – медіапростір районів Сумщини», Шосткинський район)",
+   "url": "https://webportal.nrada.gov.ua/regionalnyj-vymir-novyny-natsionalnoyi-rady-v-oblastyah-15/"
+  },
+  {
+   "title": "Нацрада: Регіональний вимір (Краснопілля, інформаційна безпека прикордоння)",
+   "url": "https://webportal.nrada.gov.ua/natsionalna-rada-regionalnyj-vymir-pro-nashi-novyny-v-oblastyah-17/"
+  },
+  {
+   "title": "Нацрада: про нашу роботу в регіонах (зустріч із журналісткою Byline Times)",
+   "url": "https://webportal.nrada.gov.ua/natsionalna-rada-pro-nashu-robotu-v-regionah-3/"
+  },
+  {
+   "title": "НУБіП: зустріч студентів з представниками Нацради (2022)",
+   "url": "https://nubip.edu.ua/node/117394"
+  },
+  {
+   "title": "ПроМедіа: На фронті загинув сумський фотограф, який знімав Майдан",
+   "url": "https://news.promedia.report/article/na-fronti-zahynuv-sumskyi-fotohraf-yakyi-znimav-maidan"
+  }
+ ],
+ "updated": "2026-11-22"
+}

@@ -971,6 +971,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "larysa-yakubenko",
+    "tag": "Лариса Якубенко",
+    "aliases": [],
+    "name": {
+      "uk": "Лариса Якубенко",
+      "en": "Larysa Yakubenko"
+    },
+    "role": {
+      "uk": "представниця Національної ради з питань телебачення і радіомовлення в Сумській області",
+      "en": "Representative of the National Council of Television and Radio Broadcasting in Sumy region"
+    },
+    "summary": {
+      "uk": "Представляє медіарегулятора на Сумщині: моніторить місцеві медіа, працює з громадами прикордоння й протидіє російській дезінформації в регіоні.",
+      "en": "Represents Ukraine's media regulator in Sumy region: monitors local media, works with border communities and counters Russian disinformation in the region."
+    }
+  },
+  {
     "slug": "lukas-hassig",
     "tag": "Лукас Гессіг",
     "aliases": [

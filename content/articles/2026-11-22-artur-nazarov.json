@@ -13,7 +13,8 @@
     "Новини",
     "Артур Назаров",
     "Суми",
-    "Революція Гідності"
+    "Революція Гідності",
+    "Лариса Якубенко"
   ],
   "cover": {
     "url": "/img/news/artur-nazarov.jpg",
@@ -26,5 +27,6 @@
   },
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
-  "cardStyle": "image"
+  "cardStyle": "image",
+  "revision": "2026-11-22-yakubenko"
 }
