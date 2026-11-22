@@ -988,7 +988,7 @@ const ABOUT_LABEL = { uk: "Про кого:", en: "About:", crh: "Kimler aqqınd
 
 // Картка «Медіа в матеріалі» під новиною — поруч із карткою «Люди в матеріалі».
 // Показуємо лише медіа, які є в Атласі медіа або на карті спільнот, з посиланнями на обидва.
-const MEDIA_BOX_TITLE = { uk: "Медіа в матеріалі", en: "Media in this story", crh: "Bu materialdaki mediyalar" };
+const MEDIA_BOX_TITLE = { uk: "Українські медіа в матеріалі", en: "Ukrainian media in this story", crh: "Bu materialdaki ukrain mediyaları" };
 const MEDIA_BOX_ATLAS = { uk: "В Атласі медіа", en: "In the Media Atlas", crh: "Mediya Atlasında" };
 const MEDIA_BOX_MAP = { uk: "На карті спільнот", en: "On the community map", crh: "Cemaatlar haritasında" };
 const MEDIA_BOX_SITE = { uk: "Сайт", en: "Website", crh: "Sayt" };
