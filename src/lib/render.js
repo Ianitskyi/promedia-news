@@ -978,7 +978,6 @@ function newsLead(hero, side, lang, baseUrl, isTop, pinnedSlug) {
       <div class="feed-lead-hero-meta">${leadMeta(hero, lang)}${articleViews(hero, lang)}${articleMediaBadges(hero, lang)}</div>
       <h1 class="feed-lead-title${hero.is_important ? " feed-lead-title--important" : ""}"><a href="${href(hero)}">${escapeHtml(title)}</a></h1>
       ${excerpt ? `<p class="feed-lead-excerpt">${escapeHtml(excerpt)}</p>` : ""}
-      ${(() => { const tags = JSON.parse(hero.tags || "[]"); return tags.length ? tagLinks(tags, lang) : ""; })()}
     </article>
     ${aside}
   </section>`;
