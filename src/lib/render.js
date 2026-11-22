@@ -1116,7 +1116,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
 
 // Права колонка статті на десктопі (owner, 2026-11-22): «Найчитаніше», підписка на розсилку
 // і липкий блок плоских банерів сервісів ПроМедіа. На мобільних колонку приховано.
-const ASIDE_POPULAR_LABEL = { uk: "Найчитаніше", en: "Most read", crh: "En çoq oqulğanlar" };
+const ASIDE_POPULAR_LABEL = { uk: "Найчитаніше за місяць", en: "Most read this month", crh: "Ay içinde en çoq oqulğanlar" };
 const ASIDE_SERVICES_LABEL = { uk: "Сервіси ПроМедіа", en: "ProMedia services", crh: "ProMedia hizmetleri" };
 const ASIDE_SERVICES = [
   { key: "atlas", url: NETWORK_URLS.atlas,
