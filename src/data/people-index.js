@@ -18,6 +18,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "alona-bereza",
+    "tag": "Альона Береза",
+    "aliases": [
+      "Alyona Bereza"
+    ],
+    "name": {
+      "uk": "Альона Береза",
+      "en": "Alona Bereza"
+    },
+    "role": {
+      "uk": "засновниця й генеральна директорка ЖАР.INFO",
+      "en": "Founder and CEO, ZHAR.INFO"
+    },
+    "summary": {
+      "uk": "Хмельницька журналістка, засновниця онлайн-медіа ЖАР.INFO, представниця ІМІ в Хмельницькій області.",
+      "en": "Khmelnytskyi journalist, founder of the online outlet ZHAR.INFO and IMI representative in Khmelnytskyi oblast."
+    }
+  },
+  {
     "slug": "anastasiia-abramets",
     "tag": "Анастасія Абрамець",
     "aliases": [],
@@ -438,6 +457,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "До політики — воєнний кореспондент; 1899 року втік із бурського полону, працюючи на The Morning Post.",
       "en": "Before politics a war correspondent; escaped Boer captivity in 1899 while reporting for The Morning Post."
+    }
+  },
+  {
+    "slug": "vladyslava-prystupa",
+    "tag": "Владислава Приступа",
+    "aliases": [],
+    "name": {
+      "uk": "Владислава Приступа",
+      "en": "Vladyslava Prystupa"
+    },
+    "role": {
+      "uk": "операційна директорка Thebuchacity",
+      "en": "Operations director, Thebuchacity"
+    },
+    "summary": {
+      "uk": "Операційна директорка бучанського онлайн-медіа Thebuchacity; з ШІ створила для редакції бота й дашборд для моніторингу міськради.",
+      "en": "Operations director of the Bucha online outlet Thebuchacity; built an AI-assisted bot and dashboard to monitor the city council."
     }
   },
   {
@@ -1494,6 +1530,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює «Українську правду» з 2014 року; лауреатка міжнародної нагороди CPJ за свободу преси.",
       "en": "Editor-in-chief of Ukrainska Pravda since 2014; recipient of CPJ's International Press Freedom Award."
+    }
+  },
+  {
+    "slug": "serhii-sydorov",
+    "tag": "Сергій Сидоров",
+    "aliases": [
+      "Serhiy Sydorov"
+    ],
+    "name": {
+      "uk": "Сергій Сидоров",
+      "en": "Serhii Sydorov"
+    },
+    "role": {
+      "uk": "керівник і співзасновник Запорізького центру розслідувань",
+      "en": "Head and co-founder, Zaporizhzhia Investigations Center"
+    },
+    "summary": {
+      "uk": "Запорізький журналіст-розслідувач, очолює Запорізький центр розслідувань (ЗЦР).",
+      "en": "Zaporizhzhia investigative journalist who heads the Zaporizhzhia Investigations Center (ZIC)."
     }
   },
   {

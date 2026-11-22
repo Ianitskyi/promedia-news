@@ -1,0 +1,69 @@
+{
+  "slug": "serhii-sydorov",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Сергій Сидоров",
+    "en": "Serhii Sydorov"
+  },
+  "sort": {
+    "uk": "Сидоров Сергій",
+    "en": "Sydorov Serhii"
+  },
+  "aliases": [
+    "Serhiy Sydorov"
+  ],
+  "role": {
+    "uk": "керівник і співзасновник Запорізького центру розслідувань",
+    "en": "Head and co-founder, Zaporizhzhia Investigations Center"
+  },
+  "summary": {
+    "uk": "Запорізький журналіст-розслідувач, очолює Запорізький центр розслідувань (ЗЦР).",
+    "en": "Zaporizhzhia investigative journalist who heads the Zaporizhzhia Investigations Center (ZIC)."
+  },
+  "bio": {
+    "uk": "Сергій Сидоров — журналіст із Запоріжжя, керівник і співзасновник Запорізького центру розслідувань (ЗЦР). Раніше очолював антикорупційну комісію при Запорізькій облдержадміністрації.\n\nЯк автор «Текстів» писав, зокрема, про те, як російські окупанти вибудовують владну вертикаль у Мелітополі. ЗЦР під його керівництвом добивається доступу до публічної інформації від місцевої влади; у 2023 році Інститут масової інформації повідомляв про відмову запорізьких чиновників надати центру акти на ремонт доріг із посиланням на «ризик національній безпеці».\n\nУ листопаді 2026 року на воркшопі ГО «ПроМедіа» на форумі IWPR розповів, як ЗЦР використовує ШІ для аналізу судових рішень, закупівель і фактчеку."
+  },
+  "facts": [
+    [
+      "Медіа",
+      "Запорізький центр розслідувань"
+    ],
+    [
+      "Місто",
+      "Запоріжжя"
+    ]
+  ],
+  "photo": {
+    "url": "https://news.promedia.report/img/news/iwpr-ai-workshop-3.jpg",
+    "caption": {
+      "uk": "Фото: IWPR, надано ГО «ПроМедіа».",
+      "en": "Photo: IWPR, provided to NGO ProMedia."
+    },
+    "article": "yak-rehionalni-media-kontroliuiut-vladu-za-dopomohoiu-shi"
+  },
+  "sources": [
+    {
+      "title": "Тексти: матеріали автора Сергій Сидоров",
+      "url": "https://texty.org.ua/author/serhij-sydorov/"
+    },
+    {
+      "title": "IMI: Zaporizhzhia officials refuse to provide journalists with deeds on road repairs",
+      "url": "https://old.imi.org.ua/en/news/zaporizhzhia-officials-refuse-to-provide-journalists-with-deeds-on-road-repairs-due-to-national-i55025"
+    },
+    {
+      "title": "Гордон: журналіст Сергій Сидоров про Запорізький титано-магнієвий комбінат",
+      "url": "https://gordonua.com/news/society/zhurnalist-firtashevskij-menedzhment-reshil-uhodit-s-zaporozhskogo-titano-magnievogo-kombinata-v-formate-vyzhzhennoj-zemli-1504139.html"
+    },
+    {
+      "title": "ЗЦР: самооцінка за критеріями Journalism Trust Initiative",
+      "url": "https://incentre.zp.ua/samooczinka-za-kriteriyamy-journalist-trust-initiative-jti/"
+    },
+    {
+      "title": "ПроМедіа: Як регіональні медіа контролюють владу за допомогою ШІ",
+      "url": "https://news.promedia.report/article/yak-rehionalni-media-kontroliuiut-vladu-za-dopomohoiu-shi"
+    }
+  ],
+  "updated": "2026-11-22",
+  "kind": "journalist"
+}

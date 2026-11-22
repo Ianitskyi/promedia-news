@@ -1,0 +1,55 @@
+{
+  "slug": "vladyslava-prystupa",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Владислава Приступа",
+    "en": "Vladyslava Prystupa"
+  },
+  "sort": {
+    "uk": "Приступа Владислава",
+    "en": "Prystupa Vladyslava"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "операційна директорка Thebuchacity",
+    "en": "Operations director, Thebuchacity"
+  },
+  "summary": {
+    "uk": "Операційна директорка бучанського онлайн-медіа Thebuchacity; з ШІ створила для редакції бота й дашборд для моніторингу міськради.",
+    "en": "Operations director of the Bucha online outlet Thebuchacity; built an AI-assisted bot and dashboard to monitor the city council."
+  },
+  "bio": {
+    "uk": "Владислава Приступа працює в бучанському онлайн-медіа Thebuchacity з 2022 року. Була проєктною менеджеркою, згодом стала операційною директоркою редакції: відповідає за грантові заявки й організацію роботи команди. Веде авторську колонку «Видимі: життя з дитиною з інвалідністю».\n\nУ листопаді 2026 року на воркшопі ГО «ПроМедіа» на форумі IWPR представила бота й дашборд, які за допомогою ШІ за два тижні створила для моніторингу Бучанської міської ради: закупівель у Prozorro, рішень ради, судових справ і декларацій посадовців."
+  },
+  "facts": [
+    [
+      "Медіа",
+      "Thebuchacity, Буча"
+    ],
+    [
+      "Посада",
+      "операційна директорка"
+    ]
+  ],
+  "photo": {
+    "url": "https://news.promedia.report/img/news/iwpr-ai-workshop-2.jpg",
+    "caption": {
+      "uk": "Фото: IWPR, надано ГО «ПроМедіа».",
+      "en": "Photo: IWPR, provided to NGO ProMedia."
+    },
+    "article": "yak-rehionalni-media-kontroliuiut-vladu-za-dopomohoiu-shi"
+  },
+  "sources": [
+    {
+      "title": "Thebuchacity: у редакції з'явилася операційна директорка",
+      "url": "https://thebuchacity.com/u-thebuchacity-zyavylasya-operaczijna-dyrektorka-shho-zminytsya-u-roboti-redakcziyi/"
+    },
+    {
+      "title": "ПроМедіа: Як регіональні медіа контролюють владу за допомогою ШІ",
+      "url": "https://news.promedia.report/article/yak-rehionalni-media-kontroliuiut-vladu-za-dopomohoiu-shi"
+    }
+  ],
+  "updated": "2026-11-22",
+  "kind": "journalist"
+}

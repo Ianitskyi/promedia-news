@@ -1,0 +1,65 @@
+{
+  "slug": "alona-bereza",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Альона Береза",
+    "en": "Alona Bereza"
+  },
+  "sort": {
+    "uk": "Береза Альона",
+    "en": "Bereza Alona"
+  },
+  "aliases": [
+    "Alyona Bereza"
+  ],
+  "role": {
+    "uk": "засновниця й генеральна директорка ЖАР.INFO",
+    "en": "Founder and CEO, ZHAR.INFO"
+  },
+  "summary": {
+    "uk": "Хмельницька журналістка, засновниця онлайн-медіа ЖАР.INFO, представниця ІМІ в Хмельницькій області.",
+    "en": "Khmelnytskyi journalist, founder of the online outlet ZHAR.INFO and IMI representative in Khmelnytskyi oblast."
+  },
+  "bio": {
+    "uk": "Альона Береза — журналістка з Хмельницького, засновниця й генеральна директорка онлайн-медіа ЖАР.INFO. Також представляє Інститут масової інформації (ІМІ) в Хмельницькій області.\n\nУ 2023 році Хмельницький окружний адміністративний суд за позовом пані Альони визнав протиправною бездіяльність виконкому Хмельницької міськради й зобов'язав розглянути інформаційний запит ЖАР.INFO про стан шкільних укриттів. У 2026 році поліція визнала її потерпілою у справі про перешкоджання журналістській діяльності на засіданні в Державній інспекції архітектури та містобудування.\n\nУ листопаді 2026 року на воркшопі ГО «ПроМедіа» на форумі IWPR представила «Командний простір» ЖАР.INFO із судовим монітором."
+  },
+  "facts": [
+    [
+      "Медіа",
+      "ЖАР.INFO, Хмельницький"
+    ],
+    [
+      "Посада",
+      "засновниця й генеральна директорка"
+    ]
+  ],
+  "photo": {
+    "url": "https://news.promedia.report/img/news/iwpr-ai-workshop-4.jpg",
+    "caption": {
+      "uk": "Фото: IWPR, надано ГО «ПроМедіа».",
+      "en": "Photo: IWPR, provided to NGO ProMedia."
+    },
+    "article": "yak-rehionalni-media-kontroliuiut-vladu-za-dopomohoiu-shi"
+  },
+  "sources": [
+    {
+      "title": "IMI: Khmelnytsky court obliges the City Council to consider an information request by ZHAR.INFO",
+      "url": "https://old.imi.org.ua/en/news/khmelnytsky-court-obliges-the-city-council-to-consider-an-information-request-by-zhar-info-i53291"
+    },
+    {
+      "title": "IMI: Police grant ZHAR.INFO journalist victim status in obstruction case",
+      "url": "https://imi.org.ua/en/news/policziya-viznala-zhurnalistku-zhar-info-poterpiloyu-v-spravi-pro-pereshkodzhannya"
+    },
+    {
+      "title": "IMI: Khmelnytskyi-based journalist Alyona Bereza (IMI representative)",
+      "url": "https://old.imi.org.ua/en/news/khmelnytskyi-based-journalist-alyona-bereza-receives-bomb-threats-i64269"
+    },
+    {
+      "title": "ПроМедіа: Як регіональні медіа контролюють владу за допомогою ШІ",
+      "url": "https://news.promedia.report/article/yak-rehionalni-media-kontroliuiut-vladu-za-dopomohoiu-shi"
+    }
+  ],
+  "updated": "2026-11-22",
+  "kind": "journalist"
+}
