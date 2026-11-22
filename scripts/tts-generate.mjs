@@ -27,6 +27,17 @@ function lastEditMs(path) {
   } catch { return 0; }
 }
 
+// Заднім числом не озвучуємо: лише статті, чий файл з'явився в репозиторії після TTS_SINCE (ISO-дата).
+// Без TTS_SINCE обмеження немає. "ttsNow": true у JSON статті — озвучити попри це правило.
+const SINCE_MS = Date.parse(process.env.TTS_SINCE || "") || 0;
+function addedMs(path) {
+  try {
+    const out = execFileSync("git", ["log", "--diff-filter=A", "--format=%ct", "--", path], { encoding: "utf8" }).trim().split("\n");
+    const s = out[out.length - 1];
+    return s ? Number(s) * 1000 : 0;
+  } catch { return 0; }
+}
+
 function loadIndex() {
   if (!existsSync(INDEX)) return {};
   const m = readFileSync(INDEX, "utf8").match(/export const TTS = (\{[\s\S]*\});/);
@@ -105,6 +116,7 @@ for (const f of readdirSync(DIR).filter((x) => x.endsWith(".json")).sort()) {
   // Озвучуємо лише статті (рубрика «Статті»); новини — ні. "tts": false вимикає, "tts": true вмикає вручну.
   const isArticle = Array.isArray(a.tags) && a.tags.includes("Статті");
   if (a.tts === false || !(isArticle || a.tts === true)) continue;
+  if (a.ttsNow !== true && SINCE_MS && addedMs(join(DIR, f)) < SINCE_MS) continue;
   const ageMs = Date.now() - lastEditMs(join(DIR, f));
   for (const [lang, cfg] of Object.entries(LANGS)) {
     if (!a[cfg.body]) continue;
