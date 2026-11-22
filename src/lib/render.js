@@ -1134,7 +1134,7 @@ const ASIDE_SERVICES = [
 ];
 
 function articleAside(popular, lang) {
-  const items = (popular || []).slice(0, 5);
+  const items = (popular || []).slice(0, 10);
   const popularHtml = items.length ? `<section class="article-aside-block article-aside-popular">
       <h2 class="article-aside-title">${escapeHtml(pick(ASIDE_POPULAR_LABEL, lang))}</h2>
       <ol>${items.map(a => `<li><a href="${langPrefix(lang)}/article/${escapeHtml(a.slug)}">${escapeHtml(articleTitle(a, lang))}</a></li>`).join("")}</ol>
