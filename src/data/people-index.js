@@ -28,7 +28,7 @@ export const PEOPLE = [
       "en": "Alona Bereza"
     },
     "role": {
-      "uk": "засновниця й генеральна директорка ЖАР.INFO",
+      "uk": "засновниця та CEO ЖАР.INFO",
       "en": "Founder and CEO, ZHAR.INFO"
     },
     "summary": {
