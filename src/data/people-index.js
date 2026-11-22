@@ -1400,6 +1400,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "nataliia-humeniuk",
+    "tag": "Наталія Гуменюк",
+    "aliases": [
+      "Наталка Гуменюк",
+      "Natalia Humeniuk"
+    ],
+    "name": {
+      "uk": "Наталія Гуменюк",
+      "en": "Nataliya Gumenyuk"
+    },
+    "role": {
+      "uk": "журналістка, співзасновниця «Громадського» та Лабораторії журналістики суспільного інтересу",
+      "en": "Journalist, co-founder of Hromadske and the Public Interest Journalism Lab"
+    },
+    "summary": {
+      "uk": "Журналістка-міжнародниця й авторка книжок, співзасновниця «Громадського», Лабораторії журналістики суспільного інтересу та проєкту «Свідчить Україна».",
+      "en": "Foreign affairs and conflict journalist and author, co-founder of Hromadske, the Public Interest Journalism Lab and The Reckoning Project."
+    }
+  },
+  {
     "slug": "nataliia-movshovych",
     "tag": "Наталія Мовшович",
     "aliases": [],

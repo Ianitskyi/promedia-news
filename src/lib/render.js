@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261122c";
+const ASSET_V = "20261123a";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -141,7 +141,9 @@ const TAG_LABELS_EN = {
   "авторське право": "copyright",
   "Канада": "Canada",
   "місцеві медіа": "local media",
-  "фінансування медіа": "media funding"
+  "фінансування медіа": "media funding",
+  "книжки": "books",
+  "дрони": "drones"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -252,7 +254,9 @@ const TAG_LABELS_CRH = {
   "авторське право": "müelliflik aqqı",
   "Канада": "Kanada",
   "місцеві медіа": "yerli mediya",
-  "фінансування медіа": "mediyanı malieleştirüv"
+  "фінансування медіа": "mediyanı malieleştirüv",
+  "книжки": "kitaplar",
+  "дрони": "dronlar"
 };
 
 function tagLookupKey(tag) {

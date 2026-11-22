@@ -1602,3 +1602,6 @@ h1, h2, h3, h4 { line-height: 1.2; }
   .article-aside-service > span { font-size: 13px; line-height: 1.4; color: rgba(255,255,255,.75); }
   .article-aside-service:hover { background: var(--ink-soft); }
 }
+
+/* Вертикальні обкладинки (книжки тощо) не розтягуємо на весь екран (23.11.2026). */
+.article-cover { max-height: 640px; }

@@ -1,0 +1,40 @@
+{
+  "slug": "nataliia-humeniuk",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Наталія Гуменюк",
+    "en": "Nataliya Gumenyuk"
+  },
+  "sort": {
+    "uk": "Гуменюк Наталія",
+    "en": "Gumenyuk Nataliya"
+  },
+  "aliases": ["Наталка Гуменюк", "Natalia Humeniuk"],
+  "role": {
+    "uk": "журналістка, співзасновниця «Громадського» та Лабораторії журналістики суспільного інтересу",
+    "en": "Journalist, co-founder of Hromadske and the Public Interest Journalism Lab"
+  },
+  "summary": {
+    "uk": "Журналістка-міжнародниця й авторка книжок, співзасновниця «Громадського», Лабораторії журналістики суспільного інтересу та проєкту «Свідчить Україна».",
+    "en": "Foreign affairs and conflict journalist and author, co-founder of Hromadske, the Public Interest Journalism Lab and The Reckoning Project."
+  },
+  "bio": {
+    "uk": "Наталія Гуменюк — українська журналістка, яка спеціалізується на міжнародній тематиці та висвітленні збройних конфліктів. Закінчила Інститут журналістики Київського національного університету імені Тараса Шевченка, магістерську програму з міжнародної журналістики здобула в Університеті Еребру (Швеція).\n\n2013 року вона стала однією з ініціаторок створення незалежного медіа «Громадське», яке очолювала у 2015–2019 роках. 2020 року разом з Ангеліною Карякіною заснувала Лабораторію журналістики суспільного інтересу, де працює виконавчою директоркою. Після повномасштабного вторгнення разом із закордонними колегами заснувала проєкт «Свідчить Україна» (The Reckoning Project), що поєднує журналістику з документуванням воєнних злочинів.\n\nПише для The Atlantic, Foreign Affairs і The Guardian. Авторка книжок «Майдан Тахрір. У пошуках втраченої революції» та «Загублений острів. Книга репортажів з окупованого Криму» (2020). 9 лютого 2027 року у видавництві W. W. Norton має вийти її англомовна книжка «The Drone Revolution» про те, як українці змінили війну дронами.",
+    "en": "Nataliya Gumenyuk is a Ukrainian journalist specialising in foreign affairs and conflict reporting. She graduated from the Institute of Journalism at Taras Shevchenko National University of Kyiv and earned a master's degree in international journalism at Örebro University in Sweden.\n\nIn 2013 she was one of the initiators of the independent outlet Hromadske, which she headed in 2015–2019. In 2020 she co-founded the Public Interest Journalism Lab with Angelina Kariakina and serves as its CEO. After Russia's full-scale invasion she co-founded The Reckoning Project, which combines journalism with documenting war crimes.\n\nShe writes for The Atlantic, Foreign Affairs and The Guardian. Her books include Maidan Tahrir: In Search of the Lost Revolution and The Lost Island: Tales from the Occupied Crimea (2020). Her English-language book The Drone Revolution, about how Ukrainians changed warfare with drones, is due from W. W. Norton on 9 February 2027."
+  },
+  "facts": [
+    ["«Громадське»", "співзасновниця (2013), очільниця у 2015–2019 роках"],
+    ["Лабораторія журналістики суспільного інтересу", "співзасновниця (2020), виконавча директорка"],
+    ["Нова книжка", "«The Drone Revolution» (W. W. Norton, 2027)"]
+  ],
+  "sources": [
+    { "title": "Вікіпедія: Nataliya Gumenyuk", "url": "https://en.wikipedia.org/wiki/Nataliya_Gumenyuk" },
+    { "title": "Вісник НАНУ: Наталія Гуменюк — журналістка, яка фіксує правду про війну та окупацію", "url": "https://visnyk-nanu.org.ua/nataliya-gumenyuk-zhurnalistka-yaka-fiksuye-pravdu-pro-vijnu-ta-okupacziyu/" },
+    { "title": "LB.ua: Журналістка Наталка Гуменюк: «Розмова наративами може нашкодити»", "url": "https://lb.ua/society/2024/09/09/633689_zhurnalistka_natalka_gumenyuk.html" },
+    { "title": "Foreign Affairs: The Future of Ukraine's Drone Democracy", "url": "https://www.foreignaffairs.com/ukraine/future-ukraines-drone-democracy" },
+    { "title": "W. W. Norton: The Drone Revolution", "url": "https://wwnorton.com/books/the-drone-revolution" }
+  ],
+  "updated": "2026-11-23"
+}
