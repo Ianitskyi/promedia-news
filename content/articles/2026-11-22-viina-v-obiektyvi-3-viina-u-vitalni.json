@@ -45,6 +45,9 @@
   "isImportant": false,
   "cardStyle": "hero",
   "tts": true,
-  "revision": "2026-11-22-roshchyna-photo-marker",
-  "raiseToTop": "2026-11-22-hero"
+  "revision": "2026-11-22-media-card",
+  "raiseToTop": "2026-11-22-hero",
+  "relatedMediaIds": [
+    "atlas-27b7d112ac9f10"
+  ]
 }
