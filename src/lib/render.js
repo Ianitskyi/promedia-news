@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261122b";
+const ASSET_V = "20261122c";
 
 const LANGS = ["uk", "en", "crh"];
 
