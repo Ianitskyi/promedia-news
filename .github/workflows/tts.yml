@@ -38,6 +38,8 @@ jobs:
         env:
           GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
           TTS_DELAY_HOURS: '2'
+          # Озвучуємо лише статті, додані після цієї дати (UTC); заднім числом — ні.
+          TTS_SINCE: '2026-11-22T21:48:00Z'
         run: node scripts/tts-generate.mjs
       - name: Commit audio and deploy
         env:
