@@ -32,7 +32,7 @@ const SITE_EYEBROW = {
 const OG_LOCALE = { uk: "uk_UA", en: "en_US", crh: "crh_UA" };
 const HTML_LOCALE_LABEL = { uk: "Мова / Language", en: "Мова / Language", crh: "Til / Language" };
 const LANG_BUTTON_LABEL = { uk: "UA", en: "EN", crh: "QT" };
-const CATEGORIES = ["Новини", "Статті", "Прес-реліз", "Анонс"];
+const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Анонс"];
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
@@ -91,7 +91,7 @@ const TAG_LABELS_EN = {
   "Мінкульт": "Ministry of Culture",
   "телемарафон": "TV marathon",
   "профспілки": "trade unions",
-  "Прес-реліз": "Press release",
+  "Пресреліз": "Press release",
   "Анонс": "Announcement",
   "Ексклюзив": "Exclusive",
   "Заяви": "Statements",
@@ -202,7 +202,7 @@ const TAG_LABELS_CRH = {
   "Мінкульт": "Medeniyet nazirligi",
   "телемарафон": "telemarafon",
   "профспілки": "kasaba birlikleri",
-  "Прес-реліз": "Basın bildirisi",
+  "Пресреліз": "Basın bildirisi",
   "Анонс": "İlân",
   "Ексклюзив": "Eksklüziv",
   "Заяви": "Beyanatlar",
@@ -327,7 +327,7 @@ function peopleBox(tags, lang) {
 // A press release (someone else's text published with light editing) is marked
 // with a distinct, muted tag colour so readers don't take it for our own reporting.
 // An announcement (upcoming event) gets a muted green tag the same way.
-const PRESS_RELEASE_KEY = tagLookupKey("Прес-реліз");
+const PRESS_RELEASE_KEY = tagLookupKey("Пресреліз");
 const ANNOUNCEMENT_KEY = tagLookupKey("Анонс");
 // «Статті» (long reads) get a muted violet tag, matching the «Статті» chip on the home page.
 const ARTICLES_KEY = tagLookupKey("Статті");
@@ -647,12 +647,12 @@ function articleExcerpt(article, lang) {
 
 const ALL_LABEL = { uk: "Усі", en: "All", crh: "Episi" };
 const CATEGORY_NAV_ARIA = { uk: "Рубрики новин", en: "News categories", crh: "Haber kategoriyaları" };
-const CATEGORY_NAV_KIND = { "Новини": "news", "Статті": "articles", "Прес-реліз": "press", "Анонс": "announce" };
-// Підписи фільтра форматів на головній (множина: «Прес-релізи», «Анонси»).
+const CATEGORY_NAV_KIND = { "Новини": "news", "Статті": "articles", "Пресреліз": "press", "Анонс": "announce" };
+// Підписи фільтра форматів на головній (множина: «Пресрелізи», «Анонси»).
 const CATEGORY_NAV_LABELS = {
   "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
   "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
-  "Прес-реліз": { uk: "Прес-релізи", en: "Press releases", crh: "Basın bildirileri" },
+  "Пресреліз": { uk: "Пресрелізи", en: "Press releases", crh: "Basın bildirileri" },
   "Анонс": { uk: "Анонси", en: "Announcements", crh: "İlânlar" }
 };
 
@@ -926,7 +926,7 @@ const LEAD_SIDE_LABEL = { uk: "Останні", en: "Latest", crh: "Soñki" };
 const PINNED_LABEL = { uk: "Закріплено", en: "Pinned", crh: "Bekitilgen" };
 const LEAD_SIDE_TOP_LABEL = { uk: "Найчитаніші", en: "Most read", crh: "Eñ çoq oqulğanlar" };
 const LEAD_RUBRICS = {
-  "Прес-реліз": { uk: "Прес-реліз", en: "Press release", crh: "Basın bildirisi" },
+  "Пресреліз": { uk: "Пресреліз", en: "Press release", crh: "Basın bildirisi" },
   "Анонс": { uk: "Анонс", en: "Announcement", crh: "İlân" },
   "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
   "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
@@ -935,8 +935,8 @@ const LEAD_RUBRICS = {
 
 function leadMeta(article, lang) {
   const tags = JSON.parse(article.tags || "[]");
-  const key = tags.includes("Прес-реліз") ? "Прес-реліз" : tags.includes("Анонс") ? "Анонс" : tags.find(t => LEAD_RUBRICS[t]);
-  const kind = key === "Прес-реліз" ? " feed-lead-rubric--press" : key === "Анонс" ? " feed-lead-rubric--announce" : key && key !== "Новини" ? " feed-lead-rubric--alt" : "";
+  const key = tags.includes("Пресреліз") ? "Пресреліз" : tags.includes("Анонс") ? "Анонс" : tags.find(t => LEAD_RUBRICS[t]);
+  const kind = key === "Пресреліз" ? " feed-lead-rubric--press" : key === "Анонс" ? " feed-lead-rubric--announce" : key && key !== "Новини" ? " feed-lead-rubric--alt" : "";
   const rubric = key ? `<span class="feed-lead-rubric${kind}">${escapeHtml(pick(LEAD_RUBRICS[key], lang))}</span> · ` : "";
   const exclusive = isExclusive(tags) ? `<span class="feed-lead-exclusive">${escapeHtml(tagLabel("Ексклюзив", lang))}</span> · ` : "";
   return `<p class="feed-lead-meta">${exclusive}${rubric}${escapeHtml(formatDate(article.published_at, lang))}</p>`;
@@ -1054,7 +1054,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   const { caption: coverCaptionText, bodyMd } = coverCaption(article, lang, localizedField(article, "body_md", lang));
   const bodyHtmlContent = markdownToHtml(bodyMd);
   const tags = JSON.parse(article.tags || "[]");
-  // Рубрика (Новини, Статті, Прес-реліз, Анонс…) — у рядку з датою; тематичні теги — під текстом.
+  // Рубрика (Новини, Статті, Пресреліз, Анонс…) — у рядку з датою; тематичні теги — під текстом.
   const rubricTags = tags.filter(t => LEAD_RUBRICS[t] || specialTagClass(t));
   const topicTags = tags.filter(t => !rubricTags.includes(t));
   const coverUrl = articleCover(article, lang);

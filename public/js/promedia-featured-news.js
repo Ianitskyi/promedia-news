@@ -38,7 +38,7 @@
   }
 
   var RUBRICS = {
-    "Прес-реліз": { uk: "Прес-реліз", en: "Press release", crh: "Basın bildirisi" },
+    "Пресреліз": { uk: "Пресреліз", en: "Press release", crh: "Basın bildirisi" },
     "Анонс": { uk: "Анонс", en: "Announcement", crh: "İlân" },
     "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
     "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
@@ -53,7 +53,7 @@
   function rubric(item, lang) {
     var tags = Array.isArray(item.tags) ? item.tags : [];
     // A press release is labelled as such even if it also carries a regular rubric.
-    if (tags.indexOf("Прес-реліз") !== -1) return { key: "Прес-реліз", label: RUBRICS["Прес-реліз"][lang] || "Прес-реліз" };
+    if (tags.indexOf("Пресреліз") !== -1) return { key: "Пресреліз", label: RUBRICS["Пресреліз"][lang] || "Пресреліз" };
     if (tags.indexOf("Анонс") !== -1) return { key: "Анонс", label: RUBRICS["Анонс"][lang] || "Анонс" };
     for (var i = 0; i < tags.length; i += 1) {
       if (RUBRICS[tags[i]]) return { key: tags[i], label: RUBRICS[tags[i]][lang] || tags[i] };
@@ -72,7 +72,7 @@
     var line = el("p", "pm-news-lead-meta");
     var r = rubric(item, lang);
     if (r) {
-      line.appendChild(el("span", "pm-news-lead-rubric" + (r.key === "Прес-реліз" ? " pm-news-lead-rubric--press" : r.key === "Анонс" ? " pm-news-lead-rubric--announce" : r.key === "Новини" ? "" : " pm-news-lead-rubric--alt"), r.label));
+      line.appendChild(el("span", "pm-news-lead-rubric" + (r.key === "Пресреліз" ? " pm-news-lead-rubric--press" : r.key === "Анонс" ? " pm-news-lead-rubric--announce" : r.key === "Новини" ? "" : " pm-news-lead-rubric--alt"), r.label));
       line.appendChild(document.createTextNode(" · "));
     }
     line.appendChild(document.createTextNode(formatDate(item.publishedAt, lang)));
