@@ -1,0 +1,66 @@
+{
+  "slug": "heorhii-ivanchenko",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Георгій Іванченко",
+    "en": "Heorhii Ivanchenko"
+  },
+  "sort": {
+    "uk": "Іванченко Георгій",
+    "en": "Ivanchenko Heorhii"
+  },
+  "aliases": [
+    "Григорій Іванченко"
+  ],
+  "role": {
+    "uk": "незалежний фотожурналіст",
+    "en": "freelance photojournalist"
+  },
+  "summary": {
+    "uk": "Фотожурналіст, тяжко поранений тим самим ударом російського дрона, що вбив Антоні Лаллікана 3 жовтня 2025 року.",
+    "en": "Photojournalist seriously wounded by the same Russian drone strike that killed Antoni Lallican on 3 October 2025."
+  },
+  "bio": {
+    "uk": "Георгій Іванченко (нар. 2000) — український незалежний фотограф, з лютого 2022 року документує війну. Знімав для Associated Press і European Pressphoto Agency, зокрема майже місяць працював у Бахмуті.\n\n3 жовтня 2025 року біля Дружківки на Донеччині удар російського FPV-дрона вбив його колегу Антоні Лаллікана, а пана Георгія тяжко поранив: він утратив ногу. Після лікування живе у Львові, продовжує фотографувати й документує наслідки війни для людей, які, як і він, відновлюються після поранень."
+  },
+  "facts": [
+    [
+      "Рік народження",
+      "2000"
+    ],
+    [
+      "Співпраця",
+      "AP, EPA"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Георгій Іванченко"
+    ],
+    "check": [
+      "Іванченко",
+      "Ivanchenko"
+    ]
+  },
+  "sources": [
+    {
+      "title": "RSF: Ukrainian photojournalist Georgiy Ivanchenko on rebuilding his life",
+      "url": "https://rsf.org/en/video-it-takes-time-learn-live-it-ukrainian-photojournalist-georgiy-ivanchenko-rebuilding-his"
+    },
+    {
+      "title": "Українська правда. Життя: Георгій Іванченко розповів про поранення",
+      "url": "https://life.pravda.com.ua/society/zhurnalist-georgiy-ivanchenko-rozpoviv-pro-perezhitiy-udar-dronom-310760/"
+    },
+    {
+      "title": "Центр міської історії: Георгій Іванченко",
+      "url": "https://www.lvivcenter.org/wp-content/uploads/2025/06/GeorgeIvanchenko_LivingTheWar2.pdf"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

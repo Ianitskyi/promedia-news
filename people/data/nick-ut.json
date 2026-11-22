@@ -1,0 +1,68 @@
+{
+  "slug": "nick-ut",
+  "group": "intl",
+  "country": "США / В'єтнам",
+  "kind": "journalist",
+  "name": {
+    "uk": "Нік Ут",
+    "en": "Nick Ut"
+  },
+  "sort": {
+    "uk": "Ут Нік",
+    "en": "Ut Nick"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "фотограф Associated Press, лауреат Пулітцерівської премії",
+    "en": "Associated Press photographer, Pulitzer Prize winner"
+  },
+  "summary": {
+    "uk": "Фотограф AP, якому понад пів століття приписували знімок «Жах війни» («Дівчинка й напалм»); у 2025 році його авторство поставили під сумнів.",
+    "en": "AP photographer credited for more than half a century with “The Terror of War” (“Napalm Girl”); his authorship was questioned in 2025."
+  },
+  "bio": {
+    "uk": "Нік Ут (Хюїнь Конг Ут) — в'єтнамсько-американський фотограф, багато років працював в Associated Press.\n\nЙому приписують знімок «Жах війни» («Дівчинка й напалм»), зроблений 8 червня 1972 року, за який він отримав Пулітцерівську премію, а World Press Photo назвала кадр фото року. У січні 2025 року документальний фільм «Стрингер» стверджував, що знімок зробив фрилансер Нгуєн Тхань Нге. AP після розслідування залишила авторство за Утом, а World Press Photo у травні 2025 року призупинила атрибуцію. Ут версію фільму заперечує."
+  },
+  "facts": [
+    [
+      "Агенція",
+      "Associated Press"
+    ],
+    [
+      "Нагорода",
+      "Пулітцерівська премія"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Nick Ut"
+    ],
+    "check": [
+      "Ut",
+      "photographer"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Nick Ut",
+      "url": "https://en.wikipedia.org/wiki/Nick_Ut"
+    },
+    {
+      "title": "PetaPixel: AP will not change Nick Ut's credit",
+      "url": "https://petapixel.com/2025/05/06/after-lengthy-investigation-the-ap-will-not-change-nick-uts-credit-on-napalm-girl-photo"
+    },
+    {
+      "title": "World Press Photo: authorship disputed",
+      "url": "https://www.worldpressphoto.org/authorship-disputed"
+    },
+    {
+      "title": "KRDO / CNN: World Press Photo suspends attribution",
+      "url": "https://krdo.com/news/2025/05/19/who-took-napalm-girl-world-press-photo-suspends-attribution-of-historic-vietnam-war-image/"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

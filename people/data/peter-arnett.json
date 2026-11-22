@@ -1,0 +1,67 @@
+{
+  "slug": "peter-arnett",
+  "group": "intl",
+  "country": "Нова Зеландія / США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Пітер Арнетт",
+    "en": "Peter Arnett"
+  },
+  "sort": {
+    "uk": "Арнетт Пітер",
+    "en": "Arnett Peter"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "воєнний кореспондент AP і CNN, лауреат Пулітцерівської премії",
+    "en": "AP and CNN war correspondent, Pulitzer Prize winner"
+  },
+  "summary": {
+    "uk": "Кореспондент, який висвітлював війну у В'єтнамі для AP, а в січні 1991 року наживо розповідав з Багдада про бомбардування для CNN.",
+    "en": "Correspondent who covered the Vietnam War for AP and in January 1991 reported live from Baghdad on the bombing for CNN."
+  },
+  "bio": {
+    "uk": "Пітер Арнетт (13 листопада 1934 — 17 грудня 2025) — новозеландсько-американський журналіст. Для Associated Press висвітлював війну у В'єтнамі з 1962 року до падіння Сайгона 1975-го; 1966 року отримав Пулітцерівську премію за міжнародний репортаж.\n\n1981 року перейшов до CNN. У ніч на 17 січня 1991 року разом із Бернардом Шоу і Джоном Голліменом наживо розповідав із багдадського готелю «Аль-Рашид» про початок бомбардувань. 1997 року взяв інтерв'ю в Осами бін Ладена. Помер у Ньюпорт-Біч у Каліфорнії у віці 91 року."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1934–2025"
+    ],
+    [
+      "Редакції",
+      "AP, CNN"
+    ],
+    [
+      "Нагорода",
+      "Пулітцерівська премія (1966)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Peter Arnett"
+    ],
+    "check": [
+      "Arnett"
+    ]
+  },
+  "sources": [
+    {
+      "title": "NPR: Pulitzer Prize-winning correspondent Peter Arnett has died",
+      "url": "https://www.npr.org/2025/12/18/g-s1-102742/pulitzer-prize-winning-correspondent-peter-arnett-has-died"
+    },
+    {
+      "title": "Wikipedia: Peter Arnett",
+      "url": "https://en.wikipedia.org/wiki/Peter_Arnett"
+    },
+    {
+      "title": "EBSCO: CNN coverage of the Gulf War",
+      "url": "https://www.ebsco.com/research-starters/military-history-and-science/cnn-coverage-gulf-war"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

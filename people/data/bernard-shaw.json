@@ -1,0 +1,60 @@
+{
+  "slug": "bernard-shaw",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Бернард Шоу",
+    "en": "Bernard Shaw"
+  },
+  "sort": {
+    "uk": "Шоу Бернард",
+    "en": "Shaw Bernard"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський журналіст, головний ведучий CNN",
+    "en": "American journalist, CNN principal anchor"
+  },
+  "summary": {
+    "uk": "Ведучий CNN, який у ніч на 17 січня 1991 року наживо розповідав з Багдада про початок бомбардувань.",
+    "en": "CNN anchor who reported live from Baghdad on the start of the bombing on the night of 17 January 1991."
+  },
+  "bio": {
+    "uk": "Бернард Шоу (1940–2022) — американський журналіст, від заснування CNN 1980 року до 2001-го — її головний ведучий.\n\nУ ніч на 17 січня 1991 року разом із Пітером Арнеттом і Джоном Голліменом перебував у багдадському готелі «Аль-Рашид». Команда CNN мала окрему телефонну лінію до Аммана й наживо, без картинки, розповідала про початок бомбардувань."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1940–2022"
+    ],
+    [
+      "Редакція",
+      "CNN"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Bernard Shaw (journalist)"
+    ],
+    "check": [
+      "Shaw",
+      "CNN"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Bernard Shaw (journalist)",
+      "url": "https://en.wikipedia.org/wiki/Bernard_Shaw_(journalist)"
+    },
+    {
+      "title": "EBSCO: CNN coverage of the Gulf War",
+      "url": "https://www.ebsco.com/research-starters/military-history-and-science/cnn-coverage-gulf-war"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

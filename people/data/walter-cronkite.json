@@ -1,0 +1,63 @@
+{
+  "slug": "walter-cronkite",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Волтер Кронкайт",
+    "en": "Walter Cronkite"
+  },
+  "sort": {
+    "uk": "Кронкайт Волтер",
+    "en": "Cronkite Walter"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський телеведучий, ведучий вечірніх новин CBS",
+    "en": "American television anchor, CBS Evening News"
+  },
+  "summary": {
+    "uk": "Ведучий вечірніх новин CBS, чий ефір 27 лютого 1968 року про «безвихідь» у В'єтнамі обріс легендою «моменту Кронкайта».",
+    "en": "CBS Evening News anchor whose broadcast of 27 February 1968 on the Vietnam “stalemate” became the legend of the “Cronkite moment”."
+  },
+  "bio": {
+    "uk": "Волтер Кронкайт (1916–2009) — американський журналіст, у 1962–1981 роках ведучий вечірніх новин CBS.\n\nУ лютому 1968 року він побував у В'єтнамі після боїв за місто Хюе, а 27 лютого сказав в ефірі, що війна загрузла в безвиході. Згодом з'явилася легенда, що президент Ліндон Джонсон, побачивши передачу, сказав: «Якщо я втратив Кронкайта, я втратив Америку». Професор Американського університету Джозеф Кемпбелл показав, що Джонсон ефіру не бачив, а цю фразу переказують у різних версіях."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1916–2009"
+    ],
+    [
+      "Редакція",
+      "CBS News"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Walter Cronkite"
+    ],
+    "check": [
+      "Cronkite"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Walter Cronkite",
+      "url": "https://en.wikipedia.org/wiki/Walter_Cronkite"
+    },
+    {
+      "title": "History News Network: W. Joseph Campbell on the “Cronkite Moment”",
+      "url": "https://www.historynewsnetwork.org/article/146566"
+    },
+    {
+      "title": "Wikimedia Commons: Cronkite in Hue, February 1968",
+      "url": "https://commons.wikimedia.org/wiki/File:Walter_Cronkite_conducts_an_interview_in_Hue,_Vietnam_(February_1968).jpg"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

@@ -1,0 +1,77 @@
+{
+  "slug": "antoni-lallican",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "journalist",
+  "memorial": true,
+  "life": "1988–2025",
+  "name": {
+    "uk": "Антоні Лаллікан",
+    "en": "Antoni Lallican"
+  },
+  "sort": {
+    "uk": "Лаллікан Антоні",
+    "en": "Lallican Antoni"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "французький фотожурналіст, агенція Hans Lucas",
+    "en": "French photojournalist, Hans Lucas agency"
+  },
+  "summary": {
+    "uk": "Французький фотожурналіст, якого росіяни вбили FPV-дроном біля Дружківки 3 жовтня 2025 року, — перший журналіст, убитий дроном у цій війні.",
+    "en": "French photojournalist killed by a Russian FPV drone near Druzhkivka on 3 October 2025, the first journalist killed by a drone in this war."
+  },
+  "bio": {
+    "uk": "Антоні Лаллікан (26 січня 1988 — 3 жовтня 2025) — французький фотожурналіст із Парижа, працював з агенцією Hans Lucas. Знімав у зонах конфліктів, зокрема в Нагірному Карабасі, Вірменії, Ізраїлі, Лівані та Сирії. В Україну приїхав у березні 2022 року.\n\n3 жовтня 2025 року біля Дружківки на Донеччині його вбив удар російського FPV-дрона; український фотограф Георгій Іванченко, який працював разом із ним, тяжко поранений. Обидва були в бронежилетах із написом PRESS. Європейська та Міжнародна федерації журналістів назвали вбивство воєнним злочином і наголосили, що це перший журналіст, якого в Україні вбив дрон."
+  },
+  "facts": [
+    [
+      "Загинув",
+      "3 жовтня 2025, біля Дружківки"
+    ],
+    [
+      "Агенція",
+      "Hans Lucas"
+    ],
+    [
+      "Країна",
+      "Франція"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Antoni Lallican",
+      "fr:Antoni Lallican",
+      "uk:Антоні Лаллікан"
+    ],
+    "check": [
+      "photographer",
+      "photographe",
+      "journalist"
+    ]
+  },
+  "sources": [
+    {
+      "title": "EFJ: French photojournalist Antoni Lallican killed by a drone in Donbas",
+      "url": "https://europeanjournalists.org/?p=45585"
+    },
+    {
+      "title": "Wikipedia: Antoni Lallican",
+      "url": "https://en.wikipedia.org/wiki/Antoni_Lallican"
+    },
+    {
+      "title": "ARTICLE 19 / MFRR: year after Antoni Lallican was killed",
+      "url": "https://www.article19.org/resources/ukraine-year-after-antoni-lallican-was-killed-in-the-field-mfrr-partners-demand-justice/"
+    },
+    {
+      "title": "CPJ: Russian drone kills French journalist Antoni Lallican",
+      "url": "https://cpj.org/2025/10/russian-drone-kills-french-journalist-antoni-lallican-in-ukraines-donetsk-region/"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

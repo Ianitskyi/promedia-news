@@ -1,0 +1,60 @@
+{
+  "slug": "nguyen-thanh-nghe",
+  "group": "intl",
+  "country": "В'єтнам",
+  "kind": "journalist",
+  "name": {
+    "uk": "Нгуєн Тхань Нге",
+    "en": "Nguyen Thanh Nghe"
+  },
+  "sort": {
+    "uk": "Нгуєн Тхань Нге",
+    "en": "Nguyen Thanh Nghe"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "в'єтнамський фрилансер, стрингер NBC часів війни у В'єтнамі",
+    "en": "Vietnamese freelancer, NBC stringer during the Vietnam War"
+  },
+  "summary": {
+    "uk": "Фрилансер, якого документальний фільм «Стрингер» (2025) назвав справжнім автором знімка «Дівчинка й напалм».",
+    "en": "Freelancer whom the 2025 documentary “The Stringer” named as the real author of the “Napalm Girl” photograph."
+  },
+  "bio": {
+    "uk": "Нгуєн Тхань Нге — в'єтнамський фрилансер, який у 1972 році працював стрингером для NBC.\n\nДокументальний фільм «Стрингер», показаний на кінофестивалі «Санденс» у січні 2025 року, стверджує, що саме він зробив знімок «Жах війни» («Дівчинка й напалм»), який понад пів століття приписували Ніку Уту з AP. World Press Photo після власної перевірки в травні 2025 року призупинила атрибуцію Утові, але Нге автором не назвала; AP залишила підпис без змін."
+  },
+  "facts": [
+    [
+      "Країна",
+      "В'єтнам"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:The Stringer (2025 film)"
+    ],
+    "check": [
+      "Nghe",
+      "Nghệ"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Hyperallergic: Film disputes authorship of iconic “Napalm Girl” photo",
+      "url": "https://hyperallergic.com/film-disputes-authorship-of-iconic-napalm-girl-photo/"
+    },
+    {
+      "title": "World Press Photo: authorship disputed",
+      "url": "https://www.worldpressphoto.org/authorship-disputed"
+    },
+    {
+      "title": "Wikipedia: The Terror of War",
+      "url": "https://en.wikipedia.org/wiki/The_Terror_of_War"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

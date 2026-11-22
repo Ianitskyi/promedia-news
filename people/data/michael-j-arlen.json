@@ -1,0 +1,63 @@
+{
+  "slug": "michael-j-arlen",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Майкл Арлен",
+    "en": "Michael J. Arlen"
+  },
+  "sort": {
+    "uk": "Арлен Майкл",
+    "en": "Arlen Michael J."
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський письменник, телекритик The New Yorker",
+    "en": "American writer, television critic for The New Yorker"
+  },
+  "summary": {
+    "uk": "Телекритик The New Yorker, автор вислову «війна у вітальні» про телевізійне висвітлення війни у В'єтнамі.",
+    "en": "The New Yorker television critic who coined the phrase “living-room war” for TV coverage of the Vietnam War."
+  },
+  "bio": {
+    "uk": "Майкл Джон Арлен (нар. 1930) — американський письменник і журналіст. У 1952–1957 роках працював репортером журналу Life, а з 1957 до 1990 року — у штаті The New Yorker, де довго вів колонку про телебачення.\n\nЙого перша книжка «Війна у вітальні» (Living-Room War, 1969) зібрала колонки про те, як телебачення показувало війну у В'єтнамі. Вислів «війна у вітальні», який вигадав Арлен, відтоді широко цитують у журналістських і наукових текстах. За книжку «Шлях до Арарату» про свої вірменські корені він 1976 року отримав Національну книжкову премію США."
+  },
+  "facts": [
+    [
+      "Рік народження",
+      "1930"
+    ],
+    [
+      "Редакція",
+      "The New Yorker (1957–1990)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Michael J. Arlen"
+    ],
+    "check": [
+      "Arlen"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Michael J. Arlen",
+      "url": "https://en.wikipedia.org/wiki/Michael_J._Arlen"
+    },
+    {
+      "title": "Syracuse University Press: Living-Room War",
+      "url": "https://press.syr.edu/supressbook-author/arlen-michael/"
+    },
+    {
+      "title": "The Conversation: How the Pentagon tried to cure America of its Vietnam syndrome",
+      "url": "https://theconversation.com/how-the-pentagon-tried-to-cure-america-of-its-vietnam-syndrome-83682"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

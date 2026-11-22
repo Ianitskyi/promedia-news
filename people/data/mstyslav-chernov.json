@@ -1,0 +1,69 @@
+{
+  "slug": "mstyslav-chernov",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Мстислав Чернов",
+    "en": "Mstyslav Chernov"
+  },
+  "sort": {
+    "uk": "Чернов Мстислав",
+    "en": "Chernov Mstyslav"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "фотограф, відеожурналіст і режисер Associated Press",
+    "en": "Associated Press photographer, video journalist and film director"
+  },
+  "summary": {
+    "uk": "Журналіст AP і режисер фільму «20 днів у Маріуполі», який 2024 року здобув перший в історії України «Оскар».",
+    "en": "AP journalist and director of “20 Days in Mariupol”, which in 2024 won Ukraine's first-ever Oscar."
+  },
+  "bio": {
+    "uk": "Мстислав Чернов (нар. 1985, Харків) — український фотограф, відеожурналіст, режисер і письменник, працює в Associated Press. Висвітлював Революцію Гідності, війну на Донбасі, катастрофу MH17, війну в Сирії та битву за Мосул.\n\nНа початку повномасштабного вторгнення разом з Євгеном Малолєткою і Василисою Степаненко залишався в оточеному Маріуполі й документував облогу. Його документальний фільм «20 днів у Маріуполі», створений AP і FRONTLINE, 10 березня 2024 року здобув премію «Оскар» — першу в історії України. Голова Української асоціації професійних фотографів, член Українського ПЕН."
+  },
+  "facts": [
+    [
+      "Рік народження",
+      "1985"
+    ],
+    [
+      "Редакція",
+      "Associated Press"
+    ],
+    [
+      "Нагорода",
+      "«Оскар» (2024)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Mstyslav Chernov",
+      "uk:Мстислав Чернов"
+    ],
+    "check": [
+      "Chernov",
+      "Чернов"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Mstyslav Chernov",
+      "url": "https://en.wikipedia.org/wiki/Mstyslav_Chernov"
+    },
+    {
+      "title": "Інтерфакс-Україна: «20 днів у Маріуполі» здобув «Оскар»",
+      "url": "https://ua.interfax.com.ua/news/general/972731.html"
+    },
+    {
+      "title": "Wikimedia Commons: Mstyslav Chernov",
+      "url": "https://commons.wikimedia.org/wiki/Category:Mstyslav_Chernov"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

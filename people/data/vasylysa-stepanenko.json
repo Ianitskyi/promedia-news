@@ -1,0 +1,57 @@
+{
+  "slug": "vasylysa-stepanenko",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Василиса Степаненко",
+    "en": "Vasylysa Stepanenko"
+  },
+  "sort": {
+    "uk": "Степаненко Василиса",
+    "en": "Stepanenko Vasylysa"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "журналістка й продюсерка Associated Press",
+    "en": "Associated Press journalist and producer"
+  },
+  "summary": {
+    "uk": "Журналістка AP, яка разом із Мстиславом Черновим і Євгеном Малолєткою документувала облогу Маріуполя у 2022 році.",
+    "en": "AP journalist who, with Mstyslav Chernov and Yevhen Maloletka, documented the siege of Mariupol in 2022."
+  },
+  "bio": {
+    "uk": "Василиса Степаненко — українська журналістка й продюсерка, працює з Associated Press.\n\nНа початку повномасштабного вторгнення разом із Мстиславом Черновим і Євгеном Малолєткою залишалася в оточеному Маріуполі й документувала облогу. Їхня робота лягла в основу фільму «20 днів у Маріуполі», який 2024 року здобув «Оскар»."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Associated Press"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Vasilisa Stepanenko",
+      "uk:Василиса Степаненко"
+    ],
+    "check": [
+      "Stepanenko",
+      "Степаненко"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Vasilisa Stepanenko",
+      "url": "https://en.wikipedia.org/wiki/Vasilisa_Stepanenko"
+    },
+    {
+      "title": "Інтерфакс-Україна: «20 днів у Маріуполі» здобув «Оскар»",
+      "url": "https://ua.interfax.com.ua/news/general/972731.html"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

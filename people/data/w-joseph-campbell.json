@@ -1,0 +1,63 @@
+{
+  "slug": "w-joseph-campbell",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Джозеф Кемпбелл",
+    "en": "W. Joseph Campbell"
+  },
+  "sort": {
+    "uk": "Кемпбелл Джозеф",
+    "en": "Campbell W. Joseph"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "професор Американського університету, дослідник медійних міфів",
+    "en": "American University professor who researches media myths"
+  },
+  "summary": {
+    "uk": "Професор комунікацій Американського університету, автор книжки Getting It Wrong про найвідоміші медійні міфи, зокрема «момент Кронкайта».",
+    "en": "American University communication professor, author of Getting It Wrong on famous media myths, including the “Cronkite moment”."
+  },
+  "bio": {
+    "uk": "Вільям Джозеф Кемпбелл — професор Школи комунікацій Американського університету у Вашингтоні.\n\nУ книжці «Getting It Wrong: Ten of the Greatest Misreported Stories in American Journalism» (2010) і блозі Media Myth Alert він розбирає усталені медійні міфи. Зокрема, він показав, що президент Ліндон Джонсон не бачив ефіру Волтера Кронкайта 27 лютого 1968 року про «безвихідь» у В'єтнамі, а слова «якщо я втратив Кронкайта…» переказують у різних версіях."
+  },
+  "facts": [
+    [
+      "Посада",
+      "професор Школи комунікацій Американського університету"
+    ],
+    [
+      "Книжка",
+      "Getting It Wrong (2010)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:W. Joseph Campbell"
+    ],
+    "check": [
+      "Campbell"
+    ]
+  },
+  "sources": [
+    {
+      "title": "History News Network: W. Joseph Campbell corrects the record on 10 misreported stories",
+      "url": "https://www.historynewsnetwork.org/article/126991"
+    },
+    {
+      "title": "History News Network: the “Cronkite Moment” doesn't hold water",
+      "url": "https://www.historynewsnetwork.org/article/146566"
+    },
+    {
+      "title": "Media Myth Alert",
+      "url": "https://mediamythalert.com/"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

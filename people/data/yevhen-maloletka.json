@@ -1,0 +1,59 @@
+{
+  "slug": "yevhen-maloletka",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Євген Малолєтка",
+    "en": "Yevhen Maloletka"
+  },
+  "sort": {
+    "uk": "Малолєтка Євген",
+    "en": "Maloletka Yevhen"
+  },
+  "aliases": [
+    "Евгеній Малолєтка"
+  ],
+  "role": {
+    "uk": "фотограф Associated Press",
+    "en": "Associated Press photographer"
+  },
+  "summary": {
+    "uk": "Фотограф AP, який разом із Мстиславом Черновим і Василисою Степаненко документував облогу Маріуполя у 2022 році.",
+    "en": "AP photographer who, with Mstyslav Chernov and Vasylysa Stepanenko, documented the siege of Mariupol in 2022."
+  },
+  "bio": {
+    "uk": "Євген Малолєтка — український фотограф, працює з Associated Press.\n\nНа початку повномасштабного вторгнення разом із Мстиславом Черновим і Василисою Степаненко залишався в оточеному Маріуполі, коли інших представників міжнародних медіа в місті вже не було, і знімав облогу міста. Ці кадри увійшли до фільму «20 днів у Маріуполі», який 2024 року здобув «Оскар»."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Associated Press"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Evgeniy Maloletka",
+      "uk:Євген Малолєтка"
+    ],
+    "check": [
+      "Maloletka",
+      "Малолєтка"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: Evgeniy Maloletka",
+      "url": "https://en.wikipedia.org/wiki/Evgeniy_Maloletka"
+    },
+    {
+      "title": "Інтерфакс-Україна: «20 днів у Маріуполі» здобув «Оскар»",
+      "url": "https://ua.interfax.com.ua/news/general/972731.html"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}

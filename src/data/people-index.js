@@ -218,6 +218,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "antoni-lallican",
+    "tag": "Антоні Лаллікан",
+    "aliases": [],
+    "name": {
+      "uk": "Антоні Лаллікан",
+      "en": "Antoni Lallican"
+    },
+    "role": {
+      "uk": "французький фотожурналіст, агенція Hans Lucas",
+      "en": "French photojournalist, Hans Lucas agency"
+    },
+    "summary": {
+      "uk": "Французький фотожурналіст, якого росіяни вбили FPV-дроном біля Дружківки 3 жовтня 2025 року, — перший журналіст, убитий дроном у цій війні.",
+      "en": "French photojournalist killed by a Russian FPV drone near Druzhkivka on 3 October 2025, the first journalist killed by a drone in this war."
+    }
+  },
+  {
     "slug": "arman-soldin",
     "tag": "Арман Солдін",
     "aliases": [],
@@ -266,6 +283,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює латиноамериканське бюро RSF, коментує загрози журналістам у регіоні.",
       "en": "Heads RSF's Latin America bureau and comments on threats to journalists in the region."
+    }
+  },
+  {
+    "slug": "bernard-shaw",
+    "tag": "Бернард Шоу",
+    "aliases": [],
+    "name": {
+      "uk": "Бернард Шоу",
+      "en": "Bernard Shaw"
+    },
+    "role": {
+      "uk": "американський журналіст, головний ведучий CNN",
+      "en": "American journalist, CNN principal anchor"
+    },
+    "summary": {
+      "uk": "Ведучий CNN, який у ніч на 17 січня 1991 року наживо розповідав з Багдада про початок бомбардувань.",
+      "en": "CNN anchor who reported live from Baghdad on the start of the bombing on the night of 17 January 1991."
     }
   },
   {
@@ -353,6 +387,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Миколаївська тележурналістка, яка документувала воєнні злочини росіян на Миколаївщині; головна редакторка «Суспільне Миколаїв».",
       "en": "Mykolaiv TV journalist who documented Russian war crimes in the region; editor-in-chief of Suspilne Mykolaiv."
+    }
+  },
+  {
+    "slug": "vasylysa-stepanenko",
+    "tag": "Василиса Степаненко",
+    "aliases": [],
+    "name": {
+      "uk": "Василиса Степаненко",
+      "en": "Vasylysa Stepanenko"
+    },
+    "role": {
+      "uk": "журналістка й продюсерка Associated Press",
+      "en": "Associated Press journalist and producer"
+    },
+    "summary": {
+      "uk": "Журналістка AP, яка разом із Мстиславом Черновим і Євгеном Малолєткою документувала облогу Маріуполя у 2022 році.",
+      "en": "AP journalist who, with Mstyslav Chernov and Yevhen Maloletka, documented the siege of Mariupol in 2022."
     }
   },
   {
@@ -496,6 +547,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "walter-cronkite",
+    "tag": "Волтер Кронкайт",
+    "aliases": [],
+    "name": {
+      "uk": "Волтер Кронкайт",
+      "en": "Walter Cronkite"
+    },
+    "role": {
+      "uk": "американський телеведучий, ведучий вечірніх новин CBS",
+      "en": "American television anchor, CBS Evening News"
+    },
+    "summary": {
+      "uk": "Ведучий вечірніх новин CBS, чий ефір 27 лютого 1968 року про «безвихідь» у В'єтнамі обріс легендою «моменту Кронкайта».",
+      "en": "CBS Evening News anchor whose broadcast of 27 February 1968 on the Vietnam “stalemate” became the legend of the “Cronkite moment”."
+    }
+  },
+  {
     "slug": "henry-crabb-robinson",
     "tag": "Генрі Крабб Робінсон",
     "aliases": [],
@@ -530,6 +598,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Засновник «Української правди», викрадений і вбитий у 2000 році; його справа стала символом боротьби за свободу слова.",
       "en": "Founder of Ukrainska Pravda, kidnapped and murdered in 2000; his case became a symbol of press freedom in Ukraine."
+    }
+  },
+  {
+    "slug": "heorhii-ivanchenko",
+    "tag": "Георгій Іванченко",
+    "aliases": [
+      "Григорій Іванченко"
+    ],
+    "name": {
+      "uk": "Георгій Іванченко",
+      "en": "Heorhii Ivanchenko"
+    },
+    "role": {
+      "uk": "незалежний фотожурналіст",
+      "en": "freelance photojournalist"
+    },
+    "summary": {
+      "uk": "Фотожурналіст, тяжко поранений тим самим ударом російського дрона, що вбив Антоні Лаллікана 3 жовтня 2025 року.",
+      "en": "Photojournalist seriously wounded by the same Russian drone strike that killed Antoni Lallican on 3 October 2025."
     }
   },
   {
@@ -624,6 +711,40 @@ export const PEOPLE = [
     "summary": {
       "uk": "Журналістка, яку часто називають першою воєнною кореспонденткою; писала під псевдонімом Кора Монтгомері.",
       "en": "Journalist often called the first female war correspondent; wrote as Cora Montgomery."
+    }
+  },
+  {
+    "slug": "w-joseph-campbell",
+    "tag": "Джозеф Кемпбелл",
+    "aliases": [],
+    "name": {
+      "uk": "Джозеф Кемпбелл",
+      "en": "W. Joseph Campbell"
+    },
+    "role": {
+      "uk": "професор Американського університету, дослідник медійних міфів",
+      "en": "American University professor who researches media myths"
+    },
+    "summary": {
+      "uk": "Професор комунікацій Американського університету, автор книжки Getting It Wrong про найвідоміші медійні міфи, зокрема «момент Кронкайта».",
+      "en": "American University communication professor, author of Getting It Wrong on famous media myths, including the “Cronkite moment”."
+    }
+  },
+  {
+    "slug": "john-holliman",
+    "tag": "Джон Голлімен",
+    "aliases": [],
+    "name": {
+      "uk": "Джон Голлімен",
+      "en": "John Holliman"
+    },
+    "role": {
+      "uk": "американський журналіст, кореспондент CNN",
+      "en": "American journalist, CNN correspondent"
+    },
+    "summary": {
+      "uk": "Кореспондент CNN, який у ніч на 17 січня 1991 року разом з Арнеттом і Шоу наживо розповідав з Багдада про бомбардування.",
+      "en": "CNN correspondent who, with Arnett and Shaw, reported live from Baghdad on the bombing on the night of 17 January 1991."
     }
   },
   {
@@ -804,6 +925,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Оператор Freedom з Краматорська, загинув разом з Оленою Губановою від удару дрона 23 жовтня 2025 року.",
       "en": "Freedom TV cameraman from Kramatorsk, killed with Olena Hubanova by a drone strike on 23 October 2025."
+    }
+  },
+  {
+    "slug": "yevhen-maloletka",
+    "tag": "Євген Малолєтка",
+    "aliases": [
+      "Евгеній Малолєтка"
+    ],
+    "name": {
+      "uk": "Євген Малолєтка",
+      "en": "Yevhen Maloletka"
+    },
+    "role": {
+      "uk": "фотограф Associated Press",
+      "en": "Associated Press photographer"
+    },
+    "summary": {
+      "uk": "Фотограф AP, який разом із Мстиславом Черновим і Василисою Степаненко документував облогу Маріуполя у 2022 році.",
+      "en": "AP photographer who, with Mstyslav Chernov and Vasylysa Stepanenko, documented the siege of Mariupol in 2022."
     }
   },
   {
@@ -1044,6 +1184,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "michael-j-arlen",
+    "tag": "Майкл Арлен",
+    "aliases": [],
+    "name": {
+      "uk": "Майкл Арлен",
+      "en": "Michael J. Arlen"
+    },
+    "role": {
+      "uk": "американський письменник, телекритик The New Yorker",
+      "en": "American writer, television critic for The New Yorker"
+    },
+    "summary": {
+      "uk": "Телекритик The New Yorker, автор вислову «війна у вітальні» про телевізійне висвітлення війни у В'єтнамі.",
+      "en": "The New Yorker television critic who coined the phrase “living-room war” for TV coverage of the Vietnam War."
+    }
+  },
+  {
     "slug": "maks-levin",
     "tag": "Макс Левін",
     "aliases": [
@@ -1226,6 +1383,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "mstyslav-chernov",
+    "tag": "Мстислав Чернов",
+    "aliases": [],
+    "name": {
+      "uk": "Мстислав Чернов",
+      "en": "Mstyslav Chernov"
+    },
+    "role": {
+      "uk": "фотограф, відеожурналіст і режисер Associated Press",
+      "en": "Associated Press photographer, video journalist and film director"
+    },
+    "summary": {
+      "uk": "Журналіст AP і режисер фільму «20 днів у Маріуполі», який 2024 року здобув перший в історії України «Оскар».",
+      "en": "AP journalist and director of “20 Days in Mariupol”, which in 2024 won Ukraine's first-ever Oscar."
+    }
+  },
+  {
     "slug": "nataliia-movshovych",
     "tag": "Наталія Мовшович",
     "aliases": [],
@@ -1277,6 +1451,40 @@ export const PEOPLE = [
     "summary": {
       "uk": "Воєнна кореспондентка ТСН, висвітлює війну з 2014 року.",
       "en": "TSN war correspondent covering the war since 2014."
+    }
+  },
+  {
+    "slug": "nguyen-thanh-nghe",
+    "tag": "Нгуєн Тхань Нге",
+    "aliases": [],
+    "name": {
+      "uk": "Нгуєн Тхань Нге",
+      "en": "Nguyen Thanh Nghe"
+    },
+    "role": {
+      "uk": "в'єтнамський фрилансер, стрингер NBC часів війни у В'єтнамі",
+      "en": "Vietnamese freelancer, NBC stringer during the Vietnam War"
+    },
+    "summary": {
+      "uk": "Фрилансер, якого документальний фільм «Стрингер» (2025) назвав справжнім автором знімка «Дівчинка й напалм».",
+      "en": "Freelancer whom the 2025 documentary “The Stringer” named as the real author of the “Napalm Girl” photograph."
+    }
+  },
+  {
+    "slug": "nick-ut",
+    "tag": "Нік Ут",
+    "aliases": [],
+    "name": {
+      "uk": "Нік Ут",
+      "en": "Nick Ut"
+    },
+    "role": {
+      "uk": "фотограф Associated Press, лауреат Пулітцерівської премії",
+      "en": "Associated Press photographer, Pulitzer Prize winner"
+    },
+    "summary": {
+      "uk": "Фотограф AP, якому понад пів століття приписували знімок «Жах війни» («Дівчинка й напалм»); у 2025 році його авторство поставили під сумнів.",
+      "en": "AP photographer credited for more than half a century with “The Terror of War” (“Napalm Girl”); his authorship was questioned in 2025."
     }
   },
   {
@@ -1460,6 +1668,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Білоруський журналіст, який жив і працював в Україні; загинув від вибуху автомобіля в центрі Києва 20 липня 2016 року.",
       "en": "Belarusian journalist who lived and worked in Ukraine; killed by a car bomb in central Kyiv on 20 July 2016."
+    }
+  },
+  {
+    "slug": "peter-arnett",
+    "tag": "Пітер Арнетт",
+    "aliases": [],
+    "name": {
+      "uk": "Пітер Арнетт",
+      "en": "Peter Arnett"
+    },
+    "role": {
+      "uk": "воєнний кореспондент AP і CNN, лауреат Пулітцерівської премії",
+      "en": "AP and CNN war correspondent, Pulitzer Prize winner"
+    },
+    "summary": {
+      "uk": "Кореспондент, який висвітлював війну у В'єтнамі для AP, а в січні 1991 року наживо розповідав з Багдада про бомбардування для CNN.",
+      "en": "Correspondent who covered the Vietnam War for AP and in January 1991 reported live from Baghdad on the bombing for CNN."
     }
   },
   {

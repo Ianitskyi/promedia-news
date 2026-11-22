@@ -1,0 +1,59 @@
+{
+  "slug": "john-holliman",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Джон Голлімен",
+    "en": "John Holliman"
+  },
+  "sort": {
+    "uk": "Голлімен Джон",
+    "en": "Holliman John"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "американський журналіст, кореспондент CNN",
+    "en": "American journalist, CNN correspondent"
+  },
+  "summary": {
+    "uk": "Кореспондент CNN, який у ніч на 17 січня 1991 року разом з Арнеттом і Шоу наживо розповідав з Багдада про бомбардування.",
+    "en": "CNN correspondent who, with Arnett and Shaw, reported live from Baghdad on the bombing on the night of 17 January 1991."
+  },
+  "bio": {
+    "uk": "Джон Голлімен (1948–1998) — американський журналіст, кореспондент CNN.\n\nУ ніч на 17 січня 1991 року разом із Пітером Арнеттом і Бернардом Шоу перебував у багдадському готелі «Аль-Рашид» і наживо розповідав про початок бомбардувань міста під час операції «Буря в пустелі»."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1948–1998"
+    ],
+    [
+      "Редакція",
+      "CNN"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:John Holliman"
+    ],
+    "check": [
+      "Holliman"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Wikipedia: John Holliman",
+      "url": "https://en.wikipedia.org/wiki/John_Holliman"
+    },
+    {
+      "title": "EBSCO: CNN coverage of the Gulf War",
+      "url": "https://www.ebsco.com/research-starters/military-history-and-science/cnn-coverage-gulf-war"
+    },
+    {
+      "title": "Війна у вітальні. Як змінювалася воєнна журналістика у 1965–2026 роках",
+      "url": "https://news.promedia.report/article/viina-u-vitalni-yak-zminiuvalasia-voienna-zhurnalistyka-u-1965-2026-rokakh"
+    }
+  ],
+  "updated": "2026-11-22"
+}
