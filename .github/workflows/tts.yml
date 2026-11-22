@@ -2,6 +2,8 @@ name: Text-to-speech (Google)
 
 # Озвучує статті з "tts": true українською й англійською, кладе MP3 у public/audio/,
 # комітить їх і запускає розгортання сайту.
+# Затримка: стаття озвучується лише через TTS_DELAY_HOURS після останньої правки її файлу,
+# тому є щогодинний запуск за розкладом.
 on:
   push:
     branches: [main]
@@ -10,6 +12,8 @@ on:
       - 'scripts/tts-generate.mjs'
       - '.github/workflows/tts.yml'
   workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
 
 permissions:
   contents: write
@@ -25,12 +29,15 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: Synthesize audio
         env:
           GOOGLE_TTS_API_KEY: ${{ secrets.GOOGLE_TTS_API_KEY }}
+          TTS_DELAY_HOURS: '2'
         run: node scripts/tts-generate.mjs
       - name: Commit audio and deploy
         env:
