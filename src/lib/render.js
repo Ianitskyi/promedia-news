@@ -728,6 +728,7 @@ const SHARE_ICON_PATHS = {
   X: "M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.64 7.584H.47l8.6-9.835L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z",
   Threads: "M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z",
   LinkedIn: "M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 10h4v11H3V10Zm6 0h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05C20.65 9.45 21 12.1 21 15.55V21h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55V21H9V10Z",
+  YouTube: "M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z",
   Instagram: "M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm10.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"
 };
 
@@ -772,6 +773,22 @@ function googleSourceCta(lang, placement) {
   <p>${escapeHtml(text)}</p>
   <a class="google-source-button" href="${GOOGLE_SOURCE_URL}" target="_blank" rel="noopener" data-google-source="${escapeHtml(placement)}" aria-label="${escapeHtml(copy.aria)}">${GOOGLE_G_MONO}<span>${escapeHtml(copy.button)}</span></a>
 </aside>`;
+}
+
+// «Стежте за ПроМедіа» (owner, 2026-11-23): кінець новини й права колонка. Telegram-каналу немає.
+const PROMEDIA_SOCIALS = [
+  ["Facebook", "https://www.facebook.com/promediaukraine"],
+  ["Instagram", "https://www.instagram.com/promediaua/"],
+  ["LinkedIn", "https://www.linkedin.com/company/promediaukraine"],
+  ["YouTube", "https://www.youtube.com/@prostirmedia"]
+];
+const FOLLOW_LABEL = { uk: "Стежте за ПроМедіа", en: "Follow ProMedia", crh: "ProMedia-nı taqip etiñiz" };
+function followBlock(lang, placement) {
+  const label = pick(FOLLOW_LABEL, lang);
+  return `<section class="pm-follow pm-follow--${placement}" aria-label="${escapeHtml(label)}">
+  <span class="pm-follow-title">${escapeHtml(label)}</span>
+  <div class="pm-follow-links">${PROMEDIA_SOCIALS.map(([name, href]) => `<a href="${href}" target="_blank" rel="noopener" data-follow="${placement}" aria-label="${escapeHtml(`${label}: ${name}`)}" title="${name}">${shareIcon(name)}</a>`).join("")}</div>
+</section>`;
 }
 
 function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl, coverFocus }) {
@@ -1086,6 +1103,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   ${listenPlayer(article, lang)}
   <div class="article-body">${withGoogleSourceStrip(bodyHtmlContent, lang)}</div>
   ${topicTags.length ? `<div class="article-tags-bottom">${tagLinks(topicTags, lang)}</div>` : ""}
+  ${followBlock(lang, "article-end")}
   ${newsletterSlot(lang, "article-end")}
   ${peopleBox(tags, lang)}
   ${mediaLinksHtml}
@@ -1156,6 +1174,7 @@ function articleAside(popular, lang) {
   return `<aside class="article-aside" aria-label="${escapeHtml(pick(ASIDE_SERVICES_LABEL, lang))}">
     ${popularHtml}
     ${newsletterSlot(lang, "sidebar")}
+    ${followBlock(lang, "sidebar")}
     <div class="article-aside-sticky">
       <h2 class="article-aside-title">${escapeHtml(pick(ASIDE_SERVICES_LABEL, lang))}</h2>
       ${services}

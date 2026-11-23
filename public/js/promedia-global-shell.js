@@ -57,6 +57,9 @@
     linkedin:'<svg viewBox="0 0 24 24"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 10h4v11H3V10Zm6 0h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05C20.65 9.45 21 12.1 21 15.55V21h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55V21H9V10Z"/></svg>',
     facebook:'<svg viewBox="0 0 24 24"><path d="M13.7 21v-8h2.8l.4-3.2h-3.2V7.7c0-.9.3-1.6 1.7-1.6h1.8V3.2c-.3 0-1.4-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.5v2.3H7.3V13h2.9v8h3.5Z"/></svg>'
   }[name]);
+  // Соцмережі ПроМедіа (Telegram-каналу немає). Шапка на комп'ютері й низ меню-бургера (owner, 2026-11-23).
+  const SOCIALS=[["facebook","Facebook","https://www.facebook.com/promediaukraine"],["instagram","Instagram","https://www.instagram.com/promediaua/"],["linkedin","LinkedIn","https://www.linkedin.com/company/promediaukraine"],["youtube","YouTube","https://www.youtube.com/@prostirmedia"]];
+  const socialLinks=(cls)=>`<div class="${cls}">${SOCIALS.map(([k,n,h])=>`<a href="${h}" target="_blank" rel="noopener" aria-label="${n}" title="${n}">${socialIcon(k)}</a>`).join("")}</div>`;
   const css=`
 :root{--pm-shell-ink:#0d0c5c;--pm-shell-paper:#f7f5ef;--pm-shell-accent:#ffac33}
 promedia-global-header,promedia-global-footer{display:block;font-family:Montserrat,Arial,sans-serif}
@@ -69,6 +72,12 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-primary a{font-size:15px}.pm-global-secondary a{font-size:12px;color:rgba(13,12,92,.72)}
 .pm-global-primary a:hover,.pm-global-secondary a:hover{color:#e8901a}
 .pm-global-langs{display:flex;gap:2px;align-items:center}
+.pm-global-head-socials{display:flex;gap:2px;align-items:center;padding-left:14px;border-left:1px solid rgba(13,12,92,.12)}
+.pm-global-head-socials a{display:grid;place-items:center;width:28px;height:28px;color:rgba(13,12,92,.6)}
+.pm-global-head-socials a:hover{color:#e8901a}.pm-global-head-socials svg{width:16px;height:16px;fill:currentColor}
+.pm-global-mobile-socials{display:flex;gap:6px;padding:10px 14px;border-top:1px solid rgba(13,12,92,.08);background:#fff}
+.pm-global-mobile-panel .pm-global-mobile-socials a{display:grid;place-items:center;width:36px;height:36px;padding:0;color:var(--pm-shell-ink)}
+.pm-global-mobile-socials svg{width:19px;height:19px;fill:currentColor}
 .pm-brief-bar{display:flex;align-items:center;gap:12px;min-height:38px;padding:5px clamp(18px,4vw,64px);background:var(--pm-shell-ink);color:#fff;font:500 13px/1.3 Montserrat,Arial,sans-serif;box-sizing:border-box}
 .pm-brief-bar__play{flex:0 0 auto;display:grid;place-items:center;width:28px;height:28px;padding:0;border:0;border-radius:50%;background:var(--pm-shell-accent);color:var(--pm-shell-ink);font-size:11px;cursor:pointer}
 .pm-brief-bar__play[hidden]{display:none}.pm-brief-bar__play:focus-visible{outline:2px solid #fff;outline-offset:2px}
@@ -112,7 +121,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 @media(max-width:640px){.pm-global-org{margin-top:22px;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18)}.pm-global-org>summary h3{display:flex;justify-content:space-between;align-items:center;text-align:left;margin:0;padding:14px 0}.pm-global-org>summary h3::after{content:"+";font-size:20px;font-weight:400;line-height:1}.pm-global-org[open]>summary h3::after{content:"−"}.pm-global-org[open] table{margin-bottom:10px}}
 .pm-global-org table{width:100%;border-collapse:collapse}.pm-global-org td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.18);vertical-align:top}.pm-global-org td:first-child{font-weight:700;color:#fff;width:36%}
 .pm-global-bottom{display:flex;justify-content:space-between;gap:22px;margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);font-size:.9rem}.pm-global-powered{display:flex;align-items:center;gap:10px;margin-top:8px}.pm-global-powered img{width:88px;filter:brightness(0) invert(1);opacity:.9}.pm-global-analytics-toggle{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
-@media(max-width:980px){.pm-global-primary,.pm-global-secondary{display:none}.pm-global-burger{display:block}.pm-global-main{min-height:62px;padding:6px 18px}.pm-global-logo{width:100px;height:44px}.pm-global-footer-top{grid-template-columns:1fr 1fr}.pm-global-footer-nav{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
+@media(max-width:980px){.pm-global-primary,.pm-global-secondary,.pm-global-head-socials{display:none}.pm-global-burger{display:block}.pm-global-main{min-height:62px;padding:6px 18px}.pm-global-logo{width:100px;height:44px}.pm-global-footer-top{grid-template-columns:1fr 1fr}.pm-global-footer-nav{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
 @media(max-width:640px){.pm-global-partner{width:calc(33.333% - 7px);height:52px;padding:6px 8px}.pm-global-partner img{max-height:38px}.pm-global-footer a.pm-global-partner-text{font-size:11px}.pm-global-partners{margin-top:26px;padding-top:20px}.pm-global-org h3{font-size:15px}.pm-global-org td{font-size:13px}.pm-global-org td:first-child{padding-bottom:0!important;opacity:.7}.pm-global-org tr{padding:6px 0!important}.pm-global-footer{padding:42px 0 36px}.pm-global-footer-top{grid-template-columns:1fr}.pm-global-footer-nav{grid-column:auto}.pm-global-bottom{flex-direction:column}.pm-global-org td{display:block;width:100%!important;padding:6px 0;border:0}.pm-global-org tr{display:block;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.18)}}
 `;
   if(!document.getElementById("pm-global-shell-style")){
@@ -130,7 +139,8 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         <a class="pm-global-logo" href="${mainHome}" aria-label="ProMedia"><img src="https://news.promedia.report/img/promedia-wordmark.svg" alt="ProMedia"></a>
         <nav class="pm-global-primary"><a href="${projectUrl}">${t.projects}</a><a href="${aboutUrl}">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a></nav>
         <div class="pm-global-langs">${available.includes("uk")?`<a class="${lang==="uk"?"active":""}" href="${samePath("uk")}">UA</a>`:""}${available.includes("en")?`<a class="${lang==="en"?"active":""}" href="${samePath("en")}">EN</a>`:""}${available.includes("crh")?`<a class="${lang==="crh"?"active":""}" href="${samePath("crh")}">QT</a>`:""}</div>
-        <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div></div></details>
+        ${socialLinks("pm-global-head-socials")}
+        <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div>${socialLinks("pm-global-mobile-socials")}</div></details>
       </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}">${x[1]}</a>`).join("")}</nav></header>`;
       // Narrow BRIEF bar under the header on every ProMedia site (owner, 2026-11-17).
       // Ukrainian only (BRIEF is Ukrainian); not on BRIEF itself, which has its own player.
