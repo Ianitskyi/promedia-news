@@ -9,9 +9,18 @@
   "titleCrh": "Tiklenüv içün paranı nasıl izlemeli. Lvivde IWPR vorkşopı, arizalar 4 dekabrge qadar",
   "excerptCrh": "«Cenk ve barışnı yaqtıruv institutı» (IWPR) halqara teşkilatı 4 dekabrge qadar Lvivde mediya ve votçdoglarnı tiklenüv içün ayrılğan paranı izlemege ögretecek mesrefsiz vorkşopqa arizalar qabul ete.",
   "bodyMdCrh": "«Tiklenüv ve umumiy investitsiya proyektlerini monitoring etüv» vorkşopı 18–19 dekabrde olacaq, dep bildirdiler teşkilatçılar ilânda. IWPR — cenk ve buhranlarnı keçirgen memleketlerde gazetecilerni ve vatandaşlıq cemiyetini destekley halqara teşkilat. Arizanı 4 dekabr, cuma künü saat 15:00-ge qadar [onlayn-forma](https://docs.google.com/forms/d/e/1FAIpQLSfnrJjAK1TaVXpzx0Aqs8tzobWb1b5DX3Ez_mRQ_Q1T9-FL5g/viewform) vastasınen berip olur.\n\nUkrainanıñ bütün regionlarından akimiyetniñ hesap bermesi, şeffaflıq ve korruptsiyağa qarşı küreş mevzuları ile çalışqan votçdog cemiyet teşkilatlarınıñ, gazetecilik tahqiqatları merkezleriniñ ve mediyanıñ vekilleri davet etile. Tahsil umumiy paranı, tiklenüvni ve halqara yardımnı izlemege tek başlamağa istegen gazetecilerge, tahqiqatçılarğa ve analitiklerge de faydalı olacaq.\n\nİştirakçilerge büdce protsessiniñ nasıl çalışqanını ve büdce programmaları, satın alıvlar, şartnameler ve ödemeler aqqında malümatnı OpenBudget, Spending, Prozorro sistemalarında ve BOOST bazasında nereden qıdırmaq kerekligini añlatacaqlar. Büdce qararlarını satın alıvlar ve haqiqiy ödemeler ile bağlamağa, türlü menbalardan malümatnı qarşılaştırmağa ve açıq erişimde olmağan malümatnı almağa ögreteceker. Ayrıca Avropa investitsiya bankınıñ ve Avropa Birliginiñ Ukrainadaki tiklenüv ve reformalarnı maliyeleştirgen Ukraine Facility programmasınıñ paranı nasıl izlemek kerekligini közden keçirecekler.\n\n==«İştirakçiler umumiy paranı monitoring etüv aletleri ile tek tanış olmayıp, olarnı haqiqiy proyektlerni tahlil etmek içün özleri de qullanacaqlar»==, — yazalar teşkilatçılar.\n\nTrenerler Fiskal siyaset tahqiqatları merkeziniñ (Fiscal Center) mutehassısları olacaq: onıñ reberi **Viktor Maziarchuk**, Hesap palatası reisiniñ sabıq müşaviri, data-analitik **Olha Volkhina** ve Ukrainağa halqara maliye yardımını monitoring etken analitik **Yuliia Kyselova**.\n\nİştirakçiler müsabaqa esasında saylanacaq. Anketada teşkilatnı, monitoring ya da tahqiqat tecribesini, insannıñ endi qullanğan aletlerini ve tahsilden soñ tahqiq etmege istegen mevzusını tasvir etmek rica etile. Neticeler aqqında teşkilatçılar 7 dekabrge qadar bildirecekler.\n\nİştirak mesrefsiz: qave-tenefüsler ve öyle yemekleri közde tutula, başqa şeerlerden kelgen iştirakçilerge otelde bir gece ve yol mesrefleriniñ kompensatsiyası berile. Suallerni ukraine@iwpr.net adresine yollap olur.\n\nVorkşop IWPR-niñ Norvegiya inkişaf ve işbirligi agentligi (Norad) destekley «Ukrainada cemiyet nezaretini küçlendirüv» (Boosting Citizens Watchdogs in Ukraine) üç yıllıq proyekti çerçivesinde olacaq. Proyekt 2027 senesiniñ soñuna qadar devam ete ve er yıl regional cemiyet teşkilatları, gazetecilik tahqiqatları merkezleri ve mediya içün kiçik grant müsabaqalarını közde tuta.\n\n---\n\n*IWPR ilânı esasında.*\n\n*Bu metin ProMedia İCT-niñ texnik vazifesine köre avtomatik olaraq yaratıldı. Derc etüv aqqında qararnı Andrii Ianitskyi qabul etti.*",
-  "tags": ["Анонс", "Можливості", "навчання", "публічні фінанси", "відновлення", "вотчдоги", "IWPR", "Львів"],
+  "tags": [
+    "Анонс",
+    "Можливості",
+    "навчання",
+    "публічні фінанси",
+    "відновлення",
+    "вотчдоги",
+    "IWPR",
+    "Львів"
+  ],
   "cover": {
-    "url": "/img/news/iwpr-workshop-lviv-trenery.jpg",
+    "url": "/img/news/iwpr-workshop-lviv-trenery-v2.jpg",
     "alt": "Тренери воркшопу Віктор Мазярчук, Ольга Вольхіна і Юлія Кисельова",
     "caption": {
       "uk": "Ліворуч — керівник Центру досліджень фіскальної політики Віктор Мазярчук, у центрі — дата-аналітикиня Ольга Вольхіна, праворуч — аналітикиня Юлія Кисельова. Фото: анонс IWPR.",
@@ -23,5 +32,6 @@
   "isImportant": false,
   "cardStyle": "image",
   "pinned": true,
-  "revision": "2026-11-23-pin"
+  "revision": "2026-11-23-cover-mobile",
+  "coverRevision": "2026-11-23-cover-mobile"
 }
