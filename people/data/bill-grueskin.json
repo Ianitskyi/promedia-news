@@ -1,0 +1,64 @@
+{
+  "slug": "bill-grueskin",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Білл Ґрюскін",
+    "en": "Bill Grueskin"
+  },
+  "sort": {
+    "uk": "Ґрюскін Білл",
+    "en": "Grueskin Bill"
+  },
+  "aliases": [
+    "William Grueskin",
+    "Билл Грюскин",
+    "Білл Грюскін"
+  ],
+  "role": {
+    "uk": "американський журналіст і викладач, професор Школи журналістики Колумбійського університету",
+    "en": "American journalist and educator, professor at Columbia Journalism School"
+  },
+  "summary": {
+    "uk": "Колишній заступник головного редактора The Wall Street Journal, шість років був академічним деканом Школи журналістики Колумбійського університету.",
+    "en": "Former deputy managing editor of The Wall Street Journal who served six years as academic dean of Columbia Journalism School."
+  },
+  "bio": {
+    "uk": "Білл Ґрюскін — американський журналіст і викладач. Закінчив Стенфордський університет (класична філологія) і Школу передових міжнародних досліджень Університету Джонса Гопкінса (міжнародна економіка та зовнішня політика США).\n\nПрацював у The Wall Street Journal, зокрема головним редактором WSJ.com і заступником головного редактора газети з новин. 2008 року став деканом з академічних питань Школи журналістики Колумбійського університету й шість років керував оновленням її навчальної програми. Згодом був виконавчим редактором Bloomberg News з навчання. Нині — професор практики в Школі журналістики Колумбійського університету.\n\nУ листопаді 2026 року закликав CNN і CBS News розкривати інвестицію Ілона Маска в їхнього власника щоразу, коли вони пишуть про нього.",
+    "en": "Bill Grueskin is an American journalist and educator. He graduated from Stanford University (classics) and Johns Hopkins University's School of Advanced International Studies (international economics and US foreign policy).\n\nHe worked at The Wall Street Journal, including as editor of WSJ.com and as the paper's deputy managing editor for news. In 2008 he became dean of academic affairs at Columbia Journalism School and spent six years overseeing an overhaul of its curriculum. He later served as executive editor for training at Bloomberg News. He is now a professor of professional practice at Columbia Journalism School.\n\nIn November 2026 he called on CNN and CBS News to disclose Elon Musk's investment in their owner whenever they cover him."
+  },
+  "facts": [
+    [
+      "Посада",
+      "професор, Школа журналістики Колумбійського університету (США)"
+    ],
+    [
+      "The Wall Street Journal",
+      "заступник головного редактора з новин"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Columbia Journalism School: Bill Grueskin",
+      "url": "https://journalism.columbia.edu/faculty/bill-grueskin"
+    },
+    {
+      "title": "Talking Biz News: Grueskin leaving WSJ",
+      "url": "https://talkingbiznews.com/they-talk-biz-news/deputy-managing-editor-grueskin-leaving-wsj/"
+    },
+    {
+      "title": "Talking Biz News: Grueskin named executive editor of training for Bloomberg",
+      "url": "https://talkingbiznews.com/they-talk-biz-news/grueskin-named-executive-editor-of-training-for-bloomberg/amp"
+    },
+    {
+      "title": "Status: Musk's Skydance investment and CNN, CBS disclosure",
+      "url": "https://www.status.news/p/elon-musk-skydance-investment-cnn-cbs-disclosure-david-ellison"
+    },
+    {
+      "title": "Ілон Маск інвестував у власника CNN і CBS",
+      "url": "https://news.promedia.report/article/ilon-mask-investuvav-u-vlasnyka-cnn-i-cbs"
+    }
+  ],
+  "updated": "2026-11-24"
+}

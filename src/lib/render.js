@@ -156,7 +156,11 @@ const TAG_LABELS_EN = {
   "цифрова безпека": "digital security",
   "Наука про медіа": "Media Science",
   "фриланс": "freelancing",
-  "умови праці": "working conditions"
+  "умови праці": "working conditions",
+  "США": "United States",
+  "власність медіа": "media ownership",
+  "редакційна незалежність": "editorial independence",
+  "Ілон Маск": "Elon Musk"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -282,7 +286,11 @@ const TAG_LABELS_CRH = {
   "цифрова безпека": "dijital emniyet",
   "Наука про медіа": "Mediya aqqında ilim",
   "фриланс": "frilans",
-  "умови праці": "iş şaraitleri"
+  "умови праці": "iş şaraitleri",
+  "США": "AQŞ",
+  "власність медіа": "mediya mülkiyeti",
+  "редакційна незалежність": "redaktsiya mustaqilligi",
+  "Ілон Маск": "Elon Musk"
 };
 
 function tagLookupKey(tag) {

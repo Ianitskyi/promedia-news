@@ -1,0 +1,63 @@
+{
+  "slug": "david-ellison",
+  "group": "intl",
+  "country": "США",
+  "kind": "manager",
+  "name": {
+    "uk": "Девід Еллісон",
+    "en": "David Ellison"
+  },
+  "sort": {
+    "uk": "Еллісон Девід",
+    "en": "Ellison David"
+  },
+  "aliases": [
+    "David Ferris Ellison",
+    "Дэвид Эллисон"
+  ],
+  "role": {
+    "uk": "американський медіапідприємець, голова й генеральний директор медіагрупи Skydance",
+    "en": "American media executive, chairman and CEO of the Skydance media group"
+  },
+  "summary": {
+    "uk": "Засновник кінокомпанії Skydance, який очолив Paramount, а 2026 року — об'єднану з Warner Bros. Discovery медіагрупу, якій належать CNN і CBS.",
+    "en": "Founder of the film company Skydance who took over Paramount and, in 2026, the group combined with Warner Bros. Discovery that owns CNN and CBS."
+  },
+  "bio": {
+    "uk": "Девід Еллісон народився 1983 року в Каліфорнії. Він син співзасновника Oracle Ларрі Еллісона. Навчався в Університеті Південної Каліфорнії, але не закінчив його.\n\nЗаснував кінокомпанію Skydance Media, яка продюсувала, зокрема, фільми «Місія нездійсненна» і «Топ Ґан: Меверік». 2025 року Skydance об'єдналася з Paramount Global, і пан Девід став головою та генеральним директором Paramount. 6 жовтня 2026 року Paramount завершила поглинання Warner Bros. Discovery; об'єднана медіагрупа Skydance володіє, зокрема, CNN, CBS News, HBO і Paramount+.\n\nУ листопаді 2026 року він публічно підтвердив, що Ілон Маск став акціонером Skydance.",
+    "en": "David Ellison was born in 1983 in California. He is the son of Oracle co-founder Larry Ellison. He attended the University of Southern California but did not graduate.\n\nHe founded the film company Skydance Media, which produced films including the Mission: Impossible series and Top Gun: Maverick. In 2025 Skydance merged with Paramount Global, and he became chairman and CEO of Paramount. On 6 October 2026 Paramount completed its takeover of Warner Bros. Discovery; the combined Skydance group owns CNN, CBS News, HBO and Paramount+, among others.\n\nIn November 2026 he publicly confirmed that Elon Musk had become a Skydance shareholder."
+  },
+  "facts": [
+    [
+      "Посада",
+      "голова й генеральний директор Skydance (Paramount)"
+    ],
+    [
+      "Заснував",
+      "Skydance Media"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Paramount: David Ellison",
+      "url": "https://www.paramount.com/about/leadership/david-ellison"
+    },
+    {
+      "title": "Вікіпедія: David Ellison",
+      "url": "https://en.wikipedia.org/wiki/David_Ellison"
+    },
+    {
+      "title": "The Desk: Elon Musk makes $1 billion investment in Skydance",
+      "url": "https://thedesk.net/2026/10/elon-musk-1-billion-dollars-invested-skydance/"
+    },
+    {
+      "title": "Status: Musk's Skydance investment and CNN, CBS disclosure",
+      "url": "https://www.status.news/p/elon-musk-skydance-investment-cnn-cbs-disclosure-david-ellison"
+    },
+    {
+      "title": "Ілон Маск інвестував у власника CNN і CBS",
+      "url": "https://news.promedia.report/article/ilon-mask-investuvav-u-vlasnyka-cnn-i-cbs"
+    }
+  ],
+  "updated": "2026-11-24"
+}

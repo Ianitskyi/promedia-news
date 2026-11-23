@@ -303,6 +303,27 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "bill-grueskin",
+    "tag": "Білл Ґрюскін",
+    "aliases": [
+      "William Grueskin",
+      "Билл Грюскин",
+      "Білл Грюскін"
+    ],
+    "name": {
+      "uk": "Білл Ґрюскін",
+      "en": "Bill Grueskin"
+    },
+    "role": {
+      "uk": "американський журналіст і викладач, професор Школи журналістики Колумбійського університету",
+      "en": "American journalist and educator, professor at Columbia Journalism School"
+    },
+    "summary": {
+      "uk": "Колишній заступник головного редактора The Wall Street Journal, шість років був академічним деканом Школи журналістики Колумбійського університету.",
+      "en": "Former deputy managing editor of The Wall Street Journal who served six years as academic dean of Columbia Journalism School."
+    }
+  },
+  {
     "slug": "bohdan-lohvynenko",
     "tag": "Богдан Логвиненко",
     "aliases": [
@@ -694,6 +715,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "david-ellison",
+    "tag": "Девід Еллісон",
+    "aliases": [
+      "David Ferris Ellison",
+      "Дэвид Эллисон"
+    ],
+    "name": {
+      "uk": "Девід Еллісон",
+      "en": "David Ellison"
+    },
+    "role": {
+      "uk": "американський медіапідприємець, голова й генеральний директор медіагрупи Skydance",
+      "en": "American media executive, chairman and CEO of the Skydance media group"
+    },
+    "summary": {
+      "uk": "Засновник кінокомпанії Skydance, який очолив Paramount, а 2026 року — об'єднану з Warner Bros. Discovery медіагрупу, якій належать CNN і CBS.",
+      "en": "Founder of the film company Skydance who took over Paramount and, in 2026, the group combined with Warner Bros. Discovery that owns CNN and CBS."
+    }
+  },
+  {
     "slug": "david-mindich",
     "tag": "Девід Майндіч",
     "aliases": [],
@@ -727,6 +768,26 @@ export const PEOPLE = [
     "summary": {
       "uk": "Автор телепрограми розслідувань «Наші гроші», засновник редакції Bihus.Info.",
       "en": "Creator of the investigative TV programme Nashi Hroshi (Our Money) and founder of the Bihus.Info newsroom."
+    }
+  },
+  {
+    "slug": "jake-tapper",
+    "tag": "Джейк Таппер",
+    "aliases": [
+      "Jacob Paul Tapper",
+      "Джейк Тэппер"
+    ],
+    "name": {
+      "uk": "Джейк Таппер",
+      "en": "Jake Tapper"
+    },
+    "role": {
+      "uk": "американський журналіст, провідний вашингтонський ведучий CNN",
+      "en": "American journalist, CNN's lead Washington anchor"
+    },
+    "summary": {
+      "uk": "Ведучий CNN, автор щоденної програми The Lead with Jake Tapper і недільної State of the Union, модератор президентських дебатів.",
+      "en": "CNN anchor, host of the daily programme The Lead with Jake Tapper and the Sunday show State of the Union, moderator of presidential debates."
     }
   },
   {

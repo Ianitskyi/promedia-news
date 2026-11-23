@@ -1,0 +1,63 @@
+{
+  "slug": "jake-tapper",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Джейк Таппер",
+    "en": "Jake Tapper"
+  },
+  "sort": {
+    "uk": "Таппер Джейк",
+    "en": "Tapper Jake"
+  },
+  "aliases": [
+    "Jacob Paul Tapper",
+    "Джейк Тэппер"
+  ],
+  "role": {
+    "uk": "американський журналіст, провідний вашингтонський ведучий CNN",
+    "en": "American journalist, CNN's lead Washington anchor"
+  },
+  "summary": {
+    "uk": "Ведучий CNN, автор щоденної програми The Lead with Jake Tapper і недільної State of the Union, модератор президентських дебатів.",
+    "en": "CNN anchor, host of the daily programme The Lead with Jake Tapper and the Sunday show State of the Union, moderator of presidential debates."
+  },
+  "bio": {
+    "uk": "Джейк Таппер народився 1969 року в Нью-Йорку, закінчив Дартмутський коледж. Працював вашингтонським кореспондентом сайту Salon, згодом — старшим кореспондентом ABC News у Білому домі; тричі поспіль отримував премію Мерімана Сміта від Асоціації кореспондентів Білого дому.\n\nУ січні 2013 року перейшов на CNN, де веде щоденну програму The Lead with Jake Tapper, а з 2015 року — недільну State of the Union. З 2021 року — провідний ведучий CNN у Вашингтоні. Модерував кілька президентських дебатів, зокрема дебати Трампа й Байдена в червні 2024 року.\n\nУ жовтні 2026 року, за даними медіарозсилки Status, він був єдиним на CNN, хто в ефірі розкрив інвестицію Ілона Маска у власника телеканалу.",
+    "en": "Jake Tapper was born in 1969 in New York and graduated from Dartmouth College. He was Washington correspondent for Salon and later senior White House correspondent for ABC News, winning the White House Correspondents' Association's Merriman Smith Award three years in a row.\n\nIn January 2013 he joined CNN, where he hosts the daily programme The Lead with Jake Tapper and, since 2015, the Sunday show State of the Union. Since 2021 he has been CNN's lead Washington anchor. He has moderated several presidential debates, including the Trump–Biden debate in June 2024.\n\nIn October 2026, according to the media newsletter Status, he was the only one at CNN to disclose on air Elon Musk's investment in the network's owner."
+  },
+  "facts": [
+    [
+      "CNN",
+      "ведучий The Lead with Jake Tapper (з 2013) і State of the Union (з 2015)"
+    ],
+    [
+      "Відзнаки",
+      "премія Мерімана Сміта (тричі), «Еммі»"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Jake Tapper",
+      "url": "https://en.wikipedia.org/wiki/Jake_Tapper"
+    },
+    {
+      "title": "Dartmouth Board of Trustees: Jake Tapper",
+      "url": "https://trustees.dartmouth.edu/node/86"
+    },
+    {
+      "title": "Ballotpedia: Jake Tapper",
+      "url": "https://ballotpedia.org/Jake_Tapper"
+    },
+    {
+      "title": "Status: Musk's Skydance investment and CNN, CBS disclosure",
+      "url": "https://www.status.news/p/elon-musk-skydance-investment-cnn-cbs-disclosure-david-ellison"
+    },
+    {
+      "title": "Ілон Маск інвестував у власника CNN і CBS",
+      "url": "https://news.promedia.report/article/ilon-mask-investuvav-u-vlasnyka-cnn-i-cbs"
+    }
+  ],
+  "updated": "2026-11-24"
+}
