@@ -1,0 +1,55 @@
+{
+  "slug": "ervin-van-t-hof",
+  "group": "intl",
+  "country": "Нідерланди",
+  "kind": "journalist",
+  "name": {
+    "uk": "Ервін ван 'т Гоф",
+    "en": "Erwin van 't Hof"
+  },
+  "sort": {
+    "uk": "ван 'т Гоф Ервін",
+    "en": "van 't Hof Erwin"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "нідерландський журналіст-фрилансер і дослідник журналістської праці",
+    "en": "Dutch freelance journalist and researcher of journalistic work"
+  },
+  "summary": {
+    "uk": "Журналіст-фрилансер, який 2026 року захистив в Амстердамському університеті дисертацію про те, як уявлення про журналістику впливають на роботу фрилансерів.",
+    "en": "Freelance journalist who in 2026 defended a PhD thesis at the University of Amsterdam on how perceptions of newswork shape freelancers' work."
+  },
+  "bio": {
+    "uk": "Ервін ван 'т Гоф — нідерландський журналіст і дослідник. З 2012 року працював фрилансером: політичним репортером місцевої газети, редактором національної газети, співредактором журналістського стартапу, документалістом.\n\n2020 року разом із Сьордом Арендсом видав практичний посібник для фрилансерів «Новий журналіст» (De Nieuwe Journalist, Amsterdam University Press). Разом із виданням Villamedia записав 30 випусків подкасту «Життя фрилансера» (Freelanceleven, 2021–2024) про наукові дослідження фрилансу.\n\n23.11.2026 захистив в Амстердамському університеті докторську дисертацію «In the Eyes of the Beholders» про те, як уявлення про журналістську працю впливають на шлях фрилансерів. Науковий керівник — Марк Деузе, співкерівник — Сет Льюїс."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Нідерланди"
+    ],
+    [
+      "Дисертація",
+      "Амстердамський університет, 2026"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "UvA-DARE: In the eyes of the beholders (дисертація, 2026)",
+      "url": "https://dare.uva.nl/id/e932df68-5a0c-408b-ad3d-b2a0274e3635"
+    },
+    {
+      "title": "Amsterdam University Press: De nieuwe journalist (фрагмент книжки)",
+      "url": "https://api.boekenbank.be/sample_content/9789/462/989/9789462989283.pdf"
+    },
+    {
+      "title": "Villamedia: подкаст #freelanceleven",
+      "url": "https://villamedia.substack.com/p/van-minder-nieuws-knapt-een-mens-op-en-soms-weet-je-als-journalist-te-veel-770448"
+    },
+    {
+      "title": "Чому фрилансери по-різному переживають нестабільність. Дослідження з Амстердама",
+      "url": "https://news.promedia.report/article/chomu-frylansery-po-riznomu-perezhyvaiut-nestabilnist"
+    }
+  ],
+  "updated": "2026-11-23"
+}

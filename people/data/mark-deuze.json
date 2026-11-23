@@ -1,0 +1,63 @@
+{
+  "slug": "mark-deuze",
+  "group": "intl",
+  "country": "Нідерланди",
+  "kind": "journalist",
+  "name": {
+    "uk": "Марк Деузе",
+    "en": "Mark Deuze"
+  },
+  "sort": {
+    "uk": "Деузе Марк",
+    "en": "Deuze Mark"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "професор медіастудій Амстердамського університету",
+    "en": "Professor of Media Studies at the University of Amsterdam"
+  },
+  "summary": {
+    "uk": "Нідерландський дослідник медіа й журналістської праці, автор ідеї «плинної журналістики», колишній журналіст-фрилансер.",
+    "en": "Dutch scholar of media and journalistic work, known for the idea of 'liquid journalism', former freelance reporter."
+  },
+  "bio": {
+    "uk": "Марк Деузе (нар. 1969) — професор медіастудій зі спеціалізацією на журналістиці на гуманітарному факультеті Амстердамського університету, де працює з 2013 року. До того викладав в Індіанському університеті (США). Перш ніж перейти в науку, працював репортером-фрилансером у Нідерландах і Південно-Африканській Республіці.\n\nАвтор і співавтор книжок Media Work (2007), Media Life (2012), Beyond Journalism (з Тамарою Вітсхе, 2020) та співавтор сьомого видання McQuail's Media and Mass Communication Theory (2020).\n\nНауковий керівник дисертації Ервіна ван 'т Гофа про журналістів-фрилансерів (2026)."
+  },
+  "facts": [
+    [
+      "Рік народження",
+      "1969"
+    ],
+    [
+      "Посада",
+      "професор медіастудій, Амстердамський університет"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Mark Deuze"
+    ],
+    "check": [
+      "Deuze"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Амстердамський університет: призначення професором медіастудій (2013)",
+      "url": "https://www.uva.nl/shared-content/uva/en/news/professor-appointments/2013/04/dr-m.-deuze-professor-of-media-studies.html"
+    },
+    {
+      "title": "Reynolds Journalism Institute: Mark Deuze",
+      "url": "https://rjionline.org/person/mark-deuze/"
+    },
+    {
+      "title": "Academia Europaea: Mark Deuze — Biography",
+      "url": "https://www.ae-info.org/ae/User/Deuze_Mark/CV"
+    },
+    {
+      "title": "Чому фрилансери по-різному переживають нестабільність. Дослідження з Амстердама",
+      "url": "https://news.promedia.report/article/chomu-frylansery-po-riznomu-perezhyvaiut-nestabilnist"
+    }
+  ],
+  "updated": "2026-11-23"
+}

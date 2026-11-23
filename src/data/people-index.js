@@ -911,6 +911,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "ervin-van-t-hof",
+    "tag": "Ервін ван 'т Гоф",
+    "aliases": [],
+    "name": {
+      "uk": "Ервін ван 'т Гоф",
+      "en": "Erwin van 't Hof"
+    },
+    "role": {
+      "uk": "нідерландський журналіст-фрилансер і дослідник журналістської праці",
+      "en": "Dutch freelance journalist and researcher of journalistic work"
+    },
+    "summary": {
+      "uk": "Журналіст-фрилансер, який 2026 року захистив в Амстердамському університеті дисертацію про те, як уявлення про журналістику впливають на роботу фрилансерів.",
+      "en": "Freelance journalist who in 2026 defended a PhD thesis at the University of Amsterdam on how perceptions of newswork shape freelancers' work."
+    }
+  },
+  {
     "slug": "ernest-hemingway",
     "tag": "Ернест Гемінґвей",
     "aliases": [
@@ -1311,6 +1328,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Кореспондент Радіо Свобода, який з 2015 року працює на фронті; номінант Премії Ґонґадзе 2026.",
       "en": "Radio Svoboda correspondent reporting from the front line since 2015; 2026 Gongadze Prize nominee."
+    }
+  },
+  {
+    "slug": "mark-deuze",
+    "tag": "Марк Деузе",
+    "aliases": [],
+    "name": {
+      "uk": "Марк Деузе",
+      "en": "Mark Deuze"
+    },
+    "role": {
+      "uk": "професор медіастудій Амстердамського університету",
+      "en": "Professor of Media Studies at the University of Amsterdam"
+    },
+    "summary": {
+      "uk": "Нідерландський дослідник медіа й журналістської праці, автор ідеї «плинної журналістики», колишній журналіст-фрилансер.",
+      "en": "Dutch scholar of media and journalistic work, known for the idea of 'liquid journalism', former freelance reporter."
     }
   },
   {
@@ -1865,6 +1899,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює НСЖУ; опікується безпекою журналістів і підтримкою місцевих медіа в прифронтових регіонах.",
       "en": "Heads the NUJU, focusing on journalists' safety and support for local media near the front."
+    }
+  },
+  {
+    "slug": "seth-lewis",
+    "tag": "Сет Льюїс",
+    "aliases": [
+      "Сет Льюис"
+    ],
+    "name": {
+      "uk": "Сет Льюїс",
+      "en": "Seth C. Lewis"
+    },
+    "role": {
+      "uk": "американський дослідник журналістики, професор Орегонського університету",
+      "en": "American journalism scholar, professor at the University of Oregon"
+    },
+    "summary": {
+      "uk": "Дослідник цифрової журналістики, штучного інтелекту й меж професії, колишній журналіст The Miami Herald.",
+      "en": "Scholar of digital journalism, AI and the boundaries of the profession, former journalist at The Miami Herald."
     }
   },
   {

@@ -153,7 +153,10 @@ const TAG_LABELS_EN = {
   "дрони": "drones",
   "Білорусь": "Belarus",
   "політв'язні": "political prisoners",
-  "цифрова безпека": "digital security"
+  "цифрова безпека": "digital security",
+  "Наука про медіа": "Media Science",
+  "фриланс": "freelancing",
+  "умови праці": "working conditions"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -276,7 +279,10 @@ const TAG_LABELS_CRH = {
   "дрони": "dronlar",
   "Білорусь": "Belarus",
   "політв'язні": "siyasiy mabüsler",
-  "цифрова безпека": "dijital emniyet"
+  "цифрова безпека": "dijital emniyet",
+  "Наука про медіа": "Mediya aqqında ilim",
+  "фриланс": "frilans",
+  "умови праці": "iş şaraitleri"
 };
 
 function tagLookupKey(tag) {

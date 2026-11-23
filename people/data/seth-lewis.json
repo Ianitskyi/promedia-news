@@ -1,0 +1,53 @@
+{
+  "slug": "seth-lewis",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Сет Льюїс",
+    "en": "Seth C. Lewis"
+  },
+  "sort": {
+    "uk": "Льюїс Сет",
+    "en": "Lewis Seth C."
+  },
+  "aliases": [
+    "Сет Льюис"
+  ],
+  "role": {
+    "uk": "американський дослідник журналістики, професор Орегонського університету",
+    "en": "American journalism scholar, professor at the University of Oregon"
+  },
+  "summary": {
+    "uk": "Дослідник цифрової журналістики, штучного інтелекту й меж професії, колишній журналіст The Miami Herald.",
+    "en": "Scholar of digital journalism, AI and the boundaries of the profession, former journalist at The Miami Herald."
+  },
+  "bio": {
+    "uk": "Сет Льюїс — американський дослідник журналістики. З 2016 року — професор і перший власник кафедри нових медіа імені Ширлі Папе (Shirley Papé Chair in Emerging Media) у Школі журналістики й комунікації Орегонського університету, директор програми з журналістики. До того працював в Університеті Міннесоти, а ще раніше — журналістом The Miami Herald.\n\nДосліджує цифрову трансформацію журналістики, дані, алгоритми й штучний інтелект у новинах. Співавтор книжки News After Trump (2021), співредактор книжки Boundaries of Journalism (2015). Двічі отримував нагороду Міжнародної асоціації комунікації (ICA) за найкращу статтю року в галузі досліджень журналістики.\n\nСпівкерівник дисертації Ервіна ван 'т Гофа про журналістів-фрилансерів (2026)."
+  },
+  "facts": [
+    [
+      "Посада",
+      "професор, Орегонський університет (США)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "University of Oregon: Seth Lewis",
+      "url": "https://journalism.uoregon.edu/profile/sclewis"
+    },
+    {
+      "title": "The Conversation: Seth Lewis",
+      "url": "https://theconversation.com/profiles/seth-lewis-334661"
+    },
+    {
+      "title": "Academia.edu: Seth C Lewis",
+      "url": "https://uoregon.academia.edu/SethLewis/Papers"
+    },
+    {
+      "title": "Чому фрилансери по-різному переживають нестабільність. Дослідження з Амстердама",
+      "url": "https://news.promedia.report/article/chomu-frylansery-po-riznomu-perezhyvaiut-nestabilnist"
+    }
+  ],
+  "updated": "2026-11-23"
+}
