@@ -2044,6 +2044,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "khrysto-hrozev",
+    "tag": "Христо Грозев",
+    "aliases": [
+      "Hristo Grozev",
+      "Кристо Грозев"
+    ],
+    "name": {
+      "uk": "Христо Грозев",
+      "en": "Christo Grozev"
+    },
+    "role": {
+      "uk": "болгарський журналіст-розслідувач, керівник розслідувань The Insider",
+      "en": "Bulgarian investigative journalist, head of investigations at The Insider"
+    },
+    "summary": {
+      "uk": "Болгарський журналіст-розслідувач, колишній провідний розслідувач Bellingcat у темах про Росію, відомий розслідуваннями про російські спецслужби.",
+      "en": "Bulgarian investigative journalist and former lead Russia investigator at Bellingcat, known for exposing Russian intelligence operations."
+    }
+  },
+  {
     "slug": "charlie-beckett",
     "tag": "Чарлі Беккет",
     "aliases": [],

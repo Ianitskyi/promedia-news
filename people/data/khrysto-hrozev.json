@@ -1,0 +1,78 @@
+{
+  "slug": "khrysto-hrozev",
+  "group": "intl",
+  "country": "Болгарія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Христо Грозев",
+    "en": "Christo Grozev"
+  },
+  "sort": {
+    "uk": "Грозев Христо",
+    "en": "Grozev Christo"
+  },
+  "aliases": [
+    "Hristo Grozev",
+    "Кристо Грозев"
+  ],
+  "role": {
+    "uk": "болгарський журналіст-розслідувач, керівник розслідувань The Insider",
+    "en": "Bulgarian investigative journalist, head of investigations at The Insider"
+  },
+  "summary": {
+    "uk": "Болгарський журналіст-розслідувач, колишній провідний розслідувач Bellingcat у темах про Росію, відомий розслідуваннями про російські спецслужби.",
+    "en": "Bulgarian investigative journalist and former lead Russia investigator at Bellingcat, known for exposing Russian intelligence operations."
+  },
+  "bio": {
+    "uk": "Христо Грозев народився 1969 року в Пловдиві (Болгарія). Здобув журналістську освіту в Американському університеті в Болгарії.\n\n2015 року він приєднався до Bellingcat і став її провідним розслідувачем у темах про Росію, згодом був виконавчим директором організації. Його команда встановила підозрюваних в отруєнні Сергія та Юлії Скрипалів і співробітників ФСБ, яких підозрюють у спробі отруєння Олексія Навального. За розслідування про Скрипалів він разом з командою отримав Європейську премію преси. Нині очолює розслідування видання The Insider і пише для Der Spiegel.\n\nУ грудні 2022 року Росія оголосила його в розшук. 2025 року фестиваль PRIX EUROPA назвав його журналістом року. У листопаді 2026 року, за даними Le Monde, він отримав фішингове запрошення від хакерів, яких пов'язують з ФСБ.",
+    "en": "Christo Grozev was born in 1969 in Plovdiv, Bulgaria. He studied journalism at the American University in Bulgaria.\n\nIn 2015 he joined Bellingcat, where he became lead Russia investigator and later executive director. His team identified the suspects in the poisoning of Sergei and Yulia Skripal and the FSB officers suspected of trying to poison Alexei Navalny. The Skripal investigation earned him and his team the European Press Prize. He now heads investigations at The Insider and writes for Der Spiegel.\n\nIn December 2022 Russia put him on its wanted list. In 2025 the PRIX EUROPA festival named him Journalist of the Year. In November 2026, according to Le Monde, he received a phishing invitation from hackers linked to the FSB."
+  },
+  "facts": [
+    [
+      "Bellingcat",
+      "провідний розслідувач у темах про Росію, згодом виконавчий директор"
+    ],
+    [
+      "The Insider",
+      "керівник розслідувань"
+    ],
+    [
+      "Відзнаки",
+      "Європейська премія преси; «Журналіст року» PRIX EUROPA (2025)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Christo Grozev",
+      "bg:Христо Грозев"
+    ],
+    "check": [
+      "Grozev",
+      "Грозев",
+      "journalist"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Вікіпедія: Christo Grozev",
+      "url": "https://en.wikipedia.org/wiki/Christo_Grozev"
+    },
+    {
+      "title": "Congress.gov: біографія Христо Грозева",
+      "url": "https://www.congress.gov/117/meeting/house/112696/witnesses/HHRG-117-FA14-Bio-GrozevC-20210527.pdf"
+    },
+    {
+      "title": "Al Jazeera: Bulgaria protests to Russia after journalist put on wanted list",
+      "url": "https://www.aljazeera.com/news/2022/12/29/bulgaria-protests-to-russia-after-journalist-put-on-wanted-list"
+    },
+    {
+      "title": "БНР: Christo Grozev named European Journalist of the Year",
+      "url": "https://bnrnews.bg/en/post/385910/christo-grozev-is-named-european-journalist-of-the-year-for-revelations-against-russia"
+    },
+    {
+      "title": "UNITED24 Media: FSB hackers target French journalists and MP",
+      "url": "https://united24media.com/world/fsb-hackers-pose-as-pro-ukraine-ngo-to-target-french-journalists-and-mp-24577"
+    }
+  ],
+  "updated": "2026-11-23"
+}
