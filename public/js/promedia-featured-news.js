@@ -119,6 +119,12 @@
       ".pm-news-lead-item:first-child{padding-top:0}",
       ".pm-news-lead-item:last-child{border-bottom:0}",
       ".pm-news-lead-item a{font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:16px;line-height:1.3;font-weight:700}",
+      // 📌 Закріплена: світла заливка й булавка в кутку, без підпису (як на news.promedia.report).
+      ".pm-news-lead-list .pm-news-lead-item--pinned{position:relative;background:#eef0fb;border-radius:10px;padding:12px 36px 12px 14px;margin:0 -14px 6px;border-bottom:0}",
+      ".pm-news-lead-list .pm-news-lead-item--pinned:first-child{padding-top:12px}",
+      ".pm-news-lead-pin{position:absolute;top:11px;right:11px;display:inline-flex;color:#0d0c5c}",
+      ".pm-news-lead-pin svg{width:18px;height:18px;fill:currentColor;transform:rotate(30deg)}",
+      "@media (max-width:620px){.pm-news-lead-newer .pm-news-lead-list .pm-news-lead-item--pinned{margin:0 0 6px}}",
       "@media (max-width:620px){.pm-news-lead{gap:24px}.pm-news-lead-excerpt{font-size:15px}.pm-news-lead-side{padding:16px 20px}}",
       // Мобільний: новини, що вийшли після головної, — над нею; у списку 9 заголовків замість 5.
       ".pm-news-lead-newer,.pm-news-lead-item--extra{display:none}",
@@ -138,12 +144,25 @@
     var hero = heroes.length ? heroes.reduce(function (latest, item) {
       return (item.publishedAt || "") > (latest.publishedAt || "") ? item : latest;
     }) : items[0];
-    var rest = items.filter(function (item) { return item.slug !== hero.slug; }).slice(0, LIST_SIZE);
+    // 📌 Закріплена новина — першою в списку заголовків (на телефоні — над головною), як на news.promedia.report.
+    var pinned = items.filter(function (item) { return item.isPinned && item.slug !== hero.slug; })[0] || null;
+    var others = items.filter(function (item) { return item.slug !== hero.slug && (!pinned || item.slug !== pinned.slug); });
+    others.sort(function (a, b) { return (b.publishedAt || "") > (a.publishedAt || "") ? 1 : -1; });
+    var rest = (pinned ? [pinned].concat(others) : others).slice(0, LIST_SIZE);
 
     var wrap = el("div", "pm-news-lead");
-    function isNewer(item) { return (item.publishedAt || "") > (hero.publishedAt || ""); }
+    function isPinned(item) { return Boolean(pinned) && item.slug === pinned.slug; }
+    function isNewer(item) { return isPinned(item) || (item.publishedAt || "") > (hero.publishedAt || ""); }
     function listItem(item, extra) {
-      var li = el("li", "pm-news-lead-item" + (item.isImportant ? " pm-news-lead-item--important" : "") + extra);
+      var li = el("li", "pm-news-lead-item" + (item.isImportant ? " pm-news-lead-item--important" : "") + (isPinned(item) ? " pm-news-lead-item--pinned" : "") + extra);
+      if (isPinned(item)) {
+        var pinLabel = lang === "en" ? "Pinned" : lang === "crh" ? "Bekitilgen" : "Закріплено";
+        var pin = el("span", "pm-news-lead-pin");
+        pin.title = pinLabel;
+        pin.setAttribute("aria-label", pinLabel);
+        pin.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16 9V4h1c.55 0 1-.45 1-1s-.45-1-1-1H7c-.55 0-1 .45-1 1s.45 1 1 1h1v5c0 1.66-1.34 3-3 3v2h5.97v7l1 1 1-1v-7H19v-2c-1.66 0-3-1.34-3-3z"/></svg>';
+        li.appendChild(pin);
+      }
       // «З фото на першій»: на смартфоні кожна така новина — з фото (на комп'ютері фото сховане).
       var photo = item.cardStyle === "hero" && !item.coverHideMobile ? localized(item, "coverImageUrl", lang) : "";
       if (photo) {

@@ -259,6 +259,11 @@ ${entries.join("\n")}
       const lead = await db.prepare(query.replace(" WHERE status = 'published'", " WHERE card_style = 'hero' AND status = 'published'").replace(/LIMIT \?$/, "LIMIT 1")).bind(...binds.slice(0, -1)).first();
       if (lead) results = [...results, lead];
     }
+    // Закріплена новина (📌) теж потрібна promedia.report, навіть якщо вона старша за список.
+    if (url.searchParams.get("withHero") === "1" && !tag && !mediaId && !before && !results.some(a => a.pinned_at)) {
+      const pinned = await db.prepare(query.replace(" WHERE status = 'published'", " WHERE pinned_at IS NOT NULL AND status = 'published'").replace(/LIMIT \?$/, "LIMIT 1")).bind(...binds.slice(0, -1)).first();
+      if (pinned) results = [...results, pinned];
+    }
     const items = results.map((a) => ({
       slug: a.slug,
       title: a.title,
