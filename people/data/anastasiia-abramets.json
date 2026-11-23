@@ -33,7 +33,10 @@
       "директорка"
     ]
   ],
-  "photo": {},
+  "photo": {
+    "url": "https://people.promedia.report/img/anastasiia-abramets.webp",
+    "sourceName": "надано редакції ПроМедіа"
+  },
   "sources": [
     {
       "title": "Фонд Фрідріха Науманна: як минули Медіадні Премії Ґонґадзе в Харкові",
@@ -48,6 +51,6 @@
       "url": "https://news.promedia.report/article/mediaden-premii-gongadze-v-mykolaievi"
     }
   ],
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "kind": "manager"
 }
