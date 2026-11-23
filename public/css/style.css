@@ -1605,3 +1605,15 @@ h1, h2, h3, h4 { line-height: 1.2; }
 
 /* Вертикальні обкладинки (книжки тощо) не розтягуємо на весь екран (23.11.2026). */
 .article-cover { max-height: 640px; }
+
+/* ---------- «Стежте за ПроМедіа» (2026-11-23) ---------- */
+.pm-follow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin: 22px 0; padding: 12px 0; border-top: 1.5px solid var(--border); border-bottom: 1.5px solid var(--border); }
+.pm-follow-title { color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.pm-follow-links { display: flex; gap: 6px; }
+.pm-follow a { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; padding: 8px; border: 1.5px solid var(--border); border-radius: var(--radius-pill); background: #fff; color: var(--ink); text-decoration: none; transition: background .18s ease, border-color .18s ease, color .18s ease; }
+.pm-follow svg { width: 17px; height: 17px; fill: currentColor; }
+.pm-follow a:hover { background: var(--ink); border-color: var(--ink); color: #fff; }
+.pm-follow a:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.pm-follow--sidebar { flex-direction: column; align-items: flex-start; margin: 0; padding: 0; border: 0; }
+.pm-follow--sidebar .pm-follow-title { margin: 0; font-size: 12px; letter-spacing: .08em; color: var(--ink); display: flex; align-items: center; gap: 10px; }
+.pm-follow--sidebar .pm-follow-title::before { content: ""; width: 22px; height: 3px; background: var(--accent); flex: none; }

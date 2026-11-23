@@ -40,6 +40,12 @@ section{padding:72px 0}
 .hero h1{font-size:clamp(34px,5.4vw,60px);font-weight:800;max-width:820px;letter-spacing:-.01em}
 .hero h1 em{font-style:normal;color:var(--accent)}
 .hero p{font-size:clamp(17px,2vw,21px);max-width:720px;margin:24px 0 0;color:rgba(255,255,255,.86)}
+.hero-follow{position:relative;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:32px}
+.hero-follow span{font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-right:4px}
+.hero-follow a{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1.5px solid rgba(255,255,255,.35);border-radius:999px;color:#fff;font-size:14px;font-weight:700;text-decoration:none}
+.hero-follow a:hover{background:#fff;color:var(--ink);border-color:#fff}
+.hero-follow svg{width:17px;height:17px;fill:currentColor}
+@media(max-width:575px){.hero-follow span{flex-basis:100%}.hero-follow a{padding:7px 12px;font-size:13px}}
 .who{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
 .who p{font-size:18px;margin:0 0 16px}
 .pull{background:var(--paper);padding:32px 34px;border-left:4px solid var(--accent)}
@@ -146,6 +152,7 @@ section{padding:72px 0}
 <section class="hero"><div class="wrap">
  <h1>Розвиваємо <em>незалежні медіа</em> та відповідальні комунікації в Україні з 2025 року</h1>
  <p>«ПроМедіа» — громадська організація, створена журналістами і фахівцями з комунікацій. Ми допомагаємо українським медіа та громадським організаціям ставати сильнішими: краще розуміти свою аудиторію, розвивати нові продукти й зміцнювати організаційну стійкість.</p>
+ <div class="hero-follow"><span>Стежте за нами</span><a href="https://www.facebook.com/promediaukraine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.7 21v-8h2.8l.4-3.2h-3.2V7.7c0-.9.3-1.6 1.7-1.6h1.8V3.2c-.3 0-1.4-.2-2.6-.2-2.6 0-4.4 1.6-4.4 4.5v2.3H7.3V13h2.9v8h3.5Z"/></svg>Facebook</a><a href="https://www.instagram.com/promediaua/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7Zm10.5 1.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>Instagram</a><a href="https://www.linkedin.com/company/promediaukraine" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5ZM3 10h4v11H3V10Zm6 0h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05C20.65 9.45 21 12.1 21 15.55V21h-4v-4.83c0-1.15-.02-2.63-1.6-2.63-1.6 0-1.85 1.25-1.85 2.55V21H9V10Z"/></svg>LinkedIn</a><a href="https://www.youtube.com/@prostirmedia" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg>YouTube</a></div>
 </div></section>
 
 <section class="dirs" id="directions"><div class="wrap">
