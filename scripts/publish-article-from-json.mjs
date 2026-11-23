@@ -17,6 +17,7 @@ const DB = 'promedia-news';
 const BUCKET = 'promedia-news-images';
 const DIR = process.argv[2] || 'content/articles';
 const UA = 'ProMediaNewsPublisher/1.0 (https://news.promedia.report)';
+const SCHEDULE_TABLE_SQL = 'CREATE TABLE IF NOT EXISTS scheduled_publications (slug TEXT PRIMARY KEY, publish_at TEXT NOT NULL, done INTEGER NOT NULL DEFAULT 0, published_at_run TEXT)';
 
 function wrangler(args) {
   return execFileSync('npx', ['wrangler', ...args], {encoding: 'utf8', timeout: 180000});
@@ -64,17 +65,22 @@ const files = readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
   const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
   if (!a.slug || !a.title || !a.bodyMd) throw Error('Missing slug/title/bodyMd in ' + f);
-  // Scheduled publication: "publishAt" (ISO 8601 with a time zone offset, e.g. 2026-11-18T03:00:00+02:00)
-  // keeps a new article off the site until that moment; the workflow runs every 15 minutes.
+  // Scheduled publication: "publishAt" (ISO 8601 with a time zone offset, e.g. 2026-11-18T03:00:00+02:00).
+  // A future article goes into D1 right away as a hidden draft and into scheduled_publications;
+  // the site's own Cloudflare cron (every 5 minutes, src/lib/scheduler.js) makes it public on time.
+  // (Since 23.11.2026: GitHub skipped scheduled runs, so we no longer rely on them.)
+  let scheduledFor = null;
   if (a.publishAt) {
     const due = new Date(a.publishAt);
     if (Number.isNaN(due.getTime())) throw Error(`Invalid publishAt in ${f}: ${a.publishAt}`);
-    if (due > new Date() && !d1(`SELECT id FROM articles WHERE slug = ${q(a.slug)}`).length) {
-      console.log(`Scheduled ${a.slug}: waits until ${due.toISOString()}.`);
-      continue;
-    }
+    if (due > new Date()) scheduledFor = due.toISOString();
   }
   if (d1(`SELECT id FROM articles WHERE slug = ${q(a.slug)}`).length) {
+    // Still waiting: if the editor moved "publishAt", move the scheduled time too.
+    if (scheduledFor) {
+      d1(SCHEDULE_TABLE_SQL);
+      d1(`UPDATE scheduled_publications SET publish_at = ${q(scheduledFor)} WHERE slug = ${q(a.slug)} AND done = 0 AND publish_at != ${q(scheduledFor)}`);
+    }
     // An approved revision is applied once, then admin edits stay authoritative.
     const marker = a.revision ? `article_revision:${a.slug}:${a.revision}` : null;
     d1('CREATE TABLE IF NOT EXISTS editorial_data_fixes (name TEXT PRIMARY KEY)');
@@ -161,15 +167,18 @@ for (const f of files) {
   SELECT ${[a.slug, a.title, a.titleEn, a.titleCrh, a.excerpt || '', a.excerptEn, a.excerptCrh,
     a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null,
     JSON.stringify(a.tags || []), JSON.stringify(Array.isArray(a.relatedMediaIds) ? a.relatedMediaIds : [])].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
-    'published', ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
+    ${scheduledFor ? "'draft'" : "'published'"}, ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});
-  ${pinSql(a)}`;
+  ${scheduledFor ? `${SCHEDULE_TABLE_SQL};
+  INSERT OR REPLACE INTO scheduled_publications (slug, publish_at, done) VALUES (${q(a.slug)}, ${q(scheduledFor)}, 0);` : pinSql(a)}`;
   const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'insert.sql');
   writeFileSync(sqlFile, sql);
   d1(sqlFile, true);
   const row = d1(`SELECT id, status FROM articles WHERE slug = ${q(a.slug)}`)[0];
-  if (!row || row.status !== 'published') throw Error('Insert not verified for ' + a.slug);
-  console.log(`Published ${a.slug} (id ${row.id}).`);
+  if (!row || row.status !== (scheduledFor ? 'draft' : 'published')) throw Error('Insert not verified for ' + a.slug);
+  console.log(scheduledFor
+    ? `Scheduled ${a.slug} (id ${row.id}): hidden draft, the site publishes it at ${scheduledFor}.`
+    : `Published ${a.slug} (id ${row.id}).`);
 }
 
 // Картки «Медіа в матеріалі» / «Університети в матеріалі» для вже опублікованих новин

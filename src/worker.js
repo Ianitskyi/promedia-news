@@ -4,6 +4,7 @@ import { handleAdminRoute } from "./routes/admin.js";
 import { handleProjectsAdminRoute } from "./routes/projectsAdmin.js";
 import { handleProjectsPublicRoute } from "./routes/projects.js";
 import { handleAnalyticsRoute } from "./routes/analytics.js";
+import { publishDueArticles, schedulerStatus } from "./lib/scheduler.js";
 
 export default {
   async fetch(request, env, ctx) {
@@ -12,6 +13,13 @@ export default {
     try {
       const analyticsRes = await handleAnalyticsRoute(request, env, url);
       if (analyticsRes) return analyticsRes;
+
+      // Перевірка роботи розкладу: коли востаннє спрацював таймер і скільки новин чекає (без їхнього змісту).
+      if (url.pathname === "/api/scheduler-status") {
+        return new Response(JSON.stringify(await schedulerStatus(env.DB)), {
+          headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
+        });
+      }
 
       // Роздача картинок з R2, якщо не налаштовано публічний домен бакета
       // (env.IMAGES_PUBLIC_BASE_URL). Зручно для локальної розробки.
@@ -60,10 +68,14 @@ export default {
   },
 
   async scheduled(event, env, ctx) {
-    ctx.waitUntil(
-      env.DB.prepare(
-        "DELETE FROM articles WHERE deleted_at IS NOT NULL AND datetime(deleted_at) <= datetime('now', '-30 days')"
-      ).run()
-    );
+    // Кожні 5 хвилин: відкрити новини, час публікації яких настав (src/lib/scheduler.js).
+    ctx.waitUntil(publishDueArticles(env.DB).catch(e => console.error("scheduler", e)));
+    if (event.cron === "17 3 * * *") {
+      ctx.waitUntil(
+        env.DB.prepare(
+          "DELETE FROM articles WHERE deleted_at IS NOT NULL AND datetime(deleted_at) <= datetime('now', '-30 days')"
+        ).run()
+      );
+    }
   }
 };
