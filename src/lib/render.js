@@ -143,7 +143,9 @@ const TAG_LABELS_EN = {
   "місцеві медіа": "local media",
   "фінансування медіа": "media funding",
   "книжки": "books",
-  "дрони": "drones"
+  "дрони": "drones",
+  "Білорусь": "Belarus",
+  "політв'язні": "political prisoners"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -256,7 +258,9 @@ const TAG_LABELS_CRH = {
   "місцеві медіа": "yerli mediya",
   "фінансування медіа": "mediyanı malieleştirüv",
   "книжки": "kitaplar",
-  "дрони": "dronlar"
+  "дрони": "dronlar",
+  "Білорусь": "Belarus",
+  "політв'язні": "siyasiy mabüsler"
 };
 
 function tagLookupKey(tag) {

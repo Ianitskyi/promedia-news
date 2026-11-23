@@ -1,0 +1,61 @@
+{
+  "slug": "volha-kharlamava",
+  "group": "intl",
+  "country": "Білорусь",
+  "kind": "journalist",
+  "name": {
+    "uk": "Вольга Харламава",
+    "en": "Volha Kharlamava"
+  },
+  "sort": {
+    "uk": "Харламава Вольга",
+    "en": "Kharlamava Volha"
+  },
+  "aliases": [
+    "Ольга Харламова",
+    "Volga Kharlamova"
+  ],
+  "role": {
+    "uk": "білоруська політологиня й медіааналітикиня, політв'язенка",
+    "en": "Belarusian political scientist and media analyst, political prisoner"
+  },
+  "summary": {
+    "uk": "Білоруська політологиня й медіааналітикиня, 2026 року засуджена до 10 років позбавлення волі за «державну зраду».",
+    "en": "Belarusian political scientist and media analyst sentenced in 2026 to 10 years in prison for \"high treason\"."
+  },
+  "bio": {
+    "uk": "Вольга Харламава — білоруська політологиня й медіааналітикиня. Коментувала події для білоруських та іноземних медіа, писала для видання «Білоруський щорічник» і була аналітикинею проєкту з медіаграмотності Media IQ.\n\n23 червня 2025 року її затримали, у неї вдома провели обшук. Вона перебувала в слідчому ізоляторі КДБ, а згодом у СІЗО № 1 у Мінську. Білоруські правозахисники визнали її політичною в'язенкою.\n\n20 листопада 2026 року Мінський обласний суд у закритому процесі засудив її до 10 років позбавлення волі в колонії загального режиму і штрафу за статтею 356 Кримінального кодексу Білорусі («Зрада державі»). За даними Білоруської асоціації журналістів, суть обвинувачень не оприлюднили.",
+    "en": "Volha Kharlamava is a Belarusian political scientist and media analyst. She commented on events for Belarusian and foreign media, wrote for the Belarusian Yearbook and worked as an analyst for the media literacy project Media IQ.\n\nShe was detained on 23 June 2025, and her home was searched. She was held in the KGB pre-trial detention centre and later in Pre-trial Detention Centre No. 1 in Minsk. Belarusian human rights defenders have recognised her as a political prisoner.\n\nOn 20 November 2026, in a closed trial, the Minsk Regional Court sentenced her under Article 356 of Belarus's Criminal Code (\"Treason against the state\") to 10 years in a general-regime penal colony and a fine. According to the Belarusian Association of Journalists, the substance of the charges was not made public."
+  },
+  "facts": [
+    [
+      "Затримана",
+      "23 червня 2025 року"
+    ],
+    [
+      "Вирок",
+      "10 років колонії загального режиму і штраф (20.11.2026)"
+    ],
+    [
+      "Статус",
+      "політв'язенка"
+    ]
+  ],
+  "photo": {
+    "url": "https://people.promedia.report/img/volha-kharlamava.webp",
+    "author": "Smartpress",
+    "sourceName": "кадр з відео YouTube-каналу Smartpress, травень 2021 року",
+    "sourceUrl": "https://www.youtube.com/@SmartpressBY"
+  },
+  "sources": [
+    {
+      "title": "БАЖ: Political scientist and media expert Volha Kharlamava sentenced to 10 years in prison",
+      "url": "https://baj.media/en/political-scientist-and-media-expert-volha-kharlamava-sentenced-to-10-years-in-prison/"
+    },
+    {
+      "title": "«Наша Ніва»",
+      "url": "https://nashaniva.com/en/409723"
+    }
+  ],
+  "updated": "2026-11-23"
+}

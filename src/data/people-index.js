@@ -564,6 +564,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "volha-kharlamava",
+    "tag": "Вольга Харламава",
+    "aliases": [
+      "Ольга Харламова",
+      "Volga Kharlamova"
+    ],
+    "name": {
+      "uk": "Вольга Харламава",
+      "en": "Volha Kharlamava"
+    },
+    "role": {
+      "uk": "білоруська політологиня й медіааналітикиня, політв'язенка",
+      "en": "Belarusian political scientist and media analyst, political prisoner"
+    },
+    "summary": {
+      "uk": "Білоруська політологиня й медіааналітикиня, 2026 року засуджена до 10 років позбавлення волі за «державну зраду».",
+      "en": "Belarusian political scientist and media analyst sentenced in 2026 to 10 years in prison for \"high treason\"."
+    }
+  },
+  {
     "slug": "henry-crabb-robinson",
     "tag": "Генрі Крабб Робінсон",
     "aliases": [],
