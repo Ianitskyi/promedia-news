@@ -1519,8 +1519,8 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
 .feed-lead-list .feed-lead-item--pinned { background: #eef0fb; border-radius: 10px; padding: 12px 14px; margin: 0 -14px 6px; border-bottom: 0; }
 .feed-lead-list .feed-lead-item--pinned:first-child { padding-top: 12px; }
 .feed-lead-list .feed-lead-item--pinned { position: relative; padding-right: 36px; }
-.feed-lead-pin { position: absolute; top: 12px; right: 12px; display: inline-flex; color: var(--ink-soft); }
-.feed-lead-pin svg { width: 16px; height: 16px; fill: currentColor; transform: rotate(-12deg); }
+.feed-lead-pin { position: absolute; top: 11px; right: 11px; display: inline-flex; color: var(--ink); }
+.feed-lead-pin svg { width: 18px; height: 18px; fill: currentColor; transform: rotate(30deg); }
 .feed-lead-side { flex: 1 1 300px; min-width: 0; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 20px 24px; box-sizing: border-box; }
 .feed-lead-list { list-style: none; margin: 0; padding: 0; }
 .feed-lead-item { padding: 14px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
