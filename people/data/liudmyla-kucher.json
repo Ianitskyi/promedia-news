@@ -1,0 +1,48 @@
+{
+  "slug": "liudmyla-kucher",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Людмила Кучер",
+    "en": "Liudmyla Kucher"
+  },
+  "sort": {
+    "uk": "Кучер Людмила",
+    "en": "Kucher Liudmyla"
+  },
+  "role": {
+    "uk": "виконавча керівниця медіапроєкту Ukraїner",
+    "en": "Executive director of the Ukrainian media project Ukraїner"
+  },
+  "summary": {
+    "uk": "Виконавча керівниця мультимедійного проєкту Ukraїner, який розповідає про Україну та українців.",
+    "en": "Executive director of Ukraїner, a Ukrainian multimedia project about Ukraine and its people."
+  },
+  "bio": {
+    "uk": "Людмила Кучер — виконавча керівниця мультимедійного проєкту Ukraїner. Посаду обійняла у вересні 2025 року, коли проєкт уперше за дев'ять років змінив команду управління: головою організації стала журналістка Юлія Тимошенко, а засновник Богдан Логвиненко перейшов до наглядової ради, повідомив Forbes Україна.\n\nУ листопаді 2026 року пані Людмила — учасниця дискусії «Бізнес і медіа: як навчитися говорити одне з одним?» на Медіадні Премії імені Георгія Ґонґадзе в Києві.",
+    "en": "Liudmyla Kucher is executive director of the Ukrainian multimedia project Ukraїner. She took the post in September 2025, when the project changed its management for the first time in nine years: journalist Yuliia Tymoshenko became head of the organisation and founder Bohdan Lohvynenko moved to its supervisory board, Forbes Ukraine reported.\n\nIn November 2026 she is a speaker at the Georgiy Gongadze Prize Media Day in Kyiv."
+  },
+  "facts": [
+    [
+      "Медіа",
+      "Ukraїner"
+    ],
+    [
+      "Посада",
+      "виконавча керівниця (з вересня 2025 року)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Forbes Україна: Юлія Тимошенко очолила Ukraїner",
+      "url": "https://forbes.ua/news/zhurnalistka-yuliya-timoshenko-ocholila-multimediyniy-proekt-ukrainer-24092025-32853"
+    },
+    {
+      "title": "Премія імені Георгія Ґонґадзе: програма Медіадня 2026",
+      "url": "https://gongadzeprize.com.ua/media-biznes-diplomatiya-i-vidpovidalnist-za-spilne-majbutne.-mediaden-premii-on-adze-u-kievo-mogilyanskij-biznes-shkoli"
+    }
+  ],
+  "updated": "2026-11-23",
+  "aliases": [],
+  "kind": "manager"
+}

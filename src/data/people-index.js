@@ -640,6 +640,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "heorhii-tykhyi",
+    "tag": "Георгій Тихий",
+    "aliases": [],
+    "name": {
+      "uk": "Георгій Тихий",
+      "en": "Heorhii Tykhyi"
+    },
+    "role": {
+      "uk": "речник Міністерства закордонних справ України",
+      "en": "Spokesperson for Ukraine's Ministry of Foreign Affairs"
+    },
+    "summary": {
+      "uk": "Речник МЗС України з липня 2024 року; до державної служби — журналіст, продюсер німецького телеканалу ARD в Україні та власкор Укрінформу.",
+      "en": "Spokesperson for Ukraine's Foreign Ministry since July 2024; formerly a journalist, ARD producer in Ukraine and Ukrinform correspondent."
+    }
+  },
+  {
     "slug": "gerda-taro",
     "tag": "Ґерда Таро",
     "aliases": [
@@ -1201,6 +1218,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Перший журналіст, проти якого у Швейцарії висунули обвинувачення за законом про банківську таємницю.",
       "en": "The first journalist charged under Switzerland's banking secrecy law."
+    }
+  },
+  {
+    "slug": "liudmyla-kucher",
+    "tag": "Людмила Кучер",
+    "aliases": [],
+    "name": {
+      "uk": "Людмила Кучер",
+      "en": "Liudmyla Kucher"
+    },
+    "role": {
+      "uk": "виконавча керівниця медіапроєкту Ukraїner",
+      "en": "Executive director of the Ukrainian media project Ukraїner"
+    },
+    "summary": {
+      "uk": "Виконавча керівниця мультимедійного проєкту Ukraїner, який розповідає про Україну та українців.",
+      "en": "Executive director of Ukraїner, a Ukrainian multimedia project about Ukraine and its people."
     }
   },
   {
@@ -1899,6 +1933,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює Гільдію журналістів Нью-Йорка — профспілку працівників медіа, що представляє зокрема журналістів Reuters.",
       "en": "Leads The NewsGuild of New York, the media workers' union that represents, among others, Reuters journalists."
+    }
+  },
+  {
+    "slug": "taras-prokopyshyn",
+    "tag": "Тарас Прокопишин",
+    "aliases": [],
+    "name": {
+      "uk": "Тарас Прокопишин",
+      "en": "Taras Prokopyshyn"
+    },
+    "role": {
+      "uk": "співзасновник і керівник The Ukrainians Media",
+      "en": "Co-founder and CEO of The Ukrainians Media"
+    },
+    "summary": {
+      "uk": "Медіаменеджер зі Львова, який перетворив студентський блог The Ukrainians на медіакомпанію з кількома виданнями й програмою підтримки читачів.",
+      "en": "Lviv-born media manager who turned the student blog The Ukrainians into a media company with several outlets and a reader membership programme."
     }
   },
   {

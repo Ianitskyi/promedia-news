@@ -1,0 +1,56 @@
+{
+  "slug": "taras-prokopyshyn",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Тарас Прокопишин",
+    "en": "Taras Prokopyshyn"
+  },
+  "sort": {
+    "uk": "Прокопишин Тарас",
+    "en": "Prokopyshyn Taras"
+  },
+  "role": {
+    "uk": "співзасновник і керівник The Ukrainians Media",
+    "en": "Co-founder and CEO of The Ukrainians Media"
+  },
+  "summary": {
+    "uk": "Медіаменеджер зі Львова, який перетворив студентський блог The Ukrainians на медіакомпанію з кількома виданнями й програмою підтримки читачів.",
+    "en": "Lviv-born media manager who turned the student blog The Ukrainians into a media company with several outlets and a reader membership programme."
+  },
+  "bio": {
+    "uk": "Тарас Прокопишин — співзасновник і керівник The Ukrainians Media. Видання він заснував 2014 року разом із друзями-студентами після Революції Гідності як блог про успішних українців, пише Kyiv Post. За даними конференції ISOJ, з волонтерського блогу виросла медіакомпанія з чотирьох видань, друкованого журналу, студії сторітелінгу та подкастів і освітніх проєктів.\n\nПан Тарас — прихильник моделі фінансування за рахунок читачів: The Ukrainians запустили одну з найуспішніших в Україні програм членства для аудиторії. Він отримав відзнаку «30 до 30» Міжнародної асоціації новинних медіа (INMA) у 2020 році та «Топ-30 до 30» Kyiv Post, був стипендіатом Німенівської програми Гарвардського університету. 2019 року був номінантом Премії імені Георгія Ґонґадзе.\n\nЗа освітою — соціолог, закінчив Львівський національний університет імені Івана Франка, також має магістерський ступінь Львівської бізнес-школи УКУ.",
+    "en": "Taras Prokopyshyn is co-founder and CEO of The Ukrainians Media. He founded it in 2014 with student friends after the Revolution of Dignity as a blog about successful Ukrainians, Kyiv Post wrote. According to the ISOJ conference, the volunteer blog grew into a media company with four outlets, a print magazine, a storytelling and podcast studio and educational projects.\n\nHe champions reader revenue: The Ukrainians run one of Ukraine's most successful audience membership programmes. He received INMA's 30 Under 30 award in 2020 and Kyiv Post's Top 30 Under 30, and was a Nieman Fellow at Harvard University. In 2019 he was a nominee for the Georgiy Gongadze Prize.\n\nA sociologist by training, he graduated from Ivan Franko National University of Lviv and holds a master's degree from Lviv Business School of the Ukrainian Catholic University."
+  },
+  "facts": [
+    [
+      "Медіа",
+      "The Ukrainians Media (з 2014 року)"
+    ],
+    [
+      "Відзнаки",
+      "INMA «30 до 30» (2020); номінант Премії імені Георгія Ґонґадзе (2019)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Kyiv Post: Taras Prokopyshyn",
+      "url": "https://archive.kyivpost.com/ukraine-politics/taras-prokopyshyn-media-enthusiast-builds-responsible-business-aims-to-build-conglomerate.html"
+    },
+    {
+      "title": "ISOJ: Taras Prokopyshyn",
+      "url": "https://isoj.org/?p=18480"
+    },
+    {
+      "title": "INMA 30 Under 30: Taras Prokopyshyn",
+      "url": "https://www.inma.org/blogs/Editors-Inbox/post.cfm/inma-30-under-30-taras-prokopyshyn-of-the-ukrainians"
+    },
+    {
+      "title": "Премія імені Георгія Ґонґадзе: програма Медіадня 2026",
+      "url": "https://gongadzeprize.com.ua/media-biznes-diplomatiya-i-vidpovidalnist-za-spilne-majbutne.-mediaden-premii-on-adze-u-kievo-mogilyanskij-biznes-shkoli"
+    }
+  ],
+  "updated": "2026-11-23",
+  "aliases": [],
+  "kind": "manager"
+}

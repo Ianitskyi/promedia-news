@@ -1,0 +1,66 @@
+{
+  "slug": "heorhii-tykhyi",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Георгій Тихий",
+    "en": "Heorhii Tykhyi"
+  },
+  "sort": {
+    "uk": "Тихий Георгій",
+    "en": "Tykhyi Heorhii"
+  },
+  "role": {
+    "uk": "речник Міністерства закордонних справ України",
+    "en": "Spokesperson for Ukraine's Ministry of Foreign Affairs"
+  },
+  "summary": {
+    "uk": "Речник МЗС України з липня 2024 року; до державної служби — журналіст, продюсер німецького телеканалу ARD в Україні та власкор Укрінформу.",
+    "en": "Spokesperson for Ukraine's Foreign Ministry since July 2024; formerly a journalist, ARD producer in Ukraine and Ukrinform correspondent."
+  },
+  "bio": {
+    "uk": "Георгій Тихий — речник Міністерства закордонних справ України з липня 2024 року, повідомило Суспільне. До того працював радником міністра й відповідав здебільшого за комунікації міністра, розповідав він сам, пише «Гордон».\n\nУ медіа пан Георгій працював з 2008 року, повідомило «Інтерфакс-Україна»: редактором і репортером програм Савіка Шустера (2008–2013), продюсером першого німецького телеканалу ARD в Україні (2014–2018), власним кореспондентом Укрінформу. 2014 року висвітлював для німецького телебачення Революцію Гідності й початок російської агресії на сході України; у серпні 2014 року разом із колегою Іваном Любиш-Кірдеєм опинився в оточенні в Іловайську, де зняв документальний фільм про добровольців. 2018 року заснував корпункт Укрінформу в Нью-Йорку.\n\nУ державних комунікаціях — з 2019 року, зокрема як прессекретар віцепрем'єр-міністра з питань європейської та євроатлантичної інтеграції.",
+    "en": "Heorhii Tykhyi has been spokesperson for Ukraine's Ministry of Foreign Affairs since July 2024, Suspilne reported. Before that he was an adviser to the minister, mainly handling the minister's communications.\n\nHe has worked in media since 2008, according to Interfax-Ukraine: as an editor and reporter on Savik Shuster's programmes (2008–2013), producer for the German public broadcaster ARD in Ukraine (2014–2018) and a correspondent for Ukraine's national news agency Ukrinform. In 2014 he covered the Revolution of Dignity and the start of Russia's aggression in eastern Ukraine for German television; in August 2014 he and colleague Ivan Liubysh-Kirdei were trapped in the encirclement of Ilovaisk, where he made a documentary about volunteer fighters. In 2018 he founded Ukrinform's New York bureau.\n\nHe moved into government communications in 2019, including as press secretary to the Deputy Prime Minister for European and Euro-Atlantic Integration."
+  },
+  "facts": [
+    [
+      "Посада",
+      "речник МЗС України (з липня 2024 року)"
+    ],
+    [
+      "Медіа",
+      "програми Савіка Шустера, ARD, Укрінформ"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "uk:Георгій Тихий"
+    ],
+    "check": [
+      "МЗС",
+      "речник",
+      "дипломат"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Суспільне: новим речником МЗС став Георгій Тихий",
+      "url": "https://suspilne.media/791219-novim-recnikom-mzs-ukraini-stav-georgij-tihij-so-pro-nogo-vidomo/"
+    },
+    {
+      "title": "Інтерфакс-Україна: Heorhiy Tykhy has become the new speaker of the MFA",
+      "url": "https://ua.interfax.com.ua/news/general/1000451-amp.html"
+    },
+    {
+      "title": "Гордон: «Я хоч і Тихий, але…»",
+      "url": "https://gordonua.com/ukr/news/politics/ja-khoch-i-tikhij-ale-u-mzs-ukrajini-priznachili-novoho-rechnika-1713269.html"
+    },
+    {
+      "title": "МЗС України: пресслужба",
+      "url": "https://mfa.gov.ua/pres-centr/pres-sluzhba"
+    }
+  ],
+  "updated": "2026-11-23",
+  "aliases": [],
+  "kind": "official"
+}
