@@ -1,0 +1,59 @@
+{
+  "slug": "oleh-onysko",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Олег Онисько",
+    "en": "Oleh Onysko"
+  },
+  "sort": {
+    "uk": "Онисько Олег",
+    "en": "Onysko Oleh"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "головний редактор NGL.media",
+    "en": "Editor-in-chief of NGL.media"
+  },
+  "summary": {
+    "uk": "Львівський журналіст і редактор, у журналістиці з 1992 року; очолював «Поступ», «Львівську газету», TVI.ua і ZAXID.NET, з 2023 року — в NGL.media.",
+    "en": "Lviv-based journalist and editor in journalism since 1992; led Postup, Lvivska Gazeta, TVI.ua and ZAXID.NET, and has worked at NGL.media since 2023."
+  },
+  "bio": {
+    "uk": "Олег Онисько працює в журналістиці з 1992 року. Був головним редактором щоденників «Поступ» (2000–2002) і «Львівська газета» (2002–2004), інтернет-проєктів TVI.ua (2012–2013) та ZAXID.NET (2014–2023). У 2004–2011 роках заснував і очолював інфографічне агентство Ukrainian Media Service.\n\nЗ 2023 року працює в NGL.media — незалежному медіа зі Львова; головний редактор видання.",
+    "en": "Oleh Onysko has worked in journalism since 1992. He was editor-in-chief of the dailies Postup (2000–2002) and Lvivska Gazeta (2002–2004) and of the online outlets TVI.ua (2012–2013) and ZAXID.NET (2014–2023). In 2004–2011 he founded and ran the infographics agency Ukrainian Media Service.\n\nSince 2023 he has worked at NGL.media, an independent outlet in Lviv, where he is editor-in-chief."
+  },
+  "facts": [
+    [
+      "Посада",
+      "головний редактор NGL.media"
+    ],
+    [
+      "У журналістиці",
+      "з 1992 року"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Онисько",
+      "Onysko"
+    ]
+  },
+  "sources": [
+    {
+      "title": "NGL.media: Oleh Onysko",
+      "url": "https://ngl.media/en/authors/oleh-onysko"
+    },
+    {
+      "title": "NGL.media: Підозрюваний у перепродажу бойових БПЛА подав мільйонний позов проти NGL.media",
+      "url": "https://ngl.media/2026/11/10/pidozryuvanyj-u-pereprodazhu-bojovyh-bpla-podav-miljonnyj-pozov-proty-ngl-media/"
+    },
+    {
+      "title": "Закон проти SLAPP просять ухвалити до кінця року. Звернення громради при комітеті",
+      "url": "https://news.promedia.report/article/zakon-proty-slapp-prosiat-ukhvalyty-do-kintsia-roku"
+    }
+  ],
+  "updated": "2026-11-24"
+}

@@ -1691,6 +1691,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "oleh-onysko",
+    "tag": "Олег Онисько",
+    "aliases": [],
+    "name": {
+      "uk": "Олег Онисько",
+      "en": "Oleh Onysko"
+    },
+    "role": {
+      "uk": "головний редактор NGL.media",
+      "en": "Editor-in-chief of NGL.media"
+    },
+    "summary": {
+      "uk": "Львівський журналіст і редактор, у журналістиці з 1992 року; очолював «Поступ», «Львівську газету», TVI.ua і ZAXID.NET, з 2023 року — в NGL.media.",
+      "en": "Lviv-based journalist and editor in journalism since 1992; led Postup, Lvivska Gazeta, TVI.ua and ZAXID.NET, and has worked at NGL.media since 2023."
+    }
+  },
+  {
     "slug": "oleksandra-kuvshynova",
     "tag": "Олександра Кувшинова",
     "aliases": [
