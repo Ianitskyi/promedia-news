@@ -4,7 +4,7 @@ import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261123b";
+const ASSET_V = "20261124t";
 
 const LANGS = ["uk", "en", "crh"];
 
@@ -604,6 +604,7 @@ ${footer(lang)}
 <script defer src="/js/promedia-memorial-popup.js"></script>
 <script defer src="/js/promedia-story-share.js?v=${ASSET_V}"></script>
 <script defer src="/js/promedia-gallery.js?v=${ASSET_V}"></script>
+<script defer src="/js/promedia-terms.js?v=${ASSET_V}"></script>
 <script defer src="/js/promedia-global-shell.js"></script>
 </body>
 </html>`;

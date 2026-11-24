@@ -861,11 +861,63 @@
     out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+)\)/g, function (_, alt, url) {
       return token('<img src="' + url + '" alt="' + alt + '" loading="lazy" />');
     });
+    out = out.replace(/\[\[([^\[\]|\n]+?)\|([^\[\]\n]+?)\]\]/g, function (_, word, note) {
+      return token(editorTermHtml(formatEditorInline(word.trim()), note.trim()));
+    });
     out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function (_, label, url) {
       return token('<a href="' + url + '" target="_blank" rel="noopener">' + formatEditorInline(label) + '</a>');
     });
     out = formatEditorInline(out);
     return out.replace(new RegExp(prefix + "(\\d+)\\u0000", "g"), function (_, index) { return tokens[Number(index)]; });
+  }
+
+  // Довідка до слова: [[термін|пояснення]]. note вже екранований (як і весь рядок).
+  function editorTermHtml(wordHtml, noteEscaped) {
+    return '<span class="admin-term" data-term-note="' + noteEscaped + '" title="Довідка: ' + noteEscaped + '">' + wordHtml + "</span>";
+  }
+
+  function cleanTermPart(value) {
+    return String(value || "").replace(/[\[\]|]/g, " ").replace(/\s+/g, " ").trim();
+  }
+
+  function findEditorTerm(editor) {
+    var selection = window.getSelection();
+    if (!selection || !selection.rangeCount) return null;
+    var node = selection.anchorNode;
+    while (node && node !== editor.surface) {
+      if (node.nodeType === Node.ELEMENT_NODE && node.classList && node.classList.contains("admin-term")) return node;
+      node = node.parentNode;
+    }
+    return null;
+  }
+
+  function insertEditorTerm(editor) {
+    restoreSelection(editor);
+    var existing = findEditorTerm(editor);
+    if (existing) {
+      var updated = window.prompt("Пояснення до «" + existing.textContent + "». Залиште порожнім, щоб прибрати довідку.", existing.getAttribute("data-term-note") || "");
+      if (updated === null) return;
+      updated = cleanTermPart(updated);
+      if (!updated) {
+        existing.replaceWith(document.createTextNode(existing.textContent));
+      } else {
+        existing.setAttribute("data-term-note", updated);
+        existing.setAttribute("title", "Довідка: " + updated);
+      }
+      syncRichEditors();
+      return;
+    }
+    var selection = window.getSelection();
+    var selected = selection && selection.rangeCount ? cleanTermPart(selection.toString()) : "";
+    if (!selected) selected = cleanTermPart(window.prompt("До якого слова чи абревіатури додати довідку?", ""));
+    if (!selected) return;
+    var note = cleanTermPart(window.prompt("Пояснення до «" + selected + "» (коротко, 1–2 речення). Читач побачить його, натиснувши на слово.", ""));
+    if (!note) return;
+    restoreSelection(editor);
+    document.execCommand("insertHTML", false, editorTermHtml(escapeHtml(selected), escapeHtml(note)) + "\u200b");
+    editor.surface.focus();
+    saveSelection(editor);
+    syncRichEditors();
   }
 
   function formatEditorInline(text) {
@@ -1011,7 +1063,7 @@
   }
 
   function inlineNodeToMarkdown(node) {
-    if (node.nodeType === Node.TEXT_NODE) return node.nodeValue.replace(/\u00a0/g, " ");
+    if (node.nodeType === Node.TEXT_NODE) return node.nodeValue.replace(/\u00a0/g, " ").replace(/\u200b/g, "");
     if (node.nodeType !== Node.ELEMENT_NODE) return "";
 
     var tag = node.tagName.toLowerCase();
@@ -1019,6 +1071,11 @@
     var inner;
     if (tag === "br") return "\n";
     inner = nodeListToMarkdown(node.childNodes);
+    if (node.getAttribute("data-term-note") !== null) {
+      var termWord = cleanTermPart(inner.replace(/\u200b/g, ""));
+      var termNote = cleanTermPart(node.getAttribute("data-term-note"));
+      return termWord && termNote ? "[[" + termWord + "|" + termNote + "]]" : termWord;
+    }
     if (tag === "strong" || tag === "b") inner = "**" + inner.trim() + "**";
     else if (tag === "em" || tag === "i") inner = "*" + inner.trim() + "*";
     if (tag === "a") {
@@ -1115,6 +1172,7 @@
       commandButton("▦", "Вставити таблицю", "table") +
       commandButton("“”", "Цитата", "blockquote") +
       commandButton("URL", "Додати посилання", "link") +
+      commandButton("Довідка", "Довідка до слова: пояснення з’явиться, коли читач натисне на слово (абревіатура, термін)", "term") +
       commandButton("▶", "Вставити відео YouTube", "youtube") +
       commandButton("Фото", "Вставити фото з підписом", "image") +
       commandButton("Галерея", "Вставити галерею: кілька фото з підписами, на сайті — карусель", "gallery") +
@@ -1126,7 +1184,7 @@
       '</div>' +
       '<div class="admin-editor-surface" data-editor-surface="true" contenteditable="true" role="textbox" aria-multiline="true" aria-label="' + escapeHtml(langLabel) + '"></div>' +
       '<textarea class="admin-editor-source" name="' + name + '">' + escapeHtml(value) + "</textarea>" +
-      '<p class="admin-editor-note">Пишіть як у звичайному документі. Щоб виділити фразу жовтим, оберіть текст і натисніть «Маркер». Повторне натискання знімає виділення. Кілька фото поспіль (кнопка «Галерея») сайт покаже каруселлю.</p>' +
+      '<p class="admin-editor-note">Пишіть як у звичайному документі. Щоб виділити фразу жовтим, оберіть текст і натисніть «Маркер». Повторне натискання знімає виділення. Кілька фото поспіль (кнопка «Галерея») сайт покаже каруселлю. Щоб пояснити складне слово чи абревіатуру, виділіть його й натисніть «Довідка»; щоб змінити або прибрати довідку, поставте курсор у слово й натисніть «Довідка» ще раз.</p>' +
       '</div>';
   }
 
@@ -1338,6 +1396,10 @@
     }
     if (command === "link") {
       insertEditorLink(editor);
+      return;
+    }
+    if (command === "term") {
+      insertEditorTerm(editor);
       return;
     }
     if (command === "highlight") {
