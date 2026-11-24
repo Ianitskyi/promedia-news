@@ -170,7 +170,7 @@
     var p = project || {
       title:"",titleEn:"",titleCrh:"",excerpt:"",excerptEn:"",excerptCrh:"",bodyMd:"",bodyMdEn:"",bodyMdCrh:"",workMd:"",workMdEn:"",workMdCrh:"",resultsMd:"",resultsMdEn:"",resultsMdCrh:"",coverImageUrl:"",coverImageUrlEn:"",
       partner:"",partnerEn:"",partnerCrh:"",donor:"",donorEn:"",donorCrh:"",projectStatus:"active",startDate:"",endDate:"",
-      periodLabel:"",websiteUrl:"",tags:[],isFeatured:false,publicationStatus:"draft"
+      periodLabel:"",websiteUrl:"",tags:[],isFeatured:false,isKey:false,publicationStatus:"draft"
     };
     var isNew = !project;
     root.innerHTML =
@@ -218,6 +218,7 @@
       '<div class="admin-field"><label>Посилання на сайт/матеріали проєкту</label><input type="url" name="websiteUrl" value="' + esc(p.websiteUrl) + '" /></div>' +
       '<div class="admin-field"><label>Теги</label>'+tagEditor(p.tags)+'</div>' +
       '<div class="admin-field"><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" name="isFeatured" style="width:auto"' + (p.isFeatured ? " checked" : "") + ' /> Показувати як вибраний проєкт</label></div>' +
+      '<div class="admin-field"><label style="display:flex;gap:10px;align-items:center"><input type="checkbox" name="isKey" style="width:auto"' + (p.isKey ? " checked" : "") + ' /> Важливий на таймлайні «Про нас»</label></div>' +
       '<div class="admin-row"><button class="admin-btn" type="submit">Зберегти</button>' +
       (!isNew && p.publicationStatus === "published" ? '<button class="admin-btn secondary" id="unpublish-project" type="button">Зняти з публікації</button>' : '') +
       (!isNew && p.publicationStatus !== "published" ? '<button class="admin-btn" id="publish-project" type="button">Опублікувати</button>' : '') +
@@ -316,7 +317,8 @@
         partner:value(form,"partner"), partnerEn:value(form,"partnerEn"), partnerCrh:value(form,"partnerCrh"), donor:value(form,"donor"), donorEn:value(form,"donorEn"), donorCrh:value(form,"donorCrh"),
         projectStatus:form.elements.projectStatus.value, startDate:form.elements.startDate.value, endDate:form.elements.endDate.value, periodLabel:value(form,"periodLabel"),
         websiteUrl:value(form,"websiteUrl"), tags:currentProjectTags(),
-        isFeatured:form.elements.isFeatured.checked
+        isFeatured:form.elements.isFeatured.checked,
+        isKey:form.elements.isKey.checked
       };
       if (!body.bodyMd || !body.workMd || !body.resultsMd) { document.getElementById("project-error").textContent="Заповніть поля «Про проєкт», «Що ми робили» та «Результати»."; return; }
       saveButton.disabled = true;

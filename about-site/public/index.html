@@ -63,6 +63,16 @@ section{padding:72px 0}
 .tl li{display:grid;grid-template-columns:150px 1fr;gap:0 36px;position:relative;padding:0 0 34px}
 .tl li::before{content:"";position:absolute;left:144px;top:7px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid var(--ink)}
 .tl li.key::before{background:var(--accent);border-color:var(--accent)}
+.tl li.key::before{left:141px;top:4px;width:20px;height:20px}
+.tl li.imp::before{background:var(--ink);border-color:var(--ink)}
+.tl li.minor{padding-bottom:16px}
+.tl li.minor::before{left:146px;top:8px;width:10px;height:10px;border-width:2px;border-color:var(--muted)}
+.tl li.minor time{font-weight:700;font-size:13px;padding-top:1px}
+.tl h3 a,.tl .tl-minor{color:inherit;text-decoration:none}
+.tl h3 a:hover,.tl .tl-minor:hover{color:var(--accent)}
+.tl .tl-minor{font-size:15.5px;font-weight:600;line-height:1.35}
+.tl .tl-live{font-size:12px;font-weight:700;color:#2e8b57;margin-left:8px;white-space:nowrap}
+.tl .tl-live::before{content:"";display:inline-block;width:7px;height:7px;margin:0 5px 1px 0;border-radius:50%;background:#2e8b57}
 .tl time{font-size:14px;font-weight:800;color:var(--muted);text-align:right;padding-right:30px;padding-top:2px;line-height:1.35}
 .tl h3{font-size:19px;margin-bottom:6px}
 .tl p{margin:0;font-size:15.5px;color:var(--ink2)}
@@ -132,6 +142,8 @@ section{padding:72px 0}
  .tl::before{left:7px}
  .tl li{grid-template-columns:1fr;padding-left:34px}
  .tl li::before{left:1px}
+ .tl li.key::before{left:-2px}
+ .tl li.minor::before{left:3px}
  .tl time{text-align:left;padding:0 0 4px}
  .pubs li{flex-direction:column;gap:2px}
  .pull q{font-size:20px}
@@ -180,15 +192,25 @@ return '<a class="pm-hp-card" href="'+B+(lang==="uk"?"":"/"+lang)+'/project/'+en
 
 <section id="history" style="padding-top:0"><div class="wrap">
  <h2 class="eyebrow">Історія</h2>
- <ol class="tl">
-  <li class="key"><time>2019</time><div><h3>Розсилка ProMedia Report</h3><p>Журналісти Андрій Яніцький та Анна Родічкіна запускають розсилку про медіа та комунікації — з неї починається бренд ProMedia.</p></div></li>
-  <li><time>2021–2022</time><div><h3>Відеопроєкт «Дедлайн» на YouTube</h3><p>На основі розсилки виходить відеопроєкт про медіа «Дедлайн» на YouTube.</p></div></li>
-  <li class="key"><time>Літо 2025</time><div><h3>Громадська організація «ПроМедіа»</h3><p>До Андрія та Анни приєднуються Катерина Грищенко й Анастасія Сімонова. Четверо однодумців реєструють громадську організацію.</p></div></li>
-  <li><time>Липень — вересень 2026</time><div><h3>Перші власні онлайн-інструменти для вивчення ринку медіа та журналістської освіти</h3><p>Запускаємо Рейтинг журфаків України, Карту медійних спільнот і Атлас медіа.</p></div></li>
-  <li><time>2026</time><div><h3>Навчальні програми та спільні проєкти</h3><p>Проводимо чотири воркшопи для журналістів і представників громадських організацій, реалізуємо спільні проєкти з IWPR та ІРРП.</p></div></li>
+ <ol class="tl" id="pm-tl">
+  <li class="key" data-date="2019-01-01"><time>2019</time><div><h3>Розсилка ProMedia Report</h3><p>Журналісти Андрій Яніцький та Анна Родічкіна запускають розсилку про медіа та комунікації — з неї починається бренд ProMedia.</p></div></li>
+  <li data-date="2021-01-01"><time>2021–2022</time><div><h3>Відеопроєкт «Дедлайн» на YouTube</h3><p>На основі розсилки виходить відеопроєкт про медіа «Дедлайн» на YouTube.</p></div></li>
+  <li class="key" data-date="2025-06-01"><time>Літо 2025</time><div><h3>Громадська організація «ПроМедіа»</h3><p>До Андрія та Анни приєднуються Катерина Грищенко й Анастасія Сімонова. Четверо однодумців реєструють громадську організацію.</p></div></li>
+  <li class="tl-fallback"><time>Липень — вересень 2026</time><div><h3>Перші власні онлайн-інструменти для вивчення ринку медіа та журналістської освіти</h3><p>Запускаємо Рейтинг журфаків України, Карту медійних спільнот і Атлас медіа.</p></div></li>
+  <li class="tl-fallback"><time>2026</time><div><h3>Навчальні програми та спільні проєкти</h3><p>Проводимо чотири воркшопи для журналістів і представників громадських організацій, реалізуємо спільні проєкти з IWPR та ІРРП.</p></div></li>
  </ol>
 </div></section>
 
+<script>(function(){var tl=document.getElementById("pm-tl");if(!tl||!window.fetch)return;var B="https://projects.promedia.report";
+function e(s){return String(s||"").replace(/[&<>"']/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
+function d(iso){var p=String(iso).split("-");return p[2]+"."+p[1]+"."+p[0]}
+fetch(B+"/api/projects?featured=0&limit=100").then(function(r){return r.ok?r.json():Promise.reject()}).then(function(data){var it=((data&&data.items)||[]).filter(function(p){return /^\d{4}-\d{2}-\d{2}$/.test(p.startDate||"")});if(!it.length)return;
+var rows=[].slice.call(tl.querySelectorAll("li[data-date]"));
+it.forEach(function(p){var li=document.createElement("li"),url=B+"/project/"+encodeURIComponent(p.slug),live=p.projectStatus==="active"?'<span class="tl-live">триває</span>':"";li.setAttribute("data-date",p.startDate);
+if(p.isKey){li.className="imp";li.innerHTML='<time>'+d(p.startDate)+'</time><div><h3><a href="'+e(url)+'">'+e(p.title)+'</a>'+live+'</h3>'+(p.excerpt?'<p>'+e(p.excerpt)+'</p>':'')+'</div>'}
+else{li.className="minor";li.innerHTML='<time>'+d(p.startDate)+'</time><div><a class="tl-minor" href="'+e(url)+'">'+e(p.title)+'</a>'+live+'</div>'}rows.push(li)});
+rows.sort(function(a,b){return a.getAttribute("data-date")<b.getAttribute("data-date")?-1:1});
+[].slice.call(tl.querySelectorAll(".tl-fallback")).forEach(function(n){n.remove()});rows.forEach(function(n){tl.appendChild(n)})}).catch(function(){})})();</script>
 <section id="team" style="padding-top:0"><div class="wrap">
  <h2 class="eyebrow">Команда</h2>
  <div class="team-grid">

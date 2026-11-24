@@ -145,6 +145,11 @@ jobs:
           if(result.article_cols!==2 || result.project_cols!==3)throw Error('D1 schema is incomplete: '+JSON.stringify(result));
           console.log("D1 schema verified: articles=2, projects=3.");
           NODE
+      - name: Projects — «Важливий на таймлайні» flag (once)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/apply-d1-project-timeline-key.mjs
       - name: Deploy Worker and static assets
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

@@ -103,6 +103,7 @@ function serialize(project) {
     websiteUrl: project.website_url,
     tags: parseJson(project.tags),
     isFeatured: Boolean(project.is_featured),
+    isKey: Boolean(project.is_key),
     publishedAt: project.published_at,
     url: `https://projects.promedia.report/project/${project.slug}`
   };

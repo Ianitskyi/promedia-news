@@ -63,7 +63,7 @@ function serialize(p) {
     partner: p.partner, partnerEn: p.partner_en, partnerCrh: p.partner_crh,
     donor: p.donor, donorEn: p.donor_en, donorCrh: p.donor_crh,
     projectStatus: p.project_status, startDate: p.start_date, endDate: p.end_date, periodLabel: p.period_label, periodLabelEn: p.period_label_en, periodLabelCrh: p.period_label_crh, websiteUrl: p.website_url,
-    tags: parseJson(p.tags), isFeatured: Boolean(p.is_featured), publicationStatus: p.publication_status,
+    tags: parseJson(p.tags), isFeatured: Boolean(p.is_featured), isKey: Boolean(p.is_key), publicationStatus: p.publication_status,
     authorId: p.author_id, publishedAt: p.published_at, createdAt: p.created_at, updatedAt: p.updated_at, deletedAt: p.deleted_at
   };
 }
@@ -203,6 +203,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
       normalizeProjectStatus(body.projectStatus), body.startDate || null, body.endDate || null, body.websiteUrl || null,
       JSON.stringify(body.tags || []), body.isFeatured ? 1 : 0, user.id, now, now
     ).run();
+    if (body.isKey) await db.prepare("UPDATE projects SET is_key = 1 WHERE id = ?").bind(result.meta.last_row_id).run();
     const project = await db.prepare("SELECT * FROM projects WHERE id = ?").bind(result.meta.last_row_id).first();
     return json({ item: serialize(project) }, 201);
   }
@@ -283,6 +284,7 @@ export async function handleProjectsAdminRoute(request, env, url) {
         body.isFeatured === undefined ? project.is_featured : (body.isFeatured ? 1 : 0),
         new Date().toISOString(), id
       ).run();
+      if (body.isKey !== undefined) await db.prepare("UPDATE projects SET is_key=? WHERE id=?").bind(body.isKey ? 1 : 0, id).run();
       return json({ item: serialize(await db.prepare("SELECT * FROM projects WHERE id=? AND deleted_at IS NULL").bind(id).first()) });
     }
 
