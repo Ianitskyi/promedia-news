@@ -36,6 +36,10 @@ const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Ан�
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "Кропивницький": "Kropyvnytskyi",
+  "Доступ. Медіа": "Dostup.Media",
+  "документальне кіно": "documentary film",
+  "Ольга Черних": "Olha Chernykh",
   "релігія": "religion",
   "капелани": "chaplains",
   "комунікації": "communications",
@@ -170,6 +174,10 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "Кропивницький": "Kropyvnytskyi",
+  "Доступ. Медіа": "Dostup. Media",
+  "документальне кіно": "vesiqalı kino",
+  "Ольга Черних": "Olha Chernykh",
   "релігія": "din",
   "капелани": "kapellanlar",
   "комунікації": "kommunikatsiyalar",
