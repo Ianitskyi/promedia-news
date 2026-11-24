@@ -5,12 +5,16 @@ import { handleProjectsAdminRoute } from "./routes/projectsAdmin.js";
 import { handleProjectsPublicRoute } from "./routes/projects.js";
 import { handleAnalyticsRoute } from "./routes/analytics.js";
 import { publishDueArticles, schedulerStatus } from "./lib/scheduler.js";
+import { handleInternalUpload } from "./lib/internalUpload.js";
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
     try {
+      const uploadRes = await handleInternalUpload(request, env, url);
+      if (uploadRes) return uploadRes;
+
       const analyticsRes = await handleAnalyticsRoute(request, env, url);
       if (analyticsRes) return analyticsRes;
 
