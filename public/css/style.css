@@ -450,6 +450,31 @@ img { max-width: 100%; }
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
 }
+/* Довідка до слова: [[термін|пояснення]] (src/lib/markdown.js, public/js/promedia-terms.js). */
+.term { position: relative; display: inline; }
+.term-word {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0; margin: 0;
+  cursor: help; text-align: inherit; letter-spacing: inherit;
+  text-decoration: underline dotted var(--accent-dark);
+  text-decoration-thickness: 2px; text-underline-offset: .2em;
+  -webkit-tap-highlight-color: transparent;
+}
+.term-word:hover, .term-word[aria-expanded="true"] { background: var(--accent-tint); border-radius: .15em; }
+.term-word:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; border-radius: .15em; }
+.term-note {
+  display: none; position: absolute; left: 0; top: calc(100% + 8px); z-index: 60;
+  width: max-content; max-width: min(320px, calc(100vw - 24px));
+  padding: 12px 14px; background: var(--ink); color: #fff;
+  font-size: 15px; line-height: 1.45; font-weight: 400; font-style: normal; text-align: left;
+  border-radius: var(--radius-sm); box-shadow: var(--shadow); white-space: normal;
+}
+.term-note strong { color: #fff; }
+.term:focus-within .term-note, .term.is-open .term-note { display: block; }
+/* Із JS підказка позиціонується fixed і не обрізається таблицями та краями екрана. */
+.terms-ready .term:focus-within .term-note { display: none; }
+.terms-ready .term.is-open .term-note { display: block; position: fixed; }
+@media print { .term-note { display: inline !important; position: static !important; background: none; color: inherit; box-shadow: none; padding: 0; } .term-note::before { content: " ("; } .term-note::after { content: ")"; } }
+
 .article-related-media {
   margin-top: 32px;
   padding-top: 16px;
@@ -643,6 +668,10 @@ img { max-width: 100%; }
 .admin-editor-icon[data-editor-command="highlight"].is-active {
   background: #ffe66d;
   border-color: var(--ink);
+}
+.admin-editor-surface .admin-term {
+  text-decoration: underline dotted #d98a17; text-decoration-thickness: 2px; text-underline-offset: .2em;
+  background: #fff2dd; cursor: help;
 }
 .admin-editor-surface {
   min-height: 340px;

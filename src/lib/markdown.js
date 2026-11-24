@@ -19,11 +19,22 @@ function inline(text) {
   // зображення: ![alt](url)
   out = out.replace(/!\[([^\]]*)\]\((https?:\/\/[^\s)]+|\/img\/[^\s)]+)\)/g,
     (_, alt, url) => token('<img src="' + url + '" alt="' + alt + '" loading="lazy" />'));
+  // довідка до слова: [[термін|пояснення]] → слово з підказкою, що відкривається натиском.
+  out = out.replace(TERM_RE, (_, word, note) => token(termHtml(formatInline(word.trim()), formatInline(note.trim()))));
   // посилання: [text](url)
   out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
     (_, label, url) => token('<a href="' + url + '" target="_blank" rel="noopener">' + formatInline(label) + '</a>'));
   out = formatInline(out);
   return out.replace(new RegExp(prefix + "(\\d+)\\u0000", "g"), (_, index) => tokens[Number(index)]);
+}
+
+// Довідка (глосарій): [[ЗСУ|Збройні сили України]]. Пояснення — короткий текст
+// (можна **жирний**, *курсив*), без посилань і квадратних дужок.
+// У таблиці риску всередині довідки треба екранувати: [[ЗСУ\\|пояснення]] — адмінка робить це сама.
+export const TERM_RE = /\[\[([^\[\]|\n]+?)\|([^\[\]\n]+?)\]\]/g;
+function termHtml(word, note) {
+  return '<span class="term"><button type="button" class="term-word" aria-expanded="false">' + word +
+    '</button><span class="term-note" role="tooltip">' + note + "</span></span>";
 }
 
 // Підпис або коротка примітка: той самий безпечний inline-рендер.
@@ -235,6 +246,7 @@ export function markdownToPlainText(md, maxLength) {
     .replace(/!\[[^\]]*\]\([^)]+\)/g, "")
     .replace(/\[youtube\]\([^)]+\)/gi, "")
     .replace(/\[audio\]\([^)]+\)/gi, "")
+    .replace(TERM_RE, "$1")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/==([^\n]+?)==/g, "$1")
     .replace(/[#>*_`]/g, "")
