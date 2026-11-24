@@ -1,0 +1,65 @@
+{
+  "slug": "olha-myrovych",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Ольга Мирович",
+    "en": "Olha Myrovych"
+  },
+  "sort": {
+    "uk": "Мирович Ольга",
+    "en": "Myrovych Olha"
+  },
+  "aliases": [
+    "Оля Мирович",
+    "Ola Myrovych"
+  ],
+  "role": {
+    "uk": "керівниця ГО «Львівський медіафорум»",
+    "en": "Head of the NGO Lviv Media Forum"
+  },
+  "summary": {
+    "uk": "Керівниця громадської організації «Львівський медіафорум», яка проводить щорічну міжнародну медіаконференцію LMF у Львові.",
+    "en": "Head of the Ukrainian NGO Lviv Media Forum, which runs the annual international LMF media conference in Lviv."
+  },
+  "bio": {
+    "uk": "Ольга Мирович очолює громадську організацію «Львівський медіафорум», засновану 2013 року. Організація проводить у Львові щорічну міжнародну медіаконференцію LMF і підтримує українські медіа.\n\nЯк керівниця організації пані Ольга традиційно відкриває конференцію промовою — зокрема, на IX форумі 2023 року та на ювілейному X форумі 2024 року."
+  },
+  "facts": [
+    [
+      "Організація",
+      "ГО «Львівський медіафорум»"
+    ],
+    [
+      "Посада",
+      "керівниця"
+    ]
+  ],
+  "photo": {
+    "url": "https://news.promedia.report/img/news/lmf-2027-olha-myrovych.jpg",
+    "caption": {
+      "uk": "Фото: Львівський медіафорум.",
+      "en": "Photo: Lviv Media Forum."
+    },
+    "article": "lvivskyi-mediaforum-vidkryv-reiestratsiiu-na-lmf-2027"
+  },
+  "updated": "2026-11-24",
+  "sources": [
+    {
+      "title": "Радіо Свобода: У Львові розпочався медіафорум (2023)",
+      "url": "https://www.radiosvoboda.org/a/news-mediaforum-lviv-zabuzhko/32427955.html"
+    },
+    {
+      "title": "Kyiv Post: We Need All Our Courage to Seek Understanding (speech, 2024)",
+      "url": "https://www.kyivpost.com/post/32775"
+    },
+    {
+      "title": "Укр.нет / Varosh: Як Львівський медіафорум об'єднує журналістів",
+      "url": "https://www.ukr.net/news/details/lviv/99152811.html"
+    },
+    {
+      "title": "ПроМедіа: Львівський медіафорум відкрив реєстрацію на LMF 2027",
+      "url": "https://news.promedia.report/article/lvivskyi-mediaforum-vidkryv-reiestratsiiu-na-lmf-2027"
+    }
+  ]
+}

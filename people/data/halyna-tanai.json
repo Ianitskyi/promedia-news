@@ -1,0 +1,50 @@
+{
+  "slug": "halyna-tanai",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Галина Танай",
+    "en": "Halyna Tanai"
+  },
+  "sort": {
+    "uk": "Танай Галина",
+    "en": "Tanai Halyna"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "операційна директорка Львівського медіафоруму",
+    "en": "Operations Director, Lviv Media Forum"
+  },
+  "summary": {
+    "uk": "Операційна директорка громадської організації «Львівський медіафорум», членкиня програмної ради конференції LMF 2027.",
+    "en": "Operations Director of the Ukrainian NGO Lviv Media Forum and a member of the LMF 2027 conference Programme Board."
+  },
+  "bio": {
+    "uk": "Галина Танай — операційна директорка громадської організації «Львівський медіафорум», яка проводить щорічну міжнародну медіаконференцію у Львові. На цій посаді пані Галину називали, зокрема, під час підготовки ювілейного X Львівського медіафоруму у 2024 році.\n\nУ листопаді 2026 року Львівський медіафорум оголосив, що пані Галина входить до програмної ради конференції LMF 2027 разом із колегами з організації та зовнішніми медіаекспертами."
+  },
+  "facts": [
+    [
+      "Організація",
+      "ГО «Львівський медіафорум»"
+    ],
+    [
+      "Посада",
+      "операційна директорка"
+    ]
+  ],
+  "updated": "2026-11-24",
+  "sources": [
+    {
+      "title": "Вікна: Чи можлива глобальна солідарність? Важливі дискусії на Львівському медіафорумі",
+      "url": "https://vikna.tv/dlia-tebe/robota/chy-mozhlyva-globalna-solidarnist-vazhlyvi-dyskusiyi-na-lvivskomu-mediaforumi-ta-yak-doluchytys-onlajn/"
+    },
+    {
+      "title": "Львівський медіафорум: фокусна тема та відкритий конкурс партнерств LMF 2027",
+      "url": "https://lvivmediaforum.com/page/the-lviv-media-forum-announces-the-focus-theme-and-partners-open-call-for-lmf-2027-ua"
+    },
+    {
+      "title": "ПроМедіа: Львівський медіафорум відкрив реєстрацію на LMF 2027",
+      "url": "https://news.promedia.report/article/lvivskyi-mediaforum-vidkryv-reiestratsiiu-na-lmf-2027"
+    }
+  ]
+}

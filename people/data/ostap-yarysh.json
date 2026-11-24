@@ -1,0 +1,58 @@
+{
+  "slug": "ostap-yarysh",
+  "group": "ua",
+  "country": "Україна / США",
+  "name": {
+    "uk": "Остап Яриш",
+    "en": "Ostap Yarysh"
+  },
+  "sort": {
+    "uk": "Яриш Остап",
+    "en": "Yarysh Ostap"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "журналіст, медійний радник Razom for Ukraine",
+    "en": "Journalist, Media Advisor at Razom for Ukraine"
+  },
+  "summary": {
+    "uk": "Український журналіст у Вашингтоні, медійний радник команди адвокації американської організації Razom for Ukraine, автор книжки «Це Америка».",
+    "en": "Ukrainian journalist based in Washington, D.C., Media Advisor on the Advocacy team of the US non-profit Razom for Ukraine, author of the book “This is America”."
+  },
+  "bio": {
+    "uk": "Остап Яриш — український журналіст, який живе й працює у Вашингтоні. 2019 року переїхав до США, щоб працювати в українській службі «Голосу Америки» (Voice of America). Автор книжки для українських читачів «Це Америка. Неголлівудські історії», яку 2021 року видало львівське видавництво «Човен».\n\nНині пан Остап — медійний радник команди адвокації американської неприбуткової організації Razom for Ukraine, пише колонки для The Kyiv Independent.\n\nУ листопаді 2026 року Львівський медіафорум назвав пана Остапа серед зовнішніх експертів програмної ради конференції LMF 2027."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Razom for Ukraine"
+    ],
+    [
+      "Посада",
+      "медійний радник (Media Advisor)"
+    ],
+    [
+      "Місто",
+      "Вашингтон"
+    ]
+  ],
+  "updated": "2026-11-24",
+  "sources": [
+    {
+      "title": "The Kyiv Independent: Ostap Yarysh, author page",
+      "url": "https://kyivindependent.com/author/ostap-yarysh/"
+    },
+    {
+      "title": "Krynytsya podcast: Ukrainian journalist Ostap Yarysh offers insight on American life",
+      "url": "https://www.castfox.net/podcast/krynytsya-the-well-your-wellspring-for-ukraine-and-ukrainians-226924/episode/ukrainian-journalist-ostap-yarysh-offers-insight-on-american-life-1461345"
+    },
+    {
+      "title": "Razom for Ukraine: Advocacy",
+      "url": "https://www.razomforukraine.org/category/project-activity/community-project-activity/"
+    },
+    {
+      "title": "ПроМедіа: Львівський медіафорум відкрив реєстрацію на LMF 2027",
+      "url": "https://news.promedia.report/article/lvivskyi-mediaforum-vidkryv-reiestratsiiu-na-lmf-2027"
+    }
+  ]
+}

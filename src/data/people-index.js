@@ -639,6 +639,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "halyna-tanai",
+    "tag": "Галина Танай",
+    "aliases": [],
+    "name": {
+      "uk": "Галина Танай",
+      "en": "Halyna Tanai"
+    },
+    "role": {
+      "uk": "операційна директорка Львівського медіафоруму",
+      "en": "Operations Director, Lviv Media Forum"
+    },
+    "summary": {
+      "uk": "Операційна директорка громадської організації «Львівський медіафорум», членкиня програмної ради конференції LMF 2027.",
+      "en": "Operations Director of the Ukrainian NGO Lviv Media Forum and a member of the LMF 2027 conference Programme Board."
+    }
+  },
+  {
     "slug": "henry-crabb-robinson",
     "tag": "Генрі Крабб Робінсон",
     "aliases": [],
@@ -1817,6 +1834,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "olha-myrovych",
+    "tag": "Ольга Мирович",
+    "aliases": [
+      "Оля Мирович",
+      "Ola Myrovych"
+    ],
+    "name": {
+      "uk": "Ольга Мирович",
+      "en": "Olha Myrovych"
+    },
+    "role": {
+      "uk": "керівниця ГО «Львівський медіафорум»",
+      "en": "Head of the NGO Lviv Media Forum"
+    },
+    "summary": {
+      "uk": "Керівниця громадської організації «Львівський медіафорум», яка проводить щорічну міжнародну медіаконференцію LMF у Львові.",
+      "en": "Head of the Ukrainian NGO Lviv Media Forum, which runs the annual international LMF media conference in Lviv."
+    }
+  },
+  {
     "slug": "olha-rudenko",
     "tag": "Ольга Руденко",
     "aliases": [
@@ -1833,6 +1870,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює англомовне видання The Kyiv Independent; лауреатка Премії Ґонґадзе 2026.",
       "en": "Editor-in-chief of The Kyiv Independent; 2026 Gongadze Prize laureate."
+    }
+  },
+  {
+    "slug": "ostap-yarysh",
+    "tag": "Остап Яриш",
+    "aliases": [],
+    "name": {
+      "uk": "Остап Яриш",
+      "en": "Ostap Yarysh"
+    },
+    "role": {
+      "uk": "журналіст, медійний радник Razom for Ukraine",
+      "en": "Journalist, Media Advisor at Razom for Ukraine"
+    },
+    "summary": {
+      "uk": "Український журналіст у Вашингтоні, медійний радник команди адвокації американської організації Razom for Ukraine, автор книжки «Це Америка».",
+      "en": "Ukrainian journalist based in Washington, D.C., Media Advisor on the Advocacy team of the US non-profit Razom for Ukraine, author of the book “This is America”."
     }
   },
   {
