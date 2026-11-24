@@ -1,0 +1,51 @@
+{
+  "slug": "antonina-torbich",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Антоніна Торбіч",
+    "en": "Antonina Torbich"
+  },
+  "sort": {
+    "uk": "Торбіч Антоніна",
+    "en": "Torbich Antonina"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "директорка «Четвертої влади» (Рівне)",
+    "en": "Director of Chetverta Vlada (Rivne)"
+  },
+  "summary": {
+    "uk": "Директорка рівненської агенції журналістських розслідувань «Четверта влада».",
+    "en": "Director of Chetverta Vlada, an investigative journalism agency in Rivne."
+  },
+  "bio": {
+    "uk": "Антоніна Торбіч — директорка агенції журналістських розслідувань «Четверта влада» в Рівному. У листопаді 2026 року, за даними ІМІ, отримала у Facebook погрози вбивством; за її словами, це четвертий випадок тиску на редакцію за рік.",
+    "en": "Antonina Torbich is director of Chetverta Vlada, an investigative journalism agency in Rivne. In November 2026, according to IMI, she received death threats on Facebook; she said it was the fourth case of pressure on the newsroom that year."
+  },
+  "facts": [
+    [
+      "Посада",
+      "директорка «Четвертої влади» (Рівне)"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Торбіч",
+      "Torbich"
+    ]
+  },
+  "sources": [
+    {
+      "title": "ІМІ: Головред і директорка «Четвертої влади» отримали погрози вбивством",
+      "url": "https://imi.org.ua/news/golovred-i-dyrektorka-chetvertoyi-vlady-otrymaly-pogrozy-vbyvstvom"
+    },
+    {
+      "title": "Головред і директорка рівненської «Четвертої влади» отримали погрози вбивством",
+      "url": "https://news.promedia.report/article/holovred-i-dyrektorka-chetvertoi-vlady-otrymaly-pohrozy-vbyvstvom"
+    }
+  ],
+  "updated": "2026-11-24"
+}

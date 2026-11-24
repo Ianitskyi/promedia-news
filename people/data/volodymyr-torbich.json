@@ -1,0 +1,59 @@
+{
+  "slug": "volodymyr-torbich",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Володимир Торбіч",
+    "en": "Volodymyr Torbich"
+  },
+  "sort": {
+    "uk": "Торбіч Володимир",
+    "en": "Torbich Volodymyr"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "головний редактор «Четвертої влади» (Рівне)",
+    "en": "Editor-in-chief of Chetverta Vlada (Rivne)"
+  },
+  "summary": {
+    "uk": "Головний редактор рівненської агенції журналістських розслідувань «Четверта влада».",
+    "en": "Editor-in-chief of Chetverta Vlada, an investigative journalism agency in Rivne."
+  },
+  "bio": {
+    "uk": "Володимир Торбіч — головний редактор агенції журналістських розслідувань «Четверта влада» в Рівному. Редакція неодноразово писала про роботу територіальних центрів комплектування, зокрема про зарплати їхніх керівників.\n\nУ жовтні 2026 року Рівненський окружний адміністративний суд визнав протиправним оголошення його в розшук міським ТЦК, за даними ІМІ. Восени 2026 року ІМІ двічі повідомляв про погрози йому: 29 вересня — у голосових повідомленнях, 21 листопада — у повідомленнях у Facebook.",
+    "en": "Volodymyr Torbich is editor-in-chief of Chetverta Vlada, an investigative journalism agency in Rivne. The newsroom has repeatedly reported on military recruitment centres, including the salaries of their heads.\n\nIn October 2026 the Rivne District Administrative Court ruled unlawful the city recruitment centre's decision to put him on a wanted list, according to IMI. In autumn 2026 IMI twice reported threats against him: in voice messages on 29 September and in Facebook messages on 21 November."
+  },
+  "facts": [
+    [
+      "Посада",
+      "головний редактор «Четвертої влади» (Рівне)"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Торбіч",
+      "Torbich"
+    ]
+  },
+  "sources": [
+    {
+      "title": "ІМІ: Головред і директорка «Четвертої влади» отримали погрози вбивством",
+      "url": "https://imi.org.ua/news/golovred-i-dyrektorka-chetvertoyi-vlady-otrymaly-pogrozy-vbyvstvom"
+    },
+    {
+      "title": "ІМІ: Головреду «Четвертої влади» Володимиру Торбічу погрожують убивством",
+      "url": "https://imi.org.ua/news/golovredu-chetvertoyi-vlady-volodymyru-torbichu-pogrozhuyut-ubyvstvom"
+    },
+    {
+      "title": "ІМІ: Суд визнав незаконним розшук головреда «Четвертої влади» Володимира Торбіча",
+      "url": "https://imi.org.ua/news/sud-vyznav-nezakonnym-rozshuk-golovreda-chetvertoyi-vlady-volodymyra-torbicha"
+    },
+    {
+      "title": "Головред і директорка рівненської «Четвертої влади» отримали погрози вбивством",
+      "url": "https://news.promedia.report/article/holovred-i-dyrektorka-chetvertoi-vlady-otrymaly-pohrozy-vbyvstvom"
+    }
+  ],
+  "updated": "2026-11-24"
+}

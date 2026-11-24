@@ -235,6 +235,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "antonina-torbich",
+    "tag": "Антоніна Торбіч",
+    "aliases": [],
+    "name": {
+      "uk": "Антоніна Торбіч",
+      "en": "Antonina Torbich"
+    },
+    "role": {
+      "uk": "директорка «Четвертої влади» (Рівне)",
+      "en": "Director of Chetverta Vlada (Rivne)"
+    },
+    "summary": {
+      "uk": "Директорка рівненської агенції журналістських розслідувань «Четверта влада».",
+      "en": "Director of Chetverta Vlada, an investigative journalism agency in Rivne."
+    }
+  },
+  {
     "slug": "arman-soldin",
     "tag": "Арман Солдін",
     "aliases": [],
@@ -565,6 +582,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Редактор щоденної газети «Слава Севастополя», убитий вибухом у 1995 році. Злочин досі не розкрито.",
       "en": "Editor of the Sevastopol daily Slava Sevastopolya, killed by a bomb in 1995. The murder remains unsolved."
+    }
+  },
+  {
+    "slug": "volodymyr-torbich",
+    "tag": "Володимир Торбіч",
+    "aliases": [],
+    "name": {
+      "uk": "Володимир Торбіч",
+      "en": "Volodymyr Torbich"
+    },
+    "role": {
+      "uk": "головний редактор «Четвертої влади» (Рівне)",
+      "en": "Editor-in-chief of Chetverta Vlada (Rivne)"
+    },
+    "summary": {
+      "uk": "Головний редактор рівненської агенції журналістських розслідувань «Четверта влада».",
+      "en": "Editor-in-chief of Chetverta Vlada, an investigative journalism agency in Rivne."
     }
   },
   {
