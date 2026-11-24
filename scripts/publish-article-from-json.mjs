@@ -31,6 +31,44 @@ function d1(sqlOrFile, isFile = false) {
   return data[0].results || [];
 }
 const q = value => value == null ? 'NULL' : `'${String(value).replace(/'/g, "''")}'`;
+
+// Завантаження фото в R2. Спершу напряму (wrangler), а якщо ключ Cloudflare не має права
+// писати в R2 — через службовий маршрут сайту /api/internal/r2-put з одноразовим токеном,
+// який ми кладемо в D1 (див. src/lib/internalUpload.js). Повертає /img-storage/… або null.
+const SITE = process.env.NEWS_SITE_URL || 'https://news.promedia.report';
+let uploadToken = null;
+async function uploadToR2(file, key, contentType) {
+  try {
+    wrangler(['r2', 'object', 'put', `${BUCKET}/${key}`, '--file', file, '--content-type', contentType, '--remote']);
+    return `/img-storage/${key}`;
+  } catch {
+    console.log('R2 direct upload not permitted; uploading through the site.');
+  }
+  try {
+    if (!uploadToken) {
+      const {randomBytes, createHash} = await import('node:crypto');
+      uploadToken = randomBytes(32).toString('hex');
+      const hash = createHash('sha256').update(uploadToken).digest('hex');
+      const expires = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+      const sqlFile = join(mkdtempSync(join(tmpdir(), 'tok-')), 'token.sql');
+      writeFileSync(sqlFile, `CREATE TABLE IF NOT EXISTS upload_tokens (token_hash TEXT PRIMARY KEY, expires_at TEXT NOT NULL);
+INSERT INTO upload_tokens (token_hash, expires_at) VALUES (${q(hash)}, ${q(expires)});`);
+      d1(sqlFile, true);
+    }
+    const res = await fetch(`${SITE}/api/internal/r2-put?key=${encodeURIComponent(key)}`, {
+      method: 'POST',
+      headers: {Authorization: `Bearer ${uploadToken}`, 'Content-Type': contentType, 'User-Agent': UA},
+      body: readFileSync(file)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || !data.ok) throw Error(`HTTP ${res.status} ${data.error || ''}`);
+    console.log(`Uploaded ${key} through the site (${data.bytes} bytes).`);
+    return data.url;
+  } catch (e) {
+    console.log(`::warning::Upload through the site failed: ${e.message}`);
+    return null;
+  }
+}
 const stripHtml = html => String(html || '').replace(/<[^>]+>/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/\s+/g, ' ').trim();
 
 async function commonsInfo(file, width) {
@@ -145,12 +183,10 @@ for (const f of files) {
     const tmp = join(mkdtempSync(join(tmpdir(), 'cover-')), 'cover.jpg');
     writeFileSync(tmp, Buffer.from(await img.arrayBuffer()));
     const key = `articles/${a.slug.slice(0, 60)}-${Date.now()}.jpg`;
-    try {
-      wrangler(['r2', 'object', 'put', `${BUCKET}/${key}`, '--file', tmp, '--content-type', 'image/jpeg', '--remote']);
-      coverUrl = `/img-storage/${key}`;
-    } catch {
-      // The deployment token may lack R2 write access; Wikimedia allows hotlinking its thumbnails.
-      console.log('::warning::R2 upload not permitted; using the Wikimedia Commons thumbnail URL.');
+    coverUrl = await uploadToR2(tmp, key, 'image/jpeg');
+    if (!coverUrl) {
+      // Wikimedia allows hotlinking its thumbnails.
+      console.log('::warning::R2 upload failed both ways; using the Wikimedia Commons thumbnail URL.');
       coverUrl = credit.thumb;
     }
   }
