@@ -36,6 +36,10 @@ const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Ан�
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "релігія": "religion",
+  "капелани": "chaplains",
+  "комунікації": "communications",
+  "фіксери": "fixers",
   "Атлас медіа": "Media Atlas",
   "реєстр медіа": "media register",
   "Нацрада": "National Council on Television and Radio",
@@ -166,6 +170,10 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "релігія": "din",
+  "капелани": "kapellanlar",
+  "комунікації": "kommunikatsiyalar",
+  "фіксери": "fikserler",
   "Атлас медіа": "Medya Atlası",
   "реєстр медіа": "medya reyestri",
   "Нацрада": "Milliy Televideniye ve Radio Şurası",
