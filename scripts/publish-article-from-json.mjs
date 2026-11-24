@@ -17,6 +17,10 @@ const DB = 'promedia-news';
 const BUCKET = 'promedia-news-images';
 const DIR = process.argv[2] || 'content/articles';
 const UA = 'ProMediaNewsPublisher/1.0 (https://news.promedia.report)';
+// Сайт показує обкладинку до 1200 px завширшки; для екранів Retina потрібно вдвічі більше.
+// Якщо оригінал менший, Вікісховище віддає його без збільшення.
+const COVER_WIDTH = 2400;
+const COVER_MIN_WIDTH = 1200;
 const SCHEDULE_TABLE_SQL = 'CREATE TABLE IF NOT EXISTS scheduled_publications (slug TEXT PRIMARY KEY, publish_at TEXT NOT NULL, done INTEGER NOT NULL DEFAULT 0, published_at_run TEXT)';
 
 function wrangler(args) {
@@ -74,7 +78,7 @@ const stripHtml = html => String(html || '').replace(/<[^>]+>/g, ' ').replace(/&
 async function commonsInfo(file, width) {
   const url = 'https://commons.wikimedia.org/w/api.php?' + new URLSearchParams({
     action: 'query', format: 'json', prop: 'imageinfo', titles: 'File:' + file,
-    iiprop: 'url|extmetadata|mime', iiurlwidth: String(width || 1600)
+    iiprop: 'url|extmetadata|mime|size', iiurlwidth: String(width || COVER_WIDTH)
   });
   const res = await fetch(url, {headers: {'User-Agent': UA}});
   if (!res.ok) throw Error('Commons API ' + res.status);
@@ -89,7 +93,10 @@ async function commonsInfo(file, width) {
   if (!/^(CC BY|CC0|Public domain)/i.test(licence) || /NC|ND/.test(licence)) {
     throw Error(`Licence "${licence}" is not allowed for ${file}`);
   }
-  return {author, licence, licenceUrl, thumb: info.thumburl || info.url, mime: info.mime, page: info.descriptionurl};
+  if (info.width && info.width < COVER_MIN_WIDTH) {
+    console.log(`::warning::${file} is only ${info.width}px wide; the cover may look blurry on large screens.`);
+  }
+  return {author, licence, licenceUrl, thumb: info.thumburl || info.url, mime: info.mime, page: info.descriptionurl, width: info.width};
 }
 
 function fillCredit(text, credit) {
