@@ -10,6 +10,10 @@
 <meta property="og:image" content="https://about.promedia.report/assets/og-about.png?v=2">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta property="og:url" content="https://about.promedia.report/">
+<link rel="canonical" href="https://about.promedia.report/">
+<link rel="alternate" hreflang="uk" href="https://about.promedia.report/">
+<link rel="alternate" hreflang="en" href="https://about.promedia.report/en/">
+<link rel="alternate" hreflang="crh" href="https://about.promedia.report/crh/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://about.promedia.report/assets/og-about.png?v=2">
 <meta name="robots" content="noindex">
@@ -192,7 +196,7 @@ return '<a class="pm-hp-card" href="'+B+(lang==="uk"?"":"/"+lang)+'/project/'+en
 
 <section id="history" style="padding-top:0"><div class="wrap">
  <h2 class="eyebrow">Історія</h2>
- <ol class="tl" id="pm-tl">
+ <ol class="tl" id="pm-tl" data-lang="uk" data-live="триває">
   <li class="key" data-date="2019-01-01"><time>2019</time><div><h3>Розсилка ProMedia Report</h3><p>Журналісти Андрій Яніцький та Анна Родічкіна запускають розсилку про медіа та комунікації — з неї починається бренд ProMedia.</p></div></li>
   <li data-date="2021-01-01"><time>2021–2022</time><div><h3>Відеопроєкт «Дедлайн» на YouTube</h3><p>На основі розсилки виходить відеопроєкт про медіа «Дедлайн» на YouTube.</p></div></li>
   <li class="key" data-date="2025-06-01"><time>Літо 2025</time><div><h3>Громадська організація «ПроМедіа»</h3><p>До Андрія та Анни приєднуються Катерина Грищенко й Анастасія Сімонова. Четверо однодумців реєструють громадську організацію.</p></div></li>
@@ -201,14 +205,15 @@ return '<a class="pm-hp-card" href="'+B+(lang==="uk"?"":"/"+lang)+'/project/'+en
  </ol>
 </div></section>
 
-<script>(function(){var tl=document.getElementById("pm-tl");if(!tl||!window.fetch)return;var B="https://projects.promedia.report";
+<script>(function(){var tl=document.getElementById("pm-tl");if(!tl||!window.fetch)return;var B="https://projects.promedia.report",lang=tl.dataset.lang||"uk",pre=lang==="uk"?"":"/"+lang;
+function pick(p,k){return lang==="en"?(p[k+"En"]||p[k]):lang==="crh"?(p[k+"Crh"]||p[k]):p[k]}
 function e(s){return String(s||"").replace(/[&<>"']/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
 function d(iso){var p=String(iso).split("-");return p[2]+"."+p[1]+"."+p[0]}
 fetch(B+"/api/projects?featured=0&limit=100").then(function(r){return r.ok?r.json():Promise.reject()}).then(function(data){var it=((data&&data.items)||[]).filter(function(p){return /^\d{4}-\d{2}-\d{2}$/.test(p.startDate||"")});if(!it.length)return;
 var rows=[].slice.call(tl.querySelectorAll("li[data-date]"));
-it.forEach(function(p){var li=document.createElement("li"),url=B+"/project/"+encodeURIComponent(p.slug),live=p.projectStatus==="active"?'<span class="tl-live">триває</span>':"";li.setAttribute("data-date",p.startDate);
-if(p.isKey){li.className="imp";li.innerHTML='<time>'+d(p.startDate)+'</time><div><h3><a href="'+e(url)+'">'+e(p.title)+'</a>'+live+'</h3>'+(p.excerpt?'<p>'+e(p.excerpt)+'</p>':'')+'</div>'}
-else{li.className="minor";li.innerHTML='<time>'+d(p.startDate)+'</time><div><a class="tl-minor" href="'+e(url)+'">'+e(p.title)+'</a>'+live+'</div>'}rows.push(li)});
+it.forEach(function(p){var li=document.createElement("li"),url=B+pre+"/project/"+encodeURIComponent(p.slug),live=p.projectStatus==="active"?'<span class="tl-live">'+e(tl.dataset.live)+'</span>':"";li.setAttribute("data-date",p.startDate);
+if(p.isKey){li.className="imp";li.innerHTML='<time>'+d(p.startDate)+'</time><div><h3><a href="'+e(url)+'">'+e(pick(p,"title"))+'</a>'+live+'</h3>'+(pick(p,"excerpt")?'<p>'+e(pick(p,"excerpt"))+'</p>':'')+'</div>'}
+else{li.className="minor";li.innerHTML='<time>'+d(p.startDate)+'</time><div><a class="tl-minor" href="'+e(url)+'">'+e(pick(p,"title"))+'</a>'+live+'</div>'}rows.push(li)});
 rows.sort(function(a,b){return a.getAttribute("data-date")<b.getAttribute("data-date")?-1:1});
 [].slice.call(tl.querySelectorAll(".tl-fallback")).forEach(function(n){n.remove()});rows.forEach(function(n){tl.appendChild(n)})}).catch(function(){})})();</script>
 <section id="team" style="padding-top:0"><div class="wrap">
