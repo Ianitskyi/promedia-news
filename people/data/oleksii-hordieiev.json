@@ -31,8 +31,9 @@
     ]
   ],
   "photo": {
-    "article": "u-kyievi-prezentuiut-knyhu-zhurnalista-oleksiia-hordieieva-relihiia-na-viini",
-    "articleIsPortrait": false
+    "url": "https://people.promedia.report/img/oleksii-hordieiev.jpg",
+    "sourceName": "Facebook Олексія Гордєєва",
+    "sourceUrl": "https://www.facebook.com/alexey.gordyeyev"
   },
   "sources": [
     {
@@ -44,6 +45,6 @@
       "url": "https://news.promedia.report/article/u-kyievi-prezentuiut-knyhu-zhurnalista-oleksiia-hordieieva-relihiia-na-viini"
     }
   ],
-  "updated": "2026-11-17",
+  "updated": "2026-11-24",
   "kind": "journalist"
 }

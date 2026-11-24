@@ -33,7 +33,11 @@
       "інтерв'ю"
     ]
   ],
-  "photo": {},
+  "photo": {
+    "url": "https://people.promedia.report/img/sofiia-dubik.jpg",
+    "sourceName": "ГО «ПроМедіа»",
+    "sourceUrl": "https://about.promedia.report/"
+  },
   "sources": [
     {
       "title": "ПроМедіа: Як Вікторія Губарева пише про довкілля та рятує білого тигра на Київщині (20.11.2026)",
@@ -48,5 +52,5 @@
       "url": "https://news.promedia.report/article/sofiia-skyba-dlia-rehionalnykh-media-spromozhnist-do-zmin-tse-pytannia-vyzhyvann"
     }
   ],
-  "updated": "2026-11-20"
+  "updated": "2026-11-24"
 }
