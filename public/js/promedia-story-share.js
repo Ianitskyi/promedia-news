@@ -77,6 +77,27 @@
       var dw = img.naturalWidth * scale, dh = img.naturalHeight * scale;
       ctx.save();
       ctx.beginPath(); ctx.rect(0, top, W, photoH); ctx.clip();
+      // Широкі обкладинки (16:9 і ширші — часто банери з текстом і логотипом) обрізання
+      // «рубало» з боків (25.11.2026). Якщо в кадр влізло б менше 58% ширини, показуємо
+      // зображення повністю на всю ширину, а порожнє місце довкола заповнюємо тією самою
+      // картинкою, розмитою й притемненою у фірмовий синій.
+      if (W / dw < 0.58) {
+        try { ctx.filter = "blur(36px) brightness(0.55)"; } catch (e) {}
+        ctx.drawImage(img, W / 2 - dw / 2, top + photoH / 2 - dh / 2, dw, dh);
+        try { ctx.filter = "none"; } catch (e) {}
+        ctx.fillStyle = "rgba(13,12,92,0.35)";
+        ctx.fillRect(0, top, W, photoH);
+        var fw = W, fh = img.naturalHeight * (W / img.naturalWidth);
+        var fTop = top + 180 + Math.max(0, (photoH - 180 - fh) * 0.45);
+        ctx.drawImage(img, 0, fTop, fw, fh);
+        ctx.restore();
+        var gw = ctx.createLinearGradient(0, top, 0, top + 180);
+        gw.addColorStop(0, "rgba(13,12,92,1)");
+        gw.addColorStop(1, "rgba(13,12,92,0)");
+        ctx.fillStyle = gw;
+        ctx.fillRect(0, top, W, 180);
+        return c;
+      }
       // Точка фокусу (з адмінки; інакше верхня третина — на портретах там обличчя)
       // стає в центрі видимої частини фото, нижче градієнта, а не під ним.
       var f = String(focus || "").split(" ").map(Number);
