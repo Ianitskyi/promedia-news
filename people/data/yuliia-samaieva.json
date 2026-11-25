@@ -1,0 +1,52 @@
+{
+  "slug": "yuliia-samaieva",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Юлія Самаєва",
+    "en": "Yuliia Samaieva"
+  },
+  "sort": {
+    "uk": "Самаєва Юлія",
+    "en": "Samaieva Yuliia"
+  },
+  "role": {
+    "uk": "редакторка відділу економіки «Дзеркала тижня» (ZN.UA)",
+    "en": "Economics editor at Dzerkalo Tyzhnia (ZN.UA)"
+  },
+  "summary": {
+    "uk": "Економічна журналістка з 20-річним досвідом; пише про співпрацю України з МВФ і Світовим банком, бюджет, банки й державну власність.",
+    "en": "Economic journalist with 20 years of experience; writes about Ukraine's cooperation with the IMF and World Bank, the budget, banking and state property."
+  },
+  "bio": {
+    "uk": "Юлія Самаєва — редакторка відділу економіки видання «Дзеркало тижня» (ZN.UA), має 20 років досвіду в журналістиці. Пише про співпрацю України з Міжнародним валютним фондом і Світовим банком, реформи монетарної та фіскальної політики, державне управління, банки й державну власність.\n\nАвторка розслідувань про економіку й фінанси, зокрема про шахрайство в ПриватБанку 2009–2014 років і судові спори колишніх власників щодо його націоналізації. Брала інтерв'ю в керівників держав, міжнародних фінансових інституцій і посольств в Україні.\n\nУ листопаді 2026 року разом із Глібом Вишлінським вела воркшоп з економічного сторітелінгу й фактчекінгу в Школі економічної журналістики Центру Мєрошевського у Львові.",
+    "en": "Yuliia Samaieva is economics editor at the Ukrainian outlet Dzerkalo Tyzhnia (ZN.UA), with 20 years of experience in journalism. She covers Ukraine's cooperation with the International Monetary Fund and the World Bank, monetary and fiscal policy reforms, public administration, banking and state property.\n\nShe has written investigations into economics and finance, including the PrivatBank fraud of 2009–2014 and the court battles by its former owners over its nationalisation. She has interviewed heads of state and leaders of international financial institutions and foreign embassies in Ukraine.\n\nIn November 2026, together with Hlib Vyshlinskyi, she ran a workshop on economic storytelling and fact-checking at the Mieroszewski Centre's School of Economic Journalism in Lviv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "«Дзеркало тижня» (ZN.UA)"
+    ],
+    [
+      "Посада",
+      "редакторка відділу економіки"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "ZN.UA: Yuliya Samaeva (сторінка авторки)",
+      "url": "https://zn.ua/eng/authors/yuliya-samaeva"
+    },
+    {
+      "title": "ProMedia: У Львові стартувала Школа економічної журналістики Центру Мєрошевського",
+      "url": "https://news.promedia.report/article/u-lvovi-startuvala-shkola-ekonomichnoi-zhurnalistyky-tsentru-mieroshevskoho"
+    }
+  ],
+  "updated": "2026-11-25",
+  "aliases": [
+    "Юлія Самаева",
+    "Yuliya Samaeva",
+    "Юлия Самаева"
+  ]
+}

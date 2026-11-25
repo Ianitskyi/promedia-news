@@ -889,6 +889,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "hlib-vyshlinskyi",
+    "tag": "Гліб Вишлінський",
+    "aliases": [
+      "Hlib Vyshlinsky",
+      "Глеб Вышлинский"
+    ],
+    "name": {
+      "uk": "Гліб Вишлінський",
+      "en": "Hlib Vyshlinskyi"
+    },
+    "role": {
+      "uk": "виконавчий директор Центру економічної стратегії",
+      "en": "Executive director of the Centre for Economic Strategy"
+    },
+    "summary": {
+      "uk": "Економіст, який починав як економічний журналіст і редактор; з 2015 року керує аналітичним Центром економічної стратегії, у 2021–2026 роках очолював правління Громадського телебачення.",
+      "en": "Economist who began as an economic journalist and editor; has led the Centre for Economic Strategy think tank since 2015 and chaired the board of Hromadske TV in 2021–2026."
+    }
+  },
+  {
     "slug": "gerda-taro",
     "tag": "Ґерда Таро",
     "aliases": [
@@ -2130,6 +2150,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "olena-hrazhdan",
+    "tag": "Олена Граждан",
+    "aliases": [
+      "Olena Hrazhdan"
+    ],
+    "name": {
+      "uk": "Олена Граждан",
+      "en": "Olena Hrazhdan"
+    },
+    "role": {
+      "uk": "бізнес-кореспондентка Kyiv Post",
+      "en": "Business reporter at Kyiv Post"
+    },
+    "summary": {
+      "uk": "Журналістка англомовного видання Kyiv Post, яка пише про економіку України, зокрема про банки, фінанси, монетарну й фіскальну політику.",
+      "en": "Reporter at the English-language Kyiv Post covering Ukraine's economy, with a focus on banking, finance, and monetary and fiscal policy."
+    }
+  },
+  {
     "slug": "olena-hubanova",
     "tag": "Олена Губанова",
     "aliases": [
@@ -2775,6 +2814,27 @@ export const PEOPLE = [
     "summary": {
       "uk": "Журналістка й медіаменеджерка, головна редакторка сайту NV, раніше вісім років очолювала сайт «Корреспондент.net».",
       "en": "Journalist and media manager, editor-in-chief of the NV website; previously led Korrespondent.net for eight years."
+    }
+  },
+  {
+    "slug": "yuliia-samaieva",
+    "tag": "Юлія Самаєва",
+    "aliases": [
+      "Юлія Самаева",
+      "Yuliya Samaeva",
+      "Юлия Самаева"
+    ],
+    "name": {
+      "uk": "Юлія Самаєва",
+      "en": "Yuliia Samaieva"
+    },
+    "role": {
+      "uk": "редакторка відділу економіки «Дзеркала тижня» (ZN.UA)",
+      "en": "Economics editor at Dzerkalo Tyzhnia (ZN.UA)"
+    },
+    "summary": {
+      "uk": "Економічна журналістка з 20-річним досвідом; пише про співпрацю України з МВФ і Світовим банком, бюджет, банки й державну власність.",
+      "en": "Economic journalist with 20 years of experience; writes about Ukraine's cooperation with the IMF and World Bank, the budget, banking and state property."
     }
   },
   {

@@ -1,0 +1,50 @@
+{
+  "slug": "olena-hrazhdan",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Олена Граждан",
+    "en": "Olena Hrazhdan"
+  },
+  "sort": {
+    "uk": "Граждан Олена",
+    "en": "Hrazhdan Olena"
+  },
+  "role": {
+    "uk": "бізнес-кореспондентка Kyiv Post",
+    "en": "Business reporter at Kyiv Post"
+  },
+  "summary": {
+    "uk": "Журналістка англомовного видання Kyiv Post, яка пише про економіку України, зокрема про банки, фінанси, монетарну й фіскальну політику.",
+    "en": "Reporter at the English-language Kyiv Post covering Ukraine's economy, with a focus on banking, finance, and monetary and fiscal policy."
+  },
+  "bio": {
+    "uk": "Олена Граждан — бізнес-кореспондентка Kyiv Post, найстарішого англомовного видання України. Пише про ринки, бізнес і економічну політику, передусім про банки, фінанси, монетарну та фіскальну політику: рішення Національного банку, державний бюджет, міжнародну фінансову допомогу Україні й наслідки російських ударів для бізнесу.\n\nУ листопаді 2026 року разом із Богданом Завадевичем із польського банку BGK вела воркшоп про те, як читати економічні звіти, у Школі економічної журналістики Центру Мєрошевського у Львові.",
+    "en": "Olena Hrazhdan is a business reporter at Kyiv Post, Ukraine's oldest English-language newspaper. She covers markets, business and economic policy, focusing on banking, finance, and monetary and fiscal policy: National Bank decisions, the state budget, international financial support for Ukraine and the impact of Russian strikes on business.\n\nIn November 2026, together with Bogdan Zawadewicz of Poland's BGK bank, she ran a workshop on reading economic reports at the Mieroszewski Centre's School of Economic Journalism in Lviv."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Kyiv Post"
+    ],
+    [
+      "Тематика",
+      "банки, фінанси, економічна політика"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Kyiv Post: Olena Hrazhdan (сторінка авторки)",
+      "url": "https://www.kyivpost.com/authors/1062"
+    },
+    {
+      "title": "ProMedia: У Львові стартувала Школа економічної журналістики Центру Мєрошевського",
+      "url": "https://news.promedia.report/article/u-lvovi-startuvala-shkola-ekonomichnoi-zhurnalistyky-tsentru-mieroshevskoho"
+    }
+  ],
+  "updated": "2026-11-25",
+  "aliases": [
+    "Olena Hrazhdan"
+  ]
+}

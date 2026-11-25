@@ -1,0 +1,55 @@
+{
+  "slug": "hlib-vyshlinskyi",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "manager",
+  "name": {
+    "uk": "Гліб Вишлінський",
+    "en": "Hlib Vyshlinskyi"
+  },
+  "sort": {
+    "uk": "Вишлінський Гліб",
+    "en": "Vyshlinskyi Hlib"
+  },
+  "role": {
+    "uk": "виконавчий директор Центру економічної стратегії",
+    "en": "Executive director of the Centre for Economic Strategy"
+  },
+  "summary": {
+    "uk": "Економіст, який починав як економічний журналіст і редактор; з 2015 року керує аналітичним Центром економічної стратегії, у 2021–2026 роках очолював правління Громадського телебачення.",
+    "en": "Economist who began as an economic journalist and editor; has led the Centre for Economic Strategy think tank since 2015 and chaired the board of Hromadske TV in 2021–2026."
+  },
+  "bio": {
+    "uk": "Гліб Вишлінський керує Центром економічної стратегії (ЦЕС) від його заснування в травні 2015 року. ЦЕС — незалежний аналітичний центр, який підтримує реформи для сталого економічного зростання України.\n\nКар'єру почав як економічний журналіст і редактор: у 1993–1998 роках працював у різних медіа. У 1997–2003 роках був старшим економістом, директором з публікацій і заступником директора Міжнародного центру перспективних досліджень, у 2003–2015 роках працював у GfK Ukraine, з 2010 року — заступником директора.\n\nУ 2015–2019 роках входив до ради «Реанімаційного пакету реформ». У 2021–2026 роках очолював правління Громадського телебачення (Hromadske.TV). Член наглядової ради фонду DEJURE і правління StateWatch.\n\nУ листопаді 2026 року викладав у Школі економічної журналістики Центру Мєрошевського у Львові.",
+    "en": "Hlib Vyshlinskyi has led the Centre for Economic Strategy (CES) since it was founded in May 2015. CES is an independent think tank that supports reforms for Ukraine's sustainable economic growth.\n\nHe began his career as an economic journalist and editor, working in various media in 1993–1998. In 1997–2003 he was senior economist, publications director and deputy director of the International Centre for Policy Studies; in 2003–2015 he worked at GfK Ukraine, as deputy director from 2010.\n\nIn 2015–2019 he sat on the council of the Reanimation Package of Reforms. In 2021–2026 he chaired the board of Hromadske TV. He is a member of the supervisory board of the DEJURE Foundation and the board of StateWatch.\n\nIn November 2026 he taught at the Mieroszewski Centre's School of Economic Journalism in Lviv."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Центр економічної стратегії"
+    ],
+    [
+      "Посада",
+      "виконавчий директор (з 2015 року)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Центр економічної стратегії: Hlib Vyshlinsky",
+      "url": "https://ces.org.ua/en/experts/hlib-vyshlinsky-en/"
+    },
+    {
+      "title": "Bruegel: Hlib Vyshlinsky",
+      "url": "https://www.bruegel.org/people/hlib-vyshlinsky"
+    },
+    {
+      "title": "ProMedia: У Львові стартувала Школа економічної журналістики Центру Мєрошевського",
+      "url": "https://news.promedia.report/article/u-lvovi-startuvala-shkola-ekonomichnoi-zhurnalistyky-tsentru-mieroshevskoho"
+    }
+  ],
+  "updated": "2026-11-25",
+  "aliases": [
+    "Hlib Vyshlinsky",
+    "Глеб Вышлинский"
+  ]
+}
