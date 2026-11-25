@@ -13,12 +13,16 @@
   },
   "aliases": [
     "ТЕКСТИ",
-    "Texty"
+    "Texty",
+    "Texty.org.ua"
   ],
   "match": [
     "«Тексти»",
     "ТЕКСТИ",
-    "texty.org.ua"
+    "texty.org.ua",
+    "Texty.org.ua",
+    "«Текстах»",
+    "«Текстів»"
   ],
   "type": {
     "uk": "українське медіа журналістики даних",

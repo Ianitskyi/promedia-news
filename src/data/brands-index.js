@@ -964,7 +964,8 @@ export const BRANDS = [
     "tag": "Тексти",
     "aliases": [
       "ТЕКСТИ",
-      "Texty"
+      "Texty",
+      "Texty.org.ua"
     ],
     "group": "ua",
     "kind": "online",
