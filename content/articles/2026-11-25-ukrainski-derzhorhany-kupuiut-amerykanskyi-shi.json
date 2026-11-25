@@ -20,7 +20,10 @@
     "OpenAI",
     "Anthropic"
   ],
-  "relatedMediaIds": [],
+  "relatedMediaIds": [
+    "atlas-ebb604e59f0e4d",
+    "atlas-21242b79fbd49c"
+  ],
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
   "cardStyle": "image",
@@ -33,5 +36,5 @@
       "crh": "Fotoresim: Salvador Rios / Unsplash."
     }
   },
-  "revision": "2026-11-26-subheadings"
+  "revision": "2026-11-26-media-cards"
 }
