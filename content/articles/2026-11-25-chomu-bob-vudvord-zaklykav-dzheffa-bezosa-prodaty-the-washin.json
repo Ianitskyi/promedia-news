@@ -26,14 +26,33 @@
     "width": 1600,
     "alt": "Боб Вудворд",
     "caption": {
-      "uk": "Боб Вудворд на конференції «Довіра, новини, демократія» в Президентській бібліотеці Ліндона Джонсона в Остіні (штат Техас), 9 квітня 2024 року. Фото: LBJLibraryNow / Вікісховище, суспільне надбання.",
-      "en": "Bob Woodward at the Trust, News, Democracy conference at the LBJ Presidential Library in Austin, Texas, 9 April 2024. Photo: LBJLibraryNow / Wikimedia Commons, public domain.",
-      "crh": "Bob Woodward Teksas ştatınıñ Ostin şeerindeki Lyndon Johnson prezident kitaphanesinde «İtimat, haberler, demokratiya» konferentsiyasında, 2024 senesi aprel 9. Foto: LBJLibraryNow / Wikimedia Commons, umumiy mülk."
+      "uk": "Боб Вудворд (ліворуч) на конференції «Довіра, новини, демократія» в Президентській бібліотеці Ліндона Джонсона в Остіні (штат Техас), 9 квітня 2024 року. Фото: LBJLibraryNow / Вікісховище, суспільне надбання.",
+      "en": "Bob Woodward (left) at the Trust, News, Democracy conference at the LBJ Presidential Library in Austin, Texas, 9 April 2024. Photo: LBJLibraryNow / Wikimedia Commons, public domain.",
+      "crh": "Bob Woodward (solda) Teksas ştatınıñ Ostin şeerindeki Lyndon Johnson prezident kitaphanesinde «İtimat, haberler, demokratiya» konferentsiyasında, 2024 senesi aprel 9. Foto: LBJLibraryNow / Wikimedia Commons, umumiy mülk."
+    },
+    "focus": {
+      "mobile": {
+        "x": 20,
+        "y": 40
+      },
+      "feed": {
+        "x": 35,
+        "y": 35
+      },
+      "desktop": {
+        "x": 35,
+        "y": 35
+      },
+      "social": {
+        "x": 50,
+        "y": 30
+      }
     }
   },
   "relatedMediaIds": [],
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
   "cardStyle": "hero",
-  "revision": "2026-11-25-full-name-sulzberger"
+  "revision": "2026-11-25-cover-focus-woodward",
+  "coverRevision": "2026-11-25-cover-focus-woodward"
 }

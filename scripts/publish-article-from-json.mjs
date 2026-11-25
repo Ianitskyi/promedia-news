@@ -111,6 +111,20 @@ function fillCaption(cover, credit) {
   }
 }
 
+// Метадані обкладинки для cover_crop_data: alt, підпис і, за потреби, точки фокусу кадру
+// (cover.focus = {mobile, desktop, feed, social}, кожна {x, y} у відсотках) — ті самі, що виставляє адмінка.
+function coverMeta(a) {
+  const c = a.cover || {};
+  const meta = {};
+  if (c.alt) meta.alt = c.alt;
+  if (c.caption) meta.caption = c.caption;
+  for (const k of ['mobile', 'desktop', 'feed', 'social']) {
+    const pnt = c.focus?.[k];
+    if (pnt && Number.isFinite(Number(pnt.x)) && Number.isFinite(Number(pnt.y))) meta[k] = {x: Number(pnt.x), y: Number(pnt.y)};
+  }
+  return Object.keys(meta).length ? JSON.stringify(meta) : null;
+}
+
 const files = readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
   const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
@@ -172,7 +186,7 @@ for (const f of files) {
       ${Array.isArray(a.relatedMediaIds) ? `related_media_ids = ${q(JSON.stringify(a.relatedMediaIds))},` : ''}
       is_important = ${a.isImportant === undefined ? 'is_important' : (a.isImportant ? 1 : 0)},
       card_style = ${cardStyle ? q(cardStyle) : 'card_style'},
-      ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null)},` : ''}
+      ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(coverMeta(a))},` : ''}
       updated_at = ${q(new Date().toISOString())}
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
     ${pinSql(a, marker)}
@@ -216,7 +230,7 @@ for (const f of files) {
     body_md, body_md_en, body_md_crh, cover_image_url, cover_crop_data, tags, related_media_ids, is_important, card_style, status, author_id,
     published_at, created_at, updated_at)
   SELECT ${[a.slug, a.title, a.titleEn, a.titleCrh, a.excerpt || '', a.excerptEn, a.excerptCrh,
-    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, a.cover?.alt || a.cover?.caption ? JSON.stringify({...(a.cover.alt ? {alt: a.cover.alt} : {}), ...(a.cover.caption ? {caption: a.cover.caption} : {})}) : null,
+    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, coverMeta(a),
     JSON.stringify(a.tags || []), JSON.stringify(Array.isArray(a.relatedMediaIds) ? a.relatedMediaIds : [])].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
     ${scheduledFor ? "'draft'" : "'published'"}, ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});
