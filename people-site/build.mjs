@@ -194,7 +194,9 @@ const fmtDate = (iso, lang) => {
   if (lang === "crh") return `${d} ${MONTHS_CRH[m - 1]} ${y}`;
   return `${d} ${MONTHS[m - 1]} ${y} року`;
 };
-const paragraphs = text => String(text || "").split(/\n{2,}/).map(t => `<p>${esc(t.trim())}</p>`).join("\n");
+// Markdown links [text](https://…) in bios become real links; everything else stays escaped text.
+const linkify = html => html.replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, (m, label, url) => `<a href="${url}" target="_blank" rel="noopener">${label}</a>`);
+const paragraphs = text => String(text || "").split(/\n{2,}/).map(t => `<p>${linkify(esc(t.trim()))}</p>`).join("\n");
 const initials = name => name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
 function firstLetter(s, alphabet) {
   const ch = s.trim()[0]?.toLocaleUpperCase(alphabet === CRH_ALPHABET ? "tr" : "uk") || "";
