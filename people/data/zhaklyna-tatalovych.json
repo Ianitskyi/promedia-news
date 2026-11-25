@@ -1,0 +1,52 @@
+{
+  "slug": "zhaklyna-tatalovych",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Жаклина Таталович",
+    "en": "Žaklina Tatalović"
+  },
+  "sort": {
+    "uk": "Таталович Жаклина",
+    "en": "Tatalović Žaklina"
+  },
+  "aliases": [
+    "Žaklina Tatalović",
+    "Жаклина Таталовић",
+    "Zaklina Tatalovic"
+  ],
+  "role": {
+    "uk": "журналістка сербського телеканалу N1",
+    "en": "Journalist at the Serbian TV channel N1"
+  },
+  "summary": {
+    "uk": "Журналістка N1, яка виграла в суді справу проти власника Informer Драгана Вучичевича за образи.",
+    "en": "N1 journalist who won a court case against Informer owner Dragan Vučićević over insults."
+  },
+  "bio": {
+    "uk": "Жаклина Таталович — журналістка сербського телеканалу N1. Під час пандемії коронавірусу вона ставила запитання членам урядового Кризового штабу, після чого власник Informer Драган Вучичевич публічно ображав її та її зовнішність.\n\nПані Жаклина подала на нього до суду. 2022 року вирок про штраф 200 тисяч динарів набрав остаточної сили, а 2024 року суд замінив несплачений штраф на 180 днів ув'язнення.",
+    "en": "Žaklina Tatalović is a journalist at the Serbian TV channel N1. During the coronavirus pandemic she questioned members of the government's Crisis Staff, after which Informer owner Dragan Vučićević publicly insulted her and her appearance.\n\nShe took him to court. In 2022 the verdict fining him 200,000 dinars became final, and in 2024 the court replaced the unpaid fine with 180 days in prison."
+  },
+  "facts": [
+    [
+      "Посада",
+      "журналістка N1"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "021.rs: Vučićević osuđen zbog vređanja Žakline Tatalović (2022)",
+      "url": "https://www.021.rs/info/srbija/302450/vucicevic-osudjen-zbog-vredjanja-zakline-tatalovic-kazna-200000-dinara-ili-zatvor"
+    },
+    {
+      "title": "021.rs: штраф замінено на 180 днів ув'язнення (2024)",
+      "url": "https://www.021.rs/info/srbija/369069/dragan-vucicevic-mora-u-zatvor-nije-platio-kaznu-za-vredjanje-novinarke-zakline-tatalovic"
+    },
+    {
+      "title": "У Сербії затримали власника телеканалу Informer, близького до Александара Вучича",
+      "url": "https://news.promedia.report/article/u-serbii-zatrymaly-vlasnyka-telekanalu-informer"
+    }
+  ],
+  "updated": "2026-11-25"
+}

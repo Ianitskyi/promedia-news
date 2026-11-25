@@ -36,6 +36,8 @@ const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Ан�
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "Сербія": "Serbia",
+  "Александар Вучич": "Aleksandar Vučić",
   "економічна журналістика": "economic journalism",
   "Центр Мєрошевського": "Mieroszewski Centre",
   "Польща": "Poland",
@@ -202,6 +204,8 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "Сербія": "Serbiya",
+  "Александар Вучич": "Aleksandar Vučić",
   "економічна журналістика": "iqtisadiy jurnalistika",
   "Центр Мєрошевського": "Mieroszewski Merkezi",
   "Польща": "Polşa",

@@ -1,0 +1,69 @@
+{
+  "slug": "dragan-vuchychevych",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "manager",
+  "name": {
+    "uk": "Драган Вучичевич",
+    "en": "Dragan Vučićević"
+  },
+  "sort": {
+    "uk": "Вучичевич Драган",
+    "en": "Vučićević Dragan"
+  },
+  "aliases": [
+    "Драган Й. Вучичевич",
+    "Dragan J. Vučićević",
+    "Драган Ј. Вучићевић",
+    "Dragan Vucicevic"
+  ],
+  "role": {
+    "uk": "власник і головний редактор сербського медіахолдингу Informer",
+    "en": "Owner and editor-in-chief of the Serbian media group Informer"
+  },
+  "summary": {
+    "uk": "Засновник сербського медіахолдингу Informer (телеканал, сайт, таблоїд), який вважають рупором Александара Вучича. У листопаді 2026 року його затримали за підозрою в поширенні паніки й перешкоджанні правосуддю.",
+    "en": "Founder of the Serbian media group Informer (TV channel, website, tabloid), seen as a mouthpiece for Aleksandar Vučić. Detained in November 2026 on suspicion of spreading panic and obstructing justice."
+  },
+  "bio": {
+    "uk": "Драган Вучичевич (у Сербії його часто називають Драган Й. Вучичевич) 2012 року заснував Informer — нині це телеканал, сайт і таблоїд, одна з найтиражніших газет Сербії. Німецька агенція dpa називає Informer одним із найвпливовіших пропагандистських медіа Александара Вучича за роки його правління.\n\nСербські фактчекери Raskrikavanje нарахували на перших шпальтах Informer за 2024 рік щонайменше 384 маніпулятивні новини й дезінформації, а проєкт FakeNews Tragač 2025 року «нагородив» медіа «Золотим Піноккіо». 2022 року суд остаточно оштрафував Вучичевича за образи журналістки N1 Жаклини Таталович, а 2024 року замінив несплачений штраф на 180 днів ув'язнення. У травні 2026 року Чорногорія позбавила телеканал Informer дозволу на мовлення, а в червні заборонила Вучичевичу в'їзд.\n\n25.11.2026, через місяць після поразки партії Вучича на парламентських виборах, поліція затримала Вучичевича на 48 годин за наказом прокуратури Белграда за підозрою у спричиненні паніки та заворушень і перешкоджанні правосуддю. Сам він і його прихильники називають справу політичним переслідуванням. Суд у справі ще не ухвалював рішення.",
+    "en": "Dragan Vučićević (in Serbia often called Dragan J. Vučićević) founded Informer in 2012; today it is a TV channel, a website and a tabloid, one of Serbia's highest-circulation newspapers. The German agency dpa describes Informer as one of Aleksandar Vučić's most influential propaganda outlets during his years in power.\n\nSerbian fact-checkers at Raskrikavanje counted at least 384 manipulative stories and pieces of disinformation on Informer's front pages in 2024, and the FakeNews Tragač project gave the outlet its \"Golden Pinocchio\" in 2025. In 2022 a court gave Vučićević a final fine for insulting N1 journalist Žaklina Tatalović, and in 2024 replaced the unpaid fine with 180 days in prison. In May 2026 Montenegro revoked Informer TV's broadcasting licence, and in June banned Vučićević from entering the country.\n\nOn 25.11.2026, a month after Vučić's party lost the parliamentary election, police detained Vučićević for 48 hours on the orders of Belgrade prosecutors on suspicion of causing panic and disorder and obstructing justice. He and his supporters call the case political persecution. No court has ruled in the case yet."
+  },
+  "facts": [
+    [
+      "Посада",
+      "власник і головний редактор Informer"
+    ],
+    [
+      "Країна",
+      "Сербія"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Nova.rs: Uhapšen Dragan J. Vučićević",
+      "url": "https://nova.rs/vesti/hronika/priveden-dragan-j-vucicevic/"
+    },
+    {
+      "title": "Vreme: Draganu J. Vučićeviću određen pritvor",
+      "url": "https://vreme.com/vesti/dragan-j-vucicevic-uhapsen-izazivanje-panike-pritvor/"
+    },
+    {
+      "title": "dpa: Serbian authorities arrest owner of pro-Vučić media group",
+      "url": "https://www.yahoo.com/news/world/articles/serbian-authorities-arrest-owner-pro-134827684.html"
+    },
+    {
+      "title": "N1: Raskrikavanje про маніпуляції на шпальтах таблоїдів у 2024 році",
+      "url": "https://n1info.rs/vesti/vucic-borac-za-srbiju-opozicija-opasna-vise-od-1-400-manipulacija-u-naslovnicama-tabloida-u-2024/"
+    },
+    {
+      "title": "021.rs: штраф замінено на 180 днів ув'язнення (2024)",
+      "url": "https://www.021.rs/info/srbija/369069/dragan-vucicevic-mora-u-zatvor-nije-platio-kaznu-za-vredjanje-novinarke-zakline-tatalovic"
+    },
+    {
+      "title": "У Сербії затримали власника телеканалу Informer, близького до Александара Вучича",
+      "url": "https://news.promedia.report/article/u-serbii-zatrymaly-vlasnyka-telekanalu-informer"
+    }
+  ],
+  "updated": "2026-11-25"
+}

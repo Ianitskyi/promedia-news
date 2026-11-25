@@ -2,7 +2,8 @@
 // Idempotent: an article whose slug already exists is skipped and never overwritten,
 // so later edits made in the admin panel stay authoritative.
 //
-// Cover photos come from Wikimedia Commons, or from an original illustration already
+// Cover photos come from Wikimedia Commons, from a photo in the news source (cover.remoteUrl,
+// downloaded here and stored in R2), or from an original illustration already
 // served from this site's public/ folder (cover.url, a same-site path like /img/news/x.jpg).
 // Commons covers: The script reads the author and
 // licence from the Commons API, refuses non-free files, substitutes the credit
@@ -201,6 +202,20 @@ for (const f of files) {
   if (a.cover?.url) {
     if (!/^\/img\/[a-z0-9/_-]+\.(jpe?g|png|webp)$/i.test(a.cover.url)) throw Error('cover.url must be a same-site /img/ path: ' + f);
     coverUrl = a.cover.url;
+  } else if (a.cover?.remoteUrl) {
+    // Фото з медіа-джерела новини (погоджене редактором): середовище Claude не має доступу
+    // до сторонніх сайтів, тож завантажуємо його тут, у GitHub Actions, і кладемо в R2.
+    if (!/^https:\/\/[^\s]+$/i.test(a.cover.remoteUrl)) throw Error('cover.remoteUrl must be https: ' + f);
+    if (!a.cover.caption?.uk) throw Error('cover.remoteUrl needs cover.caption with the photo source: ' + f);
+    const img = await fetch(a.cover.remoteUrl, {headers: {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36', Accept: 'image/avif,image/webp,image/jpeg,image/*'}});
+    if (!img.ok) throw Error('Cover download ' + img.status + ' ' + a.cover.remoteUrl);
+    const type = (img.headers.get('content-type') || '').split(';')[0].trim();
+    const ext = {'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp'}[type];
+    if (!ext) throw Error('Unsupported cover type ' + type + ' for ' + f);
+    const tmp = join(mkdtempSync(join(tmpdir(), 'cover-')), 'cover.' + ext);
+    writeFileSync(tmp, Buffer.from(await img.arrayBuffer()));
+    coverUrl = await uploadToR2(tmp, `articles/${a.slug.slice(0, 60)}-${Date.now()}.${ext}`, type);
+    if (!coverUrl) throw Error('Cover upload to R2 failed for ' + f);
   } else if (a.cover?.commonsFile) {
     const credit = await commonsInfo(a.cover.commonsFile, a.cover.width);
     console.log(`Cover: ${credit.page} — ${credit.author}, ${credit.licence}`);

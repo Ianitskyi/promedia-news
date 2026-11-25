@@ -1172,6 +1172,28 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "dragan-vuchychevych",
+    "tag": "Драган Вучичевич",
+    "aliases": [
+      "Драган Й. Вучичевич",
+      "Dragan J. Vučićević",
+      "Драган Ј. Вучићевић",
+      "Dragan Vucicevic"
+    ],
+    "name": {
+      "uk": "Драган Вучичевич",
+      "en": "Dragan Vučićević"
+    },
+    "role": {
+      "uk": "власник і головний редактор сербського медіахолдингу Informer",
+      "en": "Owner and editor-in-chief of the Serbian media group Informer"
+    },
+    "summary": {
+      "uk": "Засновник сербського медіахолдингу Informer (телеканал, сайт, таблоїд), який вважають рупором Александара Вучича. У листопаді 2026 року його затримали за підозрою в поширенні паніки й перешкоджанні правосуддю.",
+      "en": "Founder of the Serbian media group Informer (TV channel, website, tabloid), seen as a mouthpiece for Aleksandar Vučić. Detained in November 2026 on suspicion of spreading panic and obstructing justice."
+    }
+  },
+  {
     "slug": "edward-murrow",
     "tag": "Едвард Марроу",
     "aliases": [
@@ -1420,6 +1442,27 @@ export const PEOPLE = [
     "summary": {
       "uk": "Журналістка-розслідувачка, яка з 2023 року очолює відділ розслідувань воєнних злочинів The Kyiv Independent.",
       "en": "Investigative journalist who has led The Kyiv Independent's War Crimes Investigations Unit since 2023."
+    }
+  },
+  {
+    "slug": "zhaklyna-tatalovych",
+    "tag": "Жаклина Таталович",
+    "aliases": [
+      "Žaklina Tatalović",
+      "Жаклина Таталовић",
+      "Zaklina Tatalovic"
+    ],
+    "name": {
+      "uk": "Жаклина Таталович",
+      "en": "Žaklina Tatalović"
+    },
+    "role": {
+      "uk": "журналістка сербського телеканалу N1",
+      "en": "Journalist at the Serbian TV channel N1"
+    },
+    "summary": {
+      "uk": "Журналістка N1, яка виграла в суді справу проти власника Informer Драгана Вучичевича за образи.",
+      "en": "N1 journalist who won a court case against Informer owner Dragan Vučićević over insults."
     }
   },
   {
