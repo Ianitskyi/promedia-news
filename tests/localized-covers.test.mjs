@@ -16,7 +16,11 @@ test('Each language selects its own image and crop; missing translations fall ba
 });
 test('Admin API saves, reads, changes and clears Crimean Tatar cover independently',async()=>{
  const db=new DatabaseSync(':memory:');
- for(const name of readdirSync(new URL('../migrations/',import.meta.url)).filter(n=>n.endsWith('.sql')).sort())db.exec(read('migrations/'+name));
+ for(const name of readdirSync(new URL('../migrations/',import.meta.url)).filter(n=>n.endsWith('.sql')).sort()){
+  // articles.pinned_at is added by scripts/ensure-article-pinned.mjs at deploy, not by a migration.
+  if(/pinned_at/.test(read('migrations/'+name))&&!db.prepare("SELECT 1 FROM pragma_table_info('articles') WHERE name='pinned_at'").get())db.exec('ALTER TABLE articles ADD COLUMN pinned_at TEXT');
+  db.exec(read('migrations/'+name));
+ }
  db.exec("INSERT INTO users(id,email,password_hash,name,role) VALUES(1,'test@example.org','test','Test','admin')");
  const D1={prepare(sql){
   let values=[];
