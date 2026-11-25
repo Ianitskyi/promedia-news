@@ -101,6 +101,40 @@ function fillCredit(text, credit) {
 }
 
 
+// Фото з Вікісховища всередині тексту: "bodyCommons": {"ключ": {"file": "Назва.jpg", "width": 1600}}.
+// У тексті: ![опис](⟦COMMONS:ключ⟧), у підписі — ⟦АВТОР:ключ⟧ і ⟦ЛІЦЕНЗІЯ:ключ⟧ (EN: AUTHOR/LICENCE,
+// CRH: MÜELLİF/LİTSENZİYA). Автора й ліцензію беремо з API Вікісховища (невільні файли відхиляються),
+// копію кладемо в R2; якщо не вдалося — лишаємо мініатюру Вікісховища (воно дозволяє гарячі посилання).
+async function resolveBodyCommons(a) {
+  const map = a.bodyCommons;
+  if (!map || typeof map !== 'object') return;
+  for (const [key, spec] of Object.entries(map)) {
+    if (!/^[a-z0-9-]+$/.test(key) || !spec?.file) throw Error('Bad bodyCommons entry: ' + key);
+    const credit = await commonsInfo(spec.file, spec.width || 1600);
+    console.log(`Body photo ${key}: ${credit.page} — ${credit.author}, ${credit.licence}`);
+    let url = null;
+    try {
+      const img = await fetch(credit.thumb, {headers: {'User-Agent': UA}});
+      if (img.ok) {
+        const type = (img.headers.get('content-type') || 'image/jpeg').split(';')[0].trim();
+        const ext = {'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp'}[type] || 'jpg';
+        const tmp = join(mkdtempSync(join(tmpdir(), 'body-')), 'photo.' + ext);
+        writeFileSync(tmp, Buffer.from(await img.arrayBuffer()));
+        const stored = await uploadToR2(tmp, `articles/${a.slug.slice(0, 50)}-${key}-${Date.now()}.${ext}`, type);
+        if (stored) url = stored.startsWith('/') ? SITE + stored : stored;
+      }
+    } catch (e) { console.log(`::warning::Body photo ${key} copy failed: ${e.message}`); }
+    if (!url) url = credit.thumb;
+    const lic = credit.licenceUrl ? `[${credit.licence}](${credit.licenceUrl})` : credit.licence;
+    for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
+      if (!a[k]) continue;
+      a[k] = a[k].split(`⟦COMMONS:${key}⟧`).join(url);
+      for (const t of ['АВТОР', 'AUTHOR', 'MÜELLİF']) a[k] = a[k].split(`⟦${t}:${key}⟧`).join(credit.author);
+      for (const t of ['ЛІЦЕНЗІЯ', 'LICENCE', 'LİTSENZİYA']) a[k] = a[k].split(`⟦${t}:${key}⟧`).join(lic);
+    }
+  }
+}
+
 // Підпис обкладинки (cover.caption) теж може містити ⟦АВТОР⟧ / ⟦ЛІЦЕНЗІЯ⟧ — заповнюємо з Вікісховища
 // (ліцензія тут простим текстом: підпис під фото — не Markdown).
 function fillCaption(cover, credit) {
@@ -153,6 +187,7 @@ for (const f of files) {
       console.log(`Skip ${a.slug}: already exists.`);
       continue;
     }
+    await resolveBodyCommons(a);
     // A new cover for a published article: set "coverRevision" to the same value as "revision".
     let newCover = null;
     if (a.cover?.commonsFile) {
@@ -198,6 +233,7 @@ for (const f of files) {
     console.log(`Updated ${a.slug} to revision ${a.revision}${raise ? ' and raised it to the lead story' : ''}.`);
     continue;
   }
+  await resolveBodyCommons(a);
   let coverUrl = null;
   if (a.cover?.url) {
     if (!/^\/img\/[a-z0-9/_-]+\.(jpe?g|png|webp)$/i.test(a.cover.url)) throw Error('cover.url must be a same-site /img/ path: ' + f);

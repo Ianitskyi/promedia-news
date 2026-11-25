@@ -107,6 +107,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "andrzej-szurek",
+    "tag": "Анджей Шурек",
+    "aliases": [
+      "Andrzej Szurek",
+      "Анджей Шурек"
+    ],
+    "name": {
+      "uk": "Анджей Шурек",
+      "en": "Andrzej Szurek"
+    },
+    "role": {
+      "uk": "польський економічний експерт",
+      "en": "Polish economic expert"
+    },
+    "summary": {
+      "uk": "Польський економічний експерт, який коментує економіку України та польсько-українські бізнесові зв'язки; лектор Школи економічної журналістики Центру Мєрошевського у Львові (2026).",
+      "en": "Polish economic expert who comments on Ukraine's economy and Polish-Ukrainian business ties; lecturer at the Mieroszewski Centre's School of Economic Journalism in Lviv (2026)."
+    }
+  },
+  {
     "slug": "andrii-boborykin",
     "tag": "Андрій Боборикін",
     "aliases": [

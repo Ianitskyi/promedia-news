@@ -1,0 +1,67 @@
+{
+  "slug": "andrzej-szurek",
+  "group": "intl",
+  "country": "Польща",
+  "kind": "other",
+  "name": {
+    "uk": "Анджей Шурек",
+    "en": "Andrzej Szurek"
+  },
+  "sort": {
+    "uk": "Шурек Анджей",
+    "en": "Szurek Andrzej"
+  },
+  "role": {
+    "uk": "польський економічний експерт",
+    "en": "Polish economic expert"
+  },
+  "summary": {
+    "uk": "Польський економічний експерт, який коментує економіку України та польсько-українські бізнесові зв'язки; лектор Школи економічної журналістики Центру Мєрошевського у Львові (2026).",
+    "en": "Polish economic expert who comments on Ukraine's economy and Polish-Ukrainian business ties; lecturer at the Mieroszewski Centre's School of Economic Journalism in Lviv (2026)."
+  },
+  "bio": {
+    "uk": "Анджей Шурек — польський економічний експерт, який займається економікою України, польсько-українською торгівлею та інвестиціями і ринком капіталу. Родом з Перемишля. За його словами, професійно займатися Україною він почав 2006 року з ринку капіталу, коли українські компанії почали виходити на Варшавську фондову біржу.\n\nКоментує українську економіку в польських медіа, зокрема на YouTube-каналі Strefa Inwestorów.\n\nУ листопаді 2026 року провів лекцію і воркшоп про те, як висвітлювати польсько-українську торгівлю та інвестиції, на Школі економічної журналістики Центру Мєрошевського у Львові.",
+    "en": "Andrzej Szurek is a Polish economic expert who works on Ukraine's economy, Polish-Ukrainian trade and investment, and capital markets. He comes from Przemyśl. By his own account, he began working on Ukraine professionally in 2006 through capital markets, when Ukrainian companies started listing on the Warsaw Stock Exchange.\n\nHe comments on Ukraine's economy in Polish media, including on the Strefa Inwestorów YouTube channel.\n\nIn November 2026 he gave a lecture and a workshop on covering Polish-Ukrainian trade and investment at the Mieroszewski Centre's School of Economic Journalism in Lviv."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Польща"
+    ],
+    [
+      "Тема",
+      "економіка України, польсько-українська торгівля та інвестиції, ринок капіталу"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "ProMedia: Шість пасток економічної статистики: поради польського експерта українським журналістам",
+      "url": "https://news.promedia.report/article/shist-pastok-ekonomichnoi-statystyky-porady-polskoho-eksperta"
+    },
+    {
+      "title": "ProMedia: У Львові стартувала Школа економічної журналістики Центру Мєрошевського",
+      "url": "https://news.promedia.report/article/u-lvovi-startuvala-shkola-ekonomichnoi-zhurnalistyky-tsentru-mieroshevskoho"
+    },
+    {
+      "title": "Strefa Inwestorów (YouTube): Zełenski przygotowuje Ukrainę do wyborów na wiosnę - Andrzej Szurek | Procent Składany",
+      "url": "https://youtu.be/VGMi2I0OOrQ"
+    },
+    {
+      "title": "LinkedIn: Andrzej Szurek",
+      "url": "https://pl.linkedin.com/in/andrzej-szurek"
+    }
+  ],
+  "updated": "2026-11-25",
+  "aliases": [
+    "Andrzej Szurek",
+    "Анджей Шурек"
+  ],
+  "photo": {
+    "url": "https://news.promedia.report/img/news/andrzej-szurek-lviv.jpg",
+    "author": "ProMedia",
+    "license": "",
+    "licenseUrl": "",
+    "sourceUrl": "https://news.promedia.report/article/u-lvovi-startuvala-shkola-ekonomichnoi-zhurnalistyky-tsentru-mieroshevskoho",
+    "sourceName": "ProMedia"
+  }
+}
