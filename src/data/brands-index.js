@@ -1302,6 +1302,29 @@ export const BRANDS = [
     }
   },
   {
+    "slug": "yandex",
+    "tag": "Яндекс",
+    "aliases": [
+      "Yandex",
+      "Yandex Pin"
+    ],
+    "group": "intl",
+    "kind": "group",
+    "country": "Росія",
+    "name": {
+      "uk": "Яндекс",
+      "en": "Yandex"
+    },
+    "type": {
+      "uk": "російська технологічна й медійна компанія",
+      "en": "Russian technology and media company"
+    },
+    "summary": {
+      "uk": "Найбільша російська технологічна компанія: пошук, голосовий помічник «Алиса», розумні пристрої та інші онлайн-сервіси. До 2022 року володіла новинним агрегатором «Яндекс.Новости» і платформою «Дзен».",
+      "en": "Russia's largest technology company: search, the Alice voice assistant, smart devices and other online services. Until 2022 it owned the news aggregator Yandex.News and the Dzen platform."
+    }
+  },
+  {
     "slug": "afp",
     "tag": "AFP",
     "aliases": [

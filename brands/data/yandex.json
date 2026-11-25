@@ -1,0 +1,60 @@
+{
+  "slug": "yandex",
+  "group": "intl",
+  "country": "Росія",
+  "kind": "group",
+  "name": {
+    "uk": "Яндекс",
+    "en": "Yandex"
+  },
+  "sort": {
+    "uk": "Яндекс",
+    "en": "Yandex"
+  },
+  "aliases": [
+    "Yandex",
+    "Yandex Pin"
+  ],
+  "match": [
+    "Яндекс",
+    "«Яндекса»",
+    "«Яндексі»",
+    "«Яндексом»",
+    "Yandex"
+  ],
+  "type": {
+    "uk": "російська технологічна й медійна компанія",
+    "en": "Russian technology and media company"
+  },
+  "summary": {
+    "uk": "Найбільша російська технологічна компанія: пошук, голосовий помічник «Алиса», розумні пристрої та інші онлайн-сервіси. До 2022 року володіла новинним агрегатором «Яндекс.Новости» і платформою «Дзен».",
+    "en": "Russia's largest technology company: search, the Alice voice assistant, smart devices and other online services. Until 2022 it owned the news aggregator Yandex.News and the Dzen platform."
+  },
+  "bio": {
+    "uk": "«Яндекс» заснували 1997 року. У вересні 2022 року компанія, [як повідомляла «Медиазона»](https://zona.media/news/2022/09/12/sdelka), закрила угоду з VK і передала їй новинний агрегатор «Яндекс.Новости» та платформу «Дзен», отримавши натомість сервіс доставки Delivery Club. Після початку повномасштабного вторгнення «Дзен» на вимогу Генпрокуратури Росії видаляв канали незалежних медіа.\n\nУ липні 2024 року нідерландська материнська компанія Yandex N.V. завершила продаж усього російського бізнесу консорціуму російських інвесторів за 5,4 мільярда доларів, [повідомляла The Moscow Times](https://themoscowtimes.com/2024/07/16/yandex-parent-company-fully-divests-from-russia). Сама нідерландська компанія перейменувалася на Nebius Group.\n\n«Яндекс» внесено до реєстру організаторів поширення інформації, тож за російським законом він має надавати ФСБ доступ до даних користувачів. 2025 року суд оштрафував компанію за відмову надати ФСБ цілодобовий доступ до «розумного дому» «Алиса». У листопаді 2026 року «Яндекс» представив «Яндекс Пин», носимий ШІ-пристрій, що записує розмови."
+  },
+  "website": "https://yandex.ru",
+  "sources": [
+    {
+      "title": "«Медиазона»: «Яндекс» закрив угоду з продажу «Дзена» і «Новостей» компанії VK (2022)",
+      "url": "https://zona.media/news/2022/09/12/sdelka"
+    },
+    {
+      "title": "The Moscow Times: Yandex Parent Company Fully Divests From Russia (2024)",
+      "url": "https://themoscowtimes.com/2024/07/16/yandex-parent-company-fully-divests-from-russia"
+    },
+    {
+      "title": "Mediapost: Yandex Split Final, Russian Assets Sold In $5.4B Deal",
+      "url": "https://www.mediapost.com/publications/article/397637/yandex-split-final-russian-assets-sold-in-54b-d.html"
+    },
+    {
+      "title": "«Медиазона»: «Яндекс» оштрафували за відмову надати ФСБ доступ до розумного дому з «Алисою» (2025)",
+      "url": "https://zona.media/news/2025/08/28/yandex"
+    },
+    {
+      "title": "CNews: «Яндекс» випустив пристрій нового типу (2026)",
+      "url": "https://www.cnews.ru/news/top/2026-11-24_yandeks_sozdal_ustrojstvo"
+    }
+  ],
+  "updated": "2026-11-26"
+}

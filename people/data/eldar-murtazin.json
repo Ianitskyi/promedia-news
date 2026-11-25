@@ -1,0 +1,53 @@
+{
+  "slug": "eldar-murtazin",
+  "group": "intl",
+  "country": "Росія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Ельдар Муртазін",
+    "en": "Eldar Murtazin"
+  },
+  "sort": {
+    "uk": "Муртазін Ельдар",
+    "en": "Murtazin Eldar"
+  },
+  "aliases": [
+    "Эльдар Муртазин",
+    "Ельдар Муртазин"
+  ],
+  "role": {
+    "uk": "російський технологічний оглядач, провідний аналітик Mobile Research Group",
+    "en": "Russian technology columnist, lead analyst at Mobile Research Group"
+  },
+  "summary": {
+    "uk": "Пише аналітичні колонки про ринок мобільних пристроїв і технологічні компанії для російського сайту Mobile-review.com, як експерт коментує ринок для російських медіа.",
+    "en": "Writes analytical columns on the mobile device market and tech companies for the Russian website Mobile-review.com and comments on the market as an expert for Russian media."
+  },
+  "bio": {
+    "uk": "Ельдар Муртазін веде рубрику «Аналітика» на [сайті Mobile-review.com](https://mobile-review.com/all/tag/pixel/), який працює з 2002 року. Російські медіа, зокрема [Hi-Tech Mail](https://hi-tech.mail.ru/experts/738-eldar-murtazin/) і [Business FM](https://www.bfm.ru/person/8589), представляють його як провідного аналітика компанії Mobile Research Group.\n\nУ листопаді 2026 року в [колонці про «Яндекс Пин»](https://mobile-review.com/all/?p=266499) він звернув увагу, що носимий ШІ-диктофон записує й людей поруч, а відповідальність за це компанія перекладає на користувачів.",
+    "en": "Eldar Murtazin runs the Analytics section of [Mobile-review.com](https://mobile-review.com/all/tag/pixel/), a Russian website that has been running since 2002. Russian media, including [Hi-Tech Mail](https://hi-tech.mail.ru/experts/738-eldar-murtazin/) and [Business FM](https://www.bfm.ru/person/8589), present him as lead analyst at Mobile Research Group.\n\nIn November 2026, in [a column on the Yandex Pin](https://mobile-review.com/all/?p=266499), he pointed out that the wearable AI recorder also records people nearby and that the company shifts the responsibility for this onto users."
+  },
+  "sources": [
+    {
+      "title": "Mobile-review.com: колонка Ельдара Муртазіна про «Яндекс Пин»",
+      "url": "https://mobile-review.com/all/?p=266499"
+    },
+    {
+      "title": "Mobile-review.com: рубрика «Аналітика»",
+      "url": "https://mobile-review.com/all/tag/pixel/"
+    },
+    {
+      "title": "Mobile-review.com: про сайт",
+      "url": "https://mobile-review.com/all/about_us/"
+    },
+    {
+      "title": "Hi-Tech Mail: сторінка експерта Ельдара Муртазіна",
+      "url": "https://hi-tech.mail.ru/experts/738-eldar-murtazin/"
+    },
+    {
+      "title": "Business FM: Ельдар Муртазін",
+      "url": "https://www.bfm.ru/person/8589"
+    }
+  ],
+  "updated": "2026-11-26"
+}

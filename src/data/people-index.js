@@ -1288,6 +1288,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "eldar-murtazin",
+    "tag": "Ельдар Муртазін",
+    "aliases": [
+      "Эльдар Муртазин",
+      "Ельдар Муртазин"
+    ],
+    "name": {
+      "uk": "Ельдар Муртазін",
+      "en": "Eldar Murtazin"
+    },
+    "role": {
+      "uk": "російський технологічний оглядач, провідний аналітик Mobile Research Group",
+      "en": "Russian technology columnist, lead analyst at Mobile Research Group"
+    },
+    "summary": {
+      "uk": "Пише аналітичні колонки про ринок мобільних пристроїв і технологічні компанії для російського сайту Mobile-review.com, як експерт коментує ринок для російських медіа.",
+      "en": "Writes analytical columns on the mobile device market and tech companies for the Russian website Mobile-review.com and comments on the market as an expert for Russian media."
+    }
+  },
+  {
     "slug": "elsy-moufarrej",
     "tag": "Ельсі Муфаррідж",
     "aliases": [
