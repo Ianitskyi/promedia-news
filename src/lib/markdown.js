@@ -38,6 +38,10 @@ function formatInline(text) {
   out = out.replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, "<em>$1</em>");
   // Жовтий маркер: ==ключова фраза==.
   out = out.replace(/==([^\n]+?)==/g, "<mark>$1</mark>");
+  // Довідка до слова: {{слово::коротка довідка}} — підказка при наведенні або дотику, без JS.
+  out = out.replace(/\{\{([^{}\n]+?)::([^{}\n]+?)\}\}/g,
+    '<span class="term-note" tabindex="0"><span class="term-note__word">$1</span>' +
+    '<span class="term-note__text" role="note">$2</span></span>');
   return out;
 }
 
@@ -237,6 +241,7 @@ export function markdownToPlainText(md, maxLength) {
     .replace(/\[audio\]\([^)]+\)/gi, "")
     .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
     .replace(/==([^\n]+?)==/g, "$1")
+    .replace(/\{\{([^{}\n]+?)::[^{}\n]+?\}\}/g, "$1")
     .replace(/[#>*_`]/g, "")
     .replace(/\s+/g, " ")
     .trim();

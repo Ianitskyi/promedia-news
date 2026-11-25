@@ -61,6 +61,7 @@ export function speakableText(title, md) {
     out.push(line
       .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
       .replace(/==([^=]+)==/g, "$1")
+      .replace(/\{\{([^{}\n]+?)::[^{}\n]+?\}\}/g, "$1")
       .replace(/^#{1,6}\s+/, "")
       .replace(/^>\s?/, "")
       .replace(/^[-*]\s+/, "")

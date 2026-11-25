@@ -442,6 +442,18 @@ img { max-width: 100%; }
 .article-body hr.article-notes-divider ~ p { font-size: 14px; line-height: 1.6; color: var(--muted); font-style: italic; }
 .article-body img { max-width: 100%; height: auto; object-fit: contain; border-radius: var(--radius-sm); margin: 12px 0; }
 .article-body a { color: var(--ink); text-decoration: underline; }
+/* Довідка до слова: {{слово::довідка}} у Markdown. */
+.term-note { position: relative; display: inline; cursor: help; outline: none; }
+.term-note__word { border-bottom: 1px dotted currentColor; }
+.term-note__word::after { content: "ⓘ"; font-size: .7em; vertical-align: super; margin-left: .1em; color: var(--muted); }
+.term-note__text {
+  display: none; position: absolute; left: 0; top: calc(100% + 6px); z-index: 20;
+  width: min(340px, 80vw); padding: 10px 12px; border-radius: 8px;
+  background: #15142f; color: #fff; font-size: 14px; line-height: 1.45; font-style: normal; font-weight: 400;
+  box-shadow: 0 6px 20px rgba(0,0,0,.18); white-space: normal; text-align: left;
+}
+.term-note:hover .term-note__text, .term-note:focus .term-note__text, .term-note:focus-within .term-note__text { display: block; }
+@media (max-width: 600px) { .term-note__text { position: fixed; left: 16px; right: 16px; top: auto; bottom: 16px; width: auto; } }
 .article-body mark {
   background: #ffe66d;
   color: inherit;
