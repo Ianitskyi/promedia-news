@@ -8,6 +8,16 @@ import { publishDueArticles, schedulerStatus } from "./lib/scheduler.js";
 import { handleInternalUpload } from "./lib/internalUpload.js";
 import { runThreadsAutopost, refreshThreadsToken, threadsStatus } from "./lib/threads.js";
 
+const EDGE_CACHE_SECONDS = 120;
+const NO_EDGE_CACHE = /^\/(admin|api\/(admin|auth|me|setup|push|analytics|scheduler-status|threads-status|export)|img-storage)(\/|$)/;
+
+function edgeCacheable(request, url) {
+  return request.method === "GET"
+    && !request.headers.has("Authorization")
+    && !url.searchParams.has("nocache")
+    && !NO_EDGE_CACHE.test(url.pathname);
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -60,11 +70,27 @@ export default {
         if (res) return res;
       }
 
-      const projectsRes = await handleProjectsPublicRoute(request, env, url);
-      if (projectsRes) return projectsRes;
+      // Публічні сторінки й API однакові для всіх читачів, тож тримаємо їх у кеші
+      // Cloudflare коротко (EDGE_CACHE_SECONDS): боти й сплески трафіку більше не
+      // б'ють щоразу в D1 (25.11.2026 вичерпували денний ліміт читань).
+      const cache = edgeCacheable(request, url) ? caches.default : null;
+      if (cache) {
+        const hit = await cache.match(request);
+        if (hit) return hit;
+      }
 
-      const publicRes = await handlePublicRoute(request, env, url);
-      if (publicRes) return publicRes;
+      const publicRes = (await handleProjectsPublicRoute(request, env, url)) || (await handlePublicRoute(request, env, url));
+      if (publicRes) {
+        if (cache && publicRes.status === 200 && !publicRes.headers.has("Set-Cookie")) {
+          const cached = new Response(publicRes.body, publicRes);
+          if (!cached.headers.has("Cache-Control")) cached.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
+          const edge = cached.clone();
+          edge.headers.set("Cache-Control", `public, max-age=${EDGE_CACHE_SECONDS}`);
+          ctx.waitUntil(cache.put(request, edge));
+          return cached;
+        }
+        return publicRes;
+      }
 
       // Усе інше (статика: css, favicon, /admin SPA-шел, картинки логотипу)
       // віддається binding'ом assets — сюди доходимо лише якщо жоден
