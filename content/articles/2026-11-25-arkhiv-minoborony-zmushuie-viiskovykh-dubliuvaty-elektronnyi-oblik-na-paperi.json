@@ -15,7 +15,8 @@
     "Міністерство оборони",
     "оборонні технології",
     "цифровізація",
-    "Збройні сили України"
+    "Збройні сили України",
+    "Олексій Ткаченко"
   ],
   "relatedMediaIds": [
     "atlas-70e9f24c545e2b"
@@ -31,5 +32,6 @@
       "en": "Impuls, the personnel records system of Ukraine's Armed Forces. Photo: ArmyInform.",
       "crh": "Ukraina Silâlı Quvetleriniñ şahsiy terkip esabı sisteması «İmpuls». Fotoresim: ArmyInform."
     }
-  }
+  },
+  "revision": "2026-11-25-dossier"
 }

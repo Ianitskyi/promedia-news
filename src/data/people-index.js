@@ -2193,6 +2193,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "oleksii-tkachenko",
+    "tag": "Олексій Ткаченко",
+    "aliases": [
+      "Oleksij Tkachenko"
+    ],
+    "name": {
+      "uk": "Олексій Ткаченко",
+      "en": "Oleksii Tkachenko"
+    },
+    "role": {
+      "uk": "військовослужбовець ЗСУ, автор Texty.org.ua",
+      "en": "Serviceman in the Armed Forces of Ukraine, contributor to Texty.org.ua"
+    },
+    "summary": {
+      "uk": "Військовослужбовець ЗСУ, який пише для Texty.org.ua про військову службу, бюрократію, облік особового складу й переведення в армії.",
+      "en": "A serviceman in the Armed Forces of Ukraine who writes for the Ukrainian outlet Texty.org.ua about military service, bureaucracy, personnel records and transfers within the army."
+    }
+  },
+  {
     "slug": "olena-hrazhdan",
     "tag": "Олена Граждан",
     "aliases": [
