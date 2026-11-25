@@ -175,7 +175,15 @@ const TAG_LABELS_EN = {
   "власність медіа": "media ownership",
   "редакційна незалежність": "editorial independence",
   "Ілон Маск": "Elon Musk",
-  "Джефф Безос": "Jeff Bezos"
+  "Джефф Безос": "Jeff Bezos",
+  "бойкоти": "boycotts",
+  "PEN America": "PEN America",
+  "Український ПЕН": "PEN Ukraine",
+  "Газа": "Gaza",
+  "Ізраїль": "Israel",
+  "Дінау Менгесту": "Dinaw Mengestu",
+  "Маша Гессен": "Masha Gessen",
+  "Юрій Винничук": "Yuriy Vynnychuk"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -320,7 +328,15 @@ const TAG_LABELS_CRH = {
   "власність медіа": "mediya mülkiyeti",
   "редакційна незалежність": "redaktsiya mustaqilligi",
   "Ілон Маск": "Elon Musk",
-  "Джефф Безос": "Jeff Bezos"
+  "Джефф Безос": "Jeff Bezos",
+  "бойкоти": "boykotlar",
+  "PEN America": "PEN America",
+  "Український ПЕН": "Ukrain PEN-i",
+  "Газа": "Gaza",
+  "Ізраїль": "İsrail",
+  "Дінау Менгесту": "Dinaw Mengestu",
+  "Маша Гессен": "Masha Gessen",
+  "Юрій Винничук": "Yuriy Vynnychuk"
 };
 
 function tagLookupKey(tag) {
