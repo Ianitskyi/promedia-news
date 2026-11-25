@@ -1,0 +1,51 @@
+{
+  "slug": "olesia-bida",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Олеся Біда",
+    "en": "Olesia Bida"
+  },
+  "sort": {
+    "uk": "Біда Олеся",
+    "en": "Bida Olesia"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "журналістка-розслідувачка воєнних злочинів The Kyiv Independent",
+    "en": "War crimes investigative journalist at The Kyiv Independent"
+  },
+  "summary": {
+    "uk": "Олеся Біда — журналістка-розслідувачка воєнних злочинів The Kyiv Independent.",
+    "en": "Olesia Bida is a war crimes investigative journalist at The Kyiv Independent."
+  },
+  "bio": {
+    "uk": "Олеся Біда — журналістка-розслідувачка воєнних злочинів The Kyiv Independent. У листопаді 2026 року невідомі створили від її імені фейковий акаунт в Instagram, з якого просили у фотографів знімки наслідків російських ударів, повідомив «Детектор медіа».",
+    "en": "Olesia Bida is a war crimes investigative journalist at The Kyiv Independent. In November 2026 unknown people created a fake Instagram account in her name and used it to ask photographers for pictures of the aftermath of Russian strikes, Detector Media reported."
+  },
+  "facts": [
+    [
+      "Діяльність",
+      "журналістка-розслідувачка воєнних злочинів The Kyiv Independent"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Біда",
+      "Bida"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Детектор медіа: Невідомі створили фейковий інстаграм-акаунт журналістки Олесі Біди",
+      "url": "https://detector.media/infospace/article/254215/2026-11-23-nevidomi-stvoryly-feykovyy-instagram-akaunt-zhurnalistky-olesi-bidy-dlya-otrymannya-foto-naslidkiv-atak-rosii/"
+    },
+    {
+      "title": "ПроМедіа: Невідомі від імені журналістів виманюють у фотографів знімки наслідків ударів",
+      "url": "https://news.promedia.report/article/nevidomi-vid-imeni-zhurnalistiv-vymaniuiut-u-fotohrafiv-znimky-udariv"
+    }
+  ],
+  "updated": "2026-11-25"
+}

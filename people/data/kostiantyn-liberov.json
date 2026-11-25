@@ -1,0 +1,51 @@
+{
+  "slug": "kostiantyn-liberov",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Костянтин Либеров",
+    "en": "Kostiantyn Liberov"
+  },
+  "sort": {
+    "uk": "Либеров Костянтин",
+    "en": "Liberov Kostiantyn"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "фотограф",
+    "en": "Photographer"
+  },
+  "summary": {
+    "uk": "Костянтин Либеров — український фотограф, працює разом із дружиною Владою Либеровою.",
+    "en": "Kostiantyn Liberov is a Ukrainian photographer who works together with his wife Vlada Liberova."
+  },
+  "bio": {
+    "uk": "Костянтин Либеров — український фотограф, працює разом із дружиною Владою Либеровою. У листопаді 2026 року подружжю написали з фейкового акаунта від імені журналістки Олесі Біди з проханням передавати фото й відео наслідків ударів, повідомив «Детектор медіа».",
+    "en": "Kostiantyn Liberov is a Ukrainian photographer who works together with his wife Vlada Liberova. In November 2026 the couple were contacted by a fake account posing as journalist Olesia Bida asking for photos and videos of strike aftermath, Detector Media reported."
+  },
+  "facts": [
+    [
+      "Діяльність",
+      "фотограф"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Либеров",
+      "Liberov"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Детектор медіа: Невідомі створили фейковий інстаграм-акаунт журналістки Олесі Біди",
+      "url": "https://detector.media/infospace/article/254215/2026-11-23-nevidomi-stvoryly-feykovyy-instagram-akaunt-zhurnalistky-olesi-bidy-dlya-otrymannya-foto-naslidkiv-atak-rosii/"
+    },
+    {
+      "title": "ПроМедіа: Невідомі від імені журналістів виманюють у фотографів знімки наслідків ударів",
+      "url": "https://news.promedia.report/article/nevidomi-vid-imeni-zhurnalistiv-vymaniuiut-u-fotohrafiv-znimky-udariv"
+    }
+  ],
+  "updated": "2026-11-25"
+}

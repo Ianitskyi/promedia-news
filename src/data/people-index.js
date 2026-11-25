@@ -549,6 +549,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "vlada-liberova",
+    "tag": "Влада Либерова",
+    "aliases": [],
+    "name": {
+      "uk": "Влада Либерова",
+      "en": "Vlada Liberova"
+    },
+    "role": {
+      "uk": "фотографка",
+      "en": "Photographer"
+    },
+    "summary": {
+      "uk": "Влада Либерова — українська фотографка, працює разом із чоловіком Костянтином Либеровим.",
+      "en": "Vlada Liberova is a Ukrainian photographer who works together with her husband Kostiantyn Liberov."
+    }
+  },
+  {
     "slug": "vladyslava-prystupa",
     "tag": "Владислава Приступа",
     "aliases": [],
@@ -1313,6 +1330,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "kostiantyn-liberov",
+    "tag": "Костянтин Либеров",
+    "aliases": [],
+    "name": {
+      "uk": "Костянтин Либеров",
+      "en": "Kostiantyn Liberov"
+    },
+    "role": {
+      "uk": "фотограф",
+      "en": "Photographer"
+    },
+    "summary": {
+      "uk": "Костянтин Либеров — український фотограф, працює разом із дружиною Владою Либеровою.",
+      "en": "Kostiantyn Liberov is a Ukrainian photographer who works together with his wife Vlada Liberova."
+    }
+  },
+  {
     "slug": "larysa-yakubenko",
     "tag": "Лариса Якубенко",
     "aliases": [],
@@ -1814,6 +1848,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Воєнна кореспондентка Freedom з Донеччини, загинула від удару дрона в Краматорську 23 жовтня 2025 року.",
       "en": "Freedom TV war correspondent from Donetsk region, killed by a drone strike in Kramatorsk on 23 October 2025."
+    }
+  },
+  {
+    "slug": "olesia-bida",
+    "tag": "Олеся Біда",
+    "aliases": [],
+    "name": {
+      "uk": "Олеся Біда",
+      "en": "Olesia Bida"
+    },
+    "role": {
+      "uk": "журналістка-розслідувачка воєнних злочинів The Kyiv Independent",
+      "en": "War crimes investigative journalist at The Kyiv Independent"
+    },
+    "summary": {
+      "uk": "Олеся Біда — журналістка-розслідувачка воєнних злочинів The Kyiv Independent.",
+      "en": "Olesia Bida is a war crimes investigative journalist at The Kyiv Independent."
     }
   },
   {
