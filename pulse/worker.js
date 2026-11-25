@@ -296,15 +296,20 @@ async function saveSample(env, ts, users) {
 async function baselineFor(env, date) {
   await ensureSchema(env);
   const now = date.getTime();
-  const { results } = await env.DB.prepare("SELECT ts, users FROM pulse_samples WHERE ts >= ? AND ts < ?")
-    .bind(now - 14 * 86400_000, now - 30 * 60_000).all();
-  if (!results || results.length < 12) return null;
-  const hour = kyivParts(date).hour;
-  const sameHour = results.filter((r) => {
-    const h = kyivParts(new Date(r.ts)).hour;
-    return h === hour && now - r.ts > 6 * 3600_000;
-  });
-  const pool = sameHour.length >= 6 ? sameHour : results.filter((r) => now - r.ts < 24 * 3600_000);
+  // Читаємо лише потрібні вікна (ця ж година за кожен із 14 днів), а не всю історію:
+  // раніше кожні 5 хв перечитувалось до 4 000 рядків D1.
+  const hourStart = Math.floor(now / 60_000) * 60_000 - kyivParts(date).minute * 60_000;
+  const windows = Array.from({ length: 14 }, (_, i) => hourStart - (i + 1) * 86400_000);
+  const sameHour = (await env.DB.batch(windows.map((start) =>
+    env.DB.prepare("SELECT ts, users FROM pulse_samples WHERE ts >= ? AND ts < ?").bind(start, start + 3600_000)
+  ))).flatMap((r) => r.results || []);
+  let pool = sameHour;
+  if (sameHour.length < 6) {
+    const { results } = await env.DB.prepare("SELECT ts, users FROM pulse_samples WHERE ts >= ? AND ts < ?")
+      .bind(now - 24 * 3600_000, now - 30 * 60_000).all();
+    if (!results || results.length < 12) return null;
+    pool = results;
+  }
   if (!pool.length) return null;
   return Math.round((pool.reduce((s, r) => s + r.users, 0) / pool.length) * 10) / 10;
 }
