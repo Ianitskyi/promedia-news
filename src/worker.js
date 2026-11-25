@@ -6,6 +6,7 @@ import { handleProjectsPublicRoute } from "./routes/projects.js";
 import { handleAnalyticsRoute } from "./routes/analytics.js";
 import { publishDueArticles, schedulerStatus } from "./lib/scheduler.js";
 import { handleInternalUpload } from "./lib/internalUpload.js";
+import { runThreadsAutopost, refreshThreadsToken, threadsStatus } from "./lib/threads.js";
 
 export default {
   async fetch(request, env, ctx) {
@@ -21,6 +22,13 @@ export default {
       // Перевірка роботи розкладу: коли востаннє спрацював таймер і скільки новин чекає (без їхнього змісту).
       if (url.pathname === "/api/scheduler-status") {
         return new Response(JSON.stringify(await schedulerStatus(env.DB)), {
+          headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
+        });
+      }
+
+      // Стан автопостингу в Threads: що й коли пішло, остання помилка (без токенів).
+      if (url.pathname === "/api/threads-status") {
+        return new Response(JSON.stringify(await threadsStatus(env)), {
           headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
         });
       }
@@ -74,7 +82,10 @@ export default {
   async scheduled(event, env, ctx) {
     // Кожні 5 хвилин: відкрити новини, час публікації яких настав (src/lib/scheduler.js).
     ctx.waitUntil(publishDueArticles(env.DB).catch(e => console.error("scheduler", e)));
+    // Автопостинг у Threads (src/lib/threads.js) — після розкладу, щоб не заважати публікації.
+    ctx.waitUntil(runThreadsAutopost(env).catch(e => console.error("threads", e)));
     if (event.cron === "17 3 * * *") {
+      ctx.waitUntil(refreshThreadsToken(env).catch(e => console.error("threads-token", e)));
       ctx.waitUntil(
         env.DB.prepare(
           "DELETE FROM articles WHERE deleted_at IS NOT NULL AND datetime(deleted_at) <= datetime('now', '-30 days')"

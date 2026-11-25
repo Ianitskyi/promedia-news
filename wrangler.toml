@@ -36,6 +36,8 @@ bucket_name = "promedia-news-images"
 #   SUBDOMAINS_GITHUB_TOKEN — fine-grained GitHub token: Contents Read and write для GitHub-субдоменів
 #   OPENAI_API_KEY   — серверний ключ OpenAI для автоперекладу новин і тегів
 #   RESEND_API_KEY   — ключ Resend для листів відновлення пароля
+#   THREADS_USER_ID  — ID акаунта ПроМедіа в Threads (автопостинг новин, src/lib/threads.js)
+#   THREADS_ACCESS_TOKEN — довгий (60 днів) токен Threads з дозволами threads_basic і threads_content_publish
 #   RESET_EMAIL_FROM — підтверджена адреса відправника, наприклад: ProMedia <news@promedia.report>
 
 
