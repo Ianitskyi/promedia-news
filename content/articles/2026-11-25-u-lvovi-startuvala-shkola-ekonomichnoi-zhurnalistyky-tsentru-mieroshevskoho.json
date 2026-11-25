@@ -30,13 +30,14 @@
   "isImportant": false,
   "cardStyle": "image",
   "cover": {
-    "url": "/img/news/shkola-ekonomichnoi-zhurnalistyky-lviv.jpg",
-    "alt": "Вказівник до Школи економічної журналістики українською та польською мовами",
+    "url": "/img/news/andrzej-szurek-lviv.jpg",
+    "alt": "Анджей Шурек з мікрофоном біля екрана зі слайдом «6 пасток торговельної статистики»",
     "caption": {
-      "uk": "Вказівник до Школи економічної журналістики у Львові. Фото: ProMedia.",
-      "en": "A sign pointing to the School of Economic Journalism in Lviv, Ukraine. Photo: ProMedia.",
-      "crh": "Lvivde İqtisadiy jurnalistika mektebine yol kösterici. Fotoresim: ProMedia."
+      "uk": "Анджей Шурек на Школі економічної журналістики у Львові. Фото: ProMedia.",
+      "en": "Andrzej Szurek speaking at the School of Economic Journalism in Lviv, Ukraine. Photo: ProMedia.",
+      "crh": "Andrzej Szurek Lvivdeki İqtisadiy jurnalistika mektebinde. Fotoresim: ProMedia."
     }
   },
-  "revision": "2026-11-25-initial"
+  "revision": "2026-11-25-cover-szurek",
+  "coverRevision": "2026-11-25-cover-szurek"
 }
