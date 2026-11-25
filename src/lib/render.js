@@ -1290,6 +1290,30 @@ function mediaBox(media, lang) {
   return `<aside class="people-box media-box" aria-label="${escapeHtml(pick(MEDIA_BOX_TITLE, lang))}"><h2>${pick(MEDIA_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
 }
 
+
+// Авторство в розмітці для пошукових систем (рішення власника 2026-11-25):
+// - ексклюзиви, у тегах яких є авторка/автор із команди (зараз Софія Дубік), — ця людина як author;
+// - решта текстів згенеровані за ТЗ ГО «ПроМедіа»: author — організація, а Андрій Яніцький —
+//   editor, тобто людина, яка відповідає за публікацію й погодила її (не автор).
+const TEAM_AUTHOR_SLUGS = ["sofiia-dubik"];
+const EDITOR_IN_CHARGE = "andrii-ianitskyi";
+const PROMEDIA_ORG_LD = { "@type": "Organization", name: "ГО «ПроМедіа»", url: "https://promedia.report" };
+
+function personLd(slug, lang) {
+  const p = (typeof PEOPLE !== "undefined" && Array.isArray(PEOPLE) ? PEOPLE : []).find(x => x.slug === slug);
+  if (!p) return undefined;
+  const base = (PEOPLE_BASE_URL || "https://people.promedia.report").replace(/\/$/, "");
+  return { "@type": "Person", name: lang === "uk" ? p.name.uk : (p.name.en || p.name.uk), url: `${base}${lang === "en" ? "/en" : ""}/${p.slug}/` };
+}
+
+function articleAuthorLd(tags, lang) {
+  if (tags.includes("Ексклюзив")) {
+    const author = tags.map(personForTag).find(p => p && TEAM_AUTHOR_SLUGS.includes(p.slug));
+    if (author) return personLd(author.slug, lang);
+  }
+  return PROMEDIA_ORG_LD;
+}
+
 export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = [], relatedUniversities = [], popularArticles = [] }) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
@@ -1351,7 +1375,8 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
       dateModified: article.updated_at || article.published_at || undefined,
       image: coverUrl ? [new URL(coverUrl, articleUrl).toString()] : undefined,
       keywords: tags.join(", ") || undefined,
-      author: { "@type": "Organization", name: "ГО «ПроМедіа»", url: "https://promedia.report" },
+      author: articleAuthorLd(tags, lang),
+      editor: personLd(EDITOR_IN_CHARGE, lang),
       publisher: { "@type": "Organization", name: "ГО «ПроМедіа»", url: "https://promedia.report",
         logo: { "@type": "ImageObject", url: new URL("/favicon.png", articleUrl).toString() } }
     },
