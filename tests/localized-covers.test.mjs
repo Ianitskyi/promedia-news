@@ -93,14 +93,15 @@ test('The BRIEF bar keeps playing from the same second on the next page (owner, 
    pause(){this.paused=true;this.emit('pause')}}
   const el=()=>({hidden:true,textContent:'',setAttribute(){},append(){},addEventListener(e,f){this['on'+e]=f}});
   const btn=el(),meta=el();
-  const files={'https://brief.promedia.report/demo/index.json':{demos:[{file:'demo/2026-11-18-daily.json'}]},
-   'https://brief.promedia.report/demo/2026-11-18-daily.json':{date:'2026-11-18',audio:'demo/2026-11-18-daily.mp3',duration_sec:300}};
+  const today=new Date().toISOString().slice(0,10);
+  const files={'https://brief.promedia.report/demo/index.json':{demos:[{file:'demo/'+today+'-daily.json'}]},
+   ['https://brief.promedia.report/demo/'+today+'-daily.json']:{date:today,audio:'demo/'+today+'-daily.mp3',duration_sec:300}};
   const doc={documentElement:{lang:'uk'},getElementById:()=>null,querySelector:()=>null,head:{appendChild(){}},body:{prepend(){}},
    createElement:()=>({setAttribute(){},classList:{toggle(){}},querySelector:s=>s.includes('play')?btn:meta,textContent:''}),
    createTextNode:()=>({nodeValue:''})};
   Object.defineProperty(doc,'cookie',{get:()=>cookie.value,set:v=>{cookie.value=v}});
   runInNewContext(read('public/js/promedia-global-shell.js'),{HTMLElement:Element,URL,Audio,Date,Promise,
-   fetch:u=>Promise.resolve({json:()=>Promise.resolve(files[u])}),
+   fetch:u=>Promise.resolve({json:()=>Promise.resolve(files[u.split('?')[0]])}),
    addEventListener:(e,f)=>{win[e]=f},window:{},String,Math,Number,
    location:{hostname:host,pathname:'/',href:'https://'+host+'/',protocol:'https:'},document:doc,
    customElements:{get:n=>definitions.get(n),define:(n,c)=>definitions.set(n,c)}});

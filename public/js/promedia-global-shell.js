@@ -160,10 +160,16 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
     const BRIEF="https://brief.promedia.report/";
     const btn=bar.querySelector(".pm-brief-bar__play"),meta=bar.querySelector(".pm-brief-bar__meta");
     const fmt=s=>{s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0")};
-    fetch(BRIEF+"demo/index.json",{cache:"no-store"}).then(r=>r.json())
-      .then(idx=>fetch(BRIEF+idx.demos[0].file,{cache:"no-store"})).then(r=>r.json())
+    // A fresh address every minute: no CDN, proxy or archive copy can hand back an old edition
+    // (owner, 2026-11-25: the bar showed the 22.10 demo instead of the 25.11 edition).
+    const bust="?t="+Math.floor(Date.now()/60000);
+    fetch(BRIEF+"demo/index.json"+bust,{cache:"no-store"}).then(r=>r.json())
+      .then(idx=>fetch(BRIEF+idx.demos[0].file+bust,{cache:"no-store"})).then(r=>r.json())
       .then(d=>{
         if(!d||!d.audio) return;
+        // An edition older than two days is not "today's news": the bar stays a plain link.
+        const age=(Date.now()-Date.parse(String(d.date||"")+"T00:00:00Z"))/864e5;
+        if(!(age<3)) return;
         const p=String(d.date||"").split("-"),day=p.length===3?p[2]+"."+p[1]:"";
         const label=document.createElement("span");label.className="pm-brief-bar__long";label.textContent="Випуск за ";
         const rest=document.createTextNode("");meta.append(label,rest);
