@@ -36,6 +36,11 @@ const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Ан�
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "DELTA": "DELTA",
+  "оборонні технології": "defence technology",
+  "Міністерство оборони": "Ministry of Defence",
+  "Німеччина": "Germany",
+  "Норвегія": "Norway",
   "Кропивницький": "Kropyvnytskyi",
   "Доступ. Медіа": "Dostup.Media",
   "документальне кіно": "documentary film",
@@ -176,6 +181,11 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "DELTA": "DELTA",
+  "оборонні технології": "mudafaa texnologiyaları",
+  "Міністерство оборони": "Mudafaa nazirligi",
+  "Німеччина": "Almaniya",
+  "Норвегія": "Norvegiya",
   "Кропивницький": "Kropyvnytskyi",
   "Доступ. Медіа": "Dostup. Media",
   "документальне кіно": "vesiqalı kino",
