@@ -1,0 +1,42 @@
+{
+  "slug": "correctiv",
+  "group": "intl",
+  "country": "Німеччина",
+  "kind": "investigative",
+  "name": {
+    "uk": "CORRECTIV",
+    "en": "CORRECTIV"
+  },
+  "sort": {
+    "uk": "CORRECTIV",
+    "en": "CORRECTIV"
+  },
+  "type": {
+    "uk": "німецька некомерційна розслідувальна редакція",
+    "en": "German non-profit investigative newsroom"
+  },
+  "summary": {
+    "uk": "Німецька некомерційна редакція розслідувань і фактчекінгу, заснована 2014 року.",
+    "en": "German non-profit investigative and fact-checking newsroom founded in 2014."
+  },
+  "bio": {
+    "uk": "CORRECTIV працює як некомерційна організація й фінансується з пожертв і грантів. Розслідування редакції про таємну зустріч правих радикалів у Потсдамі 2024 року викликало масові протести в Німеччині.\n\nУ межах проєкту Community Engagement Hub CORRECTIV співпрацює з українськими медіа, зокрема з ГО «Львівський медіафорум»; так, за підтримки проєкту харківська медіагрупа «Накипіло» провела фестиваль «Ключ до Харкова»."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2014"
+    ]
+  ],
+  "website": "https://correctiv.org",
+  "wiki": [
+    "en:Correctiv"
+  ],
+  "sources": [
+    {
+      "title": "Сайт CORRECTIV",
+      "url": "https://correctiv.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "american-heritage",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "American Heritage",
+    "en": "American Heritage"
+  },
+  "sort": {
+    "uk": "American Heritage",
+    "en": "American Heritage"
+  },
+  "type": {
+    "uk": "американський історичний журнал",
+    "en": "US history magazine"
+  },
+  "summary": {
+    "uk": "Американський журнал про історію США, що виходить із середини XX століття.",
+    "en": "US history magazine published since the mid-20th century."
+  },
+  "bio": {
+    "uk": "American Heritage публікує статті істориків і журналістів про минуле США. Нині журнал виходить переважно онлайн. ПроМедіа посилалася на нього в тексті про міфи воєнної журналістики, зокрема про радіорепортажі Едварда Марроу з Лондона."
+  },
+  "website": "https://www.americanheritage.com",
+  "wiki": [
+    "en:American Heritage (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт American Heritage",
+      "url": "https://www.americanheritage.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

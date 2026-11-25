@@ -1,0 +1,49 @@
+{
+  "slug": "dpa",
+  "group": "intl",
+  "country": "Німеччина",
+  "kind": "agency",
+  "name": {
+    "uk": "dpa",
+    "en": "dpa — Deutsche Presse-Agentur"
+  },
+  "sort": {
+    "uk": "dpa",
+    "en": "dpa — Deutsche Presse-Agentur"
+  },
+  "aliases": [
+    "Deutsche Presse-Agentur"
+  ],
+  "type": {
+    "uk": "німецька інформаційна агенція",
+    "en": "German news agency"
+  },
+  "summary": {
+    "uk": "Найбільша інформаційна агенція Німеччини, заснована 1949 року; належить німецьким медіакомпаніям.",
+    "en": "Germany's largest news agency, founded in 1949 and owned by German media companies."
+  },
+  "bio": {
+    "uk": "Deutsche Presse-Agentur заснували 1949 року; штаб-квартира агенції — у Гамбурзі, центральна редакція — у Берліні. Агенція належить понад сотні німецьких видавців і мовників, жоден із яких не може мати контрольного пакета; dpa передає новини німецькою, англійською, іспанською та арабською."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1949"
+    ],
+    [
+      "Штаб-квартира",
+      "Гамбург"
+    ]
+  ],
+  "website": "https://www.dpa.com",
+  "wiki": [
+    "en:Deutsche Presse-Agentur"
+  ],
+  "sources": [
+    {
+      "title": "Сайт dpa — Deutsche Presse-Agentur",
+      "url": "https://www.dpa.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

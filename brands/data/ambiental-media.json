@@ -1,0 +1,33 @@
+{
+  "slug": "ambiental-media",
+  "group": "intl",
+  "country": "Бразилія",
+  "kind": "online",
+  "name": {
+    "uk": "Ambiental Media",
+    "en": "Ambiental Media"
+  },
+  "sort": {
+    "uk": "Ambiental Media",
+    "en": "Ambiental Media"
+  },
+  "type": {
+    "uk": "бразильське медіа про довкілля",
+    "en": "Brazilian environmental outlet"
+  },
+  "summary": {
+    "uk": "Бразильське медіа, яке поєднує журналістику, дані й науку про довкілля.",
+    "en": "Brazilian outlet combining journalism, data and environmental science."
+  },
+  "bio": {
+    "uk": "Ambiental Media робить інтерактивні проєкти про клімат і довкілля. Учасник програми JournalismAI Лондонської школи економіки."
+  },
+  "website": "https://ambiental.media",
+  "sources": [
+    {
+      "title": "Сайт Ambiental Media",
+      "url": "https://ambiental.media"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "deadline",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "Deadline",
+    "en": "Deadline Hollywood"
+  },
+  "sort": {
+    "uk": "Deadline",
+    "en": "Deadline Hollywood"
+  },
+  "aliases": [
+    "Deadline Hollywood"
+  ],
+  "match": [
+    "Deadline"
+  ],
+  "type": {
+    "uk": "американське видання про кіно- й телеіндустрію",
+    "en": "US entertainment-industry news site"
+  },
+  "summary": {
+    "uk": "Американське видання про бізнес Голлівуду, засноване 2006 року; належить Penske Media.",
+    "en": "US Hollywood business news site founded in 2006 and owned by Penske Media."
+  },
+  "bio": {
+    "uk": "Deadline Hollywood виріс із блогу журналістки Нікі Фінке, запущеного 2006 року. Видання оперативно пише про угоди студій, касові збори й кадрові зміни в кіно- та телеіндустрії; з 2009 року належить Penske Media."
+  },
+  "website": "https://deadline.com",
+  "wiki": [
+    "en:Deadline Hollywood"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Deadline Hollywood",
+      "url": "https://deadline.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

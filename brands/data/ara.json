@@ -1,0 +1,45 @@
+{
+  "slug": "ara",
+  "group": "intl",
+  "country": "Іспанія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Ara",
+    "en": "Ara"
+  },
+  "sort": {
+    "uk": "Ara",
+    "en": "Ara"
+  },
+  "match": [
+    "re:(?<![\\p{L}\\p{N}])Ara(?![\\p{L}\\p{N}])"
+  ],
+  "type": {
+    "uk": "каталонська щоденна газета",
+    "en": "Catalan daily newspaper"
+  },
+  "summary": {
+    "uk": "Барселонська щоденна газета каталонською мовою, заснована 2010 року.",
+    "en": "Barcelona daily in Catalan founded in 2010."
+  },
+  "bio": {
+    "uk": "Ara виходить каталонською з 2010 року, має також англійську версію сайту. Газета писала про нові аргументи на користь того, що один із відомих воєнних знімків Іспанської громадянської війни зробила Ґерда Таро."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2010"
+    ]
+  ],
+  "website": "https://www.ara.cat",
+  "wiki": [
+    "en:Ara (newspaper)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Ara",
+      "url": "https://www.ara.cat"
+    }
+  ],
+  "updated": "2026-11-25"
+}

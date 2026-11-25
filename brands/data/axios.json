@@ -1,0 +1,46 @@
+{
+  "slug": "axios",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "Axios",
+    "en": "Axios"
+  },
+  "sort": {
+    "uk": "Axios",
+    "en": "Axios"
+  },
+  "type": {
+    "uk": "американське онлайн-медіа",
+    "en": "US digital news outlet"
+  },
+  "summary": {
+    "uk": "Американське новинне медіа, засноване 2017 року колишніми керівниками Politico; відоме короткими «розумними» текстами.",
+    "en": "US news outlet founded in 2017 by former Politico executives, known for its 'smart brevity' format."
+  },
+  "bio": {
+    "uk": "Axios заснували 2017 року Джим ВандеГай, Майк Аллен і Рой Шварц, які раніше працювали в Politico. Видання пише коротко й структуровано, а заробляє насамперед на розсилках і рекламі; має мережу місцевих розсилок у містах США. 2022 року Axios купила компанія Cox Enterprises."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2017"
+    ],
+    [
+      "Власник",
+      "Cox Enterprises"
+    ]
+  ],
+  "website": "https://www.axios.com",
+  "wiki": [
+    "en:Axios (website)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Axios",
+      "url": "https://www.axios.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

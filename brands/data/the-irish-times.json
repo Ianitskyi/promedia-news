@@ -1,0 +1,42 @@
+{
+  "slug": "the-irish-times",
+  "group": "intl",
+  "country": "Ірландія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Irish Times",
+    "en": "The Irish Times"
+  },
+  "sort": {
+    "uk": "Irish Times",
+    "en": "Irish Times"
+  },
+  "type": {
+    "uk": "ірландська щоденна газета",
+    "en": "Irish daily newspaper"
+  },
+  "summary": {
+    "uk": "Дублінська щоденна газета, заснована 1859 року; належить фонду The Irish Times Trust.",
+    "en": "Dublin daily founded in 1859, owned by The Irish Times Trust."
+  },
+  "bio": {
+    "uk": "The Irish Times — одна з провідних газет Ірландії. Нею з 1974 року володіє фонд, покликаний гарантувати незалежність видання."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1859"
+    ]
+  ],
+  "website": "https://www.irishtimes.com",
+  "wiki": [
+    "en:The Irish Times"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Irish Times",
+      "url": "https://www.irishtimes.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

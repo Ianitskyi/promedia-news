@@ -1,0 +1,40 @@
+{
+  "slug": "rubryka",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Рубрика",
+    "en": "Rubryka"
+  },
+  "sort": {
+    "uk": "Рубрика",
+    "en": "Rubryka"
+  },
+  "match": [
+    "«Рубрика»",
+    "«Рубрики»",
+    "«Рубриці»",
+    "«Рубрику»",
+    "rubryka.com"
+  ],
+  "type": {
+    "uk": "українське медіа журналістики рішень",
+    "en": "Ukrainian solutions journalism outlet"
+  },
+  "summary": {
+    "uk": "Українське онлайн-медіа, яке працює в жанрі журналістики рішень.",
+    "en": "Ukrainian online outlet practising solutions journalism."
+  },
+  "bio": {
+    "uk": "«Рубрика» розповідає не лише про проблеми, а й про способи їх розв'язання; має екологічний напрям «ЕкоРубрика». Журналістка видання Вікторія Губарева в листопаді 2026 року представила в ЮНЕСКО результати Школи екологічної журналістики рішень."
+  },
+  "website": "https://rubryka.com",
+  "sources": [
+    {
+      "title": "Сайт Rubryka",
+      "url": "https://rubryka.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

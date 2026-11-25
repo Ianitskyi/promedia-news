@@ -1,0 +1,42 @@
+{
+  "slug": "variety",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "Variety",
+    "en": "Variety"
+  },
+  "sort": {
+    "uk": "Variety",
+    "en": "Variety"
+  },
+  "type": {
+    "uk": "американське видання про розважальну індустрію",
+    "en": "US entertainment trade publication"
+  },
+  "summary": {
+    "uk": "Галузеве видання про кіно, телебачення й музику, засноване 1905 року в Нью-Йорку.",
+    "en": "Entertainment trade publication founded in New York in 1905."
+  },
+  "bio": {
+    "uk": "Variety заснував 1905 року Сайм Сільверман як тижневик про водевілі. Нині це одне з головних видань про кіно, телебачення, стримінг і музику; належить Penske Media."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1905"
+    ]
+  ],
+  "website": "https://variety.com",
+  "wiki": [
+    "en:Variety (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Variety",
+      "url": "https://variety.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

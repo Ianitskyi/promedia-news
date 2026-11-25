@@ -1,0 +1,45 @@
+{
+  "slug": "ctk",
+  "group": "intl",
+  "country": "Чехія",
+  "kind": "agency",
+  "name": {
+    "uk": "ČTK",
+    "en": "ČTK — Czech News Agency"
+  },
+  "sort": {
+    "uk": "ČTK",
+    "en": "ČTK — Czech News Agency"
+  },
+  "aliases": [
+    "Чеська інформаційна агенція"
+  ],
+  "type": {
+    "uk": "чеська інформаційна агенція",
+    "en": "Czech news agency"
+  },
+  "summary": {
+    "uk": "Національна інформаційна агенція Чехії, заснована 1918 року.",
+    "en": "Czech Republic's national news agency, founded in 1918."
+  },
+  "bio": {
+    "uk": "Česká tisková kancelář (ČTK) заснували 1918 року, одразу після проголошення Чехословаччини. Нині це публічна установа, яка не отримує державного фінансування й заробляє продажем новин."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1918"
+    ]
+  ],
+  "website": "https://www.ceskenoviny.cz",
+  "wiki": [
+    "en:Czech News Agency"
+  ],
+  "sources": [
+    {
+      "title": "Сайт ČTK — Czech News Agency",
+      "url": "https://www.ceskenoviny.cz"
+    }
+  ],
+  "updated": "2026-11-25"
+}

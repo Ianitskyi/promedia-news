@@ -1,0 +1,36 @@
+{
+  "slug": "nova-rs",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "online",
+  "name": {
+    "uk": "Nova.rs",
+    "en": "Nova.rs"
+  },
+  "sort": {
+    "uk": "Nova.rs",
+    "en": "Nova.rs"
+  },
+  "type": {
+    "uk": "сербський новинний портал",
+    "en": "Serbian news portal"
+  },
+  "summary": {
+    "uk": "Сербський незалежний новинний портал, критичний до влади.",
+    "en": "Serbian independent news portal critical of the government."
+  },
+  "bio": {
+    "uk": "Nova.rs першим повідомив про затримання власника проурядового Informer Драгана Вучичевича в листопаді 2026 року."
+  },
+  "website": "https://nova.rs",
+  "wiki": [
+    "sr:Nova.rs"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Nova.rs",
+      "url": "https://nova.rs"
+    }
+  ],
+  "updated": "2026-11-25"
+}

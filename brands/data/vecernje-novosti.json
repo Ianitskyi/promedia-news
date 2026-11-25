@@ -1,0 +1,45 @@
+{
+  "slug": "vecernje-novosti",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Вечірні новини",
+    "en": "Večernje novosti"
+  },
+  "sort": {
+    "uk": "Вечірні новини",
+    "en": "Večernje novosti"
+  },
+  "aliases": [
+    "Večernje novosti"
+  ],
+  "type": {
+    "uk": "сербська щоденна газета",
+    "en": "Serbian daily newspaper"
+  },
+  "summary": {
+    "uk": "Белградська щоденна газета, що виходить з 1953 року.",
+    "en": "Belgrade daily newspaper published since 1953."
+  },
+  "bio": {
+    "uk": "Večernje novosti («Вечірні новини») — одна з найтиражніших газет Сербії. Вона повідомляла подробиці затримання власника Informer у листопаді 2026 року."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1953"
+    ]
+  ],
+  "website": "https://www.novosti.rs",
+  "wiki": [
+    "en:Večernje novosti"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Večernje novosti",
+      "url": "https://www.novosti.rs"
+    }
+  ],
+  "updated": "2026-11-25"
+}

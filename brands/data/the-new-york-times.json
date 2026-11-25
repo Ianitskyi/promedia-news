@@ -1,0 +1,55 @@
+{
+  "slug": "the-new-york-times",
+  "group": "intl",
+  "country": "США",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The New York Times",
+    "en": "The New York Times"
+  },
+  "sort": {
+    "uk": "New York Times",
+    "en": "New York Times"
+  },
+  "aliases": [
+    "NYT",
+    "Нью-Йорк Таймс"
+  ],
+  "type": {
+    "uk": "американська щоденна газета",
+    "en": "US daily newspaper"
+  },
+  "summary": {
+    "uk": "Нью-йоркська щоденна газета, заснована 1851 року; найбільше за кількістю передплатників новинне видання світу.",
+    "en": "New York daily founded in 1851; the world's largest news publisher by subscriptions."
+  },
+  "bio": {
+    "uk": "The New York Times виходить з 1851 року. З кінця XIX століття газетою керує родина Окс — Сульцбергер; з 2018 року видавцем є Артур Грегг Сульцбергер. Видання отримало понад 130 Пулітцерівських премій — більше, ніж будь-яке інше.\n\nThe New York Times — приклад успішного переходу на цифрову передплату: газета продає пакети з новинами, кулінарією, іграми та спортом. Вона також судиться з OpenAI і Microsoft через використання своїх текстів для навчання штучного інтелекту. За оцінками Similarweb, які наводила Press Gazette, у жовтні 2026 року nytimes.com був найвідвідуванішим новинним сайтом США."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1851"
+    ],
+    [
+      "Власник",
+      "The New York Times Company"
+    ],
+    [
+      "Видавець",
+      "Артур Грегг Сульцбергер"
+    ]
+  ],
+  "website": "https://www.nytimes.com",
+  "wiki": [
+    "en:The New York Times",
+    "uk:The New York Times"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The New York Times",
+      "url": "https://www.nytimes.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

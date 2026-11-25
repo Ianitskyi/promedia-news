@@ -1,0 +1,55 @@
+{
+  "slug": "the-kyiv-independent",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "The Kyiv Independent",
+    "en": "The Kyiv Independent"
+  },
+  "sort": {
+    "uk": "Kyiv Independent",
+    "en": "Kyiv Independent"
+  },
+  "aliases": [
+    "Kyiv Independent",
+    "Київ Індепендент"
+  ],
+  "match": [
+    "Kyiv Independent",
+    "kyivindependent.com"
+  ],
+  "type": {
+    "uk": "українське англомовне медіа",
+    "en": "Ukrainian English-language outlet"
+  },
+  "summary": {
+    "uk": "Англомовне українське медіа, засноване в листопаді 2021 року колишньою редакцією Kyiv Post; існує переважно на кошти читачів.",
+    "en": "Ukrainian English-language outlet founded in November 2021 by the former Kyiv Post newsroom, funded mostly by readers."
+  },
+  "bio": {
+    "uk": "The Kyiv Independent заснували 36 журналістів, яких звільнив власник Kyiv Post, коли захотів більше контролювати зміст видання. Від повномасштабного вторгнення 2022 року воно стало одним із головних джерел новин про Україну для світу. Головна редакторка — Ольга Руденко.\n\nЯк розповів Press Gazette операційний директор Захар Процюк, у листопаді 2026 року видання мало 37,5 тисячі людей, які платять щонайменше 5 доларів на місяць, і саме гроші прихильників становлять основу бюджету. Журналістка-розслідувачка The Kyiv Independent Олеся Біда стала мішенню фейкових акаунтів, які від її імені виманювали в фотографів знімки ударів."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "листопад 2021"
+    ],
+    [
+      "Головна редакторка",
+      "Ольга Руденко"
+    ]
+  ],
+  "website": "https://kyivindependent.com",
+  "wiki": [
+    "en:The Kyiv Independent",
+    "uk:The Kyiv Independent"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Kyiv Independent",
+      "url": "https://kyivindependent.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "united24-media",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "UNITED24 Media",
+    "en": "UNITED24 Media"
+  },
+  "sort": {
+    "uk": "UNITED24 Media",
+    "en": "UNITED24 Media"
+  },
+  "match": [
+    "UNITED24 Media"
+  ],
+  "type": {
+    "uk": "українське англомовне медіа",
+    "en": "Ukrainian English-language outlet"
+  },
+  "summary": {
+    "uk": "Медіа платформи UNITED24, яке розповідає світові про Україну.",
+    "en": "Media outlet of the UNITED24 platform telling the world about Ukraine."
+  },
+  "bio": {
+    "uk": "UNITED24 Media публікує новини й пояснювальні матеріали про війну та Україну англійською й іншими мовами."
+  },
+  "website": "https://united24media.com",
+  "sources": [
+    {
+      "title": "Сайт UNITED24 Media",
+      "url": "https://united24media.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

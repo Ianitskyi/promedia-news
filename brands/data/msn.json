@@ -1,0 +1,45 @@
+{
+  "slug": "msn",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "MSN",
+    "en": "MSN"
+  },
+  "sort": {
+    "uk": "MSN",
+    "en": "MSN"
+  },
+  "match": [
+    "msn.com"
+  ],
+  "type": {
+    "uk": "новинний агрегатор Microsoft",
+    "en": "Microsoft news aggregator"
+  },
+  "summary": {
+    "uk": "Вебпортал і новинний агрегатор компанії Microsoft, що працює з 1995 року.",
+    "en": "Microsoft's web portal and news aggregator, running since 1995."
+  },
+  "bio": {
+    "uk": "MSN з'явився 1995 року разом із Windows 95. Нині це передусім агрегатор, який показує матеріали партнерських медіа; Microsoft дедалі більше покладається на алгоритми й штучний інтелект у доборі новин. За оцінками Similarweb, які наводила Press Gazette, у жовтні 2026 року msn.com був шостим за відвідуваністю новинним сайтом США."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1995"
+    ]
+  ],
+  "website": "https://www.msn.com",
+  "wiki": [
+    "en:MSN"
+  ],
+  "sources": [
+    {
+      "title": "Сайт MSN",
+      "url": "https://www.msn.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

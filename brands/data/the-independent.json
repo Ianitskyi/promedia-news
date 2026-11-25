@@ -1,0 +1,42 @@
+{
+  "slug": "the-independent",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "online",
+  "name": {
+    "uk": "The Independent",
+    "en": "The Independent"
+  },
+  "sort": {
+    "uk": "Independent",
+    "en": "Independent"
+  },
+  "type": {
+    "uk": "британське онлайн-видання",
+    "en": "UK digital newspaper"
+  },
+  "summary": {
+    "uk": "Британська газета, заснована 1986 року; з 2016 року виходить лише онлайн.",
+    "en": "British newspaper founded in 1986, online-only since 2016."
+  },
+  "bio": {
+    "uk": "The Independent заснували 1986 року журналісти, які прагнули газети без партійних і власницьких впливів. 2016 року видання відмовилося від друкованої версії. Його кореспондентом на Близькому Сході був Роберт Фіск."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1986"
+    ]
+  ],
+  "website": "https://www.independent.co.uk",
+  "wiki": [
+    "en:The Independent"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Independent",
+      "url": "https://www.independent.co.uk"
+    }
+  ],
+  "updated": "2026-11-25"
+}

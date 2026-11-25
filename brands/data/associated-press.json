@@ -1,0 +1,55 @@
+{
+  "slug": "associated-press",
+  "group": "intl",
+  "country": "США",
+  "kind": "agency",
+  "name": {
+    "uk": "Associated Press",
+    "en": "Associated Press"
+  },
+  "sort": {
+    "uk": "Associated Press",
+    "en": "Associated Press"
+  },
+  "aliases": [
+    "AP",
+    "агенція Associated Press"
+  ],
+  "match": [
+    "Associated Press",
+    "re:(?<![\\p{L}\\p{N}])AP(?![\\p{L}\\p{N}])"
+  ],
+  "type": {
+    "uk": "американська некомерційна інформаційна агенція",
+    "en": "US non-profit news cooperative"
+  },
+  "summary": {
+    "uk": "Американська інформаційна агенція, заснована 1846 року в Нью-Йорку як кооператив газет; одна з найбільших у світі.",
+    "en": "US news agency founded in New York in 1846 as a newspaper cooperative; one of the largest in the world."
+  },
+  "bio": {
+    "uk": "Associated Press (AP) заснували 1846 року п'ять нью-йоркських газет, щоб разом збирати новини про американсько-мексиканську війну. Агенція досі працює як некомерційний кооператив, який належить медіа-членам. Довідник стилю AP Stylebook — один із найвпливовіших стандартів новинного письма англійською.\n\nФотографи й журналісти AP отримали десятки Пулітцерівських премій. Документальний фільм Мстислава Чернова «20 днів у Маріуполі», створений AP і FRONTLINE, 2024 року здобув перший в історії України «Оскар» — і перший для агенції."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1846, Нью-Йорк"
+    ],
+    [
+      "Форма власності",
+      "некомерційний кооператив"
+    ]
+  ],
+  "website": "https://apnews.com",
+  "wiki": [
+    "en:Associated Press",
+    "uk:Associated Press"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Associated Press",
+      "url": "https://apnews.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

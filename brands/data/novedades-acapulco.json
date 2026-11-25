@@ -1,0 +1,33 @@
+{
+  "slug": "novedades-acapulco",
+  "group": "intl",
+  "country": "Мексика",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Novedades Acapulco",
+    "en": "Novedades Acapulco"
+  },
+  "sort": {
+    "uk": "Novedades Acapulco",
+    "en": "Novedades Acapulco"
+  },
+  "type": {
+    "uk": "мексиканська регіональна газета",
+    "en": "Mexican regional daily"
+  },
+  "summary": {
+    "uk": "Щоденна газета мексиканського Акапулько.",
+    "en": "Daily newspaper of Acapulco, Mexico."
+  },
+  "bio": {
+    "uk": "У Novedades Acapulco працював журналіст Едуардо, вбитий у Мексиці в листопаді 2026 року; згодом він близько десяти років писав для видання Enfoque Informativo. ПроМедіа писала про це з посиланням на «Репортерів без кордонів»."
+  },
+  "website": "https://novedadesaca.mx",
+  "sources": [
+    {
+      "title": "Сайт Novedades Acapulco",
+      "url": "https://novedadesaca.mx"
+    }
+  ],
+  "updated": "2026-11-25"
+}

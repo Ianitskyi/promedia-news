@@ -1,0 +1,45 @@
+{
+  "slug": "sozcu",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Sözcü",
+    "en": "Sözcü"
+  },
+  "sort": {
+    "uk": "Sözcü",
+    "en": "Sözcü"
+  },
+  "match": [
+    "re:Sözcü(?! TV)"
+  ],
+  "type": {
+    "uk": "турецька опозиційна щоденна газета",
+    "en": "Turkish opposition daily"
+  },
+  "summary": {
+    "uk": "Турецька світська опозиційна газета, заснована 2007 року Бураком Акбаєм.",
+    "en": "Turkish secular opposition daily founded in 2007 by Burak Akbay."
+  },
+  "bio": {
+    "uk": "Sözcü — одна з найтиражніших газет Туреччини й критик уряду Реджепа Таїпа Ердогана. Рішення про передачу телеканалу Sözcü TV під державне управління в листопаді 2026 року не стосувалося газети та пов'язаних із нею видань Tavır і Korkusuz."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2007"
+    ]
+  ],
+  "website": "https://www.sozcu.com.tr",
+  "wiki": [
+    "en:Sözcü"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Sözcü",
+      "url": "https://www.sozcu.com.tr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

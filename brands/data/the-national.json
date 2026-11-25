@@ -1,0 +1,45 @@
+{
+  "slug": "the-national",
+  "group": "intl",
+  "country": "ОАЕ",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The National",
+    "en": "The National"
+  },
+  "sort": {
+    "uk": "National",
+    "en": "National"
+  },
+  "match": [
+    "re:(?<![\\p{L}\\p{N}])The National(?! WWII| World War| Churchill)(?![\\p{L}\\p{N}])"
+  ],
+  "type": {
+    "uk": "англомовна газета ОАЕ",
+    "en": "UAE English-language newspaper"
+  },
+  "summary": {
+    "uk": "Англомовна газета з Абу-Дабі, заснована 2008 року.",
+    "en": "Abu Dhabi English-language newspaper founded in 2008."
+  },
+  "bio": {
+    "uk": "The National пише про Близький Схід і країни Затоки англійською. Видання зазначало, що Telegram користується майже 10% населення Близького Сходу."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2008"
+    ]
+  ],
+  "website": "https://www.thenationalnews.com",
+  "wiki": [
+    "en:The National (Abu Dhabi)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The National",
+      "url": "https://www.thenationalnews.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

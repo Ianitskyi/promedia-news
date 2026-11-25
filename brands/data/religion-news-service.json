@@ -1,0 +1,45 @@
+{
+  "slug": "religion-news-service",
+  "group": "intl",
+  "country": "США",
+  "kind": "agency",
+  "name": {
+    "uk": "Religion News Service",
+    "en": "Religion News Service"
+  },
+  "sort": {
+    "uk": "Religion News Service",
+    "en": "Religion News Service"
+  },
+  "aliases": [
+    "RNS"
+  ],
+  "type": {
+    "uk": "американська агенція релігійних новин",
+    "en": "US religion news agency"
+  },
+  "summary": {
+    "uk": "Некомерційна американська агенція новин про релігію, заснована 1934 року.",
+    "en": "US non-profit news agency covering religion, founded in 1934."
+  },
+  "bio": {
+    "uk": "Religion News Service пише про релігію, етику й духовність і продає матеріали іншим медіа. Агенція брала участь у програмі JournalismAI Лондонської школи економіки, де редакції шукали з допомогою штучного інтелекту нові джерела доходу."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1934"
+    ]
+  ],
+  "website": "https://religionnews.com",
+  "wiki": [
+    "en:Religion News Service"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Religion News Service",
+      "url": "https://religionnews.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

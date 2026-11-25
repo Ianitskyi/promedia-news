@@ -1,0 +1,36 @@
+{
+  "slug": "novinky-cz",
+  "group": "intl",
+  "country": "Чехія",
+  "kind": "online",
+  "name": {
+    "uk": "Novinky.cz",
+    "en": "Novinky.cz"
+  },
+  "sort": {
+    "uk": "Novinky.cz",
+    "en": "Novinky.cz"
+  },
+  "type": {
+    "uk": "чеський новинний портал",
+    "en": "Czech news portal"
+  },
+  "summary": {
+    "uk": "Один із найпопулярніших новинних сайтів Чехії, належить компанії Seznam.cz.",
+    "en": "One of the Czech Republic's most popular news sites, owned by Seznam.cz."
+  },
+  "bio": {
+    "uk": "Novinky.cz — масовий новинний портал. Видання писало, що державне фінансування суспільних медіа саме по собі не означає втрати незалежності: усе залежить від запобіжників."
+  },
+  "website": "https://www.novinky.cz",
+  "wiki": [
+    "cs:Novinky.cz"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Novinky.cz",
+      "url": "https://www.novinky.cz"
+    }
+  ],
+  "updated": "2026-11-25"
+}

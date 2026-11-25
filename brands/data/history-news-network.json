@@ -1,0 +1,42 @@
+{
+  "slug": "history-news-network",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "History News Network",
+    "en": "History News Network"
+  },
+  "sort": {
+    "uk": "History News Network",
+    "en": "History News Network"
+  },
+  "type": {
+    "uk": "американський сайт про історію",
+    "en": "US history news site"
+  },
+  "summary": {
+    "uk": "Американський сайт, де історики пояснюють сучасні події через минуле; заснований 2001 року.",
+    "en": "US site where historians put current events in historical context; founded in 2001."
+  },
+  "bio": {
+    "uk": "History News Network публікує колонки й огляди істориків, а також новини про історичну науку та політику пам'яті."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2001"
+    ]
+  ],
+  "website": "https://historynewsnetwork.org",
+  "wiki": [
+    "en:History News Network"
+  ],
+  "sources": [
+    {
+      "title": "Сайт History News Network",
+      "url": "https://historynewsnetwork.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,33 @@
+{
+  "slug": "the-media-leader",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "trade",
+  "name": {
+    "uk": "The Media Leader",
+    "en": "The Media Leader"
+  },
+  "sort": {
+    "uk": "Media Leader",
+    "en": "Media Leader"
+  },
+  "type": {
+    "uk": "галузеве видання про медіа й рекламу",
+    "en": "Media and advertising trade outlet"
+  },
+  "summary": {
+    "uk": "Британське галузеве видання про медіа, рекламу й маркетинг з французькою редакцією.",
+    "en": "British trade outlet on media, advertising and marketing with a French edition."
+  },
+  "bio": {
+    "uk": "The Media Leader пише про медіабізнес і рекламний ринок. Його французька редакція повідомила, що Мішель Бенбюнан очолила групу Les Echos — Le Parisien, про що ПроМедіа писала в новині про угоду OpenAI з LVMH."
+  },
+  "website": "https://uk.themedialeader.com",
+  "sources": [
+    {
+      "title": "Сайт The Media Leader",
+      "url": "https://uk.themedialeader.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

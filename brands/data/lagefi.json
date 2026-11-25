@@ -1,0 +1,36 @@
+{
+  "slug": "lagefi",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "newspaper",
+  "name": {
+    "uk": "L'Agefi",
+    "en": "L'Agefi"
+  },
+  "sort": {
+    "uk": "Agefi",
+    "en": "Agefi"
+  },
+  "type": {
+    "uk": "французьке фінансове видання",
+    "en": "French financial publication"
+  },
+  "summary": {
+    "uk": "Французьке видання про фінанси, банки й управління активами; за даними AFP, у переліку видань LVMH.",
+    "en": "French publication on finance, banking and asset management; listed by AFP among LVMH titles."
+  },
+  "bio": {
+    "uk": "L'Agefi пише для фахівців фінансового ринку. AFP включила його до переліку 17 видань медійного підрозділу LVMH, щодо яких група уклала угоду з OpenAI."
+  },
+  "website": "https://www.agefi.fr",
+  "wiki": [
+    "fr:L'Agefi"
+  ],
+  "sources": [
+    {
+      "title": "Сайт L'Agefi",
+      "url": "https://www.agefi.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

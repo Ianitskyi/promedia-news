@@ -1,0 +1,36 @@
+{
+  "slug": "status",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "Status",
+    "en": "Status"
+  },
+  "sort": {
+    "uk": "Status",
+    "en": "Status"
+  },
+  "match": [
+    "Status"
+  ],
+  "type": {
+    "uk": "медіарозсилка про медіаіндустрію",
+    "en": "Media-industry newsletter"
+  },
+  "summary": {
+    "uk": "Американська розсилка про медіа й політику, яку видає колишній медіаоглядач CNN Олівер Дарсі.",
+    "en": "US newsletter about media and politics published by former CNN media reporter Oliver Darcy."
+  },
+  "bio": {
+    "uk": "Status — платна розсилка про медіаіндустрію, яку Олівер Дарсі запустив після того, як залишив CNN, де вів медійну розсилку Reliable Sources. Розсилка розповідає про телемережі, видавців, власників медіа й тиск влади на пресу у США."
+  },
+  "website": "https://www.status.news",
+  "sources": [
+    {
+      "title": "Сайт Status",
+      "url": "https://www.status.news"
+    }
+  ],
+  "updated": "2026-11-25"
+}

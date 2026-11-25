@@ -1,0 +1,30 @@
+{
+  "slug": "kordon-media",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Kordon.Media",
+    "en": "Kordon.Media"
+  },
+  "sort": {
+    "uk": "Kordon.Media",
+    "en": "Kordon.Media"
+  },
+  "match": [
+    "Kordon.Media"
+  ],
+  "type": {
+    "uk": "сумське онлайн-медіа",
+    "en": "Sumy online outlet"
+  },
+  "summary": {
+    "uk": "Сумське онлайн-медіа.",
+    "en": "Sumy online outlet."
+  },
+  "bio": {
+    "uk": "17 липня 2026 року атака п'ятьма керованими авіабомбами пошкодила офіс і студію Kordon.Media в Сумах."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

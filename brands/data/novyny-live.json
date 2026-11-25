@@ -1,0 +1,46 @@
+{
+  "slug": "novyny-live",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "tv",
+  "name": {
+    "uk": "Новини.LIVE",
+    "en": "Novyny.LIVE"
+  },
+  "sort": {
+    "uk": "Новини.LIVE",
+    "en": "Novyny.LIVE"
+  },
+  "match": [
+    "«Новини.LIVE»",
+    "Новини.LIVE"
+  ],
+  "type": {
+    "uk": "український новинний телеканал і сайт",
+    "en": "Ukrainian news TV channel and website"
+  },
+  "summary": {
+    "uk": "Український новинний телеканал і сайт.",
+    "en": "Ukrainian news TV channel and website."
+  },
+  "bio": {
+    "uk": "Новини.LIVE — цілодобовий новинний телеканал і онлайн-медіа.\n\nУ дослідженні ІМІ 2026 року видання потрапило до 27 із 50 найпопулярніших онлайн-медіа, які не оприлюднили жодної фінансової інформації."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "не оприлюднює фінансової інформації"
+    ]
+  ],
+  "website": "https://novyny.live",
+  "wiki": [
+    "uk:Новини.LIVE"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Novyny.LIVE",
+      "url": "https://novyny.live"
+    }
+  ],
+  "updated": "2026-11-25"
+}

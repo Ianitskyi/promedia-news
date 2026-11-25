@@ -1,0 +1,42 @@
+{
+  "slug": "rappler",
+  "group": "intl",
+  "country": "Філіппіни",
+  "kind": "online",
+  "name": {
+    "uk": "Rappler",
+    "en": "Rappler"
+  },
+  "sort": {
+    "uk": "Rappler",
+    "en": "Rappler"
+  },
+  "type": {
+    "uk": "філіппінське онлайн-медіа",
+    "en": "Philippine online outlet"
+  },
+  "summary": {
+    "uk": "Філіппінське онлайн-медіа, засноване 2012 року; його співзасновниця Марія Ресса отримала Нобелівську премію миру 2021 року.",
+    "en": "Philippine digital outlet founded in 2012; co-founder Maria Ressa won the 2021 Nobel Peace Prize."
+  },
+  "bio": {
+    "uk": "Rappler стало відоме розслідуваннями «війни з наркотиками» президента Родріго Дутерте, за що зазнавало переслідувань. 2021 року Марія Ресса разом із росіянином Дмитром Муратовим отримала Нобелівську премію миру. Rappler брав участь у програмі JournalismAI Лондонської школи економіки."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2012, Маніла"
+    ]
+  ],
+  "website": "https://www.rappler.com",
+  "wiki": [
+    "en:Rappler"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Rappler",
+      "url": "https://www.rappler.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

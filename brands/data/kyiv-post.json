@@ -1,0 +1,50 @@
+{
+  "slug": "kyiv-post",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Kyiv Post",
+    "en": "Kyiv Post"
+  },
+  "sort": {
+    "uk": "Kyiv Post",
+    "en": "Kyiv Post"
+  },
+  "aliases": [
+    "Київ Пост"
+  ],
+  "type": {
+    "uk": "українське англомовне медіа",
+    "en": "Ukrainian English-language outlet"
+  },
+  "summary": {
+    "uk": "Найстаріше англомовне видання України, засноване 1995 року.",
+    "en": "Ukraine's oldest English-language publication, founded in 1995."
+  },
+  "bio": {
+    "uk": "Kyiv Post заснував 1995 року американець Джед Санден; з 2018 року видання належить одеському бізнесменові Аднану Ківану. У листопаді 2021 року власник звільнив редакцію, і 36 журналістів заснували The Kyiv Independent. Kyiv Post відновило роботу з новою командою, нині виходить кількома мовами, зокрема українською.\n\nЗа дослідженням ІМІ 2026 року, Kyiv Post — серед частково прозорих щодо фінансування онлайн-медіа."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1995"
+    ],
+    [
+      "Власник",
+      "Аднан Ківан (з 2018)"
+    ]
+  ],
+  "website": "https://www.kyivpost.com",
+  "wiki": [
+    "en:Kyiv Post",
+    "uk:Kyiv Post"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Kyiv Post",
+      "url": "https://www.kyivpost.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

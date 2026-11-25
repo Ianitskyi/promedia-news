@@ -1,0 +1,36 @@
+{
+  "slug": "dev-ua",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "dev.ua",
+    "en": "dev.ua"
+  },
+  "sort": {
+    "uk": "dev.ua",
+    "en": "dev.ua"
+  },
+  "match": [
+    "dev.ua"
+  ],
+  "type": {
+    "uk": "українське медіа про ІТ",
+    "en": "Ukrainian tech outlet"
+  },
+  "summary": {
+    "uk": "Українське медіа про ІТ, технології й бізнес.",
+    "en": "Ukrainian outlet about IT, technology and business."
+  },
+  "bio": {
+    "uk": "dev.ua пише про ІТ-індустрію та технології. У серпні 2025 року регулятор PlayCity оштрафував саме видання на 4,8 млн грн за анонс бою Усик — Дюбуа зі згадкою легального бренду; dev.ua оскаржує штраф."
+  },
+  "website": "https://dev.ua",
+  "sources": [
+    {
+      "title": "Сайт dev.ua",
+      "url": "https://dev.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

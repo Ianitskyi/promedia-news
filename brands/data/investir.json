@@ -1,0 +1,39 @@
+{
+  "slug": "investir",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Investir",
+    "en": "Investir"
+  },
+  "sort": {
+    "uk": "Investir",
+    "en": "Investir"
+  },
+  "aliases": [
+    "Capital Finance"
+  ],
+  "type": {
+    "uk": "французьке видання для інвесторів",
+    "en": "French investor publication"
+  },
+  "summary": {
+    "uk": "Французький тижневик для приватних інвесторів, що належить групі Les Echos — Le Parisien (LVMH).",
+    "en": "French weekly for private investors, owned by Les Echos — Le Parisien (LVMH)."
+  },
+  "bio": {
+    "uk": "Investir пише про біржу й особисті інвестиції. За даними AFP, входить до видань LVMH, охоплених угодою з OpenAI; у переліку також є пов'язане видання Capital Finance."
+  },
+  "website": "https://investir.lesechos.fr",
+  "wiki": [
+    "fr:Investir"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Investir",
+      "url": "https://investir.lesechos.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

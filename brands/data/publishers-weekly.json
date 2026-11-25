@@ -1,0 +1,42 @@
+{
+  "slug": "publishers-weekly",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "Publishers Weekly",
+    "en": "Publishers Weekly"
+  },
+  "sort": {
+    "uk": "Publishers Weekly",
+    "en": "Publishers Weekly"
+  },
+  "type": {
+    "uk": "галузевий журнал книговидавців",
+    "en": "Book-publishing trade magazine"
+  },
+  "summary": {
+    "uk": "Американський галузевий журнал про книговидання й книжкову торгівлю, що виходить з 1872 року.",
+    "en": "US trade magazine about book publishing and bookselling, published since 1872."
+  },
+  "bio": {
+    "uk": "Publishers Weekly пише про видавців, книжкові продажі та літературні премії, публікує рецензії на книжки до виходу."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1872"
+    ]
+  ],
+  "website": "https://www.publishersweekly.com",
+  "wiki": [
+    "en:Publishers Weekly"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Publishers Weekly",
+      "url": "https://www.publishersweekly.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

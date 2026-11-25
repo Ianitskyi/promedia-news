@@ -1,0 +1,36 @@
+{
+  "slug": "challenges",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "magazine",
+  "name": {
+    "uk": "Challenges",
+    "en": "Challenges"
+  },
+  "sort": {
+    "uk": "Challenges",
+    "en": "Challenges"
+  },
+  "type": {
+    "uk": "французький діловий журнал",
+    "en": "French business magazine"
+  },
+  "summary": {
+    "uk": "Французький діловий тижневик; за даними AFP, входить до медійного підрозділу LVMH.",
+    "en": "French business weekly; according to AFP, part of LVMH's media division."
+  },
+  "bio": {
+    "uk": "Challenges пише про економіку, компанії та їхніх власників. За даними AFP, на які посилалася ПроМедіа, журнал входить до 17 видань LVMH, щодо яких група уклала угоду з OpenAI."
+  },
+  "website": "https://www.challenges.fr",
+  "wiki": [
+    "fr:Challenges (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Challenges",
+      "url": "https://www.challenges.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

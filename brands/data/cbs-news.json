@@ -1,0 +1,50 @@
+{
+  "slug": "cbs-news",
+  "group": "intl",
+  "country": "США",
+  "kind": "tv",
+  "name": {
+    "uk": "CBS News",
+    "en": "CBS News"
+  },
+  "sort": {
+    "uk": "CBS News",
+    "en": "CBS News"
+  },
+  "aliases": [
+    "CBS",
+    "Сі-Бі-Ес"
+  ],
+  "match": [
+    "CBS News",
+    "re:(?<![\\p{L}\\p{N}])CBS(?![\\p{L}\\p{N}])"
+  ],
+  "type": {
+    "uk": "новинний підрозділ американської телемережі CBS",
+    "en": "News division of the US CBS network"
+  },
+  "summary": {
+    "uk": "Новинна служба телемережі CBS, де працювали Едвард Марроу та Волтер Кронкайт.",
+    "en": "News division of the CBS network, home of Edward R. Murrow and Walter Cronkite."
+  },
+  "bio": {
+    "uk": "CBS News — новинна служба американської мовної мережі CBS, однієї з «великої трійки» телемереж США. Тут працювали легенди журналістики: Едвард Марроу, чиї радіорепортажі з Лондона під час Другої світової війни чула вся Америка, та Волтер Кронкайт, якого називали «найнадійнішою людиною Америки». Його слова в ефірі 1968 року про те, що війна у В'єтнамі загрузла в безвиході, увійшли в історію як «момент Кронкайта».\n\nЗа даними новин ПроМедіа, восени 2026 року CBS News разом із CNN належить медіагрупі Skydance."
+  },
+  "facts": [
+    [
+      "Мережа",
+      "CBS"
+    ]
+  ],
+  "website": "https://www.cbsnews.com",
+  "wiki": [
+    "en:CBS News"
+  ],
+  "sources": [
+    {
+      "title": "Сайт CBS News",
+      "url": "https://www.cbsnews.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

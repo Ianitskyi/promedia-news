@@ -1,0 +1,27 @@
+{
+  "slug": "courrier-confidentiel",
+  "group": "intl",
+  "country": "Буркіна-Фасо",
+  "kind": "investigative",
+  "name": {
+    "uk": "Courrier Confidentiel",
+    "en": "Courrier Confidentiel"
+  },
+  "sort": {
+    "uk": "Courrier Confidentiel",
+    "en": "Courrier Confidentiel"
+  },
+  "type": {
+    "uk": "розслідувальне видання Буркіна-Фасо",
+    "en": "Burkinabe investigative outlet"
+  },
+  "summary": {
+    "uk": "Розслідувальне видання з Буркіна-Фасо, якому регулятор заборонив виходити в листопаді 2026 року.",
+    "en": "Investigative outlet from Burkina Faso banned by the regulator in November 2026."
+  },
+  "bio": {
+    "uk": "За даними «Репортерів без кордонів», які наводила ПроМедіа, у листопаді 2026 року медіарегулятор Буркіна-Фасо заборонив виходити Courrier Confidentiel, а військова влада видала ордери на арешт шести журналістів за звинуваченнями в зв'язках із терористами."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

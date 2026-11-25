@@ -1,0 +1,33 @@
+{
+  "slug": "exchange4media",
+  "group": "intl",
+  "country": "Індія",
+  "kind": "trade",
+  "name": {
+    "uk": "exchange4media",
+    "en": "exchange4media"
+  },
+  "sort": {
+    "uk": "exchange4media",
+    "en": "exchange4media"
+  },
+  "type": {
+    "uk": "індійське галузеве видання про медіа й рекламу",
+    "en": "Indian media and advertising trade outlet"
+  },
+  "summary": {
+    "uk": "Індійське галузеве видання про медіа, рекламу й маркетинг.",
+    "en": "Indian trade outlet about media, advertising and marketing."
+  },
+  "bio": {
+    "uk": "exchange4media повідомило, що в жовтні 2026 року до коаліції видавців SPUR приєдналися понад 40 нових членів, зокрема The New York Times, The Economist і AFP."
+  },
+  "website": "https://www.exchange4media.com",
+  "sources": [
+    {
+      "title": "Сайт exchange4media",
+      "url": "https://www.exchange4media.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

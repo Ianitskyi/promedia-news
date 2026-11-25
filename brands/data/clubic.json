@@ -1,0 +1,36 @@
+{
+  "slug": "clubic",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "online",
+  "name": {
+    "uk": "Clubic",
+    "en": "Clubic"
+  },
+  "sort": {
+    "uk": "Clubic",
+    "en": "Clubic"
+  },
+  "type": {
+    "uk": "французьке технологічне медіа",
+    "en": "French tech news site"
+  },
+  "summary": {
+    "uk": "Французький технологічний сайт про гаджети, кібербезпеку та інтернет.",
+    "en": "French tech site covering gadgets, cybersecurity and the internet."
+  },
+  "bio": {
+    "uk": "Clubic пише про технології та кібербезпеку французькою. Видання переказало розслідування Le Monde про злам акаунтів журналістів у месенджерах."
+  },
+  "website": "https://www.clubic.com",
+  "wiki": [
+    "fr:Clubic"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Clubic",
+      "url": "https://www.clubic.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

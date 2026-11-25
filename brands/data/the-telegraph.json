@@ -1,0 +1,45 @@
+{
+  "slug": "the-telegraph",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Telegraph",
+    "en": "The Telegraph"
+  },
+  "sort": {
+    "uk": "Telegraph",
+    "en": "Telegraph"
+  },
+  "aliases": [
+    "The Daily Telegraph"
+  ],
+  "type": {
+    "uk": "британська щоденна газета",
+    "en": "UK daily newspaper"
+  },
+  "summary": {
+    "uk": "Лондонська щоденна газета, заснована 1855 року.",
+    "en": "London daily newspaper founded in 1855."
+  },
+  "bio": {
+    "uk": "The Daily Telegraph виходить з 1855 року і вважається консервативною газетою. Видавець Telegraph Media Group — серед засновників коаліції SPUR, що на початку 2026 року об'єднала британських видавців для спільних правил використання контенту штучним інтелектом."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1855"
+    ]
+  ],
+  "website": "https://www.telegraph.co.uk",
+  "wiki": [
+    "en:The Daily Telegraph"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Telegraph",
+      "url": "https://www.telegraph.co.uk"
+    }
+  ],
+  "updated": "2026-11-25"
+}

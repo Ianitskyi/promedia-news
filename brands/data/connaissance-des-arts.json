@@ -1,0 +1,36 @@
+{
+  "slug": "connaissance-des-arts",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "magazine",
+  "name": {
+    "uk": "Connaissance des Arts",
+    "en": "Connaissance des Arts"
+  },
+  "sort": {
+    "uk": "Connaissance des Arts",
+    "en": "Connaissance des Arts"
+  },
+  "type": {
+    "uk": "французький журнал про мистецтво",
+    "en": "French art magazine"
+  },
+  "summary": {
+    "uk": "Французький журнал про мистецтво, що виходить з 1952 року; за даними AFP, належить LVMH.",
+    "en": "French art magazine published since 1952; according to AFP, owned by LVMH."
+  },
+  "bio": {
+    "uk": "Connaissance des Arts пише про образотворче мистецтво, виставки й арт-ринок. AFP включила журнал до переліку видань LVMH, охоплених угодою з OpenAI."
+  },
+  "website": "https://www.connaissancedesarts.com",
+  "wiki": [
+    "fr:Connaissance des arts"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Connaissance des Arts",
+      "url": "https://www.connaissancedesarts.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

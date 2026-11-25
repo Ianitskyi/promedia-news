@@ -1,0 +1,36 @@
+{
+  "slug": "everyday",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "EveryDay",
+    "en": "EveryDay"
+  },
+  "sort": {
+    "uk": "EveryDay",
+    "en": "EveryDay"
+  },
+  "match": [
+    "EveryDay"
+  ],
+  "type": {
+    "uk": "сумське онлайн-медіа",
+    "en": "Sumy online outlet"
+  },
+  "summary": {
+    "uk": "Сумське новинне онлайн-медіа.",
+    "en": "Sumy online news outlet."
+  },
+  "bio": {
+    "uk": "EveryDay писав про загибель на фронті сумського фотографа Артура Назарова, який знімав Майдан."
+  },
+  "website": "https://everyday.sumy.ua",
+  "sources": [
+    {
+      "title": "Сайт EveryDay",
+      "url": "https://everyday.sumy.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

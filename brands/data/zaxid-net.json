@@ -1,0 +1,45 @@
+{
+  "slug": "zaxid-net",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Zaxid.net",
+    "en": "Zaxid.net"
+  },
+  "sort": {
+    "uk": "Zaxid.net",
+    "en": "Zaxid.net"
+  },
+  "match": [
+    "Zaxid.net"
+  ],
+  "type": {
+    "uk": "львівське онлайн-медіа",
+    "en": "Lviv online outlet"
+  },
+  "summary": {
+    "uk": "Львівське новинне онлайн-видання.",
+    "en": "Lviv-based online news outlet."
+  },
+  "bio": {
+    "uk": "Zaxid.net — одне з найпопулярніших онлайн-медіа Західної України.\n\nУ дослідженні ІМІ 2026 року видання потрапило до частково прозорих щодо фінансування серед 50 найпопулярніших онлайн-медіа: воно перелічує джерела доходу, але не оприлюднює повної звітності."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "частково прозоре"
+    ]
+  ],
+  "website": "https://zaxid.net",
+  "wiki": [
+    "uk:Zaxid.net"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Zaxid.net",
+      "url": "https://zaxid.net"
+    }
+  ],
+  "updated": "2026-11-25"
+}

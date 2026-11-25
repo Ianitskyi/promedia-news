@@ -44,7 +44,8 @@
     "events.promedia.report": "events",
     "santa.promedia.report": "santa",
     "brief.promedia.report": "brief",
-    "people.promedia.report": "people"
+    "people.promedia.report": "people",
+    "brands.promedia.report": "brands"
   };
   var CONTENT_TYPES = ["article", "tool", "project", "vacancy", "event", "profile", "page"];
   var TOOL_SECTIONS = ["atlas", "ratings", "communities"];
@@ -114,7 +115,7 @@
     if (section === "main" && /^\/projects\/(?!category\/)[^/]+/.test(path)) return "project";
     if (section === "jobs" && /^\/vacanc(y|ies)\b/.test(path)) return "vacancy";
     if (section === "events" && /^\/(event|events)\/[^/]+/.test(path)) return "event";
-    if (section === "people" && /^\/[^/]+\/?$/.test(path)) return "profile";
+    if ((section === "people" || section === "brands") && /^\/[^/]+\/?$/.test(path)) return "profile";
     if (section === "research" && /^\/(research|membership-guide\/handbook)\//.test(path)) return "article";
     if (hints.ogType === "article") return "article";
     if (TOOL_SECTIONS.indexOf(section) !== -1) return "tool";

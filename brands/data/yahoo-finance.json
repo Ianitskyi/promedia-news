@@ -1,0 +1,40 @@
+{
+  "slug": "yahoo-finance",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "Yahoo Finance",
+    "en": "Yahoo Finance"
+  },
+  "sort": {
+    "uk": "Yahoo Finance",
+    "en": "Yahoo Finance"
+  },
+  "match": [
+    "Yahoo Finance",
+    "finance.yahoo.com"
+  ],
+  "type": {
+    "uk": "американський фінансовий новинний портал",
+    "en": "US financial news portal"
+  },
+  "summary": {
+    "uk": "Фінансовий портал Yahoo з біржовими даними, новинами й аналітикою.",
+    "en": "Yahoo's financial portal with market data, news and analysis."
+  },
+  "bio": {
+    "uk": "Yahoo Finance — розділ порталу Yahoo з котируваннями, фінансовими новинами й відео. За оцінками Similarweb, які наводила Press Gazette, у жовтні 2026 року він був п'ятим за відвідуваністю новинним сайтом США."
+  },
+  "website": "https://finance.yahoo.com",
+  "wiki": [
+    "en:Yahoo Finance"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Yahoo Finance",
+      "url": "https://finance.yahoo.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

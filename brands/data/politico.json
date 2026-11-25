@@ -1,0 +1,46 @@
+{
+  "slug": "politico",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "Politico",
+    "en": "Politico"
+  },
+  "sort": {
+    "uk": "Politico",
+    "en": "Politico"
+  },
+  "type": {
+    "uk": "американське політичне медіа",
+    "en": "US political news outlet"
+  },
+  "summary": {
+    "uk": "Американське медіа про політику й урядування, засноване 2007 року; з 2021 року належить Axel Springer.",
+    "en": "US politics and policy outlet founded in 2007; owned by Axel Springer since 2021."
+  },
+  "bio": {
+    "uk": "Politico заснували 2007 року в Арлінгтоні поруч із Вашингтоном. Видання зосереджене на політиці Конгресу й Білого дому, має платні галузеві сервіси Politico Pro і європейську редакцію в Брюсселі. 2021 року його купила німецька медіагрупа Axel Springer."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2007"
+    ],
+    [
+      "Власник",
+      "Axel Springer"
+    ]
+  ],
+  "website": "https://www.politico.com",
+  "wiki": [
+    "en:Politico"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Politico",
+      "url": "https://www.politico.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

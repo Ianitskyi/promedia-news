@@ -1,0 +1,42 @@
+{
+  "slug": "blesk",
+  "group": "intl",
+  "country": "Чехія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Blesk",
+    "en": "Blesk"
+  },
+  "sort": {
+    "uk": "Blesk",
+    "en": "Blesk"
+  },
+  "type": {
+    "uk": "чеська щоденна газета-таблоїд",
+    "en": "Czech daily tabloid"
+  },
+  "summary": {
+    "uk": "Найтиражніша чеська щоденна газета-таблоїд, заснована 1992 року.",
+    "en": "The Czech Republic's best-selling daily tabloid, founded in 1992."
+  },
+  "bio": {
+    "uk": "Blesk виходить з 1992 року і належить медіагрупі CNC. ПроМедіа посилалася на нього в матеріалах про протести на захист чеських суспільних медіа."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1992"
+    ]
+  ],
+  "website": "https://www.blesk.cz",
+  "wiki": [
+    "en:Blesk"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Blesk",
+      "url": "https://www.blesk.cz"
+    }
+  ],
+  "updated": "2026-11-25"
+}

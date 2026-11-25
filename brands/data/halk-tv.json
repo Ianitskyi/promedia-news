@@ -1,0 +1,36 @@
+{
+  "slug": "halk-tv",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "tv",
+  "name": {
+    "uk": "Halk TV",
+    "en": "Halk TV"
+  },
+  "sort": {
+    "uk": "Halk TV",
+    "en": "Halk TV"
+  },
+  "type": {
+    "uk": "турецький опозиційний телеканал",
+    "en": "Turkish opposition TV channel"
+  },
+  "summary": {
+    "uk": "Турецький опозиційний новинний телеканал, який у жовтні 2026 року втратив незалежне керівництво.",
+    "en": "Turkish opposition news channel that lost its independent management in October 2026."
+  },
+  "bio": {
+    "uk": "Halk TV вважають близьким до головної опозиційної Республіканської народної партії. За даними «Детектора медіа», 14 жовтня 2026 року канал втратив незалежне керівництво: його передали під управління довірених осіб."
+  },
+  "website": "https://halktv.com.tr",
+  "wiki": [
+    "en:Halk TV"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Halk TV",
+      "url": "https://halktv.com.tr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

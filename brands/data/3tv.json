@@ -1,0 +1,27 @@
+{
+  "slug": "3tv",
+  "group": "intl",
+  "country": "Буркіна-Фасо",
+  "kind": "tv",
+  "name": {
+    "uk": "3TV",
+    "en": "3TV"
+  },
+  "sort": {
+    "uk": "3TV",
+    "en": "3TV"
+  },
+  "type": {
+    "uk": "телеканал Буркіна-Фасо",
+    "en": "Burkinabe TV channel"
+  },
+  "summary": {
+    "uk": "Телеканал з Буркіна-Фасо; його колишній директор Абдулає Баррі отримав ордер на арешт.",
+    "en": "Burkinabe TV channel whose former director Abdoulaye Barry faces an arrest warrant."
+  },
+  "bio": {
+    "uk": "Колишній директор телеканалу 3TV Абдулає Баррі — серед шести журналістів, яким влада Буркіна-Фасо в листопаді 2026 року видала ордери на арешт."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

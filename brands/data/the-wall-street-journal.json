@@ -1,0 +1,49 @@
+{
+  "slug": "the-wall-street-journal",
+  "group": "intl",
+  "country": "США",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Wall Street Journal",
+    "en": "The Wall Street Journal"
+  },
+  "sort": {
+    "uk": "Wall Street Journal",
+    "en": "Wall Street Journal"
+  },
+  "aliases": [
+    "WSJ"
+  ],
+  "type": {
+    "uk": "американська ділова щоденна газета",
+    "en": "US business daily"
+  },
+  "summary": {
+    "uk": "Ділова газета, яку видає Dow Jones з 1889 року; з 2007 року належить News Corp Руперта Мердока.",
+    "en": "Business daily published by Dow Jones since 1889; part of Rupert Murdoch's News Corp since 2007."
+  },
+  "bio": {
+    "uk": "The Wall Street Journal заснували 1889 року Чарльз Доу, Едвард Джонс і Чарльз Бергстрессер. Газета зосереджена на економіці, фінансах і політиці; вона входить до найтиражніших газет США. Видавець Dow Jones з 2007 року належить News Corp.\n\nЖурналіст WSJ Боян Панчевський написав книжку про підрив «Північних потоків», яку радила прочитати в інтерв'ю ПроМедіа Жанна Безп'ятчук."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1889"
+    ],
+    [
+      "Власник",
+      "News Corp"
+    ]
+  ],
+  "website": "https://www.wsj.com",
+  "wiki": [
+    "en:The Wall Street Journal"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Wall Street Journal",
+      "url": "https://www.wsj.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

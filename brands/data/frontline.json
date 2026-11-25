@@ -1,0 +1,45 @@
+{
+  "slug": "frontline",
+  "group": "intl",
+  "country": "США",
+  "kind": "tv",
+  "name": {
+    "uk": "FRONTLINE",
+    "en": "FRONTLINE"
+  },
+  "sort": {
+    "uk": "FRONTLINE",
+    "en": "FRONTLINE"
+  },
+  "match": [
+    "FRONTLINE"
+  ],
+  "type": {
+    "uk": "документальна програма суспільного телебачення США",
+    "en": "US public TV documentary series"
+  },
+  "summary": {
+    "uk": "Розслідувальна документальна програма американського суспільного телебачення PBS, що виходить з 1983 року.",
+    "en": "Investigative documentary series on US public broadcaster PBS, on air since 1983."
+  },
+  "bio": {
+    "uk": "FRONTLINE виробляє студія GBH у Бостоні для мережі PBS. Програма відома довгими розслідувальними документальними фільмами. Разом з AP вона створила фільм Мстислава Чернова «20 днів у Маріуполі», який 2024 року отримав «Оскар»."
+  },
+  "facts": [
+    [
+      "Перший випуск",
+      "1983"
+    ]
+  ],
+  "website": "https://www.pbs.org/wgbh/frontline/",
+  "wiki": [
+    "en:Frontline (American TV program)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт FRONTLINE",
+      "url": "https://www.pbs.org/wgbh/frontline/"
+    }
+  ],
+  "updated": "2026-11-25"
+}

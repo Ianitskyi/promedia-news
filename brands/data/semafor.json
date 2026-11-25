@@ -1,0 +1,42 @@
+{
+  "slug": "semafor",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "Semafor",
+    "en": "Semafor"
+  },
+  "sort": {
+    "uk": "Semafor",
+    "en": "Semafor"
+  },
+  "type": {
+    "uk": "міжнародне онлайн-медіа",
+    "en": "Global digital news outlet"
+  },
+  "summary": {
+    "uk": "Новинне медіа, яке 2022 року заснували колишній медіаоглядач The New York Times Бен Сміт і колишній CEO Bloomberg Media Джастін Сміт.",
+    "en": "News outlet launched in 2022 by former New York Times media columnist Ben Smith and former Bloomberg Media CEO Justin Smith."
+  },
+  "bio": {
+    "uk": "Semafor запустили 2022 року в Нью-Йорку. Видання відокремлює в текстах факти від аналізу й думок автора та робить ставку на розсилки й живі події. Саме Semafor першим повідомив про інвестицію Ілона Маска в медіагрупу Skydance, якій належать CNN і CBS."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2022"
+    ]
+  ],
+  "website": "https://www.semafor.com",
+  "wiki": [
+    "en:Semafor (website)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Semafor",
+      "url": "https://www.semafor.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

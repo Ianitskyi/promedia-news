@@ -1,0 +1,30 @@
+{
+  "slug": "dnipro-media",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Dnipro.media",
+    "en": "Dnipro.media"
+  },
+  "sort": {
+    "uk": "Dnipro.media",
+    "en": "Dnipro.media"
+  },
+  "match": [
+    "Dnipro.media"
+  ],
+  "type": {
+    "uk": "дніпровське онлайн-медіа",
+    "en": "Dnipro online outlet"
+  },
+  "summary": {
+    "uk": "Дніпровське онлайн-медіа з платною спільнотою прихильників.",
+    "en": "Dnipro online outlet with a paying supporters' community."
+  },
+  "bio": {
+    "uk": "Спільнота Dnipro.media зібрала понад 100 учасників; їхні внески допомагають редакції стежити за міськими закупівлями й розвивати нові формати."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

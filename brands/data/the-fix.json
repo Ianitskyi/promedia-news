@@ -1,0 +1,42 @@
+{
+  "slug": "the-fix",
+  "group": "intl",
+  "country": "Нідерланди",
+  "kind": "trade",
+  "name": {
+    "uk": "The Fix",
+    "en": "The Fix Media"
+  },
+  "sort": {
+    "uk": "Fix",
+    "en": "Fix Media"
+  },
+  "aliases": [
+    "The Fix Media"
+  ],
+  "type": {
+    "uk": "європейське медіа про медіабізнес",
+    "en": "European media-business outlet"
+  },
+  "summary": {
+    "uk": "Європейське видання про медіаменеджмент, бізнес-моделі й інновації, засноване 2019 року; має українське коріння.",
+    "en": "European outlet about media management, business models and innovation, founded in 2019 with Ukrainian roots."
+  },
+  "bio": {
+    "uk": "The Fix пише про те, як медіа в Європі заробляють, будують спільноти й упроваджують технології; видання також проводить дослідження й навчання. Його заснувала команда з українським досвідом, а видавцем є фундація The Fix Foundation.\n\nПроМедіа передрукувала з дозволу The Fix статтю Антона Процюка про те, як українські медіа готуються до найважчої зими."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2019"
+    ]
+  ],
+  "website": "https://thefix.media",
+  "sources": [
+    {
+      "title": "Сайт The Fix Media",
+      "url": "https://thefix.media"
+    }
+  ],
+  "updated": "2026-11-25"
+}

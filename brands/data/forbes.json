@@ -1,0 +1,45 @@
+{
+  "slug": "forbes",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "Forbes",
+    "en": "Forbes"
+  },
+  "sort": {
+    "uk": "Forbes",
+    "en": "Forbes"
+  },
+  "match": [
+    "re:(?<![\\p{L}\\p{N}])Forbes(?![\\p{L}\\p{N}]| Україна| Ukraine)"
+  ],
+  "type": {
+    "uk": "американський діловий журнал",
+    "en": "US business magazine"
+  },
+  "summary": {
+    "uk": "Діловий журнал, заснований 1917 року; відомий рейтингами найбагатших людей світу.",
+    "en": "Business magazine founded in 1917, famous for its rich lists."
+  },
+  "bio": {
+    "uk": "Forbes заснував 1917 року Берті Чарльз Форбс. Журнал відомий щорічними рейтингами мільярдерів і найбільших компаній. З 2014 року контрольний пакет належить гонконзькій інвестгрупі Integrated Whale Media. Forbes видає ліцензійні випуски в десятках країн, зокрема в Україні."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1917"
+    ]
+  ],
+  "website": "https://www.forbes.com",
+  "wiki": [
+    "en:Forbes"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Forbes",
+      "url": "https://www.forbes.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

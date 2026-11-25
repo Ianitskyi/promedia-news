@@ -1,0 +1,42 @@
+{
+  "slug": "hurriyet-daily-news",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Hürriyet Daily News",
+    "en": "Hürriyet Daily News"
+  },
+  "sort": {
+    "uk": "Hürriyet Daily News",
+    "en": "Hürriyet Daily News"
+  },
+  "type": {
+    "uk": "турецька англомовна газета",
+    "en": "Turkish English-language daily"
+  },
+  "summary": {
+    "uk": "Англомовна щоденна газета Туреччини, що виходить з 1961 року.",
+    "en": "Turkey's English-language daily, published since 1961."
+  },
+  "bio": {
+    "uk": "Hürriyet Daily News — англомовне видання медіагрупи Hürriyet. Газета повідомила про передачу Sözcü TV під державне управління в листопаді 2026 року."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1961"
+    ]
+  ],
+  "website": "https://www.hurriyetdailynews.com",
+  "wiki": [
+    "en:Hürriyet Daily News"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Hürriyet Daily News",
+      "url": "https://www.hurriyetdailynews.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

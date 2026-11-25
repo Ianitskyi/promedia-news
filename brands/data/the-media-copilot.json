@@ -1,0 +1,33 @@
+{
+  "slug": "the-media-copilot",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "The Media Copilot",
+    "en": "The Media Copilot"
+  },
+  "sort": {
+    "uk": "Media Copilot",
+    "en": "Media Copilot"
+  },
+  "type": {
+    "uk": "медіа про штучний інтелект у журналістиці",
+    "en": "Outlet about AI in media"
+  },
+  "summary": {
+    "uk": "Розсилка й подкаст про те, як штучний інтелект змінює медіа та комунікації.",
+    "en": "Newsletter and podcast about how AI is changing media and communications."
+  },
+  "bio": {
+    "uk": "The Media Copilot заснував американський журналіст Піт Пачал. Видання пише про угоди видавців із ШІ-компаніями, інструменти для редакцій і навчає журналістів працювати з ШІ."
+  },
+  "website": "https://mediacopilot.ai",
+  "sources": [
+    {
+      "title": "Сайт The Media Copilot",
+      "url": "https://mediacopilot.ai"
+    }
+  ],
+  "updated": "2026-11-25"
+}

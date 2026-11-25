@@ -1,0 +1,43 @@
+{
+  "slug": "bihus-info",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "investigative",
+  "name": {
+    "uk": "Bihus.Info",
+    "en": "Bihus.Info"
+  },
+  "sort": {
+    "uk": "Bihus.Info",
+    "en": "Bihus.Info"
+  },
+  "aliases": [
+    "Бігус.Інфо"
+  ],
+  "match": [
+    "Bihus.Info",
+    "bihus.info"
+  ],
+  "type": {
+    "uk": "українська розслідувальна агенція",
+    "en": "Ukrainian investigative agency"
+  },
+  "summary": {
+    "uk": "Українська агенція журналістських розслідувань Дениса Бігуса.",
+    "en": "Ukrainian investigative journalism agency led by Denys Bihus."
+  },
+  "bio": {
+    "uk": "Bihus.Info розслідує корупцію у владі, правоохоронних органах і оборонних закупівлях. У листопаді 2026 року поліція відкрила справу через погрози Денису Бігусу, які прозвучали на оприлюднених НАБУ записах: учасники розмов обговорювали, як зупинити розслідування Bihus.Info."
+  },
+  "website": "https://bihus.info",
+  "wiki": [
+    "uk:Bihus.Info"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Bihus.Info",
+      "url": "https://bihus.info"
+    }
+  ],
+  "updated": "2026-11-25"
+}

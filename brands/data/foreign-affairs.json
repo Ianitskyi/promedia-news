@@ -1,0 +1,46 @@
+{
+  "slug": "foreign-affairs",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "Foreign Affairs",
+    "en": "Foreign Affairs"
+  },
+  "sort": {
+    "uk": "Foreign Affairs",
+    "en": "Foreign Affairs"
+  },
+  "type": {
+    "uk": "американський журнал про міжнародні відносини",
+    "en": "US international affairs journal"
+  },
+  "summary": {
+    "uk": "Журнал про міжнародні відносини й зовнішню політику, який з 1922 року видає Рада з міжнародних відносин.",
+    "en": "International affairs journal published since 1922 by the Council on Foreign Relations."
+  },
+  "bio": {
+    "uk": "Foreign Affairs видає американська Рада з міжнародних відносин (Council on Foreign Relations) з 1922 року. У журналі публікуються дипломати, науковці й журналісти. У серпні 2026 року він надрукував статтю Наталії Гуменюк про те, як «дронова демократія» змінила українську армію й політику."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1922"
+    ],
+    [
+      "Видавець",
+      "Council on Foreign Relations"
+    ]
+  ],
+  "website": "https://www.foreignaffairs.com",
+  "wiki": [
+    "en:Foreign Affairs"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Foreign Affairs",
+      "url": "https://www.foreignaffairs.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

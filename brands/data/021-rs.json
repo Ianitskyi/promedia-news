@@ -1,0 +1,33 @@
+{
+  "slug": "021-rs",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "online",
+  "name": {
+    "uk": "021.rs",
+    "en": "021.rs"
+  },
+  "sort": {
+    "uk": "021.rs",
+    "en": "021.rs"
+  },
+  "type": {
+    "uk": "новинний портал Нові-Сада",
+    "en": "Novi Sad news portal"
+  },
+  "summary": {
+    "uk": "Новинний портал сербського міста Нові-Сад.",
+    "en": "News portal of the Serbian city of Novi Sad."
+  },
+  "bio": {
+    "uk": "021.rs пише про Нові-Сад і Воєводину. ПроМедіа посилалася на нього в новині про затримання власника Informer, згадуючи попередні судові справи проти Драгана Вучичевича."
+  },
+  "website": "https://www.021.rs",
+  "sources": [
+    {
+      "title": "Сайт 021.rs",
+      "url": "https://www.021.rs"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "vreme",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "magazine",
+  "name": {
+    "uk": "Vreme",
+    "en": "Vreme"
+  },
+  "sort": {
+    "uk": "Vreme",
+    "en": "Vreme"
+  },
+  "type": {
+    "uk": "сербський суспільно-політичний тижневик",
+    "en": "Serbian weekly news magazine"
+  },
+  "summary": {
+    "uk": "Белградський незалежний тижневик, заснований 1990 року.",
+    "en": "Belgrade independent weekly founded in 1990."
+  },
+  "bio": {
+    "uk": "Vreme заснували 1990 року журналісти, які не погоджувалися з націоналістичною політикою Слободана Мілошевича. Тижневик досі вважається одним із найякісніших незалежних видань Сербії."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1990"
+    ]
+  ],
+  "website": "https://vreme.com",
+  "wiki": [
+    "en:Vreme"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Vreme",
+      "url": "https://vreme.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

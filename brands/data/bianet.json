@@ -1,0 +1,42 @@
+{
+  "slug": "bianet",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "online",
+  "name": {
+    "uk": "Bianet",
+    "en": "Bianet"
+  },
+  "sort": {
+    "uk": "Bianet",
+    "en": "Bianet"
+  },
+  "type": {
+    "uk": "турецьке незалежне онлайн-медіа",
+    "en": "Turkish independent online outlet"
+  },
+  "summary": {
+    "uk": "Турецьке незалежне новинне медіа, засноване 2000 року; пише про права людини й свободу преси.",
+    "en": "Turkish independent news outlet founded in 2000, covering human rights and press freedom."
+  },
+  "bio": {
+    "uk": "Bianet (Bağımsız İletişim Ağı — Незалежна комунікаційна мережа) висвітлює права людини, гендерну рівність і свободу медіа в Туреччині. Видання повідомило про обшуки в Sözcü TV та передачу каналу під державне управління."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2000"
+    ]
+  ],
+  "website": "https://bianet.org",
+  "wiki": [
+    "en:Bianet"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Bianet",
+      "url": "https://bianet.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "fakty-ictv",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "tv",
+  "name": {
+    "uk": "Факти ICTV",
+    "en": "Fakty ICTV"
+  },
+  "sort": {
+    "uk": "Факти ICTV",
+    "en": "Fakty ICTV"
+  },
+  "aliases": [
+    "ICTV"
+  ],
+  "match": [
+    "«Факти ICTV»",
+    "ICTV"
+  ],
+  "type": {
+    "uk": "новинна служба телеканалу ICTV",
+    "en": "News service of ICTV channel"
+  },
+  "summary": {
+    "uk": "Новинна служба українського телеканалу ICTV, що входить до групи StarLightMedia.",
+    "en": "News service of Ukrainian TV channel ICTV, part of StarLightMedia."
+  },
+  "bio": {
+    "uk": "ICTV мовить з 1992 року; його новинна програма і сайт мають назву «Факти ICTV».\n\nУ дослідженні ІМІ 2026 року видання потрапило до 27 із 50 найпопулярніших онлайн-медіа, які не оприлюднили жодної фінансової інформації."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "не оприлюднює фінансової інформації"
+    ]
+  ],
+  "website": "https://fakty.ua",
+  "wiki": [
+    "uk:ICTV"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Fakty ICTV",
+      "url": "https://fakty.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

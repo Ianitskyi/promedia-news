@@ -1,0 +1,45 @@
+{
+  "slug": "smithsonian",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "Smithsonian",
+    "en": "Smithsonian"
+  },
+  "sort": {
+    "uk": "Smithsonian",
+    "en": "Smithsonian"
+  },
+  "aliases": [
+    "Smithsonian Magazine"
+  ],
+  "type": {
+    "uk": "американський науково-популярний журнал",
+    "en": "US popular history and science magazine"
+  },
+  "summary": {
+    "uk": "Журнал Смітсонівського інституту про історію, науку й культуру, що виходить з 1970 року.",
+    "en": "Smithsonian Institution magazine on history, science and culture, published since 1970."
+  },
+  "bio": {
+    "uk": "Smithsonian видає Смітсонівський інститут — найбільший музейний і дослідницький комплекс США. Журнал публікує історичні розвідки, наукові новини й репортажі про культуру."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1970"
+    ]
+  ],
+  "website": "https://www.smithsonianmag.com",
+  "wiki": [
+    "en:Smithsonian (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Smithsonian",
+      "url": "https://www.smithsonianmag.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "paris-match",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "magazine",
+  "name": {
+    "uk": "Paris Match",
+    "en": "Paris Match"
+  },
+  "sort": {
+    "uk": "Paris Match",
+    "en": "Paris Match"
+  },
+  "type": {
+    "uk": "французький ілюстрований тижневик",
+    "en": "French illustrated weekly"
+  },
+  "summary": {
+    "uk": "Французький ілюстрований тижневик, відомий фотожурналістикою; виходить з 1949 року.",
+    "en": "French illustrated weekly known for photojournalism, published since 1949."
+  },
+  "bio": {
+    "uk": "Paris Match виходить з 1949 року; його девіз — «вага слів, шок фотографій». 2024 року журнал перейшов до LVMH і, за даними AFP, входить до видань групи, охоплених угодою з OpenAI."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1949"
+    ]
+  ],
+  "website": "https://www.parismatch.com",
+  "wiki": [
+    "en:Paris Match"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Paris Match",
+      "url": "https://www.parismatch.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

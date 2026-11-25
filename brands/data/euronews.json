@@ -1,0 +1,42 @@
+{
+  "slug": "euronews",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "tv",
+  "name": {
+    "uk": "Euronews",
+    "en": "Euronews"
+  },
+  "sort": {
+    "uk": "Euronews",
+    "en": "Euronews"
+  },
+  "type": {
+    "uk": "європейський новинний телеканал",
+    "en": "European news channel"
+  },
+  "summary": {
+    "uk": "Загальноєвропейський новинний телеканал, заснований 1993 року; мовить багатьма мовами.",
+    "en": "Pan-European multilingual news channel founded in 1993."
+  },
+  "bio": {
+    "uk": "Euronews почав мовлення 1993 року з Ліона. Канал мовить кількома європейськими мовами й зосереджений на подіях у ЄС."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1993"
+    ]
+  ],
+  "website": "https://www.euronews.com",
+  "wiki": [
+    "en:Euronews"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Euronews",
+      "url": "https://www.euronews.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "euobserver",
+  "group": "intl",
+  "country": "Бельгія",
+  "kind": "online",
+  "name": {
+    "uk": "EUobserver",
+    "en": "EUobserver"
+  },
+  "sort": {
+    "uk": "EUobserver",
+    "en": "EUobserver"
+  },
+  "type": {
+    "uk": "незалежне медіа про ЄС",
+    "en": "Independent EU affairs outlet"
+  },
+  "summary": {
+    "uk": "Незалежне онлайн-видання про політику Європейського Союзу, засноване 2000 року в Брюсселі.",
+    "en": "Independent online outlet on EU politics, founded in Brussels in 2000."
+  },
+  "bio": {
+    "uk": "EUobserver пише про інституції ЄС, права людини, корупцію та свободу медіа в Європі. Видання працює як некомерційне й залежить від передплатників."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2000"
+    ]
+  ],
+  "website": "https://euobserver.com",
+  "wiki": [
+    "en:EUobserver"
+  ],
+  "sources": [
+    {
+      "title": "Сайт EUobserver",
+      "url": "https://euobserver.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

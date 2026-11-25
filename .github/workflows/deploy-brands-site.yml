@@ -1,0 +1,71 @@
+name: Deploy brands.promedia.report
+
+# Сайт досьє «Медіабренди ПроМедіа». Збирається з brands/data/*.json, згадки в новинах шукає автоматично,
+# посилання на Вікіпедію перевіряє, логотипи бере з Вікісховища (лише вільні ліцензії)
+# і розгортається як окремий воркер promedia-brands.
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'brands/**'
+      - 'brands-site/**'
+      - 'archive/published-news.json'
+      - 'content/articles/**'
+      - '.github/workflows/deploy-brands-site.yml'
+  schedule:
+    - cron: '53 4 * * *'   # щодня оновлюємо згадки зі свіжих новин
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: promedia-brands-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Check that the news index matches brands/data
+        run: |
+          node brands-site/build.mjs --index-only
+          git diff --exit-code src/data/brands-index.js || { echo "::error::src/data/brands-index.js застарів — запустіть node brands-site/build.mjs --index-only"; exit 1; }
+      - name: Run brand tests
+        run: node --test tests/brands.test.mjs
+      # Нічний архів може ще не знати сьогоднішніх новин — беремо свіжий список із сайту.
+      - name: Fetch fresh list of published news
+        run: curl --fail --silent --show-error --retry 3 https://news.promedia.report/api/export/published-news.json --output archive/published-news.json || echo "::warning::Використовую нічний архів"
+      - name: Build the site
+        run: node brands-site/build.mjs
+      - name: Deploy brands worker
+        id: deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npx wrangler deploy --config brands-site/wrangler.toml 2>&1 | tee deploy.log
+          url=$(grep -oE 'https://[a-z0-9.-]+\.workers\.dev' deploy.log | head -1 || true)
+          echo "url=$url" >> "$GITHUB_OUTPUT"
+          echo "::notice title=brands site URL::${url:-workers.dev URL not found in wrangler output}"
+      - name: Smoke test
+        if: steps.deploy.outputs.url != ''
+        run: |
+          set -e
+          sleep 5
+          base="${{ steps.deploy.outputs.url }}"
+          for p in / /en/ /crh/ /reuters/ /en/ukrainska-pravda/ /api/brands.json; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$base$p?smoke=$GITHUB_RUN_ID")
+            echo "$p -> $code"; test "$code" = 200
+          done
+          curl -fsS --max-time 30 "$base/?smoke=$GITHUB_RUN_ID" | grep -q 'id="pp-grid"'
+          logos=$(curl -fsS --max-time 30 "$base/api/brands.json" | python3 -c "import json,sys;d=json.load(sys.stdin);print(sum(1 for b in d['brands'] if b['logo']))")
+          echo "::notice title=brand logos::$logos досьє з логотипом"

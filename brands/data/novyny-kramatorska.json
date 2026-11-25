@@ -1,0 +1,31 @@
+{
+  "slug": "novyny-kramatorska",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Новини Краматорська",
+    "en": "Kramatorsk News"
+  },
+  "sort": {
+    "uk": "Новини Краматорська",
+    "en": "Kramatorsk News"
+  },
+  "match": [
+    "«Новини Краматорська»",
+    "«Новин Краматорська»"
+  ],
+  "type": {
+    "uk": "краматорське онлайн-медіа",
+    "en": "Kramatorsk online outlet"
+  },
+  "summary": {
+    "uk": "Місцеве онлайн-медіа Краматорська.",
+    "en": "Local online outlet in Kramatorsk."
+  },
+  "bio": {
+    "uk": "5 липня 2026 року російський авіаудар серйозно пошкодив офіс «Новин Краматорська» на Донеччині."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

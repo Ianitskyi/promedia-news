@@ -1,0 +1,39 @@
+{
+  "slug": "fox-5-new-york",
+  "group": "intl",
+  "country": "США",
+  "kind": "tv",
+  "name": {
+    "uk": "FOX 5 New York",
+    "en": "FOX 5 New York"
+  },
+  "sort": {
+    "uk": "FOX 5 New York",
+    "en": "FOX 5 New York"
+  },
+  "aliases": [
+    "WNYW"
+  ],
+  "type": {
+    "uk": "місцевий телеканал Нью-Йорка",
+    "en": "New York local TV station"
+  },
+  "summary": {
+    "uk": "Нью-йоркський телеканал WNYW, що належить мережі Fox.",
+    "en": "New York TV station WNYW, owned by the Fox network."
+  },
+  "bio": {
+    "uk": "FOX 5 New York (WNYW) — флагманська станція телемережі Fox у Нью-Йорку. Мовить місцеві новини та програми мережі."
+  },
+  "website": "https://www.fox5ny.com",
+  "wiki": [
+    "en:WNYW"
+  ],
+  "sources": [
+    {
+      "title": "Сайт FOX 5 New York",
+      "url": "https://www.fox5ny.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

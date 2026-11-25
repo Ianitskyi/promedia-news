@@ -1,0 +1,39 @@
+{
+  "slug": "rfi",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "radio",
+  "name": {
+    "uk": "RFI",
+    "en": "RFI — Radio France Internationale"
+  },
+  "sort": {
+    "uk": "RFI",
+    "en": "RFI — Radio France Internationale"
+  },
+  "aliases": [
+    "Radio France Internationale"
+  ],
+  "type": {
+    "uk": "французьке міжнародне радіо",
+    "en": "French international radio"
+  },
+  "summary": {
+    "uk": "Французьке міжнародне радіо, що мовить десятками мов; входить до групи France Médias Monde.",
+    "en": "French international radio broadcasting in dozens of languages, part of France Médias Monde."
+  },
+  "bio": {
+    "uk": "Radio France Internationale мовить на весь світ французькою та іншими мовами; особливо популярне в Африці. RFI разом із France 24 входить до державної групи France Médias Monde. Військова влада Буркіна-Фасо заблокувала мовлення RFI в країні."
+  },
+  "website": "https://www.rfi.fr",
+  "wiki": [
+    "en:Radio France Internationale"
+  ],
+  "sources": [
+    {
+      "title": "Сайт RFI — Radio France Internationale",
+      "url": "https://www.rfi.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

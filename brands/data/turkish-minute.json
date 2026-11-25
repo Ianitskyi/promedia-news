@@ -1,0 +1,36 @@
+{
+  "slug": "turkish-minute",
+  "group": "intl",
+  "country": "Швеція",
+  "kind": "online",
+  "name": {
+    "uk": "Turkish Minute",
+    "en": "Turkish Minute"
+  },
+  "sort": {
+    "uk": "Turkish Minute",
+    "en": "Turkish Minute"
+  },
+  "type": {
+    "uk": "англомовне незалежне медіа про Туреччину",
+    "en": "English-language independent outlet on Turkey"
+  },
+  "summary": {
+    "uk": "Незалежне англомовне онлайн-медіа про Туреччину, яке працює з-за кордону.",
+    "en": "Independent English-language outlet covering Turkey from abroad."
+  },
+  "bio": {
+    "uk": "Turkish Minute пише про політику, права людини й свободу преси в Туреччині. Видання опублікувало матеріал AFP про марш у Стамбулі проти захоплення опозиційних медіа."
+  },
+  "website": "https://www.turkishminute.com",
+  "wiki": [
+    "en:Turkish Minute"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Turkish Minute",
+      "url": "https://www.turkishminute.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

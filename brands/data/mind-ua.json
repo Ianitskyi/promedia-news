@@ -1,0 +1,37 @@
+{
+  "slug": "mind-ua",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Mind",
+    "en": "Mind"
+  },
+  "sort": {
+    "uk": "Mind",
+    "en": "Mind"
+  },
+  "match": [
+    "mind.ua",
+    "«Mind»"
+  ],
+  "type": {
+    "uk": "українське ділове медіа",
+    "en": "Ukrainian business outlet"
+  },
+  "summary": {
+    "uk": "Українське ділове онлайн-медіа про економіку, бізнес і державну політику.",
+    "en": "Ukrainian business outlet covering the economy, business and public policy."
+  },
+  "bio": {
+    "uk": "Mind пише про економіку, бізнес і реформи. ПроМедіа посилалася на нього в матеріалі про схеми з київською землею."
+  },
+  "website": "https://mind.ua",
+  "sources": [
+    {
+      "title": "Сайт Mind",
+      "url": "https://mind.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,16 @@
+# Сайт «Медіабренди ПроМедіа» (brands.promedia.report) — досьє медіабрендів, які згадувала ПроМедіа.
+# Збирається з brands/data/*.json командою `node brands-site/build.mjs` у brands-site/dist.
+# Субдомен brands.promedia.report прив'язується автоматично під час розгортання (custom domain, як у pulse/).
+# Резервна адреса: promedia-brands.a-ianitskyi.workers.dev.
+name = "promedia-brands"
+main = "worker.js"
+compatibility_date = "2026-10-06"
+workers_dev = true
+routes = [{ pattern = "brands.promedia.report", custom_domain = true }]
+
+[assets]
+directory = "./dist"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+not_found_handling = "404-page"
+run_worker_first = ["/api/*", "/logo/*"]

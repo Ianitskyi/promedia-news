@@ -1,0 +1,36 @@
+{
+  "slug": "the-morning-post",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Morning Post",
+    "en": "The Morning Post"
+  },
+  "sort": {
+    "uk": "Morning Post",
+    "en": "Morning Post"
+  },
+  "type": {
+    "uk": "лондонська щоденна газета (1772–1937)",
+    "en": "London daily (1772–1937)"
+  },
+  "summary": {
+    "uk": "Лондонська консервативна газета, що виходила з 1772 по 1937 рік; її кореспондентом на англо-бурській війні був Вінстон Черчилль.",
+    "en": "London conservative daily published 1772–1937; Winston Churchill was its correspondent in the Boer War."
+  },
+  "bio": {
+    "uk": "The Morning Post виходила понад 160 років, а 1937 року злилася з The Daily Telegraph. 1899 року газета відрядила на англо-бурську війну 24-річного Вінстона Черчилля; він потрапив у полон і втік, що зробило його знаменитим."
+  },
+  "facts": [
+    [
+      "Роки виходу",
+      "1772–1937"
+    ]
+  ],
+  "wiki": [
+    "en:The Morning Post"
+  ],
+  "sources": [],
+  "updated": "2026-11-25"
+}

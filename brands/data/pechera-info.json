@@ -1,0 +1,38 @@
+{
+  "slug": "pechera-info",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Pechera.info",
+    "en": "Pechera.info"
+  },
+  "sort": {
+    "uk": "Pechera.info",
+    "en": "Pechera.info"
+  },
+  "match": [
+    "Pechera.info",
+    "PECHERA.info",
+    "Pechera Club"
+  ],
+  "type": {
+    "uk": "гіперлокальне медіа Печерського району Києва",
+    "en": "Hyperlocal outlet for Kyiv's Pechersk district"
+  },
+  "summary": {
+    "uk": "Гіперлокальне медіа про Печерський район Києва зі спільнотою Pechera Club.",
+    "en": "Hyperlocal outlet about Kyiv's Pechersk district with the Pechera Club community."
+  },
+  "bio": {
+    "uk": "Спільнота читачів Pechera Club, яку створило Pechera.info, за рік об'єднала 174 учасники."
+  },
+  "website": "https://pechera.info",
+  "sources": [
+    {
+      "title": "Сайт Pechera.info",
+      "url": "https://pechera.info"
+    }
+  ],
+  "updated": "2026-11-25"
+}

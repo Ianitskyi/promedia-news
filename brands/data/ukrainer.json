@@ -1,0 +1,45 @@
+{
+  "slug": "ukrainer",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Ukraїner",
+    "en": "Ukraїner"
+  },
+  "sort": {
+    "uk": "Ukraїner",
+    "en": "Ukraїner"
+  },
+  "match": [
+    "Ukraїner"
+  ],
+  "type": {
+    "uk": "український медіапроєкт",
+    "en": "Ukrainian media project"
+  },
+  "summary": {
+    "uk": "Український медіапроєкт, що з 2016 року досліджує й розповідає світові про Україну.",
+    "en": "Ukrainian media project exploring Ukraine and telling the world about it since 2016."
+  },
+  "bio": {
+    "uk": "Ukraїner заснував 2016 року Богдан Логвиненко; проєкт робить відео й тексти багатьма мовами. Виконавча керівниця — Людмила Кучер. Волонтером Ukraїner був фотограф Костянтин Гузенко, який загинув на фронті 1 листопада 2025 року."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2016"
+    ]
+  ],
+  "website": "https://www.ukrainer.net",
+  "wiki": [
+    "uk:Ukraїner"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Ukraїner",
+      "url": "https://www.ukrainer.net"
+    }
+  ],
+  "updated": "2026-11-25"
+}

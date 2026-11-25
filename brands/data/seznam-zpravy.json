@@ -1,0 +1,42 @@
+{
+  "slug": "seznam-zpravy",
+  "group": "intl",
+  "country": "Чехія",
+  "kind": "online",
+  "name": {
+    "uk": "Seznam Zprávy",
+    "en": "Seznam Zprávy"
+  },
+  "sort": {
+    "uk": "Seznam Zprávy",
+    "en": "Seznam Zprávy"
+  },
+  "type": {
+    "uk": "чеське онлайн-медіа",
+    "en": "Czech online news outlet"
+  },
+  "summary": {
+    "uk": "Чеське новинне онлайн-медіа, запущене 2016 року інтернет-компанією Seznam.cz.",
+    "en": "Czech online news outlet launched in 2016 by internet company Seznam.cz."
+  },
+  "bio": {
+    "uk": "Seznam Zprávy відоме розслідуваннями та відеопрограмами. Видання писало, що шапку героя «Вечірничка» як символ протестів помітили закордонні медіа, зокрема BBC."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2016"
+    ]
+  ],
+  "website": "https://www.seznamzpravy.cz",
+  "wiki": [
+    "cs:Seznam Zprávy"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Seznam Zprávy",
+      "url": "https://www.seznamzpravy.cz"
+    }
+  ],
+  "updated": "2026-11-25"
+}

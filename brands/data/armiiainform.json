@@ -1,0 +1,48 @@
+{
+  "slug": "armiiainform",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "agency",
+  "name": {
+    "uk": "АрміяInform",
+    "en": "ArmyInform"
+  },
+  "sort": {
+    "uk": "АрміяInform",
+    "en": "ArmyInform"
+  },
+  "aliases": [
+    "ArmyInform"
+  ],
+  "match": [
+    "АрміяInform"
+  ],
+  "type": {
+    "uk": "інформаційна агенція Міноборони",
+    "en": "Defence Ministry news agency"
+  },
+  "summary": {
+    "uk": "Інформаційна агенція Міністерства оборони України.",
+    "en": "News agency of Ukraine's Ministry of Defence."
+  },
+  "bio": {
+    "uk": "АрміяInform публікує новини про Збройні сили та оборонну політику; засновник — Міністерство оборони України.\n\nУ дослідженні ІМІ 2026 року видання потрапило до 27 із 50 найпопулярніших онлайн-медіа, які не оприлюднили жодної фінансової інформації."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "не оприлюднює фінансової інформації"
+    ]
+  ],
+  "website": "https://armyinform.com.ua",
+  "wiki": [
+    "uk:АрміяInform"
+  ],
+  "sources": [
+    {
+      "title": "Сайт ArmyInform",
+      "url": "https://armyinform.com.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

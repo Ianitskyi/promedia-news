@@ -1,0 +1,33 @@
+{
+  "slug": "public-policy",
+  "group": "intl",
+  "country": "Італія",
+  "kind": "agency",
+  "name": {
+    "uk": "Public Policy",
+    "en": "Public Policy"
+  },
+  "sort": {
+    "uk": "Public Policy",
+    "en": "Public Policy"
+  },
+  "type": {
+    "uk": "італійська агенція новин про політику",
+    "en": "Italian policy news agency"
+  },
+  "summary": {
+    "uk": "Італійська інформаційна агенція про законодавство й державну політику.",
+    "en": "Italian news agency covering legislation and public policy."
+  },
+  "bio": {
+    "uk": "Public Policy висвітлює роботу парламенту й уряду Італії для професійної аудиторії. Агенція брала участь у програмі JournalismAI Лондонської школи економіки."
+  },
+  "website": "https://www.publicpolicy.it",
+  "sources": [
+    {
+      "title": "Сайт Public Policy",
+      "url": "https://www.publicpolicy.it"
+    }
+  ],
+  "updated": "2026-11-25"
+}

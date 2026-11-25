@@ -1,0 +1,46 @@
+{
+  "slug": "occrp",
+  "group": "intl",
+  "country": "Нідерланди",
+  "kind": "investigative",
+  "name": {
+    "uk": "OCCRP",
+    "en": "OCCRP"
+  },
+  "sort": {
+    "uk": "OCCRP",
+    "en": "OCCRP"
+  },
+  "aliases": [
+    "Проєкт з розслідування організованої злочинності та корупції",
+    "Organized Crime and Corruption Reporting Project"
+  ],
+  "type": {
+    "uk": "міжнародна мережа журналістів-розслідувачів",
+    "en": "International investigative journalism network"
+  },
+  "summary": {
+    "uk": "Міжнародна мережа журналістів-розслідувачів, заснована 2007 року в Сараєві; об'єднує десятки редакцій світу.",
+    "en": "International investigative journalism network founded in Sarajevo in 2007, uniting dozens of newsrooms."
+  },
+  "bio": {
+    "uk": "OCCRP (Organized Crime and Corruption Reporting Project) заснували журналісти Дрю Салліван і Пол Радю. Мережа розслідує відмивання грошей, корупцію та організовану злочинність, зокрема брала участь у розслідуваннях «Панамських документів» і «Пандорських документів». До мережі входять і українські редакції, зокрема «Слідство.Інфо», а також киргизький «Клооп»."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2007, Сараєво"
+    ]
+  ],
+  "website": "https://www.occrp.org",
+  "wiki": [
+    "en:Organized Crime and Corruption Reporting Project"
+  ],
+  "sources": [
+    {
+      "title": "Сайт OCCRP",
+      "url": "https://www.occrp.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

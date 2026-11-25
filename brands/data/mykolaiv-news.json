@@ -1,0 +1,30 @@
+{
+  "slug": "mykolaiv-news",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Mykolaiv News",
+    "en": "Mykolaiv News"
+  },
+  "sort": {
+    "uk": "Mykolaiv News",
+    "en": "Mykolaiv News"
+  },
+  "match": [
+    "Mykolaiv News"
+  ],
+  "type": {
+    "uk": "миколаївське регіональне медіа",
+    "en": "Mykolaiv regional outlet"
+  },
+  "summary": {
+    "uk": "Миколаївське регіональне медіа з друкованим тижневиком.",
+    "en": "Mykolaiv regional outlet with a weekly print edition."
+  },
+  "bio": {
+    "uk": "Як писав The Fix, Mykolaiv News не може користуватися приміщенням редакції від ракетного удару 2022 року; завдяки обладнанню від донорів команда верстає щотижневий друкований випуск удома, навіть під час відключень світла."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

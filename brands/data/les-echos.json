@@ -1,0 +1,42 @@
+{
+  "slug": "les-echos",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Les Echos",
+    "en": "Les Echos"
+  },
+  "sort": {
+    "uk": "s Echos",
+    "en": "s Echos"
+  },
+  "type": {
+    "uk": "французька ділова щоденна газета",
+    "en": "French business daily"
+  },
+  "summary": {
+    "uk": "Головна ділова газета Франції, заснована 1908 року; належить LVMH.",
+    "en": "France's leading business daily, founded in 1908 and owned by LVMH."
+  },
+  "bio": {
+    "uk": "Les Echos виходить з 1908 року і належить групі LVMH з 2007 року. Група Les Echos — Le Parisien з січня 2026 року, за даними The Media Leader, очолює Мішель Бенбюнан."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1908"
+    ]
+  ],
+  "website": "https://www.lesechos.fr",
+  "wiki": [
+    "en:Les Échos (France)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Les Echos",
+      "url": "https://www.lesechos.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

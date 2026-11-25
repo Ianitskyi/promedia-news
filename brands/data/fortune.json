@@ -1,0 +1,42 @@
+{
+  "slug": "fortune",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "Fortune",
+    "en": "Fortune"
+  },
+  "sort": {
+    "uk": "Fortune",
+    "en": "Fortune"
+  },
+  "type": {
+    "uk": "американський діловий журнал",
+    "en": "US business magazine"
+  },
+  "summary": {
+    "uk": "Діловий журнал, заснований Генрі Люсом на початку 1930 року; видає рейтинг Fortune 500.",
+    "en": "Business magazine launched by Henry Luce in 1930; publisher of the Fortune 500 list."
+  },
+  "bio": {
+    "uk": "Fortune заснував видавець Time Генрі Люс; перший номер вийшов у лютому 1930 року. Журнал відомий щорічним рейтингом найбільших американських компаній Fortune 500. За даними Similarweb, які наводила Press Gazette, у жовтні 2026 року відвідуваність сайту Fortune за рік упала на 49%."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1930"
+    ]
+  ],
+  "website": "https://fortune.com",
+  "wiki": [
+    "en:Fortune (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Fortune",
+      "url": "https://fortune.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

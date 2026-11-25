@@ -1,0 +1,46 @@
+{
+  "slug": "usa-today",
+  "group": "intl",
+  "country": "США",
+  "kind": "newspaper",
+  "name": {
+    "uk": "USA Today",
+    "en": "USA Today"
+  },
+  "sort": {
+    "uk": "USA Today",
+    "en": "USA Today"
+  },
+  "type": {
+    "uk": "американська загальнонаціональна газета",
+    "en": "US national daily"
+  },
+  "summary": {
+    "uk": "Загальнонаціональна щоденна газета США, яку видає Gannett з 1982 року.",
+    "en": "US national daily published by Gannett since 1982."
+  },
+  "bio": {
+    "uk": "USA Today запустила 1982 року медіакомпанія Gannett як першу газету для всієї країни з яскравою кольоровою версткою. Нині це одна з найтиражніших газет США та великий новинний сайт."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1982"
+    ],
+    [
+      "Видавець",
+      "Gannett"
+    ]
+  ],
+  "website": "https://www.usatoday.com",
+  "wiki": [
+    "en:USA Today"
+  ],
+  "sources": [
+    {
+      "title": "Сайт USA Today",
+      "url": "https://www.usatoday.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

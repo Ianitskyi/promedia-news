@@ -1,0 +1,49 @@
+{
+  "slug": "daily-mail",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Daily Mail",
+    "en": "Daily Mail"
+  },
+  "sort": {
+    "uk": "Daily Mail",
+    "en": "Daily Mail"
+  },
+  "aliases": [
+    "DMGT"
+  ],
+  "type": {
+    "uk": "британська щоденна газета-таблоїд",
+    "en": "UK daily tabloid"
+  },
+  "summary": {
+    "uk": "Британська газета, заснована 1896 року; видавець — DMGT родини Гармсвортів.",
+    "en": "British daily founded in 1896, published by the Harmsworth family's DMGT."
+  },
+  "bio": {
+    "uk": "Daily Mail заснував 1896 року Альфред Гармсворт. Видавець газети Daily Mail and General Trust (DMGT) досі пов'язаний із родиною Гармсвортів (віконтами Ротермір). У листопаді 2026 року, як писала ПроМедіа, DMGT приєднався до правління коаліції SPUR."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1896"
+    ],
+    [
+      "Видавець",
+      "DMGT"
+    ]
+  ],
+  "website": "https://www.dailymail.co.uk",
+  "wiki": [
+    "en:Daily Mail"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Daily Mail",
+      "url": "https://www.dailymail.co.uk"
+    }
+  ],
+  "updated": "2026-11-25"
+}

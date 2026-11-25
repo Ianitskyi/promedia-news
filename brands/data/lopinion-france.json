@@ -1,0 +1,45 @@
+{
+  "slug": "lopinion-france",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "newspaper",
+  "name": {
+    "uk": "L'Opinion (Франція)",
+    "en": "L'Opinion (France)"
+  },
+  "sort": {
+    "uk": "Opinion (Франція)",
+    "en": "Opinion (France)"
+  },
+  "type": {
+    "uk": "французька щоденна газета",
+    "en": "French daily newspaper"
+  },
+  "summary": {
+    "uk": "Французька ліберальна щоденна газета, заснована 2013 року; за даними AFP, входить до медійного підрозділу LVMH.",
+    "en": "French liberal daily founded in 2013; according to AFP, part of LVMH's media division."
+  },
+  "bio": {
+    "uk": "L'Opinion заснував 2013 року журналіст Ніколя Бейту. За даними AFP, на які посилалася ПроМедіа, газета входить до 17 видань медійного підрозділу LVMH, щодо яких група уклала угоду з OpenAI. Не плутати з однойменним виданням у Буркіна-Фасо."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2013"
+    ]
+  ],
+  "website": "https://www.lopinion.fr",
+  "wiki": [
+    "en:L'Opinion"
+  ],
+  "articles": [
+    "openai-uklala-uhodu-z-17-media-lvmh"
+  ],
+  "sources": [
+    {
+      "title": "Сайт L'Opinion (France)",
+      "url": "https://www.lopinion.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

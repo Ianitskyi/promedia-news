@@ -1,0 +1,39 @@
+{
+  "slug": "le-parisien",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Le Parisien",
+    "en": "Le Parisien"
+  },
+  "sort": {
+    "uk": "Parisien",
+    "en": "Parisien"
+  },
+  "aliases": [
+    "Aujourd'hui en France"
+  ],
+  "type": {
+    "uk": "французька щоденна газета",
+    "en": "French daily newspaper"
+  },
+  "summary": {
+    "uk": "Паризька щоденна газета; загальнонаціональна версія виходить під назвою Aujourd'hui en France. Належить LVMH.",
+    "en": "Paris daily, with a national edition called Aujourd'hui en France; owned by LVMH."
+  },
+  "bio": {
+    "uk": "Le Parisien — популярна газета Парижа та регіону Іль-де-Франс; її загальнонаціональний випуск називається Aujourd'hui en France. Разом із Les Echos газета входить до групи Les Echos — Le Parisien медійного підрозділу LVMH. У листопаді 2026 року LVMH уклала угоду з OpenAI щодо 17 своїх видань."
+  },
+  "website": "https://www.leparisien.fr",
+  "wiki": [
+    "en:Le Parisien"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Le Parisien",
+      "url": "https://www.leparisien.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

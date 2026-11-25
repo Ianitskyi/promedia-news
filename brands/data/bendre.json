@@ -1,0 +1,27 @@
+{
+  "slug": "bendre",
+  "group": "intl",
+  "country": "Буркіна-Фасо",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Bendré",
+    "en": "Bendré"
+  },
+  "sort": {
+    "uk": "Bendré",
+    "en": "Bendré"
+  },
+  "type": {
+    "uk": "газета Буркіна-Фасо",
+    "en": "Burkinabe newspaper"
+  },
+  "summary": {
+    "uk": "Газета з Буркіна-Фасо; її колишній редактор — серед журналістів, яким видали ордери на арешт.",
+    "en": "Burkinabe newspaper whose former editor is among journalists facing arrest warrants."
+  },
+  "bio": {
+    "uk": "Колишні редактори видань Bendré, L'Opinion і Le Dossier — серед шести журналістів, яким влада Буркіна-Фасо в листопаді 2026 року видала ордери на арешт за «тероризм»."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

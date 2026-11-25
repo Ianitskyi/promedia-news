@@ -1,0 +1,36 @@
+{
+  "slug": "notebookcheck",
+  "group": "intl",
+  "country": "Німеччина",
+  "kind": "online",
+  "name": {
+    "uk": "Notebookcheck",
+    "en": "Notebookcheck"
+  },
+  "sort": {
+    "uk": "Notebookcheck",
+    "en": "Notebookcheck"
+  },
+  "type": {
+    "uk": "технологічне онлайн-медіа",
+    "en": "Tech review site"
+  },
+  "summary": {
+    "uk": "Німецьке технологічне видання з оглядами ноутбуків, смартфонів і новинами з ринку електроніки.",
+    "en": "German tech site with laptop and smartphone reviews and electronics news."
+  },
+  "bio": {
+    "uk": "Notebookcheck публікує огляди та новини кількома мовами, зокрема англійською й німецькою. Видання відоме детальними лабораторними тестами ноутбуків."
+  },
+  "website": "https://www.notebookcheck.net",
+  "wiki": [
+    "en:Notebookcheck"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Notebookcheck",
+      "url": "https://www.notebookcheck.net"
+    }
+  ],
+  "updated": "2026-11-25"
+}

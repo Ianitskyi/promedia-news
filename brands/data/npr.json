@@ -1,0 +1,45 @@
+{
+  "slug": "npr",
+  "group": "intl",
+  "country": "США",
+  "kind": "radio",
+  "name": {
+    "uk": "NPR",
+    "en": "NPR — National Public Radio"
+  },
+  "sort": {
+    "uk": "NPR",
+    "en": "NPR — National Public Radio"
+  },
+  "aliases": [
+    "National Public Radio"
+  ],
+  "type": {
+    "uk": "американське суспільне радіо",
+    "en": "US public radio network"
+  },
+  "summary": {
+    "uk": "Американська некомерційна мережа суспільного радіо, заснована 1970 року.",
+    "en": "US non-profit public radio network founded in 1970."
+  },
+  "bio": {
+    "uk": "National Public Radio заснували 1970 року у Вашингтоні. NPR виробляє новинні програми, зокрема Morning Edition і All Things Considered, які транслюють сотні місцевих станцій суспільного радіо. Мережа фінансується з внесків станцій, пожертв слухачів і спонсорства."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1970, Вашингтон"
+    ]
+  ],
+  "website": "https://www.npr.org",
+  "wiki": [
+    "en:NPR"
+  ],
+  "sources": [
+    {
+      "title": "Сайт NPR — National Public Radio",
+      "url": "https://www.npr.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

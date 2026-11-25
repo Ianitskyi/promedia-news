@@ -1,0 +1,42 @@
+{
+  "slug": "dennik-n",
+  "group": "intl",
+  "country": "Словаччина",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Denník N",
+    "en": "Denník N"
+  },
+  "sort": {
+    "uk": "Denník N",
+    "en": "Denník N"
+  },
+  "type": {
+    "uk": "словацька щоденна газета",
+    "en": "Slovak daily newspaper"
+  },
+  "summary": {
+    "uk": "Словацька незалежна щоденна газета, заснована 2014 року журналістами, які пішли з SME; існує на кошти передплатників.",
+    "en": "Slovak independent daily founded in 2014 by journalists who left SME, funded by subscribers."
+  },
+  "bio": {
+    "uk": "Denník N заснували 2014 року журналісти газети SME після того, як її частку купила фінансова група Penta. Видання створило платформу з відкритим кодом REMP для пейволу й роботи з передплатниками; нею, зокрема, користується «Українська правда». Denník N брав участь у програмі JournalismAI Лондонської школи економіки."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2014"
+    ]
+  ],
+  "website": "https://dennikn.sk",
+  "wiki": [
+    "en:Denník N"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Denník N",
+      "url": "https://dennikn.sk"
+    }
+  ],
+  "updated": "2026-11-25"
+}

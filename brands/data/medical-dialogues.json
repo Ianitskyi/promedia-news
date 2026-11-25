@@ -1,0 +1,33 @@
+{
+  "slug": "medical-dialogues",
+  "group": "intl",
+  "country": "Індія",
+  "kind": "online",
+  "name": {
+    "uk": "Medical Dialogues",
+    "en": "Medical Dialogues"
+  },
+  "sort": {
+    "uk": "Medical Dialogues",
+    "en": "Medical Dialogues"
+  },
+  "type": {
+    "uk": "індійське медичне медіа",
+    "en": "Indian medical news outlet"
+  },
+  "summary": {
+    "uk": "Індійське онлайн-медіа про медицину й охорону здоров'я для лікарів і фахівців.",
+    "en": "Indian online outlet on medicine and healthcare for doctors and professionals."
+  },
+  "bio": {
+    "uk": "Medical Dialogues публікує новини медицини, фармацевтики й регулювання охорони здоров'я в Індії. Учасник програми JournalismAI Лондонської школи економіки."
+  },
+  "website": "https://medicaldialogues.in",
+  "sources": [
+    {
+      "title": "Сайт Medical Dialogues",
+      "url": "https://medicaldialogues.in"
+    }
+  ],
+  "updated": "2026-11-25"
+}

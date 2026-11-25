@@ -1,0 +1,42 @@
+{
+  "slug": "france-24",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "tv",
+  "name": {
+    "uk": "France 24",
+    "en": "France 24"
+  },
+  "sort": {
+    "uk": "France 24",
+    "en": "France 24"
+  },
+  "type": {
+    "uk": "французький міжнародний новинний телеканал",
+    "en": "French international news channel"
+  },
+  "summary": {
+    "uk": "Французький міжнародний цілодобовий новинний телеканал, заснований 2006 року.",
+    "en": "French international 24-hour news channel launched in 2006."
+  },
+  "bio": {
+    "uk": "France 24 мовить французькою, англійською, арабською та іспанською; входить до державної групи France Médias Monde. У Буркіна-Фасо мовлення каналу заблоковане, а журналістові France 24 Вассіму Насру влада видала ордер на арешт.\n\nКоманда France 24 у 2022 році працювала в Україні з фіксером Олексієм Гордєєвим, який розповідав про це в інтерв'ю ПроМедіа."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2006"
+    ]
+  ],
+  "website": "https://www.france24.com",
+  "wiki": [
+    "en:France 24"
+  ],
+  "sources": [
+    {
+      "title": "Сайт France 24",
+      "url": "https://www.france24.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

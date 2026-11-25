@@ -1,0 +1,45 @@
+{
+  "slug": "follow-the-money",
+  "group": "intl",
+  "country": "Нідерланди",
+  "kind": "investigative",
+  "name": {
+    "uk": "Follow the Money",
+    "en": "Follow the Money"
+  },
+  "sort": {
+    "uk": "Follow the Money",
+    "en": "Follow the Money"
+  },
+  "aliases": [
+    "FTM"
+  ],
+  "type": {
+    "uk": "нідерландська розслідувальна платформа",
+    "en": "Dutch investigative platform"
+  },
+  "summary": {
+    "uk": "Нідерландська платформа фінансових і розслідувальних матеріалів, заснована 2010 року; існує на кошти передплатників.",
+    "en": "Dutch platform for financial and investigative journalism, founded in 2010 and funded by subscribers."
+  },
+  "bio": {
+    "uk": "Follow the Money (FTM) пише про гроші, владу й корупцію в Нідерландах і Європі, має бельгійську редакцію. Видання не продає рекламу й живе з передплати."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2010"
+    ]
+  ],
+  "website": "https://www.ftm.eu",
+  "wiki": [
+    "en:Follow the Money (website)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Follow the Money",
+      "url": "https://www.ftm.eu"
+    }
+  ],
+  "updated": "2026-11-25"
+}

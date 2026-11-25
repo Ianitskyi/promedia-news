@@ -1,0 +1,36 @@
+{
+  "slug": "ngl-media",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "investigative",
+  "name": {
+    "uk": "NGL.media",
+    "en": "NGL.media"
+  },
+  "sort": {
+    "uk": "NGL.media",
+    "en": "NGL.media"
+  },
+  "match": [
+    "NGL.media"
+  ],
+  "type": {
+    "uk": "львівське розслідувальне медіа",
+    "en": "Lviv investigative outlet"
+  },
+  "summary": {
+    "uk": "Львівське медіа, яке видає громадська організація «Львівська група».",
+    "en": "Lviv outlet published by the NGO Lviv Group."
+  },
+  "bio": {
+    "uk": "NGL.media розслідує діяльність місцевої влади й бізнесу у Львові. Позов до ГО «Львівська група» від фігуранта розслідування став приводом для звернення медійників із закликом ухвалити закон проти SLAPP до кінця 2026 року."
+  },
+  "website": "https://ngl.media",
+  "sources": [
+    {
+      "title": "Сайт NGL.media",
+      "url": "https://ngl.media"
+    }
+  ],
+  "updated": "2026-11-25"
+}

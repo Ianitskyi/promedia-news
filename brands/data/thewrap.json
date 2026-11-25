@@ -1,0 +1,42 @@
+{
+  "slug": "thewrap",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "TheWrap",
+    "en": "TheWrap"
+  },
+  "sort": {
+    "uk": "Wrap",
+    "en": "Wrap"
+  },
+  "type": {
+    "uk": "американське видання про медіа й розваги",
+    "en": "US entertainment and media news site"
+  },
+  "summary": {
+    "uk": "Американське онлайн-видання про Голлівуд і медіабізнес, яке 2009 року заснувала Шерон Ваксман.",
+    "en": "US digital outlet covering Hollywood and the media business, founded by Sharon Waxman in 2009."
+  },
+  "bio": {
+    "uk": "TheWrap заснувала колишня кореспондентка The New York Times Шерон Ваксман. Видання пише про кіно, телебачення, стримінг і новинні медіа."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2009"
+    ]
+  ],
+  "website": "https://www.thewrap.com",
+  "wiki": [
+    "en:TheWrap"
+  ],
+  "sources": [
+    {
+      "title": "Сайт TheWrap",
+      "url": "https://www.thewrap.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

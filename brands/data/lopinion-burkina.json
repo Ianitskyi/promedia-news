@@ -1,0 +1,30 @@
+{
+  "slug": "lopinion-burkina",
+  "group": "intl",
+  "country": "Буркіна-Фасо",
+  "kind": "newspaper",
+  "name": {
+    "uk": "L'Opinion (Буркіна-Фасо)",
+    "en": "L'Opinion (Burkina Faso)"
+  },
+  "sort": {
+    "uk": "Opinion (Буркіна-Фасо)",
+    "en": "Opinion (Burkina Faso)"
+  },
+  "type": {
+    "uk": "газета Буркіна-Фасо",
+    "en": "Burkinabe newspaper"
+  },
+  "summary": {
+    "uk": "Видання з Буркіна-Фасо; його колишній редактор — серед журналістів, яким видали ордери на арешт.",
+    "en": "Burkinabe publication whose former editor is among journalists facing arrest warrants."
+  },
+  "bio": {
+    "uk": "Колишні редактори видань Bendré, L'Opinion і Le Dossier — серед шести журналістів, яким влада Буркіна-Фасо в листопаді 2026 року видала ордери на арешт. Не плутати з однойменною французькою газетою."
+  },
+  "articles": [
+    "u-burkina-faso-shistom-zhurnalistam-vydaly-ordery-na-aresht"
+  ],
+  "sources": [],
+  "updated": "2026-11-25"
+}

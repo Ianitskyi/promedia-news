@@ -1,0 +1,33 @@
+{
+  "slug": "la-lettre-de-lexpansion",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "trade",
+  "name": {
+    "uk": "La Lettre de l'Expansion",
+    "en": "La Lettre de l'Expansion"
+  },
+  "sort": {
+    "uk": "Lettre de l'Expansion",
+    "en": "Lettre de l'Expansion"
+  },
+  "type": {
+    "uk": "французька ділова розсилка",
+    "en": "French business newsletter"
+  },
+  "summary": {
+    "uk": "Французька ділова розсилка про економіку й бізнес; за даними AFP, належить LVMH.",
+    "en": "French business newsletter; according to AFP, owned by LVMH."
+  },
+  "bio": {
+    "uk": "La Lettre de l'Expansion — конфіденційна ділова розсилка для керівників компаній. AFP включила її до переліку видань LVMH, охоплених угодою з OpenAI."
+  },
+  "website": "https://www.lettreexpansion.fr",
+  "sources": [
+    {
+      "title": "Сайт La Lettre de l'Expansion",
+      "url": "https://www.lettreexpansion.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "mieux-vivre-votre-argent",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "magazine",
+  "name": {
+    "uk": "Mieux Vivre Votre Argent",
+    "en": "Mieux Vivre Votre Argent"
+  },
+  "sort": {
+    "uk": "Mieux Vivre Votre Argent",
+    "en": "Mieux Vivre Votre Argent"
+  },
+  "type": {
+    "uk": "французький журнал про особисті фінанси",
+    "en": "French personal finance magazine"
+  },
+  "summary": {
+    "uk": "Французький журнал про особисті фінанси й заощадження; за даними AFP, належить LVMH.",
+    "en": "French personal finance magazine; according to AFP, owned by LVMH."
+  },
+  "bio": {
+    "uk": "Mieux Vivre Votre Argent радить читачам, як заощаджувати й інвестувати. AFP включила журнал до переліку видань LVMH, охоплених угодою з OpenAI."
+  },
+  "website": "https://www.mieuxvivre-votreargent.fr",
+  "wiki": [
+    "fr:Mieux vivre votre argent"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Mieux Vivre Votre Argent",
+      "url": "https://www.mieuxvivre-votreargent.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

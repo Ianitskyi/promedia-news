@@ -1,0 +1,36 @@
+{
+  "slug": "historia",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "magazine",
+  "name": {
+    "uk": "Historia",
+    "en": "Historia"
+  },
+  "sort": {
+    "uk": "Historia",
+    "en": "Historia"
+  },
+  "type": {
+    "uk": "французький історичний журнал",
+    "en": "French history magazine"
+  },
+  "summary": {
+    "uk": "Французький науково-популярний журнал про історію; за даними AFP, у переліку видань LVMH.",
+    "en": "French popular history magazine; listed by AFP among LVMH titles."
+  },
+  "bio": {
+    "uk": "Historia — один із найвідоміших французьких журналів про історію. AFP включила його до переліку видань LVMH, охоплених угодою з OpenAI."
+  },
+  "website": "https://www.historia.fr",
+  "wiki": [
+    "fr:Historia (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Historia",
+      "url": "https://www.historia.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

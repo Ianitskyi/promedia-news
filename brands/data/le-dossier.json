@@ -1,0 +1,27 @@
+{
+  "slug": "le-dossier",
+  "group": "intl",
+  "country": "Буркіна-Фасо",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Le Dossier",
+    "en": "Le Dossier"
+  },
+  "sort": {
+    "uk": "Dossier",
+    "en": "Dossier"
+  },
+  "type": {
+    "uk": "видання Буркіна-Фасо",
+    "en": "Burkinabe publication"
+  },
+  "summary": {
+    "uk": "Видання з Буркіна-Фасо; його колишній редактор — серед журналістів, яким видали ордери на арешт.",
+    "en": "Burkinabe publication whose former editor is among journalists facing arrest warrants."
+  },
+  "bio": {
+    "uk": "Колишні редактори видань Bendré, L'Opinion і Le Dossier — серед шести журналістів, яким влада Буркіна-Фасо в листопаді 2026 року видала ордери на арешт."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,42 @@
+{
+  "slug": "cnbc",
+  "group": "intl",
+  "country": "США",
+  "kind": "tv",
+  "name": {
+    "uk": "CNBC",
+    "en": "CNBC"
+  },
+  "sort": {
+    "uk": "CNBC",
+    "en": "CNBC"
+  },
+  "type": {
+    "uk": "американський діловий телеканал",
+    "en": "US business news channel"
+  },
+  "summary": {
+    "uk": "Американський телеканал ділових і фінансових новин, що мовить з 1989 року.",
+    "en": "US business and financial news channel on air since 1989."
+  },
+  "bio": {
+    "uk": "CNBC почав мовлення 1989 року. Канал спеціалізується на новинах фінансових ринків, компаній та економіки, має міжнародні версії в Європі й Азії."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1989"
+    ]
+  ],
+  "website": "https://www.cnbc.com",
+  "wiki": [
+    "en:CNBC"
+  ],
+  "sources": [
+    {
+      "title": "Сайт CNBC",
+      "url": "https://www.cnbc.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

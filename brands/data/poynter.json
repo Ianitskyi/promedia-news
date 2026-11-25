@@ -1,0 +1,45 @@
+{
+  "slug": "poynter",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "Poynter",
+    "en": "Poynter"
+  },
+  "sort": {
+    "uk": "Poynter",
+    "en": "Poynter"
+  },
+  "aliases": [
+    "Poynter Institute"
+  ],
+  "type": {
+    "uk": "американський інститут і медіа про журналістику",
+    "en": "US journalism institute and trade outlet"
+  },
+  "summary": {
+    "uk": "Американський некомерційний інститут журналістики та однойменне видання про медіа; заснований 1975 року.",
+    "en": "US non-profit journalism institute and media news site, founded in 1975."
+  },
+  "bio": {
+    "uk": "Poynter Institute заснував 1975 року газетяр Нельсон Пойнтер у Сент-Пітерсбурзі (Флорида). Інститут навчає журналістів, видає новини про медіаіндустрію, а також об'єднує фактчекерів світу в Міжнародну мережу фактчекінгу (IFCN). Йому належить газета Tampa Bay Times."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1975"
+    ]
+  ],
+  "website": "https://www.poynter.org",
+  "wiki": [
+    "en:Poynter Institute"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Poynter",
+      "url": "https://www.poynter.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

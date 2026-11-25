@@ -1,0 +1,27 @@
+{
+  "slug": "el-guapileno",
+  "group": "intl",
+  "country": "Коста-Рика",
+  "kind": "newspaper",
+  "name": {
+    "uk": "El Guapileño",
+    "en": "El Guapileño"
+  },
+  "sort": {
+    "uk": "Guapileño",
+    "en": "Guapileño"
+  },
+  "type": {
+    "uk": "регіональна газета Коста-Рики",
+    "en": "Costa Rican regional newspaper"
+  },
+  "summary": {
+    "uk": "Регіональна газета з міста Гуапілес у Коста-Риці.",
+    "en": "Regional newspaper from Guápiles, Costa Rica."
+  },
+  "bio": {
+    "uk": "El Guapileño заснував і очолював журналіст Каміло, вбитий у Коста-Риці в листопаді 2026 року. Згодом він публікував новини в соцмережах і писав про ймовірні зв'язки наркоторгівців із поліцією."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

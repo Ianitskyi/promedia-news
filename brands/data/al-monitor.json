@@ -1,0 +1,42 @@
+{
+  "slug": "al-monitor",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "Al-Monitor",
+    "en": "Al-Monitor"
+  },
+  "sort": {
+    "uk": "Al-Monitor",
+    "en": "Al-Monitor"
+  },
+  "type": {
+    "uk": "американське медіа про Близький Схід",
+    "en": "US outlet covering the Middle East"
+  },
+  "summary": {
+    "uk": "Американське онлайн-медіа про Близький Схід, засноване 2012 року у Вашингтоні.",
+    "en": "US digital outlet covering the Middle East, founded in Washington in 2012."
+  },
+  "bio": {
+    "uk": "Al-Monitor публікує новини й аналітику про країни Близького Сходу, зокрема Туреччину, Іран, Ізраїль і країни Затоки. За його даними, які наводила ПроМедіа, Sözcü TV став шостим великим турецьким новинним медіа, переданим під зовнішнє управління з 2022 року."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2012"
+    ]
+  ],
+  "website": "https://www.al-monitor.com",
+  "wiki": [
+    "en:Al-Monitor"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Al-Monitor",
+      "url": "https://www.al-monitor.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

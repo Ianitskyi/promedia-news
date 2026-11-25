@@ -1,0 +1,42 @@
+{
+  "slug": "karar",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Karar",
+    "en": "Karar"
+  },
+  "sort": {
+    "uk": "Karar",
+    "en": "Karar"
+  },
+  "type": {
+    "uk": "турецька щоденна газета",
+    "en": "Turkish daily newspaper"
+  },
+  "summary": {
+    "uk": "Турецька щоденна газета, заснована 2016 року.",
+    "en": "Turkish daily newspaper founded in 2016."
+  },
+  "bio": {
+    "uk": "Karar процитувала на марші в Стамбулі голову Ради з питань преси Туреччини Пинар Тюренч, про що писала ПроМедіа."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2016"
+    ]
+  ],
+  "website": "https://www.karar.com",
+  "wiki": [
+    "en:Karar (newspaper)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Karar",
+      "url": "https://www.karar.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

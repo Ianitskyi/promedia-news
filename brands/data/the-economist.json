@@ -1,0 +1,42 @@
+{
+  "slug": "the-economist",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "magazine",
+  "name": {
+    "uk": "The Economist",
+    "en": "The Economist"
+  },
+  "sort": {
+    "uk": "Economist",
+    "en": "Economist"
+  },
+  "type": {
+    "uk": "британський тижневик",
+    "en": "UK weekly"
+  },
+  "summary": {
+    "uk": "Британський тижневик про економіку й політику, що виходить з 1843 року; статті традиційно не підписують.",
+    "en": "British weekly on economics and politics published since 1843, with traditionally unsigned articles."
+  },
+  "bio": {
+    "uk": "The Economist заснував 1843 року Джеймс Вілсон, щоб боротися за вільну торгівлю. Тижневик відомий анонімними статтями, які виражають колективну позицію редакції. У жовтні 2026 року він приєднався до коаліції видавців SPUR."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1843"
+    ]
+  ],
+  "website": "https://www.economist.com",
+  "wiki": [
+    "en:The Economist"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Economist",
+      "url": "https://www.economist.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

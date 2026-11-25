@@ -1,0 +1,37 @@
+{
+  "slug": "mykvisti",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "МикВісті",
+    "en": "MykVisti"
+  },
+  "sort": {
+    "uk": "МикВісті",
+    "en": "MykVisti"
+  },
+  "match": [
+    "«МикВісті»",
+    "«МикВістей»"
+  ],
+  "type": {
+    "uk": "миколаївське онлайн-медіа",
+    "en": "Mykolaiv online outlet"
+  },
+  "summary": {
+    "uk": "Миколаївське онлайн-медіа, засноване Олегом Деренюгою.",
+    "en": "Mykolaiv online outlet founded by Oleh Dereniuha."
+  },
+  "bio": {
+    "uk": "«МикВісті» пише про Миколаїв і область. Засновник Олег Деренюга і головна редакторка Катерина Середа виступали на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві."
+  },
+  "website": "https://mykvisti.com",
+  "sources": [
+    {
+      "title": "Сайт MykVisti",
+      "url": "https://mykvisti.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

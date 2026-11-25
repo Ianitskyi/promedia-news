@@ -1,0 +1,33 @@
+{
+  "slug": "fakenews-tragac",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "factcheck",
+  "name": {
+    "uk": "FakeNews Tragač",
+    "en": "FakeNews Tragač"
+  },
+  "sort": {
+    "uk": "FakeNews Tragač",
+    "en": "FakeNews Tragač"
+  },
+  "type": {
+    "uk": "сербський фактчекінговий проєкт",
+    "en": "Serbian fact-checking project"
+  },
+  "summary": {
+    "uk": "Сербський фактчекінговий проєкт, який щороку «нагороджує» медіа за дезінформацію «Золотим Піноккіо».",
+    "en": "Serbian fact-checking project that hands media a 'Golden Pinocchio' for disinformation."
+  },
+  "bio": {
+    "uk": "FakeNews Tragač 2025 року віддав «Золотого Піноккіо» таблоїду Informer: на нього припало 38% усіх дезінформацій, які виявив проєкт."
+  },
+  "website": "https://fakenews.rs",
+  "sources": [
+    {
+      "title": "Сайт FakeNews Tragač",
+      "url": "https://fakenews.rs"
+    }
+  ],
+  "updated": "2026-11-25"
+}

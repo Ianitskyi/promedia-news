@@ -1,0 +1,36 @@
+{
+  "slug": "tele1",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "tv",
+  "name": {
+    "uk": "Tele1",
+    "en": "Tele1"
+  },
+  "sort": {
+    "uk": "Tele1",
+    "en": "Tele1"
+  },
+  "type": {
+    "uk": "турецький опозиційний телеканал",
+    "en": "Turkish opposition TV channel"
+  },
+  "summary": {
+    "uk": "Турецький опозиційний телеканал, який влада передала під управління довірених осіб.",
+    "en": "Turkish opposition TV channel placed by the authorities under trustees."
+  },
+  "bio": {
+    "uk": "Tele1 — серед турецьких телеканалів, які влада передала під зовнішнє управління. Логотип каналу несли учасники маршу в Стамбулі на захист свободи преси в листопаді 2026 року."
+  },
+  "website": "https://tele1.com.tr",
+  "wiki": [
+    "en:Tele1"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Tele1",
+      "url": "https://tele1.com.tr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

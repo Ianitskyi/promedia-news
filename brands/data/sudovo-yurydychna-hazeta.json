@@ -1,0 +1,42 @@
+{
+  "slug": "sudovo-yurydychna-hazeta",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "trade",
+  "name": {
+    "uk": "Судово-юридична газета",
+    "en": "Sudovo-Yurydychna Gazeta"
+  },
+  "sort": {
+    "uk": "Судово-юридична газета",
+    "en": "Sudovo-Yurydychna Gazeta"
+  },
+  "match": [
+    "«Судово-юридична газета»"
+  ],
+  "type": {
+    "uk": "українське правниче медіа",
+    "en": "Ukrainian legal news outlet"
+  },
+  "summary": {
+    "uk": "Українське видання про суди, право й правосуддя.",
+    "en": "Ukrainian outlet on courts, law and justice."
+  },
+  "bio": {
+    "uk": "«Судово-юридична газета» (sud.ua) пише про судову систему, рішення судів і роботу правників.\n\nУ дослідженні ІМІ 2026 року видання потрапило до 27 із 50 найпопулярніших онлайн-медіа, які не оприлюднили жодної фінансової інформації."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "не оприлюднює фінансової інформації"
+    ]
+  ],
+  "website": "https://sud.ua",
+  "sources": [
+    {
+      "title": "Сайт Sudovo-Yurydychna Gazeta",
+      "url": "https://sud.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

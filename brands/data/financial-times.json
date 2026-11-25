@@ -1,0 +1,53 @@
+{
+  "slug": "financial-times",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Financial Times",
+    "en": "Financial Times"
+  },
+  "sort": {
+    "uk": "Financial Times",
+    "en": "Financial Times"
+  },
+  "aliases": [
+    "FT"
+  ],
+  "match": [
+    "Financial Times",
+    "re:(?<![\\p{L}\\p{N}])FT(?![\\p{L}\\p{N}])"
+  ],
+  "type": {
+    "uk": "британська ділова щоденна газета",
+    "en": "UK business daily"
+  },
+  "summary": {
+    "uk": "Лондонська ділова газета, заснована 1888 року; з 2015 року належить японській групі Nikkei.",
+    "en": "London business daily founded in 1888 and owned by Japan's Nikkei since 2015."
+  },
+  "bio": {
+    "uk": "Financial Times виходить з 1888 року на впізнаваному рожевому папері. 2015 року газету купила японська медіагрупа Nikkei. FT — один із піонерів платного доступу онлайн.\n\nНаприкінці 2025 року генеральний директор FT Джон Слейд закликав створити «НАТО для новин» — спільний фронт видавців щодо ШІ, і на початку 2026 року FT стала однією із засновниць коаліції SPUR."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1888"
+    ],
+    [
+      "Власник",
+      "Nikkei"
+    ]
+  ],
+  "website": "https://www.ft.com",
+  "wiki": [
+    "en:Financial Times"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Financial Times",
+      "url": "https://www.ft.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

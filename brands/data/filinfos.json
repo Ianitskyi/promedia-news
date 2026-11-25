@@ -1,0 +1,27 @@
+{
+  "slug": "filinfos",
+  "group": "intl",
+  "country": "Буркіна-Фасо",
+  "kind": "online",
+  "name": {
+    "uk": "FilInfos",
+    "en": "FilInfos"
+  },
+  "sort": {
+    "uk": "FilInfos",
+    "en": "FilInfos"
+  },
+  "type": {
+    "uk": "онлайн-медіа Буркіна-Фасо",
+    "en": "Burkinabe online outlet"
+  },
+  "summary": {
+    "uk": "Онлайн-медіа з Буркіна-Фасо, журналіста якого Муссу Саребу викрали з редакції в серпні.",
+    "en": "Burkinabe online outlet whose journalist Moussa Sareba was abducted from the newsroom in August."
+  },
+  "bio": {
+    "uk": "Журналіста FilInfos Муссу Саребу, за даними «Репортерів без кордонів», 10 серпня викрали з редакції, і відтоді про нього нічого невідомо."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

@@ -1,6 +1,7 @@
 import { escapeHtml, markdownToHtml, markdownToPlainText, inlineMarkdown } from "./markdown.js";
 import { normalizeUkrainianQuotes, normalizeUkrainianTitle } from "./typography.js";
 import { PEOPLE, PEOPLE_SITE_URL } from "./people.js";
+import { BRANDS, BRANDS_SITE_URL } from "./brands.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
@@ -391,12 +392,29 @@ function personForTag(tag) {
   return PEOPLE_BY_TAG.get(tagLookupKey(tag)) || null;
 }
 
+// Медіабренди з розділу brands.promedia.report: тег новини = назва бренду (як у name.uk) або псевдонім.
+const BRANDS_LIST = typeof BRANDS !== "undefined" && Array.isArray(BRANDS) ? BRANDS : [];
+const BRANDS_BASE_URL = typeof BRANDS_SITE_URL !== "undefined" ? BRANDS_SITE_URL : "";
+const BRANDS_BY_TAG = new Map();
+for (const brand of BRANDS_LIST) {
+  for (const name of [brand.tag, ...(brand.aliases || [])]) {
+    const key = tagLookupKey(name);
+    if (!BRANDS_BY_TAG.has(key)) BRANDS_BY_TAG.set(key, brand);
+  }
+}
+function brandForTag(tag) {
+  return BRANDS_BY_TAG.get(tagLookupKey(tag)) || null;
+}
+
 function tagLabel(tag, lang) {
   const label = TAG_LABEL_LOOKUP[lang]?.[tagLookupKey(tag)];
   if (label) return label;
   // Імена людей в англійській і кримськотатарській версіях пишемо латиницею.
   const person = lang !== "uk" ? personForTag(tag) : null;
   if (person?.name?.en) return person.name.en;
+  // Назви медіабрендів — так, як їх пишуть латиницею самі редакції.
+  const brand = lang !== "uk" ? brandForTag(tag) : null;
+  if (brand?.name?.en) return brand.name.en;
   // Тег без перекладу в словнику: в англійській і кримськотатарській версіях не лишаємо кирилицю —
   // даємо латиницею (офіційна транслітерація). Новим тегам додаємо переклад у TAG_LABELS_EN/CRH.
   return lang !== "uk" && /[а-яіїєґ]/i.test(tag) ? transliterateTag(tag) : tag;
@@ -1190,6 +1208,35 @@ function localizedAtlasUrl(url, lang) {
 const UNI_BOX_TITLE = { uk: "Університети в матеріалі", en: "Universities in this story", crh: "Bu materialdaki universitetler" };
 const UNI_BOX_LINK = { uk: "У рейтингу журфаків", en: "In the journalism schools ranking", crh: "Jurnalistika fakülteleri reytinginde" };
 
+// Картка «Медіабренди в матеріалі»: досьє з brands.promedia.report для брендів із тегів новини.
+// Бренди, які вже є в картці «Українські медіа в матеріалі» (Атлас / карта спільнот), не дублюємо.
+const BRANDS_BOX_TITLE = { uk: "Медіабренди в матеріалі", en: "Media brands in this story", crh: "Bu materialdaki mediya brendleri" };
+const BRANDS_BOX_LINK = { uk: "Досьє", en: "Profile", crh: "Dosye" };
+
+function brandsBox(tags, lang, media = []) {
+  if (!BRANDS_BASE_URL) return "";
+  const shown = new Set((media || []).map(m => tagLookupKey(m && m.name)));
+  const seen = new Set();
+  const brands = tags.map(brandForTag).filter(b => b && !seen.has(b.slug) && seen.add(b.slug)
+    && !shown.has(tagLookupKey(b.tag)) && !shown.has(tagLookupKey(b.name.en)));
+  if (!brands.length) return "";
+  const base = BRANDS_BASE_URL.replace(/\/$/, "");
+  const rows = brands.map((b) => {
+    const href = `${base}${langPrefix(lang)}/${b.slug}/`;
+    const name = lang === "uk" ? b.name.uk : (b.name.en || b.name.uk);
+    const type = lang === "uk" ? b.type.uk : (b.type.en || b.type.uk);
+    const summary = lang === "uk" ? b.summary.uk : (b.summary.en || b.summary.uk);
+    const initials = String(b.name.en || b.name.uk).replace(/^(The|Le|La|Les)\s+/i, "").replace(/[«»"'.]/g, " ").split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+    return `<li class="people-box-item media-box-item">
+      <a class="people-box-photo media-box-logo" href="${escapeHtml(href)}" aria-hidden="true" tabindex="-1"><span>${escapeHtml(initials)}</span><img src="${escapeHtml(`${base}/logo/${b.slug}`)}" alt="" loading="lazy" onerror="this.remove()"></a>
+      <div><a class="people-box-name" href="${escapeHtml(href)}">${escapeHtml(name)}</a>
+      <p class="people-box-role">${escapeHtml(type)}</p>
+      <p class="people-box-summary">${escapeHtml(summary)} <a href="${escapeHtml(href)}">${pick(BRANDS_BOX_LINK, lang)} →</a></p></div>
+    </li>`;
+  }).join("");
+  return `<aside class="people-box media-box brands-box" aria-label="${escapeHtml(pick(BRANDS_BOX_TITLE, lang))}"><h2>${pick(BRANDS_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
+}
+
 function universitiesBox(universities, lang) {
   if (!universities || !universities.length) return "";
   const base = `https://ratings.promedia.report${lang === "uk" ? "" : `/${lang}`}/university.html?id=`;
@@ -1268,6 +1315,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   ${newsletterSlot(lang, "article-end")}
   ${peopleBox(tags, lang)}
   ${mediaLinksHtml}
+  ${brandsBox(tags, lang, relatedMediaNames)}
   ${universitiesBox(relatedUniversities, lang)}
   ${projectPromo(lang, "atlas", "article-bottom")}
   </div>

@@ -1,0 +1,41 @@
+{
+  "slug": "dostup-media",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Доступ. Медіа",
+    "en": "Dostup. Media"
+  },
+  "sort": {
+    "uk": "Доступ. Медіа",
+    "en": "Dostup. Media"
+  },
+  "aliases": [
+    "Доступ"
+  ],
+  "match": [
+    "«Доступ. Медіа»",
+    "Доступ. Медіа",
+    "dostyp.com.ua"
+  ],
+  "type": {
+    "uk": "кропивницьке онлайн-медіа",
+    "en": "Kropyvnytskyi online outlet"
+  },
+  "summary": {
+    "uk": "Кропивницьке незалежне онлайн-медіа, яке будує спільноту читачів.",
+    "en": "Kropyvnytskyi independent online outlet building a readers' community."
+  },
+  "bio": {
+    "uk": "«Доступ. Медіа» пише про Кропивницький, проводить для читачів екскурсії й кінопокази, зокрема показ документального фільму «Ілюзія тихої ночі»."
+  },
+  "website": "https://dostyp.com.ua",
+  "sources": [
+    {
+      "title": "Сайт Dostup. Media",
+      "url": "https://dostyp.com.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

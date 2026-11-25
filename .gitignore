@@ -6,3 +6,4 @@ pnpm-lock.yaml
 pnpm-workspace.yaml
 people-site/dist/
 social-covers-pending.json
+brands-site/dist/

@@ -1,0 +1,33 @@
+{
+  "slug": "eunews",
+  "group": "intl",
+  "country": "Італія",
+  "kind": "online",
+  "name": {
+    "uk": "Eunews",
+    "en": "Eunews"
+  },
+  "sort": {
+    "uk": "Eunews",
+    "en": "Eunews"
+  },
+  "type": {
+    "uk": "онлайн-медіа про ЄС",
+    "en": "EU affairs outlet"
+  },
+  "summary": {
+    "uk": "Італійське онлайн-видання про Європейський Союз, що працює з Брюсселя італійською та англійською.",
+    "en": "Italian outlet covering the European Union from Brussels in Italian and English."
+  },
+  "bio": {
+    "uk": "Eunews пише про рішення інституцій ЄС. ПроМедіа посилалася на нього в новині про санкції ЄС за російську дезінформацію."
+  },
+  "website": "https://www.eunews.it",
+  "sources": [
+    {
+      "title": "Сайт Eunews",
+      "url": "https://www.eunews.it"
+    }
+  ],
+  "updated": "2026-11-25"
+}

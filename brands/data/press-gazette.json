@@ -1,0 +1,42 @@
+{
+  "slug": "press-gazette",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "trade",
+  "name": {
+    "uk": "Press Gazette",
+    "en": "Press Gazette"
+  },
+  "sort": {
+    "uk": "Press Gazette",
+    "en": "Press Gazette"
+  },
+  "type": {
+    "uk": "британське галузеве видання про журналістику",
+    "en": "UK journalism trade publication"
+  },
+  "summary": {
+    "uk": "Британське галузеве видання про журналістику й медіабізнес, що виходить з 1965 року.",
+    "en": "UK trade publication about journalism and the news business, published since 1965."
+  },
+  "bio": {
+    "uk": "Press Gazette пише про британські й світові медіа: трафік, бізнес-моделі, угоди з ШІ-компаніями, кадрові зміни. Видання регулярно публікує рейтинги відвідуваності новинних сайтів.\n\nУ новинах ПроМедіа Press Gazette — часте джерело: саме йому операційний директор The Kyiv Independent Захар Процюк розповів, як видання залучило 37,5 тисячі платних прихильників. Press Gazette сама є членом коаліції SPUR."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1965"
+    ]
+  ],
+  "website": "https://pressgazette.co.uk",
+  "wiki": [
+    "en:Press Gazette"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Press Gazette",
+      "url": "https://pressgazette.co.uk"
+    }
+  ],
+  "updated": "2026-11-25"
+}

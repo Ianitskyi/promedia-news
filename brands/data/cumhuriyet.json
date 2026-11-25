@@ -1,0 +1,42 @@
+{
+  "slug": "cumhuriyet",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Cumhuriyet",
+    "en": "Cumhuriyet"
+  },
+  "sort": {
+    "uk": "Cumhuriyet",
+    "en": "Cumhuriyet"
+  },
+  "type": {
+    "uk": "турецька щоденна газета",
+    "en": "Turkish daily newspaper"
+  },
+  "summary": {
+    "uk": "Одна з найстаріших турецьких газет, заснована 1924 року; світське опозиційне видання.",
+    "en": "One of Turkey's oldest newspapers, founded in 1924; a secular opposition daily."
+  },
+  "bio": {
+    "uk": "Cumhuriyet («Республіка») заснували 1924 року, через рік після проголошення Турецької Республіки. Журналісти газети неодноразово ставали фігурантами кримінальних справ. Видання описало марш у Стамбулі на захист свободи преси в листопаді 2026 року."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1924"
+    ]
+  ],
+  "website": "https://www.cumhuriyet.com.tr",
+  "wiki": [
+    "en:Cumhuriyet"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Cumhuriyet",
+      "url": "https://www.cumhuriyet.com.tr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

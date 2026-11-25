@@ -1,0 +1,33 @@
+{
+  "slug": "ms-now",
+  "group": "intl",
+  "country": "США",
+  "kind": "tv",
+  "name": {
+    "uk": "MS NOW",
+    "en": "MS NOW"
+  },
+  "sort": {
+    "uk": "MS NOW",
+    "en": "MS NOW"
+  },
+  "aliases": [
+    "MSNBC"
+  ],
+  "type": {
+    "uk": "американський новинний телеканал",
+    "en": "US cable news channel"
+  },
+  "summary": {
+    "uk": "Американський кабельний новинний канал, колишній MSNBC; нову назву отримав 2025 року.",
+    "en": "US cable news channel, formerly MSNBC; renamed in 2025."
+  },
+  "bio": {
+    "uk": "MS NOW — так з листопада 2025 року називається колишній MSNBC, який з'явився 1996 року як спільний проєкт Microsoft і NBC. Після відокремлення від NBCUniversal канал змінив назву. У листопаді 2026 року саме в інтерв'ю MS NOW Боб Вудворд сказав, що Джефф Безос має продати The Washington Post, якщо не вірить у газету."
+  },
+  "wiki": [
+    "en:MS NOW"
+  ],
+  "sources": [],
+  "updated": "2026-11-25"
+}

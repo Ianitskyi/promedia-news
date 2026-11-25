@@ -1,0 +1,36 @@
+{
+  "slug": "nikcenter",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "NikCenter",
+    "en": "NikCenter"
+  },
+  "sort": {
+    "uk": "NikCenter",
+    "en": "NikCenter"
+  },
+  "match": [
+    "NikCenter"
+  ],
+  "type": {
+    "uk": "миколаївське онлайн-медіа",
+    "en": "Mykolaiv online outlet"
+  },
+  "summary": {
+    "uk": "Миколаївське онлайн-медіа.",
+    "en": "Mykolaiv online outlet."
+  },
+  "bio": {
+    "uk": "Редакторка NikCenter Олеся Борейко розповідала на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві про складні випадки з досвіду розслідувачів."
+  },
+  "website": "https://nikcenter.org",
+  "sources": [
+    {
+      "title": "Сайт NikCenter",
+      "url": "https://nikcenter.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

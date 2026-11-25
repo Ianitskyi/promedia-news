@@ -1,0 +1,33 @@
+{
+  "slug": "expats-cz",
+  "group": "intl",
+  "country": "Чехія",
+  "kind": "online",
+  "name": {
+    "uk": "Expats.cz",
+    "en": "Expats.cz"
+  },
+  "sort": {
+    "uk": "Expats.cz",
+    "en": "Expats.cz"
+  },
+  "type": {
+    "uk": "англомовне медіа для іноземців у Чехії",
+    "en": "English-language site for foreigners in Czechia"
+  },
+  "summary": {
+    "uk": "Англомовний сайт новин і порад для іноземців, які живуть у Празі та Чехії.",
+    "en": "English-language news and guide site for foreigners living in Prague and Czechia."
+  },
+  "bio": {
+    "uk": "Expats.cz перекладає й пояснює чеські новини англійською. Видання писало, що організатори протестів закликали приходити в шапках героя «Вечірничка»."
+  },
+  "website": "https://www.expats.cz",
+  "sources": [
+    {
+      "title": "Сайт Expats.cz",
+      "url": "https://www.expats.cz"
+    }
+  ],
+  "updated": "2026-11-25"
+}

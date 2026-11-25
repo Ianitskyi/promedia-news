@@ -1,0 +1,42 @@
+{
+  "slug": "krik",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "investigative",
+  "name": {
+    "uk": "KRIK",
+    "en": "KRIK"
+  },
+  "sort": {
+    "uk": "KRIK",
+    "en": "KRIK"
+  },
+  "type": {
+    "uk": "сербська розслідувальна мережа",
+    "en": "Serbian investigative network"
+  },
+  "summary": {
+    "uk": "Сербська мережа журналістських розслідувань злочинності й корупції, заснована 2015 року; партнер OCCRP.",
+    "en": "Serbian crime and corruption reporting network founded in 2015; an OCCRP partner."
+  },
+  "bio": {
+    "uk": "KRIK (Krik — Мережа розслідувань злочинності й корупції) розслідує зв'язки політиків з організованою злочинністю. Мережі належить фактчекінговий проєкт Raskrikavanje."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2015"
+    ]
+  ],
+  "website": "https://www.krik.rs",
+  "wiki": [
+    "en:Crime and Corruption Reporting Network"
+  ],
+  "sources": [
+    {
+      "title": "Сайт KRIK",
+      "url": "https://www.krik.rs"
+    }
+  ],
+  "updated": "2026-11-25"
+}

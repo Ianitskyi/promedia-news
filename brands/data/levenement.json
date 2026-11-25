@@ -1,0 +1,27 @@
+{
+  "slug": "levenement",
+  "group": "intl",
+  "country": "Буркіна-Фасо",
+  "kind": "newspaper",
+  "name": {
+    "uk": "L'Événement",
+    "en": "L'Événement"
+  },
+  "sort": {
+    "uk": "Événement",
+    "en": "Événement"
+  },
+  "type": {
+    "uk": "газета Буркіна-Фасо",
+    "en": "Burkinabe newspaper"
+  },
+  "summary": {
+    "uk": "Газета з Буркіна-Фасо, колишній головний редактор якої Ньютон Ахмед Баррі отримав ордер на арешт.",
+    "en": "Burkinabe newspaper whose former editor Newton Ahmed Barry faces an arrest warrant."
+  },
+  "bio": {
+    "uk": "Колишній головний редактор L'Événement, а нині коментатор радіо RFI Ньютон Ахмед Баррі — серед шести журналістів, яким влада Буркіна-Фасо в листопаді 2026 року видала ордери на арешт."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

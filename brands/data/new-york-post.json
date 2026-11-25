@@ -1,0 +1,50 @@
+{
+  "slug": "new-york-post",
+  "group": "intl",
+  "country": "США",
+  "kind": "newspaper",
+  "name": {
+    "uk": "New York Post",
+    "en": "New York Post"
+  },
+  "sort": {
+    "uk": "New York Post",
+    "en": "New York Post"
+  },
+  "match": [
+    "New York Post",
+    "nypost.com"
+  ],
+  "type": {
+    "uk": "нью-йоркська щоденна газета-таблоїд",
+    "en": "New York daily tabloid"
+  },
+  "summary": {
+    "uk": "Нью-йоркська газета, заснована 1801 року Александером Гамільтоном; належить News Corp.",
+    "en": "New York daily founded by Alexander Hamilton in 1801; owned by News Corp."
+  },
+  "bio": {
+    "uk": "New York Post — одна з найстаріших газет США, її заснував 1801 року один із батьків-засновників країни Александер Гамільтон. З 1976 року газета (з перервою) належить Руперту Мердоку, нині — компанії News Corp. Виходить у форматі таблоїду."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1801"
+    ],
+    [
+      "Власник",
+      "News Corp"
+    ]
+  ],
+  "website": "https://nypost.com",
+  "wiki": [
+    "en:New York Post"
+  ],
+  "sources": [
+    {
+      "title": "Сайт New York Post",
+      "url": "https://nypost.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

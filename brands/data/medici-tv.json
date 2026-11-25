@@ -1,0 +1,36 @@
+{
+  "slug": "medici-tv",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "online",
+  "name": {
+    "uk": "medici.tv",
+    "en": "medici.tv"
+  },
+  "sort": {
+    "uk": "medici.tv",
+    "en": "medici.tv"
+  },
+  "type": {
+    "uk": "стримінгова платформа класичної музики",
+    "en": "Classical music streaming platform"
+  },
+  "summary": {
+    "uk": "Онлайн-платформа трансляцій класичної музики; за даними AFP, належить LVMH.",
+    "en": "Online streaming platform for classical music; according to AFP, owned by LVMH."
+  },
+  "bio": {
+    "uk": "medici.tv транслює концерти, оперу й музичні конкурси наживо та в записі. AFP включила платформу до переліку медіа LVMH, охоплених угодою з OpenAI."
+  },
+  "website": "https://www.medici.tv",
+  "wiki": [
+    "en:Medici.tv"
+  ],
+  "sources": [
+    {
+      "title": "Сайт medici.tv",
+      "url": "https://www.medici.tv"
+    }
+  ],
+  "updated": "2026-11-25"
+}

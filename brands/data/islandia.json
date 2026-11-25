@@ -1,0 +1,30 @@
+{
+  "slug": "islandia",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Islandia",
+    "en": "Islandia"
+  },
+  "sort": {
+    "uk": "Islandia",
+    "en": "Islandia"
+  },
+  "match": [
+    "Islandia"
+  ],
+  "type": {
+    "uk": "київський медіапроєкт",
+    "en": "Kyiv media project"
+  },
+  "summary": {
+    "uk": "Київський медіапроєкт.",
+    "en": "Kyiv media project."
+  },
+  "bio": {
+    "uk": "2 липня 2026 року російська атака знищила студію медіапроєкту Islandia в Києві; загинув охоронець."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

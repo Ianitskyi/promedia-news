@@ -1,0 +1,36 @@
+{
+  "slug": "techpowerup",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "TechPowerUp",
+    "en": "TechPowerUp"
+  },
+  "sort": {
+    "uk": "TechPowerUp",
+    "en": "TechPowerUp"
+  },
+  "type": {
+    "uk": "технологічне онлайн-медіа",
+    "en": "Tech news site"
+  },
+  "summary": {
+    "uk": "Технологічне видання про комп'ютерне залізо й ігри, відоме базою даних відеокарт і утилітою GPU-Z.",
+    "en": "Tech site about PC hardware and games, known for its GPU database and the GPU-Z utility."
+  },
+  "bio": {
+    "uk": "TechPowerUp публікує новини та огляди комп'ютерних комплектувальних, веде довідкові бази даних процесорів і відеокарт та розробляє безкоштовні утиліти для діагностики комп'ютера."
+  },
+  "website": "https://www.techpowerup.com",
+  "wiki": [
+    "en:TechPowerUp"
+  ],
+  "sources": [
+    {
+      "title": "Сайт TechPowerUp",
+      "url": "https://www.techpowerup.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

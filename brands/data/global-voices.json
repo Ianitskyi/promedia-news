@@ -1,0 +1,42 @@
+{
+  "slug": "global-voices",
+  "group": "intl",
+  "country": "Нідерланди",
+  "kind": "online",
+  "name": {
+    "uk": "Global Voices",
+    "en": "Global Voices"
+  },
+  "sort": {
+    "uk": "Global Voices",
+    "en": "Global Voices"
+  },
+  "type": {
+    "uk": "міжнародна мережа громадянських медіа",
+    "en": "International citizen media network"
+  },
+  "summary": {
+    "uk": "Міжнародна мережа авторів і перекладачів, яка з 2005 року розповідає про події, що їх оминають великі медіа.",
+    "en": "International network of writers and translators covering under-reported stories since 2005."
+  },
+  "bio": {
+    "uk": "Global Voices заснували 2005 року в Гарвардському центрі Беркмана. Волонтери пишуть і перекладають матеріали десятками мов. Мережа розповідала про чеську дитячу програму «Вечірничок», яка стала символом протестів на захист суспільних медіа."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2005"
+    ]
+  ],
+  "website": "https://globalvoices.org",
+  "wiki": [
+    "en:Global Voices"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Global Voices",
+      "url": "https://globalvoices.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

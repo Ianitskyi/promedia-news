@@ -1,0 +1,51 @@
+{
+  "slug": "afp",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "agency",
+  "name": {
+    "uk": "AFP",
+    "en": "AFP — Agence France-Presse"
+  },
+  "sort": {
+    "uk": "AFP",
+    "en": "AFP — Agence France-Presse"
+  },
+  "aliases": [
+    "Agence France-Presse",
+    "Франс Прес"
+  ],
+  "type": {
+    "uk": "французька міжнародна інформаційна агенція",
+    "en": "French international news agency"
+  },
+  "summary": {
+    "uk": "Французька інформаційна агенція, наступниця заснованої 1835 року агенції Havas; працює під назвою AFP з 1944 року.",
+    "en": "French news agency, successor to the Havas agency founded in 1835; operating as AFP since 1944."
+  },
+  "bio": {
+    "uk": "Agence France-Presse веде історію від агенції Havas, яку Шарль-Луї Авас заснував 1835 року в Парижі. Назву AFP агенція отримала 1944 року, після звільнення Франції. Це одна з трьох найбільших світових агенцій поряд із Reuters та Associated Press; вона працює кількома мовами, зокрема англійською, арабською й іспанською.\n\nУ новинах ПроМедіа AFP — часте джерело про свободу медіа у світі: від протестів у Стамбулі проти захоплення опозиційних телеканалів до угоди OpenAI з медіагрупою LVMH."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1835 (Havas), 1944 (AFP)"
+    ],
+    [
+      "Штаб-квартира",
+      "Париж"
+    ]
+  ],
+  "website": "https://www.afp.com",
+  "wiki": [
+    "en:Agence France-Presse",
+    "uk:Agence France-Presse"
+  ],
+  "sources": [
+    {
+      "title": "Сайт AFP — Agence France-Presse",
+      "url": "https://www.afp.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

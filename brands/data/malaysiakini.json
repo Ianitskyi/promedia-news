@@ -1,0 +1,42 @@
+{
+  "slug": "malaysiakini",
+  "group": "intl",
+  "country": "Малайзія",
+  "kind": "online",
+  "name": {
+    "uk": "Malaysiakini",
+    "en": "Malaysiakini"
+  },
+  "sort": {
+    "uk": "Malaysiakini",
+    "en": "Malaysiakini"
+  },
+  "type": {
+    "uk": "малайзійське незалежне онлайн-медіа",
+    "en": "Malaysian independent online outlet"
+  },
+  "summary": {
+    "uk": "Одне з перших незалежних онлайн-медіа Малайзії, засноване 1999 року; існує на кошти передплатників.",
+    "en": "One of Malaysia's first independent online outlets, founded in 1999 and funded by subscribers."
+  },
+  "bio": {
+    "uk": "Malaysiakini заснували 1999 року, коли друковані медіа країни жорстко контролювала влада. Видання працює кількома мовами й рано запровадило платну передплату. Учасник програми JournalismAI Лондонської школи економіки."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1999"
+    ]
+  ],
+  "website": "https://www.malaysiakini.com",
+  "wiki": [
+    "en:Malaysiakini"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Malaysiakini",
+      "url": "https://www.malaysiakini.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

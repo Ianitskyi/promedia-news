@@ -1,0 +1,50 @@
+{
+  "slug": "forbes-ukraine",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "magazine",
+  "name": {
+    "uk": "Forbes Україна",
+    "en": "Forbes Ukraine"
+  },
+  "sort": {
+    "uk": "Forbes Україна",
+    "en": "Forbes Ukraine"
+  },
+  "aliases": [
+    "Forbes Ukraine"
+  ],
+  "match": [
+    "Forbes Україна",
+    "Forbes Ukraine",
+    "forbes.ua"
+  ],
+  "type": {
+    "uk": "український діловий журнал",
+    "en": "Ukrainian business magazine"
+  },
+  "summary": {
+    "uk": "Український ліцензійний випуск ділового журналу Forbes.",
+    "en": "Ukrainian licensed edition of Forbes business magazine."
+  },
+  "bio": {
+    "uk": "Forbes Україна пише про бізнес, найбагатших українців і компанії. Видання має платний доступ до частини матеріалів.\n\nУ дослідженні ІМІ 2026 року видання потрапило до непрозорих щодо фінансування: серед 50 найпопулярніших онлайн-медіа воно лише мимохідь згадує, звідки отримує гроші."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "лише мимохідь згадує джерела доходу"
+    ]
+  ],
+  "website": "https://forbes.ua",
+  "wiki": [
+    "uk:Forbes Україна"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Forbes Ukraine",
+      "url": "https://forbes.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

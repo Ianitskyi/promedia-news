@@ -1,0 +1,42 @@
+{
+  "slug": "nieman-lab",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "Nieman Lab",
+    "en": "Nieman Lab"
+  },
+  "sort": {
+    "uk": "Nieman Lab",
+    "en": "Nieman Lab"
+  },
+  "type": {
+    "uk": "американське видання про майбутнє журналістики",
+    "en": "US outlet on the future of journalism"
+  },
+  "summary": {
+    "uk": "Видання Фонду Німана при Гарвардському університеті про інновації та майбутнє новин.",
+    "en": "Harvard's Nieman Foundation outlet about innovation and the future of news."
+  },
+  "bio": {
+    "uk": "Nieman Lab запустили 2008 року при Фонді журналістики Німана Гарвардського університету. Видання пише про бізнес-моделі, технології та нові формати журналістики, щороку публікує прогнози експертів на наступний рік."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2008"
+    ]
+  ],
+  "website": "https://www.niemanlab.org",
+  "wiki": [
+    "en:Nieman Journalism Lab"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Nieman Lab",
+      "url": "https://www.niemanlab.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

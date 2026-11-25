@@ -1,0 +1,36 @@
+{
+  "slug": "ukraineworld",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "UkraineWorld",
+    "en": "UkraineWorld"
+  },
+  "sort": {
+    "uk": "UkraineWorld",
+    "en": "UkraineWorld"
+  },
+  "match": [
+    "UkraineWorld"
+  ],
+  "type": {
+    "uk": "англомовний медіапроєкт про Україну",
+    "en": "English-language project about Ukraine"
+  },
+  "summary": {
+    "uk": "Англомовний медіапроєкт «Інтерньюз-Україна» з подкастами й аналітикою про Україну.",
+    "en": "Internews Ukraine's English-language project with podcasts and analysis about Ukraine."
+  },
+  "bio": {
+    "uk": "UkraineWorld пояснює іноземній аудиторії події в Україні; має однойменний подкаст, гостем якого була, зокрема, Наталія Гуменюк."
+  },
+  "website": "https://ukraineworld.org",
+  "sources": [
+    {
+      "title": "Сайт UkraineWorld",
+      "url": "https://ukraineworld.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

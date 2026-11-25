@@ -1,0 +1,27 @@
+{
+  "slug": "enfoque-informativo",
+  "group": "intl",
+  "country": "Мексика",
+  "kind": "online",
+  "name": {
+    "uk": "Enfoque Informativo",
+    "en": "Enfoque Informativo"
+  },
+  "sort": {
+    "uk": "Enfoque Informativo",
+    "en": "Enfoque Informativo"
+  },
+  "type": {
+    "uk": "мексиканське місцеве медіа",
+    "en": "Mexican local outlet"
+  },
+  "summary": {
+    "uk": "Місцеве медіа в мексиканському штаті Герреро.",
+    "en": "Local outlet in the Mexican state of Guerrero."
+  },
+  "bio": {
+    "uk": "Близько десяти років для Enfoque Informativo писав журналіст Едуардо, вбитий у листопаді 2026 року. Він висвітлював комунальні послуги й нестачу води, протести освітян, безпеку і зниклих безвісти."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

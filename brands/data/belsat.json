@@ -1,0 +1,45 @@
+{
+  "slug": "belsat",
+  "group": "intl",
+  "country": "Польща",
+  "kind": "tv",
+  "name": {
+    "uk": "Белсат",
+    "en": "Belsat TV"
+  },
+  "sort": {
+    "uk": "Белсат",
+    "en": "Belsat TV"
+  },
+  "aliases": [
+    "Belsat"
+  ],
+  "type": {
+    "uk": "білоруськомовний телеканал з Польщі",
+    "en": "Belarusian-language TV channel based in Poland"
+  },
+  "summary": {
+    "uk": "Незалежний білоруськомовний телеканал, що з 2007 року мовить з Варшави; працює у складі Польського телебачення.",
+    "en": "Independent Belarusian-language channel broadcasting from Warsaw since 2007 as part of Polish Television."
+  },
+  "bio": {
+    "uk": "«Белсат» створили 2007 року як канал для глядачів у Білорусі; він фінансується польською державою та міжнародними донорами. Білоруська влада визнала канал «екстремістським», а його журналісти ставали політв'язнями."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2007, Варшава"
+    ]
+  ],
+  "website": "https://belsat.eu",
+  "wiki": [
+    "en:Belsat TV"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Belsat TV",
+      "url": "https://belsat.eu"
+    }
+  ],
+  "updated": "2026-11-25"
+}

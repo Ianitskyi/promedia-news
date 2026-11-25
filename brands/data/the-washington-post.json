@@ -1,0 +1,50 @@
+{
+  "slug": "the-washington-post",
+  "group": "intl",
+  "country": "США",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Washington Post",
+    "en": "The Washington Post"
+  },
+  "sort": {
+    "uk": "Washington Post",
+    "en": "Washington Post"
+  },
+  "aliases": [
+    "Вашингтон Пост"
+  ],
+  "type": {
+    "uk": "американська щоденна газета",
+    "en": "US daily newspaper"
+  },
+  "summary": {
+    "uk": "Вашингтонська щоденна газета, заснована 1877 року; з 2013 року належить Джеффу Безосу.",
+    "en": "Washington daily founded in 1877; owned by Jeff Bezos since 2013."
+  },
+  "bio": {
+    "uk": "The Washington Post виходить з 1877 року. Світову славу їй принесли розслідування Боба Вудворда й Карла Бернстайна про Вотергейтський скандал, після якого 1974 року у відставку пішов президент Ніксон. Десятиліттями газетою володіла родина Ґрем; 2013 року її за 250 млн доларів купив засновник Amazon Джефф Безос.\n\nУ листопаді 2026 року ПроМедіа писала, що Боб Вудворд у мемуарах звинуватив Безоса в поступках президентові Трампу й закликав продати газету, якщо власник не вірить у неї."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1877"
+    ],
+    [
+      "Власник",
+      "Джефф Безос (з 2013)"
+    ]
+  ],
+  "website": "https://www.washingtonpost.com",
+  "wiki": [
+    "en:The Washington Post",
+    "uk:The Washington Post"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Washington Post",
+      "url": "https://www.washingtonpost.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

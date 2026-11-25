@@ -1,0 +1,36 @@
+{
+  "slug": "nakypilo",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "group",
+  "name": {
+    "uk": "Накипіло",
+    "en": "Nakypilo"
+  },
+  "sort": {
+    "uk": "Накипіло",
+    "en": "Nakypilo"
+  },
+  "match": [
+    "«Накипіло»"
+  ],
+  "type": {
+    "uk": "харківська медіагрупа",
+    "en": "Kharkiv media group"
+  },
+  "summary": {
+    "uk": "Харківська незалежна медіагрупа зі спільнотою прихильників.",
+    "en": "Kharkiv independent media group with a supporters' community."
+  },
+  "bio": {
+    "uk": "«Накипіло» робить новини про Харків і має програму лояльності для членів спільноти. Медіагрупа організувала фестиваль-ярмарок «Ключ до Харкова» на підтримку місцевих брендів."
+  },
+  "website": "https://nakypilo.ua",
+  "sources": [
+    {
+      "title": "Сайт Nakypilo",
+      "url": "https://nakypilo.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

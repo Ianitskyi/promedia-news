@@ -1,0 +1,50 @@
+{
+  "slug": "fox-news",
+  "group": "intl",
+  "country": "США",
+  "kind": "tv",
+  "name": {
+    "uk": "Fox News",
+    "en": "Fox News"
+  },
+  "sort": {
+    "uk": "Fox News",
+    "en": "Fox News"
+  },
+  "match": [
+    "Fox News",
+    "foxnews.com"
+  ],
+  "type": {
+    "uk": "американський новинний телеканал",
+    "en": "US cable news channel"
+  },
+  "summary": {
+    "uk": "Американський кабельний новинний телеканал, заснований 1996 року; належить Fox Corporation.",
+    "en": "US cable news channel launched in 1996 and owned by Fox Corporation."
+  },
+  "bio": {
+    "uk": "Fox News запустили 1996 року за участі Руперта Мердока. Канал вважають консервативним; роками він лідирує за аудиторією серед кабельних новинних каналів США. За оцінками Similarweb, які наводила Press Gazette, у жовтні 2026 року foxnews.com був третім за відвідуваністю новинним сайтом США."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1996"
+    ],
+    [
+      "Власник",
+      "Fox Corporation"
+    ]
+  ],
+  "website": "https://www.foxnews.com",
+  "wiki": [
+    "en:Fox News"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Fox News",
+      "url": "https://www.foxnews.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

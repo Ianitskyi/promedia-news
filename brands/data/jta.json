@@ -1,0 +1,46 @@
+{
+  "slug": "jta",
+  "group": "intl",
+  "country": "США",
+  "kind": "agency",
+  "name": {
+    "uk": "JTA",
+    "en": "JTA — Jewish Telegraphic Agency"
+  },
+  "sort": {
+    "uk": "JTA",
+    "en": "JTA — Jewish Telegraphic Agency"
+  },
+  "aliases": [
+    "Єврейське телеграфне агентство",
+    "Jewish Telegraphic Agency"
+  ],
+  "type": {
+    "uk": "міжнародна агенція єврейських новин",
+    "en": "International Jewish news agency"
+  },
+  "summary": {
+    "uk": "Агенція новин про єврейські громади світу, заснована 1917 року.",
+    "en": "News agency covering Jewish communities worldwide, founded in 1917."
+  },
+  "bio": {
+    "uk": "Jewish Telegraphic Agency заснували 1917 року в Гаазі; згодом штаб-квартира переїхала до Нью-Йорка. Агенція постачає новини єврейським медіа по всьому світу. ПроМедіа посилалася на JTA в матеріалі про розкол PEN America."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1917"
+    ]
+  ],
+  "website": "https://www.jta.org",
+  "wiki": [
+    "en:Jewish Telegraphic Agency"
+  ],
+  "sources": [
+    {
+      "title": "Сайт JTA — Jewish Telegraphic Agency",
+      "url": "https://www.jta.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

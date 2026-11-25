@@ -1,0 +1,42 @@
+{
+  "slug": "avvenire",
+  "group": "intl",
+  "country": "Італія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Avvenire",
+    "en": "Avvenire"
+  },
+  "sort": {
+    "uk": "Avvenire",
+    "en": "Avvenire"
+  },
+  "type": {
+    "uk": "італійська католицька щоденна газета",
+    "en": "Italian Catholic daily"
+  },
+  "summary": {
+    "uk": "Італійська католицька щоденна газета, заснована 1968 року; пов'язана з Конференцією єпископів Італії.",
+    "en": "Italian Catholic daily founded in 1968, linked to the Italian Episcopal Conference."
+  },
+  "bio": {
+    "uk": "Avvenire виходить у Мілані з 1968 року. З виданням співпрацював фотограф Андрій Шестак, який розповідав про це в інтерв'ю ПроМедіа."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1968"
+    ]
+  ],
+  "website": "https://www.avvenire.it",
+  "wiki": [
+    "en:Avvenire"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Avvenire",
+      "url": "https://www.avvenire.it"
+    }
+  ],
+  "updated": "2026-11-25"
+}

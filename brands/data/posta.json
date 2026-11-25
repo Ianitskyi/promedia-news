@@ -1,0 +1,40 @@
+{
+  "slug": "posta",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Posta",
+    "en": "Posta"
+  },
+  "sort": {
+    "uk": "Posta",
+    "en": "Posta"
+  },
+  "match": [
+    "posta.com.tr",
+    "Posta"
+  ],
+  "type": {
+    "uk": "турецька щоденна газета",
+    "en": "Turkish daily newspaper"
+  },
+  "summary": {
+    "uk": "Турецька масова щоденна газета.",
+    "en": "Turkish mass-market daily newspaper."
+  },
+  "bio": {
+    "uk": "Posta — популярна турецька газета. ПроМедіа посилалася на неї в новині про протести проти захоплення опозиційних медіа в Стамбулі."
+  },
+  "website": "https://www.posta.com.tr",
+  "wiki": [
+    "en:Posta (newspaper)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Posta",
+      "url": "https://www.posta.com.tr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

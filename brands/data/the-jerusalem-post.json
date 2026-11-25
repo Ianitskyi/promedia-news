@@ -1,0 +1,42 @@
+{
+  "slug": "the-jerusalem-post",
+  "group": "intl",
+  "country": "Ізраїль",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Jerusalem Post",
+    "en": "The Jerusalem Post"
+  },
+  "sort": {
+    "uk": "Jerusalem Post",
+    "en": "Jerusalem Post"
+  },
+  "type": {
+    "uk": "ізраїльська англомовна газета",
+    "en": "Israeli English-language daily"
+  },
+  "summary": {
+    "uk": "Ізраїльська англомовна газета, заснована 1932 року як The Palestine Post.",
+    "en": "Israeli English-language daily founded in 1932 as The Palestine Post."
+  },
+  "bio": {
+    "uk": "The Jerusalem Post виходить з 1932 року; нинішню назву отримала 1950 року. ПроМедіа посилалася на неї в матеріалі про розкол PEN America та в новині про блокування Telegram у Йорданії та Іраку."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1932"
+    ]
+  ],
+  "website": "https://www.jpost.com",
+  "wiki": [
+    "en:The Jerusalem Post"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Jerusalem Post",
+      "url": "https://www.jpost.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

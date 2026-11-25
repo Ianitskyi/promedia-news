@@ -1,0 +1,33 @@
+{
+  "slug": "korkusuz",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Korkusuz",
+    "en": "Korkusuz"
+  },
+  "sort": {
+    "uk": "Korkusuz",
+    "en": "Korkusuz"
+  },
+  "type": {
+    "uk": "турецька газета групи Sözcü",
+    "en": "Turkish newspaper of the Sözcü group"
+  },
+  "summary": {
+    "uk": "Турецька газета, пов'язана з медіагрупою Sözcü.",
+    "en": "Turkish newspaper affiliated with the Sözcü media group."
+  },
+  "bio": {
+    "uk": "Як писав Bianet, рішення про передачу Sözcü TV під державне управління не стосувалося газети Sözcü та пов'язаних із нею видань Tavır і Korkusuz."
+  },
+  "website": "https://www.korkusuz.com.tr",
+  "sources": [
+    {
+      "title": "Сайт Korkusuz",
+      "url": "https://www.korkusuz.com.tr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

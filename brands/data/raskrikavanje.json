@@ -1,0 +1,33 @@
+{
+  "slug": "raskrikavanje",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "factcheck",
+  "name": {
+    "uk": "Raskrikavanje",
+    "en": "Raskrikavanje"
+  },
+  "sort": {
+    "uk": "Raskrikavanje",
+    "en": "Raskrikavanje"
+  },
+  "type": {
+    "uk": "сербський фактчекінговий проєкт",
+    "en": "Serbian fact-checking project"
+  },
+  "summary": {
+    "uk": "Фактчекінговий проєкт сербської розслідувальної мережі KRIK.",
+    "en": "Fact-checking project of the Serbian investigative network KRIK."
+  },
+  "bio": {
+    "uk": "Raskrikavanje перевіряє заяви політиків і публікації проурядових медіа. За його підрахунками, на перших шпальтах 306 номерів Informer за 2024 рік було щонайменше 384 маніпулятивні новини й дезінформації."
+  },
+  "website": "https://www.raskrikavanje.rs",
+  "sources": [
+    {
+      "title": "Сайт Raskrikavanje",
+      "url": "https://www.raskrikavanje.rs"
+    }
+  ],
+  "updated": "2026-11-25"
+}

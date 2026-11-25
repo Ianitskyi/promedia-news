@@ -1,0 +1,36 @@
+{
+  "slug": "mezzo",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "tv",
+  "name": {
+    "uk": "Mezzo",
+    "en": "Mezzo"
+  },
+  "sort": {
+    "uk": "Mezzo",
+    "en": "Mezzo"
+  },
+  "type": {
+    "uk": "французький телеканал класичної музики",
+    "en": "French classical music TV channel"
+  },
+  "summary": {
+    "uk": "Французький телеканал класичної музики, опери, джазу й балету; за даними AFP, належить LVMH.",
+    "en": "French TV channel for classical music, opera, jazz and dance; according to AFP, owned by LVMH."
+  },
+  "bio": {
+    "uk": "Mezzo транслює концерти, оперні й балетні вистави. AFP включила канал до переліку медіа LVMH, охоплених угодою з OpenAI."
+  },
+  "website": "https://www.mezzo.tv",
+  "wiki": [
+    "en:Mezzo TV"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Mezzo",
+      "url": "https://www.mezzo.tv"
+    }
+  ],
+  "updated": "2026-11-25"
+}

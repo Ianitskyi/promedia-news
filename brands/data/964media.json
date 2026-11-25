@@ -1,0 +1,36 @@
+{
+  "slug": "964media",
+  "group": "intl",
+  "country": "Ірак",
+  "kind": "online",
+  "name": {
+    "uk": "964media",
+    "en": "964media"
+  },
+  "sort": {
+    "uk": "964media",
+    "en": "964media"
+  },
+  "aliases": [
+    "964"
+  ],
+  "type": {
+    "uk": "іракське онлайн-медіа",
+    "en": "Iraqi online outlet"
+  },
+  "summary": {
+    "uk": "Іракське новинне медіа арабською, курдською та англійською.",
+    "en": "Iraqi news outlet publishing in Arabic, Kurdish and English."
+  },
+  "bio": {
+    "uk": "964media названо за телефонним кодом Іраку. Видання писало про блокування Telegram в Іраку, яке запровадила державна Комісія з питань комунікацій і медіа."
+  },
+  "website": "https://en.964media.com",
+  "sources": [
+    {
+      "title": "Сайт 964media",
+      "url": "https://en.964media.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

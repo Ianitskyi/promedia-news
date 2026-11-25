@@ -1,0 +1,36 @@
+{
+  "slug": "boursier-com",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "online",
+  "name": {
+    "uk": "Boursier.com",
+    "en": "Boursier.com"
+  },
+  "sort": {
+    "uk": "Boursier.com",
+    "en": "Boursier.com"
+  },
+  "type": {
+    "uk": "французький фінансовий сайт",
+    "en": "French financial news site"
+  },
+  "summary": {
+    "uk": "Французький сайт біржових новин; за даними AFP, належить медійному підрозділу LVMH.",
+    "en": "French stock-market news site; according to AFP, owned by LVMH's media division."
+  },
+  "bio": {
+    "uk": "Boursier.com публікує новини фінансових ринків і котирування. AFP включила його до переліку видань LVMH, охоплених угодою з OpenAI."
+  },
+  "website": "https://www.boursier.com",
+  "wiki": [
+    "fr:Boursier.com"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Boursier.com",
+      "url": "https://www.boursier.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

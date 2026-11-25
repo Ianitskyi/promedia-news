@@ -1,0 +1,36 @@
+{
+  "slug": "radio-classique",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "radio",
+  "name": {
+    "uk": "Radio Classique",
+    "en": "Radio Classique"
+  },
+  "sort": {
+    "uk": "Radio Classique",
+    "en": "Radio Classique"
+  },
+  "type": {
+    "uk": "французька радіостанція",
+    "en": "French radio station"
+  },
+  "summary": {
+    "uk": "Французька радіостанція класичної музики й ділових новин, що належить LVMH.",
+    "en": "French classical music and business news radio station owned by LVMH."
+  },
+  "bio": {
+    "uk": "Radio Classique мовить класичну музику й програми про економіку та політику. Належить медійному підрозділу LVMH і, за даними AFP, входить до видань, охоплених угодою групи з OpenAI."
+  },
+  "website": "https://www.radioclassique.fr",
+  "wiki": [
+    "en:Radio Classique"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Radio Classique",
+      "url": "https://www.radioclassique.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

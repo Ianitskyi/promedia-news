@@ -1,0 +1,42 @@
+{
+  "slug": "defense-express",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Defense Express",
+    "en": "Defense Express"
+  },
+  "sort": {
+    "uk": "Defense Express",
+    "en": "Defense Express"
+  },
+  "match": [
+    "Defense Express"
+  ],
+  "type": {
+    "uk": "українське медіа про оборону",
+    "en": "Ukrainian defence outlet"
+  },
+  "summary": {
+    "uk": "Українське медіа й консалтингова компанія про оборонну промисловість та озброєння.",
+    "en": "Ukrainian outlet and consultancy covering the defence industry and weapons."
+  },
+  "bio": {
+    "uk": "Defense Express пише про озброєння, оборонну промисловість і військово-технічне співробітництво.\n\nУ дослідженні ІМІ 2026 року видання потрапило до 27 із 50 найпопулярніших онлайн-медіа, які не оприлюднили жодної фінансової інформації."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "не оприлюднює фінансової інформації"
+    ]
+  ],
+  "website": "https://defence-ua.com",
+  "sources": [
+    {
+      "title": "Сайт Defense Express",
+      "url": "https://defence-ua.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

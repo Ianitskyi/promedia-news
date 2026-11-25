@@ -1,0 +1,42 @@
+{
+  "slug": "newsweek",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "Newsweek",
+    "en": "Newsweek"
+  },
+  "sort": {
+    "uk": "Newsweek",
+    "en": "Newsweek"
+  },
+  "type": {
+    "uk": "американський новинний журнал",
+    "en": "US news magazine"
+  },
+  "summary": {
+    "uk": "Американський щотижневий новинний журнал, заснований 1933 року.",
+    "en": "US weekly news magazine founded in 1933."
+  },
+  "bio": {
+    "uk": "Newsweek виходить з 1933 року. 2012 року журнал тимчасово перейшов лише в цифровий формат, згодом друковану версію відновили. За даними Similarweb, які наводила Press Gazette, за рік до жовтня 2026 року відвідуваність сайту Newsweek упала на 60% — найбільше серед великих новинних сайтів США."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1933"
+    ]
+  ],
+  "website": "https://www.newsweek.com",
+  "wiki": [
+    "en:Newsweek"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Newsweek",
+      "url": "https://www.newsweek.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

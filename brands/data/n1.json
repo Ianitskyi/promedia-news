@@ -1,0 +1,45 @@
+{
+  "slug": "n1",
+  "group": "intl",
+  "country": "Сербія",
+  "kind": "tv",
+  "name": {
+    "uk": "N1",
+    "en": "N1"
+  },
+  "sort": {
+    "uk": "N1",
+    "en": "N1"
+  },
+  "match": [
+    "re:(?<![\\p{L}\\p{N}])N1(?![\\p{L}\\p{N}])"
+  ],
+  "type": {
+    "uk": "регіональний новинний телеканал",
+    "en": "Regional news channel"
+  },
+  "summary": {
+    "uk": "Новинний телеканал для Сербії, Хорватії та Боснії й Герцеговини, партнер CNN; мовить з 2014 року.",
+    "en": "News channel for Serbia, Croatia and Bosnia and Herzegovina, a CNN affiliate on air since 2014."
+  },
+  "bio": {
+    "uk": "N1 — один із небагатьох незалежних телеканалів у Сербії. Він дав подробиці затримання власника Informer, а його фактчекінгові матеріали ПроМедіа використала в цій новині."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2014"
+    ]
+  ],
+  "website": "https://n1info.rs",
+  "wiki": [
+    "en:N1 (TV channel)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт N1",
+      "url": "https://n1info.rs"
+    }
+  ],
+  "updated": "2026-11-25"
+}

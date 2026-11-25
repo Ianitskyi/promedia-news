@@ -1,0 +1,42 @@
+{
+  "slug": "observador",
+  "group": "intl",
+  "country": "Португалія",
+  "kind": "online",
+  "name": {
+    "uk": "Observador",
+    "en": "Observador"
+  },
+  "sort": {
+    "uk": "Observador",
+    "en": "Observador"
+  },
+  "type": {
+    "uk": "португальська онлайн-газета",
+    "en": "Portuguese online newspaper"
+  },
+  "summary": {
+    "uk": "Португальська щоденна онлайн-газета, заснована 2014 року.",
+    "en": "Portuguese online daily founded in 2014."
+  },
+  "bio": {
+    "uk": "Observador — одне з найпопулярніших цифрових медіа Португалії, має також радіо. Видання брало участь у програмі JournalismAI Лондонської школи економіки, де 12 редакцій шукали з допомогою ШІ нові джерела доходу."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2014"
+    ]
+  ],
+  "website": "https://observador.pt",
+  "wiki": [
+    "en:Observador"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Observador",
+      "url": "https://observador.pt"
+    }
+  ],
+  "updated": "2026-11-25"
+}

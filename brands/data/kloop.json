@@ -1,0 +1,51 @@
+{
+  "slug": "kloop",
+  "group": "intl",
+  "country": "Киргизстан",
+  "kind": "investigative",
+  "name": {
+    "uk": "Клооп",
+    "en": "Kloop"
+  },
+  "sort": {
+    "uk": "Клооп",
+    "en": "Kloop"
+  },
+  "aliases": [
+    "Kloop"
+  ],
+  "match": [
+    "«Клооп»",
+    "«Клоопу»",
+    "Клооп",
+    "Kloop"
+  ],
+  "type": {
+    "uk": "киргизьке незалежне розслідувальне медіа",
+    "en": "Kyrgyz independent investigative outlet"
+  },
+  "summary": {
+    "uk": "Незалежне киргизьке медіа, засноване 2007 року; влада визнала його матеріали «екстремістськими».",
+    "en": "Independent Kyrgyz outlet founded in 2007; the authorities have declared its content 'extremist'."
+  },
+  "bio": {
+    "uk": "«Клооп» — розслідувальне медіа, яке входить до мережі OCCRP. Киргизька влада переслідує редакцію: у листопаді 2026 року, як писала ПроМедіа, суд дав будівельникові три роки колонії лише за репост відео «Клоопу» у Facebook."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2007"
+    ]
+  ],
+  "website": "https://kloop.kg",
+  "wiki": [
+    "en:Kloop"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Kloop",
+      "url": "https://kloop.kg"
+    }
+  ],
+  "updated": "2026-11-25"
+}

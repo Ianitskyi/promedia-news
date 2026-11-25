@@ -1,0 +1,45 @@
+{
+  "slug": "bloomberg",
+  "group": "intl",
+  "country": "США",
+  "kind": "agency",
+  "name": {
+    "uk": "Bloomberg",
+    "en": "Bloomberg News"
+  },
+  "sort": {
+    "uk": "Bloomberg",
+    "en": "Bloomberg News"
+  },
+  "aliases": [
+    "Bloomberg News"
+  ],
+  "type": {
+    "uk": "міжнародна служба фінансових новин",
+    "en": "International financial news service"
+  },
+  "summary": {
+    "uk": "Служба ділових новин компанії Bloomberg L.P., заснованої Майклом Блумбергом.",
+    "en": "Business news service of Bloomberg L.P., the company founded by Michael Bloomberg."
+  },
+  "bio": {
+    "uk": "Bloomberg News заснували 1990 року як новинну службу при фінансових терміналах Bloomberg. Нині це одна з найбільших редакцій ділових новин у світі, а також телеканал, радіо, журнал Bloomberg Businessweek і сайт."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1990"
+    ]
+  ],
+  "website": "https://www.bloomberg.com",
+  "wiki": [
+    "en:Bloomberg News"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Bloomberg News",
+      "url": "https://www.bloomberg.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "the-commercial-appeal",
+  "group": "intl",
+  "country": "США",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Commercial Appeal",
+    "en": "The Commercial Appeal"
+  },
+  "sort": {
+    "uk": "Commercial Appeal",
+    "en": "Commercial Appeal"
+  },
+  "type": {
+    "uk": "щоденна газета Мемфіса",
+    "en": "Memphis daily newspaper"
+  },
+  "summary": {
+    "uk": "Щоденна газета міста Мемфіс (Теннессі), що веде історію з 1841 року.",
+    "en": "Daily newspaper of Memphis, Tennessee, tracing its history to 1841."
+  },
+  "bio": {
+    "uk": "The Commercial Appeal — головна газета Мемфіса, нині входить до мережі Gannett. ПроМедіа посилалася на її архівну публікацію в тексті про те, як XIX століття народило воєнну журналістику: саме там 1961 року вперше публічно засумнівалися в постановочності фото «Останній сон снайпера»."
+  },
+  "website": "https://www.commercialappeal.com",
+  "wiki": [
+    "en:The Commercial Appeal"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Commercial Appeal",
+      "url": "https://www.commercialappeal.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

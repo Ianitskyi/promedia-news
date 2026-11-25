@@ -1,0 +1,42 @@
+{
+  "slug": "the-atlantic",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "The Atlantic",
+    "en": "The Atlantic"
+  },
+  "sort": {
+    "uk": "Atlantic",
+    "en": "Atlantic"
+  },
+  "type": {
+    "uk": "американський журнал",
+    "en": "US magazine"
+  },
+  "summary": {
+    "uk": "Американський журнал про політику, культуру й ідеї, заснований 1857 року в Бостоні.",
+    "en": "US magazine of politics, culture and ideas founded in Boston in 1857."
+  },
+  "bio": {
+    "uk": "The Atlantic заснували 1857 року в Бостоні письменники, серед яких Ральф Волдо Емерсон і Генрі Водсворт Лонгфелло. З 2017 року контрольний пакет належить фонду Emerson Collective Лорін Пауелл Джобс. Журнал робить ставку на цифрову передплату; 2024 року уклав угоду з OpenAI.\n\nДля The Atlantic пише українська журналістка Наталія Гуменюк."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1857, Бостон"
+    ]
+  ],
+  "website": "https://www.theatlantic.com",
+  "wiki": [
+    "en:The Atlantic"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Atlantic",
+      "url": "https://www.theatlantic.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

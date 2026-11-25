@@ -1,0 +1,42 @@
+{
+  "slug": "the-conversation",
+  "group": "intl",
+  "country": "Австралія",
+  "kind": "online",
+  "name": {
+    "uk": "The Conversation",
+    "en": "The Conversation"
+  },
+  "sort": {
+    "uk": "Conversation",
+    "en": "Conversation"
+  },
+  "type": {
+    "uk": "некомерційне медіа науковців",
+    "en": "Non-profit academic news outlet"
+  },
+  "summary": {
+    "uk": "Некомерційне медіа, де науковці пишуть для широкої аудиторії разом із професійними редакторами; засноване 2011 року в Мельбурні.",
+    "en": "Non-profit outlet where academics write for the public with professional editors; founded in Melbourne in 2011."
+  },
+  "bio": {
+    "uk": "The Conversation запустили 2011 року в Австралії; нині є редакції у Великій Британії, США, Канаді, Франції, Іспанії та інших країнах. Автори — дослідники університетів, тексти безкоштовно передруковують інші медіа за ліцензією Creative Commons."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2011, Мельбурн"
+    ]
+  ],
+  "website": "https://theconversation.com",
+  "wiki": [
+    "en:The Conversation (website)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Conversation",
+      "url": "https://theconversation.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

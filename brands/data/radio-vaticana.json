@@ -1,0 +1,46 @@
+{
+  "slug": "radio-vaticana",
+  "group": "intl",
+  "country": "Ватикан",
+  "kind": "radio",
+  "name": {
+    "uk": "Radio Vaticana",
+    "en": "Vatican Radio"
+  },
+  "sort": {
+    "uk": "Radio Vaticana",
+    "en": "Vatican Radio"
+  },
+  "aliases": [
+    "Радіо Ватикану",
+    "Vatican Radio"
+  ],
+  "type": {
+    "uk": "радіо Святого Престолу",
+    "en": "Holy See's radio"
+  },
+  "summary": {
+    "uk": "Радіо Святого Престолу, засноване 1931 року за участі Ґульєльмо Марконі; нині частина Vatican News.",
+    "en": "Radio of the Holy See founded in 1931 with Guglielmo Marconi; now part of Vatican News."
+  },
+  "bio": {
+    "uk": "Радіо Ватикану мовить десятками мов, зокрема українською. Його заснував 1931 року папа Пій XI, а станцію збудував винахідник радіо Ґульєльмо Марконі. З виданням співпрацював фотограф Андрій Шестак."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1931"
+    ]
+  ],
+  "website": "https://www.vaticannews.va",
+  "wiki": [
+    "en:Vatican Radio"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Vatican Radio",
+      "url": "https://www.vaticannews.va"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,30 @@
+{
+  "slug": "thebuchacity",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Thebuchacity",
+    "en": "Thebuchacity"
+  },
+  "sort": {
+    "uk": "buchacity",
+    "en": "buchacity"
+  },
+  "match": [
+    "Thebuchacity"
+  ],
+  "type": {
+    "uk": "бучанське онлайн-медіа",
+    "en": "Bucha online outlet"
+  },
+  "summary": {
+    "uk": "Бучанське онлайн-медіа, яке створило бота для стеження за міськрадою.",
+    "en": "Bucha online outlet that built a bot to monitor the city council."
+  },
+  "bio": {
+    "uk": "Thebuchacity за два тижні зібрало бота й дашборд, які стежать за Бучанською міською радою за даними п'яти відкритих джерел, зокрема Prozorro. Про це розповіла операційна директорка редакції Владислава Приступа на воркшопі ГО «ПроМедіа»."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

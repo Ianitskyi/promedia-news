@@ -1,0 +1,36 @@
+{
+  "slug": "inside-paradeplatz",
+  "group": "intl",
+  "country": "Швейцарія",
+  "kind": "online",
+  "name": {
+    "uk": "Inside Paradeplatz",
+    "en": "Inside Paradeplatz"
+  },
+  "sort": {
+    "uk": "Inside Paradeplatz",
+    "en": "Inside Paradeplatz"
+  },
+  "type": {
+    "uk": "швейцарський фінансовий сайт",
+    "en": "Swiss financial news site"
+  },
+  "summary": {
+    "uk": "Швейцарський фінансовий сайт журналіста Лукаса Гессіга, відомий публікаціями про банки Цюриха.",
+    "en": "Swiss financial news site by journalist Lukas Hässig, known for reporting on Zurich banks."
+  },
+  "bio": {
+    "uk": "Inside Paradeplatz названий на честь цюрихської площі, де розташовані штаб-квартири найбільших швейцарських банків. 2016 року сайт опублікував статті про ймовірні фінансові зловживання колишнього генерального директора Raiffeisen Switzerland П'єріна Вінценца. Як писала ПроМедіа, у Швейцарії вперше судитимуть журналіста — засновника сайту Лукаса Гессіга — за статтею про порушення банківської таємниці."
+  },
+  "website": "https://insideparadeplatz.ch",
+  "wiki": [
+    "de:Inside Paradeplatz"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Inside Paradeplatz",
+      "url": "https://insideparadeplatz.ch"
+    }
+  ],
+  "updated": "2026-11-25"
+}

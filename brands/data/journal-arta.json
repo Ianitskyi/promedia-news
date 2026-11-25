@@ -1,0 +1,33 @@
+{
+  "slug": "journal-arta",
+  "group": "intl",
+  "country": "—",
+  "kind": "online",
+  "name": {
+    "uk": "Journal Arta",
+    "en": "Journal Arta"
+  },
+  "sort": {
+    "uk": "Journal Arta",
+    "en": "Journal Arta"
+  },
+  "type": {
+    "uk": "онлайн-медіа",
+    "en": "Online outlet"
+  },
+  "summary": {
+    "uk": "Онлайн-видання, на яке ПроМедіа посилалася в новині про вихід гри GTA 6.",
+    "en": "Online outlet cited by ProMedia in a news item about the release of GTA 6."
+  },
+  "bio": {
+    "uk": "Journal Arta згадано в новині ПроМедіа про рекордний старт гри GTA 6 як джерело інформації про ціну гри та відсутність дати виходу версії для комп'ютерів. Досьє буде доповнено."
+  },
+  "website": "https://journalarta.com",
+  "sources": [
+    {
+      "title": "Сайт Journal Arta",
+      "url": "https://journalarta.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

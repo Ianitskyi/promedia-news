@@ -1,0 +1,56 @@
+{
+  "slug": "slidstvo-info",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "investigative",
+  "name": {
+    "uk": "Слідство.Інфо",
+    "en": "Slidstvo.Info"
+  },
+  "sort": {
+    "uk": "Слідство.Інфо",
+    "en": "Slidstvo.Info"
+  },
+  "aliases": [
+    "Slidstvo.Info"
+  ],
+  "match": [
+    "«Слідство.Інфо»",
+    "«Слідства.Інфо»",
+    "Слідство.Інфо",
+    "Slidstvo.Info",
+    "slidstvo.info"
+  ],
+  "type": {
+    "uk": "українська агенція журналістських розслідувань",
+    "en": "Ukrainian investigative journalism agency"
+  },
+  "summary": {
+    "uk": "Українська агенція журналістських розслідувань, заснована 2012 року; член мережі OCCRP.",
+    "en": "Ukrainian investigative journalism agency founded in 2012; an OCCRP member."
+  },
+  "bio": {
+    "uk": "«Слідство.Інфо» розслідує корупцію, організовану злочинність і, від 2022 року, воєнні злочини Росії; редакція встановлює російських військових, причетних до злочинів в Україні. Головна редакторка — Анастасія Станко; раніше редакцію очолювала Анна Бабінець."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2012"
+    ],
+    [
+      "Головна редакторка",
+      "Анастасія Станко"
+    ]
+  ],
+  "website": "https://www.slidstvo.info",
+  "wiki": [
+    "uk:Слідство.Інфо"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Slidstvo.Info",
+      "url": "https://www.slidstvo.info"
+    }
+  ],
+  "updated": "2026-11-25"
+}

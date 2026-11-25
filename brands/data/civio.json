@@ -1,0 +1,36 @@
+{
+  "slug": "civio",
+  "group": "intl",
+  "country": "Іспанія",
+  "kind": "investigative",
+  "name": {
+    "uk": "Civio",
+    "en": "Civio"
+  },
+  "sort": {
+    "uk": "Civio",
+    "en": "Civio"
+  },
+  "type": {
+    "uk": "іспанська некомерційна редакція даних",
+    "en": "Spanish non-profit data newsroom"
+  },
+  "summary": {
+    "uk": "Іспанська некомерційна фундація журналістики даних і прозорості влади.",
+    "en": "Spanish non-profit foundation for data journalism and government transparency."
+  },
+  "bio": {
+    "uk": "Civio аналізує державні дані — бюджети, закупівлі, урядові рішення — і робить їх зрозумілими громадянам. Учасник програми JournalismAI Лондонської школи економіки."
+  },
+  "website": "https://civio.es",
+  "wiki": [
+    "es:Fundación Ciudadana Civio"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Civio",
+      "url": "https://civio.es"
+    }
+  ],
+  "updated": "2026-11-25"
+}

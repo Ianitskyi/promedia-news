@@ -1,0 +1,42 @@
+{
+  "slug": "finance-ua",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Finance.ua",
+    "en": "Finance.ua"
+  },
+  "sort": {
+    "uk": "Finance.ua",
+    "en": "Finance.ua"
+  },
+  "match": [
+    "Finance.ua"
+  ],
+  "type": {
+    "uk": "український фінансовий портал",
+    "en": "Ukrainian financial portal"
+  },
+  "summary": {
+    "uk": "Український портал про фінанси, банки й курси валют.",
+    "en": "Ukrainian portal about finance, banks and exchange rates."
+  },
+  "bio": {
+    "uk": "Finance.ua публікує фінансові новини, курси валют і порівняння банківських продуктів.\n\nУ дослідженні ІМІ 2026 року видання потрапило до 27 із 50 найпопулярніших онлайн-медіа, які не оприлюднили жодної фінансової інформації."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "не оприлюднює фінансової інформації"
+    ]
+  ],
+  "website": "https://finance.ua",
+  "sources": [
+    {
+      "title": "Сайт Finance.ua",
+      "url": "https://finance.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

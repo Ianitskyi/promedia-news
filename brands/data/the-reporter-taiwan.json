@@ -1,0 +1,46 @@
+{
+  "slug": "the-reporter-taiwan",
+  "group": "intl",
+  "country": "Тайвань",
+  "kind": "online",
+  "name": {
+    "uk": "The Reporter",
+    "en": "The Reporter (Taiwan)"
+  },
+  "sort": {
+    "uk": "Reporter",
+    "en": "Reporter (Taiwan)"
+  },
+  "match": [
+    "The Reporter (Тайвань)",
+    "re:The Reporter(?=\\s*\\(Тайвань\\))"
+  ],
+  "type": {
+    "uk": "тайванське некомерційне медіа",
+    "en": "Taiwanese non-profit outlet"
+  },
+  "summary": {
+    "uk": "Тайванське некомерційне онлайн-медіа поглибленої журналістики, засноване 2015 року.",
+    "en": "Taiwanese non-profit digital outlet for in-depth journalism, founded in 2015."
+  },
+  "bio": {
+    "uk": "The Reporter (報導者) існує на пожертви читачів і публікує довгі репортажі й розслідування. Учасник програми JournalismAI Лондонської школи економіки."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2015"
+    ]
+  ],
+  "website": "https://www.twreporter.org",
+  "wiki": [
+    "en:The Reporter (Taiwan)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Reporter (Taiwan)",
+      "url": "https://www.twreporter.org"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "journalism-co-uk",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "trade",
+  "name": {
+    "uk": "journalism.co.uk",
+    "en": "journalism.co.uk"
+  },
+  "sort": {
+    "uk": "journalism.co.uk",
+    "en": "journalism.co.uk"
+  },
+  "type": {
+    "uk": "британський сайт для журналістів",
+    "en": "UK site for journalists"
+  },
+  "summary": {
+    "uk": "Британський сайт про практику журналістики, медіаінновації та кар'єру в медіа.",
+    "en": "UK site about journalism practice, media innovation and media careers."
+  },
+  "bio": {
+    "uk": "journalism.co.uk публікує новини та поради для журналістів, організовує конференцію Newsrewired."
+  },
+  "website": "https://www.journalism.co.uk",
+  "wiki": [
+    "en:Journalism.co.uk"
+  ],
+  "sources": [
+    {
+      "title": "Сайт journalism.co.uk",
+      "url": "https://www.journalism.co.uk"
+    }
+  ],
+  "updated": "2026-11-25"
+}

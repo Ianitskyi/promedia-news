@@ -1,0 +1,46 @@
+{
+  "slug": "the-new-yorker",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "The New Yorker",
+    "en": "The New Yorker"
+  },
+  "sort": {
+    "uk": "New Yorker",
+    "en": "New Yorker"
+  },
+  "type": {
+    "uk": "американський журнал",
+    "en": "US magazine"
+  },
+  "summary": {
+    "uk": "Американський тижневик репортажів, есеїстики, критики й художньої літератури, заснований 1925 року.",
+    "en": "US weekly of reportage, essays, criticism and fiction, founded in 1925."
+  },
+  "bio": {
+    "uk": "The New Yorker виходить з 1925 року й належить видавництву Condé Nast. Журнал відомий довгими репортажами, ретельним фактчекінгом і карикатурами. Його критик Майкл Арлен назвав війну у В'єтнамі «війною у вітальні», бо американці бачили її щодня по телевізору."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1925"
+    ],
+    [
+      "Видавець",
+      "Condé Nast"
+    ]
+  ],
+  "website": "https://www.newyorker.com",
+  "wiki": [
+    "en:The New Yorker"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The New Yorker",
+      "url": "https://www.newyorker.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

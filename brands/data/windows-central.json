@@ -1,0 +1,36 @@
+{
+  "slug": "windows-central",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "Windows Central",
+    "en": "Windows Central"
+  },
+  "sort": {
+    "uk": "Windows Central",
+    "en": "Windows Central"
+  },
+  "type": {
+    "uk": "технологічне онлайн-медіа",
+    "en": "Tech news site"
+  },
+  "summary": {
+    "uk": "Технологічне видання про Windows, Xbox, ігри та продукти Microsoft; належить британській компанії Future.",
+    "en": "Tech site covering Windows, Xbox, gaming and Microsoft products; owned by UK publisher Future."
+  },
+  "bio": {
+    "uk": "Windows Central пише про операційну систему Windows, ноутбуки, консолі Xbox та ігрову індустрію. Входить до портфеля британського медіавидавця Future plc."
+  },
+  "website": "https://www.windowscentral.com",
+  "wiki": [
+    "en:Windows Central"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Windows Central",
+      "url": "https://www.windowscentral.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

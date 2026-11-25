@@ -1,0 +1,27 @@
+{
+  "slug": "tavir",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "online",
+  "name": {
+    "uk": "Tavır",
+    "en": "Tavır"
+  },
+  "sort": {
+    "uk": "Tavır",
+    "en": "Tavır"
+  },
+  "type": {
+    "uk": "турецьке видання групи Sözcü",
+    "en": "Turkish outlet of the Sözcü group"
+  },
+  "summary": {
+    "uk": "Видання, пов'язане з турецькою медіагрупою Sözcü.",
+    "en": "Outlet affiliated with Turkey's Sözcü media group."
+  },
+  "bio": {
+    "uk": "Як писав Bianet, рішення про передачу Sözcü TV під державне управління не стосувалося газети Sözcü та пов'язаних із нею видань Tavır і Korkusuz."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

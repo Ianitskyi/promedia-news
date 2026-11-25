@@ -1,0 +1,52 @@
+{
+  "slug": "cesky-rozhlas",
+  "group": "intl",
+  "country": "Чехія",
+  "kind": "radio",
+  "name": {
+    "uk": "Český rozhlas",
+    "en": "Czech Radio"
+  },
+  "sort": {
+    "uk": "Český rozhlas",
+    "en": "Czech Radio"
+  },
+  "aliases": [
+    "Чеське радіо",
+    "ČRo"
+  ],
+  "match": [
+    "Český rozhlas",
+    "Чеське радіо",
+    "Чеського радіо",
+    "ČRo"
+  ],
+  "type": {
+    "uk": "чеське суспільне радіо",
+    "en": "Czech public radio"
+  },
+  "summary": {
+    "uk": "Чеське суспільне радіо, що веде історію від першої трансляції 1923 року.",
+    "en": "Czech public radio, tracing its history to its first broadcast in 1923."
+  },
+  "bio": {
+    "uk": "Český rozhlas — один із найстаріших мовників Європи. Разом із Чеським телебаченням у 2026 році воно опинилося в центрі суперечки через план уряду фінансувати суспільних мовників напряму з бюджету."
+  },
+  "facts": [
+    [
+      "Перша трансляція",
+      "1923"
+    ]
+  ],
+  "website": "https://www.rozhlas.cz",
+  "wiki": [
+    "en:Czech Radio"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Czech Radio",
+      "url": "https://www.rozhlas.cz"
+    }
+  ],
+  "updated": "2026-11-25"
+}

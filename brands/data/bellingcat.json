@@ -1,0 +1,42 @@
+{
+  "slug": "bellingcat",
+  "group": "intl",
+  "country": "Нідерланди",
+  "kind": "investigative",
+  "name": {
+    "uk": "Bellingcat",
+    "en": "Bellingcat"
+  },
+  "sort": {
+    "uk": "Bellingcat",
+    "en": "Bellingcat"
+  },
+  "type": {
+    "uk": "міжнародна розслідувальна OSINT-група",
+    "en": "International OSINT investigative group"
+  },
+  "summary": {
+    "uk": "Розслідувальна група, яку 2014 року заснував британець Еліот Гіґґінс; спеціалізується на розвідці з відкритих джерел.",
+    "en": "Investigative group founded by Briton Eliot Higgins in 2014, specialising in open-source intelligence."
+  },
+  "bio": {
+    "uk": "Bellingcat прославилася розслідуванням збиття малайзійського «Боїнга» MH17 над Донбасом російським «Буком» і встановленням причетних до отруєнь Сергія Скрипаля та Олексія Навального. Анна Бабінець розповідала ПроМедіа, що саме колеги з Bellingcat навчили «Слідство.Інфо» ідентифікувати російських військових за соцмережами."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2014"
+    ]
+  ],
+  "website": "https://www.bellingcat.com",
+  "wiki": [
+    "en:Bellingcat"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Bellingcat",
+      "url": "https://www.bellingcat.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

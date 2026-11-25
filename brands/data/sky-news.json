@@ -1,0 +1,42 @@
+{
+  "slug": "sky-news",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "tv",
+  "name": {
+    "uk": "Sky News",
+    "en": "Sky News"
+  },
+  "sort": {
+    "uk": "Sky News",
+    "en": "Sky News"
+  },
+  "type": {
+    "uk": "британський новинний телеканал",
+    "en": "UK news channel"
+  },
+  "summary": {
+    "uk": "Британський цілодобовий новинний телеканал, що мовить з 1989 року; належить Sky (Comcast).",
+    "en": "British 24-hour news channel on air since 1989, owned by Sky (Comcast)."
+  },
+  "bio": {
+    "uk": "Sky News — перший у Великій Британії цілодобовий новинний канал, запущений 1989 року. Нині належить групі Sky, яку 2018 року купила американська Comcast. Sky News — серед засновників коаліції видавців SPUR."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1989"
+    ]
+  ],
+  "website": "https://news.sky.com",
+  "wiki": [
+    "en:Sky News"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Sky News",
+      "url": "https://news.sky.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

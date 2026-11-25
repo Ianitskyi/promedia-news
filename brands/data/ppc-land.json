@@ -1,0 +1,33 @@
+{
+  "slug": "ppc-land",
+  "group": "intl",
+  "country": "—",
+  "kind": "trade",
+  "name": {
+    "uk": "PPC Land",
+    "en": "PPC Land"
+  },
+  "sort": {
+    "uk": "PPC Land",
+    "en": "PPC Land"
+  },
+  "type": {
+    "uk": "галузеве видання про цифрову рекламу",
+    "en": "Digital advertising trade outlet"
+  },
+  "summary": {
+    "uk": "Галузеве онлайн-видання про цифрову рекламу, пошук і технологічні платформи.",
+    "en": "Trade site about digital advertising, search and tech platforms."
+  },
+  "bio": {
+    "uk": "PPC Land пише про рекламні технології, Google, штучний інтелект і регулювання цифрових ринків. На нього ПроМедіа посилалася в новині про угоду OpenAI з медіагрупою LVMH."
+  },
+  "website": "https://ppc.land",
+  "sources": [
+    {
+      "title": "Сайт PPC Land",
+      "url": "https://ppc.land"
+    }
+  ],
+  "updated": "2026-11-25"
+}

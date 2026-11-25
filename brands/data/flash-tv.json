@@ -1,0 +1,30 @@
+{
+  "slug": "flash-tv",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "tv",
+  "name": {
+    "uk": "Flash TV",
+    "en": "Flash TV"
+  },
+  "sort": {
+    "uk": "Flash TV",
+    "en": "Flash TV"
+  },
+  "type": {
+    "uk": "турецький телеканал",
+    "en": "Turkish TV channel"
+  },
+  "summary": {
+    "uk": "Турецький приватний телеканал, переданий під управління довірених осіб.",
+    "en": "Turkish private TV channel placed under trustees."
+  },
+  "bio": {
+    "uk": "Flash TV — серед турецьких телеканалів, які, за даними новин ПроМедіа, раніше за Sözcü TV передали під управління довірених осіб."
+  },
+  "wiki": [
+    "tr:Flash Haber TV"
+  ],
+  "sources": [],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "petapixel",
+  "group": "intl",
+  "country": "США",
+  "kind": "trade",
+  "name": {
+    "uk": "PetaPixel",
+    "en": "PetaPixel"
+  },
+  "sort": {
+    "uk": "PetaPixel",
+    "en": "PetaPixel"
+  },
+  "type": {
+    "uk": "видання про фотографію",
+    "en": "Photography news site"
+  },
+  "summary": {
+    "uk": "Онлайн-видання про фотографію, фототехніку й фотожурналістику.",
+    "en": "Online publication about photography, cameras and photojournalism."
+  },
+  "bio": {
+    "uk": "PetaPixel пише про фототехніку, фотографів і етичні дискусії у фотожурналістиці. Серед іншого видання висвітлювало суперечку щодо авторства знімка «Дівчинка й напалм», про яку ПроМедіа писала в огляді історії воєнної журналістики."
+  },
+  "website": "https://petapixel.com",
+  "wiki": [
+    "en:PetaPixel"
+  ],
+  "sources": [
+    {
+      "title": "Сайт PetaPixel",
+      "url": "https://petapixel.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

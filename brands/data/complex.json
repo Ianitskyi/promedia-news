@@ -1,0 +1,42 @@
+{
+  "slug": "complex",
+  "group": "intl",
+  "country": "США",
+  "kind": "online",
+  "name": {
+    "uk": "Complex",
+    "en": "Complex"
+  },
+  "sort": {
+    "uk": "Complex",
+    "en": "Complex"
+  },
+  "type": {
+    "uk": "американське медіа про молодіжну культуру",
+    "en": "US youth-culture outlet"
+  },
+  "summary": {
+    "uk": "Американське медіа про музику, моду, кросівки й поп-культуру, засноване 2002 року дизайнером Марком Еко.",
+    "en": "US outlet on music, fashion, sneakers and pop culture, founded by designer Marc Ecko in 2002."
+  },
+  "bio": {
+    "uk": "Complex починався 2002 року як журнал; згодом став цифровим медіа з відео, подкастами й фестивалем ComplexCon. Пише про хіп-хоп, вуличну моду, спорт та ігри."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2002"
+    ]
+  ],
+  "website": "https://www.complex.com",
+  "wiki": [
+    "en:Complex (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Complex",
+      "url": "https://www.complex.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

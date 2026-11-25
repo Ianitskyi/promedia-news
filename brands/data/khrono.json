@@ -1,0 +1,36 @@
+{
+  "slug": "khrono",
+  "group": "intl",
+  "country": "Норвегія",
+  "kind": "online",
+  "name": {
+    "uk": "Khrono",
+    "en": "Khrono"
+  },
+  "sort": {
+    "uk": "Khrono",
+    "en": "Khrono"
+  },
+  "type": {
+    "uk": "норвезьке медіа про вищу освіту",
+    "en": "Norwegian higher-education outlet"
+  },
+  "summary": {
+    "uk": "Норвезьке незалежне онлайн-видання про університети, науку й вищу освіту.",
+    "en": "Norwegian independent online outlet covering universities, research and higher education."
+  },
+  "bio": {
+    "uk": "Khrono пише про норвезькі університети, студентів і науковців. Видання розповіло історію української студентки Серафими Мельничук, яка повернулася з Японії додому під час війни."
+  },
+  "website": "https://www.khrono.no",
+  "wiki": [
+    "no:Khrono"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Khrono",
+      "url": "https://www.khrono.no"
+    }
+  ],
+  "updated": "2026-11-25"
+}

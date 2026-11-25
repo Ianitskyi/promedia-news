@@ -1,0 +1,42 @@
+{
+  "slug": "il-messaggero",
+  "group": "intl",
+  "country": "Італія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Il Messaggero",
+    "en": "Il Messaggero"
+  },
+  "sort": {
+    "uk": "Messaggero",
+    "en": "Messaggero"
+  },
+  "type": {
+    "uk": "римська щоденна газета",
+    "en": "Rome daily newspaper"
+  },
+  "summary": {
+    "uk": "Римська щоденна газета, заснована 1878 року.",
+    "en": "Rome daily newspaper founded in 1878."
+  },
+  "bio": {
+    "uk": "Il Messaggero — найпопулярніша газета Рима. З нею співпрацював фотограф Андрій Шестак, про що він розповідав в інтерв'ю ПроМедіа."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1878"
+    ]
+  ],
+  "website": "https://www.ilmessaggero.it",
+  "wiki": [
+    "en:Il Messaggero"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Il Messaggero",
+      "url": "https://www.ilmessaggero.it"
+    }
+  ],
+  "updated": "2026-11-25"
+}

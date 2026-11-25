@@ -1,0 +1,42 @@
+{
+  "slug": "amazonia-real",
+  "group": "intl",
+  "country": "Бразилія",
+  "kind": "online",
+  "name": {
+    "uk": "Amazônia Real",
+    "en": "Amazônia Real"
+  },
+  "sort": {
+    "uk": "Amazônia Real",
+    "en": "Amazônia Real"
+  },
+  "type": {
+    "uk": "бразильське незалежне медіа",
+    "en": "Brazilian independent outlet"
+  },
+  "summary": {
+    "uk": "Бразильське незалежне некомерційне медіа про Амазонію, засноване 2013 року в Манаусі.",
+    "en": "Brazilian independent non-profit outlet covering the Amazon, founded in Manaus in 2013."
+  },
+  "bio": {
+    "uk": "Amazônia Real пише про корінні народи, довкілля й права людини в Амазонії. Учасник програми JournalismAI Лондонської школи економіки."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2013"
+    ]
+  ],
+  "website": "https://amazoniareal.com.br",
+  "wiki": [
+    "pt:Amazônia Real"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Amazônia Real",
+      "url": "https://amazoniareal.com.br"
+    }
+  ],
+  "updated": "2026-11-25"
+}

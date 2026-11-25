@@ -1,0 +1,46 @@
+{
+  "slug": "korrespondent",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "Кореспондент",
+    "en": "Korrespondent"
+  },
+  "sort": {
+    "uk": "Кореспондент",
+    "en": "Korrespondent"
+  },
+  "match": [
+    "«Кореспондент»",
+    "korrespondent.net"
+  ],
+  "type": {
+    "uk": "українське онлайн-медіа",
+    "en": "Ukrainian online outlet"
+  },
+  "summary": {
+    "uk": "Український новинний сайт korrespondent.net.",
+    "en": "Ukrainian news site korrespondent.net."
+  },
+  "bio": {
+    "uk": "«Кореспондент» — новинний портал, раніше також суспільно-політичний тижневик.\n\nУ дослідженні ІМІ 2026 року видання потрапило до 27 із 50 найпопулярніших онлайн-медіа, які не оприлюднили жодної фінансової інформації."
+  },
+  "facts": [
+    [
+      "Прозорість фінансування (ІМІ, 2026)",
+      "не оприлюднює фінансової інформації"
+    ]
+  ],
+  "website": "https://korrespondent.net",
+  "wiki": [
+    "uk:Кореспондент (журнал)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Korrespondent",
+      "url": "https://korrespondent.net"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "le-monde",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "newspaper",
+  "name": {
+    "uk": "Le Monde",
+    "en": "Le Monde"
+  },
+  "sort": {
+    "uk": "Monde",
+    "en": "Monde"
+  },
+  "aliases": [
+    "Ле Монд"
+  ],
+  "type": {
+    "uk": "французька щоденна газета",
+    "en": "French daily newspaper"
+  },
+  "summary": {
+    "uk": "Паризька щоденна газета, заснована 1944 року; одне з найвпливовіших видань Франції.",
+    "en": "Paris daily founded in 1944, one of France's most influential newspapers."
+  },
+  "bio": {
+    "uk": "Le Monde заснував 1944 року Юбер Бев-Мері на прохання Шарля де Голля. На початку 2024 року Le Monde першою серед французьких газет уклала угоду з OpenAI.\n\nУ листопаді 2026 року Le Monde оприлюднила розслідування про те, як пов'язані з ФСБ хакери зламують акаунти журналістів у Signal і Telegram; ПроМедіа переказала його для українських журналістів."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1944, Париж"
+    ]
+  ],
+  "website": "https://www.lemonde.fr",
+  "wiki": [
+    "en:Le Monde",
+    "uk:Le Monde"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Le Monde",
+      "url": "https://www.lemonde.fr"
+    }
+  ],
+  "updated": "2026-11-25"
+}

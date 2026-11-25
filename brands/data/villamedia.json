@@ -1,0 +1,36 @@
+{
+  "slug": "villamedia",
+  "group": "intl",
+  "country": "Нідерланди",
+  "kind": "trade",
+  "name": {
+    "uk": "Villamedia",
+    "en": "Villamedia"
+  },
+  "sort": {
+    "uk": "Villamedia",
+    "en": "Villamedia"
+  },
+  "type": {
+    "uk": "нідерландське фахове видання для журналістів",
+    "en": "Dutch trade outlet for journalists"
+  },
+  "summary": {
+    "uk": "Нідерландське фахове видання про журналістику, пов'язане зі Спілкою журналістів Нідерландів (NVJ).",
+    "en": "Dutch journalism trade outlet linked to the Netherlands Union of Journalists (NVJ)."
+  },
+  "bio": {
+    "uk": "Villamedia пише про умови праці журналістів, фриланс і медіаполітику в Нідерландах. Разом із ним дослідник Ервін ван 'т Гоф записав подкаст «Життя фрилансера», про що ПроМедіа писала в тексті про його дисертацію."
+  },
+  "website": "https://www.villamedia.nl",
+  "wiki": [
+    "nl:Villamedia"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Villamedia",
+      "url": "https://www.villamedia.nl"
+    }
+  ],
+  "updated": "2026-11-25"
+}

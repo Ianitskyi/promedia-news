@@ -1,0 +1,45 @@
+{
+  "slug": "people",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "People",
+    "en": "People"
+  },
+  "sort": {
+    "uk": "People",
+    "en": "People"
+  },
+  "match": [
+    "people.com"
+  ],
+  "type": {
+    "uk": "американський журнал про знаменитостей",
+    "en": "US celebrity magazine"
+  },
+  "summary": {
+    "uk": "Американський щотижневий журнал про знаменитостей і людські історії, заснований 1974 року.",
+    "en": "US weekly magazine about celebrities and human-interest stories, founded in 1974."
+  },
+  "bio": {
+    "uk": "Журнал People заснувала 1974 року компанія Time Inc. Він пише про знаменитостей, культуру й історії звичайних людей. За оцінками Similarweb, які наводила Press Gazette, у жовтні 2026 року people.com був четвертим за відвідуваністю новинним сайтом США."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1974"
+    ]
+  ],
+  "website": "https://people.com",
+  "wiki": [
+    "en:People (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт People",
+      "url": "https://people.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

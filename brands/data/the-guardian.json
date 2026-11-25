@@ -1,0 +1,50 @@
+{
+  "slug": "the-guardian",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Guardian",
+    "en": "The Guardian"
+  },
+  "sort": {
+    "uk": "Guardian",
+    "en": "Guardian"
+  },
+  "aliases": [
+    "Гардіан"
+  ],
+  "type": {
+    "uk": "британська щоденна газета",
+    "en": "UK daily newspaper"
+  },
+  "summary": {
+    "uk": "Британська газета, заснована 1821 року в Манчестері; належить фонду Scott Trust і не має приватного власника.",
+    "en": "British daily founded in Manchester in 1821, owned by the Scott Trust rather than a private proprietor."
+  },
+  "bio": {
+    "uk": "The Guardian заснували 1821 року в Манчестері як Manchester Guardian. З 1936 року газета належить фонду Scott Trust, мета якого — гарантувати її фінансову й редакційну незалежність навічно. Сайт The Guardian безкоштовний: видання заробляє на добровільних внесках читачів, і ця модель стала прикладом для багатьох медіа, зокрема українських.\n\nThe Guardian (через Guardian Media Group) — серед засновників коаліції видавців SPUR, яку Press Gazette назвала «НАТО новин»."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1821, Манчестер"
+    ],
+    [
+      "Власник",
+      "Scott Trust"
+    ]
+  ],
+  "website": "https://www.theguardian.com",
+  "wiki": [
+    "en:The Guardian",
+    "uk:The Guardian"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Guardian",
+      "url": "https://www.theguardian.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

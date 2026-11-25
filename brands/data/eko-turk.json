@@ -1,0 +1,27 @@
+{
+  "slug": "eko-turk",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "tv",
+  "name": {
+    "uk": "Eko Türk",
+    "en": "Eko Türk"
+  },
+  "sort": {
+    "uk": "Eko Türk",
+    "en": "Eko Türk"
+  },
+  "type": {
+    "uk": "турецький діловий телеканал",
+    "en": "Turkish business TV channel"
+  },
+  "summary": {
+    "uk": "Турецький економічний телеканал, переданий під управління довірених осіб.",
+    "en": "Turkish business TV channel placed under trustees."
+  },
+  "bio": {
+    "uk": "Eko Türk — серед турецьких телеканалів, які, за даними новин ПроМедіа, раніше за Sözcü TV передали під управління довірених осіб."
+  },
+  "sources": [],
+  "updated": "2026-11-25"
+}

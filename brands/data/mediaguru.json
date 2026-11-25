@@ -1,0 +1,33 @@
+{
+  "slug": "mediaguru",
+  "group": "intl",
+  "country": "Чехія",
+  "kind": "trade",
+  "name": {
+    "uk": "MediaGuru",
+    "en": "MediaGuru"
+  },
+  "sort": {
+    "uk": "MediaGuru",
+    "en": "MediaGuru"
+  },
+  "type": {
+    "uk": "чеське галузеве видання про медіа",
+    "en": "Czech media trade outlet"
+  },
+  "summary": {
+    "uk": "Чеське галузеве видання про медіа, рекламу й маркетинг.",
+    "en": "Czech trade outlet about media, advertising and marketing."
+  },
+  "bio": {
+    "uk": "MediaGuru пише про чеський медіаринок. Видання розповідало про кампанію Чеського телебачення «Наше дитинство під шапкою» до 60-річчя «Вечірничка»."
+  },
+  "website": "https://www.mediaguru.cz",
+  "sources": [
+    {
+      "title": "Сайт MediaGuru",
+      "url": "https://www.mediaguru.cz"
+    }
+  ],
+  "updated": "2026-11-25"
+}

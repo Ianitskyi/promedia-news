@@ -1,0 +1,36 @@
+{
+  "slug": "haberturk",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "tv",
+  "name": {
+    "uk": "Habertürk",
+    "en": "Habertürk"
+  },
+  "sort": {
+    "uk": "Habertürk",
+    "en": "Habertürk"
+  },
+  "type": {
+    "uk": "турецький новинний телеканал",
+    "en": "Turkish news channel"
+  },
+  "summary": {
+    "uk": "Турецький новинний телеканал, переданий під управління довірених осіб.",
+    "en": "Turkish news channel placed under trustees."
+  },
+  "bio": {
+    "uk": "Habertürk — великий турецький новинний телеканал і сайт. За даними новин ПроМедіа, його, як і Halk TV, Flash TV, Eko Türk та Tele1, передали під управління довірених осіб."
+  },
+  "website": "https://www.haberturk.com",
+  "wiki": [
+    "en:Habertürk TV"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Habertürk",
+      "url": "https://www.haberturk.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

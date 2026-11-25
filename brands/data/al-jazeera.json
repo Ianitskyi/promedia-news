@@ -1,0 +1,45 @@
+{
+  "slug": "al-jazeera",
+  "group": "intl",
+  "country": "Катар",
+  "kind": "tv",
+  "name": {
+    "uk": "Al Jazeera",
+    "en": "Al Jazeera"
+  },
+  "sort": {
+    "uk": "Al Jazeera",
+    "en": "Al Jazeera"
+  },
+  "aliases": [
+    "Аль-Джазіра"
+  ],
+  "type": {
+    "uk": "катарська медіамережа",
+    "en": "Qatari media network"
+  },
+  "summary": {
+    "uk": "Міжнародна медіамережа з Дохи, заснована 1996 року; фінансується урядом Катару.",
+    "en": "Doha-based international media network founded in 1996 and funded by the government of Qatar."
+  },
+  "bio": {
+    "uk": "Al Jazeera почала мовлення 1996 року арабською, 2006 року запустила англомовний канал Al Jazeera English. Мережа фінансується державою Катар; низка урядів регіону блокувала її мовлення. ПроМедіа посилалася на Al Jazeera в новині про блокування Telegram у Йорданії та Іраку."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1996, Доха"
+    ]
+  ],
+  "website": "https://www.aljazeera.com",
+  "wiki": [
+    "en:Al Jazeera"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Al Jazeera",
+      "url": "https://www.aljazeera.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}

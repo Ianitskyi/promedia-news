@@ -1,0 +1,47 @@
+{
+  "slug": "ukrainskyi-tyzhden",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "magazine",
+  "name": {
+    "uk": "Український тиждень",
+    "en": "Ukrainian Week"
+  },
+  "sort": {
+    "uk": "Український тиждень",
+    "en": "Ukrainian Week"
+  },
+  "match": [
+    "«Український тиждень»",
+    "«Українського тижня»",
+    "«Українському тижні»"
+  ],
+  "type": {
+    "uk": "український суспільно-політичний тижневик",
+    "en": "Ukrainian news weekly"
+  },
+  "summary": {
+    "uk": "Український суспільно-політичний тижневик, заснований 2007 року.",
+    "en": "Ukrainian news weekly founded in 2007."
+  },
+  "bio": {
+    "uk": "«Український тиждень» пише про політику, історію й культуру; має англомовну версію The Ukrainian Week. Його колишня редакторка — Жанна Безп'ятчук."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "2007"
+    ]
+  ],
+  "website": "https://tyzhden.ua",
+  "wiki": [
+    "uk:Український тиждень"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Ukrainian Week",
+      "url": "https://tyzhden.ua"
+    }
+  ],
+  "updated": "2026-11-25"
+}

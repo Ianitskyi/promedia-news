@@ -1,0 +1,45 @@
+{
+  "slug": "tempo",
+  "group": "intl",
+  "country": "Індонезія",
+  "kind": "magazine",
+  "name": {
+    "uk": "Tempo",
+    "en": "Tempo"
+  },
+  "sort": {
+    "uk": "Tempo",
+    "en": "Tempo"
+  },
+  "match": [
+    "re:(?<![\\p{L}\\p{N}])Tempo(?![\\p{L}\\p{N}])"
+  ],
+  "type": {
+    "uk": "індонезійський суспільно-політичний тижневик",
+    "en": "Indonesian news weekly"
+  },
+  "summary": {
+    "uk": "Індонезійський тижневик, заснований 1971 року; відомий розслідуваннями.",
+    "en": "Indonesian news weekly founded in 1971, known for investigative reporting."
+  },
+  "bio": {
+    "uk": "Tempo двічі закривала влада Сухарто, але видання відновлювалося. Нині це журнал, сайт і газета. Учасник програми JournalismAI Лондонської школи економіки."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1971"
+    ]
+  ],
+  "website": "https://www.tempo.co",
+  "wiki": [
+    "en:Tempo (Indonesian magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Tempo",
+      "url": "https://www.tempo.co"
+    }
+  ],
+  "updated": "2026-11-25"
+}

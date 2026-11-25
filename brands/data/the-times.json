@@ -1,0 +1,49 @@
+{
+  "slug": "the-times",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "newspaper",
+  "name": {
+    "uk": "The Times",
+    "en": "The Times"
+  },
+  "sort": {
+    "uk": "Times",
+    "en": "Times"
+  },
+  "match": [
+    "re:(?<![\\p{L}\\p{N}])The Times(?![\\p{L}\\p{N}])"
+  ],
+  "type": {
+    "uk": "британська щоденна газета",
+    "en": "UK daily newspaper"
+  },
+  "summary": {
+    "uk": "Лондонська газета, заснована 1785 року; одна з найстаріших щоденних газет світу.",
+    "en": "London daily founded in 1785, one of the world's oldest daily newspapers."
+  },
+  "bio": {
+    "uk": "The Times заснували 1785 року як The Daily Universal Register, нинішню назву газета отримала 1788 року. Під час Кримської війни вона відрядила до армії Вільяма Говарда Расселла, якого називають «батьком» воєнних кореспондентів. З 1981 року газета належить медіаімперії Руперта Мердока (нині News UK)."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1785"
+    ],
+    [
+      "Власник",
+      "News UK"
+    ]
+  ],
+  "website": "https://www.thetimes.com",
+  "wiki": [
+    "en:The Times"
+  ],
+  "sources": [
+    {
+      "title": "Сайт The Times",
+      "url": "https://www.thetimes.com"
+    }
+  ],
+  "updated": "2026-11-25"
+}
