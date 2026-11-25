@@ -127,7 +127,16 @@ async function fetchRelatedMediaNames(allIds, env, baseUrl) {
       const brand = atlas.find(m => m.id === id || (m.newsIds || []).includes(id));
       const linkIds = new Set([id, ...(brand ? [brand.id, ...(brand.newsIds || [])] : [])]);
       const community = all.find((m) => linkIds.has(m.id) && m.status !== "rejected" && !m.example);
-      if (!brand && !community) return { id, name: id };
+      if (!brand && !community) {
+        // Українське медіа, якого немає ні в Атласі (не зареєстроване в Нацраді), ні на карті спільнот:
+        // картка лише з назвою й сайтом, якщо його вручну додано в public/data/media-sites.json.
+        const manual = sites[id];
+        const manualSite = typeof manual === "string" ? manual : (manual && manual.site) || "";
+        if (manual && manual.name && manualSite) {
+          return { id, name: manual.name, city: manual.city || "", website: manualSite, logo: faviconFor(manualSite), manual: true, community: null };
+        }
+        return { id, name: id };
+      }
       // Сайт медіа: з карти спільнот або з ручного довідника public/data/media-sites.json.
       // Значення в media-sites.json — адреса сайту або {"site": "...", "name": "..."}.
       const curated = [...linkIds].map(k => sites[k]).find(Boolean);

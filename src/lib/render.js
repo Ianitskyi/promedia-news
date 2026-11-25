@@ -1146,7 +1146,7 @@ function universitiesBox(universities, lang) {
 }
 
 function mediaBox(media, lang) {
-  const items = (media || []).filter(m => m && (m.atlasUrl || m.community));
+  const items = (media || []).filter(m => m && (m.atlasUrl || m.community || (m.manual && m.website)));
   if (!items.length) return "";
   const rows = items.map((m) => {
     const c = m.community || {};
@@ -1154,7 +1154,7 @@ function mediaBox(media, lang) {
     const city = lang === "uk" ? (c.city || m.city) : (c.cityEn || c.city || m.city);
     const mapUrl = m.community ? `https://communities.promedia.report${langPrefix(lang)}/media/?id=${encodeURIComponent(c.id)}` : "";
     const atlasUrl = localizedAtlasUrl(m.atlasUrl, lang);
-    const main = mapUrl || atlasUrl;
+    const main = mapUrl || atlasUrl || m.website;
     const initials = String(m.name || "").replace(/[«»"'.]/g, "").split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join("").toUpperCase();
     const website = m.website || c.website;
     const links = [

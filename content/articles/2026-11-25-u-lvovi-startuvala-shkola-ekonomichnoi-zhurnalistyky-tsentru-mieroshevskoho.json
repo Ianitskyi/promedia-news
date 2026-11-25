@@ -24,7 +24,8 @@
     "Гліб Вишлінський"
   ],
   "relatedMediaIds": [
-    "atlas-7ee5edcf51919e"
+    "atlas-7ee5edcf51919e",
+    "media-zn-ua"
   ],
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
@@ -38,6 +39,6 @@
       "crh": "Andrzej Szurek Lvivdeki İqtisadiy jurnalistika mektebinde. Fotoresim: ProMedia."
     }
   },
-  "revision": "2026-11-25-no-groups",
+  "revision": "2026-11-25-zn-card",
   "coverRevision": "2026-11-25-cover-szurek"
 }

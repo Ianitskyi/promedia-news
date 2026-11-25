@@ -49,5 +49,10 @@
  "atlas-7ee5edcf51919e": {
   "site": "https://www.kyivpost.com/",
   "name": "Kyiv Post"
+ },
+ "media-zn-ua": {
+  "site": "https://zn.ua/ukr/",
+  "name": "Дзеркало тижня (ZN.UA)",
+  "city": "м. Київ"
  }
 }
