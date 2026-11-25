@@ -206,7 +206,10 @@ const TAG_LABELS_EN = {
   "Амаль Халіль": "Amal Khalil",
   "ретрити": "retreats",
   "психологічна підтримка": "psychological support",
-  "Карпати": "Carpathians"
+  "Карпати": "Carpathians",
+  "Локальна історія": "Local History",
+  "бібліотеки": "libraries",
+  "Віталій Ляска": "Vitalii Liaska"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -381,7 +384,10 @@ const TAG_LABELS_CRH = {
   "Амаль Халіль": "Amal Khalil",
   "ретрити": "retritler",
   "психологічна підтримка": "psixologik destek",
-  "Карпати": "Karpatlar"
+  "Карпати": "Karpatlar",
+  "Локальна історія": "Lokalna istoriia",
+  "бібліотеки": "kitaphaneler",
+  "Віталій Ляска": "Vitalii Liaska"
 };
 
 function tagLookupKey(tag) {

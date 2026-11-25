@@ -693,6 +693,27 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "vitalii-liaska",
+    "tag": "Віталій Ляска",
+    "aliases": [
+      "Віталій Михайлович Ляска",
+      "Vitaliy Liaska",
+      "Vitalij Liaska"
+    ],
+    "name": {
+      "uk": "Віталій Ляска",
+      "en": "Vitalii Liaska"
+    },
+    "role": {
+      "uk": "історик, співзасновник і головний редактор «Локальної історії»",
+      "en": "Historian, co-founder and editor-in-chief of Local History"
+    },
+    "summary": {
+      "uk": "Історик-археолог зі Львова, який з 2013 року розвиває медіапроєкт і видавництво «Локальна історія».",
+      "en": "Lviv historian and archaeologist who has been building the Local History media project and publisher since 2013."
+    }
+  },
+  {
     "slug": "vlada-liberova",
     "tag": "Влада Либерова",
     "aliases": [],
