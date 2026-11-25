@@ -138,7 +138,7 @@ async function throttle() {
 
 async function api(host, params) {
   const h = host.includes(".") ? host : `${host}.wikipedia.org`;
-  const url = `https://${h}/w/api.php?` + new URLSearchParams({ format: "json", formatversion: "2", origin: "*", maxlag: "5", ...params });
+  const url = `https://${h}/w/api.php?` + new URLSearchParams({ format: "json", formatversion: "2", origin: "*", ...params });
   for (let attempt = 0; ; attempt++) {
     await throttle();
     const res = await fetch(url, { headers: { "user-agent": "ProMediaBrandsBuilder/1.0 (+https://brands.promedia.report)" } });
