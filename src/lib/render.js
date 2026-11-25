@@ -5,7 +5,7 @@ import { BRANDS, BRANDS_SITE_URL } from "./brands.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261123b";
+const ASSET_V = "20261125s";
 
 const LANGS = ["uk", "en", "crh"];
 
