@@ -1,0 +1,64 @@
+{
+  "slug": "bob-woodward",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Боб Вудворд",
+    "en": "Bob Woodward"
+  },
+  "sort": {
+    "uk": "Вудворд Боб",
+    "en": "Woodward Bob"
+  },
+  "aliases": [
+    "Robert Upshur Woodward",
+    "Роберт Вудворд",
+    "Боб Вудвард"
+  ],
+  "role": {
+    "uk": "американський журналіст-розслідувач, заступник головного редактора The Washington Post (почесна посада)",
+    "en": "American investigative journalist, associate editor of The Washington Post (honorary title)"
+  },
+  "summary": {
+    "uk": "Разом із Карлом Бернстайном розкрив Вотергейтський скандал; автор понад двох десятків книжок про президентів США.",
+    "en": "Broke the Watergate scandal with Carl Bernstein; author of more than two dozen books about US presidents."
+  },
+  "bio": {
+    "uk": "Боб Вудворд народився 1943 року в місті Женева (штат Іллінойс). Закінчив Єльський університет, у 1965–1970 роках служив офіцером зв'язку у ВМС США. До The Washington Post прийшов у 1971 році.\n\nУ 1972–1974 роках разом із Карлом Бернстайном розслідував Вотергейтський скандал, який закінчився відставкою президента Річарда Ніксона; за ці публікації газета отримала Пулітцерівську премію за служіння суспільству (1973). Був серед авторів матеріалів про теракти 11 вересня, за які газета отримала Пулітцерівську премію 2002 року.\n\nНаписав понад два десятки книжок про американських президентів, зокрема «Страх» (2018), «Лють» (2020), «Небезпека» (2021, з Робертом Костою) і «Війна» (2024). У листопаді 2026 року вийшли його мемуари «Secrets: A Reporter's Memoir», де він розкритикував власника The Washington Post Джеффа Безоса і сказав, що той має продати газету, якщо не вірить у неї.",
+    "en": "Bob Woodward was born in 1943 in Geneva, Illinois. He graduated from Yale University and served as a communications officer in the US Navy in 1965–1970. He joined The Washington Post in 1971.\n\nIn 1972–1974, together with Carl Bernstein, he investigated the Watergate scandal, which ended with President Richard Nixon's resignation; the paper won the Pulitzer Prize for Public Service (1973) for that reporting. He was among the authors of the coverage of the 11 September attacks that won the paper a Pulitzer Prize in 2002.\n\nHe has written more than two dozen books about American presidents, including Fear (2018), Rage (2020), Peril (2021, with Robert Costa) and War (2024). In November 2026 he published his memoir, Secrets: A Reporter's Memoir, in which he criticised Washington Post owner Jeff Bezos and said he should sell the paper if he does not believe in it."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "The Washington Post (з 1971)"
+    ],
+    [
+      "Відзнаки",
+      "дві Пулітцерівські премії газети (1973, 2002) за його участі"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Bob Woodward",
+      "url": "https://en.wikipedia.org/wiki/Bob_Woodward"
+    },
+    {
+      "title": "Bob Woodward: Brief Bio",
+      "url": "https://bobwoodward.com/factsheet"
+    },
+    {
+      "title": "Simon & Schuster: Secrets",
+      "url": "https://www.simonandschuster.com/books/Secrets/Bob-Woodward/9781668008232"
+    },
+    {
+      "title": "NPR (KPBS): Bob Woodward spent a lifetime uncovering secrets",
+      "url": "https://kpbs.org/news/arts-culture/2026/11/24/bob-woodward-spent-a-lifetime-uncovering-secrets-now-hes-revealing-his-own"
+    },
+    {
+      "title": "Чому Боб Вудворд закликав Джеффа Безоса продати The Washington Post",
+      "url": "https://news.promedia.report/article/chomu-bob-vudvord-zaklykav-dzheffa-bezosa-prodaty-the-washington-post"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -99,6 +99,18 @@ function fillCredit(text, credit) {
     .replace(/⟦(ЛІЦЕНЗІЯ|LICENCE|LİTSENZİYA)⟧/g, lic);
 }
 
+
+// Підпис обкладинки (cover.caption) теж може містити ⟦АВТОР⟧ / ⟦ЛІЦЕНЗІЯ⟧ — заповнюємо з Вікісховища
+// (ліцензія тут простим текстом: підпис під фото — не Markdown).
+function fillCaption(cover, credit) {
+  if (!cover?.caption || typeof cover.caption !== 'object') return;
+  for (const k of Object.keys(cover.caption)) {
+    cover.caption[k] = String(cover.caption[k])
+      .replace(/⟦(АВТОР|AUTHOR|MÜELLİF)⟧/g, credit.author)
+      .replace(/⟦(ЛІЦЕНЗІЯ|LICENCE|LİTSENZİYA)⟧/g, credit.licence);
+  }
+}
+
 const files = readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
   const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
@@ -131,6 +143,7 @@ for (const f of files) {
     if (a.cover?.commonsFile) {
       const credit = await commonsInfo(a.cover.commonsFile, a.cover.width);
       for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) if (a[k]) a[k] = fillCredit(a[k], credit);
+      fillCaption(a.cover, credit);
       if (a.coverRevision && a.coverRevision === a.revision) {
         newCover = credit.thumb;
         console.log(`New cover for ${a.slug}: ${credit.page} — ${credit.author}, ${credit.licence}`);
@@ -178,6 +191,7 @@ for (const f of files) {
     const credit = await commonsInfo(a.cover.commonsFile, a.cover.width);
     console.log(`Cover: ${credit.page} — ${credit.author}, ${credit.licence}`);
     for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) if (a[k]) a[k] = fillCredit(a[k], credit);
+    fillCaption(a.cover, credit);
     const img = await fetch(credit.thumb, {headers: {'User-Agent': UA}});
     if (!img.ok) throw Error('Cover download ' + img.status);
     const tmp = join(mkdtempSync(join(tmpdir(), 'cover-')), 'cover.jpg');
@@ -193,6 +207,7 @@ for (const f of files) {
   for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
     if (a[k] && /⟦[^⟧]+⟧/.test(a[k])) throw Error(`Unfilled placeholder in ${k} of ${f}`);
   }
+  if (a.cover?.caption && /⟦[^⟧]+⟧/.test(JSON.stringify(a.cover.caption))) throw Error(`Unfilled placeholder in cover.caption of ${f}`);
   const author = d1("SELECT id FROM users WHERE role = 'admin' ORDER BY id LIMIT 1")[0];
   if (!author) throw Error('No admin user found');
   const now = new Date().toISOString();

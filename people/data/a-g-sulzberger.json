@@ -1,0 +1,53 @@
+{
+  "slug": "a-g-sulzberger",
+  "group": "intl",
+  "country": "США",
+  "kind": "manager",
+  "name": {
+    "uk": "А. Г. Сульцбергер",
+    "en": "A. G. Sulzberger"
+  },
+  "sort": {
+    "uk": "Сульцбергер А. Г.",
+    "en": "Sulzberger A. G."
+  },
+  "aliases": [
+    "Arthur Gregg Sulzberger",
+    "Артур Грегг Сульцбергер",
+    "А.Г. Сульцбергер",
+    "Ей Джі Сульцбергер"
+  ],
+  "role": {
+    "uk": "видавець The New York Times, голова The New York Times Company",
+    "en": "Publisher of The New York Times, chairman of The New York Times Company"
+  },
+  "summary": {
+    "uk": "Видавець The New York Times з 2018 року, представник родини, яка володіє газетою понад століття; публічно захищає свободу преси.",
+    "en": "Publisher of The New York Times since 2018, from the family that has controlled the paper for more than a century; a public defender of press freedom."
+  },
+  "bio": {
+    "uk": "А. Г. Сульцбергер народився 1980 року. Працював репортером у The Providence Journal і The Oregonian, у 2009 році перейшов до The New York Times, де був репортером, а згодом — заступником видавця.\n\nУ січні 2018 року став видавцем The New York Times, а з 2021 року — також головою The New York Times Company. Неодноразово публічно виступав на захист незалежної журналістики й проти тиску на пресу.\n\nУ листопаді 2026 року Боб Вудворд у мемуарах поставив його в приклад власникові The Washington Post Джеффу Безосу.",
+    "en": "A. G. Sulzberger was born in 1980. He worked as a reporter for The Providence Journal and The Oregonian, then joined The New York Times in 2009 as a reporter and later became deputy publisher.\n\nIn January 2018 he became publisher of The New York Times, and in 2021 also chairman of The New York Times Company. He has repeatedly spoken out publicly in defence of independent journalism and against pressure on the press.\n\nIn November 2026 Bob Woodward, in his memoir, held him up as an example to Washington Post owner Jeff Bezos."
+  },
+  "facts": [
+    [
+      "Посада",
+      "видавець The New York Times (з 2018)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: A. G. Sulzberger",
+      "url": "https://en.wikipedia.org/wiki/A._G._Sulzberger"
+    },
+    {
+      "title": "The New York Times Company: A.G. Sulzberger",
+      "url": "https://www.nytco.com/company/people/a-g-sulzberger/"
+    },
+    {
+      "title": "Чому Боб Вудворд закликав Джеффа Безоса продати The Washington Post",
+      "url": "https://news.promedia.report/article/chomu-bob-vudvord-zaklykav-dzheffa-bezosa-prodaty-the-washington-post"
+    }
+  ],
+  "updated": "2026-11-25"
+}

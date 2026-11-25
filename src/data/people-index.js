@@ -1,6 +1,28 @@
 // Згенеровано: node people-site/build.mjs --index-only. Не редагуйте вручну — правте people/data/*.json.
 export const PEOPLE = [
   {
+    "slug": "a-g-sulzberger",
+    "tag": "А. Г. Сульцбергер",
+    "aliases": [
+      "Arthur Gregg Sulzberger",
+      "Артур Грегг Сульцбергер",
+      "А.Г. Сульцбергер",
+      "Ей Джі Сульцбергер"
+    ],
+    "name": {
+      "uk": "А. Г. Сульцбергер",
+      "en": "A. G. Sulzberger"
+    },
+    "role": {
+      "uk": "видавець The New York Times, голова The New York Times Company",
+      "en": "Publisher of The New York Times, chairman of The New York Times Company"
+    },
+    "summary": {
+      "uk": "Видавець The New York Times з 2018 року, представник родини, яка володіє газетою понад століття; публічно захищає свободу преси.",
+      "en": "Publisher of The New York Times since 2018, from the family that has controlled the paper for more than a century; a public defender of press freedom."
+    }
+  },
+  {
     "slug": "alexander-gardner",
     "tag": "Александер Гарднер",
     "aliases": [],
@@ -338,6 +360,27 @@ export const PEOPLE = [
     "summary": {
       "uk": "Колишній заступник головного редактора The Wall Street Journal, шість років був академічним деканом Школи журналістики Колумбійського університету.",
       "en": "Former deputy managing editor of The Wall Street Journal who served six years as academic dean of Columbia Journalism School."
+    }
+  },
+  {
+    "slug": "bob-woodward",
+    "tag": "Боб Вудворд",
+    "aliases": [
+      "Robert Upshur Woodward",
+      "Роберт Вудворд",
+      "Боб Вудвард"
+    ],
+    "name": {
+      "uk": "Боб Вудворд",
+      "en": "Bob Woodward"
+    },
+    "role": {
+      "uk": "американський журналіст-розслідувач, заступник головного редактора The Washington Post (почесна посада)",
+      "en": "American investigative journalist, associate editor of The Washington Post (honorary title)"
+    },
+    "summary": {
+      "uk": "Разом із Карлом Бернстайном розкрив Вотергейтський скандал; автор понад двох десятків книжок про президентів США.",
+      "en": "Broke the Watergate scandal with Carl Bernstein; author of more than two dozen books about US presidents."
     }
   },
   {
@@ -877,6 +920,26 @@ export const PEOPLE = [
     "summary": {
       "uk": "Журналістка, яку часто називають першою воєнною кореспонденткою; писала під псевдонімом Кора Монтгомері.",
       "en": "Journalist often called the first female war correspondent; wrote as Cora Montgomery."
+    }
+  },
+  {
+    "slug": "jeff-donofrio",
+    "tag": "Джефф Д'Онофріо",
+    "aliases": [
+      "Джефф Д’Онофріо",
+      "Jeff D’Onofrio"
+    ],
+    "name": {
+      "uk": "Джефф Д'Онофріо",
+      "en": "Jeff D'Onofrio"
+    },
+    "role": {
+      "uk": "генеральний директор і видавець The Washington Post",
+      "en": "Chief executive and publisher of The Washington Post"
+    },
+    "summary": {
+      "uk": "Колишній фінансовий директор The Washington Post, з лютого 2026 року очолює газету.",
+      "en": "Former chief financial officer of The Washington Post, who has led the paper since February 2026."
     }
   },
   {

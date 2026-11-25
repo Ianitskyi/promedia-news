@@ -1,0 +1,55 @@
+{
+  "slug": "jeff-donofrio",
+  "group": "intl",
+  "country": "США",
+  "kind": "manager",
+  "name": {
+    "uk": "Джефф Д'Онофріо",
+    "en": "Jeff D'Onofrio"
+  },
+  "sort": {
+    "uk": "Д'Онофріо Джефф",
+    "en": "D'Onofrio Jeff"
+  },
+  "aliases": [
+    "Джефф Д’Онофріо",
+    "Jeff D’Onofrio"
+  ],
+  "role": {
+    "uk": "генеральний директор і видавець The Washington Post",
+    "en": "Chief executive and publisher of The Washington Post"
+  },
+  "summary": {
+    "uk": "Колишній фінансовий директор The Washington Post, з лютого 2026 року очолює газету.",
+    "en": "Former chief financial officer of The Washington Post, who has led the paper since February 2026."
+  },
+  "bio": {
+    "uk": "Джефф Д'Онофріо був фінансовим директором The Washington Post. У лютому 2026 року, після масових скорочень у газеті й відставки видавця Вілла Льюїса, його призначили тимчасовим генеральним директором і видавцем; згодом цю посаду за ним закріпили.\n\nУ жовтні 2026 року, відповідаючи на критику Боба Вудворда, він заявив, що власник газети Джефф Безос незмінно захищає її роботу, незалежність і безпеку журналістів і не втручається в редакційні рішення.",
+    "en": "Jeff D'Onofrio was chief financial officer of The Washington Post. In February 2026, after mass layoffs at the paper and the departure of publisher Will Lewis, he was appointed interim chief executive and publisher; the post was later made permanent.\n\nIn October 2026, responding to criticism from Bob Woodward, he said that the paper's owner, Jeff Bezos, remains unwavering in defending its work, independence and the safety of its journalists and does not interfere in editorial decisions."
+  },
+  "facts": [
+    [
+      "Посада",
+      "генеральний директор і видавець The Washington Post (з 2026)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: The Washington Post",
+      "url": "https://en.wikipedia.org/wiki/The_Washington_Post"
+    },
+    {
+      "title": "IBTimes: Bezos reportedly called the Post his worst investment",
+      "url": "https://www.ibtimes.co.uk/1803664"
+    },
+    {
+      "title": "The Daily Beast: Washington Post legend tears into Bezos",
+      "url": "https://www.thedailybeast.com/washington-post-legend-tears-into-bezos-for-bowing-to-trump"
+    },
+    {
+      "title": "Чому Боб Вудворд закликав Джеффа Безоса продати The Washington Post",
+      "url": "https://news.promedia.report/article/chomu-bob-vudvord-zaklykav-dzheffa-bezosa-prodaty-the-washington-post"
+    }
+  ],
+  "updated": "2026-11-25"
+}

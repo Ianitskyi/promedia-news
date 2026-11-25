@@ -169,7 +169,8 @@ const TAG_LABELS_EN = {
   "США": "United States",
   "власність медіа": "media ownership",
   "редакційна незалежність": "editorial independence",
-  "Ілон Маск": "Elon Musk"
+  "Ілон Маск": "Elon Musk",
+  "Джефф Безос": "Jeff Bezos"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -308,7 +309,8 @@ const TAG_LABELS_CRH = {
   "США": "AQŞ",
   "власність медіа": "mediya mülkiyeti",
   "редакційна незалежність": "redaktsiya mustaqilligi",
-  "Ілон Маск": "Elon Musk"
+  "Ілон Маск": "Elon Musk",
+  "Джефф Безос": "Jeff Bezos"
 };
 
 function tagLookupKey(tag) {
