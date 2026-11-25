@@ -318,6 +318,8 @@ function shell({ lang, title, description, path, body, image }) {
 ${body}
 <promedia-global-footer></promedia-global-footer>
 <script defer src="${NEWS}/js/promedia-global-shell.js"></script>
+<script defer src="${NEWS}/js/promedia-language-suggest.js"></script>
+<script defer src="${NEWS}/js/promedia-memorial-popup.js"></script>
 </body>
 </html>
 `;
