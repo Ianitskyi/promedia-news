@@ -1,28 +1,6 @@
 // Згенеровано: node people-site/build.mjs --index-only. Не редагуйте вручну — правте people/data/*.json.
 export const PEOPLE = [
   {
-    "slug": "a-g-sulzberger",
-    "tag": "А. Г. Сульцбергер",
-    "aliases": [
-      "Arthur Gregg Sulzberger",
-      "Артур Грегг Сульцбергер",
-      "А.Г. Сульцбергер",
-      "Ей Джі Сульцбергер"
-    ],
-    "name": {
-      "uk": "А. Г. Сульцбергер",
-      "en": "A. G. Sulzberger"
-    },
-    "role": {
-      "uk": "видавець The New York Times, голова The New York Times Company",
-      "en": "Publisher of The New York Times, chairman of The New York Times Company"
-    },
-    "summary": {
-      "uk": "Видавець The New York Times з 2018 року, представник родини, яка володіє газетою понад століття; публічно захищає свободу преси.",
-      "en": "Publisher of The New York Times since 2018, from the family that has controlled the paper for more than a century; a public defender of press freedom."
-    }
-  },
-  {
     "slug": "alexander-gardner",
     "tag": "Александер Гарднер",
     "aliases": [],
@@ -288,6 +266,28 @@ export const PEOPLE = [
     "summary": {
       "uk": "Відеожурналіст AFP, загиблий від ракетного обстрілу біля Часового Яру 9 травня 2023 року.",
       "en": "AFP video journalist killed by rocket fire near Chasiv Yar on 9 May 2023."
+    }
+  },
+  {
+    "slug": "a-g-sulzberger",
+    "tag": "Артур Грегг Сульцбергер",
+    "aliases": [
+      "А. Г. Сульцбергер",
+      "A. G. Sulzberger",
+      "А.Г. Сульцбергер",
+      "Ей Джі Сульцбергер"
+    ],
+    "name": {
+      "uk": "Артур Грегг Сульцбергер",
+      "en": "Arthur Gregg Sulzberger"
+    },
+    "role": {
+      "uk": "видавець The New York Times, голова The New York Times Company",
+      "en": "Publisher of The New York Times, chairman of The New York Times Company"
+    },
+    "summary": {
+      "uk": "Видавець The New York Times з 2018 року, представник родини, яка володіє газетою понад століття; публічно захищає свободу преси.",
+      "en": "Publisher of The New York Times since 2018, from the family that has controlled the paper for more than a century; a public defender of press freedom."
     }
   },
   {
