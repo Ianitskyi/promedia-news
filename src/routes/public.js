@@ -1,4 +1,4 @@
-import { renderHomepage, renderArticlePage, renderNewsletterPage, renderNotFound, PRACTICE_TOPICS, viewsVisible } from "../lib/render.js";
+import { renderHomepage, renderArticlePage, renderNewsletterPage, renderNotFound, renderArchivePage, ARCHIVE_PAGE_SIZE, PRACTICE_TOPICS, viewsVisible } from "../lib/render.js";
 import { handlePublicPushRoute } from "../lib/push.js";
 import { ukrainianTypographyReplacer } from "../lib/typography.js";
 
@@ -82,6 +82,8 @@ function escapeXml(value) {
     .replace(/\"/g, "&quot;")
     .replace(/'/g, "&apos;");
 }
+
+const NEWS_PUBLICATION_NAME = "ПроМедіа";
 
 function sitemapUrl(loc, urls, lastmod) {
   return `<url>\n  <loc>${escapeXml(loc)}</loc>${lastmod ? `\n  <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}\n  <xhtml:link rel="alternate" hreflang="uk" href="${escapeXml(urls.uk)}" />\n  <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(urls.en)}" />\n  <xhtml:link rel="alternate" hreflang="crh" href="${escapeXml(urls.crh)}" />\n  <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(urls.uk)}" />\n</url>`;
@@ -182,7 +184,7 @@ async function fetchRelatedUniversities(allIds, env, baseUrl) {
 export async function handlePublicRoute(request, env, url) {
   const lang = getLang(url);
   const pagePath = stripLangPrefix(url.pathname);
-  const isPage = request.method === "GET" && (pagePath === "/" || /^\/article\/[a-z0-9-]+$/.test(pagePath));
+  const isPage = request.method === "GET" && (pagePath === "/" || /^\/article\/[a-z0-9-]+$/.test(pagePath) || /^\/archive(\/\d+)?\/?$/.test(pagePath));
   if (isPage) {
     const redirect = legacyLangRedirect(url);
     if (redirect) return redirect;
@@ -207,6 +209,7 @@ Disallow: /api/me
 Disallow: /api/setup
 
 Sitemap: ${baseUrl}/sitemap.xml
+Sitemap: ${baseUrl}/news-sitemap.xml
 `);
   }
 
@@ -220,6 +223,8 @@ Sitemap: ${baseUrl}/sitemap.xml
     const forLangs = (path) => ({ uk: `${baseUrl}${path}`, en: `${baseUrl}/en${path}`, crh: `${baseUrl}/crh${path}` });
     const home = forLangs("/");
     const entries = ["uk", "en", "crh"].map((l) => sitemapUrl(home[l], home, ""));
+    const archive = forLangs("/archive/");
+    ["uk", "en", "crh"].forEach((l) => entries.push(sitemapUrl(archive[l], archive, "")));
     results.forEach((article) => {
       const urls = forLangs(`/article/${article.slug}`);
       const lastmod = sitemapDate(article.updated_at || article.published_at);
@@ -228,6 +233,40 @@ Sitemap: ${baseUrl}/sitemap.xml
     return xml(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries.join("\n")}
+</urlset>
+`);
+  }
+
+
+  // Google News sitemap: лише матеріали за останні 48 годин (вимога Google News).
+  // Назва видання має збігатися з назвою в Google Publisher Center.
+  if (url.pathname === "/news-sitemap.xml" && request.method === "GET") {
+    const { results } = await db.prepare(`
+      SELECT slug, title, title_en, published_at
+      FROM articles
+      WHERE status = 'published' AND deleted_at IS NULL
+        AND published_at >= datetime('now', '-2 days')
+      ORDER BY published_at DESC
+      LIMIT 1000
+    `).all();
+    const entries = [];
+    results.forEach((a) => {
+      const date = escapeXml(new Date(a.published_at).toISOString());
+      const item = (loc, language, title) => `<url>
+  <loc>${escapeXml(loc)}</loc>
+  <news:news>
+    <news:publication><news:name>${escapeXml(NEWS_PUBLICATION_NAME)}</news:name><news:language>${language}</news:language></news:publication>
+    <news:publication_date>${date}</news:publication_date>
+    <news:title>${escapeXml(title)}</news:title>
+  </news:news>
+</url>`;
+      entries.push(item(`${baseUrl}/article/${a.slug}`, "uk", a.title));
+      if (a.title_en) entries.push(item(`${baseUrl}/en/article/${a.slug}`, "en", a.title_en));
+    });
+    return xml(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
 ${entries.join("\n")}
 </urlset>
 `);
@@ -400,6 +439,23 @@ ${entries.join("\n")}
       ).bind(article.id).all().then(r => r.results || []).catch(() => [])
     ]);
     return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames, relatedUniversities, popularArticles }));
+  }
+
+
+  // GET /archive/, /archive/2/ … — легкий архів: лише дати й заголовки, без фото й скриптів.
+  // Потрібен, щоб старші новини мали звичайні посилання, які бачить Google.
+  const archiveMatch = pagePath.match(/^\/archive(?:\/(\d+))?\/?$/);
+  if (archiveMatch && request.method === "GET") {
+    const page = Math.max(1, parseInt(archiveMatch[1] || "1", 10) || 1);
+    const canonicalPath = page === 1 ? "/archive/" : `/archive/${page}/`;
+    if (pagePath !== canonicalPath) return Response.redirect(`${baseUrl}${lang === "uk" ? "" : `/${lang}`}${canonicalPath}`, 301);
+    const total = (await db.prepare("SELECT COUNT(*) AS n FROM articles WHERE status = 'published' AND deleted_at IS NULL").first())?.n || 0;
+    const pages = Math.max(1, Math.ceil(total / ARCHIVE_PAGE_SIZE));
+    if (page > pages) return new Response(renderNotFound(lang, baseUrl), { status: 404, headers: { "Content-Type": "text/html; charset=utf-8" } });
+    const { results } = await db.prepare(
+      "SELECT slug, title, title_en, title_crh, tags, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL ORDER BY published_at DESC LIMIT ? OFFSET ?"
+    ).bind(ARCHIVE_PAGE_SIZE, (page - 1) * ARCHIVE_PAGE_SIZE).all();
+    return html(renderArchivePage({ articles: results, lang, baseUrl, page, pages, total }));
   }
 
   // GET / (homepage, optional ?tag=)

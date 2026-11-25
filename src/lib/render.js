@@ -1131,6 +1131,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
     ${list}
+    ${!filtered && articles.length ? `<p class="archive-link"><a href="${prefix}/archive/">${pick(ARCHIVE_LABEL, lang)} →</a></p>` : ""}
   </main>${!filtered && articles.length ? mosaicPromoTemplates(lang) : ""}<script defer src="/js/promedia-mosaic.js?v=${ASSET_V}"></script><script defer src="/js/promedia-feed-more.js?v=${ASSET_V}"></script>`;
   return pageShell({ title: filtered ? `${topic ? pick(topic.labels, lang) : activeSort === "top" ? pick(TOP_NAV_LABEL, lang) : tagLabel(activeTag, lang)} — ПроМедіа` : `${pick({ uk: "ПроМедіа", en: "ProMedia", crh: "ProMedia" }, lang)}. ${copy.title}`, description: copy.intro,
     url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : activeSort === "top" ? "?sort=top" : ""}`, lang, bodyHtml });
@@ -1417,6 +1418,50 @@ export function renderNewsletterPage({ baseUrl }) {
   <div data-pm-newsletter="page"><p class="newsletter-page-soon">Підписка відкриється найближчим часом.</p></div>
 </main>`;
   return pageShell({ title: "Розсилка ProMedia Report — ПроМедіа", description: "Головне про медіа та комунікації — раз на тиждень у вашій пошті.", url: `${baseUrl}/rozsylka/`, lang: "uk", bodyHtml });
+}
+
+
+// Архів (2026-11-25): прості сторінки з датами й заголовками, по 50 на сторінку.
+// Без фото й важких скриптів — щоб старші новини мали звичайні посилання для пошукових систем.
+export const ARCHIVE_PAGE_SIZE = 50;
+const ARCHIVE_LABEL = { uk: "Архів новин", en: "News archive", crh: "Haberler arşivi" };
+const ARCHIVE_INTRO = {
+  uk: "Усі матеріали «Новин ПроМедіа» від найновіших до найстаріших.",
+  en: "All ProMedia News stories, from newest to oldest.",
+  crh: "ProMedia haberleriniñ episi, eñ yañısından eñ eskisine qadar."
+};
+const ARCHIVE_PAGE_WORD = { uk: "Сторінка", en: "Page", crh: "Saife" };
+const ARCHIVE_NEWER = { uk: "← Новіші", en: "← Newer", crh: "← Yañıları" };
+const ARCHIVE_OLDER = { uk: "Старіші →", en: "Older →", crh: "Eskileri →" };
+
+function archiveHref(lang, page) {
+  return `${langPrefix(lang)}/archive/${page > 1 ? `${page}/` : ""}`;
+}
+
+export function renderArchivePage({ articles, lang, baseUrl, page, pages, total }) {
+  const items = articles.map((a) => `<li><time datetime="${escapeHtml(a.published_at || "")}">${escapeHtml(formatDate(a.published_at, lang))}</time> <a href="${langPrefix(lang)}/article/${escapeHtml(a.slug)}">${escapeHtml(articleTitle(a, lang))}</a></li>`).join("");
+  const pager = [];
+  if (page > 1) pager.push(`<a rel="prev" href="${archiveHref(lang, page - 1)}">${pick(ARCHIVE_NEWER, lang)}</a>`);
+  const nums = Array.from({ length: pages }, (_, i) => i + 1)
+    .map((n) => n === page ? `<span aria-current="page">${n}</span>` : `<a href="${archiveHref(lang, n)}">${n}</a>`).join(" ");
+  if (pages > 1) pager.push(`<span class="archive-pages">${nums}</span>`);
+  if (page < pages) pager.push(`<a rel="next" href="${archiveHref(lang, page + 1)}">${pick(ARCHIVE_OLDER, lang)}</a>`);
+  const heading = pick(ARCHIVE_LABEL, lang) + (page > 1 ? ` — ${pick(ARCHIVE_PAGE_WORD, lang).toLowerCase()} ${page}` : "");
+  const bodyHtml = `
+<main class="wrap article-page archive-page">
+  <p class="article-back"><a href="${langPrefix(lang)}/">${pick(BACK_TO_NEWS_LABEL, lang)}</a></p>
+  <h1>${escapeHtml(heading)}</h1>
+  <p class="archive-intro">${escapeHtml(pick(ARCHIVE_INTRO, lang))}</p>
+  <ol class="archive-list">${items}</ol>
+  ${pager.length ? `<nav class="archive-pager" aria-label="${escapeHtml(pick(ARCHIVE_LABEL, lang))}">${pager.join(" ")}</nav>` : ""}
+</main>`;
+  return pageShell({
+    title: `${heading} — ${pick(SITE_NAME, lang)}`,
+    description: pick(ARCHIVE_INTRO, lang),
+    url: `${baseUrl}${archiveHref(lang, page)}`,
+    lang,
+    bodyHtml
+  });
 }
 
 const NOT_FOUND_LABEL = { uk: "Сторінку не знайдено.", en: "Page not found.", crh: "Saife tapılmadı." };
