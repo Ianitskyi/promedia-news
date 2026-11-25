@@ -1369,6 +1369,8 @@ a.article-tag:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px
   .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) h3 { font-size: 16px; line-height: 1.2; }
   .magazine-home .restored-feed .article-card:is([data-content-kind="news"], [data-content-kind="statement"], [data-content-kind="press-release"], [data-content-kind="announcement"]) .article-card-body { padding: 8px 0; gap: 4px; }
   .magazine-home .restored-feed { gap: 6px; }
+  /* The banner needs air: the 6px feed gap glued it to the card above (owner, 2026-11-25). */
+  .magazine-home .restored-feed .mosaic-cell--promo { margin: 26px 0 14px; }
   .practice-home .article-excerpt { font-size: 14px; line-height: 1.5; }
 }
 
