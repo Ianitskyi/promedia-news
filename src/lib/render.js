@@ -203,7 +203,10 @@ const TAG_LABELS_EN = {
   "Ентоні Белланже": "Anthony Bellanger",
   "Танасіс Кукакіс": "Thanasis Koukakis",
   "Ельсі Муфаррідж": "Elsy Moufarrej",
-  "Амаль Халіль": "Amal Khalil"
+  "Амаль Халіль": "Amal Khalil",
+  "ретрити": "retreats",
+  "психологічна підтримка": "psychological support",
+  "Карпати": "Carpathians"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -375,7 +378,10 @@ const TAG_LABELS_CRH = {
   "Ентоні Белланже": "Anthony Bellanger",
   "Танасіс Кукакіс": "Thanasis Koukakis",
   "Ельсі Муфаррідж": "Elsy Moufarrej",
-  "Амаль Халіль": "Amal Khalil"
+  "Амаль Халіль": "Amal Khalil",
+  "ретрити": "retritler",
+  "психологічна підтримка": "psixologik destek",
+  "Карпати": "Karpatlar"
 };
 
 function tagLookupKey(tag) {
