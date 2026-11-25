@@ -42,7 +42,9 @@
     "jobs.promedia.report": ["ratings", "atlas"],
     "events.promedia.report": ["communities", "projects"],
     "brief.promedia.report": ["research", "atlas"],
-    "santa.promedia.report": ["projects"]
+    "santa.promedia.report": ["projects"],
+    "people.promedia.report": ["atlas", "research"],
+    "brands.promedia.report": ["atlas", "research"]
   };
 
   function choosePromo(host, language, pathname) {

@@ -9,7 +9,11 @@
   var emptyEl = document.getElementById("pp-empty");
   var letterButtons = Array.prototype.slice.call(document.querySelectorAll(".pp-alpha [data-letter]"));
   var groupButtons = Array.prototype.slice.call(document.querySelectorAll(".pp-pills [data-group]"));
-  var state = { q: "", letter: "", group: "all", kind: "" };
+  var state = { q: "", letter: "", group: "all", kind: "", expanded: false };
+  // Без фільтрів показуємо лише перші картки, далі — промоблок і кнопка «Показати всі».
+  var preview = Number(grid.getAttribute("data-preview")) || 5;
+  var promo = document.getElementById("bb-promo");
+  var showAll = document.getElementById("bb-show-all");
   // Пошук знаходить бренд і за кириличною, і за латинською назвою, країною, типом чи доменом сайту.
   var norm = function (s) { return String(s || "").toLowerCase().replace(/[ʼ’']/g, "'").trim(); };
 
@@ -24,15 +28,20 @@
 
   function apply() {
     var q = norm(state.q);
+    var filtered = Boolean(q || state.letter || state.group !== "all" || state.kind);
+    var collapsed = !filtered && !state.expanded;
     var shown = 0;
     cards.forEach(function (c) {
       var ok = (!q || norm(c.dataset.search).indexOf(q) !== -1)
         && (!state.letter || c.dataset.letter === state.letter)
         && (state.group === "all" || c.dataset.group === state.group)
         && (!state.kind || c.dataset.kind === state.kind);
-      c.hidden = !ok;
       if (ok) shown++;
+      c.hidden = !ok || (collapsed && shown > preview);
     });
+    grid.classList.toggle("is-collapsed", collapsed);
+    if (promo) promo.hidden = filtered;
+    if (showAll) showAll.hidden = !collapsed || shown <= preview;
     countEl.textContent = countText(shown);
     emptyEl.hidden = shown !== 0;
     letterButtons.forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-letter") === state.letter); });
@@ -54,6 +63,7 @@
     b.addEventListener("click", function () { state.group = b.getAttribute("data-group"); apply(); });
   });
   if (kindSelect) kindSelect.addEventListener("change", function () { state.kind = kindSelect.value; apply(); });
+  if (showAll) showAll.addEventListener("click", function () { state.expanded = true; apply(); });
   search.addEventListener("input", function () { state.q = search.value; apply(); });
 
   var p = new URLSearchParams(location.search);
