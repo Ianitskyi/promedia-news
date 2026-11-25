@@ -44,7 +44,7 @@
     "brief.promedia.report": ["research", "atlas"],
     "santa.promedia.report": ["projects"],
     "people.promedia.report": ["atlas", "research"],
-    "brands.promedia.report": ["atlas", "research"]
+    "brands.promedia.report": ["research", "communities"]
   };
 
   function choosePromo(host, language, pathname) {

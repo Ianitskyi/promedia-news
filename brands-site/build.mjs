@@ -253,8 +253,7 @@ const T = {
     note: "Досьє компілятивне: його складено з відкритих джерел, перелічених вище, і з матеріалів ПроМедіа.",
     fix: "Помітили неточність або хочете доповнити? Напишіть нам", logo: "Логотип", license: "ліцензія",
     country: "Країна", type: "Тип", website: "Сайт", bioLang: "", people: "Люди ПроМедіа", peopleLead: "Досьє на журналістів і медійників →",
-    showAll: n => `Показати всі ${n} ${plural(n, ["медіабренд", "медіабренди", "медіабрендів"])}`, moreMentions: n => `Ще ${n} ${plural(n, ["згадка", "згадки", "згадок"])}`,
-    promo: ["АТЛАС МЕДІА", "Хто стоїть за українськими медіа?", "Досліджуйте медіа та їхніх власників в одному інструменті.", "Відкрити Атлас"]
+    showAll: n => `Показати всі ${n} ${plural(n, ["медіабренд", "медіабренди", "медіабрендів"])}`, moreMentions: n => `Ще ${n} ${plural(n, ["згадка", "згадки", "згадок"])}`
   },
   en: {
     title: "Media brands", siteTitle: "Media brands — ProMedia",
@@ -266,8 +265,7 @@ const T = {
     note: "This profile is compiled from the open sources listed above and from ProMedia materials.",
     fix: "Spotted an error or want to add something? Contact us", logo: "Logo", license: "licence",
     country: "Country", type: "Type", website: "Website", bioLang: "The full profile is currently available in Ukrainian.", people: "ProMedia People", peopleLead: "Profiles of journalists →",
-    showAll: n => `Show all ${n} media brands`, moreMentions: n => `${n} more ${n === 1 ? "mention" : "mentions"}`,
-    promo: ["MEDIA ATLAS", "Who owns Ukrainian media?", "Explore media outlets and their owners in one tool.", "Explore the Atlas"]
+    showAll: n => `Show all ${n} media brands`, moreMentions: n => `${n} more ${n === 1 ? "mention" : "mentions"}`
   },
   // Кримськотатарський інтерфейс: потрібна вичитка носієм мови.
   crh: {
@@ -280,8 +278,7 @@ const T = {
     note: "Dosye yuqarıda kösterilgen açıq menbalardan ve ProMedia materiallarından toplandı.",
     fix: "Hata körseñiz ya da bir şey qoşmaq isteseñiz, bizge yazıñız", logo: "Logotip", license: "litsenziya",
     country: "Memleket", type: "Tip", website: "Sayt", bioLang: "Tam dosye şimdilik ukrain tilinde.", people: "ProMedia insanları", peopleLead: "Jurnalistler aqqında dosyeler →",
-    showAll: n => `Episi ${n} mediya brendini köster`, moreMentions: n => `Daa ${n} añılma`,
-    promo: ["MEDİYA ATLASI", "Ukrayina mediyasınıñ saipleri kim?", "Mediya ve olarnıñ saiplerini bir alette tedqiq etiñiz.", "Atlasnı aç"]
+    showAll: n => `Episi ${n} mediya brendini köster`, moreMentions: n => `Daa ${n} añılma`
   }
 };
 
@@ -370,7 +367,6 @@ function indexPage(brands, wiki, mentions, lang) {
   <div class="pp-grid" id="pp-grid" data-preview="${PREVIEW}">
 ${sorted.map(b => card(b, wiki[b.slug]?.logo, (mentions.get(b.slug) || []).length, lang)).join("\n")}
   </div>
-  <a class="bb-promo" id="bb-promo" href="https://atlas.promedia.report${prefix(lang)}/" hidden><span class="bb-promo-kicker">${esc(t.promo[0])}</span><strong>${esc(t.promo[1])}</strong><span>${esc(t.promo[2])}</span><span class="bb-promo-cta">${esc(t.promo[3])} →</span></a>
   <p class="bb-more"><button type="button" id="bb-show-all" hidden>${esc(t.showAll(brands.length))}</button></p>
   <p class="pp-empty" id="pp-empty" hidden>${t.empty}</p>
 </main>

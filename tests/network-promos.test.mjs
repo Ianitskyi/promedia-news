@@ -27,7 +27,7 @@ test('Public sites get contextual destinations while news and internal tools kee
   assert.equal(choosePromo('communities.promedia.report','uk','/').id, 'research');
   assert.equal(choosePromo('research.promedia.report','uk','/').id, 'communities');
   assert.equal(choosePromo('santa.promedia.report','uk','/').id, 'projects');
-  assert.equal(choosePromo('brands.promedia.report','uk','/').id, 'atlas');
+  assert.equal(choosePromo('brands.promedia.report','uk','/').id, 'research');
   assert.equal(choosePromo('people.promedia.report','en','/en/').id, 'atlas');
   for (const host of ['promedia.report','www.promedia.report','news.promedia.report','money.promedia.report','localhost','example.com']) assert.equal(choosePromo(host,'uk','/'), null);
 });

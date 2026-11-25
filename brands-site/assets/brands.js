@@ -12,7 +12,6 @@
   var state = { q: "", letter: "", group: "all", kind: "", expanded: false };
   // Без фільтрів показуємо лише перші картки, далі — промоблок і кнопка «Показати всі».
   var preview = Number(grid.getAttribute("data-preview")) || 5;
-  var promo = document.getElementById("bb-promo");
   var showAll = document.getElementById("bb-show-all");
   // Пошук знаходить бренд і за кириличною, і за латинською назвою, країною, типом чи доменом сайту.
   var norm = function (s) { return String(s || "").toLowerCase().replace(/[ʼ’']/g, "'").trim(); };
@@ -40,7 +39,6 @@
       c.hidden = !ok || (collapsed && shown > preview);
     });
     grid.classList.toggle("is-collapsed", collapsed);
-    if (promo) promo.hidden = filtered;
     if (showAll) showAll.hidden = !collapsed || shown <= preview;
     countEl.textContent = countText(shown);
     emptyEl.hidden = shown !== 0;

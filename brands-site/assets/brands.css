@@ -121,13 +121,6 @@ img { max-width: 100%; }
 .bb-more button { padding: 12px 22px; border: 1px solid var(--ink); border-radius: 999px; background: #fff; font: inherit; font-size: 14px; font-weight: 700; color: var(--ink); cursor: pointer; }
 .bb-more button:hover { background: var(--ink); color: #fff; }
 .pp-grid.is-collapsed { padding-bottom: 14px; }
-.bb-promo { display: grid; gap: 4px; margin: 4px 0 18px; padding: 20px 24px; border-radius: 18px; background: var(--ink); color: #fff; text-decoration: none; }
-.bb-promo[hidden] { display: none; }
-.bb-promo-kicker { font-size: 11px; font-weight: 800; letter-spacing: .16em; color: var(--accent); }
-.bb-promo strong { font-size: 20px; line-height: 1.25; }
-.bb-promo span { font-size: 14px; opacity: .9; }
-.bb-promo .bb-promo-cta { margin-top: 6px; font-weight: 700; color: var(--accent); opacity: 1; }
-.bb-promo:hover strong { text-decoration: underline; }
 .bb-details { margin-top: 6px; }
 .bb-details summary { cursor: pointer; font-size: 14px; font-weight: 700; color: var(--ink); padding: 6px 0; }
 .bb-details ul { margin-top: 8px; }
