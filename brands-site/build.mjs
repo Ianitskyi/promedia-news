@@ -124,12 +124,32 @@ const BAD_LICENSE = /(\bnc\b|-nc|\bnd\b|-nd|non-?commercial|no ?deriv|fair use|n
 const FREE_LICENSE = /(cc[ -]?by|cc0|public domain|\bpd\b|attribution|gfdl|free art)/i;
 const stripHtml = s => String(s || "").replace(/<[^>]*>/g, "").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, " ").trim();
 
+// Вікімедіа обмежує частоту запитів (HTTP 429), тож запити йдуть не частіше ніж раз на MIN_GAP мс,
+// а на 429/503 повторюємо з паузою (з урахуванням Retry-After).
+const MIN_GAP = 220;
+let nextSlot = 0;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function throttle() {
+  const now = Date.now();
+  const wait = Math.max(0, nextSlot - now);
+  nextSlot = Math.max(now, nextSlot) + MIN_GAP;
+  if (wait) await sleep(wait);
+}
+
 async function api(host, params) {
   const h = host.includes(".") ? host : `${host}.wikipedia.org`;
-  const url = `https://${h}/w/api.php?` + new URLSearchParams({ format: "json", formatversion: "2", origin: "*", ...params });
-  const res = await fetch(url, { headers: { "user-agent": "ProMediaBrandsBuilder/1.0 (+https://brands.promedia.report)" } });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  return res.json();
+  const url = `https://${h}/w/api.php?` + new URLSearchParams({ format: "json", formatversion: "2", origin: "*", maxlag: "5", ...params });
+  for (let attempt = 0; ; attempt++) {
+    await throttle();
+    const res = await fetch(url, { headers: { "user-agent": "ProMediaBrandsBuilder/1.0 (+https://brands.promedia.report)" } });
+    if ((res.status === 429 || res.status === 503) && attempt < 5) {
+      const retry = Number(res.headers.get("retry-after")) || 0;
+      await sleep(Math.max(retry * 1000, 1500 * 2 ** attempt));
+      continue;
+    }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res.json();
+  }
 }
 
 async function commonsFile(file) {
@@ -179,7 +199,7 @@ async function resolveAllWiki(brands) {
       result[b.slug] = await resolveWiki(b);
     }
   };
-  await Promise.all(Array.from({ length: 6 }, worker));
+  await Promise.all(Array.from({ length: 2 }, worker));
   const withLogo = Object.values(result).filter(r => r.logo).length;
   const withWiki = Object.values(result).filter(r => r.pages.length).length;
   console.log(`Вікіпедія: ${withWiki} брендів, логотипи: ${withLogo}`);

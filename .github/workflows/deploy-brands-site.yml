@@ -26,7 +26,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -62,6 +62,12 @@ jobs:
           set -e
           sleep 5
           base="${{ steps.deploy.outputs.url }}"
+          # Після першого розгортання адреса workers.dev може запрацювати не одразу — чекаємо до двох хвилин.
+          for i in $(seq 1 12); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$base/?smoke=$GITHUB_RUN_ID-$i")
+            [ "$code" = 200 ] && break
+            echo "/ -> $code, чекаю…"; sleep 10
+          done
           for p in / /en/ /crh/ /reuters/ /en/ukrainska-pravda/ /api/brands.json; do
             code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 30 "$base$p?smoke=$GITHUB_RUN_ID")
             echo "$p -> $code"; test "$code" = 200
