@@ -49,3 +49,19 @@ test("News index matches people/data and article mapping uses known people", asy
   const mapping = JSON.parse(read("people/article-people.json"));
   for (const list of Object.values(mapping)) for (const slug of list) assert.ok(slugs.includes(slug), slug);
 });
+
+test("First bold mention of a person with a dossier links to the dossier, also in other cases and languages", () => {
+  const { renderArticlePage } = load("https://people.promedia.report");
+  const a = { slug: "t2", title: "Новина", title_en: "News", title_crh: "Haber",
+    body_md: "Інтерв'ю з **Ольгою Руденко** про медіа.\n\n> **Анна Бабінець** у цитаті\n\nПані Ольга і **Ольга Руденко** знову.\n\n---\n\n*Фото: **Анна Бабінець***",
+    body_md_en: "Interview with **Olha Rudenko**.", body_md_crh: "**Olha Rudenko** ile söylešüv.",
+    tags: JSON.stringify(["Новини"]) };
+  const uk = renderArticlePage({ article: a, lang: "uk", baseUrl: "https://news.promedia.report", relatedMediaNames: [] });
+  const body = uk.slice(uk.indexOf('class="article-body"'));
+  assert.equal((body.match(/class="person-link"/g) || []).length, 1);
+  assert.ok(body.includes('<strong><a class="person-link" href="https://people.promedia.report/olha-rudenko/">Ольгою Руденко</a></strong>'));
+  const en = renderArticlePage({ article: a, lang: "en", baseUrl: "https://news.promedia.report", relatedMediaNames: [] });
+  assert.ok(en.includes('href="https://people.promedia.report/en/olha-rudenko/">Olha Rudenko</a>'));
+  const crh = renderArticlePage({ article: a, lang: "crh", baseUrl: "https://news.promedia.report", relatedMediaNames: [] });
+  assert.ok(crh.includes('href="https://people.promedia.report/crh/olha-rudenko/">Olha Rudenko</a>'));
+});

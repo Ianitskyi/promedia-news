@@ -438,6 +438,63 @@ function peopleBox(tags, lang) {
   return `<aside class="people-box" aria-label="${escapeHtml(pick(PEOPLE_BOX_TITLE, lang))}"><h2>${pick(PEOPLE_BOX_TITLE, lang)}</h2><ul>${items}</ul></aside>`;
 }
 
+// Ім'я людини з досьє в тексті новини — посилання на її досьє (правило Андрія Яніцького від 25.11.2026).
+// Лінкуємо першу напівжирну згадку (за стандартом ім'я та прізвище при першій згадці — напівжирні),
+// зокрема у відмінках («Наталії Гуменюк»). Так посилання з'являються й у всіх давніх новинах без
+// переписування їхніх текстів. Не чіпаємо цитати, наявні посилання і службові рядки під тонкою лінією.
+function normalizePersonName(value) {
+  return String(value || "")
+    .replace(/&#39;|&apos;|&rsquo;|[’ʼ`]/g, "'")
+    .replace(/&nbsp;| /g, " ")
+    .toLowerCase()
+    .trim();
+}
+function nameWordMatches(nameWord, textWord) {
+  if (nameWord === textWord) return true;
+  const stemLen = Math.max(3, nameWord.length - (nameWord.length <= 4 ? 1 : 2));
+  if (nameWord.length < 3 || stemLen > nameWord.length) return false;
+  return textWord.startsWith(nameWord.slice(0, stemLen)) && Math.abs(textWord.length - nameWord.length) <= 3;
+}
+function personNameVariants(person, lang) {
+  const names = lang === "uk"
+    ? [person.name?.uk, person.tag, ...(person.aliases || [])]
+    : [person.name?.en, ...(person.aliases || []), person.name?.uk, person.tag];
+  // Варіанти з ініціалами (лише в aliases) не підходять для відмінювання — їх пропускаємо.
+  return names.filter(n => n && !/(^|\s)\S\.(\s|$)/.test(n)).map(n => normalizePersonName(n).split(/\s+/));
+}
+function personMatchesText(person, text, lang) {
+  const words = normalizePersonName(text).split(/\s+/);
+  if (words.length < 2) return false;
+  return personNameVariants(person, lang).some(nameWords =>
+    nameWords.length === words.length && nameWords.every((w, i) => nameWordMatches(w, words[i])));
+}
+function personDossierUrl(person, lang) {
+  const base = PEOPLE_BASE_URL.replace(/\/$/, "");
+  const prefix = lang === "en" ? "/en" : lang === "crh" ? "/crh" : "";
+  return `${base}${prefix}/${person.slug}/`;
+}
+function linkPeopleInBody(html, tags, lang) {
+  if (!PEOPLE_BASE_URL || !PEOPLE_LIST.length) return html;
+  const cut = html.indexOf('<hr class="article-notes-divider"');
+  const head = cut < 0 ? html : html.slice(0, cut);
+  const tail = cut < 0 ? "" : html.slice(cut);
+  const taggedSlugs = new Set(tags.map(personForTag).filter(Boolean).map(p => p.slug));
+  // Спершу люди з тегів новини, далі — решта досьє (для давніх новин, де тег забули).
+  const candidates = [...PEOPLE_LIST.filter(p => taggedSlugs.has(p.slug)), ...PEOPLE_LIST.filter(p => !taggedSlugs.has(p.slug))];
+  const linked = new Set();
+  const linkedHead = head.replace(
+    /(<blockquote\b[\s\S]*?<\/blockquote>|<a\b[^>]*>[\s\S]*?<\/a>|<h[1-6]\b[\s\S]*?<\/h[1-6]>)|<strong>([^<]+)<\/strong>/g,
+    (match, skipped, text) => {
+      if (skipped) return match;
+      const person = candidates.find(p => !linked.has(p.slug) && personMatchesText(p, text, lang));
+      if (!person) return match;
+      linked.add(person.slug);
+      return `<strong><a class="person-link" href="${escapeHtml(personDossierUrl(person, lang))}">${text}</a></strong>`;
+    }
+  );
+  return linkedHead + tail;
+}
+
 // A press release (someone else's text published with light editing) is marked
 // with a distinct, muted tag colour so readers don't take it for our own reporting.
 // An announcement (upcoming event) gets a muted green tag the same way.
@@ -1182,8 +1239,8 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   const excerpt = articleExcerpt(article, lang);
   const articleUrl = `${baseUrl}${langPrefix(lang)}/article/${article.slug}`;
   const { caption: coverCaptionText, bodyMd } = coverCaption(article, lang, localizedField(article, "body_md", lang));
-  const bodyHtmlContent = markdownToHtml(bodyMd);
   const tags = JSON.parse(article.tags || "[]");
+  const bodyHtmlContent = linkPeopleInBody(markdownToHtml(bodyMd), tags, lang);
   // Рубрика (Новини, Статті, Пресреліз, Анонс…) — у рядку з датою; тематичні теги — під текстом.
   const rubricTags = tags.filter(t => LEAD_RUBRICS[t] || specialTagClass(t));
   const topicTags = tags.filter(t => !rubricTags.includes(t));
