@@ -1,0 +1,54 @@
+{
+  "slug": "amal-khalil",
+  "group": "intl",
+  "country": "Ліван",
+  "kind": "journalist",
+  "name": {
+    "uk": "Амаль Халіль",
+    "en": "Amal Khalil"
+  },
+  "sort": {
+    "uk": "Халіль Амаль",
+    "en": "Khalil Amal"
+  },
+  "aliases": [
+    "Amal Khalil"
+  ],
+  "role": {
+    "uk": "ліванська журналістка, кореспондентка газети Al-Akhbar; загинула 22 квітня 2026 року",
+    "en": "Lebanese journalist, correspondent for Al-Akhbar; killed on 22 April 2026"
+  },
+  "summary": {
+    "uk": "Досвідчена кореспондентка ліванської щоденної газети Al-Akhbar, загинула на півдні Лівану 22 квітня 2026 року.",
+    "en": "Veteran correspondent for the Lebanese daily Al-Akhbar, killed in southern Lebanon on 22 April 2026."
+  },
+  "bio": {
+    "uk": "Амаль Халіль — ліванська журналістка, багаторічна кореспондентка щоденної газети Al-Akhbar.\n\nЗа даними Міжнародної федерації журналістів, 22 квітня 2026 року вона разом із фотографкою Зейнаб Фарадж працювала поблизу міста Ет-Тірі на півдні Лівану, коли ізраїльський дрон ударив по цивільному авто перед ними, а потім — по їхньому авто. Згодом удару зазнала будівля, де журналістки сховалися; за даними Союзу журналістів Лівану й ліванських посадовців, її атакувала ізраїльська армія. Зейнаб Фарадж евакуювали пораненою, тіло пані Амаль дістали з-під завалів через кілька годин.",
+    "en": "Amal Khalil was a Lebanese journalist and veteran correspondent for the daily Al-Akhbar.\n\nAccording to the IFJ, on 22 April 2026 she and photographer Zeinab Faraj were reporting near Al Tayri in southern Lebanon when an Israeli drone struck a civilian vehicle in front of them and then their car. The building where they sheltered was later struck; according to the Union of Journalists of Lebanon and Lebanese officials, it was targeted by the Israeli army. Faraj was evacuated wounded; Khalil's body was recovered from the rubble hours later."
+  },
+  "facts": [
+    [
+      "Видання",
+      "Al-Akhbar"
+    ],
+    [
+      "Дата загибелі",
+      "22.04.2026"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "IFJ: IFJ calls for an independent international mechanism to protect journalists from surveillance",
+      "url": "https://www.ifj.org/media-centre/news/detail/category/brave/article/ifj-calls-establishment-independent-international-mechanism-protect-journalists-surveillance"
+    },
+    {
+      "title": "IFJ: Lebanon — journalist targeted and killed by Israeli airstrikes",
+      "url": "https://www.ifj.org/media-centre/news/detail/article/lebanon-journalist-targeted-and-killed-by-israeli-airstrikes-while-reporting-on-the-war-in-southern-lebanon"
+    },
+    {
+      "title": "Міжнародна федерація журналістів пропонує створити механізм захисту медійників від стеження",
+      "url": "https://news.promedia.report/article/mfzh-proponuie-mekhanizm-zakhystu-zhurnalistiv-vid-stezhennia"
+    }
+  ],
+  "updated": "2026-11-25"
+}

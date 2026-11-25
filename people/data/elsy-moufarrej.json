@@ -1,0 +1,46 @@
+{
+  "slug": "elsy-moufarrej",
+  "group": "intl",
+  "country": "Ліван",
+  "kind": "manager",
+  "name": {
+    "uk": "Ельсі Муфаррідж",
+    "en": "Elsy Moufarrej"
+  },
+  "sort": {
+    "uk": "Муфаррідж Ельсі",
+    "en": "Moufarrej Elsy"
+  },
+  "aliases": [
+    "Elsy Moufarrej"
+  ],
+  "role": {
+    "uk": "очільниця Союзу журналістів Лівану",
+    "en": "President of the Union of Journalists in Lebanon"
+  },
+  "summary": {
+    "uk": "Очільниця Союзу журналістів Лівану; говорить про стеження як інструмент залякування журналістів.",
+    "en": "President of the Union of Journalists in Lebanon; describes surveillance as a tool to intimidate journalists."
+  },
+  "bio": {
+    "uk": "Ельсі Муфаррідж — очільниця Союзу журналістів Лівану.\n\nУ листопаді 2026 року на форумі Міжнародної федерації журналістів у Брюсселі говорила про смертельну ціну стеження, нагадавши про загибель ліванської журналістки Амаль Халіль. За словами пані Ельсі, стеження використовують не лише для збирання інформації, а й щоб залякувати журналістів і полювати на них.",
+    "en": "Elsy Moufarrej is President of the Union of Journalists in Lebanon.\n\nAt an IFJ forum in Brussels in November 2026 she spoke about the deadly cost of surveillance, citing the killing of Lebanese journalist Amal Khalil, and said surveillance is used not only to collect information but also to intimidate and target journalists."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Союз журналістів Лівану (очільниця)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "IFJ: IFJ calls for an independent international mechanism to protect journalists from surveillance",
+      "url": "https://www.ifj.org/media-centre/news/detail/category/brave/article/ifj-calls-establishment-independent-international-mechanism-protect-journalists-surveillance"
+    },
+    {
+      "title": "Міжнародна федерація журналістів пропонує створити механізм захисту медійників від стеження",
+      "url": "https://news.promedia.report/article/mfzh-proponuie-mekhanizm-zakhystu-zhurnalistiv-vid-stezhennia"
+    }
+  ],
+  "updated": "2026-11-25"
+}

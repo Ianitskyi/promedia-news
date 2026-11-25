@@ -1,0 +1,46 @@
+{
+  "slug": "zuliana-lainez",
+  "group": "intl",
+  "country": "Перу",
+  "kind": "manager",
+  "name": {
+    "uk": "Зуліана Лайнес",
+    "en": "Zuliana Lainez"
+  },
+  "sort": {
+    "uk": "Лайнес Зуліана",
+    "en": "Lainez Zuliana"
+  },
+  "aliases": [
+    "Zuliana Lainez"
+  ],
+  "role": {
+    "uk": "перуанська журналістка, президентка Міжнародної федерації журналістів",
+    "en": "Peruvian journalist, President of the International Federation of Journalists"
+  },
+  "summary": {
+    "uk": "Президентка Міжнародної федерації журналістів, найбільшої у світі спілки медійників.",
+    "en": "President of the International Federation of Journalists, the world's largest organisation of journalists."
+  },
+  "bio": {
+    "uk": "Зуліана Лайнес — перуанська журналістка, президентка Міжнародної федерації журналістів (МФЖ).\n\nУ листопаді 2026 року на форумі МФЖ «Зламана тиша: журналісти під стеженням» у Брюсселі заявила, що журналісти не повинні самотужки протистояти стеженню, а відповідальність несуть уряди, роботодавці й технологічні компанії.",
+    "en": "Zuliana Lainez is a Peruvian journalist and President of the International Federation of Journalists (IFJ).\n\nAt the IFJ forum \"Hacked silence: Journalists under surveillance\" in Brussels in November 2026 she said journalists cannot be expected to face surveillance alone and placed responsibility on governments, employers and technology companies."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Міжнародна федерація журналістів (президентка)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "IFJ: IFJ calls for an independent international mechanism to protect journalists from surveillance",
+      "url": "https://www.ifj.org/media-centre/news/detail/category/brave/article/ifj-calls-establishment-independent-international-mechanism-protect-journalists-surveillance"
+    },
+    {
+      "title": "Міжнародна федерація журналістів пропонує створити механізм захисту медійників від стеження",
+      "url": "https://news.promedia.report/article/mfzh-proponuie-mekhanizm-zakhystu-zhurnalistiv-vid-stezhennia"
+    }
+  ],
+  "updated": "2026-11-25"
+}

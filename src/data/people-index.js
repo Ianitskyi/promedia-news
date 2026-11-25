@@ -37,6 +37,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "amal-khalil",
+    "tag": "Амаль Халіль",
+    "aliases": [
+      "Amal Khalil"
+    ],
+    "name": {
+      "uk": "Амаль Халіль",
+      "en": "Amal Khalil"
+    },
+    "role": {
+      "uk": "ліванська журналістка, кореспондентка газети Al-Akhbar; загинула 22 квітня 2026 року",
+      "en": "Lebanese journalist, correspondent for Al-Akhbar; killed on 22 April 2026"
+    },
+    "summary": {
+      "uk": "Досвідчена кореспондентка ліванської щоденної газети Al-Akhbar, загинула на півдні Лівану 22 квітня 2026 року.",
+      "en": "Veteran correspondent for the Lebanese daily Al-Akhbar, killed in southern Lebanon on 22 April 2026."
+    }
+  },
+  {
     "slug": "anastasiia-abramets",
     "tag": "Анастасія Абрамець",
     "aliases": [],
@@ -1186,6 +1205,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "elsy-moufarrej",
+    "tag": "Ельсі Муфаррідж",
+    "aliases": [
+      "Elsy Moufarrej"
+    ],
+    "name": {
+      "uk": "Ельсі Муфаррідж",
+      "en": "Elsy Moufarrej"
+    },
+    "role": {
+      "uk": "очільниця Союзу журналістів Лівану",
+      "en": "President of the Union of Journalists in Lebanon"
+    },
+    "summary": {
+      "uk": "Очільниця Союзу журналістів Лівану; говорить про стеження як інструмент залякування журналістів.",
+      "en": "President of the Union of Journalists in Lebanon; describes surveillance as a tool to intimidate journalists."
+    }
+  },
+  {
     "slug": "andy-sullivan",
     "tag": "Енді Салліван",
     "aliases": [],
@@ -1200,6 +1238,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Кореспондент Reuters у Вашингтоні, пише про внутрішню політику США; член переговорної команди профспілки.",
       "en": "Reuters correspondent in Washington covering US domestic policy; member of the union's bargaining committee."
+    }
+  },
+  {
+    "slug": "anthony-bellanger",
+    "tag": "Ентоні Белланже",
+    "aliases": [
+      "Anthony Bellanger"
+    ],
+    "name": {
+      "uk": "Ентоні Белланже",
+      "en": "Anthony Bellanger"
+    },
+    "role": {
+      "uk": "генеральний секретар Міжнародної федерації журналістів",
+      "en": "General Secretary of the International Federation of Journalists"
+    },
+    "summary": {
+      "uk": "Генеральний секретар Міжнародної федерації журналістів; закликає жорсткіше регулювати компанії, що продають технології стеження.",
+      "en": "General Secretary of the International Federation of Journalists; calls for stronger rules for companies selling surveillance technology."
     }
   },
   {
@@ -1380,6 +1437,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Медіаменеджер, який розбудовує модель членства The Kyiv Independent; співзасновник The Fix.",
       "en": "Media manager behind The Kyiv Independent's membership model; co-founder of The Fix."
+    }
+  },
+  {
+    "slug": "zuliana-lainez",
+    "tag": "Зуліана Лайнес",
+    "aliases": [
+      "Zuliana Lainez"
+    ],
+    "name": {
+      "uk": "Зуліана Лайнес",
+      "en": "Zuliana Lainez"
+    },
+    "role": {
+      "uk": "перуанська журналістка, президентка Міжнародної федерації журналістів",
+      "en": "Peruvian journalist, President of the International Federation of Journalists"
+    },
+    "summary": {
+      "uk": "Президентка Міжнародної федерації журналістів, найбільшої у світі спілки медійників.",
+      "en": "President of the International Federation of Journalists, the world's largest organisation of journalists."
     }
   },
   {
@@ -2465,6 +2541,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Автор книжки «Між світом і мною», колишній кореспондент The Atlantic; співзасновник PEN Writes US.",
       "en": "Author of Between the World and Me and former correspondent for The Atlantic; co-founder of PEN Writes US."
+    }
+  },
+  {
+    "slug": "thanasis-koukakis",
+    "tag": "Танасіс Кукакіс",
+    "aliases": [
+      "Thanasis Koukakis"
+    ],
+    "name": {
+      "uk": "Танасіс Кукакіс",
+      "en": "Thanasis Koukakis"
+    },
+    "role": {
+      "uk": "грецький журналіст, за яким стежили за допомогою шпигунської програми Predator",
+      "en": "Greek journalist spied on with Predator spyware"
+    },
+    "summary": {
+      "uk": "Перший у Європі журналіст, щодо якого публічно підтвердили стеження шпигунською програмою Predator; оскаржує його в ЄСПЛ.",
+      "en": "The first journalist in Europe publicly confirmed to have been spied on with Predator spyware; challenging it at the ECHR."
     }
   },
   {

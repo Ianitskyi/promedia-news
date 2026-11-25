@@ -183,7 +183,14 @@ const TAG_LABELS_EN = {
   "Ізраїль": "Israel",
   "Дінау Менгесту": "Dinaw Mengestu",
   "Маша Гессен": "Masha Gessen",
-  "Юрій Винничук": "Yuriy Vynnychuk"
+  "Юрій Винничук": "Yuriy Vynnychuk",
+  "шпигунські програми": "spyware",
+  "Міжнародна федерація журналістів": "International Federation of Journalists",
+  "Зуліана Лайнес": "Zuliana Lainez",
+  "Ентоні Белланже": "Anthony Bellanger",
+  "Танасіс Кукакіс": "Thanasis Koukakis",
+  "Ельсі Муфаррідж": "Elsy Moufarrej",
+  "Амаль Халіль": "Amal Khalil"
 };
 
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
@@ -336,7 +343,14 @@ const TAG_LABELS_CRH = {
   "Ізраїль": "İsrail",
   "Дінау Менгесту": "Dinaw Mengestu",
   "Маша Гессен": "Masha Gessen",
-  "Юрій Винничук": "Yuriy Vynnychuk"
+  "Юрій Винничук": "Yuriy Vynnychuk",
+  "шпигунські програми": "casus programmları",
+  "Міжнародна федерація журналістів": "Halqara jurnalistler federatsiyası",
+  "Зуліана Лайнес": "Zuliana Lainez",
+  "Ентоні Белланже": "Anthony Bellanger",
+  "Танасіс Кукакіс": "Thanasis Koukakis",
+  "Ельсі Муфаррідж": "Elsy Moufarrej",
+  "Амаль Халіль": "Amal Khalil"
 };
 
 function tagLookupKey(tag) {

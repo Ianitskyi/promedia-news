@@ -1,0 +1,54 @@
+{
+  "slug": "thanasis-koukakis",
+  "group": "intl",
+  "country": "Греція",
+  "kind": "journalist",
+  "name": {
+    "uk": "Танасіс Кукакіс",
+    "en": "Thanasis Koukakis"
+  },
+  "sort": {
+    "uk": "Кукакіс Танасіс",
+    "en": "Koukakis Thanasis"
+  },
+  "aliases": [
+    "Thanasis Koukakis"
+  ],
+  "role": {
+    "uk": "грецький журналіст, за яким стежили за допомогою шпигунської програми Predator",
+    "en": "Greek journalist spied on with Predator spyware"
+  },
+  "summary": {
+    "uk": "Перший у Європі журналіст, щодо якого публічно підтвердили стеження шпигунською програмою Predator; оскаржує його в ЄСПЛ.",
+    "en": "The first journalist in Europe publicly confirmed to have been spied on with Predator spyware; challenging it at the ECHR."
+  },
+  "bio": {
+    "uk": "Танасіс Кукакіс — грецький журналіст. 2021 року його телефон щонайменше два місяці був заражений шпигунською програмою Predator; це перший публічно підтверджений випадок, коли за журналістом у Європі стежили за її допомогою. 2022 року він дізнався, що за ним стежила й грецька Національна розвідувальна служба.\n\nУ серпні 2026 року, після того як Генеральний прокурор Верховного суду Греції відмовився знову відкрити справу, його адвокати звернулися до Європейського суду з прав людини. У листопаді 2026 року пан Танасіс розповів про свій досвід на форумі Міжнародної федерації журналістів у Брюсселі.",
+    "en": "Thanasis Koukakis is a Greek journalist. In 2021 his phone was infected with Predator spyware for at least two months — the first publicly confirmed case of a journalist in Europe spied on with Predator. In 2022 he learned that Greece's National Intelligence Service had also monitored him.\n\nIn August 2026, after Greece's Supreme Court Prosecutor refused to reopen the case, his lawyers applied to the European Court of Human Rights. In November 2026 he spoke about his case at an IFJ forum in Brussels."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Греція"
+    ],
+    [
+      "Справа",
+      "скарга до ЄСПЛ щодо стеження (2026)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "IFJ: IFJ calls for an independent international mechanism to protect journalists from surveillance",
+      "url": "https://www.ifj.org/media-centre/news/detail/category/brave/article/ifj-calls-establishment-independent-international-mechanism-protect-journalists-surveillance"
+    },
+    {
+      "title": "IFJ: Greece — journalist moves surveillance case to the ECHR",
+      "url": "https://www.ifj.org/media-centre/news/detail/article/greece-journalist-moves-surveillance-case-to-the-echr"
+    },
+    {
+      "title": "Міжнародна федерація журналістів пропонує створити механізм захисту медійників від стеження",
+      "url": "https://news.promedia.report/article/mfzh-proponuie-mekhanizm-zakhystu-zhurnalistiv-vid-stezhennia"
+    }
+  ],
+  "updated": "2026-11-25"
+}
