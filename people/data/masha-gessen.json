@@ -1,0 +1,52 @@
+{
+  "slug": "masha-gessen",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Маша Гессен",
+    "en": "Masha Gessen"
+  },
+  "sort": {
+    "uk": "Гессен Маша",
+    "en": "Gessen Masha"
+  },
+  "aliases": [
+    "M. Gessen",
+    "Masha Gessen",
+    "Марія Гессен"
+  ],
+  "role": {
+    "uk": "американська журналістка й письменниця російського походження",
+    "en": "Russian-American journalist and author"
+  },
+  "summary": {
+    "uk": "Колишня віцепрезидентка PEN America, у 2023 році пішли з посади на знак протесту; співзасновниця PEN Writes US. Небінарна персона, просить писати про себе в множині.",
+    "en": "Former vice-president of PEN America who resigned in protest in 2023; co-founder of PEN Writes US. Gessen is non-binary and uses they/them pronouns."
+  },
+  "bio": {
+    "uk": "Маша Гессен народилися 1967 року в Москві, підлітками емігрували з родиною до США. Тривалий час працювали журналістками в Росії, згодом — у The New Yorker. Автор книжок про Росію, зокрема «Людина без обличчя» про Володимира Путіна та «Майбутнє — це історія», яка отримала Національну книжкову премію США (2017).\n\nДев'ять років були в правлінні PEN America. У травні 2023 року пішли з посади віцепрезидентки після того, як на фестивалі «Голоси світу» скасували дискусію з російськими авторами-емігрантами, яку вони мали модерувати: українські письменники-військові Артем Чапай та Артем Чех відмовилися виступати на одному фестивалі з росіянами. У листопаді 2026 року стали одними із засновників PEN Writes US.",
+    "en": "Masha Gessen was born in 1967 in Moscow and emigrated with their family to the United States as a teenager. They worked for many years as a journalist in Russia and later at The New Yorker. Their books about Russia include The Man Without a Face, about Vladimir Putin, and The Future Is History, which won the US National Book Award (2017).\n\nGessen served on the board of PEN America for nine years. In May 2023 they resigned as vice-president after the World Voices festival cancelled a panel with exiled Russian writers that they were due to moderate; the Ukrainian soldier-writers Artem Chapeye and Artem Chekh had refused to appear at the same festival as Russians. In November 2026 Gessen co-founded PEN Writes US."
+  },
+  "facts": [
+    [
+      "Відзнаки",
+      "Національна книжкова премія США (2017)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: M. Gessen",
+      "url": "https://en.wikipedia.org/wiki/M._Gessen"
+    },
+    {
+      "title": "PEN America: Statement on the resignation of trustee Masha Gessen",
+      "url": "https://pen.org/press-release/statement-by-pen-america-on-the-resignation-of-trustee-masha-gessen/"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

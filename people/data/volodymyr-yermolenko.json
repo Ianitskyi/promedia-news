@@ -1,0 +1,50 @@
+{
+  "slug": "volodymyr-yermolenko",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Володимир Єрмоленко",
+    "en": "Volodymyr Yermolenko"
+  },
+  "sort": {
+    "uk": "Єрмоленко Володимир",
+    "en": "Yermolenko Volodymyr"
+  },
+  "aliases": [
+    "Volodymyr Yermolenko"
+  ],
+  "role": {
+    "uk": "український філософ і журналіст, президент Українського ПЕН",
+    "en": "Ukrainian philosopher and journalist, president of PEN Ukraine"
+  },
+  "summary": {
+    "uk": "Президент Українського ПЕН; голова капітули Премії імені Юрія Шевельова.",
+    "en": "President of PEN Ukraine; chairs the jury of the Yuri Shevelov Prize."
+  },
+  "bio": {
+    "uk": "Володимир Єрмоленко — український філософ, письменник і журналіст, президент Українського ПЕН і голова капітули Премії імені Юрія Шевельова за найкращу есеїстику.\n\nУ березні 2025 року, коли загальні збори Українського ПЕН відмовилися виключити Юрія Винничука, пояснив, що він і більшість Виконавчої ради голосували за виключення, але за статутом найвищий орган — загальні збори, і їхнє рішення треба поважати.",
+    "en": "Volodymyr Yermolenko is a Ukrainian philosopher, writer and journalist, president of PEN Ukraine and chair of the jury of the Yuri Shevelov Prize for the best essay writing.\n\nIn March 2025, when PEN Ukraine's general assembly refused to expel Yuriy Vynnychuk, he explained that he and most of the Executive Board had voted for expulsion, but under the charter the general assembly is the highest body and its decision must be respected."
+  },
+  "facts": [
+    [
+      "Організації",
+      "Український ПЕН (президент)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Українська правда. Життя: Що відбувається довкола Українського ПЕН",
+      "url": "https://life.pravda.com.ua/culture/shcho-vidbuvayetsya-dovkola-ukrajinskogo-pen-pislya-skandalu-z-vinnichukom-detali-307229/"
+    },
+    {
+      "title": "Укрінформ: Премія Шевельова оголосила лонглист",
+      "url": "https://www.ukrinform.ua/rubric-culture/4182165-premia-sevelova-ogolosila-longlist-nominantiv.html"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

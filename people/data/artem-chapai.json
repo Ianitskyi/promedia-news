@@ -1,0 +1,52 @@
+{
+  "slug": "artem-chapai",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Артем Чапай",
+    "en": "Artem Chapeye"
+  },
+  "sort": {
+    "uk": "Чапай Артем",
+    "en": "Chapeye Artem"
+  },
+  "aliases": [
+    "Антон Водяний",
+    "Anton Vodianyi",
+    "Artem Chapai",
+    "Artem Chapeye"
+  ],
+  "role": {
+    "uk": "український письменник, репортер і перекладач, військовослужбовець ЗСУ",
+    "en": "Ukrainian writer, reporter and translator, serving in the Armed Forces of Ukraine"
+  },
+  "summary": {
+    "uk": "Артем Чапай — літературний псевдонім Антона Водяного. Автор книжки «Не народжені для війни»; від лютого 2022 року служить у ЗСУ.",
+    "en": "Artem Chapeye is the pen name of Anton Vodianyi. Author of Not Born for War; has served in the Ukrainian army since February 2022."
+  },
+  "bio": {
+    "uk": "Артем Чапай — літературний псевдонім Антона Водяного. Народився 1981 року в Коломиї, навчався в Києво-Могилянській академії. Письменник, репортер і перекладач, автор 11 книжок, чотири з яких потрапляли до короткого списку премії «Книга року BBC». Від лютого 2022 року служить у Збройних силах України. Його книжка про фронтовий досвід «Не народжені для війни» вийшла кількома мовами.\n\nУ травні 2023 року разом з Артемом Чехом відмовився виступати на фестивалі PEN America «Голоси світу», бо на ньому мала бути дискусія з російськими авторами: як військовослужбовці вони не могли з'являтися під однією «парасолькою» з росіянами.",
+    "en": "Artem Chapeye is the pen name of Anton Vodianyi. He was born in 1981 in Kolomyia, in western Ukraine, and studied at Kyiv-Mohyla Academy. A writer, reporter and translator, he is the author of 11 books, four of which were shortlisted for the BBC Ukrainian Book of the Year award. He has served in the Armed Forces of Ukraine since February 2022. His book about his frontline experience, Not Born for War, has been published in several languages.\n\nIn May 2023, together with Artem Chekh, he withdrew from PEN America's World Voices festival because it was to include a panel with Russian writers: as serving soldiers, they could not appear under the same \"umbrella\" as Russians."
+  },
+  "facts": [],
+  "sources": [
+    {
+      "title": "Український ПЕН: Артем Чапай",
+      "url": "https://pen.org.ua/en/members/chapaj-artem"
+    },
+    {
+      "title": "Українська правда. Життя: інтерв'ю з Артемом Чапаєм",
+      "url": "https://life.pravda.com.ua/culture/artem-chapay-nova-antiutopiya-ta-zahidniy-uspih-frontovoji-prozi-315655/"
+    },
+    {
+      "title": "Kyiv Post: When bombs are falling, can writers from across the warring sides still talk?",
+      "url": "https://www.kyivpost.com/post/17607"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

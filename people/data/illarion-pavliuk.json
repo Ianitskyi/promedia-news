@@ -1,0 +1,46 @@
+{
+  "slug": "illarion-pavliuk",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "other",
+  "name": {
+    "uk": "Ілларіон Павлюк",
+    "en": "Illarion Pavliuk"
+  },
+  "sort": {
+    "uk": "Павлюк Ілларіон",
+    "en": "Pavliuk Illarion"
+  },
+  "aliases": [
+    "Іларіон Павлюк",
+    "Illarion Pavlyuk"
+  ],
+  "role": {
+    "uk": "український письменник і журналіст, офіцер ЗСУ",
+    "en": "Ukrainian writer and journalist, officer in the Armed Forces of Ukraine"
+  },
+  "summary": {
+    "uk": "Один із найтиражованіших сучасних українських авторів; у березні 2025 року вийшов з Українського ПЕН на знак протесту.",
+    "en": "One of Ukraine's best-selling contemporary authors; left PEN Ukraine in protest in March 2025."
+  },
+  "bio": {
+    "uk": "Ілларіон Павлюк — український письменник і журналіст, автор бестселера «Я бачу, вас цікавить пітьма». Після початку повномасштабного вторгнення служить у Збройних силах України.\n\nУ березні 2025 року вийшов з Українського ПЕН після того, як загальні збори відмовилися виключити Юрія Винничука. Він написав, що таке рішення більше пасувало б профспілці: «Просто я вступав не в профспілку».",
+    "en": "Illarion Pavliuk is a Ukrainian writer and journalist, author of the bestseller I See You Are Interested in Darkness. Since the full-scale invasion he has served in the Armed Forces of Ukraine.\n\nIn March 2025 he left PEN Ukraine after the general assembly refused to expel Yuriy Vynnychuk, writing that the decision would have suited a trade union better: \"I just didn't join a trade union.\""
+  },
+  "facts": [],
+  "sources": [
+    {
+      "title": "Forbes Україна: Ілларіон Павлюк залишає PEN Ukraine",
+      "url": "https://forbes.ua/news/pismennik-illarion-pavlyuk-zalishae-pen-ukraine-28032025-28375"
+    },
+    {
+      "title": "Факти ICTV: Павлюк і Денисенко йдуть з Українського ПЕН",
+      "url": "https://fakty.com.ua/ua/styl-zhyttia/show/20250328-cherez-rishennya-zalyshyty-vynnychuka-pavlyuk-i-denysenko-jdut-z-ukrayinskogo-pen/"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

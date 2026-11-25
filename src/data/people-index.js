@@ -269,6 +269,48 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "artem-chapai",
+    "tag": "Артем Чапай",
+    "aliases": [
+      "Антон Водяний",
+      "Anton Vodianyi",
+      "Artem Chapai",
+      "Artem Chapeye"
+    ],
+    "name": {
+      "uk": "Артем Чапай",
+      "en": "Artem Chapeye"
+    },
+    "role": {
+      "uk": "український письменник, репортер і перекладач, військовослужбовець ЗСУ",
+      "en": "Ukrainian writer, reporter and translator, serving in the Armed Forces of Ukraine"
+    },
+    "summary": {
+      "uk": "Артем Чапай — літературний псевдонім Антона Водяного. Автор книжки «Не народжені для війни»; від лютого 2022 року служить у ЗСУ.",
+      "en": "Artem Chapeye is the pen name of Anton Vodianyi. Author of Not Born for War; has served in the Ukrainian army since February 2022."
+    }
+  },
+  {
+    "slug": "artem-chekh",
+    "tag": "Артем Чех",
+    "aliases": [
+      "Артем Чередник",
+      "Artem Cherednyk"
+    ],
+    "name": {
+      "uk": "Артем Чех",
+      "en": "Artem Chekh"
+    },
+    "role": {
+      "uk": "український письменник і журналіст, військовослужбовець ЗСУ",
+      "en": "Ukrainian writer and journalist, serving in the Armed Forces of Ukraine"
+    },
+    "summary": {
+      "uk": "Артем Чех — літературний псевдонім Артема Чередника. Воював на Донбасі в 2015–2016 роках, від 2022 року знову служить у ЗСУ.",
+      "en": "Artem Chekh is the pen name of Artem Cherednyk. He fought in Donbas in 2015–2016 and has served in the Ukrainian army again since 2022."
+    }
+  },
+  {
     "slug": "a-g-sulzberger",
     "tag": "Артур Грегг Сульцбергер",
     "aliases": [
@@ -417,6 +459,26 @@ export const PEOPLE = [
     "summary": {
       "uk": "Перший американський журналіст, загиблий у війні в Україні: його розстріляли російські військові в Ірпені 13 березня 2022 року.",
       "en": "The first American journalist killed covering the war in Ukraine, shot by Russian troops in Irpin on 13 March 2022."
+    }
+  },
+  {
+    "slug": "viet-thanh-nguyen",
+    "tag": "В'єт Тхань Нгуєн",
+    "aliases": [
+      "Viet Thanh Nguyen",
+      "Нгуєн Тхань В'єт"
+    ],
+    "name": {
+      "uk": "В'єт Тхань Нгуєн",
+      "en": "Viet Thanh Nguyen"
+    },
+    "role": {
+      "uk": "американський письменник в'єтнамського походження, лауреат Пулітцерівської премії",
+      "en": "Vietnamese-American novelist, Pulitzer Prize winner"
+    },
+    "summary": {
+      "uk": "Автор роману «Співчувальник», за який отримав Пулітцерівську премію; співзасновник PEN Writes US.",
+      "en": "Author of The Sympathizer, which won the Pulitzer Prize; co-founder of PEN Writes US."
     }
   },
   {
@@ -623,6 +685,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Операційна директорка бучанського онлайн-медіа Thebuchacity; з ШІ створила для редакції бота й дашборд для моніторингу міськради.",
       "en": "Operations director of the Bucha online outlet Thebuchacity; built an AI-assisted bot and dashboard to monitor the city council."
+    }
+  },
+  {
+    "slug": "volodymyr-yermolenko",
+    "tag": "Володимир Єрмоленко",
+    "aliases": [
+      "Volodymyr Yermolenko"
+    ],
+    "name": {
+      "uk": "Володимир Єрмоленко",
+      "en": "Volodymyr Yermolenko"
+    },
+    "role": {
+      "uk": "український філософ і журналіст, президент Українського ПЕН",
+      "en": "Ukrainian philosopher and journalist, president of PEN Ukraine"
+    },
+    "summary": {
+      "uk": "Президент Українського ПЕН; голова капітули Премії імені Юрія Шевельова.",
+      "en": "President of PEN Ukraine; chairs the jury of the Yuri Shevelov Prize."
     }
   },
   {
@@ -996,6 +1077,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "dinaw-mengestu",
+    "tag": "Дінау Менгесту",
+    "aliases": [
+      "Dinaw Mengestu"
+    ],
+    "name": {
+      "uk": "Дінау Менгесту",
+      "en": "Dinaw Mengestu"
+    },
+    "role": {
+      "uk": "американський письменник ефіопського походження, колишній президент PEN America",
+      "en": "Ethiopian-American novelist, former president of PEN America"
+    },
+    "summary": {
+      "uk": "У липні 2026 року пішов із посади президента PEN America, а в листопаді став одним із засновників PEN Writes US.",
+      "en": "Resigned as president of PEN America in July 2026 and in November co-founded PEN Writes US."
+    }
+  },
+  {
     "slug": "dmytro-labutkin",
     "tag": "Дмитро Лабуткін",
     "aliases": [
@@ -1319,6 +1419,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "illarion-pavliuk",
+    "tag": "Ілларіон Павлюк",
+    "aliases": [
+      "Іларіон Павлюк",
+      "Illarion Pavlyuk"
+    ],
+    "name": {
+      "uk": "Ілларіон Павлюк",
+      "en": "Illarion Pavliuk"
+    },
+    "role": {
+      "uk": "український письменник і журналіст, офіцер ЗСУ",
+      "en": "Ukrainian writer and journalist, officer in the Armed Forces of Ukraine"
+    },
+    "summary": {
+      "uk": "Один із найтиражованіших сучасних українських авторів; у березні 2025 року вийшов з Українського ПЕН на знак протесту.",
+      "en": "One of Ukraine's best-selling contemporary authors; left PEN Ukraine in protest in March 2025."
+    }
+  },
+  {
     "slug": "camilo-rodriguez-chaverri",
     "tag": "Каміло Родрігес Чаверрі",
     "aliases": [],
@@ -1407,6 +1527,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Костянтин Либеров — український фотограф, працює разом із дружиною Владою Либеровою.",
       "en": "Kostiantyn Liberov is a Ukrainian photographer who works together with his wife Vlada Liberova."
+    }
+  },
+  {
+    "slug": "larysa-denysenko",
+    "tag": "Лариса Денисенко",
+    "aliases": [
+      "Larysa Denysenko"
+    ],
+    "name": {
+      "uk": "Лариса Денисенко",
+      "en": "Larysa Denysenko"
+    },
+    "role": {
+      "uk": "українська письменниця, юристка й правозахисниця",
+      "en": "Ukrainian writer, lawyer and human rights advocate"
+    },
+    "summary": {
+      "uk": "Авторка книжок для дорослих і дітей; у березні 2025 року вийшла з Українського ПЕН на знак протесту.",
+      "en": "Author of books for adults and children; left PEN Ukraine in protest in March 2025."
     }
   },
   {
@@ -1573,6 +1712,27 @@ export const PEOPLE = [
     "summary": {
       "uk": "Воєнна кореспондентка, яка таємно потрапила до Нормандії під час висадки союзників 1944 року.",
       "en": "War correspondent who smuggled herself to Normandy during the 1944 Allied landings."
+    }
+  },
+  {
+    "slug": "masha-gessen",
+    "tag": "Маша Гессен",
+    "aliases": [
+      "M. Gessen",
+      "Masha Gessen",
+      "Марія Гессен"
+    ],
+    "name": {
+      "uk": "Маша Гессен",
+      "en": "Masha Gessen"
+    },
+    "role": {
+      "uk": "американська журналістка й письменниця російського походження",
+      "en": "Russian-American journalist and author"
+    },
+    "summary": {
+      "uk": "Колишня віцепрезидентка PEN America, у 2023 році пішли з посади на знак протесту; співзасновниця PEN Writes US. Небінарна персона, просить писати про себе в множині.",
+      "en": "Former vice-president of PEN America who resigned in protest in 2023; co-founder of PEN Writes US. Gessen is non-binary and uses they/them pronouns."
     }
   },
   {
@@ -2269,6 +2429,45 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "suzanne-nossel",
+    "tag": "Сюзанна Носсел",
+    "aliases": [
+      "Suzanne Nossel"
+    ],
+    "name": {
+      "uk": "Сюзанна Носсел",
+      "en": "Suzanne Nossel"
+    },
+    "role": {
+      "uk": "колишня генеральна директорка PEN America, очільниця Freedom House",
+      "en": "former chief executive of PEN America, head of Freedom House"
+    },
+    "summary": {
+      "uk": "Керувала PEN America з 2013 до кінця 2024 року; від січня 2025 року очолює правозахисну організацію Freedom House.",
+      "en": "Led PEN America from 2013 to the end of 2024; has headed the human rights organisation Freedom House since January 2025."
+    }
+  },
+  {
+    "slug": "ta-nehisi-coates",
+    "tag": "Та-Нехісі Коутс",
+    "aliases": [
+      "Ta-Nehisi Coates",
+      "Та-Негісі Коутс"
+    ],
+    "name": {
+      "uk": "Та-Нехісі Коутс",
+      "en": "Ta-Nehisi Coates"
+    },
+    "role": {
+      "uk": "американський есеїст і журналіст",
+      "en": "American essayist and journalist"
+    },
+    "summary": {
+      "uk": "Автор книжки «Між світом і мною», колишній кореспондент The Atlantic; співзасновник PEN Writes US.",
+      "en": "Author of Between the World and Me and former correspondent for The Atlantic; co-founder of PEN Writes US."
+    }
+  },
+  {
     "slug": "taras-prokopyshyn",
     "tag": "Тарас Прокопишин",
     "aliases": [],
@@ -2481,6 +2680,27 @@ export const PEOPLE = [
     "summary": {
       "uk": "Журналістка й медіаменеджерка, головна редакторка сайту NV, раніше вісім років очолювала сайт «Корреспондент.net».",
       "en": "Journalist and media manager, editor-in-chief of the NV website; previously led Korrespondent.net for eight years."
+    }
+  },
+  {
+    "slug": "yurii-vynnychuk",
+    "tag": "Юрій Винничук",
+    "aliases": [
+      "Yuriy Vynnychuk",
+      "Yurii Vynnychuk",
+      "Юрко Винничук"
+    ],
+    "name": {
+      "uk": "Юрій Винничук",
+      "en": "Yuriy Vynnychuk"
+    },
+    "role": {
+      "uk": "український письменник і журналіст зі Львова",
+      "en": "Ukrainian writer and journalist from Lviv"
+    },
+    "summary": {
+      "uk": "Автор роману «Танго смерті»; навесні 2025 року через його колонку в «Збручі» стався найгучніший внутрішній конфлікт Українського ПЕН.",
+      "en": "Author of the novel Tango of Death; in spring 2025 his column in Zbruch sparked PEN Ukraine's loudest internal conflict."
     }
   },
   {

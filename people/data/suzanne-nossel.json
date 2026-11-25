@@ -1,0 +1,50 @@
+{
+  "slug": "suzanne-nossel",
+  "group": "intl",
+  "country": "США",
+  "kind": "manager",
+  "name": {
+    "uk": "Сюзанна Носсел",
+    "en": "Suzanne Nossel"
+  },
+  "sort": {
+    "uk": "Носсел Сюзанна",
+    "en": "Nossel Suzanne"
+  },
+  "aliases": [
+    "Suzanne Nossel"
+  ],
+  "role": {
+    "uk": "колишня генеральна директорка PEN America, очільниця Freedom House",
+    "en": "former chief executive of PEN America, head of Freedom House"
+  },
+  "summary": {
+    "uk": "Керувала PEN America з 2013 до кінця 2024 року; від січня 2025 року очолює правозахисну організацію Freedom House.",
+    "en": "Led PEN America from 2013 to the end of 2024; has headed the human rights organisation Freedom House since January 2025."
+  },
+  "bio": {
+    "uk": "Сюзанна Носсел очолювала PEN America з 2013 року. За її керівництва річний бюджет організації зріс із 2 до понад 20 мільйонів доларів.\n\nУ 2024 році частина письменників звинуватила PEN America в недостатній реакції на війну в Газі й вимагала її відставки; через бойкоти організація скасувала літературну премію й фестиваль «Голоси світу». Наприкінці 2024 року пані Сюзанна оголосила про відхід, з січня 2025 року вона очолює Freedom House.",
+    "en": "Suzanne Nossel led PEN America from 2013. Under her leadership the organisation's annual budget grew from $2 million to more than $20 million.\n\nIn 2024 some writers accused PEN America of an inadequate response to the war in Gaza and demanded her resignation; boycotts forced the organisation to cancel its literary awards and the World Voices festival. At the end of 2024 she announced her departure, and since January 2025 she has headed Freedom House."
+  },
+  "facts": [
+    [
+      "Організації",
+      "PEN America (2013–2024), Freedom House (з 2025)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "AP: Longtime PEN America CEO Suzanne Nossel is stepping down",
+      "url": "https://abcnews.go.com/US/wireStory/longtime-pen-america-ceo-suzanne-nossel-stepping-head-115370517"
+    },
+    {
+      "title": "Publishers Weekly: Suzanne Nossel departs PEN America",
+      "url": "https://www.publishersweekly.com/pw/print/20241104/96383-suzanne-nossel-departs-pen-america.html"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

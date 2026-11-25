@@ -1,0 +1,51 @@
+{
+  "slug": "viet-thanh-nguyen",
+  "group": "intl",
+  "country": "США",
+  "kind": "other",
+  "name": {
+    "uk": "В'єт Тхань Нгуєн",
+    "en": "Viet Thanh Nguyen"
+  },
+  "sort": {
+    "uk": "Нгуєн В'єт Тхань",
+    "en": "Nguyen Viet Thanh"
+  },
+  "aliases": [
+    "Viet Thanh Nguyen",
+    "Нгуєн Тхань В'єт"
+  ],
+  "role": {
+    "uk": "американський письменник в'єтнамського походження, лауреат Пулітцерівської премії",
+    "en": "Vietnamese-American novelist, Pulitzer Prize winner"
+  },
+  "summary": {
+    "uk": "Автор роману «Співчувальник», за який отримав Пулітцерівську премію; співзасновник PEN Writes US.",
+    "en": "Author of The Sympathizer, which won the Pulitzer Prize; co-founder of PEN Writes US."
+  },
+  "bio": {
+    "uk": "В'єт Тхань Нгуєн народився 1971 року в місті Буонматхуот (Південний В'єтнам), 1975 року його родина як біженці перебралася до США. Здобув освіту в Каліфорнійському університеті в Берклі, багато років викладав в Університеті Південної Каліфорнії. Його роман «Співчувальник» отримав Пулітцерівську премію (2016); пише також колонки для The New York Times.\n\nУ листопаді 2026 року став одним із засновників PEN Writes US.",
+    "en": "Viet Thanh Nguyen was born in 1971 in Buôn Ma Thuột, South Vietnam; in 1975 his family came to the United States as refugees. He studied at the University of California, Berkeley, and taught for many years at the University of Southern California. His novel The Sympathizer won the Pulitzer Prize (2016); he also writes opinion pieces for The New York Times.\n\nIn November 2026 he co-founded PEN Writes US."
+  },
+  "facts": [
+    [
+      "Відзнаки",
+      "Пулітцерівська премія (2016), стипендія Макартурів (2017)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Viet Thanh Nguyen",
+      "url": "https://en.wikipedia.org/wiki/Viet_Thanh_Nguyen"
+    },
+    {
+      "title": "MacArthur Foundation: Viet Thanh Nguyen",
+      "url": "https://www.macfound.org/fellows/992/"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

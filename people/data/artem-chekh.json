@@ -1,0 +1,50 @@
+{
+  "slug": "artem-chekh",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Артем Чех",
+    "en": "Artem Chekh"
+  },
+  "sort": {
+    "uk": "Чех Артем",
+    "en": "Chekh Artem"
+  },
+  "aliases": [
+    "Артем Чередник",
+    "Artem Cherednyk"
+  ],
+  "role": {
+    "uk": "український письменник і журналіст, військовослужбовець ЗСУ",
+    "en": "Ukrainian writer and journalist, serving in the Armed Forces of Ukraine"
+  },
+  "summary": {
+    "uk": "Артем Чех — літературний псевдонім Артема Чередника. Воював на Донбасі в 2015–2016 роках, від 2022 року знову служить у ЗСУ.",
+    "en": "Artem Chekh is the pen name of Artem Cherednyk. He fought in Donbas in 2015–2016 and has served in the Ukrainian army again since 2022."
+  },
+  "bio": {
+    "uk": "Артем Чех — літературний псевдонім Артема Чередника. Народився 1985 року в Черкасах. У літературі — з 2007 року, коли переміг у конкурсі видавництва «Фоліо»; пише автобіографічну прозу. У 2015–2016 роках служив у ЗСУ на Донбасі, з 2022 року знову у війську.\n\nУ травні 2023 року разом з Артемом Чапаєм відмовився виступати на фестивалі PEN America «Голоси світу», бо на ньому мала бути дискусія з російськими авторами.",
+    "en": "Artem Chekh is the pen name of Artem Cherednyk. He was born in 1985 in Cherkasy, in central Ukraine. He entered literature in 2007 after winning a competition run by the publisher Folio, and writes autobiographical prose. He served in the Armed Forces of Ukraine in Donbas in 2015–2016 and rejoined the army in 2022.\n\nIn May 2023, together with Artem Chapeye, he withdrew from PEN America's World Voices festival because it was to include a panel with Russian writers."
+  },
+  "facts": [],
+  "sources": [
+    {
+      "title": "Український ПЕН: Artem Chekh",
+      "url": "https://pen.org.ua/en/members/chekh-artem"
+    },
+    {
+      "title": "Вікіпедія: Artem Chekh",
+      "url": "https://en.wikipedia.org/wiki/Artem_Chekh"
+    },
+    {
+      "title": "Kyiv Post: When bombs are falling, can writers from across the warring sides still talk?",
+      "url": "https://www.kyivpost.com/post/17607"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

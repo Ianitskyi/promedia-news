@@ -1,0 +1,50 @@
+{
+  "slug": "dinaw-mengestu",
+  "group": "intl",
+  "country": "США",
+  "kind": "other",
+  "name": {
+    "uk": "Дінау Менгесту",
+    "en": "Dinaw Mengestu"
+  },
+  "sort": {
+    "uk": "Менгесту Дінау",
+    "en": "Mengestu Dinaw"
+  },
+  "aliases": [
+    "Dinaw Mengestu"
+  ],
+  "role": {
+    "uk": "американський письменник ефіопського походження, колишній президент PEN America",
+    "en": "Ethiopian-American novelist, former president of PEN America"
+  },
+  "summary": {
+    "uk": "У липні 2026 року пішов із посади президента PEN America, а в листопаді став одним із засновників PEN Writes US.",
+    "en": "Resigned as president of PEN America in July 2026 and in November co-founded PEN Writes US."
+  },
+  "bio": {
+    "uk": "Дінау Менгесту народився 1978 року в Аддис-Абебі (Ефіопія), дитиною переїхав до США. Автор романів «Чудові речі, які несе небо» (2007), «Як читати повітря» (2010), «Усі наші імена» (2014) і «Хтось, як ми» (2024). Лауреат стипендії Фонду Макартурів (2012).\n\nОчолював PEN America як президент. У липні 2026 року пішов із посади після того, як організація оприлюднила звіт про ізоляцію єврейських та ізраїльських письменників: він назвав звіт доказом того, що PEN America захищає свободу слова нерівно. У листопаді 2026 року став одним із засновників альтернативної організації PEN Writes US.",
+    "en": "Dinaw Mengestu was born in 1978 in Addis Ababa, Ethiopia, and moved to the United States as a child. He is the author of the novels The Beautiful Things That Heaven Bears (2007), How to Read the Air (2010), All Our Names (2014) and Someone Like Us (2024). He is a MacArthur Fellow (2012).\n\nHe served as president of PEN America. In July 2026 he resigned after the organisation published a report on the isolation of Jewish and Israeli writers, calling it proof that PEN America does not defend free expression equally. In November 2026 he co-founded the alternative organisation PEN Writes US."
+  },
+  "facts": [
+    [
+      "Організації",
+      "PEN America (президент до липня 2026), PEN Writes US (співзасновник)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Dinaw Mengestu",
+      "url": "https://en.wikipedia.org/wiki/Dinaw_Mengestu"
+    },
+    {
+      "title": "JTA: US authors, artists launch PEN America offshoot",
+      "url": "https://www.jta.org/2026/11/24/united-states/pen-america-breakaway-ta-nehisi-coates-gaza"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "ta-nehisi-coates",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Та-Нехісі Коутс",
+    "en": "Ta-Nehisi Coates"
+  },
+  "sort": {
+    "uk": "Коутс Та-Нехісі",
+    "en": "Coates Ta-Nehisi"
+  },
+  "aliases": [
+    "Ta-Nehisi Coates",
+    "Та-Негісі Коутс"
+  ],
+  "role": {
+    "uk": "американський есеїст і журналіст",
+    "en": "American essayist and journalist"
+  },
+  "summary": {
+    "uk": "Автор книжки «Між світом і мною», колишній кореспондент The Atlantic; співзасновник PEN Writes US.",
+    "en": "Author of Between the World and Me and former correspondent for The Atlantic; co-founder of PEN Writes US."
+  },
+  "bio": {
+    "uk": "Та-Нехісі Коутс народився 1975 року в Балтиморі (штат Меріленд). Навчався в Говардському університеті. Як національний кореспондент журналу The Atlantic писав про расу, історію й політику США. Його книжка «Між світом і мною» отримала Національну книжкову премію США (2015), того ж року він став лауреатом стипендії Фонду Макартурів.\n\nУ листопаді 2026 року став одним із засновників PEN Writes US — альтернативи PEN America, що виникла через суперечку про війну в Газі й бойкоти Ізраїлю.",
+    "en": "Ta-Nehisi Coates was born in 1975 in Baltimore, Maryland, and studied at Howard University. As a national correspondent for The Atlantic he wrote about race, history and politics in the United States. His book Between the World and Me won the US National Book Award (2015), and that year he became a MacArthur Fellow.\n\nIn November 2026 he co-founded PEN Writes US, an alternative to PEN America that grew out of the dispute over the war in Gaza and boycotts of Israel."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "The Atlantic (національний кореспондент)"
+    ],
+    [
+      "Відзнаки",
+      "Національна книжкова премія США (2015), стипендія Макартурів (2015)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Ta-Nehisi Coates",
+      "url": "https://en.wikipedia.org/wiki/Ta-Nehisi_Coates"
+    },
+    {
+      "title": "MacArthur Foundation: Ta-Nehisi Coates",
+      "url": "https://www.macfound.org/fellows/931/"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "yurii-vynnychuk",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "other",
+  "name": {
+    "uk": "Юрій Винничук",
+    "en": "Yuriy Vynnychuk"
+  },
+  "sort": {
+    "uk": "Винничук Юрій",
+    "en": "Vynnychuk Yuriy"
+  },
+  "aliases": [
+    "Yuriy Vynnychuk",
+    "Yurii Vynnychuk",
+    "Юрко Винничук"
+  ],
+  "role": {
+    "uk": "український письменник і журналіст зі Львова",
+    "en": "Ukrainian writer and journalist from Lviv"
+  },
+  "summary": {
+    "uk": "Автор роману «Танго смерті»; навесні 2025 року через його колонку в «Збручі» стався найгучніший внутрішній конфлікт Українського ПЕН.",
+    "en": "Author of the novel Tango of Death; in spring 2025 his column in Zbruch sparked PEN Ukraine's loudest internal conflict."
+  },
+  "bio": {
+    "uk": "Юрій Винничук — львівський письменник, журналіст і видавець, автор багатьох романів, зокрема «Танго смерті», та упорядник збірок львівських легенд.\n\nНаприкінці лютого 2025 року він опублікував у виданні «Збруч» колонку «Була колись розпусна епоха», написану як відгук на історію викладача Львівського університету, якого колишня студентка звинуватила в домаганнях. Колонку розкритикували як сексистську. На початку березня Виконавча рада Українського ПЕН виключила його з організації, але 27 березня загальні збори таємним голосуванням (74 проти 42) залишили його. На знак протесту з ПЕН вийшли Ілларіон Павлюк і Лариса Денисенко.",
+    "en": "Yuriy Vynnychuk is a Lviv-based writer, journalist and publisher, the author of many novels, including Tango of Death, and compiler of collections of Lviv legends.\n\nAt the end of February 2025 he published a column titled \"Once There Was a Debauched Era\" in the outlet Zbruch, written in response to the case of a University of Lviv lecturer whom a former student had accused of harassment. The column was criticised as sexist. In early March PEN Ukraine's Executive Board expelled him, but on 27 March the general assembly voted by secret ballot (74 to 42) to keep him. In protest, Illarion Pavliuk and Larysa Denysenko left PEN Ukraine."
+  },
+  "facts": [
+    [
+      "Організації",
+      "Український ПЕН"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Юрій Винничук",
+      "url": "https://uk.wikipedia.org/wiki/Юрій_Винничук"
+    },
+    {
+      "title": "Українська правда. Життя: Що відбувається довкола Українського ПЕН",
+      "url": "https://life.pravda.com.ua/culture/shcho-vidbuvayetsya-dovkola-ukrajinskogo-pen-pislya-skandalu-z-vinnichukom-detali-307229/"
+    },
+    {
+      "title": "Чому американський PEN розколовся надвоє",
+      "url": "https://news.promedia.report/article/chomu-amerykanskyi-pen-rozkolovsia-nadvoie"
+    }
+  ],
+  "updated": "2026-11-25"
+}
