@@ -33,6 +33,7 @@
   },
   "relatedMediaIds": [],
   "decision": "Andrii Ianitskyi",
-  "isImportant": true,
-  "cardStyle": "hero"
+  "isImportant": false,
+  "cardStyle": "hero",
+  "revision": "2026-11-25-not-important"
 }
