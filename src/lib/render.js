@@ -587,7 +587,7 @@ function coverFocusPoint(article, lang) {
 
 // Окрема картинка 1200×630 для соцмереж (scripts/social-covers.mjs) — лише якщо вона
 // зроблена з поточної обкладинки й поточної точки фокусу.
-function socialCover(article, lang) {
+export function socialCover(article, lang) {
   const src = articleCover(article, lang);
   const data = articleCoverMetadata(article, lang);
   const og = data.og;
