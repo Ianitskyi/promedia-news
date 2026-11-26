@@ -1151,6 +1151,7 @@ function googleSourceCta(lang, placement) {
 const PROMEDIA_SOCIALS = [
   ["Facebook", "https://www.facebook.com/promediaukraine"],
   ["Instagram", "https://www.instagram.com/promediaua/"],
+  ["Threads", "https://www.threads.com/@promediaua"],
   ["LinkedIn", "https://www.linkedin.com/company/promediaukraine"],
   ["YouTube", "https://www.youtube.com/@prostirmedia"]
 ];
