@@ -114,7 +114,8 @@ const NOT_FAILED_RECENTLY = (kind, alias) => `NOT EXISTS (SELECT 1 FROM translat
 
 export async function pendingGerman(db) {
   await db.prepare(ERRORS_TABLE_SQL).run();
-  // Спершу проєкти (їх небагато, а каталог /de/ показує лише перекладені), потім новини — найсвіжіші першими.
+  // Спершу проєкти (їх небагато, а каталог /de/ показує лише перекладені), потім новини: закріплена й головна
+  // з фото — першими (щоб німецька стрічка виглядала як українська), далі найсвіжіші.
   const project = await db.prepare(
     `SELECT p.* FROM projects p WHERE p.publication_status = 'published' AND p.deleted_at IS NULL
        AND (p.title_de IS NULL OR p.title_de = '' OR p.de_translated_at IS NULL OR datetime(p.de_translated_at) < datetime(COALESCE(p.updated_at, p.published_at)))
@@ -126,7 +127,7 @@ export async function pendingGerman(db) {
     `SELECT a.* FROM articles a WHERE a.status = 'published' AND a.deleted_at IS NULL
        AND (a.title_de IS NULL OR a.title_de = '' OR a.de_translated_at IS NULL OR datetime(a.de_translated_at) < datetime(COALESCE(a.updated_at, a.published_at)))
        AND datetime(COALESCE(a.updated_at, a.published_at, a.created_at)) <= ${SETTLE_SQL} AND ${NOT_FAILED_RECENTLY("article", "a")}
-     ORDER BY a.published_at DESC LIMIT 1`
+     ORDER BY (a.pinned_at IS NOT NULL) DESC, (a.card_style = 'hero') DESC, a.published_at DESC LIMIT 1`
   ).first();
   if (article) return { kind: "article", row: article };
   return null;
