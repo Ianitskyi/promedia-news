@@ -70,6 +70,16 @@ test("Waits 2 hours after the last edit, then creates and publishes once", async
   assert.equal(db.prepare("SELECT status FROM threads_posts").get().status, "posted");
 });
 
+test("Forced slug posts right away, even if older than the start", async () => {
+  const { add, env, fakeFetch } = setup();
+  await runThreadsAutopost(env, at("2026-11-26T10:15:00Z"), fakeFetch);
+  add("promedia-zapustylo-nimetsku-versiiu-saitu", { published: "2026-11-26T10:08:00Z", updated: "2026-11-26T11:56:00Z" });
+  add("other-old", { published: "2026-11-26T10:00:00Z" });
+  assert.deepEqual(await runThreadsAutopost(env, at("2026-11-26T12:50:00Z"), fakeFetch), { container: "promedia-zapustylo-nimetsku-versiiu-saitu" });
+  assert.equal((await runThreadsAutopost(env, at("2026-11-26T12:55:00Z"), fakeFetch)).posted, "promedia-zapustylo-nimetsku-versiiu-saitu");
+  assert.deepEqual(await runThreadsAutopost(env, at("2026-11-26T13:00:00Z"), fakeFetch), { idle: true });
+});
+
 test("No cover, drafts and deleted news are skipped", async () => {
   const { add, env, fakeFetch } = setup();
   await runThreadsAutopost(env, at("2026-11-25T08:00:00Z"), fakeFetch);

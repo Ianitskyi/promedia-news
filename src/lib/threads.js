@@ -22,6 +22,9 @@ const CONTAINER_WAIT_MS = 30 * 1000;
 const REFRESH_EVERY_MS = 7 * 24 * 60 * 60 * 1000;
 const MAX_ATTEMPTS = 3;
 const TEXT_LIMIT = 500;
+// Разові ручні винятки: ці новини постяться одразу, без 2 годин тиші й незалежно від дати старту
+// (кожна — теж лише раз). 26.11.2026: перевірка роботи на прес-релізі про німецьку версію.
+export const FORCE_SLUGS = ["promedia-zapustylo-nimetsku-versiiu-saitu"];
 
 export const THREADS_POSTS_SQL =
   "CREATE TABLE IF NOT EXISTS threads_posts (slug TEXT PRIMARY KEY, status TEXT NOT NULL, container_id TEXT, media_id TEXT, permalink TEXT, attempts INTEGER NOT NULL DEFAULT 0, error TEXT, created_at TEXT NOT NULL, posted_at TEXT)";
@@ -173,11 +176,11 @@ export async function runThreadsAutopost(env, now = new Date(), fetchImpl = fetc
     `SELECT a.* FROM articles a
      WHERE a.status = 'published' AND a.deleted_at IS NULL
        AND a.cover_image_url IS NOT NULL AND TRIM(a.cover_image_url) <> ''
-       AND datetime(a.published_at) >= datetime(?)
-       AND datetime(a.updated_at) <= datetime(?)
+       AND ((datetime(a.published_at) >= datetime(?) AND datetime(a.updated_at) <= datetime(?))
+            OR a.slug IN (SELECT value FROM json_each(?)))
        AND NOT EXISTS (SELECT 1 FROM threads_posts t WHERE t.slug = a.slug AND (t.status <> 'retry'))
-     ORDER BY datetime(a.published_at) ASC LIMIT 1`
-  ).bind(minPublished, quietIso).first();
+     ORDER BY (a.slug IN (SELECT value FROM json_each(?))) DESC, datetime(a.published_at) ASC LIMIT 1`
+  ).bind(minPublished, quietIso, JSON.stringify(FORCE_SLUGS), JSON.stringify(FORCE_SLUGS)).first();
   if (!article) return { idle: true };
 
   const prev = await db.prepare("SELECT attempts FROM threads_posts WHERE slug = ?").bind(article.slug).first();
