@@ -22,6 +22,8 @@ jobs:
         run: |
           echo "== /api/translation-status"; curl -s https://news.promedia.report/api/translation-status; echo
           echo "== /de/ (HTTP, lang, articles)"; curl -s -o /tmp/de.html -w "%{http_code}\n" https://news.promedia.report/de/; grep -o '<html lang="[a-z]*"' /tmp/de.html; grep -c 'article-card' /tmp/de.html || true
+          echo "== promedia.report/de/"; curl -s -o /tmp/home.html -w "%{http_code}\n" https://promedia.report/de/; grep -o '<html lang="[a-z]*"' /tmp/home.html
+          echo "== shell has EN badge"; curl -s https://news.promedia.report/js/promedia-global-shell.js | grep -c 'pm-global-ext-lang' || true
           echo "== shell has the language list"; curl -s https://news.promedia.report/js/promedia-global-shell.js | grep -c 'pm-global-lang-list' || true
           curl -sI https://news.promedia.report/js/promedia-global-shell.js | grep -i 'cache-control\|age:' || true
       - name: D1 — translation state
