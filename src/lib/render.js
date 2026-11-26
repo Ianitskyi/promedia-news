@@ -806,7 +806,7 @@ export function viewsVisible(publishedAt, now = Date.now()) {
 // Значки «у тексті є фото / відео / аудіо» біля дати.
 const MEDIA_LABELS = {
   photo: { uk: (n) => `У тексті ${n} фото`, en: (n) => `${n} photos in the story`, crh: (n) => `Metinde ${n} fotoresim` },
-  video: { uk: () => "У тексті є відео", en: () => "Video in the story", crh: () => "Metinde video bar" },
+  video: { uk: (n) => n > 1 ? `У тексті ${n} відео` : "У тексті є відео", en: (n) => n > 1 ? `${n} videos in the story` : "Video in the story", crh: (n) => n > 1 ? `Metinde ${n} video` : "Metinde video bar" },
   audio: { uk: () => "У тексті є аудіозапис", en: () => "Audio recording in the story", crh: () => "Metinde audio yazı bar" }
 };
 const MEDIA_ICONS = {
@@ -815,21 +815,21 @@ const MEDIA_ICONS = {
   audio: '<circle cx="12" cy="12" r="9"/><path d="m10 8.5 5.5 3.5-5.5 3.5z" fill="currentColor"/>'
 };
 function articleMediaBadges(article, lang) {
-  let photos = Number(article.media_photos), video = Boolean(Number(article.media_video)), audio = Boolean(Number(article.media_audio));
+  let photos = Number(article.media_photos), video = Number(article.media_video) || 0, audio = Boolean(Number(article.media_audio));
   if (!Number.isFinite(photos) && typeof article.body_md === "string") {
     const md = article.body_md;
     photos = (md.match(/!\[/g) || []).length;
-    video = /\[youtube\]\(/i.test(md);
+    video = (md.match(/\[youtube\]\(/gi) || []).length;
     audio = /\[audio\]\(/i.test(md);
   }
   const items = [];
   if (photos >= 2) items.push(["photo", photos]);
-  if (video) items.push(["video"]);
+  if (video > 0) items.push(["video", video]);
   if (audio) items.push(["audio"]);
   if (!items.length) return "";
   return `<span class="article-media-badges">${items.map(([kind, n]) => {
     const label = pick(MEDIA_LABELS[kind], lang)(n);
-    return `<span class="article-media-badge" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${MEDIA_ICONS[kind]}</svg>${kind === "photo" ? `<span>${n}</span>` : ""}</span>`;
+    return `<span class="article-media-badge" title="${escapeHtml(label)}" aria-label="${escapeHtml(label)}"><svg aria-hidden="true" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round">${MEDIA_ICONS[kind]}</svg>${kind === "photo" || (kind === "video" && n > 1) ? `<span>${n}</span>` : ""}</span>`;
   }).join("")}</span>`;
 }
 
