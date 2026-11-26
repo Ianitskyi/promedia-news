@@ -7,9 +7,10 @@ import { handleAnalyticsRoute } from "./routes/analytics.js";
 import { publishDueArticles, schedulerStatus } from "./lib/scheduler.js";
 import { handleInternalUpload } from "./lib/internalUpload.js";
 import { runThreadsAutopost, refreshThreadsToken, threadsStatus } from "./lib/threads.js";
+import { runGermanTranslation, germanStatus } from "./lib/translateDe.js";
 
 const EDGE_CACHE_SECONDS = 120;
-const NO_EDGE_CACHE = /^\/(admin|api\/(admin|auth|me|setup|push|analytics|scheduler-status|threads-status|export)|img-storage)(\/|$)/;
+const NO_EDGE_CACHE = /^\/(admin|api\/(admin|auth|me|setup|push|analytics|scheduler-status|threads-status|translation-status|export)|img-storage)(\/|$)/;
 
 function edgeCacheable(request, url) {
   return request.method === "GET"
@@ -39,6 +40,13 @@ export default {
       // Стан автопостингу в Threads: що й коли пішло, остання помилка (без токенів).
       if (url.pathname === "/api/threads-status") {
         return new Response(JSON.stringify(await threadsStatus(env)), {
+          headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
+        });
+      }
+
+      // Стан німецького автоперекладу: скільки перекладено, останні помилки (без текстів).
+      if (url.pathname === "/api/translation-status") {
+        return new Response(JSON.stringify(await germanStatus(env.DB)), {
           headers: { "Content-Type": "application/json; charset=utf-8", "Cache-Control": "no-store" }
         });
       }
@@ -110,6 +118,8 @@ export default {
     ctx.waitUntil(publishDueArticles(env.DB).catch(e => console.error("scheduler", e)));
     // Автопостинг у Threads (src/lib/threads.js) — після розкладу, щоб не заважати публікації.
     ctx.waitUntil(runThreadsAutopost(env).catch(e => console.error("threads", e)));
+    // Німецька версія: один матеріал за запуск, через 2 години після останньої правки (src/lib/translateDe.js).
+    ctx.waitUntil(runGermanTranslation(env).catch(e => console.error("de-translate", e)));
     if (event.cron === "17 3 * * *") {
       ctx.waitUntil(refreshThreadsToken(env).catch(e => console.error("threads-token", e)));
       ctx.waitUntil(

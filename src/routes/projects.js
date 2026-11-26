@@ -79,9 +79,11 @@ function serialize(project) {
     title: project.title,
     titleEn: project.title_en,
     titleCrh: project.title_crh,
+    titleDe: project.title_de,
     excerpt: project.excerpt,
     excerptEn: project.excerpt_en,
     excerptCrh: project.excerpt_crh,
+    excerptDe: project.excerpt_de,
     bodyMd: project.body_md,
     bodyMdEn: project.body_md_en,
     bodyMdCrh: project.body_md_crh,
@@ -99,7 +101,7 @@ function serialize(project) {
     projectStatus: project.project_status,
     startDate: project.start_date,
     endDate: project.end_date,
-    periodLabel: project.period_label, periodLabelEn: project.period_label_en, periodLabelCrh: project.period_label_crh,
+    periodLabel: project.period_label, periodLabelEn: project.period_label_en, periodLabelCrh: project.period_label_crh, periodLabelDe: project.period_label_de,
     websiteUrl: project.website_url,
     tags: parseJson(project.tags),
     isFeatured: Boolean(project.is_featured),
@@ -112,9 +114,9 @@ function serialize(project) {
 export async function handleProjectsPublicRoute(request, env, url) {
   const host = url.hostname.toLowerCase();
   const isProjectsHost = host === "projects.promedia.report" || host.startsWith("projects.");
-  const pathMatch = url.pathname.match(/^\/(en|crh)(?=\/|$)/);
+  const pathMatch = url.pathname.match(/^\/(en|crh|de)(?=\/|$)/);
   const lang = pathMatch ? pathMatch[1] : "uk";
-  const path = pathMatch ? (url.pathname.replace(/^\/(en|crh)/, "") || "/") : url.pathname;
+  const path = pathMatch ? (url.pathname.replace(/^\/(en|crh|de)/, "") || "/") : url.pathname;
   const db = env.DB;
 
   if (url.pathname === "/api/projects" && request.method === "OPTIONS") return corsJson({}, 204);
@@ -153,7 +155,9 @@ export async function handleProjectsPublicRoute(request, env, url) {
     const { results } = await db.prepare("SELECT * FROM projects WHERE publication_status = 'published' AND deleted_at IS NULL ORDER BY CASE WHEN start_date IS NULL OR start_date = '' THEN 1 ELSE 0 END ASC, start_date DESC, id DESC").all();
     const allTags = Array.from(new Set(results.flatMap((project) => parseJson(project.tags)))).sort((a, b) => String(a).localeCompare(String(b), "uk"));
     const selectedTag = url.searchParams.get("tag") || "";
-    const filtered = selectedTag ? results.filter((project) => parseJson(project.tags).includes(selectedTag)) : results;
+    // Німецькою — лише вже перекладені проєкти (переклад робить ШІ, src/lib/translateDe.js).
+    const inLang = lang === "de" ? results.filter((project) => project.title_de) : results;
+    const filtered = selectedTag ? inLang.filter((project) => parseJson(project.tags).includes(selectedTag)) : inLang;
     return new Response(renderProjectsHomepage({ projects: filtered, lang, baseUrl, allTags, selectedTag }), { headers: { "Content-Type": "text/html; charset=utf-8" } });
   }
 
@@ -161,6 +165,7 @@ export async function handleProjectsPublicRoute(request, env, url) {
   if (projectMatch && request.method === "GET") {
     const project = await db.prepare("SELECT * FROM projects WHERE slug = ? AND publication_status = 'published' AND deleted_at IS NULL").bind(projectMatch[1]).first();
     if (!project) return new Response("Not found", { status: 404 });
+    if (lang === "de" && !project.title_de) return Response.redirect(`${baseUrl}/en/project/${project.slug}`, 302);
     return new Response(renderProjectPage({ project, lang, baseUrl }), { headers: { "Content-Type": "text/html; charset=utf-8" } });
   }
 

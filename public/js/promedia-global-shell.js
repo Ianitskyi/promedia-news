@@ -12,22 +12,29 @@
     brands:"brands.promedia.report"
   };
   const L={
-    uk:{partners:"Партнери та донори",projects:"Проєкти",about:"Про нас",contacts:"Контакти",news:"Новини",communities:"Карта спільнот",ratings:"Рейтинг журфаків",research:"Дослідження",atlas:"Атлас медіа",santa:"Санта",proof:"Proof",brief:"Brief",people:"Люди",brands:"Медіабренди",details:"Дані про організацію",official:"Офіційна назва",officialValue:"ГО «ПроМедіа»",reg:"Реєстраційний номер",address:"Юридична адреса",addressValue:"вул. Володимира Самійленка 19/44, Київ, Україна, 03118",chair:"Голова правління",chairValue:"Андрій Яніцький",privacy:"Приватність і cookie",analyticsOn:"Вимкнути аналітику",analyticsOff:"Увімкнути аналітику",support:"Підтримати ПроМедіа",donationOffer:"Умови пожертви",rights:"Усі права захищені"},
-    en:{partners:"Partners and donors",projects:"Projects",about:"About us",contacts:"Contacts",news:"News",communities:"Communities Map",ratings:"Journalism Schools",research:"Research",atlas:"Media Atlas",santa:"Santa",proof:"Proof",people:"People",brands:"Media brands",details:"Organization details",official:"Official name",officialValue:"NGO “ProMedia”",reg:"Registration number",address:"Legal address",addressValue:"19/44 Volodymyr Samiilenko St, Kyiv, Ukraine, 03118",chair:"Chair of the Board",chairValue:"Andrii Ianitskyi",privacy:"Privacy and cookies",analyticsOn:"Turn off analytics",analyticsOff:"Turn on analytics",support:"Support ProMedia",donationOffer:"Donation terms",rights:"All rights reserved"},
-    crh:{partners:"Ortaqlar ve donorlar",projects:"Leyhalar",about:"Biz aqqımızda",contacts:"Kontaktlar",news:"Haberler",communities:"Cemaatlar haritası",ratings:"Jurnalistika fakülteleri reytingi",research:"Tedqiqatlar",atlas:"Mediya Atlası",santa:"Santa",proof:"Proof",people:"İnsanlar",brands:"Mediya brendleri",details:"Teşkilât aqqında malümat",official:"Resmiy adı",officialValue:"«ProMedia» İCT",reg:"Qayd nomeri",address:"Yuridik adres",addressValue:"Volodymyr Samiilenko soqağı, 19/44, Kyiv, Ukrayina, 03118",chair:"İdare Keñeşi reisi",chairValue:"Andrii Ianitskyi",privacy:"Mahremiyet ve cookie",analyticsOn:"Analitikanı söndürmek",analyticsOff:"Analitikanı qabuzmaq",support:"ProMediağa yardım et",donationOffer:"Bağış şartları",rights:"Er aqqı saqlıdır"}
+    uk:{language:"Мова",partners:"Партнери та донори",projects:"Проєкти",about:"Про нас",contacts:"Контакти",news:"Новини",communities:"Карта спільнот",ratings:"Рейтинг журфаків",research:"Дослідження",atlas:"Атлас медіа",santa:"Санта",proof:"Proof",brief:"Brief",people:"Люди",brands:"Медіабренди",details:"Дані про організацію",official:"Офіційна назва",officialValue:"ГО «ПроМедіа»",reg:"Реєстраційний номер",address:"Юридична адреса",addressValue:"вул. Володимира Самійленка 19/44, Київ, Україна, 03118",chair:"Голова правління",chairValue:"Андрій Яніцький",privacy:"Приватність і cookie",analyticsOn:"Вимкнути аналітику",analyticsOff:"Увімкнути аналітику",support:"Підтримати ПроМедіа",donationOffer:"Умови пожертви",rights:"Усі права захищені"},
+    en:{language:"Language",partners:"Partners and donors",projects:"Projects",about:"About us",contacts:"Contacts",news:"News",communities:"Communities Map",ratings:"Journalism Schools",research:"Research",atlas:"Media Atlas",santa:"Santa",proof:"Proof",people:"People",brands:"Media brands",details:"Organization details",official:"Official name",officialValue:"NGO “ProMedia”",reg:"Registration number",address:"Legal address",addressValue:"19/44 Volodymyr Samiilenko St, Kyiv, Ukraine, 03118",chair:"Chair of the Board",chairValue:"Andrii Ianitskyi",privacy:"Privacy and cookies",analyticsOn:"Turn off analytics",analyticsOff:"Turn on analytics",support:"Support ProMedia",donationOffer:"Donation terms",rights:"All rights reserved"},
+    crh:{language:"Til",partners:"Ortaqlar ve donorlar",projects:"Leyhalar",about:"Biz aqqımızda",contacts:"Kontaktlar",news:"Haberler",communities:"Cemaatlar haritası",ratings:"Jurnalistika fakülteleri reytingi",research:"Tedqiqatlar",atlas:"Mediya Atlası",santa:"Santa",proof:"Proof",people:"İnsanlar",brands:"Mediya brendleri",details:"Teşkilât aqqında malümat",official:"Resmiy adı",officialValue:"«ProMedia» İCT",reg:"Qayd nomeri",address:"Yuridik adres",addressValue:"Volodymyr Samiilenko soqağı, 19/44, Kyiv, Ukrayina, 03118",chair:"İdare Keñeşi reisi",chairValue:"Andrii Ianitskyi",privacy:"Mahremiyet ve cookie",analyticsOn:"Analitikanı söndürmek",analyticsOff:"Analitikanı qabuzmaq",support:"ProMediağa yardım et",donationOffer:"Bağış şartları",rights:"Er aqqı saqlıdır"},
+    de:{language:"Sprache",partners:"Partner und Förderer",projects:"Projekte",about:"Über uns",contacts:"Kontakt",news:"Nachrichten",communities:"Community-Karte",ratings:"Journalistik-Ranking",research:"Forschung",atlas:"Medienatlas",santa:"Santa",proof:"Proof",people:"Personen",brands:"Medienmarken",details:"Angaben zur Organisation",official:"Offizieller Name",officialValue:"NGO „ProMedia“",reg:"Registernummer",address:"Rechtliche Anschrift",addressValue:"Volodymyr-Samiilenko-Str. 19/44, 03118 Kyjiw, Ukraine",chair:"Vorstandsvorsitzender",chairValue:"Andrii Ianitskyi",privacy:"Datenschutz und Cookies",analyticsOn:"Analyse deaktivieren",analyticsOff:"Analyse aktivieren",support:"ProMedia unterstützen",donationOffer:"Spendenbedingungen",rights:"Alle Rechte vorbehalten"}
   };
   const lang=(()=>{
     const p=location.pathname.split("/").filter(Boolean)[0];
-    if(p==="en"||p==="crh") return p;
+    if(p==="en"||p==="crh"||p==="de") return p;
     const h=(document.documentElement.lang||"").toLowerCase();
-    return h.startsWith("en")?"en":h.startsWith("crh")?"crh":"uk";
+    return h.startsWith("en")?"en":h.startsWith("crh")?"crh":h.startsWith("de")?"de":"uk";
   })();
+  // Мови інтерфейсу мережі (власник, 26.11.2026): перемикач — один компактний список, щоб мов могло бути більше.
+  // Німецька поки є лише в Новинах, Проєктах і «Про нас»; інші сайти німецькому читачеві відкриваються англійською.
+  const LANG_NAMES=[["uk","UA","Українська"],["en","EN","English"],["crh","QT","Qırımtatarca"],["de","DE","Deutsch"]];
+  const DE_HOSTS=["news.promedia.report","projects.promedia.report","about.promedia.report"];
+  const langFor=(host)=>lang==="de"&&!DE_HOSTS.includes(host)?"en":lang;
   const t=L[lang];
   const analyticsOn=!/(?:^|;\s*)pm_analytics=denied(?:;|$)/.test(document.cookie);
-  const prefix=lang==="uk"?"":"/"+lang;
-  const localize=(base)=>base+prefix+"/";
+  const prefixFor=(host)=>{const l=langFor(host);return l==="uk"?"":"/"+l};
+  const prefix=prefixFor("promedia.report"); // головний сайт і його сторінки (підтримка, умови пожертви)
+  const localize=(base)=>base+prefixFor(new URL(base).hostname)+"/";
   const mainBase="https://promedia.report";
-  const mainHome=mainBase+(lang==="uk"?"/":prefix+"/");
+  const mainHome=mainBase+(prefix||"")+"/";
   const aboutUrl=localize("https://about.promedia.report"); // «Про нас» — окремий сайт трьома мовами; команди на головній більше немає
   const projectUrl=localize("https://projects.promedia.report");
   const links={
@@ -49,7 +56,7 @@
       return targetLang==="uk"?"https://research.promedia.report/membership-guide/":"https://research.promedia.report/"+targetLang+"/";
     }
     const u=new URL(location.href);
-    let path=u.pathname.replace(/^\/(en|crh)(?=\/|$)/,"")||"/";
+    let path=u.pathname.replace(/^\/(en|crh|de)(?=\/|$)/,"")||"/";
     const p=targetLang==="uk"?"":"/"+targetLang;
     return u.origin+p+(path==="/" ? "/" : path)+u.search+u.hash;
   };
@@ -73,7 +80,19 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-primary a,.pm-global-secondary a{color:var(--pm-shell-ink);font-weight:700;text-decoration:none;white-space:nowrap}
 .pm-global-primary a{font-size:15px}.pm-global-secondary a{font-size:12px;color:rgba(13,12,92,.72)}
 .pm-global-primary a:hover,.pm-global-secondary a:hover{color:#e8901a}
-.pm-global-langs{display:flex;gap:2px;align-items:center}
+.pm-global-lang{position:relative;flex:0 0 auto}
+.pm-global-lang>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:4px;padding:5px 9px;border:1px solid rgba(13,12,92,.18);border-radius:999px;color:var(--pm-shell-ink);font-size:12px;font-weight:700;line-height:1;user-select:none}
+.pm-global-lang>summary::-webkit-details-marker{display:none}
+.pm-global-lang>summary:hover,.pm-global-lang[open]>summary{border-color:var(--pm-shell-ink)}
+.pm-global-lang>summary svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.pm-global-lang>summary .pm-global-lang-chev{width:11px;height:11px;transition:transform .15s}
+.pm-global-lang[open]>summary .pm-global-lang-chev{transform:rotate(180deg)}
+.pm-global-lang-list{position:absolute;right:0;top:calc(100% + 8px);z-index:1000;min-width:196px;padding:4px 0;border:1px solid rgba(13,12,92,.12);border-radius:12px;background:#fff;box-shadow:0 14px 30px rgba(13,12,92,.16)}
+.pm-global-lang-list a{display:flex;align-items:center;gap:10px;padding:9px 14px;color:var(--pm-shell-ink);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
+.pm-global-lang-list a:hover{background:#fff8ec}
+.pm-global-lang-list a span{width:24px;font-size:11px;font-weight:700;color:rgba(13,12,92,.55)}
+.pm-global-lang-list a[aria-current="true"]{font-weight:800}
+.pm-global-lang-list a[aria-current="true"]::after{content:"✓";margin-left:auto;color:#e8901a;font-weight:800}
 .pm-global-head-socials{display:flex;gap:2px;align-items:center;padding-left:14px;border-left:1px solid rgba(13,12,92,.12)}
 .pm-global-head-socials a{display:grid;place-items:center;width:28px;height:28px;color:rgba(13,12,92,.6)}
 .pm-global-head-socials a:hover{color:#e8901a}.pm-global-head-socials svg{width:16px;height:16px;fill:currentColor}
@@ -91,8 +110,6 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-brief-bar a:hover{text-decoration:underline}
 .pm-brief-bar__short{display:none}
 @media(max-width:640px){.pm-brief-bar{gap:10px;padding:5px 18px}.pm-brief-bar__text,.pm-brief-bar__long{display:none}.pm-brief-bar__short{display:inline}}
-.pm-global-langs a{padding:4px 8px;border-radius:999px;color:var(--pm-shell-ink);font-size:12px;font-weight:700;text-decoration:none}
-.pm-global-langs a.active{background:var(--pm-shell-ink);color:#fff}
 .pm-global-secondary{display:flex;justify-content:flex-end;gap:clamp(18px,2.2vw,34px);padding:8px clamp(18px,4vw,64px) 10px;background:var(--pm-shell-paper);border-top:1px solid rgba(13,12,92,.08);overflow-x:auto;scrollbar-width:none}
 .pm-global-secondary::-webkit-scrollbar{display:none}.pm-global-secondary a.active{color:#e8901a}
 .pm-global-burger{display:none;margin-left:auto;position:relative}.pm-global-burger summary{list-style:none;cursor:pointer;width:42px;height:42px;display:grid;place-items:center;gap:5px}.pm-global-burger summary::-webkit-details-marker{display:none}
@@ -123,7 +140,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 @media(max-width:640px){.pm-global-org{margin-top:22px;border-top:1px solid rgba(255,255,255,.18);border-bottom:1px solid rgba(255,255,255,.18)}.pm-global-org>summary h3{display:flex;justify-content:space-between;align-items:center;text-align:left;margin:0;padding:14px 0}.pm-global-org>summary h3::after{content:"+";font-size:20px;font-weight:400;line-height:1}.pm-global-org[open]>summary h3::after{content:"−"}.pm-global-org[open] table{margin-bottom:10px}}
 .pm-global-org table{width:100%;border-collapse:collapse}.pm-global-org td{padding:9px 10px;border-bottom:1px solid rgba(255,255,255,.18);vertical-align:top}.pm-global-org td:first-child{font-weight:700;color:#fff;width:36%}
 .pm-global-bottom{display:flex;justify-content:space-between;gap:22px;margin-top:34px;padding-top:28px;border-top:1px solid rgba(255,255,255,.18);font-size:.9rem}.pm-global-powered{display:flex;align-items:center;gap:10px;margin-top:8px}.pm-global-powered img{width:88px;filter:brightness(0) invert(1);opacity:.9}.pm-global-analytics-toggle{font:inherit;color:inherit;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
-@media(max-width:980px){.pm-global-primary,.pm-global-secondary,.pm-global-head-socials{display:none}.pm-global-burger{display:block}.pm-global-main{min-height:62px;padding:6px 18px}.pm-global-logo{width:100px;height:44px}.pm-global-footer-top{grid-template-columns:1fr 1fr}.pm-global-footer-nav{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
+@media(max-width:980px){.pm-global-primary,.pm-global-secondary,.pm-global-head-socials{display:none}.pm-global-burger{display:block;margin-left:2px}.pm-global-lang{margin-left:auto}.pm-global-main{min-height:62px;padding:6px 18px}.pm-global-logo{width:100px;height:44px}.pm-global-footer-top{grid-template-columns:1fr 1fr}.pm-global-footer-nav{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}}
 @media(max-width:640px){.pm-global-partner{width:calc(33.333% - 7px);height:52px;padding:6px 8px}.pm-global-partner img{max-height:38px}.pm-global-footer a.pm-global-partner-text{font-size:11px}.pm-global-partners{margin-top:26px;padding-top:20px}.pm-global-org h3{font-size:15px}.pm-global-org td{font-size:13px}.pm-global-org td:first-child{padding-bottom:0!important;opacity:.7}.pm-global-org tr{padding:6px 0!important}.pm-global-footer{padding:42px 0 36px}.pm-global-footer-top{grid-template-columns:1fr}.pm-global-footer-nav{grid-column:auto}.pm-global-bottom{flex-direction:column}.pm-global-org td{display:block;width:100%!important;padding:6px 0;border:0}.pm-global-org tr{display:block;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.18)}}
 `;
   if(!document.getElementById("pm-global-shell-style")){
@@ -136,11 +153,14 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
       ].filter(([key]) => key !== "santa" || lang === "uk"); // Санта — лише українською; BRIEF — у другому меню (власник, 17.11.2026)
       const mobileMain=[[t.projects,projectUrl],[t.about,aboutUrl],[t.contacts,mainHome+"#contacts"]];
       const mobileSub=sec.map(x=>[x[1],x[2]]);
-      const available=(this.getAttribute("data-langs")||"uk,en,crh").split(",").map(x=>x.trim()).filter(Boolean);
+      const available=(this.getAttribute("data-langs")||"uk,en,crh"+(DE_HOSTS.includes(location.hostname)?",de":"")).split(",").map(x=>x.trim()).filter(Boolean);
+      const langs=LANG_NAMES.filter(([code])=>available.includes(code));
+      const curLang=LANG_NAMES.find(([code])=>code===lang)||LANG_NAMES[0];
+      const langMenu=langs.length>1?`<details class="pm-global-lang"><summary aria-label="${curLang[2]} — ${t.language}"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></svg>${curLang[1]}<svg class="pm-global-lang-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="pm-global-lang-list">${langs.map(([code,short,name])=>`<a href="${samePath(code)}" hreflang="${code}" lang="${code}"${code===lang?' aria-current="true"':""}><span>${short}</span>${name}</a>`).join("")}</div></details>`:"";
       this.innerHTML=`<header class="pm-global-header"><div class="pm-global-main">
         <a class="pm-global-logo" href="${mainHome}" aria-label="ProMedia"><img src="https://news.promedia.report/img/promedia-wordmark.svg" alt="ProMedia"></a>
         <nav class="pm-global-primary"><a href="${projectUrl}">${t.projects}</a><a href="${aboutUrl}">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a></nav>
-        <div class="pm-global-langs">${available.includes("uk")?`<a class="${lang==="uk"?"active":""}" href="${samePath("uk")}">UA</a>`:""}${available.includes("en")?`<a class="${lang==="en"?"active":""}" href="${samePath("en")}">EN</a>`:""}${available.includes("crh")?`<a class="${lang==="crh"?"active":""}" href="${samePath("crh")}">QT</a>`:""}</div>
+        ${langMenu}
         ${socialLinks("pm-global-head-socials")}
         <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div>${socialLinks("pm-global-mobile-socials")}</div></details>
       </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}">${x[1]}</a>`).join("")}</nav></header>`;
@@ -256,6 +276,11 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
       </div></footer>`;
     }
   }
+  // Списки мов і меню закриваються кліком поза ними або клавішею Esc.
+  if(typeof document.addEventListener==="function"){
+    document.addEventListener("click",e=>{document.querySelectorAll(".pm-global-lang[open],.pm-global-burger[open]").forEach(d=>{if(!d.contains(e.target))d.removeAttribute("open")})});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape")document.querySelectorAll(".pm-global-lang[open]").forEach(d=>d.removeAttribute("open"))});
+  }
   if(!customElements.get("promedia-global-header")) customElements.define("promedia-global-header",PMHeader);
   if(!customElements.get("promedia-global-footer")) customElements.define("promedia-global-footer",PMFooter);
   // These applications keep their own product navigation below the common header.
@@ -305,7 +330,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         more.className = "pm-team-bio-toggle";
         more.setAttribute("aria-expanded", "false");
         more.setAttribute("aria-controls", rest.id);
-        more.textContent = lang === "en" ? "More" : lang === "crh" ? "Devamı" : "Далі";
+        more.textContent = lang === "en" ? "More" : lang === "crh" ? "Devamı" : lang === "de" ? "Mehr" : "Далі";
         more.addEventListener("click", () => {
           card.classList.add("pm-team-card-open");
           more.setAttribute("aria-expanded", "true");

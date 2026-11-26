@@ -7,8 +7,8 @@ function esc(value) {
   }[ch]));
 }
 
-const LANGS = ["uk", "en", "crh"];
-const LANG_BUTTON = { uk: "UA", en: "EN", crh: "QT" };
+const LANGS = ["uk", "en", "crh", "de"];
+const LANG_BUTTON = { uk: "UA", en: "EN", crh: "QT", de: "DE" };
 
 function langPrefix(lang) {
   return lang === "uk" ? "" : "/" + lang;
@@ -25,16 +25,19 @@ function field(project, name, lang) {
   const normalize = name === "title" ? normalizeUkrainianTitle : normalizeUkrainianQuotes;
   if (lang === "en") return project[name + "_en"] || normalize(project[name] || "");
   if (lang === "crh") return correctCrhDisplay(project[name + "_crh"] || normalize(project[name] || ""));
+  // Німецька (26.11.2026): переклад ШІ; поки його немає — англійський текст, а не український.
+  if (lang === "de") return project[name + "_de"] || project[name + "_en"] || normalize(project[name] || "");
   return normalize(project[name] || "");
 }
 
 function localizedUrls(canonical) {
   const u = new URL(canonical);
-  const path = u.pathname.replace(/^\/(en|crh)(?=\/|$)/, "") || "/";
+  const path = u.pathname.replace(/^\/(en|crh|de)(?=\/|$)/, "") || "/";
   return {
     uk: u.origin + path,
     en: u.origin + "/en" + path,
-    crh: u.origin + "/crh" + path
+    crh: u.origin + "/crh" + path,
+    de: u.origin + "/de" + path
   };
 }
 
@@ -46,7 +49,7 @@ function fmtDate(value, lang) {
     const months = ["yanvar","fevral","mart","aprel","mayıs","iyün","iyül","avgust","sentâbr","oktâbr","noyabr","dekabr"];
     return `${d.getUTCDate()} ${months[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
   }
-  return d.toLocaleDateString(lang === "en" ? "en-GB" : "uk-UA", { year: "numeric", month: "long", day: "numeric" });
+  return d.toLocaleDateString(lang === "en" ? "en-GB" : lang === "de" ? "de-DE" : "uk-UA", { year: "numeric", month: "long", day: "numeric" });
 }
 
 const LABELS = {
@@ -76,13 +79,23 @@ const LABELS = {
     registration: "Qayd nomeri", address: "Yuridik adres", addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kyiv, Ukrayina, 03118",
     chair: "İdare Keñeşi Reisi", chairValue: "Andrii Ianitskyi", phone: "Telefon", email: "Elektron poçta",
     social: "İçtimaiy şebekeler", project: "ProMedia leyhası", correction: "Hata taptıñızmı?"
+  },
+  de: {
+    eyebrow: "Projekte von ProMedia", title: "Projekte von ProMedia", active: "Laufend", completed: "Abgeschlossen",
+    upcoming: "Geplant", partner: "Partner", donor: "Förderer", dates: "Zeitraum", about: "Über das Projekt", work: "Was wir getan haben", results: "Ergebnisse",
+    more: "Mehr erfahren", back: "← Alle Projekte", empty: "Noch keine Projekte auf Deutsch.",
+    details: "Angaben zur Organisation", officialName: "Offizieller Name", officialNameValue: "NGO ProMedia",
+    registration: "Registernummer", address: "Rechtliche Anschrift", addressValue: "Volodymyr-Samiilenko-Str. 19/44, 03118 Kyjiw, Ukraine",
+    chair: "Vorstandsvorsitzender", chairValue: "Andrii Ianitskyi", phone: "Telefon", email: "E-Mail",
+    social: "Soziale Medien", project: "Ein Projekt von ProMedia", correction: "Fehler gefunden?"
   }
 };
 
 const NAV = {
   uk: { projects: "Проєкти", news: "Новини", communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження", atlas: "Атлас Медіа" },
   en: { projects: "Projects", news: "News", communities: "Media communities", ratings: "Journalism schools", research: "Research", atlas: "Media Atlas" },
-  crh: { projects: "Leyhalar", news: "Haberler", communities: "Cemaatlar haritası", ratings: "Jurnalistika fakülteleri reytingi", research: "Tedqiqatlar", atlas: "Mediya Atlası" }
+  crh: { projects: "Leyhalar", news: "Haberler", communities: "Cemaatlar haritası", ratings: "Jurnalistika fakülteleri reytingi", research: "Tedqiqatlar", atlas: "Mediya Atlası" },
+  de: { projects: "Projekte", news: "Nachrichten", communities: "Medien-Communitys", ratings: "Journalistik-Ranking", research: "Forschung", atlas: "Medienatlas" }
 };
 
 const URLS = {
@@ -101,11 +114,11 @@ function footer() {
   return `<promedia-global-footer></promedia-global-footer>`;
 }
 
-function shell({ lang, title, description, canonical, body, ogImage }) {
+function shell({ lang, title, description, canonical, body, ogImage, hasDe = true }) {
   const urls = localizedUrls(canonical);
-  const locale = lang === "en" ? "en_US" : (lang === "crh" ? "crh_UA" : "uk_UA");
-  const alternateLocales = ["uk_UA", "en_US", "crh_UA"].filter((item) => item !== locale);
-  const defaultOg = lang === "uk" ? "/img/og-share.png" : `/img/og-share-${lang}.png`;
+  const locale = lang === "en" ? "en_US" : lang === "crh" ? "crh_UA" : lang === "de" ? "de_DE" : "uk_UA";
+  const alternateLocales = ["uk_UA", "en_US", "crh_UA", ...(hasDe ? ["de_DE"] : [])].filter((item) => item !== locale);
+  const defaultOg = lang === "uk" ? "/img/og-share.png" : `/img/og-share-${lang === "de" ? "en" : lang}.png`;
   const socialImage = new URL(ogImage || defaultOg, canonical).toString();
   return `<!doctype html>
 <html lang="${lang}">
@@ -131,6 +144,7 @@ ${alternateLocales.map((item) => `<meta property="og:locale:alternate" content="
 <link rel="alternate" hreflang="uk" href="${esc(urls.uk)}" />
 <link rel="alternate" hreflang="en" href="${esc(urls.en)}" />
 <link rel="alternate" hreflang="crh" href="${esc(urls.crh)}" />
+${hasDe ? `<link rel="alternate" hreflang="de" href="${esc(urls.de)}" />` : ""}
 <link rel="alternate" hreflang="x-default" href="${esc(urls.uk)}" />
 <link rel="icon" href="/favicon.png" type="image/png" />
 <link rel="stylesheet" href="/css/style.css" />
@@ -159,22 +173,22 @@ function projectTags(project) {
 
 function tagLabel(tag, lang) {
   const map = {
-    "навчання": { en: "training", crh: "talim" },
-    "спільнота": { en: "community", crh: "cemaat" },
-    "спільноти": { en: "communities", crh: "cemaatlar" },
-    "дослідження": { en: "research", crh: "tedqiqat" },
-    "консалтинг": { en: "consulting", crh: "mesleat" },
-    "консультації": { en: "consultations", crh: "mesleatlar" },
-    "медіа": { en: "media", crh: "mediya" },
-    "штучний інтелект": { en: "artificial intelligence", crh: "suniy zekâ" },
-    "автоматизація": { en: "automation", crh: "avtomatlaştırma" },
-    "фактчекінг": { en: "fact-checking", crh: "faktçeking" },
-    "відео": { en: "video", crh: "video" },
-    "модерація": { en: "moderation", crh: "moderatsiya" },
-    "інструменти": { en: "tools", crh: "aletler" },
-    "журналістика": { en: "journalism", crh: "jurnalistika" },
-    "медіаграмотність": { en: "media literacy", crh: "mediya savatlılığı" },
-    "посібник": { en: "guide", crh: "rehber" }
+    "навчання": { en: "training", crh: "talim", de: "Weiterbildung" },
+    "спільнота": { en: "community", crh: "cemaat", de: "Community" },
+    "спільноти": { en: "communities", crh: "cemaatlar", de: "Communitys" },
+    "дослідження": { en: "research", crh: "tedqiqat", de: "Forschung" },
+    "консалтинг": { en: "consulting", crh: "mesleat", de: "Beratung" },
+    "консультації": { en: "consultations", crh: "mesleatlar", de: "Beratungen" },
+    "медіа": { en: "media", crh: "mediya", de: "Medien" },
+    "штучний інтелект": { en: "artificial intelligence", crh: "suniy zekâ", de: "künstliche Intelligenz" },
+    "автоматизація": { en: "automation", crh: "avtomatlaştırma", de: "Automatisierung" },
+    "фактчекінг": { en: "fact-checking", crh: "faktçeking", de: "Faktencheck" },
+    "відео": { en: "video", crh: "video", de: "Video" },
+    "модерація": { en: "moderation", crh: "moderatsiya", de: "Moderation" },
+    "інструменти": { en: "tools", crh: "aletler", de: "Tools" },
+    "журналістика": { en: "journalism", crh: "jurnalistika", de: "Journalismus" },
+    "медіаграмотність": { en: "media literacy", crh: "mediya savatlılığı", de: "Medienkompetenz" },
+    "посібник": { en: "guide", crh: "rehber", de: "Leitfaden" }
   };
   const value = String(tag || "").trim();
   if (lang === "uk") return value;
@@ -187,7 +201,7 @@ function tagUrl(baseUrl, lang, tag) {
 }
 
 function projectFocalStyle(project, format, lang) {
-  let data = lang === "en" && project.cover_image_url_en ? project.cover_crop_data_en : project.cover_crop_data;
+  let data = (lang === "en" || lang === "de") && project.cover_image_url_en ? project.cover_crop_data_en : project.cover_crop_data;
   try { if (typeof data === "string") data = JSON.parse(data); } catch (_) { return ""; }
   const point = data && data[format];
   if (!point || !Number.isFinite(Number(point.x)) || !Number.isFinite(Number(point.y))) return "";
@@ -201,7 +215,7 @@ function projectFocalStyle(project, format, lang) {
 }
 
 function projectImageUrl(project, baseUrl, lang) {
-  const raw = String(lang === "en" && project.cover_image_url_en ? project.cover_image_url_en : (project.cover_image_url || "")).trim();
+  const raw = String((lang === "en" || lang === "de") && project.cover_image_url_en ? project.cover_image_url_en : (project.cover_image_url || "")).trim();
   if (!raw) return "";
 
   const projectMarker = "/storage/app/media/projects/";
@@ -257,8 +271,8 @@ function projectCard(project, lang, baseUrl) {
 
 export function renderProjectsHomepage({ projects, lang, baseUrl, allTags = [], selectedTag = "" }) {
   const l = LABELS[lang] || LABELS.uk;
-  const filterTitle = lang === "en" ? "Filter by tag" : (lang === "crh" ? "Etiket boyunca süz" : "Фільтр за тегом");
-  const allLabel = lang === "en" ? "All" : (lang === "crh" ? "Episi" : "Усі");
+  const filterTitle = lang === "en" ? "Filter by tag" : lang === "crh" ? "Etiket boyunca süz" : lang === "de" ? "Nach Schlagwort filtern" : "Фільтр за тегом";
+  const allLabel = lang === "en" ? "All" : lang === "crh" ? "Episi" : lang === "de" ? "Alle" : "Усі";
   const filters = allTags.length ? `<div class="project-filters" aria-label="${esc(filterTitle)}">
     <span class="project-filters-label">${esc(filterTitle)}:</span>
     <a class="article-tag project-filter${!selectedTag ? " active" : ""}" href="${baseUrl}${langPrefix(lang)}/">${esc(allLabel)}</a>
@@ -277,8 +291,8 @@ export function renderProjectPage({ project, lang, baseUrl }) {
   const title = field(project, "title", lang);
   const excerpt = field(project, "excerpt", lang) || markdownToPlainText(field(project, "body_md", lang), 220);
   const meta = [];
-  if (project.partner || project.partner_en || project.partner_crh) meta.push(`<div><strong>${l.partner}:</strong> ${esc(field(project, "partner", lang))}</div>`);
-  if (project.donor || project.donor_en || project.donor_crh) meta.push(`<div><strong>${l.donor}:</strong> ${esc(field(project, "donor", lang))}</div>`);
+  if (project.partner || project.partner_en || project.partner_crh || project.partner_de) meta.push(`<div><strong>${l.partner}:</strong> ${esc(field(project, "partner", lang))}</div>`);
+  if (project.donor || project.donor_en || project.donor_crh || project.donor_de) meta.push(`<div><strong>${l.donor}:</strong> ${esc(field(project, "donor", lang))}</div>`);
   const exactPeriod = field(project, "period_label", lang);
   if (exactPeriod) meta.push(`<div><strong>${l.dates}:</strong> ${esc(exactPeriod)}</div>`);
   else if (project.start_date || project.end_date) meta.push(`<div><strong>${l.dates}:</strong> ${esc(fmtDate(project.start_date, lang))}${project.end_date ? " — " + esc(fmtDate(project.end_date, lang)) : ""}</div>`);
@@ -307,5 +321,5 @@ export function renderProjectPage({ project, lang, baseUrl }) {
     ${results ? `<section class="article-body"><h2>${esc(l.results)}</h2>${markdownToHtml(results)}</section>` : ""}
     ${project.website_url ? `<p><a class="admin-btn" href="${esc(project.website_url)}" target="_blank" rel="noopener">${l.more}</a></p>` : ""}
   </main>`;
-  return shell({ lang, title: `${title} — ProMedia`, description: excerpt, canonical, body, ogImage: imageUrl || undefined });
+  return shell({ lang, title: `${title} — ProMedia`, description: excerpt, canonical, body, ogImage: imageUrl || undefined, hasDe: Boolean(project.title_de) });
 }

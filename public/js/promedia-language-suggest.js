@@ -85,6 +85,7 @@
     var path = url.pathname.toLowerCase();
     if (path === "/en" || path.indexOf("/en/") === 0) return "en";
     if (path === "/crh" || path.indexOf("/crh/") === 0) return "crh";
+    if (path === "/de" || path.indexOf("/de/") === 0) return "de";
 
     return isPromediaHost(url.hostname.toLowerCase()) ? "uk" : null;
   }
@@ -293,8 +294,8 @@
   function start() {
     if (isAdminPath() || document.getElementById(PROMPT_ID)) return;
     var currentLang = currentLanguage();
-    // Кримськотатарську версію відкривають свідомо — не пропонуємо іншу мову.
-    if (currentLang === "crh") return;
+    // Кримськотатарську й німецьку версії відкривають свідомо — не пропонуємо іншу мову.
+    if (currentLang === "crh" || currentLang === "de") return;
     rememberSeenLanguage(currentLang);
     if (storageGet(CHOICE_KEY)) return;
     var targetLang = preferredLanguage();

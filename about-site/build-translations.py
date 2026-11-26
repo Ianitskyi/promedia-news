@@ -1,4 +1,4 @@
-# Builds the English and Crimean Tatar versions of about.promedia.report from public/index.html.
+# Builds the English, Crimean Tatar and German versions of about.promedia.report from public/index.html.
 # Run after every change to the Ukrainian page:  python3 about-site/build-translations.py
 # Each Ukrainian string that changed needs a new line in T below; the script stops if a string is missing.
 # The Crimean Tatar text is a draft for review by a native speaker (docs/CRIMEAN_TATAR_TRANSLATION_RULES.md).
@@ -128,20 +128,96 @@ T = [
     ("Заяви", "Statements", "Beyanatlar"),
 ]
 
+# German, in the same order as T (26.11.2026). Machine-assisted translation, matched to the English column.
+DE = [
+    "Die NGO ProMedia entwickelt unabhängige Medien und Kommunikation in der Ukraine: Forschung, Tools auf Basis offener Daten, Weiterbildung. Wer wir sind, Ergebnisse, Projekte, Team.",
+    "Wir stärken Medien und zivilgesellschaftliche Organisationen: Medienentwicklung, Forschung, Kommunikation, Weiterbildung.",
+    "ProMedia ist eine Nichtregierungsorganisation, gegründet von Journalistinnen, Journalisten und Kommunikationsfachleuten. Wir helfen ukrainischen Medien und zivilgesellschaftlichen Organisationen, stärker zu werden: ihr Publikum besser zu verstehen, neue Produkte zu entwickeln und ihre organisatorische Widerstandsfähigkeit auszubauen.",
+    "Wir helfen unabhängigen Medien, sich selbst und ihr Publikum besser zu verstehen, Produkte zu entwickeln, Communitys aufzubauen und ihre organisatorische Widerstandsfähigkeit zu stärken.",
+    "Wir erforschen den Medienmarkt, Publikum, Inhalte und Kommunikation, damit Teams fundierte Entscheidungen treffen können.",
+    "Wir helfen zivilgesellschaftlichen Organisationen und gesellschaftlich wichtigen Initiativen, klar und überzeugend von ihrer Arbeit zu erzählen – unter Einhaltung ethischer Standards.",
+    "Wir entwickeln Weiterbildungsprogramme, die wissenschaftliche Ansätze mit der Praxis verbinden: Vorlesungen, Seminare, Planspiele und Labore für die Teamentwicklung.",
+    "Die Journalisten Andrii Ianitskyi und Anna Rodichkina starten einen Newsletter über Medien und Kommunikation – mit ihm beginnt die Marke ProMedia.",
+    "Aus dem Newsletter entsteht das Videoprojekt über Medien „Deadline“ auf YouTube.",
+    "Kateryna Hryshchenko und Anastasiia Simonova schließen sich Andrii und Anna an. Die vier Gleichgesinnten gründen eine Nichtregierungsorganisation.",
+    "Unsere ersten eigenen Online-Tools zur Erforschung des Medienmarkts und der Journalistenausbildung",
+    "Wir starten das Ranking der ukrainischen Journalistik-Fakultäten, die Karte der Medien-Communitys und den Medienatlas.",
+    "Wir veranstalten vier Workshops für Journalistinnen, Journalisten und Vertreter zivilgesellschaftlicher Organisationen und setzen gemeinsame Projekte mit IWPR und dem Regional Press Development Institute (RPDI) um.",
+    "Verantwortlich für Organisationsentwicklung und Fundraising. Medien- und Kommunikationsmanager. Leitete zuvor die Kommunikation des Staatlichen Arbeitsamts der Ukraine, die Entwicklung digitaler Plattformen beim Fernsehsender Espreso TV sowie das Zentrum für Journalismus der Kyiv School of Economics und die Unabhängige Mediengewerkschaft Kyjiw.",
+    "Verantwortlich für Organisationsentwicklung und die Einhaltung ethischer und professioneller Standards. Redakteurin und Journalistin mit 20 Jahren Erfahrung. Hat Wohltätigkeitsprojekte und große Veranstaltungen geleitet. Mitbegründerin der Military Film Week in Odesa.",
+    "Verantwortlich für Copywriting und Storytelling im Team. Journalistin und Redakteurin mit Erfahrung in den Themen Wirtschaft, Ökonomie und Finanzen. Langjährige Erfahrung bei führenden Wirtschaftsmedien, darunter Forbes Ukraine und Interfax-Ukraine.",
+    "Arbeitet an Social Media und kreativen Videoinhalten. Hat Erfahrung in Kommunikation, Videoproduktion und Design. Verbindet Fähigkeiten von der Entwicklung eines visuellen Stils bis zur Arbeit mit menschlichen Geschichten, um die Arbeit der Organisation ihrem Publikum näherzubringen und verständlicher zu machen.",
+    "Verantwortlich für die Kommunikationsprozesse der Organisation. Arbeitete zuvor als Texterin an der König-Danylo-Universität (Iwano-Frankiwsk); heute ist sie Kommunikationsspezialistin am Karrierezentrum für Studierende der Ukrainischen Katholischen Universität (Lwiw).",
+    "Die NGO ProMedia fordert Regierung und Parlament auf, im Haushalt 2027 3,9 Milliarden Hrywnja für Suspilne bereitzustellen",
+    "Die NGO ProMedia fordert die Aufklärung der Festnahme von Mykhailo Tkach und Yaroslav Bondarenko",
+    "Appell der NGO ProMedia an Regierung und Parlament",
+    "Andrii Ianitskyi, Vorsitzender der NGO ProMedia, im Interview mit dem Ukrainian Information Service.",
+    "Anastasiia Simonova: Eine Militärfilmwoche hilft Zivilisten, Soldaten zu verstehen",
+    "Andrii Ianitskyi: „Wenn Medien lügen, kann das Leben kosten“",
+    "Ukrainische Medien zeigen Einfallsreichtum unter doppeltem Druck",
+    "Warum Förderwettbewerbe für Medien den nationalen Telemarathon ersetzen sollten (auf Ukrainisch)",
+    "Vor einem harten Winter. Wie Medien in der Ukraine arbeiten",
+    "Gespräch mit Andrii Ianitskyi für The Fix Media",
+    "Interview mit dem Ukrainian Information Service",
+    "Kolumne von Andrii Ianitskyi für die Press Emblem Campaign",
+    "Kolumne von Andrii Ianitskyi für LIGA.net",
+    "Medien sind die Infrastruktur der Demokratie",
+    "und verantwortungsvolle Kommunikation in der Ukraine seit 2025",
+    "Weiterbildungsprogramme und gemeinsame Projekte",
+    "Videoprojekt „Deadline“ auf YouTube",
+    "Die NGO ProMedia",
+    "Interview von Sofiia Dubik",
+    "Stellungnahme der NGO ProMedia",
+    "Über uns – NGO ProMedia",
+    "Newsletter ProMedia Report",
+    "Strategie und Partnerschaften",
+    "Juli – September 2026",
+    "Storytelling und Texte",
+    "Richtlinien und Standards",
+    "Abschnitte der Seite",
+    "Video und Content",
+    "Medienentwicklung",
+    "Interview lesen",
+    "Andrii Ianitskyi",
+    "Anastasiia Simonova",
+    "Anna Rodichkina",
+    "Kateryna Hryshchenko",
+    "Sofiia Dubik",
+    "unabhängige Medien",
+    "Folgen Sie uns",
+    "Alle Projekte",
+    "Kommunikation",
+    "Forschung",
+    "In ihren Worten",
+    "Was wir tun",
+    "Wir entwickeln",
+    "Weiterbildung",
+    "Sommer 2025",
+    "Geschichte",
+    "Projekte",
+    "Team",
+    "Stellungnahmen",
+]
+
+assert len(DE) == len(T), (len(DE), len(T))
+
 def build(lang):
-    col = 1 if lang == "en" else 2
+    col = {"en": 1, "crh": 2, "de": 3}[lang]
+    live = {"en": "Ongoing", "crh": "Devam ete", "de": "Laufend"}[lang]
     s = SRC
     # Structural switches: language, URLs, data attributes.
     s = s.replace('<html lang="uk">', f'<html lang="{lang}">', 1)
     s = s.replace('<meta property="og:url" content="https://about.promedia.report/">', f'<meta property="og:url" content="https://about.promedia.report/{lang}/">', 1)
     s = s.replace('<link rel="canonical" href="https://about.promedia.report/">', f'<link rel="canonical" href="https://about.promedia.report/{lang}/">', 1)
-    s = s.replace('data-lang="uk" data-live="Триває"', f'data-lang="{lang}" data-live="{"Ongoing" if lang == "en" else "Devam ete"}"', 1)
-    s = s.replace('data-lang="uk" data-live="триває"', f'data-lang="{lang}" data-live="{"ongoing" if lang == "en" else "devam ete"}"', 1)
+    s = s.replace('data-lang="uk" data-live="Триває"', f'data-lang="{lang}" data-live="{live}"', 1)
+    s = s.replace('data-lang="uk" data-live="триває"', f'data-lang="{lang}" data-live="{live.lower()}"', 1)
     s = s.replace('href="https://news.promedia.report/article/', f'href="https://news.promedia.report/{lang}/article/')
     s = s.replace('<a class="pm-hp-all" href="https://projects.promedia.report/">', f'<a class="pm-hp-all" href="https://projects.promedia.report/{lang}/">', 1)
     # Crimean Tatar headline: "Ukrayinada <em>serbest mediyanı</em> ve ... inkişaf etemiz".
-    for uk, en, crh in T:
-        s = s.replace(uk, en if col == 1 else crh)
+    # Project cards and the timeline read German fields from the projects API (falling back to English).
+    s = s.replace('return lang==="en"?(p[k+"En"]||p[k])', 'return lang==="de"?(p[k+"De"]||p[k+"En"]||p[k]):lang==="en"?(p[k+"En"]||p[k])')
+    for (uk, en, crh), de in zip(T, DE):
+        s = s.replace(uk, (None, en, crh, de)[col])
     left = sorted(set(re.findall(r"[А-ЯҐЄІЇа-яґєії][^<>\"]*", re.sub(r"<script.*?</script>|<style.*?</style>", "", s, flags=re.S))))
     if left:
         sys.exit(f"{lang}: untranslated Ukrainian text left:\n" + "\n".join(left))
@@ -150,5 +226,5 @@ def build(lang):
     out.write_text(s, encoding="utf-8")
     print("wrote", out)
 
-for lang in ("en", "crh"):
+for lang in ("en", "crh", "de"):
     build(lang)

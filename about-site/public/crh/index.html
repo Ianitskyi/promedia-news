@@ -14,6 +14,7 @@
 <link rel="alternate" hreflang="uk" href="https://about.promedia.report/">
 <link rel="alternate" hreflang="en" href="https://about.promedia.report/en/">
 <link rel="alternate" hreflang="crh" href="https://about.promedia.report/crh/">
+<link rel="alternate" hreflang="de" href="https://about.promedia.report/de/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://about.promedia.report/assets/og-about.png?v=2">
 <meta name="robots" content="noindex">
@@ -189,7 +190,7 @@ section{padding:72px 0}
 <style id="pm-home-projects-style">.pm-hp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.pm-hp-card{display:flex;flex-direction:column;border:1px solid #e2e2ec;border-radius:8px;overflow:hidden;background:#fff;text-decoration:none!important;color:#0d0c5c!important;transition:border-color .15s}.pm-hp-card:hover{border-color:#0d0c5c}.pm-hp-card img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;background:#f4f1ea}.pm-hp-body{display:flex;flex-direction:column;gap:6px;padding:14px 16px 18px}.pm-hp-period{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#6b6b93}.pm-hp-period i{font-style:normal;color:#2e8b57}.pm-hp-period i::before{content:"";display:inline-block;width:7px;height:7px;margin:0 6px 1px 0;border-radius:50%;background:#2e8b57}.pm-hp-title{font-size:17px;font-weight:700;line-height:1.3}.pm-hp-all{display:inline-block;margin-top:18px;font-size:14px;font-weight:700;color:#0d0c5c!important;text-decoration:none!important}.pm-hp-all:hover{color:#b36a00!important}@media(max-width:991px){.pm-hp-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}@media(max-width:575px){.pm-hp-title{font-size:15px}.pm-hp-body{padding:10px 12px 14px}.pm-hp-period{font-size:11px}}</style>
 <script>(function(){var g=document.getElementById("pm-hp-grid");if(!g)return;var lang=g.dataset.lang,live=g.dataset.live,B="https://projects.promedia.report";
 function e(s){return String(s||"").replace(/[&<>"']/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
-function pick(p,k){var c=k.charAt(0).toUpperCase()+k.slice(1);return lang==="en"?(p[k+"En"]||p[k]):lang==="crh"?(p[k+"Crh"]||p[k]):p[k]}
+function pick(p,k){var c=k.charAt(0).toUpperCase()+k.slice(1);return lang==="de"?(p[k+"De"]||p[k+"En"]||p[k]):lang==="en"?(p[k+"En"]||p[k]):lang==="crh"?(p[k+"Crh"]||p[k]):p[k]}
 fetch(B+"/api/projects?featured=0&limit=4").then(function(r){return r.ok?r.json():Promise.reject()}).then(function(d){var it=(d&&d.items)||[];if(!it.length)return;
 g.innerHTML=it.slice(0,4).map(function(p){var img=p.coverImageUrl?(/^https?:/.test(p.coverImageUrl)?p.coverImageUrl:B+p.coverImageUrl):"";var per=e(pick(p,"periodLabel")||"");var st=(p.projectStatus||"")==="active";
 return '<a class="pm-hp-card" href="'+B+(lang==="uk"?"":"/"+lang)+'/project/'+encodeURIComponent(p.slug)+'">'+(img?'<img loading="lazy" src="'+e(img)+'" alt="">':'')+'<div class="pm-hp-body"><span class="pm-hp-period">'+(st?'<i>'+e(live)+'</i>'+(per?' · '+per:''):per)+'</span><span class="pm-hp-title">'+e(pick(p,"title"))+'</span></div></a>'}).join("")}).catch(function(){})})();</script>
@@ -206,7 +207,7 @@ return '<a class="pm-hp-card" href="'+B+(lang==="uk"?"":"/"+lang)+'/project/'+en
 </div></section>
 
 <script>(function(){var tl=document.getElementById("pm-tl");if(!tl||!window.fetch)return;var B="https://projects.promedia.report",lang=tl.dataset.lang||"uk",pre=lang==="uk"?"":"/"+lang;
-function pick(p,k){return lang==="en"?(p[k+"En"]||p[k]):lang==="crh"?(p[k+"Crh"]||p[k]):p[k]}
+function pick(p,k){return lang==="de"?(p[k+"De"]||p[k+"En"]||p[k]):lang==="en"?(p[k+"En"]||p[k]):lang==="crh"?(p[k+"Crh"]||p[k]):p[k]}
 function e(s){return String(s||"").replace(/[&<>"']/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
 function d(iso){var p=String(iso).split("-");return p[2]+"."+p[1]+"."+p[0]}
 fetch(B+"/api/projects?featured=0&limit=100").then(function(r){return r.ok?r.json():Promise.reject()}).then(function(data){var it=((data&&data.items)||[]).filter(function(p){return /^\d{4}-\d{2}-\d{2}$/.test(p.startDate||"")});if(!it.length)return;

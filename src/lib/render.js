@@ -5,12 +5,20 @@ import { BRANDS, BRANDS_SITE_URL } from "./brands.js";
 import { TTS } from "../data/tts-index.js";
 
 // Версія статичних файлів: міняємо при оновленні CSS/JS, щоб телефони не тримали стару копію з кешу.
-const ASSET_V = "20261125s";
+const ASSET_V = "20261126de";
 
-const LANGS = ["uk", "en", "crh"];
+const LANGS = ["uk", "en", "crh", "de"];
 
 function pick(dict, lang) {
-  return (dict && dict[lang] != null) ? dict[lang] : dict.uk;
+  if (dict && dict[lang] != null) return dict[lang];
+  // Німецька (з 26.11.2026): якщо німецького підпису ще немає, краще англійський, ніж український.
+  if (lang === "de" && dict && dict.en != null) return dict.en;
+  return dict.uk;
+}
+
+// Сусідні сайти мережі німецької версії поки не мають — туди ведемо англійською.
+function extLang(lang) {
+  return lang === "de" ? "en" : lang;
 }
 
 // Мова — перший сегмент шляху, як на інших сайтах мережі: "" для uk,
@@ -19,24 +27,61 @@ function langPrefix(lang) {
   return lang === "uk" ? "" : `/${lang}`;
 }
 
-const SITE_NAME = { uk: "Новини ПроМедіа", en: "ProMedia News", crh: "ProMedia haberleri" };
+const SITE_NAME = { uk: "Новини ПроМедіа", en: "ProMedia News", crh: "ProMedia haberleri", de: "ProMedia Nachrichten" };
 const SITE_TAGLINE = {
   uk: "Заяви від ГО «ПроМедіа», а також новини зі світу медіа, громадських організацій та комунікацій.",
   en: "Public statements, press releases and important updates from ProMedia NGO, along with news about communities, education, research and people working in media, civil society and communications.",
-  crh: "ProMedia İCT'niñ beyanatları hem mediya, cemiyet teşkilâtları ve kommunikatsiyalar sahasındaki muhim haberleri."
+  crh: "ProMedia İCT'niñ beyanatları hem mediya, cemiyet teşkilâtları ve kommunikatsiyalar sahasındaki muhim haberleri.",
+  de: "Stellungnahmen und Pressemitteilungen der NGO ProMedia sowie Nachrichten über Communitys, Bildung, Forschung und Menschen in Medien, Zivilgesellschaft und Kommunikation in der Ukraine."
 };
 const SITE_EYEBROW = {
   uk: "Про журналістику та громадський активізм в Україні",
   en: "About journalism and civic activism in Ukraine",
-  crh: "Ukrayinada jurnalistika hem içtimaiy aktivizm aqqında"
+  crh: "Ukrayinada jurnalistika hem içtimaiy aktivizm aqqında",
+  de: "Über Journalismus und zivilgesellschaftliches Engagement in der Ukraine"
 };
-const OG_LOCALE = { uk: "uk_UA", en: "en_US", crh: "crh_UA" };
-const HTML_LOCALE_LABEL = { uk: "Мова / Language", en: "Мова / Language", crh: "Til / Language" };
-const LANG_BUTTON_LABEL = { uk: "UA", en: "EN", crh: "QT" };
+const OG_LOCALE = { uk: "uk_UA", en: "en_US", crh: "crh_UA", de: "de_DE" };
+const HTML_LOCALE_LABEL = { uk: "Мова / Language", en: "Мова / Language", crh: "Til / Language", de: "Sprache / Language" };
+const LANG_BUTTON_LABEL = { uk: "UA", en: "EN", crh: "QT", de: "DE" };
 const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Анонс"];
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "Буркіна-Фасо": "Burkina Faso",
+  "Африка": "Africa",
+  "Туреччина": "Turkey",
+  "погрози журналістам": "threats to journalists",
+  "Рівне": "Rivne",
+  "законодавство": "legislation",
+  "азартні ігри": "gambling",
+  "модель членства": "membership model",
+  "прозорість медіа": "media transparency",
+  "ІМІ": "IMI (Institute of Mass Information)",
+  "Франція": "France",
+  "ліцензування контенту": "content licensing",
+  "міжнародна журналістика": "international journalism",
+  "Наталія Левочко": "Nataliia Levochko",
+  "УКУ": "UCU (Ukrainian Catholic University)",
+  "медіастатистика": "media statistics",
+  "книги": "books",
+  "журналісти": "journalists",
+  "ШІ": "AI",
+  "вступна кампанія 2026": "2026 admissions",
+  "автоматизація": "automation",
+  "розслідування": "investigations",
+  "Донбас Медіа Форум": "Donbas Media Forum",
+  "ейджизм": "ageism",
+  "права людини": "human rights",
+  "медіаринок": "media market",
+  "відкриті дані": "open data",
+  "медіадослідження": "media research",
+  "Харків": "Kharkiv",
+  "події": "events",
+  "локальний бізнес": "local business",
+  "посібник": "guide",
+  "статистика": "statistics",
+  "інвестиції": "investment",
+  "фондовий ринок": "stock market",
   "сатира": "satire",
   "реклама": "advertising",
   "конспірологія": "conspiracy theories",
@@ -412,12 +457,102 @@ const TAG_LABELS_CRH = {
   "Віталій Ляска": "Vitalii Liaska"
 };
 
+// Німецькі назви тегів (26.11.2026). Імен людей і брендів тут немає: для них беремо латиницю з TAG_LABELS_EN,
+// а нові теги без німецького перекладу показуємо англійською (не транслітом).
+const TAG_LABELS_DE = {
+  "Буркіна-Фасо": "Burkina Faso",
+  "Африка": "Afrika",
+  "Туреччина": "Türkei",
+  "погрози журналістам": "Drohungen gegen Journalisten",
+  "Рівне": "Riwne",
+  "законодавство": "Gesetzgebung",
+  "азартні ігри": "Glücksspiel",
+  "модель членства": "Mitgliedschaftsmodell",
+  "прозорість медіа": "Medientransparenz",
+  "ІМІ": "IMI (Institut für Masseninformation)",
+  "Франція": "Frankreich",
+  "ліцензування контенту": "Lizenzierung von Inhalten",
+  "міжнародна журналістика": "internationaler Journalismus",
+  "Наталія Левочко": "Nataliia Levochko",
+  "УКУ": "UCU (Ukrainische Katholische Universität)",
+  "медіастатистика": "Medienstatistik",
+  "книги": "Bücher",
+  "журналісти": "Journalisten",
+  "ШІ": "KI",
+  "вступна кампанія 2026": "Zulassung 2026",
+  "автоматизація": "Automatisierung",
+  "розслідування": "Recherchen",
+  "Донбас Медіа Форум": "Donbas Media Forum",
+  "ейджизм": "Altersdiskriminierung",
+  "права людини": "Menschenrechte",
+  "медіаринок": "Medienmarkt",
+  "відкриті дані": "offene Daten",
+  "медіадослідження": "Medienforschung",
+  "Харків": "Charkiw",
+  "події": "Veranstaltungen",
+  "локальний бізнес": "lokale Wirtschaft",
+  "посібник": "Leitfaden",
+  "статистика": "Statistik",
+  "інвестиції": "Investitionen",
+  "фондовий ринок": "Aktienmarkt",
+  "сатира": "Satire", "реклама": "Werbung", "конспірологія": "Verschwörungstheorien", "Сербія": "Serbien",
+  "економічна журналістика": "Wirtschaftsjournalismus", "Центр Мєрошевського": "Mieroszewski-Zentrum", "Польща": "Polen",
+  "оборонні технології": "Verteidigungstechnologie", "Міністерство оборони": "Verteidigungsministerium",
+  "цифровізація": "Digitalisierung", "Збройні сили України": "Streitkräfte der Ukraine", "Німеччина": "Deutschland",
+  "Норвегія": "Norwegen", "документальне кіно": "Dokumentarfilm", "релігія": "Religion", "капелани": "Militärseelsorger",
+  "комунікації": "Kommunikation", "фіксери": "Fixer", "Атлас медіа": "Medienatlas", "реєстр медіа": "Medienregister",
+  "Нацрада": "Nationaler Rundfunkrat der Ukraine", "Чехія": "Tschechien", "Киргизстан": "Kirgisistan",
+  "соцмережі": "soziale Medien", "суспільні медіа": "öffentlich-rechtliche Medien", "свобода медіа": "Medienfreiheit",
+  "відеоігри": "Videospiele", "медіабізнес": "Mediengeschäft", "НАБУ": "NABU (Nationales Antikorruptionsbüro)",
+  "НБУ": "Nationalbank der Ukraine", "Мінцифри": "Ministerium für digitale Transformation",
+  "САП": "SAP (Antikorruptions-Staatsanwaltschaft)", "антикорупція": "Korruptionsbekämpfung",
+  "підзвітність влади": "Rechenschaftspflicht der Regierung", "Мідас": "Operation Midas", "Карфаген": "Karthago",
+  "Швейцарія": "Schweiz", "банківська таємниця": "Bankgeheimnis", "Таємний Санта": "Wichteln",
+  "бізнес-моделі медіа": "Geschäftsmodelle für Medien", "пейвол": "Paywall", "Можливості": "Chancen",
+  "навчання": "Weiterbildung", "публічні фінанси": "öffentliche Finanzen", "відновлення": "Wiederaufbau",
+  "вотчдоги": "Watchdogs", "Львів": "Lwiw", "стипендії": "Stipendien", "Нідерланди": "Niederlande",
+  "комунальні медіа": "kommunale Medien", "Війна в об'єктиві": "Krieg im Objektiv",
+  "історія журналістики": "Geschichte des Journalismus", "воєнна журналістика": "Kriegsjournalismus",
+  "фотожурналістика": "Fotojournalismus", "ЄС": "EU", "санкції": "Sanktionen", "дезінформація": "Desinformation",
+  "Росія": "Russland", "свобода слова": "Meinungsfreiheit", "регулювання платформ": "Plattformregulierung",
+  "Близький Схід": "Naher Osten", "Одеса": "Odesa", "Миколаїв": "Mykolajiw", "Суми": "Sumy",
+  "Революція Гідності": "Revolution der Würde", "Премія імені Георгія Ґонґадзе": "Georgiy-Gongadze-Preis",
+  "регіональні медіа": "Regionalmedien", "Репортери без кордонів": "Reporter ohne Grenzen", "Мексика": "Mexiko",
+  "Коста-Рика": "Costa Rica", "державна підтримка медіа": "staatliche Medienförderung",
+  "прифронтові медіа": "frontnahe Medien", "Мінкульт": "Kulturministerium", "телемарафон": "TV-Marathon",
+  "профспілки": "Gewerkschaften", "Пресреліз": "Pressemitteilung", "Анонс": "Ankündigung", "Київ": "Kyjiw",
+  "медіа й бізнес": "Medien und Wirtschaft", "Ексклюзив": "Exklusiv", "Заяви": "Stellungnahmen",
+  "Новини": "Nachrichten", "Статті": "Artikel", "освіта": "Bildung", "журналістська освіта": "Journalistenausbildung",
+  "вступ": "Zulassung", "рейтинг журфаків": "Journalistik-Ranking", "українські медіа": "ukrainische Medien",
+  "війна": "Krieg", "безпека журналістів": "Sicherheit von Journalisten", "екологічна журналістика": "Umweltjournalismus",
+  "дослідження": "Forschung", "медіаграмотність": "Medienkompetenz", "штучний інтелект": "künstliche Intelligenz",
+  "дані": "Daten", "медіаспільноти": "Medien-Communitys", "Львівський медіафорум": "Lviv Media Forum",
+  "стійкість медіа": "Resilienz von Medien", "державні комунікації": "Regierungskommunikation",
+  "суспільство": "Gesellschaft", "військова реформа": "Militärreform", "інтерв’ю": "Interview", "студенти": "Studierende",
+  "Україна": "Ukraine", "Японія": "Japan", "медійні спільноти": "Medien-Communitys", "локальні медіа": "Lokalmedien",
+  "карта спільнот": "Community-Karte", "медіаправо": "Medienrecht", "Верховна Рада": "Werchowna Rada",
+  "доступ журналістів": "Zugang für Journalisten", "парламент": "Parlament", "фактчекінг": "Faktencheck",
+  "журналістські розслідування": "investigativer Journalismus", "ІРРП": "RPDI", "державний бюджет": "Staatshaushalt",
+  "медіаполітика": "Medienpolitik", "незалежні медіа": "unabhängige Medien", "членство": "Mitgliedschaft",
+  "Велика Британія": "Großbritannien", "Чернігів": "Tschernihiw", "Індонезія": "Indonesien",
+  "авторське право": "Urheberrecht", "Канада": "Kanada", "місцеві медіа": "Lokalmedien",
+  "фінансування медіа": "Medienfinanzierung", "книжки": "Bücher", "дрони": "Drohnen", "Білорусь": "Belarus",
+  "політв'язні": "politische Gefangene", "цифрова безпека": "digitale Sicherheit", "Наука про медіа": "Medienwissenschaft",
+  "фриланс": "Freiberuflichkeit", "умови праці": "Arbeitsbedingungen", "США": "USA", "власність медіа": "Medieneigentum",
+  "редакційна незалежність": "redaktionelle Unabhängigkeit", "бойкоти": "Boykotte", "Український ПЕН": "PEN Ukraine",
+  "Газа": "Gaza", "Ізраїль": "Israel", "етика журналістики": "journalistische Ethik", "анонімні джерела": "anonyme Quellen",
+  "фандоми": "Fandoms", "кібербулінг": "Cybermobbing", "шпигунські програми": "Spähsoftware",
+  "Міжнародна федерація журналістів": "Internationale Journalisten-Föderation", "ретрити": "Retreats",
+  "психологічна підтримка": "psychologische Unterstützung", "Карпати": "Karpaten", "Локальна історія": "Lokalna istoriia",
+  "бібліотеки": "Bibliotheken"
+};
+
 function tagLookupKey(tag) {
   return String(tag || "").normalize("NFC").trim().replace(/\s+/g, " ").toLocaleLowerCase("uk-UA");
 }
 
 const TAG_LABEL_LOOKUP = Object.fromEntries(
-  [["en", TAG_LABELS_EN], ["crh", TAG_LABELS_CRH]].map(([lang, labels]) => [
+  [["en", TAG_LABELS_EN], ["crh", TAG_LABELS_CRH], ["de", TAG_LABELS_DE]].map(([lang, labels]) => [
     lang, Object.fromEntries(Object.entries(labels).map(([tag, label]) => [tagLookupKey(tag), label]))
   ])
 );
@@ -451,6 +586,11 @@ function brandForTag(tag) {
 function tagLabel(tag, lang) {
   const label = TAG_LABEL_LOOKUP[lang]?.[tagLookupKey(tag)];
   if (label) return label;
+  // Німецька: імена й бренди — латиницею, як в англійській; нові теги без перекладу — англійською.
+  if (lang === "de") {
+    const en = TAG_LABEL_LOOKUP.en?.[tagLookupKey(tag)];
+    if (en) return en;
+  }
   // Імена людей в англійській і кримськотатарській версіях пишемо латиницею.
   const person = lang !== "uk" ? personForTag(tag) : null;
   if (person?.name?.en) return person.name.en;
@@ -472,8 +612,8 @@ function transliterateTag(tag) {
   }).join("");
 }
 
-const PEOPLE_BOX_TITLE = { uk: "Люди в матеріалі", en: "People in this story", crh: "Bu materialdaki insanlar" };
-const PEOPLE_BOX_LINK = { uk: "Досьє", en: "Profile", crh: "Dosye" };
+const PEOPLE_BOX_TITLE = { uk: "Люди в матеріалі", en: "People in this story", crh: "Bu materialdaki insanlar", de: "Personen in diesem Beitrag" };
+const PEOPLE_BOX_LINK = { uk: "Досьє", en: "Profile", crh: "Dosye", de: "Profil" };
 
 function peopleBox(tags, lang) {
   if (!PEOPLE_BASE_URL) return "";
@@ -481,11 +621,11 @@ function peopleBox(tags, lang) {
   const people = tags.map(personForTag).filter(p => p && !seen.has(p.slug) && seen.add(p.slug));
   if (!people.length) return "";
   const base = PEOPLE_BASE_URL.replace(/\/$/, "");
-  const prefix = lang === "en" ? "/en" : "";
+  const prefix = lang === "en" || lang === "de" ? "/en" : "";
   const items = people.map((p) => {
     const name = lang === "uk" ? p.name.uk : (p.name.en || p.name.uk);
-    const role = lang === "en" ? (p.role.en || p.role.uk) : p.role.uk;
-    const summary = lang === "en" ? (p.summary.en || p.summary.uk) : p.summary.uk;
+    const role = lang === "en" || lang === "de" ? (p.role[lang] || p.role.en || p.role.uk) : p.role.uk;
+    const summary = lang === "en" || lang === "de" ? (p.summary[lang] || p.summary.en || p.summary.uk) : p.summary.uk;
     const href = `${base}${prefix}/${p.slug}/`;
     const initials = name.split(/\s+/).map(w => w[0]).slice(0, 2).join("");
     return `<li class="people-box-item">
@@ -530,7 +670,7 @@ function personMatchesText(person, text, lang) {
 }
 function personDossierUrl(person, lang) {
   const base = PEOPLE_BASE_URL.replace(/\/$/, "");
-  const prefix = lang === "en" ? "/en" : lang === "crh" ? "/crh" : "";
+  const prefix = lang === "en" || lang === "de" ? "/en" : lang === "crh" ? "/crh" : "";
   return `${base}${prefix}/${person.slug}/`;
 }
 function linkPeopleInBody(html, tags, lang) {
@@ -589,7 +729,7 @@ function tagLinks(tags, lang) {
 
 function articleCoverMetadata(article, lang) {
   let data = lang === "crh" && article.cover_image_url_crh ? article.cover_crop_data_crh
-    : lang === "en" && article.cover_image_url_en ? article.cover_crop_data_en : article.cover_crop_data;
+    : (lang === "en" || lang === "de") && article.cover_image_url_en ? article.cover_crop_data_en : article.cover_crop_data;
   try { return (typeof data === "string" ? JSON.parse(data) : data) || {}; } catch (_) { return {}; }
 }
 
@@ -659,7 +799,7 @@ function coverCaption(article, lang, bodyMd) {
 
 function articleCover(article, lang) {
   if (lang === "crh" && article.cover_image_url_crh) return article.cover_image_url_crh;
-  return lang === "en" && article.cover_image_url_en
+  return (lang === "en" || lang === "de") && article.cover_image_url_en
     ? article.cover_image_url_en
     : article.cover_image_url;
 }
@@ -668,20 +808,20 @@ function articleCover(article, lang) {
 function localizedUrls(url) {
   const u = new URL(url);
   u.searchParams.delete("lang");
-  const path = u.pathname.replace(/^\/(en|crh)(?=\/|$)/, "") || "/";
+  const path = u.pathname.replace(/^\/(en|crh|de)(?=\/|$)/, "") || "/";
   const withLang = (lang) => `${u.origin}${langPrefix(lang)}${path}${u.search}`;
-  return { ukUrl: withLang("uk"), enUrl: withLang("en"), crhUrl: withLang("crh") };
+  return { ukUrl: withLang("uk"), enUrl: withLang("en"), crhUrl: withLang("crh"), deUrl: withLang("de") };
 }
 
-function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd }) {
-  const { ukUrl, enUrl, crhUrl } = localizedUrls(url);
-  const canonicalUrl = lang === "en" ? enUrl : (lang === "crh" ? crhUrl : ukUrl);
-  const defaultImage = lang === "crh" || lang === "en"
-    ? `/img/og-share-${lang}.png`
+function baseHead({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd, hasDe = true }) {
+  const { ukUrl, enUrl, crhUrl, deUrl } = localizedUrls(url);
+  const canonicalUrl = lang === "en" ? enUrl : lang === "crh" ? crhUrl : lang === "de" ? deUrl : ukUrl;
+  const defaultImage = lang === "crh" || lang === "en" || lang === "de"
+    ? `/img/og-share-${extLang(lang)}.png`
     : DEFAULT_OG_IMAGE;
   const socialImage = new URL(ogImage || defaultImage, canonicalUrl).toString();
   const locale = OG_LOCALE[lang] || OG_LOCALE.uk;
-  const alternateLocales = LANGS.filter((l) => l !== lang).map((l) => OG_LOCALE[l]);
+  const alternateLocales = LANGS.filter((l) => l !== lang && (l !== "de" || hasDe)).map((l) => OG_LOCALE[l]);
   return `
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -710,16 +850,18 @@ ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd).replace(
 <link rel="alternate" hreflang="uk" href="${escapeHtml(ukUrl)}" />
 <link rel="alternate" hreflang="en" href="${escapeHtml(enUrl)}" />
 <link rel="alternate" hreflang="crh" href="${escapeHtml(crhUrl)}" />
+${hasDe ? `<link rel="alternate" hreflang="de" href="${escapeHtml(deUrl)}" />` : ""}
 <link rel="alternate" hreflang="x-default" href="${escapeHtml(ukUrl)}" />
 <link rel="icon" href="/favicon.png" type="image/png" />
 <link rel="stylesheet" href="/css/style.css?v=${ASSET_V}" />`;
 }
 
-const NAV_ARIA = { uk: "Проєкти ПроМедіа", en: "ProMedia projects", crh: "ProMedia leyhaları" };
+const NAV_ARIA = { uk: "Проєкти ПроМедіа", en: "ProMedia projects", crh: "ProMedia leyhaları", de: "ProMedia-Projekte" };
 const NAV_LABELS = {
   uk: { communities: "Карта спільнот", ratings: "Рейтинг журфаків", research: "Дослідження", atlas: "Атлас Медіа", news: "Новини" },
   en: { communities: "Media communities", ratings: "Journalism schools", research: "Research", atlas: "Media Atlas", news: "News" },
-  crh: { communities: "Cemaatlar haritası", ratings: "Jurnalistika fakülteleri reytingi", research: "Tedqiqatlar", atlas: "Mediya Atlası", news: "Haberler" }
+  crh: { communities: "Cemaatlar haritası", ratings: "Jurnalistika fakülteleri reytingi", research: "Tedqiqatlar", atlas: "Mediya Atlası", news: "Haberler" },
+  de: { communities: "Medien-Communitys", ratings: "Journalistik-Ranking", research: "Forschung", atlas: "Medienatlas", news: "Nachrichten" }
 };
 
 // Адреси сусідніх сайтів мережі для кожної мови. Communities, research і
@@ -757,6 +899,13 @@ const FOOTER_TEXT = {
     addressValue: "Volodymyr Samiylenko soqağı, 19/44, Kyiv, Ukrayina, 03118",
     chair: "İdare Keñeşi Reisi", chairValue: "Andrii Ianitskyi", phone: "Telefon", email: "Elektron poçta",
     social: "İçtimaiy şebekeler", project: "ProMedia leyhası", correction: "Hata taptıñızmı?"
+  },
+  de: {
+    details: "Angaben zur Organisation", name: "Offizieller Name", nameValue: "NGO ProMedia",
+    registration: "Registernummer", address: "Rechtliche Anschrift",
+    addressValue: "Volodymyr-Samiilenko-Str. 19/44, 03118 Kyjiw, Ukraine",
+    chair: "Vorstandsvorsitzender", chairValue: "Andrii Ianitskyi", phone: "Telefon", email: "E-Mail",
+    social: "Soziale Medien", project: "Ein Projekt von ProMedia", correction: "Fehler gefunden?"
   }
 };
 
@@ -764,11 +913,11 @@ function footer() {
   return `<promedia-global-footer></promedia-global-footer>`;
 }
 
-function pageShell({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd, bodyHtml }) {
+function pageShell({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd, bodyHtml, hasDe }) {
   return `<!doctype html>
 <html lang="${lang}">
 <head>
-${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd })}
+${baseHead({ title, description, url, ogImage, lang, ogType, publishedAt, modifiedAt, imageAlt, jsonLd, hasDe })}
 <script async src="https://news.promedia.report/js/promedia-analytics.js"></script>
 </head>
 <body>
@@ -791,7 +940,7 @@ function formatDate(dateStr, lang) {
   if (!dateStr) return "";
   const d = new Date(dateStr);
   if (isNaN(d.getTime())) return "";
-  return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "uk-UA", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Europe/Kyiv" }).format(d);
+  return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : lang === "de" ? "de-DE" : "uk-UA", { day: "2-digit", month: "2-digit", year: "numeric", timeZone: "Europe/Kyiv" }).format(d);
 }
 
 // Owner decision (2026-11-17): hide the view counter for the first 24 hours after
@@ -805,9 +954,9 @@ export function viewsVisible(publishedAt, now = Date.now()) {
 
 // Значки «у тексті є фото / відео / аудіо» біля дати.
 const MEDIA_LABELS = {
-  photo: { uk: (n) => `У тексті ${n} фото`, en: (n) => `${n} photos in the story`, crh: (n) => `Metinde ${n} fotoresim` },
-  video: { uk: (n) => n > 1 ? `У тексті ${n} відео` : "У тексті є відео", en: (n) => n > 1 ? `${n} videos in the story` : "Video in the story", crh: (n) => n > 1 ? `Metinde ${n} video` : "Metinde video bar" },
-  audio: { uk: () => "У тексті є аудіозапис", en: () => "Audio recording in the story", crh: () => "Metinde audio yazı bar" }
+  photo: { uk: (n) => `У тексті ${n} фото`, en: (n) => `${n} photos in the story`, crh: (n) => `Metinde ${n} fotoresim`, de: (n) => `${n} Fotos im Beitrag` },
+  video: { uk: (n) => n > 1 ? `У тексті ${n} відео` : "У тексті є відео", en: (n) => n > 1 ? `${n} videos in the story` : "Video in the story", crh: (n) => n > 1 ? `Metinde ${n} video` : "Metinde video bar", de: (n) => n > 1 ? `${n} Videos im Beitrag` : "Video im Beitrag" },
+  audio: { uk: () => "У тексті є аудіозапис", en: () => "Audio recording in the story", crh: () => "Metinde audio yazı bar", de: () => "Audioaufnahme im Beitrag" }
 };
 const MEDIA_ICONS = {
   photo: '<path d="M4 8h3l2-2.5h6L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z"/><circle cx="12" cy="13" r="3.5"/>',
@@ -850,10 +999,10 @@ function articleMeta(article, lang, now = Date.now()) {
 
 function articleViews(article, lang, now = Date.now()) {
   const count = article.view_count;
-  const labels = { uk: "Перегляди", en: "Views", crh: "Baqıluvlar" };
-  const hints = { uk: "Перегляди за даними Google Analytics", en: "Page views from Google Analytics", crh: "Google Analytics malümatlarına köre baqıluvlar" };
+  const labels = { uk: "Перегляди", en: "Views", crh: "Baqıluvlar", de: "Aufrufe" };
+  const hints = { uk: "Перегляди за даними Google Analytics", en: "Page views from Google Analytics", crh: "Google Analytics malümatlarına köre baqıluvlar", de: "Seitenaufrufe laut Google Analytics" };
   const views = Number.isSafeInteger(count) && count >= 0 && viewsVisible(article.published_at, now)
-    ? `<span class="article-views" title="${pick(hints, lang)}" aria-label="${pick(labels, lang)}: ${count}"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>${new Intl.NumberFormat(lang === "en" ? "en-GB" : "uk-UA").format(count)}</span></span>`
+    ? `<span class="article-views" title="${pick(hints, lang)}" aria-label="${pick(labels, lang)}: ${count}"><svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg><span>${new Intl.NumberFormat(lang === "en" ? "en-GB" : lang === "de" ? "de-DE" : "uk-UA").format(count)}</span></span>`
     : "";
   return views;
 }
@@ -876,18 +1025,18 @@ function articleExcerpt(article, lang) {
   return raw || markdownToPlainText(localizedField(article, "body_md", lang), 200);
 }
 
-const ALL_LABEL = { uk: "Усі", en: "All", crh: "Episi" };
-const CATEGORY_NAV_ARIA = { uk: "Рубрики новин", en: "News categories", crh: "Haber kategoriyaları" };
+const ALL_LABEL = { uk: "Усі", en: "All", crh: "Episi", de: "Alle" };
+const CATEGORY_NAV_ARIA = { uk: "Рубрики новин", en: "News categories", crh: "Haber kategoriyaları", de: "Nachrichtenrubriken" };
 const CATEGORY_NAV_KIND = { "Новини": "news", "Статті": "articles", "Пресреліз": "press", "Анонс": "announce" };
 // Підписи фільтра форматів на головній (множина: «Пресрелізи», «Анонси»).
 const CATEGORY_NAV_LABELS = {
-  "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
-  "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
-  "Пресреліз": { uk: "Пресрелізи", en: "Press releases", crh: "Basın bildirileri" },
-  "Анонс": { uk: "Анонси", en: "Announcements", crh: "İlânlar" }
+  "Новини": { uk: "Новини", en: "News", crh: "Haberler", de: "Nachrichten" },
+  "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler", de: "Artikel" },
+  "Пресреліз": { uk: "Пресрелізи", en: "Press releases", crh: "Basın bildirileri", de: "Pressemitteilungen" },
+  "Анонс": { uk: "Анонси", en: "Announcements", crh: "İlânlar", de: "Ankündigungen" }
 };
 
-const TOP_NAV_LABEL = { uk: "Топ", en: "Top", crh: "Top" };
+const TOP_NAV_LABEL = { uk: "Топ", en: "Top", crh: "Top", de: "Top" };
 
 function categoryNav(lang, activeTag, activeSort) {
   const labels = { all: pick(ALL_LABEL, lang), ...Object.fromEntries(CATEGORIES.map(category => [category, pick(CATEGORY_NAV_LABELS[category], lang)])) };
@@ -903,7 +1052,7 @@ function categoryNav(lang, activeTag, activeSort) {
   return `<nav class="category-nav" aria-label="${pick(CATEGORY_NAV_ARIA, lang)}">${items.join("")}</nav>`;
 }
 
-const TOP_STORY_LABEL = { uk: "У центрі уваги", en: "Top story", crh: "Baş haber" };
+const TOP_STORY_LABEL = { uk: "У центрі уваги", en: "Top story", crh: "Baş haber", de: "Im Fokus" };
 
 function articleCard(article, lang, baseUrl, variant) {
   const title = articleTitle(article, lang);
@@ -940,7 +1089,8 @@ function articleCardVariant() {
 const SHARE_LABELS = {
   en: { title: "Share", instagram: "Instagram: share to your story", copy: "Copy this link and paste it into Instagram", copied: "Link copied. Paste it into an Instagram message or a story link sticker." },
   uk: { title: "Поширити", instagram: "Instagram: поширити в сторіз", copy: "Скопіюйте посилання та вставте в Instagram", copied: "Посилання скопійовано. Вставте його в повідомлення Instagram або стікер посилання в історії." },
-  crh: { title: "Paylaş", instagram: "Instagram: hikâyede paylaşmaq", copy: "Bağlantını kopiyalañız ve Instagram'ğa yapıştırıñız", copied: "Bağlantı kopiyalandı. Onı Instagram mesajına ya da hikâyedeki bağlantı etiketine yapıştırıñız." }
+  crh: { title: "Paylaş", instagram: "Instagram: hikâyede paylaşmaq", copy: "Bağlantını kopiyalañız ve Instagram'ğa yapıştırıñız", copied: "Bağlantı kopiyalandı. Onı Instagram mesajına ya da hikâyedeki bağlantı etiketine yapıştırıñız." },
+  de: { title: "Teilen", instagram: "Instagram: in der Story teilen", copy: "Link kopieren und in Instagram einfügen", copied: "Link kopiert. Fügen Sie ihn in eine Instagram-Nachricht oder einen Link-Sticker in Ihrer Story ein." }
 };
 
 // Inline brand icons keep the share controls independent of external icon services.
@@ -964,7 +1114,8 @@ const GOOGLE_SOURCE_URL = "https://www.google.com/preferences/source?q=news.prom
 const GOOGLE_SOURCE_COPY = {
   uk: { aria: "Додати «ПроМедіа» до бажаних джерел Google", button: "Додати", text: "Додайте «ПроМедіа» до бажаних джерел Google — і наші новини траплятимуться вам частіше." },
   en: { aria: "Add ProMedia as a preferred source on Google", button: "Add", text: "Add ProMedia as a preferred source on Google to see our news more often." },
-  crh: { aria: "«ProMedia»-nı Google-da tercih etilgen menbalarğa qoşmaq", button: "Qoşmaq", text: "«ProMedia»-nı Google-da tercih etilgen menbalarğa qoşuñız — haberlerimiz sizge daa sıq rastkelir." }
+  crh: { aria: "«ProMedia»-nı Google-da tercih etilgen menbalarğa qoşmaq", button: "Qoşmaq", text: "«ProMedia»-nı Google-da tercih etilgen menbalarğa qoşuñız — haberlerimiz sizge daa sıq rastkelir." },
+  de: { aria: "ProMedia als bevorzugte Quelle bei Google hinzufügen", button: "Hinzufügen", text: "Fügen Sie ProMedia bei Google als bevorzugte Quelle hinzu, dann sehen Sie unsere Nachrichten häufiger." }
 };
 const GOOGLE_G_MONO = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M23.5 12.27c0-.85-.08-1.67-.22-2.45H12v4.64h6.45a5.52 5.52 0 0 1-2.4 3.62v3h3.88c2.27-2.09 3.57-5.17 3.57-8.81Z"/><path d="M12 24c3.24 0 5.96-1.07 7.94-2.91l-3.88-3.01c-1.07.72-2.45 1.15-4.06 1.15-3.12 0-5.77-2.11-6.71-4.95H1.28v3.11A12 12 0 0 0 12 24Z"/><path d="M5.29 14.28a7.2 7.2 0 0 1 0-4.56V6.61H1.28a12 12 0 0 0 0 10.78l4.01-3.11Z"/><path d="M12 4.77c1.76 0 3.34.61 4.59 1.8l3.44-3.44A11.5 11.5 0 0 0 12 0 12 12 0 0 0 1.28 6.61l4.01 3.11C6.23 6.88 8.88 4.77 12 4.77Z"/></svg>';
 
@@ -1003,7 +1154,7 @@ const PROMEDIA_SOCIALS = [
   ["LinkedIn", "https://www.linkedin.com/company/promediaukraine"],
   ["YouTube", "https://www.youtube.com/@prostirmedia"]
 ];
-const FOLLOW_LABEL = { uk: "Стежте за ПроМедіа", en: "Follow ProMedia", crh: "ProMedia-nı taqip etiñiz" };
+const FOLLOW_LABEL = { uk: "Стежте за ПроМедіа", en: "Follow ProMedia", crh: "ProMedia-nı taqip etiñiz", de: "Folgen Sie ProMedia" };
 function followBlock(lang, placement) {
   const label = pick(FOLLOW_LABEL, lang);
   return `<section class="pm-follow pm-follow--${placement}" aria-label="${escapeHtml(label)}">
@@ -1036,15 +1187,15 @@ function articleShareBlock({ title, excerpt, articleUrl, lang, coverUrl, coverFo
 </section>`;
 }
 
-const NO_ARTICLES_LABEL = { uk: "Статей поки немає.", en: "No articles yet.", crh: "Şimdilik maqale yoq." };
-const TOP_STORIES_ARIA = { uk: "Головні новини", en: "Top stories", crh: "Baş haberler" };
-const LATEST_NEWS_LABEL = { uk: "Останні новини", en: "Latest news", crh: "Soñki haberler" };
+const NO_ARTICLES_LABEL = { uk: "Статей поки немає.", en: "No articles yet.", crh: "Şimdilik maqale yoq.", de: "Noch keine Beiträge auf Deutsch." };
+const TOP_STORIES_ARIA = { uk: "Головні новини", en: "Top stories", crh: "Baş haberler", de: "Top-Nachrichten" };
+const LATEST_NEWS_LABEL = { uk: "Останні новини", en: "Latest news", crh: "Soñki haberler", de: "Neueste Nachrichten" };
 
 export const PRACTICE_TOPICS = [
-  { id: "audience", labels: { uk: "Залучати аудиторію", en: "Engage audiences", crh: "Auditoriyanı celp etmek" }, tags: ["медійні спільноти", "медіаспільноти", "Медіаспільноти", "членство", "карта спільнот"] },
-  { id: "money", labels: { uk: "Знаходити гроші", en: "Find funding", crh: "Malî imkânlar tapmaq" }, tags: ["локальний бізнес", "фінансування", "фандрейзинг", "медіапідприємництво", "членство"] },
-  { id: "technology", labels: { uk: "Автоматизувати роботу", en: "Automate work", crh: "İşni avtomatlaştırmaq" }, tags: ["штучний інтелект", "Штучний інтелект", "ШІ", "автоматизація", "відкриті дані", "фактчекінг"] },
-  { id: "team", labels: { uk: "Розвивати команду", en: "Develop your team", crh: "Komandanı inkişaf ettirmek" }, tags: ["журналістська освіта", "освіта", "навчання", "безпека журналістів", "ейджизм"] }
+  { id: "audience", labels: { uk: "Залучати аудиторію", en: "Engage audiences", crh: "Auditoriyanı celp etmek", de: "Publikum gewinnen" }, tags: ["медійні спільноти", "медіаспільноти", "Медіаспільноти", "членство", "карта спільнот"] },
+  { id: "money", labels: { uk: "Знаходити гроші", en: "Find funding", crh: "Malî imkânlar tapmaq", de: "Finanzierung finden" }, tags: ["локальний бізнес", "фінансування", "фандрейзинг", "медіапідприємництво", "членство"] },
+  { id: "technology", labels: { uk: "Автоматизувати роботу", en: "Automate work", crh: "İşni avtomatlaştırmaq", de: "Arbeit automatisieren" }, tags: ["штучний інтелект", "Штучний інтелект", "ШІ", "автоматизація", "відкриті дані", "фактчекінг"] },
+  { id: "team", labels: { uk: "Розвивати команду", en: "Develop your team", crh: "Komandanı inkişaf ettirmek", de: "Team entwickeln" }, tags: ["журналістська освіта", "освіта", "навчання", "безпека журналістів", "ейджизм"] }
 ];
 
 function articleTags(article) {
@@ -1054,25 +1205,28 @@ function articleTags(article) {
 const PRACTICE_COPY = {
   uk: { title: "Новини медіа та комунікацій", intro: "Новини медіа, журналістики та комунікацій для українських редакцій: ринок, дослідження, можливості, законодавство.", needs: "Що потрібно вашій редакції?", practice: "Взяти в роботу", latest: "Останні публікації", all: "Усі матеріали", research: "Дослідження", organisation: "ПроМедіа: події та проєкти", services: "Інструменти ПроМедіа", guide: "Посібник із розвитку спільнот", atlas: "Атлас Медіа", jobs: "Робота в медіа", filtered: "Матеріали за темою" },
   en: { title: "Media and communications news", intro: "Media, journalism and communications news for Ukrainian newsrooms: market, research, opportunities, regulation.", needs: "What does your newsroom need?", practice: "Put into practice", latest: "Latest publications", all: "All publications", research: "Research", organisation: "ProMedia: events and projects", services: "ProMedia tools", guide: "Community development guide", atlas: "Media Atlas", jobs: "Media jobs", filtered: "Explore this topic" },
-  crh: { title: "Mediya ve kommunikatsiya haberleri", intro: "Ukrayina redaktsiyaları içün mediya, jurnalistika ve kommunikatsiya haberleri.", needs: "Redaktsiyañızğa ne kerek?", practice: "Amelde qullanıñız", latest: "Soñki neşirler", all: "Bütün neşirler", research: "Tedqiqatlar", organisation: "ProMedia: tedbirler ve leyhalar", services: "ProMedia aletleri", guide: "Cemaatlarnı inkişaf ettirüv qılavuzı", atlas: "Mediya Atlası", jobs: "Mediyada iş", filtered: "Mevzuğa ait neşirler" }
+  crh: { title: "Mediya ve kommunikatsiya haberleri", intro: "Ukrayina redaktsiyaları içün mediya, jurnalistika ve kommunikatsiya haberleri.", needs: "Redaktsiyañızğa ne kerek?", practice: "Amelde qullanıñız", latest: "Soñki neşirler", all: "Bütün neşirler", research: "Tedqiqatlar", organisation: "ProMedia: tedbirler ve leyhalar", services: "ProMedia aletleri", guide: "Cemaatlarnı inkişaf ettirüv qılavuzı", atlas: "Mediya Atlası", jobs: "Mediyada iş", filtered: "Mevzuğa ait neşirler" },
+  de: { title: "Nachrichten aus Medien und Kommunikation", intro: "Nachrichten über Medien, Journalismus und Kommunikation aus der Ukraine: Markt, Forschung, Chancen, Regulierung.", needs: "Was braucht Ihre Redaktion?", practice: "In die Praxis umsetzen", latest: "Neueste Beiträge", all: "Alle Beiträge", research: "Forschung", organisation: "ProMedia: Veranstaltungen und Projekte", services: "ProMedia-Tools", guide: "Leitfaden zur Community-Entwicklung", atlas: "Medienatlas", jobs: "Medienjobs", filtered: "Mehr zu diesem Thema" }
 };
 
 
 const PROJECT_PROMOS = {
   uk: { label: "Проєкт ПроМедіа", atlas: ["Хто стоїть за українськими медіа?", "Шукайте медіа та їхніх власників в Атласі Медіа.", "Відкрити Атлас"], jobs: ["Знайдіть свою роботу в медіа", "Вакансії та можливості для медійників.", "До вакансій"] },
   en: { label: "A ProMedia project", atlas: ["Who owns Ukrainian media?", "Explore media outlets and their owners in the Media Atlas.", "Open the Atlas"], jobs: ["Find your next media job", "Jobs and opportunities for media professionals.", "Explore jobs"] },
-  crh: { label: "ProMedia leyhası", atlas: ["Ukrayina mediyasınıñ saipleri kim?", "Mediya Atlasında mediya ve saiplerini tapıñız.", "Atlasnı aç"], jobs: ["Mediyada iş tapıñız", "Mediya mütehassısları içün vakansiyalar.", "Vakansiyalar"] }
+  crh: { label: "ProMedia leyhası", atlas: ["Ukrayina mediyasınıñ saipleri kim?", "Mediya Atlasında mediya ve saiplerini tapıñız.", "Atlasnı aç"], jobs: ["Mediyada iş tapıñız", "Mediya mütehassısları içün vakansiyalar.", "Vakansiyalar"] },
+  de: { label: "Ein Projekt von ProMedia", atlas: ["Wem gehören die ukrainischen Medien?", "Medien und ihre Eigentümer im Medienatlas finden.", "Atlas öffnen"], jobs: ["Finden Sie Ihren nächsten Medienjob", "Jobs und Chancen für Medienschaffende.", "Zu den Jobs"] }
 };
 
 function projectPromo(lang, project, placement) {
   const copy = pick(PROJECT_PROMOS, lang);
   const [title, description, action] = copy[project];
-  const href = project === "atlas" ? NETWORK_URLS.atlas[lang] : "https://jobs.promedia.report/";
+  const href = project === "atlas" ? NETWORK_URLS.atlas[extLang(lang)] : "https://jobs.promedia.report/";
   if (project === "atlas" && placement === "home-mosaic") {
     const labels = pick({
       uk: { label: "Наші проєкти", brand: "АТЛАС МЕДІА", title: "Хто володіє українськими медіа?" },
       en: { label: "Our projects", brand: "MEDIA ATLAS", title: "Who owns Ukrainian media?" },
-      crh: { label: "Leyhalarımız", brand: "MEDİYA ATLASI", title }
+      crh: { label: "Leyhalarımız", brand: "MEDİYA ATLASI", title },
+      de: { label: "Unsere Projekte", brand: "MEDIENATLAS", title: "Wem gehören die ukrainischen Medien?" }
     }, lang);
     return `<aside class="project-promo-slot" data-ad-slot="home-mosaic" aria-label="${escapeHtml(labels.label)}">
       <a class="project-promo atlas-display-ad" href="${escapeHtml(href)}">
@@ -1102,11 +1256,12 @@ function mosaicPromoTemplates(lang) {
   const copy = pick({
     uk: { label: "Наші проєкти", guide: ["РОЗВИТОК СПІЛЬНОТ", "Як об’єднати аудиторію навколо медіа?", "Відкрити посібник"], ratings: ["РЕЙТИНГ ЖУРФАКІВ", "Де навчатися журналістики?", "Переглянути рейтинг"] },
     en: { label: "Our projects", guide: ["COMMUNITY GUIDE", "Build a community around your media", "Explore the guide"], ratings: ["JOURNALISM SCHOOLS", "Where to study journalism?", "Explore the ranking"] },
-    crh: { label: "Leyhalarımız", guide: ["CEMAAT REHBERİ", "Mediya etrafında cemaat quruñız", "Rehberni aç"], ratings: ["FAKÜLTELER REYTİNGİ", "Jurnalistikanı qayda ögrenmeli?", "Reytingni aç"] }
+    crh: { label: "Leyhalarımız", guide: ["CEMAAT REHBERİ", "Mediya etrafında cemaat quruñız", "Rehberni aç"], ratings: ["FAKÜLTELER REYTİNGİ", "Jurnalistikanı qayda ögrenmeli?", "Reytingni aç"] },
+    de: { label: "Unsere Projekte", guide: ["COMMUNITY-LEITFADEN", "Eine Community rund um Ihr Medium aufbauen", "Leitfaden öffnen"], ratings: ["JOURNALISTIK-RANKING", "Wo studiert man Journalismus?", "Ranking ansehen"] }
   }, lang);
   return ["guide", "ratings"].map(project => {
     const [brand, title, action] = copy[project];
-    const href = project === "guide" ? "https://guide.promedia.report/" + (lang === "uk" ? "" : lang + "/") : NETWORK_URLS.ratings[lang];
+    const href = project === "guide" ? "https://guide.promedia.report/" + (lang === "uk" ? "" : extLang(lang) + "/") : NETWORK_URLS.ratings[extLang(lang)];
     const graphic = project === "guide"
       ? '<path d="M22 32Q48 19 70 34Q94 19 120 32V121Q94 108 70 123Q48 108 22 121Z"/><path d="M70 34V123M33 47L56 45M33 59L56 57M84 45L108 47M84 57L108 59"/>'
       : '<path d="M22 128H126M30 128V88H51V128M65 128V60H86V128M100 128V29H121V128"/><path d="M24 62L62 35L82 43L119 10"/>';
@@ -1171,15 +1326,15 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
     url: `${baseUrl}${prefix}/${activeTag ? `?tag=${encodeURIComponent(activeTag)}` : topic ? `?topic=${topic.id}` : activeSort === "top" ? "?sort=top" : ""}`, lang, bodyHtml });
 }
 
-const LEAD_SIDE_LABEL = { uk: "Останні", en: "Latest", crh: "Soñki" };
-const PINNED_LABEL = { uk: "Закріплено", en: "Pinned", crh: "Bekitilgen" };
-const LEAD_SIDE_TOP_LABEL = { uk: "Найчитаніші", en: "Most read", crh: "Eñ çoq oqulğanlar" };
+const LEAD_SIDE_LABEL = { uk: "Останні", en: "Latest", crh: "Soñki", de: "Neueste" };
+const PINNED_LABEL = { uk: "Закріплено", en: "Pinned", crh: "Bekitilgen", de: "Angeheftet" };
+const LEAD_SIDE_TOP_LABEL = { uk: "Найчитаніші", en: "Most read", crh: "Eñ çoq oqulğanlar", de: "Meistgelesen" };
 const LEAD_RUBRICS = {
-  "Пресреліз": { uk: "Пресреліз", en: "Press release", crh: "Basın bildirisi" },
-  "Анонс": { uk: "Анонс", en: "Announcement", crh: "İlân" },
-  "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
-  "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
-  "Заяви": { uk: "Заяви", en: "Statements", crh: "Beyanatlar" }
+  "Пресреліз": { uk: "Пресреліз", en: "Press release", crh: "Basın bildirisi", de: "Pressemitteilung" },
+  "Анонс": { uk: "Анонс", en: "Announcement", crh: "İlân", de: "Ankündigung" },
+  "Новини": { uk: "Новини", en: "News", crh: "Haberler", de: "Nachrichten" },
+  "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler", de: "Artikel" },
+  "Заяви": { uk: "Заяви", en: "Statements", crh: "Beyanatlar", de: "Stellungnahmen" }
 };
 
 function leadMeta(article, lang) {
@@ -1232,15 +1387,15 @@ function newsLead(hero, side, lang, baseUrl, isTop, pinnedSlug) {
   </section>`;
 }
 
-const BACK_TO_NEWS_LABEL = { uk: "← Усі новини", en: "← All news", crh: "← Episi haberler" };
-const ABOUT_LABEL = { uk: "Про кого:", en: "About:", crh: "Kimler aqqında:" };
+const BACK_TO_NEWS_LABEL = { uk: "← Усі новини", en: "← All news", crh: "← Episi haberler", de: "← Alle Nachrichten" };
+const ABOUT_LABEL = { uk: "Про кого:", en: "About:", crh: "Kimler aqqında:", de: "Über:" };
 
 // Картка «Медіа в матеріалі» під новиною — поруч із карткою «Люди в матеріалі».
 // Показуємо лише медіа, які є в Атласі медіа або на карті спільнот, з посиланнями на обидва.
-const MEDIA_BOX_TITLE = { uk: "Українські медіа в матеріалі", en: "Ukrainian media in this story", crh: "Bu materialdaki ukrain mediyaları" };
-const MEDIA_BOX_ATLAS = { uk: "В Атласі медіа", en: "In the Media Atlas", crh: "Mediya Atlasında" };
-const MEDIA_BOX_MAP = { uk: "На карті спільнот", en: "On the community map", crh: "Cemaatlar haritasında" };
-const MEDIA_BOX_SITE = { uk: "Сайт", en: "Website", crh: "Sayt" };
+const MEDIA_BOX_TITLE = { uk: "Українські медіа в матеріалі", en: "Ukrainian media in this story", crh: "Bu materialdaki ukrain mediyaları", de: "Ukrainische Medien in diesem Beitrag" };
+const MEDIA_BOX_ATLAS = { uk: "В Атласі медіа", en: "In the Media Atlas", crh: "Mediya Atlasında", de: "Im Medienatlas" };
+const MEDIA_BOX_MAP = { uk: "На карті спільнот", en: "On the community map", crh: "Cemaatlar haritasında", de: "Auf der Community-Karte" };
+const MEDIA_BOX_SITE = { uk: "Сайт", en: "Website", crh: "Sayt", de: "Website" };
 
 function localizedAtlasUrl(url, lang) {
   if (!url || lang === "uk") return url;
@@ -1248,13 +1403,13 @@ function localizedAtlasUrl(url, lang) {
 }
 
 // Картка «Університети в матеріалі»: посилання на сторінку закладу в рейтингу журфаків.
-const UNI_BOX_TITLE = { uk: "Університети в матеріалі", en: "Universities in this story", crh: "Bu materialdaki universitetler" };
-const UNI_BOX_LINK = { uk: "У рейтингу журфаків", en: "In the journalism schools ranking", crh: "Jurnalistika fakülteleri reytinginde" };
+const UNI_BOX_TITLE = { uk: "Університети в матеріалі", en: "Universities in this story", crh: "Bu materialdaki universitetler", de: "Universitäten in diesem Beitrag" };
+const UNI_BOX_LINK = { uk: "У рейтингу журфаків", en: "In the journalism schools ranking", crh: "Jurnalistika fakülteleri reytinginde", de: "Im Journalistik-Ranking" };
 
 // Картка «Медіабренди в матеріалі»: досьє з brands.promedia.report для брендів із тегів новини.
 // Бренди, які вже є в картці «Українські медіа в матеріалі» (Атлас / карта спільнот), не дублюємо.
-const BRANDS_BOX_TITLE = { uk: "Медіабренди в матеріалі", en: "Media brands in this story", crh: "Bu materialdaki mediya brendleri" };
-const BRANDS_BOX_LINK = { uk: "Досьє", en: "Profile", crh: "Dosye" };
+const BRANDS_BOX_TITLE = { uk: "Медіабренди в матеріалі", en: "Media brands in this story", crh: "Bu materialdaki mediya brendleri", de: "Medienmarken in diesem Beitrag" };
+const BRANDS_BOX_LINK = { uk: "Досьє", en: "Profile", crh: "Dosye", de: "Profil" };
 
 function brandsBox(tags, lang, media = []) {
   if (!BRANDS_BASE_URL) return "";
@@ -1265,7 +1420,7 @@ function brandsBox(tags, lang, media = []) {
   if (!brands.length) return "";
   const base = BRANDS_BASE_URL.replace(/\/$/, "");
   const rows = brands.map((b) => {
-    const href = `${base}${langPrefix(lang)}/${b.slug}/`;
+    const href = `${base}${langPrefix(extLang(lang))}/${b.slug}/`;
     const name = lang === "uk" ? b.name.uk : (b.name.en || b.name.uk);
     const type = lang === "uk" ? b.type.uk : (b.type.en || b.type.uk);
     const summary = lang === "uk" ? b.summary.uk : (b.summary.en || b.summary.uk);
@@ -1301,9 +1456,9 @@ function mediaBox(media, lang) {
   if (!items.length) return "";
   const rows = items.map((m) => {
     const c = m.community || {};
-    const description = lang === "en" ? (c.descriptionEn || c.description) : lang === "crh" ? (c.descriptionCrh || c.description) : c.description;
+    const description = lang === "en" || lang === "de" ? (c.descriptionEn || c.description) : lang === "crh" ? (c.descriptionCrh || c.description) : c.description;
     const city = lang === "uk" ? (c.city || m.city) : (c.cityEn || c.city || m.city);
-    const mapUrl = m.community ? `https://communities.promedia.report${langPrefix(lang)}/media/?id=${encodeURIComponent(c.id)}` : "";
+    const mapUrl = m.community ? `https://communities.promedia.report${langPrefix(extLang(lang))}/media/?id=${encodeURIComponent(c.id)}` : "";
     const atlasUrl = localizedAtlasUrl(m.atlasUrl, lang);
     const main = mapUrl || atlasUrl || m.website;
     const initials = String(m.name || "").replace(/[«»"'.]/g, "").split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join("").toUpperCase();
@@ -1337,7 +1492,7 @@ function personLd(slug, lang) {
   const p = (typeof PEOPLE !== "undefined" && Array.isArray(PEOPLE) ? PEOPLE : []).find(x => x.slug === slug);
   if (!p) return undefined;
   const base = (PEOPLE_BASE_URL || "https://people.promedia.report").replace(/\/$/, "");
-  return { "@type": "Person", name: lang === "uk" ? p.name.uk : (p.name.en || p.name.uk), url: `${base}${lang === "en" ? "/en" : ""}/${p.slug}/` };
+  return { "@type": "Person", name: lang === "uk" ? p.name.uk : (p.name.en || p.name.uk), url: `${base}${lang === "en" || lang === "de" ? "/en" : ""}/${p.slug}/` };
 }
 
 function articleAuthorLd(tags, lang) {
@@ -1377,6 +1532,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   ${cover}
   ${listenPlayer(article, lang)}
   <div class="article-body">${withGoogleSourceStrip(bodyHtmlContent, lang)}</div>
+  ${lang === "de" ? `<p class="article-ai-translation"><em>Dieser Beitrag wurde mit KI aus dem Ukrainischen übersetzt. <a href="${escapeHtml(`${baseUrl}/article/${article.slug}`)}" hreflang="uk" lang="uk">Original auf Ukrainisch</a></em></p>` : ""}
   ${topicTags.length ? `<div class="article-tags-bottom">${tagLinks(topicTags, lang)}</div>` : ""}
   ${followBlock(lang, "article-end")}
   ${newsletterSlot(lang, "article-end")}
@@ -1415,27 +1571,28 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
         logo: { "@type": "ImageObject", url: new URL("/favicon.png", articleUrl).toString() } }
     },
     lang,
-    bodyHtml
+    bodyHtml,
+    hasDe: Boolean(article.title_de)
   });
 }
 
 // Права колонка статті на десктопі (owner, 2026-11-22): «Найчитаніше», підписка на розсилку
 // і липкий блок плоских банерів сервісів ПроМедіа. На мобільних колонку приховано.
-const ASIDE_POPULAR_LABEL = { uk: "Найчитаніше за місяць", en: "Most read this month", crh: "Ay içinde en çoq oqulğanlar" };
-const ASIDE_SERVICES_LABEL = { uk: "Сервіси ПроМедіа", en: "ProMedia services", crh: "ProMedia hizmetleri" };
+const ASIDE_POPULAR_LABEL = { uk: "Найчитаніше за місяць", en: "Most read this month", crh: "Ay içinde en çoq oqulğanlar", de: "Meistgelesen in diesem Monat" };
+const ASIDE_SERVICES_LABEL = { uk: "Сервіси ПроМедіа", en: "ProMedia services", crh: "ProMedia hizmetleri", de: "ProMedia-Dienste" };
 const ASIDE_SERVICES = [
   { key: "atlas", url: NETWORK_URLS.atlas,
-    title: { uk: "Атлас медіа", en: "Media Atlas", crh: "Mediya atlası" },
-    text: { uk: "Хто володіє українськими медіа — реєстр Нацради щомісяця", en: "Who owns Ukrainian media — the regulator's registry, monthly", crh: "Ukrain mediyalarına kim saip" } },
+    title: { uk: "Атлас медіа", en: "Media Atlas", crh: "Mediya atlası", de: "Medienatlas" },
+    text: { uk: "Хто володіє українськими медіа — реєстр Нацради щомісяця", en: "Who owns Ukrainian media — the regulator's registry, monthly", crh: "Ukrain mediyalarına kim saip", de: "Wem gehören die ukrainischen Medien? Das Register der Medienaufsicht, monatlich" } },
   { key: "communities", url: NETWORK_URLS.communities,
-    title: { uk: "Карта медійних спільнот", en: "Media communities map", crh: "Mediya cemaatları haritası" },
-    text: { uk: "Місцеві медіа та спільноти навколо них по всій Україні", en: "Local media and their communities across Ukraine", crh: "Bütün Ukrainadaki yerli mediyalar" } },
+    title: { uk: "Карта медійних спільнот", en: "Media communities map", crh: "Mediya cemaatları haritası", de: "Karte der Medien-Communitys" },
+    text: { uk: "Місцеві медіа та спільноти навколо них по всій Україні", en: "Local media and their communities across Ukraine", crh: "Bütün Ukrainadaki yerli mediyalar", de: "Lokale Medien und ihre Communitys in der ganzen Ukraine" } },
   { key: "ratings", url: NETWORK_URLS.ratings,
-    title: { uk: "Рейтинг журфаків", en: "Journalism schools ranking", crh: "Jurnalistika fakultetleri reytingi" },
-    text: { uk: "Де вчитися журналістики: рейтинг за даними вступу", en: "Where to study journalism: a ranking based on admissions data", crh: "Jurnalistikanı qayda ögrenmeli" } },
+    title: { uk: "Рейтинг журфаків", en: "Journalism schools ranking", crh: "Jurnalistika fakultetleri reytingi", de: "Journalistik-Ranking" },
+    text: { uk: "Де вчитися журналістики: рейтинг за даними вступу", en: "Where to study journalism: a ranking based on admissions data", crh: "Jurnalistikanı qayda ögrenmeli", de: "Wo man Journalismus studiert: ein Ranking nach Zulassungsdaten" } },
   { key: "people", url: { uk: "https://people.promedia.report/", en: "https://people.promedia.report/", crh: "https://people.promedia.report/" },
-    title: { uk: "Люди", en: "People", crh: "İnsanlar" },
-    text: { uk: "Досьє журналістів, медійників і комунікаційників", en: "Profiles of journalists and media people", crh: "Jurnalistlerniñ dosyeleri" } }
+    title: { uk: "Люди", en: "People", crh: "İnsanlar", de: "Personen" },
+    text: { uk: "Досьє журналістів, медійників і комунікаційників", en: "Profiles of journalists and media people", crh: "Jurnalistlerniñ dosyeleri", de: "Profile von Journalistinnen, Journalisten und Medienschaffenden" } }
 ];
 
 function articleAside(popular, lang) {
@@ -1483,15 +1640,16 @@ export function renderNewsletterPage({ baseUrl }) {
 // Архів (2026-11-25): прості сторінки з датами й заголовками, по 50 на сторінку.
 // Без фото й важких скриптів — щоб старші новини мали звичайні посилання для пошукових систем.
 export const ARCHIVE_PAGE_SIZE = 50;
-const ARCHIVE_LABEL = { uk: "Архів новин", en: "News archive", crh: "Haberler arşivi" };
+const ARCHIVE_LABEL = { uk: "Архів новин", en: "News archive", crh: "Haberler arşivi", de: "Nachrichtenarchiv" };
 const ARCHIVE_INTRO = {
   uk: "Усі матеріали «Новин ПроМедіа» від найновіших до найстаріших.",
   en: "All ProMedia News stories, from newest to oldest.",
-  crh: "ProMedia haberleriniñ episi, eñ yañısından eñ eskisine qadar."
+  crh: "ProMedia haberleriniñ episi, eñ yañısından eñ eskisine qadar.",
+  de: "Alle Beiträge von ProMedia Nachrichten auf Deutsch, vom neuesten zum ältesten."
 };
-const ARCHIVE_PAGE_WORD = { uk: "Сторінка", en: "Page", crh: "Saife" };
-const ARCHIVE_NEWER = { uk: "← Новіші", en: "← Newer", crh: "← Yañıları" };
-const ARCHIVE_OLDER = { uk: "Старіші →", en: "Older →", crh: "Eskileri →" };
+const ARCHIVE_PAGE_WORD = { uk: "Сторінка", en: "Page", crh: "Saife", de: "Seite" };
+const ARCHIVE_NEWER = { uk: "← Новіші", en: "← Newer", crh: "← Yañıları", de: "← Neuere" };
+const ARCHIVE_OLDER = { uk: "Старіші →", en: "Older →", crh: "Eskileri →", de: "Ältere →" };
 
 function archiveHref(lang, page) {
   return `${langPrefix(lang)}/archive/${page > 1 ? `${page}/` : ""}`;
@@ -1523,7 +1681,7 @@ export function renderArchivePage({ articles, lang, baseUrl, page, pages, total 
   });
 }
 
-const NOT_FOUND_LABEL = { uk: "Сторінку не знайдено.", en: "Page not found.", crh: "Saife tapılmadı." };
+const NOT_FOUND_LABEL = { uk: "Сторінку не знайдено.", en: "Page not found.", crh: "Saife tapılmadı.", de: "Seite nicht gefunden." };
 
 export function renderNotFound(lang, baseUrl) {
   const bodyHtml = `

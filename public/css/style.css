@@ -1646,3 +1646,7 @@ h1, h2, h3, h4 { line-height: 1.2; }
 .archive-link a { font-weight: 600; text-decoration: none; }
 .archive-link a:hover { text-decoration: underline; }
 @media (max-width: 600px) { .archive-list li { flex-direction: column; gap: .15rem; } }
+
+/* Німецька версія: примітка про переклад ШІ під текстом (26.11.2026). */
+.article-ai-translation { margin: 18px 0 0; padding-top: 12px; border-top: 1px solid var(--border); font-size: 14px; color: var(--muted); }
+.article-ai-translation a { color: inherit; }

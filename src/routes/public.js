@@ -2,8 +2,10 @@ import { renderHomepage, renderArticlePage, renderNewsletterPage, renderNotFound
 import { handlePublicPushRoute } from "../lib/push.js";
 import { ukrainianTypographyReplacer } from "../lib/typography.js";
 
-// Мова — перший сегмент шляху: /en/…, /crh/… (uk — без префікса).
-const LANG_PATH = /^\/(en|crh)(?=\/|$)/;
+// Мова — перший сегмент шляху: /en/…, /crh/…, /de/… (uk — без префікса).
+// Німецькою (/de/) показуємо лише вже перекладені матеріали: переклад робить ШІ через 2 години після останньої правки.
+const DE_READY = " AND title_de IS NOT NULL AND title_de != ''";
+const LANG_PATH = /^\/(en|crh|de)(?=\/|$)/;
 
 function getLang(url) {
   const m = url.pathname.match(LANG_PATH);
@@ -22,7 +24,7 @@ function legacyLangRedirect(url) {
   const target = new URL(url);
   target.searchParams.delete("lang");
   const path = stripLangPrefix(target.pathname);
-  const prefix = lang === "en" || lang === "crh" ? `/${lang}` : "";
+  const prefix = lang === "en" || lang === "crh" || lang === "de" ? `/${lang}` : "";
   target.pathname = path === "/" && prefix ? `${prefix}/` : prefix + path;
   return Response.redirect(target.toString(), 301);
 }
@@ -86,7 +88,8 @@ function escapeXml(value) {
 const NEWS_PUBLICATION_NAME = "ПроМедіа";
 
 function sitemapUrl(loc, urls, lastmod) {
-  return `<url>\n  <loc>${escapeXml(loc)}</loc>${lastmod ? `\n  <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}\n  <xhtml:link rel="alternate" hreflang="uk" href="${escapeXml(urls.uk)}" />\n  <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(urls.en)}" />\n  <xhtml:link rel="alternate" hreflang="crh" href="${escapeXml(urls.crh)}" />\n  <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(urls.uk)}" />\n</url>`;
+  const alternates = Object.entries(urls).map(([l, href]) => `\n  <xhtml:link rel="alternate" hreflang="${l}" href="${escapeXml(href)}" />`).join("");
+  return `<url>\n  <loc>${escapeXml(loc)}</loc>${lastmod ? `\n  <lastmod>${escapeXml(lastmod)}</lastmod>` : ""}${alternates}\n  <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(urls.uk)}" />\n</url>`;
 }
 
 function sitemapDate(value) {
@@ -215,20 +218,20 @@ Sitemap: ${baseUrl}/news-sitemap.xml
 
   if (url.pathname === "/sitemap.xml" && request.method === "GET") {
     const { results } = await db.prepare(`
-      SELECT slug, published_at, updated_at
+      SELECT slug, published_at, updated_at, (title_de IS NOT NULL AND title_de != '') AS has_de
       FROM articles
       WHERE status = 'published' AND deleted_at IS NULL
       ORDER BY published_at DESC
     `).all();
-    const forLangs = (path) => ({ uk: `${baseUrl}${path}`, en: `${baseUrl}/en${path}`, crh: `${baseUrl}/crh${path}` });
+    const forLangs = (path, withDe = true) => ({ uk: `${baseUrl}${path}`, en: `${baseUrl}/en${path}`, crh: `${baseUrl}/crh${path}`, ...(withDe ? { de: `${baseUrl}/de${path}` } : {}) });
     const home = forLangs("/");
-    const entries = ["uk", "en", "crh"].map((l) => sitemapUrl(home[l], home, ""));
+    const entries = Object.keys(home).map((l) => sitemapUrl(home[l], home, ""));
     const archive = forLangs("/archive/");
-    ["uk", "en", "crh"].forEach((l) => entries.push(sitemapUrl(archive[l], archive, "")));
+    Object.keys(archive).forEach((l) => entries.push(sitemapUrl(archive[l], archive, "")));
     results.forEach((article) => {
-      const urls = forLangs(`/article/${article.slug}`);
+      const urls = forLangs(`/article/${article.slug}`, Boolean(article.has_de));
       const lastmod = sitemapDate(article.updated_at || article.published_at);
-      ["uk", "en", "crh"].forEach((l) => entries.push(sitemapUrl(urls[l], urls, lastmod)));
+      Object.keys(urls).forEach((l) => entries.push(sitemapUrl(urls[l], urls, lastmod)));
     });
     return xml(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -243,7 +246,7 @@ ${entries.join("\n")}
   // Назва видання має збігатися з назвою в Google Publisher Center.
   if (url.pathname === "/news-sitemap.xml" && request.method === "GET") {
     const { results } = await db.prepare(`
-      SELECT slug, title, title_en, published_at
+      SELECT slug, title, title_en, title_de, published_at
       FROM articles
       WHERE status = 'published' AND deleted_at IS NULL
         AND published_at >= datetime('now', '-2 days')
@@ -263,6 +266,7 @@ ${entries.join("\n")}
 </url>`;
       entries.push(item(`${baseUrl}/article/${a.slug}`, "uk", a.title));
       if (a.title_en) entries.push(item(`${baseUrl}/en/article/${a.slug}`, "en", a.title_en));
+      if (a.title_de) entries.push(item(`${baseUrl}/de/article/${a.slug}`, "de", a.title_de));
     });
     return xml(`<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -279,7 +283,7 @@ ${entries.join("\n")}
     const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, related_media_ids, is_important, card_style, pinned_at, published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, (length(body_md) - length(replace(body_md, '[youtube](', ''))) / 10 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, title_de, excerpt, excerpt_en, excerpt_crh, excerpt_de, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, related_media_ids, is_important, card_style, pinned_at, published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, (length(body_md) - length(replace(body_md, '[youtube](', ''))) / 10 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";
@@ -317,9 +321,11 @@ ${entries.join("\n")}
       title: a.title,
       titleEn: a.title_en,
       titleCrh: a.title_crh,
+      titleDe: a.title_de,
       excerpt: a.excerpt,
       excerptEn: a.excerpt_en,
       excerptCrh: a.excerpt_crh,
+      excerptDe: a.excerpt_de,
       coverImageUrl: a.cover_image_url,
       coverImageUrlEn: a.cover_image_url_en,
       coverImageUrlCrh: a.cover_image_url_crh,
@@ -423,6 +429,8 @@ ${entries.join("\n")}
     const article = await db.prepare(
       "SELECT articles.*, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE slug = ? AND status = 'published' AND deleted_at IS NULL"
     ).bind(articleMatch[1]).first();
+    // Німецького перекладу ще немає (з'явиться приблизно через 2 години після останньої правки) — показуємо англійську.
+    if (article && lang === "de" && !article.title_de) return Response.redirect(`${baseUrl}/en/article/${article.slug}${url.search}`, 302);
     if (!article) {
       return new Response(renderNotFound(lang, baseUrl), {
         status: 404,
@@ -435,7 +443,7 @@ ${entries.join("\n")}
       fetchRelatedUniversities(relatedIds, env, baseUrl),
       // «Найчитаніше» у правій колонці: найпопулярніші (GA4) за останні 30 днів, без поточної.
       db.prepare(
-        "SELECT slug, title, title_en, title_crh FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL AND id != ? AND published_at >= datetime('now', '-30 days') ORDER BY COALESCE(av.ga4_views, 0) DESC, published_at DESC LIMIT 10"
+        "SELECT slug, title, title_en, title_crh, title_de FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL" + (lang === "de" ? DE_READY : "") + " AND id != ? AND published_at >= datetime('now', '-30 days') ORDER BY COALESCE(av.ga4_views, 0) DESC, published_at DESC LIMIT 10"
       ).bind(article.id).all().then(r => r.results || []).catch(() => [])
     ]);
     return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames, relatedUniversities, popularArticles }));
@@ -449,11 +457,12 @@ ${entries.join("\n")}
     const page = Math.max(1, parseInt(archiveMatch[1] || "1", 10) || 1);
     const canonicalPath = page === 1 ? "/archive/" : `/archive/${page}/`;
     if (pagePath !== canonicalPath) return Response.redirect(`${baseUrl}${lang === "uk" ? "" : `/${lang}`}${canonicalPath}`, 301);
-    const total = (await db.prepare("SELECT COUNT(*) AS n FROM articles WHERE status = 'published' AND deleted_at IS NULL").first())?.n || 0;
+    const langFilter = lang === "de" ? DE_READY : "";
+    const total = (await db.prepare("SELECT COUNT(*) AS n FROM articles WHERE status = 'published' AND deleted_at IS NULL" + langFilter).first())?.n || 0;
     const pages = Math.max(1, Math.ceil(total / ARCHIVE_PAGE_SIZE));
     if (page > pages) return new Response(renderNotFound(lang, baseUrl), { status: 404, headers: { "Content-Type": "text/html; charset=utf-8" } });
     const { results } = await db.prepare(
-      "SELECT slug, title, title_en, title_crh, tags, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL ORDER BY published_at DESC LIMIT ? OFFSET ?"
+      "SELECT slug, title, title_en, title_crh, title_de, tags, published_at FROM articles WHERE status = 'published' AND deleted_at IS NULL" + langFilter + " ORDER BY published_at DESC LIMIT ? OFFSET ?"
     ).bind(ARCHIVE_PAGE_SIZE, (page - 1) * ARCHIVE_PAGE_SIZE).all();
     return html(renderArchivePage({ articles: results, lang, baseUrl, page, pages, total }));
   }
@@ -461,7 +470,8 @@ ${entries.join("\n")}
   // GET / (homepage, optional ?tag=)
   if (pagePath === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, is_important, card_style, pinned_at, published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, (length(body_md) - length(replace(body_md, '[youtube](', ''))) / 10 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, title_de, excerpt, excerpt_en, excerpt_crh, excerpt_de, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, is_important, card_style, pinned_at, published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, (length(body_md) - length(replace(body_md, '[youtube](', ''))) / 10 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
+    if (lang === "de") query += DE_READY;
     const binds = [];
     if (tag) {
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";

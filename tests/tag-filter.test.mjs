@@ -11,7 +11,7 @@ const route = new Function("renderHomepage", "ukrainianTypographyReplacer", "PRA
 );
 const longTag = "журналістські розслідування";
 const article = {
-  id: 1, slug: "test", title: "Новина", title_en: "News", title_crh: "Haber",
+  id: 1, slug: "test", title: "Новина", title_en: "News", title_crh: "Haber", title_de: "Nachricht", excerpt_de: "Beschreibung",
   excerpt: "Опис", excerpt_en: "Description", excerpt_crh: "Tarif",
   cover_image_url: "", cover_image_url_en: "", cover_image_url_crh: "", cover_crop_data_crh: "{}", cover_crop_data: "{}", cover_crop_data_en: "{}",
   tags: JSON.stringify(["автоматизація", longTag, 'Тег "із лапками" та % _']), related_media_ids: JSON.stringify(["long-media-id-".repeat(8)]),
