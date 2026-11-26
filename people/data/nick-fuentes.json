@@ -1,0 +1,45 @@
+{
+  "slug": "nick-fuentes",
+  "group": "intl",
+  "country": "США",
+  "kind": "other",
+  "name": {
+    "uk": "Нік Фуентес",
+    "en": "Nick Fuentes"
+  },
+  "sort": {
+    "uk": "Фуентес Нік",
+    "en": "Fuentes Nick"
+  },
+  "aliases": [
+    "Ніколас Фуентес",
+    "Nicholas Fuentes"
+  ],
+  "role": {
+    "uk": "ультраправий стример і політичний коментатор",
+    "en": "Far-right streamer and political commentator"
+  },
+  "summary": {
+    "uk": "Американський ультраправий стример і політичний коментатор, ведучий онлайн-шоу America First.",
+    "en": "American far-right streamer and political commentator, host of the online show America First."
+  },
+  "bio": {
+    "uk": "Нік Фуентес — американський стример і політичний коментатор, ведучий онлайн-шоу America First. Американські медіа називають його ультраправим.\n\nУ листопаді 2026 року медіа звернули увагу, що ток-радіо в грі Grand Theft Auto VI нагадує його манерою й темами. Сам він відреагував: «Це що, мав бути я? Не дуже схоже на мене». Rockstar Games зв'язку не підтверджувала.",
+    "en": "Nick Fuentes is an American streamer and political commentator, host of the online show America First. American media describe him as far-right.\n\nIn November 2026 media noted that talk radio in the game Grand Theft Auto VI resembles him in style and subject matter. He responded: \"Is that supposed to be me? Doesn't really sound like me.\" Rockstar Games has not confirmed any link."
+  },
+  "sources": [
+    {
+      "title": "Вікіпедія: Nick Fuentes",
+      "url": "https://en.wikipedia.org/wiki/Nick_Fuentes"
+    },
+    {
+      "title": "Barrett Media: Alex Jones, Nick Fuentes React to Grand Theft Auto 6 Parodies",
+      "url": "https://barrettmedia.com/2026/11/20/alex-jones-nick-fuentes-grand-theft-auto-6/"
+    },
+    {
+      "title": "Як GTA VI сміється з медіа, блогерів і конспірологів",
+      "url": "https://news.promedia.report/article/yak-gta-vi-smiietsia-z-media-blogeriv-i-konspirolohiv"
+    }
+  ],
+  "updated": "2026-11-26"
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "alex-jones",
+  "group": "intl",
+  "country": "США",
+  "kind": "other",
+  "name": {
+    "uk": "Алекс Джонс",
+    "en": "Alex Jones"
+  },
+  "sort": {
+    "uk": "Джонс Алекс",
+    "en": "Jones Alex"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "радіоведучий, засновник сайту InfoWars",
+    "en": "Radio host, founder of InfoWars"
+  },
+  "summary": {
+    "uk": "Американський праворадикальний радіоведучий і засновник сайту InfoWars, відомий поширенням конспірологічних теорій.",
+    "en": "American far-right radio host and founder of InfoWars, known for spreading conspiracy theories."
+  },
+  "bio": {
+    "uk": "Алекс Джонс — американський радіоведучий, засновник сайту й шоу InfoWars. Відомий поширенням конспірологічних теорій.\n\nУ 2022 році присяжні в Техасі й Коннектикуті присудили родинам загиблих у школі Сенді-Гук 2012 року загалом понад мільярд доларів компенсації за наклеп: Джонс роками називав цю стрілянину інсценуванням.\n\nУ листопаді 2026 року американські медіа звернули увагу, що ток-радіо в грі Grand Theft Auto VI нагадує його манерою й темами; Rockstar Games цього не підтверджувала.",
+    "en": "Alex Jones is an American radio host and the founder of the InfoWars website and show. He is known for spreading conspiracy theories.\n\nIn 2022 juries in Texas and Connecticut awarded families of victims of the 2012 Sandy Hook school shooting more than a billion dollars in total in defamation damages: for years Jones had called the shooting staged.\n\nIn November 2026 American media noted that talk radio in the game Grand Theft Auto VI resembles him in style and subject matter; Rockstar Games has not confirmed this."
+  },
+  "sources": [
+    {
+      "title": "Вікіпедія: Alex Jones",
+      "url": "https://en.wikipedia.org/wiki/Alex_Jones"
+    },
+    {
+      "title": "AP / PBS NewsHour: Alex Jones ordered to pay $965 million to Sandy Hook families",
+      "url": "https://www.pbs.org/newshour/nation/alex-jones-ordered-to-pay-965-million-to-sandy-hook-families"
+    },
+    {
+      "title": "Barrett Media: Alex Jones, Nick Fuentes React to Grand Theft Auto 6 Parodies",
+      "url": "https://barrettmedia.com/2026/11/20/alex-jones-nick-fuentes-grand-theft-auto-6/"
+    },
+    {
+      "title": "Як GTA VI сміється з медіа, блогерів і конспірологів",
+      "url": "https://news.promedia.report/article/yak-gta-vi-smiietsia-z-media-blogeriv-i-konspirolohiv"
+    }
+  ],
+  "updated": "2026-11-26"
+}

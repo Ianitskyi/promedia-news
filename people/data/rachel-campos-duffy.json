@@ -1,0 +1,42 @@
+{
+  "slug": "rachel-campos-duffy",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Рейчел Кампос-Даффі",
+    "en": "Rachel Campos-Duffy"
+  },
+  "sort": {
+    "uk": "Кампос-Даффі Рейчел",
+    "en": "Campos-Duffy Rachel"
+  },
+  "aliases": [],
+  "role": {
+    "uk": "телеведуча Fox News, співведуча Fox & Friends Weekend",
+    "en": "Fox News host, co-host of Fox & Friends Weekend"
+  },
+  "summary": {
+    "uk": "Американська телеведуча, співведуча ранкового шоу Fox & Friends Weekend на Fox News.",
+    "en": "American TV host, co-host of the morning show Fox & Friends Weekend on Fox News."
+  },
+  "bio": {
+    "uk": "Рейчел Кампос-Даффі — американська телеведуча. Стала відомою 1994 року як учасниця реаліті-шоу The Real World: San Francisco на MTV. Згодом працювала ведучою й коментаторкою на телебаченні, зокрема на Fox News, де стала співведучою ранкового шоу Fox & Friends Weekend.\n\nУ листопаді 2026 року в ефірі Fox News критично висловилася про гру Grand Theft Auto VI: «Я не думаю, що це добре для нашої культури».",
+    "en": "Rachel Campos-Duffy is an American TV host. She became known in 1994 as a cast member of MTV's reality show The Real World: San Francisco. She later worked as a host and commentator on television, including at Fox News, where she became a co-host of the morning show Fox & Friends Weekend.\n\nIn November 2026, on Fox News, she criticised the game Grand Theft Auto VI: \"I'm not thinking that this is a good thing for our culture.\""
+  },
+  "sources": [
+    {
+      "title": "AlterNet: Fox News finds its next culture war target",
+      "url": "https://www.alternet.org/fox-news-2678434552/"
+    },
+    {
+      "title": "Вікіпедія: Rachel Campos-Duffy",
+      "url": "https://en.wikipedia.org/wiki/Rachel_Campos-Duffy"
+    },
+    {
+      "title": "Як GTA VI сміється з медіа, блогерів і конспірологів",
+      "url": "https://news.promedia.report/article/yak-gta-vi-smiietsia-z-media-blogeriv-i-konspirolohiv"
+    }
+  ],
+  "updated": "2026-11-26"
+}

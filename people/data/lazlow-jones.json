@@ -1,0 +1,45 @@
+{
+  "slug": "lazlow-jones",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Лезлоу Джонс",
+    "en": "Lazlow Jones"
+  },
+  "sort": {
+    "uk": "Джонс Лезлоу",
+    "en": "Jones Lazlow"
+  },
+  "aliases": [
+    "Лезлоу",
+    "Lazlow"
+  ],
+  "role": {
+    "uk": "радіоведучий і продюсер, колишній сценарист Rockstar Games",
+    "en": "Radio host and producer, former Rockstar Games writer"
+  },
+  "summary": {
+    "uk": "Американський радіоведучий, багаторічний автор і продюсер радіо та медійної сатири в іграх серії Grand Theft Auto.",
+    "en": "American radio host, for many years a writer and producer of the radio and media satire in the Grand Theft Auto series."
+  },
+  "bio": {
+    "uk": "Лезлоу Джонс — американський радіоведучий і продюсер. Багато років працював у Rockstar Games: писав і продюсував радіо та медійну сатиру в іграх серії Grand Theft Auto, а також озвучував персонажів-ведучих.\n\nУ 2026 році, перед виходом Grand Theft Auto VI, назвав головною проблемою нової гри те, що реальність постійно наздоганяє пародію.",
+    "en": "Lazlow Jones is an American radio host and producer. For many years he worked at Rockstar Games, writing and producing the radio and media satire in the Grand Theft Auto series and voicing host characters.\n\nIn 2026, before the release of Grand Theft Auto VI, he said the new game's main problem is that reality keeps catching up with parody."
+  },
+  "sources": [
+    {
+      "title": "GTA BOOM: Former Rockstar writer confirms GTA 6 satire problem",
+      "url": "https://www.gtaboom.com/former-rockstar-writer-confirms-gta-6-satire-problem-262f"
+    },
+    {
+      "title": "Вікіпедія: Lazlow Jones",
+      "url": "https://en.wikipedia.org/wiki/Lazlow_Jones"
+    },
+    {
+      "title": "Як GTA VI сміється з медіа, блогерів і конспірологів",
+      "url": "https://news.promedia.report/article/yak-gta-vi-smiietsia-z-media-blogeriv-i-konspirolohiv"
+    }
+  ],
+  "updated": "2026-11-26"
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "rupert-humphries",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "other",
+  "name": {
+    "uk": "Руперт Гамфріс",
+    "en": "Rupert Humphries"
+  },
+  "sort": {
+    "uk": "Гамфріс Руперт",
+    "en": "Humphries Rupert"
+  },
+  "aliases": [
+    "Руперт Хамфріс"
+  ],
+  "role": {
+    "uk": "сценарист, старший віцепрезидент Rockstar Games з наративу",
+    "en": "Writer, senior vice president of narrative at Rockstar Games"
+  },
+  "summary": {
+    "uk": "Сценарист студії Rockstar Games, відповідає за сюжет і сценарії гри Grand Theft Auto VI.",
+    "en": "Rockstar Games writer responsible for the story and writing of Grand Theft Auto VI."
+  },
+  "bio": {
+    "uk": "Руперт Гамфріс — сценарист студії Rockstar Games. Був одним зі сценаристів ігор Grand Theft Auto V та Red Dead Redemption 2.\n\nНині — старший віцепрезидент Rockstar з наративу, тобто відповідає за сюжет і сценарії. Восени 2026 року в інтерв'ю модному журналу Love розповів, що сатиру в Grand Theft Auto VI свідомо роблять перебільшеною і гротескною, а не дзеркалом реальності.",
+    "en": "Rupert Humphries is a writer at Rockstar Games. He was one of the writers of Grand Theft Auto V and Red Dead Redemption 2.\n\nHe is now Rockstar's senior vice president of narrative, in charge of story and writing. In autumn 2026, in an interview with the fashion magazine Love, he said the satire in Grand Theft Auto VI is deliberately exaggerated and grotesque rather than a mirror of reality."
+  },
+  "sources": [
+    {
+      "title": "PC Gamer: GTA 6 won't be letting up on the satire",
+      "url": "https://www.pcgamer.com/games/grand-theft-auto/gta-6-wont-be-letting-up-on-the-satire-if-you-are-going-to-put-all-this-effort-into-creating-a-version-of-todays-world-it-has-to-be-more-over-the-top-more-insane-more-in-your-face/"
+    },
+    {
+      "title": "Wccftech: GTA VI Writers Sidestep Trump and MAGA",
+      "url": "https://wccftech.com/gta-vi-writers-sidestep-trump-maga-florida-satire-conspiracy-theories/"
+    },
+    {
+      "title": "Вікіпедія: Grand Theft Auto V",
+      "url": "https://en.wikipedia.org/wiki/Grand_Theft_Auto_V"
+    },
+    {
+      "title": "Вікіпедія: Red Dead Redemption 2",
+      "url": "https://en.wikipedia.org/wiki/Red_Dead_Redemption_2"
+    },
+    {
+      "title": "Як GTA VI сміється з медіа, блогерів і конспірологів",
+      "url": "https://news.promedia.report/article/yak-gta-vi-smiietsia-z-media-blogeriv-i-konspirolohiv"
+    }
+  ],
+  "updated": "2026-11-26"
+}

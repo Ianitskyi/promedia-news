@@ -37,6 +37,9 @@ const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Ан�
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "сатира": "satire",
+  "реклама": "advertising",
+  "конспірологія": "conspiracy theories",
   "Сербія": "Serbia",
   "Александар Вучич": "Aleksandar Vučić",
   "економічна журналістика": "economic journalism",
@@ -223,6 +226,9 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "сатира": "satira",
+  "реклама": "reklama",
+  "конспірологія": "konspirologiya",
   "Сербія": "Serbiya",
   "Александар Вучич": "Aleksandar Vučić",
   "економічна журналістика": "iqtisadiy jurnalistika",

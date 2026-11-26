@@ -1,6 +1,23 @@
 // Згенеровано: node people-site/build.mjs --index-only. Не редагуйте вручну — правте people/data/*.json.
 export const PEOPLE = [
   {
+    "slug": "alex-jones",
+    "tag": "Алекс Джонс",
+    "aliases": [],
+    "name": {
+      "uk": "Алекс Джонс",
+      "en": "Alex Jones"
+    },
+    "role": {
+      "uk": "радіоведучий, засновник сайту InfoWars",
+      "en": "Radio host, founder of InfoWars"
+    },
+    "summary": {
+      "uk": "Американський праворадикальний радіоведучий і засновник сайту InfoWars, відомий поширенням конспірологічних теорій.",
+      "en": "American far-right radio host and founder of InfoWars, known for spreading conspiracy theories."
+    }
+  },
+  {
     "slug": "alexander-gardner",
     "tag": "Александер Гарднер",
     "aliases": [],
@@ -1817,6 +1834,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "lazlow-jones",
+    "tag": "Лезлоу Джонс",
+    "aliases": [
+      "Лезлоу",
+      "Lazlow"
+    ],
+    "name": {
+      "uk": "Лезлоу Джонс",
+      "en": "Lazlow Jones"
+    },
+    "role": {
+      "uk": "радіоведучий і продюсер, колишній сценарист Rockstar Games",
+      "en": "Radio host and producer, former Rockstar Games writer"
+    },
+    "summary": {
+      "uk": "Американський радіоведучий, багаторічний автор і продюсер радіо та медійної сатири в іграх серії Grand Theft Auto.",
+      "en": "American radio host, for many years a writer and producer of the radio and media satire in the Grand Theft Auto series."
+    }
+  },
+  {
     "slug": "lukas-hassig",
     "tag": "Лукас Гессіг",
     "aliases": [
@@ -2290,6 +2327,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "nick-fuentes",
+    "tag": "Нік Фуентес",
+    "aliases": [
+      "Ніколас Фуентес",
+      "Nicholas Fuentes"
+    ],
+    "name": {
+      "uk": "Нік Фуентес",
+      "en": "Nick Fuentes"
+    },
+    "role": {
+      "uk": "ультраправий стример і політичний коментатор",
+      "en": "Far-right streamer and political commentator"
+    },
+    "summary": {
+      "uk": "Американський ультраправий стример і політичний коментатор, ведучий онлайн-шоу America First.",
+      "en": "American far-right streamer and political commentator, host of the online show America First."
+    }
+  },
+  {
     "slug": "nika-yehorova",
     "tag": "Ніка Єгорова",
     "aliases": [],
@@ -2633,6 +2690,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "rachel-campos-duffy",
+    "tag": "Рейчел Кампос-Даффі",
+    "aliases": [],
+    "name": {
+      "uk": "Рейчел Кампос-Даффі",
+      "en": "Rachel Campos-Duffy"
+    },
+    "role": {
+      "uk": "телеведуча Fox News, співведуча Fox & Friends Weekend",
+      "en": "Fox News host, co-host of Fox & Friends Weekend"
+    },
+    "summary": {
+      "uk": "Американська телеведуча, співведуча ранкового шоу Fox & Friends Weekend на Fox News.",
+      "en": "American TV host, co-host of the morning show Fox & Friends Weekend on Fox News."
+    }
+  },
+  {
     "slug": "robert-capa",
     "tag": "Роберт Капа",
     "aliases": [
@@ -2666,6 +2740,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Фотограф, який 1855 року зробив 360 знімків Кримської війни — першої масштабно задокументованої на фото для широкої публіки.",
       "en": "Photographer who made 360 pictures of the Crimean War in 1855, the first war widely documented in photographs for the public."
+    }
+  },
+  {
+    "slug": "rupert-humphries",
+    "tag": "Руперт Гамфріс",
+    "aliases": [
+      "Руперт Хамфріс"
+    ],
+    "name": {
+      "uk": "Руперт Гамфріс",
+      "en": "Rupert Humphries"
+    },
+    "role": {
+      "uk": "сценарист, старший віцепрезидент Rockstar Games з наративу",
+      "en": "Writer, senior vice president of narrative at Rockstar Games"
+    },
+    "summary": {
+      "uk": "Сценарист студії Rockstar Games, відповідає за сюжет і сценарії гри Grand Theft Auto VI.",
+      "en": "Rockstar Games writer responsible for the story and writing of Grand Theft Auto VI."
     }
   },
   {
