@@ -75,6 +75,14 @@
       off: "Analitikanı söndürmek",
       more: "Tafsilât",
       offDone: "Analitika bütün ProMedia saytlarında söndürildi."
+    },
+    de: {
+      label: "Hinweis zur Webanalyse",
+      body: "Wir nutzen Google Analytics, um zu verstehen, welche Beiträge für Leserinnen und Leser nützlich sind. Sie können die Analyse auf allen ProMedia-Websites deaktivieren.",
+      ok: "OK",
+      off: "Analyse deaktivieren",
+      more: "Mehr erfahren",
+      offDone: "Die Analyse ist auf allen ProMedia-Websites deaktiviert."
     }
   };
 
@@ -99,9 +107,10 @@
 
   function contentLanguage(pathname, htmlLang) {
     var first = String(pathname || "/").split("/").filter(Boolean)[0];
-    if (first === "en" || first === "crh") return first;
+    if (first === "en" || first === "crh" || first === "de") return first;
     var lang = String(htmlLang || "").toLowerCase();
     if (lang.indexOf("crh") === 0) return "crh";
+    if (lang.indexOf("de") === 0) return "de";
     if (lang.indexOf("en") === 0) return "en";
     return "uk";
   }
@@ -109,7 +118,7 @@
   function contentType(section, pathname, hints) {
     hints = hints || {};
     if (hints.declared && CONTENT_TYPES.indexOf(hints.declared) !== -1) return hints.declared;
-    var path = String(pathname || "/").replace(/^\/(en|crh)(?=\/|$)/, "") || "/";
+    var path = String(pathname || "/").replace(/^\/(en|crh|de)(?=\/|$)/, "") || "/";
     if (section === "news" && /^\/article\//.test(path)) return "article";
     if (section === "projects" && /^\/project\//.test(path)) return "project";
     if (section === "main" && /^\/projects\/(?!category\/)[^/]+/.test(path)) return "project";

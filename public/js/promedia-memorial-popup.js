@@ -42,7 +42,21 @@
       /(?:[?&])lang=crh(?:&|$)/.test(window.location.search);
   }
 
+  // Німецька версія (з 26.11.2026): <html lang="de"> або /de/….
+  function isGermanPage() {
+    var lang = (document.documentElement.getAttribute("lang") || "").toLowerCase();
+    var path = window.location.pathname;
+    return lang.indexOf("de") === 0 || path === "/de" || path.indexOf("/de/") === 0;
+  }
+
   function text() {
+    if (isGermanPage()) {
+      return {
+        title: "Gedenken!",
+        time: "09:00",
+        body: "Wir halten eine Minute inne, um der Namen derer zu gedenken, die im Befreiungskrieg der Ukraine gegen russland ihr Leben gegeben haben"
+      };
+    }
     if (isCrimeanTatarPage()) {
       return {
         title: "Hatırlañız!",
