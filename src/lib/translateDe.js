@@ -21,6 +21,7 @@ const RULES = [
   "Use established German place names where they exist: die Ukraine, Kyjiw, Lwiw, Charkiw, Odesa, Dnipro, Saporischschja, Mykolajiw, Cherson, die Krim. Crimea is part of Ukraine; never describe it otherwise.",
   "At the first mention, briefly explain Ukrainian institutions or realities a German reader may not know (e.g. „Suspilne, der öffentlich-rechtliche Rundfunk der Ukraine“), as the English reference does. Keep such explanations short and add no new facts.",
   "ГО «ПроМедіа» / ProMedia is always „ProMedia“ (the organisation: „die NGO ProMedia“). Keep „ProMedia Report“ and other product names unchanged.",
+  "Write the Standard German of Germany, not Austrian or Swiss variants: Januar (never Jänner), Februar (never Feber). In genitive forms of personal names never insert a hyphen: Taylor Swifts Fans, not Taylor-Swifts Fans.",
   "Use German quotation marks „…“ in running text. Use the feminine form for women's roles (Journalistin, Redakteurin, Chefredakteurin). For mixed groups prefer pair forms or neutral wording (Journalistinnen und Journalisten, Medienschaffende); never use the gender star or colon.",
   "Attribute sources in the sentence (who reports or says it). After a quoted headline-style source, write „…, berichtet Texty.org.ua“ rather than a dash.",
   "Preserve Markdown exactly: headings, lists, blockquotes, tables, **bold**, *italics*, ==highlighted phrases== (keep the == markers around the corresponding German phrase), links [text](url) with unchanged URLs, images ![alt](url) with unchanged URLs (translate alt text and captions), embedded video lines and the notes block after a line with ---. Keep paragraph breaks.",
@@ -54,6 +55,8 @@ function responseText(data) {
 // Мінімальні виправлення того, що модель іноді пише по-своєму.
 export function normalizeGerman(text) {
   return String(text || "")
+    .replace(/\bJänner/g, "Januar")
+    .replace(/\bFeber\b/g, "Februar")
     .replace(/\bKiew\b/g, "Kyjiw")
     .replace(/\bLemberg\b/g, "Lwiw")
     .replace(/\bCharkow\b/g, "Charkiw")
