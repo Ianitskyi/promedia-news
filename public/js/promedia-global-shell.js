@@ -154,7 +154,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
     connectedCallback(){
       const sec=[
         ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa],["brief",t.brief||"Brief",links.brief],["people",t.people,links.people],["brands",t.brands,links.brands]
-      ].filter(([key]) => key !== "santa" || lang === "uk"); // Санта — лише українською; BRIEF — у другому меню (власник, 17.11.2026)
+      ].filter(([key]) => (key !== "santa" || lang === "uk") && (key !== "brief" || lang !== "de")); // Санта — лише українською; BRIEF — у другому меню (власник, 17.11.2026), але не в німецькій версії (26.11.2026)
       const mobileMain=[[t.projects,projectUrl],[t.about,aboutUrl],[t.contacts,mainHome+"#contacts"]];
       // Німецька: розділи без німецької версії лишаються в меню, але з позначкою «EN» (власник, 26.11.2026).
       const extBadge=(url)=>{try{return lang==="de"&&!DE_HOSTS.includes(new URL(url).hostname)?'<span class="pm-global-ext-lang" title="English">EN</span>':""}catch(e){return ""}};
