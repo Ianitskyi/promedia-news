@@ -256,7 +256,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
     {name:"National Union of Journalists of Ukraine",href:"https://nsju.org/",img:"nuju.png"},
     {name:"Lviv Media Forum",href:"https://lvivmediaforum.com/",img:"lmf.png"},
     {name:"Georgiy Gongadze Prize",href:"https://gongadzeprize.com.ua/",img:"gongadze.png"},
-    {name:"Press Emblem Campaign",href:"https://www.pressemblem.ch/",img:"pec.png"}
+    {name:"Press Emblem Campaign",href:"https://www.pressemblem.ch/",img:"pec.png?v=2"}
   ];
   class PMFooter extends HTMLElement{
     connectedCallback(){
