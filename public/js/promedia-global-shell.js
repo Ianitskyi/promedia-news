@@ -26,12 +26,14 @@
   // Мови інтерфейсу мережі (власник, 26.11.2026): перемикач — один компактний список, щоб мов могло бути більше.
   // Німецька поки є лише в Новинах, Проєктах і «Про нас»; інші сайти німецькому читачеві відкриваються англійською.
   const LANG_NAMES=[["uk","UA","Українська"],["en","EN","English"],["crh","QT","Qırımtatarca"],["de","DE","Deutsch"]];
-  const DE_HOSTS=["news.promedia.report","projects.promedia.report","about.promedia.report"];
+  const DE_HOSTS=["promedia.report","www.promedia.report","news.promedia.report","projects.promedia.report","about.promedia.report"];
   const langFor=(host)=>lang==="de"&&!DE_HOSTS.includes(host)?"en":lang;
   const t=L[lang];
   const analyticsOn=!/(?:^|;\s*)pm_analytics=denied(?:;|$)/.test(document.cookie);
   const prefixFor=(host)=>{const l=langFor(host);return l==="uk"?"":"/"+l};
-  const prefix=prefixFor("promedia.report"); // головний сайт і його сторінки (підтримка, умови пожертви)
+  const prefix=prefixFor("promedia.report"); // головна promedia.report
+  // Сторінки головного сайту (підтримка, умови пожертви, приватність) німецькою ще не перекладені — ведемо на англійські.
+  const pagesPrefix=lang==="de"?"/en":prefix;
   const localize=(base)=>base+prefixFor(new URL(base).hostname)+"/";
   const mainBase="https://promedia.report";
   const mainHome=mainBase+(prefix||"")+"/";
@@ -81,6 +83,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-primary a{font-size:15px}.pm-global-secondary a{font-size:12px;color:rgba(13,12,92,.72)}
 .pm-global-primary a:hover,.pm-global-secondary a:hover{color:#e8901a}
 .pm-global-lang{position:relative;flex:0 0 auto}
+.pm-global-ext-lang{display:inline-block;margin-left:5px;padding:1px 4px;border:1px solid currentColor;border-radius:4px;font-size:9px;font-weight:700;line-height:1.2;letter-spacing:.04em;vertical-align:2px;opacity:.55}
 .pm-global-lang>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:4px;padding:5px 9px;border:1px solid rgba(13,12,92,.18);border-radius:999px;color:var(--pm-shell-ink);font-size:12px;font-weight:700;line-height:1;user-select:none}
 .pm-global-lang>summary::-webkit-details-marker{display:none}
 .pm-global-lang>summary:hover,.pm-global-lang[open]>summary{border-color:var(--pm-shell-ink)}
@@ -152,7 +155,9 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa],["brief",t.brief||"Brief",links.brief],["people",t.people,links.people],["brands",t.brands,links.brands]
       ].filter(([key]) => key !== "santa" || lang === "uk"); // Санта — лише українською; BRIEF — у другому меню (власник, 17.11.2026)
       const mobileMain=[[t.projects,projectUrl],[t.about,aboutUrl],[t.contacts,mainHome+"#contacts"]];
-      const mobileSub=sec.map(x=>[x[1],x[2]]);
+      // Німецька: розділи без німецької версії лишаються в меню, але з позначкою «EN» (власник, 26.11.2026).
+      const extBadge=(url)=>{try{return lang==="de"&&!DE_HOSTS.includes(new URL(url).hostname)?'<span class="pm-global-ext-lang" title="English">EN</span>':""}catch(e){return ""}};
+      const mobileSub=sec.map(x=>[x[1]+extBadge(x[2]),x[2]]);
       const available=(this.getAttribute("data-langs")||"uk,en,crh"+(DE_HOSTS.includes(location.hostname)?",de":"")).split(",").map(x=>x.trim()).filter(Boolean);
       const langs=LANG_NAMES.filter(([code])=>available.includes(code));
       const curLang=LANG_NAMES.find(([code])=>code===lang)||LANG_NAMES[0];
@@ -163,7 +168,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         ${langMenu}
         ${socialLinks("pm-global-head-socials")}
         <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div>${socialLinks("pm-global-mobile-socials")}</div></details>
-      </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}">${x[1]}</a>`).join("")}</nav></header>`;
+      </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}"${extBadge(x[2])?' hreflang="en"':""}>${x[1]}${extBadge(x[2])}</a>`).join("")}</nav></header>`;
       // Narrow BRIEF bar under the header on every ProMedia site (owner, 2026-11-17).
       // Ukrainian only (BRIEF is Ukrainian); not on BRIEF itself, which has its own player.
       if(lang==="uk"&&location.hostname!=="brief.promedia.report"&&typeof this.after==="function"&&!document.querySelector(".pm-brief-bar")){
@@ -262,7 +267,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
           <a href="https://www.linkedin.com/company/promediaukraine" target="_blank" rel="noopener" aria-label="LinkedIn">${socialIcon("linkedin")}</a>
           <a href="https://www.facebook.com/promediaukraine" target="_blank" rel="noopener" aria-label="Facebook">${socialIcon("facebook")}</a>
         </div></div>
-        <nav class="pm-global-footer-nav"><a href="${projectUrl}">${t.projects}</a><a href="${aboutUrl}">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a><a href="${mainBase}${prefix}/support/">${t.support}</a><a href="${mainBase}${prefix}/donation-offer/">${t.donationOffer}</a></nav>
+        <nav class="pm-global-footer-nav"><a href="${projectUrl}">${t.projects}</a><a href="${aboutUrl}">${t.about}</a><a href="${mainHome}#contacts">${t.contacts}</a><a href="${mainBase}${pagesPrefix}/support/">${t.support}</a><a href="${mainBase}${pagesPrefix}/donation-offer/">${t.donationOffer}</a></nav>
       </div>
       <div class="pm-global-partners"><h3>${t.partners}</h3><div class="pm-global-partners-grid">${PARTNERS.map(p=>`<a class="pm-global-partner${p.img?"":" pm-global-partner-text"}" href="${p.href}" target="_blank" rel="noopener">${p.img?`<img loading="lazy" decoding="async" src="https://promedia.report/assets/partners/${p.img}" alt="${p.name}">`:p.name}</a>`).join("")}</div></div>
       <details class="pm-global-org"${orgOpen?" open":""}><summary><h3>${t.details}</h3></summary><table>
@@ -272,7 +277,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         <tr><td>${t.chair}</td><td>${t.chairValue}</td></tr>
         <tr><td>E-mail</td><td><a href="mailto:info@promedia.report">info@promedia.report</a></td></tr>
       </table></details>
-      <div class="pm-global-bottom"><div>© 2025–2026 ProMedia. ${t.rights}<div class="pm-global-powered">Created by <a href="https://fabrikastyle.com" target="_blank" rel="noopener"><img src="https://fabrikastyle.com/logo-fa.svg" alt="Fabrika Style"></a></div></div><div><a href="${mainBase+(lang==="uk"?"/privacy-policy/":prefix+"/privacy-policy/")}">${t.privacy}</a> · <button type="button" class="pm-global-analytics-toggle" data-pm-analytics-toggle data-label-on="${t.analyticsOn}" data-label-off="${t.analyticsOff}" aria-pressed="${analyticsOn}">${analyticsOn?t.analyticsOn:t.analyticsOff}</button></div></div>
+      <div class="pm-global-bottom"><div>© 2025–2026 ProMedia. ${t.rights}<div class="pm-global-powered">Created by <a href="https://fabrikastyle.com" target="_blank" rel="noopener"><img src="https://fabrikastyle.com/logo-fa.svg" alt="Fabrika Style"></a></div></div><div><a href="${mainBase+(lang==="uk"?"/privacy-policy/":pagesPrefix+"/privacy-policy/")}">${t.privacy}</a> · <button type="button" class="pm-global-analytics-toggle" data-pm-analytics-toggle data-label-on="${t.analyticsOn}" data-label-off="${t.analyticsOff}" aria-pressed="${analyticsOn}">${analyticsOn?t.analyticsOn:t.analyticsOff}</button></div></div>
       </div></footer>`;
     }
   }
@@ -385,7 +390,7 @@ body.homepage #services .eyebrow{display:none!important}
         const word = document.createElement("span");
         word.textContent = "Fikirleriñizni";
         contactHeading.replaceChildren(word, document.createTextNode(" muzakere eteyik"));
-      } else if (highlight) highlight.textContent = lang === "en" ? "ideas" : "ідеї";
+      } else if (highlight) highlight.textContent = lang === "en" ? "ideas" : lang === "de" ? "Ideen" : "ідеї";
     }
     const services = document.getElementById("services");
     if (services) {

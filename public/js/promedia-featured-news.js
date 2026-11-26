@@ -4,6 +4,8 @@
   var NEWS_ORIGIN = "https://news.promedia.report";
   // Головна новина (card_style "hero", інакше найсвіжіша) + п'ять наступних заголовків.
   var API_URL = NEWS_ORIGIN + "/api/articles?limit=12&withHero=1";
+  // Німецька головна бере більше новин, бо показує лише перекладені.
+  var API_URL_DE = NEWS_ORIGIN + "/api/articles?limit=40&withHero=1";
   var LIST_SIZE = 9; // на комп'ютері видно 5, на мобільному всі 9
   var retryCount = 0;
   var maxRetries = 3;
@@ -14,6 +16,7 @@
     var path = window.location.pathname;
     if (htmlLang.indexOf("crh") === 0 || path === "/crh" || path.indexOf("/crh/") === 0) return "crh";
     if (htmlLang.indexOf("en") === 0 || path === "/en" || path.indexOf("/en/") === 0) return "en";
+    if (htmlLang.indexOf("de") === 0 || path === "/de" || path.indexOf("/de/") === 0) return "de";
     return "uk";
   }
 
@@ -32,21 +35,23 @@
   function formatDate(value, lang) {
     var date = new Date(value);
     if (isNaN(date.getTime())) return "";
-    return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "uk-UA", {
+    return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : lang === "de" ? "de-DE" : "uk-UA", {
       day: "2-digit", month: "2-digit", year: "numeric"
     }).format(date);
   }
 
   var RUBRICS = {
-    "Пресреліз": { uk: "Пресреліз", en: "Press release", crh: "Basın bildirisi" },
-    "Анонс": { uk: "Анонс", en: "Announcement", crh: "İlân" },
-    "Новини": { uk: "Новини", en: "News", crh: "Haberler" },
-    "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler" },
-    "Заяви": { uk: "Заяви", en: "Statements", crh: "Beyanatlar" }
+    "Пресреліз": { uk: "Пресреліз", en: "Press release", crh: "Basın bildirisi", de: "Pressemitteilung" },
+    "Анонс": { uk: "Анонс", en: "Announcement", crh: "İlân", de: "Ankündigung" },
+    "Новини": { uk: "Новини", en: "News", crh: "Haberler", de: "Nachrichten" },
+    "Статті": { uk: "Статті", en: "Articles", crh: "Maqaleler", de: "Artikel" },
+    "Заяви": { uk: "Заяви", en: "Statements", crh: "Beyanatlar", de: "Stellungnahmen" }
   };
 
   function localized(item, field, lang) {
-    var suffix = lang === "en" ? "En" : lang === "crh" ? "Crh" : "";
+    var suffix = lang === "en" ? "En" : lang === "crh" ? "Crh" : lang === "de" ? "De" : "";
+    // Німецькою фото беремо англійське, якщо воно є (на ньому може бути текст).
+    if (lang === "de" && field === "coverImageUrl") return item.coverImageUrlEn || item.coverImageUrl || "";
     return (suffix && item[field + suffix]) || item[field] || "";
   }
 
@@ -156,7 +161,7 @@
     function listItem(item, extra) {
       var li = el("li", "pm-news-lead-item" + (item.isImportant ? " pm-news-lead-item--important" : "") + (isPinned(item) ? " pm-news-lead-item--pinned" : "") + extra);
       if (isPinned(item)) {
-        var pinLabel = lang === "en" ? "Pinned" : lang === "crh" ? "Bekitilgen" : "Закріплено";
+        var pinLabel = lang === "en" ? "Pinned" : lang === "crh" ? "Bekitilgen" : lang === "de" ? "Angeheftet" : "Закріплено";
         var pin = el("span", "pm-news-lead-pin");
         pin.title = pinLabel;
         pin.setAttribute("aria-label", pinLabel);
@@ -233,7 +238,7 @@
 
     if (rest.length) {
       var side = el("aside", "pm-news-lead-side");
-      side.setAttribute("aria-label", lang === "en" ? "Latest" : lang === "crh" ? "Soñki" : "Останні");
+      side.setAttribute("aria-label", lang === "en" ? "Latest" : lang === "crh" ? "Soñki" : lang === "de" ? "Neueste" : "Останні");
       var list = el("ol", "pm-news-lead-list");
       rest.forEach(function (item, i) {
         list.appendChild(listItem(item, (isNewer(item) ? " pm-news-lead-item--newer" : "") + (i >= 5 ? " pm-news-lead-item--extra" : "")));
@@ -264,13 +269,15 @@
     var allNewsLink = document.querySelector(".pm-featured-news-all");
     if (allNewsLink) allNewsLink.href = NEWS_ORIGIN + (lang === "uk" ? "/" : "/" + lang + "/");
 
-    window.fetch(API_URL, { mode: "cors", credentials: "omit", cache: "no-store" })
+    window.fetch(lang === "de" ? API_URL_DE : API_URL, { mode: "cors", credentials: "omit", cache: "no-store" })
       .then(function (response) {
         if (!response.ok) throw new Error("HTTP " + response.status);
         return response.json();
       })
       .then(function (data) {
         var items = Array.isArray(data.items) ? data.items : [];
+        // Німецькою — лише вже перекладені новини (переклад ШІ з'являється через ~2 години).
+        if (lang === "de") items = items.filter(function (item) { return item.titleDe; });
         if (!items.length) return;
 
         injectStyles();

@@ -115,12 +115,12 @@
 
         // Pills show short project names only; the full title stays on the project page.
         const SHORT_NAMES = [
-          { test: /санта|santa/i, uk: "Таємний Санта", en: "Secret Santa", crh: "Gizli Santa" },
-          { test: /спільнот|communit/i, uk: "Карта медійних спільнот", en: "Media Communities Map", crh: "Media cemiyetleri haritası" },
-          { test: /атлас|atlas/i, uk: "Атлас медіа", en: "Media Atlas", crh: "Mediya Atlası" },
-          { test: /proof|фактчек|fact-?check/i, uk: "Proof", en: "Proof", crh: "Proof" },
-          { test: /automation lab/i, uk: "AI and Automation Lab 2.0", en: "AI and Automation Lab 2.0", crh: "AI and Automation Lab 2.0" },
-          { test: /журфак|journalism school|faculties of journalism/i, uk: "Рейтинг журфаків", en: "J-school ranking", crh: "Jurnalistika fakultetleri reytingi" }
+          { test: /санта|santa/i, uk: "Таємний Санта", en: "Secret Santa", crh: "Gizli Santa", de: "Wichteln" },
+          { test: /спільнот|communit/i, uk: "Карта медійних спільнот", en: "Media Communities Map", crh: "Media cemiyetleri haritası", de: "Karte der Medien-Communitys" },
+          { test: /атлас|atlas/i, uk: "Атлас медіа", en: "Media Atlas", crh: "Mediya Atlası", de: "Medienatlas" },
+          { test: /proof|фактчек|fact-?check/i, uk: "Proof", en: "Proof", crh: "Proof", de: "Proof" },
+          { test: /automation lab/i, uk: "AI and Automation Lab 2.0", en: "AI and Automation Lab 2.0", crh: "AI and Automation Lab 2.0", de: "AI and Automation Lab 2.0" },
+          { test: /журфак|journalism school|faculties of journalism/i, uk: "Рейтинг журфаків", en: "J-school ranking", crh: "Jurnalistika fakultetleri reytingi", de: "Journalistik-Ranking" }
         ];
         // Fixed order on the strip: Santa, Atlas, Communities map, J-school ranking, then the rest as they come.
         const ORDER = [/санта|santa/i, /атлас|atlas/i, /спільнот|communit/i, /журфак|journalism school|faculties of journalism/i];
@@ -133,6 +133,8 @@
         grid.innerHTML = items.map((p) => {
           const fullTitle = lang === "en"
             ? (p.titleEn || p.title_en || p.title)
+            : lang === "de"
+            ? (p.titleDe || p.titleEn || p.title_en || p.title)
             : lang === "crh"
               ? (p.titleCrh || p.title_crh || p.title)
               : p.title;
@@ -167,6 +169,11 @@
           eyebrow: "Haberler",
           title: "ProMedia haberleri",
           all: "Bütün materiallar"
+        },
+        de: {
+          eyebrow: "Nachrichten",
+          title: "ProMedia Nachrichten",
+          all: "Alle Beiträge"
         }
       }[lang] || {};
       const section = document.createElement("section");
