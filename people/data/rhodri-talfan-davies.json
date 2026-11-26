@@ -1,0 +1,48 @@
+{
+ "slug": "rhodri-talfan-davies",
+ "group": "intl",
+ "country": "Велика Британія",
+ "kind": "manager",
+ "name": {
+  "uk": "Родрі Талфан Девіс",
+  "en": "Rhodri Talfan Davies"
+ },
+ "sort": {
+  "uk": "Талфан Девіс Родрі",
+  "en": "Talfan Davies Rhodri"
+ },
+ "role": {
+  "uk": "заступник генерального директора BBC",
+  "en": "Deputy Director-General of the BBC"
+ },
+ "summary": {
+  "uk": "Заступник генерального директора британської суспільної мовниці BBC.",
+  "en": "Deputy Director-General of the UK public service broadcaster BBC."
+ },
+ "bio": {
+  "uk": "Родрі Талфан Девіс — заступник генерального директора BBC. Восени 2026 року він представляв позицію мовниці в суперечці з Національною спілкою журналістів Великої Британії (NUJ) через скорочення: пообіцяв зробити все можливе, щоб звести примусові звільнення до мінімуму, але сказав, що гарантувати їхню відсутність BBC не може."
+ },
+ "facts": [
+  [
+   "Організація",
+   "BBC, Лондон"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Rhodri Talfan Davies"
+  ]
+ },
+ "sources": [
+  {
+   "title": "Press Gazette: BBC journalists to vote on strike action over threat of compulsory redundancies, 28.10.2026",
+   "url": "https://pressgazette.co.uk/news/bbc-journalists-vote-strike-action-threat-compulsory-redundancies/"
+  },
+  {
+   "title": "ПроМедіа: Журналісти BBC проголосували за страйк через скорочення",
+   "url": "https://news.promedia.report/article/zhurnalisty-bbc-proholosuvaly-za-straik"
+  }
+ ],
+ "updated": "2026-11-26"
+}

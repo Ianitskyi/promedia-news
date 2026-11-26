@@ -1854,6 +1854,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "laura-davison",
+    "tag": "Лора Девісон",
+    "aliases": [],
+    "name": {
+      "uk": "Лора Девісон",
+      "en": "Laura Davison"
+    },
+    "role": {
+      "uk": "генеральна секретарка Національної спілки журналістів Великої Британії (NUJ)",
+      "en": "General Secretary of the National Union of Journalists (NUJ), UK"
+    },
+    "summary": {
+      "uk": "Очолює Національну спілку журналістів Великої Британії (NUJ) — профспілку, яка представляє журналістів і медійників.",
+      "en": "Leads the UK's National Union of Journalists (NUJ), the trade union representing journalists and media workers."
+    }
+  },
+  {
     "slug": "lukas-hassig",
     "tag": "Лукас Гессіг",
     "aliases": [
@@ -2778,6 +2795,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Фотограф, який 1855 року зробив 360 знімків Кримської війни — першої масштабно задокументованої на фото для широкої публіки.",
       "en": "Photographer who made 360 pictures of the Crimean War in 1855, the first war widely documented in photographs for the public."
+    }
+  },
+  {
+    "slug": "rhodri-talfan-davies",
+    "tag": "Родрі Талфан Девіс",
+    "aliases": [],
+    "name": {
+      "uk": "Родрі Талфан Девіс",
+      "en": "Rhodri Talfan Davies"
+    },
+    "role": {
+      "uk": "заступник генерального директора BBC",
+      "en": "Deputy Director-General of the BBC"
+    },
+    "summary": {
+      "uk": "Заступник генерального директора британської суспільної мовниці BBC.",
+      "en": "Deputy Director-General of the UK public service broadcaster BBC."
     }
   },
   {

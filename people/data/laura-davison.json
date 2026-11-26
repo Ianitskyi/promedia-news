@@ -1,0 +1,49 @@
+{
+ "slug": "laura-davison",
+ "group": "intl",
+ "country": "Велика Британія",
+ "kind": "other",
+ "name": {
+  "uk": "Лора Девісон",
+  "en": "Laura Davison"
+ },
+ "sort": {
+  "uk": "Девісон Лора",
+  "en": "Davison Laura"
+ },
+ "role": {
+  "uk": "генеральна секретарка Національної спілки журналістів Великої Британії (NUJ)",
+  "en": "General Secretary of the National Union of Journalists (NUJ), UK"
+ },
+ "summary": {
+  "uk": "Очолює Національну спілку журналістів Великої Британії (NUJ) — профспілку, яка представляє журналістів і медійників.",
+  "en": "Leads the UK's National Union of Journalists (NUJ), the trade union representing journalists and media workers."
+ },
+ "bio": {
+  "uk": "Лора Девісон — генеральна секретарка Національної спілки журналістів Великої Британії (National Union of Journalists, NUJ). Восени 2026 року профспілка під її керівництвом провела голосування журналістів BBC про страйк через скорочення на 500 млн фунтів стерлінгів і примусові звільнення. Пані Лора закликала BBC зупинити скорочення, на які, за її словами, не заслуговують ні журналісти, ні платники ліцензійного збору."
+ },
+ "facts": [
+  [
+   "Організація",
+   "National Union of Journalists (NUJ), Велика Британія"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Laura Davison",
+   "NUJ"
+  ]
+ },
+ "sources": [
+  {
+   "title": "Press Gazette: BBC journalists to vote on strike action over threat of compulsory redundancies, 28.10.2026",
+   "url": "https://pressgazette.co.uk/news/bbc-journalists-vote-strike-action-threat-compulsory-redundancies/"
+  },
+  {
+   "title": "ПроМедіа: Журналісти BBC проголосували за страйк через скорочення",
+   "url": "https://news.promedia.report/article/zhurnalisty-bbc-proholosuvaly-za-straik"
+  }
+ ],
+ "updated": "2026-11-26"
+}
