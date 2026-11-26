@@ -4020,6 +4020,28 @@ export const BRANDS = [
     }
   },
   {
+    "slug": "press-emblem-campaign",
+    "tag": "Press Emblem Campaign",
+    "aliases": [
+      "PEC"
+    ],
+    "group": "intl",
+    "kind": "ngo",
+    "country": "Швейцарія",
+    "name": {
+      "uk": "Press Emblem Campaign",
+      "en": "Press Emblem Campaign"
+    },
+    "type": {
+      "uk": "міжнародна організація, що захищає журналістів у зонах війн і конфліктів",
+      "en": "international organisation protecting journalists in war and conflict zones"
+    },
+    "summary": {
+      "uk": "Незалежна громадська організація з Женеви, яку заснували журналісти. Стежить за безпекою медійників у небезпечних регіонах і рахує загиблих.",
+      "en": "Independent Geneva-based NGO founded by journalists. It monitors the safety of media workers in dangerous areas and counts those killed."
+    }
+  },
+  {
     "slug": "press-gazette",
     "tag": "Press Gazette",
     "aliases": [],

@@ -1,0 +1,77 @@
+{
+  "slug": "press-emblem-campaign",
+  "group": "intl",
+  "country": "Швейцарія",
+  "kind": "ngo",
+  "name": {
+    "uk": "Press Emblem Campaign",
+    "en": "Press Emblem Campaign"
+  },
+  "sort": {
+    "uk": "Press Emblem Campaign",
+    "en": "Press Emblem Campaign"
+  },
+  "aliases": [
+    "PEC"
+  ],
+  "match": [
+    "Press Emblem Campaign",
+    "PEC"
+  ],
+  "type": {
+    "uk": "міжнародна організація, що захищає журналістів у зонах війн і конфліктів",
+    "en": "international organisation protecting journalists in war and conflict zones"
+  },
+  "summary": {
+    "uk": "Незалежна громадська організація з Женеви, яку заснували журналісти. Стежить за безпекою медійників у небезпечних регіонах і рахує загиблих.",
+    "en": "Independent Geneva-based NGO founded by journalists. It monitors the safety of media workers in dangerous areas and counts those killed."
+  },
+  "bio": {
+    "uk": "Press Emblem Campaign (PEC) заснувала 4 червня 2004 року в Женеві група журналістів з різних країн. Це незалежна некомерційна організація зі спеціальним консультативним статусом при ООН. Її мета — посилити правовий захист і безпеку журналістів у зонах конфліктів. PEC веде власний підрахунок загиблих журналістів, публікує щорічні звіти й заяви, а також вручає щорічну Премію за захист журналістів. Організацію очолює президент Блез Лемпен, один із її засновників.\n\n25 листопада 2026 року PEC оприлюднила спеціальний звіт про насильство проти журналісток у світі, де окремо згадала загиблих українок Христину Лисенко й Вікторію Рощину."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "4 червня 2004, Женева"
+    ],
+    [
+      "Статус",
+      "спеціальний консультативний статус при ООН"
+    ],
+    [
+      "Президент",
+      "Блез Лемпен"
+    ]
+  ],
+  "website": "https://www.pressemblem.ch",
+  "wiki": [
+    "en:Press Emblem Campaign"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Press Emblem Campaign",
+      "url": "https://www.pressemblem.ch"
+    },
+    {
+      "title": "Press Emblem Campaign: контакти й склад правління",
+      "url": "https://pressemblem.ch/contact-links"
+    },
+    {
+      "title": "Genève internationale: Press Emblem Campaign — PEC",
+      "url": "https://www.geneve-int.ch/node/4616"
+    },
+    {
+      "title": "Media Rights Agenda: PEC Marks 20th Anniversary",
+      "url": "https://mediarightsagenda.org/pec-marks-20th-anniversary-present-grim-statistics-on-journalist-deaths/"
+    },
+    {
+      "title": "Rural Media Network Pakistan: More than 2000 journalists killed in 20 years, says Press Emblem Campaign",
+      "url": "https://ruralmedianetworkpk.org/?p=10503"
+    },
+    {
+      "title": "ПроМедіа: Журналістки у світі платять подвійну ціну. Звіт PEC",
+      "url": "https://news.promedia.report/article/zhurnalistky-u-sviti-platiat-podviinu-tsinu-zvit-pec"
+    }
+  ],
+  "updated": "2026-11-26"
+}
