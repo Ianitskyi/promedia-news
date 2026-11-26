@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://about.promedia.report/</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://about.promedia.report/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://about.promedia.report/en/" />
+    <xhtml:link rel="alternate" hreflang="crh" href="https://about.promedia.report/crh/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://about.promedia.report/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://about.promedia.report/" />
+  </url>
+  <url>
+    <loc>https://about.promedia.report/en/</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://about.promedia.report/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://about.promedia.report/en/" />
+    <xhtml:link rel="alternate" hreflang="crh" href="https://about.promedia.report/crh/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://about.promedia.report/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://about.promedia.report/" />
+  </url>
+  <url>
+    <loc>https://about.promedia.report/crh/</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://about.promedia.report/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://about.promedia.report/en/" />
+    <xhtml:link rel="alternate" hreflang="crh" href="https://about.promedia.report/crh/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://about.promedia.report/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://about.promedia.report/" />
+  </url>
+  <url>
+    <loc>https://about.promedia.report/de/</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://about.promedia.report/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://about.promedia.report/en/" />
+    <xhtml:link rel="alternate" hreflang="crh" href="https://about.promedia.report/crh/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://about.promedia.report/de/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://about.promedia.report/" />
+  </url>
+</urlset>
