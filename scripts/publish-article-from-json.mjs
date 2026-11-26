@@ -160,6 +160,14 @@ function coverMeta(a) {
   return Object.keys(meta).length ? JSON.stringify(meta) : null;
 }
 
+// Long articles in four languages exceed D1's per-statement limit (SQLITE_TOOBIG, 26.11.2026):
+// the INSERT carries only the Ukrainian body, and each translation is written by its own UPDATE.
+function bodyUpdates(a) {
+  return [['body_md_en', a.bodyMdEn], ['body_md_crh', a.bodyMdCrh], ['body_md_de', a.titleDe ? (a.bodyMdDe || '') : null]]
+    .filter(([, v]) => v)
+    .map(([col, v]) => `UPDATE articles SET ${col} = ${q(v)} WHERE slug = ${q(a.slug)};`).join('\n  ');
+}
+
 const files = readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
   const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
@@ -286,10 +294,11 @@ for (const f of files) {
     body_md, body_md_en, body_md_crh, title_de, excerpt_de, body_md_de, de_translated_at, cover_image_url, cover_crop_data, tags, related_media_ids, is_important, card_style, status, author_id,
     published_at, created_at, updated_at)
   SELECT ${[a.slug, a.title, a.titleEn, a.titleCrh, a.excerpt || '', a.excerptEn, a.excerptCrh,
-    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, a.titleDe || null, a.titleDe ? (a.excerptDe || '') : null, a.titleDe ? (a.bodyMdDe || '') : null, a.titleDe ? now : null, coverUrl, coverMeta(a),
+    a.bodyMd, a.bodyMdEn ? '' : a.bodyMdEn, a.bodyMdCrh ? '' : a.bodyMdCrh, a.titleDe || null, a.titleDe ? (a.excerptDe || '') : null, a.titleDe ? '' : null, a.titleDe ? now : null, coverUrl, coverMeta(a),
     JSON.stringify(a.tags || []), JSON.stringify(Array.isArray(a.relatedMediaIds) ? a.relatedMediaIds : [])].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
     ${scheduledFor ? "'draft'" : "'published'"}, ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});
+  ${bodyUpdates(a)}
   ${scheduledFor ? `${SCHEDULE_TABLE_SQL};
   INSERT OR REPLACE INTO scheduled_publications (slug, publish_at, done) VALUES (${q(a.slug)}, ${q(scheduledFor)}, 0);` : pinSql(a)}`;
   const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'insert.sql');
