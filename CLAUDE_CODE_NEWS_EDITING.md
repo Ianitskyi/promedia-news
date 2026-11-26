@@ -176,7 +176,7 @@ admin credentials через змінні середовища. Не запус�
   Нова мова = рядок у `LANG_NAMES` + тексти в `L` у `promedia-global-shell.js`.
 - Колонки `*_de` і `de_translated_at` у `articles` і `projects` (`migrations/0034_german.sql`; у production додає
   `scripts/ensure-german-columns.mjs` під час деплою воркера).
-- Переклад робить `src/lib/translateDe.js` за Cloudflare cron (кожні 5 хвилин, до 3 матеріалів): спершу проєкти,
+- Переклад робить `src/lib/translateDe.js` за Cloudflare cron (кожні 5 хвилин, до 6 матеріалів): спершу проєкти,
   потім новини від найсвіжіших. Перекладає лише через 2 години після останньої правки й наново — якщо український
   текст змінився (`updated_at` > `de_translated_at`). Ключ — `OPENAI_API_KEY`, модель — `OPENAI_TRANSLATE_MODEL`
   або `OPENAI_MODEL` (типово `gpt-5-mini`). Стан і помилки: `GET /api/translation-status`.
