@@ -3357,6 +3357,28 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "jan-strzelecki",
+    "tag": "Ян Стрелецький",
+    "aliases": [
+      "Jan Strzelecki",
+      "Ян Стрелецький",
+      "Ян Стшелецький",
+      "Ян Стжелецький"
+    ],
+    "name": {
+      "uk": "Ян Стрелецький",
+      "en": "Jan Strzelecki"
+    },
+    "role": {
+      "uk": "польський економіст, заступник керівника команди світової економіки Польського економічного інституту",
+      "en": "Polish economist, deputy head of the World Economy Team at the Polish Economic Institute"
+    },
+    "summary": {
+      "uk": "Польський економіст: досліджує міжнародну торгівлю, економіки Східної Європи та перспективи вступу України до ЄС. Заступник керівника команди світової економіки Польського економічного інституту (PIE).",
+      "en": "Polish economist who researches international trade, the economies of Eastern Europe and the prospects of Ukraine's EU accession. Deputy head of the World Economy Team at the Polish Economic Institute (PIE)."
+    }
+  },
+  {
     "slug": "yaroslav-bondarenko",
     "tag": "Ярослав Бондаренко",
     "aliases": [],

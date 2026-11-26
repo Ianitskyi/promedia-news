@@ -1,0 +1,69 @@
+{
+  "slug": "jan-strzelecki",
+  "group": "intl",
+  "country": "Польща",
+  "kind": "other",
+  "name": {
+    "uk": "Ян Стрелецький",
+    "en": "Jan Strzelecki"
+  },
+  "sort": {
+    "uk": "Стрелецький Ян",
+    "en": "Strzelecki Jan"
+  },
+  "role": {
+    "uk": "польський економіст, заступник керівника команди світової економіки Польського економічного інституту",
+    "en": "Polish economist, deputy head of the World Economy Team at the Polish Economic Institute"
+  },
+  "summary": {
+    "uk": "Польський економіст: досліджує міжнародну торгівлю, економіки Східної Європи та перспективи вступу України до ЄС. Заступник керівника команди світової економіки Польського економічного інституту (PIE).",
+    "en": "Polish economist who researches international trade, the economies of Eastern Europe and the prospects of Ukraine's EU accession. Deputy head of the World Economy Team at the Polish Economic Institute (PIE)."
+  },
+  "bio": {
+    "uk": "Ян Стрелецький — польський економіст, заступник керівника команди світової економіки Польського економічного інституту (PIE), державного аналітичного центру у Варшаві. Досліджує насамперед міжнародну торгівлю та економіки Східної Європи, регулярно публікує аналітику про економіку України та перспективи її вступу до Європейського Союзу. Раніше працював у варшавському Центрі східних досліджень (OSW).\n\nСпівавтор звіту PIE «Win-win for Ukraine and Central Europe: The Economic Implications of Ukraine's Accession to the EU» (2025), за яким вступ до ЄС може збільшити ВВП України на 1,7–26% залежно від реформ.\n\nУ листопаді 2026 року прочитав лекцію про єдиний ринок ЄС і вступ України на Школі економічної журналістики Центру Мєрошевського у Львові.",
+    "en": "Jan Strzelecki is a Polish economist and deputy head of the World Economy Team at the Polish Economic Institute (PIE), a state think tank in Warsaw. He focuses on international trade and the economies of Eastern Europe and regularly publishes analysis on Ukraine's economy and the prospects of its accession to the European Union. He previously worked at the Centre for Eastern Studies (OSW) in Warsaw.\n\nHe co-authored PIE's report \"Win-win for Ukraine and Central Europe: The Economic Implications of Ukraine's Accession to the EU\" (2025), which estimates that EU accession could raise Ukraine's GDP by 1.7–26% depending on reforms.\n\nIn November 2026 he lectured on the EU single market and Ukraine's accession at the Mieroszewski Centre's School of Economic Journalism in Lviv."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Польща"
+    ],
+    [
+      "Посада",
+      "заступник керівника команди світової економіки Польського економічного інституту"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "ProMedia: Єдиний ринок ЄС: лекція Яна Стрелецького для журналістів",
+      "url": "https://news.promedia.report/article/yedynyi-rynok-yes-lektsiia-yana-streletskoho-dlia-zhurnalistiv"
+    },
+    {
+      "title": "Polish Economic Institute: Jan Strzelecki",
+      "url": "https://pie.net.pl/en/jan-strzelecki/"
+    },
+    {
+      "title": "European Economic Congress 2023: Jan Strzelecki",
+      "url": "https://www.eecpoland.eu/2023/en/speakers/jan-strzelecki,20095.html"
+    },
+    {
+      "title": "PIE: Win-win for Ukraine and Central Europe (2025)",
+      "url": "https://pie.net.pl/wp-content/uploads/2025/07/PEI_Report_Ukraine-and-EU.pdf"
+    }
+  ],
+  "updated": "2026-11-26",
+  "aliases": [
+    "Jan Strzelecki",
+    "Ян Стрелецький",
+    "Ян Стшелецький",
+    "Ян Стжелецький"
+  ],
+  "photo": {
+    "url": "https://news.promedia.report/img/news/portrait-jan-strzelecki.jpg",
+    "author": "Польський економічний інститут",
+    "license": "",
+    "licenseUrl": "",
+    "sourceUrl": "https://pie.net.pl/en/jan-strzelecki/",
+    "sourceName": "Польський економічний інститут"
+  }
+}
