@@ -3464,6 +3464,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "yaroslav-zhelezniak",
+    "tag": "Ярослав Железняк",
+    "aliases": [
+      "Железняк",
+      "Ярослав Желєзняк"
+    ],
+    "name": {
+      "uk": "Ярослав Железняк",
+      "en": "Yaroslav Zhelezniak"
+    },
+    "role": {
+      "uk": "народний депутат України, блогер",
+      "en": "Member of the Ukrainian parliament, blogger"
+    },
+    "summary": {
+      "uk": "Народний депутат від партії «Голос», перший заступник голови фінансового комітету Верховної Ради. Веде власні канали в соцмережах і розслідує, хто стоїть за анонімними телеграм-каналами.",
+      "en": "MP from the Holos party and first deputy chair of the Verkhovna Rada's finance committee. Runs his own social media channels and investigates who is behind anonymous Telegram channels."
+    }
+  },
+  {
     "slug": "yaroslav-sukhomlyn",
     "tag": "Ярослав Сухомлин",
     "aliases": [],
