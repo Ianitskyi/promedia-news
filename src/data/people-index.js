@@ -2043,6 +2043,27 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "marcin-swiecicki",
+    "tag": "Марцін Свєнціцький",
+    "aliases": [
+      "Marcin Święcicki",
+      "Марцін Свєнціцький",
+      "Marcin Swiecicki"
+    ],
+    "name": {
+      "uk": "Марцін Свєнціцький",
+      "en": "Marcin Święcicki"
+    },
+    "role": {
+      "uk": "польський економіст і політик, колишній міністр зовнішньоекономічних зв'язків Польщі",
+      "en": "Polish economist and politician, former Polish minister of foreign economic relations"
+    },
+    "summary": {
+      "uk": "Польський економіст і політик: міністр в уряді Тадеуша Мазовецького (1989–1991), мер Варшави (1994–1999), депутат Сейму, з жовтня 2019 року — бізнес-омбудсмен України.",
+      "en": "Polish economist and politician: minister in Tadeusz Mazowiecki's government (1989–1991), mayor of Warsaw (1994–1999), member of the Sejm, and from October 2019 Ukraine's Business Ombudsman."
+    }
+  },
+  {
     "slug": "masha-gessen",
     "tag": "Маша Гессен",
     "aliases": [
