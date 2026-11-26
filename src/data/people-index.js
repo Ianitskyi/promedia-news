@@ -144,6 +144,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "andrej-babis",
+    "tag": "Андрей Бабіш",
+    "aliases": [],
+    "name": {
+      "uk": "Андрей Бабіш",
+      "en": "Andrej Babiš"
+    },
+    "role": {
+      "uk": "прем'єр-міністр Чехії",
+      "en": "Prime Minister of the Czech Republic"
+    },
+    "summary": {
+      "uk": "Прем'єр-міністр Чехії. Його уряд запропонував скасувати абонентську плату за суспільне мовлення й фінансувати Чеське телебачення й Чеське радіо з державного бюджету.",
+      "en": "Prime Minister of the Czech Republic. His government proposed abolishing the licence fee for public broadcasting and funding Czech Television and Czech Radio from the state budget."
+    }
+  },
+  {
     "slug": "andrii-boborykin",
     "tag": "Андрій Боборикін",
     "aliases": [
@@ -1578,6 +1595,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Журналістка-міжнародниця з досвідом у «Радіо Свобода», «Українському тижні», hromadske та BBC News Україна.",
       "en": "International affairs journalist who has worked for Radio Liberty, Ukrainian Week, hromadske and BBC News Ukrainian."
+    }
+  },
+  {
+    "slug": "julie-majerczak",
+    "tag": "Жюлі Мажерчак",
+    "aliases": [],
+    "name": {
+      "uk": "Жюлі Мажерчак",
+      "en": "Julie Majerczak"
+    },
+    "role": {
+      "uk": "постійна представниця «Репортерів без кордонів» (RSF) при ЄС",
+      "en": "Reporters Without Borders (RSF) Permanent Representative to the EU"
+    },
+    "summary": {
+      "uk": "Представляє міжнародну організацію «Репортери без кордонів» (RSF) в інституціях Європейського Союзу.",
+      "en": "Represents Reporters Without Borders (RSF) to the institutions of the European Union."
     }
   },
   {

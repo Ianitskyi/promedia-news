@@ -1,0 +1,57 @@
+{
+ "slug": "andrej-babis",
+ "group": "intl",
+ "country": "Чехія",
+ "kind": "official",
+ "name": {
+  "uk": "Андрей Бабіш",
+  "en": "Andrej Babiš"
+ },
+ "sort": {
+  "uk": "Бабіш Андрей",
+  "en": "Babis Andrej"
+ },
+ "role": {
+  "uk": "прем'єр-міністр Чехії",
+  "en": "Prime Minister of the Czech Republic"
+ },
+ "summary": {
+  "uk": "Прем'єр-міністр Чехії. Його уряд запропонував скасувати абонентську плату за суспільне мовлення й фінансувати Чеське телебачення й Чеське радіо з державного бюджету.",
+  "en": "Prime Minister of the Czech Republic. His government proposed abolishing the licence fee for public broadcasting and funding Czech Television and Czech Radio from the state budget."
+ },
+ "bio": {
+  "uk": "Андрей Бабіш — прем'єр-міністр Чехії. У 2026 році його уряд запропонував реформу суспільних медіа: скасувати абонентську плату за мовлення й фінансувати Чеське телебачення й Чеське радіо з державного бюджету, приблизно на 15 % менше, ніж раніше. Палата депутатів ухвалила закон 24 жовтня 2026 року. Реформа спричинила страйк працівників суспільних мовників і масові протести, а 25 листопада 2026 року Європейський парламент закликав уряд Чехії її переглянути. «Репортери без кордонів» (RSF) у червні 2026 року засуджували словесні напади пана Андрея та членів його коаліції на чеських журналістів. Сам пан Андрей відкидає закиди критиків і заявляє, що реформа зменшить фінансовий тягар для бідніших домогосподарств.",
+  "en": "Andrej Babiš is the Prime Minister of the Czech Republic. In 2026 his government proposed a public media reform: abolishing the broadcasting licence fee and funding Czech Television and Czech Radio from the state budget, with about 15% less money than before. The lower house passed the bill on 24 October 2026. The reform led to a strike by public broadcasting staff and mass protests, and on 25 November 2026 the European Parliament called on the Czech government to revise it. In June 2026 Reporters Without Borders (RSF) denounced verbal attacks on Czech journalists by Babiš and members of his coalition. Babiš rejects the critics' concerns and says the reform will ease the financial burden on poorer households."
+ },
+ "facts": [
+  [
+   "Країна",
+   "Чехія"
+  ],
+  [
+   "Посада",
+   "прем'єр-міністр"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Andrej Babiš"
+  ]
+ },
+ "sources": [
+  {
+   "title": "RSF: Czechia: European Parliament urges government to revise public service media reform after mass protests, 25.11.2026",
+   "url": "https://rsf.org/en/czechia-european-parliament-urges-government-revise-public-service-media-reform-after-mass-protests"
+  },
+  {
+   "title": "AP: Czechs rally against a government plan to overhaul the funding of public broadcasters",
+   "url": "https://abcnews.com/International/wireStory/thousands-czechs-rally-government-plan-overhaul-funding-public-134076951"
+  },
+  {
+   "title": "ПроМедіа: Європарламент закликав Чехію переглянути реформу суспільних медіа після масових протестів",
+   "url": "https://news.promedia.report/article/yevroparlament-zaklykav-chekhiiu-pereghlianuty-reformu-suspilnykh-media"
+  }
+ ],
+ "updated": "2026-11-26"
+}

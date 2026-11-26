@@ -1,0 +1,50 @@
+{
+ "slug": "julie-majerczak",
+ "group": "intl",
+ "country": "Франція",
+ "kind": "other",
+ "name": {
+  "uk": "Жюлі Мажерчак",
+  "en": "Julie Majerczak"
+ },
+ "sort": {
+  "uk": "Мажерчак Жюлі",
+  "en": "Majerczak Julie"
+ },
+ "role": {
+  "uk": "постійна представниця «Репортерів без кордонів» (RSF) при ЄС",
+  "en": "Reporters Without Borders (RSF) Permanent Representative to the EU"
+ },
+ "summary": {
+  "uk": "Представляє міжнародну організацію «Репортери без кордонів» (RSF) в інституціях Європейського Союзу.",
+  "en": "Represents Reporters Without Borders (RSF) to the institutions of the European Union."
+ },
+ "bio": {
+  "uk": "Жюлі Мажерчак — постійна представниця міжнародної організації «Репортери без кордонів» (RSF) при Європейському Союзі. У листопаді 2026 року, після резолюції Європарламенту щодо реформи суспільних медіа в Чехії, пані Жюлі закликала Європейську комісію підтримати чеських громадян і працівників суспільного мовлення, які виступили на захист медіа.",
+  "en": "Julie Majerczak is the Permanent Representative to the European Union of Reporters Without Borders (RSF). In November 2026, after the European Parliament's resolution on the Czech public media reform, she called on the European Commission to support the Czech citizens and public broadcasting staff who stood up for the media."
+ },
+ "facts": [
+  [
+   "Організація",
+   "Reporters Without Borders (RSF)"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Julie Majerczak",
+   "RSF"
+  ]
+ },
+ "sources": [
+  {
+   "title": "RSF: Czechia: European Parliament urges government to revise public service media reform after mass protests, 25.11.2026",
+   "url": "https://rsf.org/en/czechia-european-parliament-urges-government-revise-public-service-media-reform-after-mass-protests"
+  },
+  {
+   "title": "ПроМедіа: Європарламент закликав Чехію переглянути реформу суспільних медіа після масових протестів",
+   "url": "https://news.promedia.report/article/yevroparlament-zaklykav-chekhiiu-pereghlianuty-reformu-suspilnykh-media"
+  }
+ ],
+ "updated": "2026-11-26"
+}
