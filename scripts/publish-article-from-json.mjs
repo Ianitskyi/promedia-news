@@ -126,7 +126,7 @@ async function resolveBodyCommons(a) {
     } catch (e) { console.log(`::warning::Body photo ${key} copy failed: ${e.message}`); }
     if (!url) url = credit.thumb;
     const lic = credit.licenceUrl ? `[${credit.licence}](${credit.licenceUrl})` : credit.licence;
-    for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
+    for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh', 'bodyMdDe']) {
       if (!a[k]) continue;
       a[k] = a[k].split(`⟦COMMONS:${key}⟧`).join(url);
       for (const t of ['АВТОР', 'AUTHOR', 'MÜELLİF']) a[k] = a[k].split(`⟦${t}:${key}⟧`).join(credit.author);
@@ -192,7 +192,7 @@ for (const f of files) {
     let newCover = null;
     if (a.cover?.commonsFile) {
       const credit = await commonsInfo(a.cover.commonsFile, a.cover.width);
-      for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) if (a[k]) a[k] = fillCredit(a[k], credit);
+      for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh', 'bodyMdDe']) if (a[k]) a[k] = fillCredit(a[k], credit);
       fillCaption(a.cover, credit);
       if (a.coverRevision && a.coverRevision === a.revision) {
         newCover = credit.thumb;
@@ -205,7 +205,7 @@ for (const f of files) {
       newCover = a.cover.url;
       console.log(`New cover for ${a.slug}: ${a.cover.url}`);
     }
-    for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
+    for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh', 'bodyMdDe']) {
       if (a[k] && /⟦[^⟧]+⟧/.test(a[k])) throw Error(`Unfilled placeholder in ${k} of ${f}`);
     }
     // Editing a published article never moves it to the top: the order follows the first
@@ -215,15 +215,19 @@ for (const f of files) {
     if (a.cardStyle && a.cardStyle !== 'hero') a.cardStyle = 'auto';
     const raise = a.cardStyle === 'hero' && a.raiseToTop === a.revision;
     const cardStyle = a.cardStyle === 'hero' && !raise ? null : a.cardStyle;
+    // Німецька версія з JSON (titleDe/excerptDe/bodyMdDe) записується разом із правкою; той самий час у
+    // de_translated_at і updated_at, щоб автопереклад (src/lib/translateDe.js) її не перезаписав.
+    const updatedAt = new Date().toISOString();
     const sql = `UPDATE articles SET title = ${q(a.title)}, title_en = ${q(a.titleEn)}, title_crh = ${q(a.titleCrh)},
       excerpt = ${q(a.excerpt || '')}, excerpt_en = ${q(a.excerptEn)}, excerpt_crh = ${q(a.excerptCrh)},
       body_md = ${q(a.bodyMd)}, body_md_en = ${q(a.bodyMdEn)}, body_md_crh = ${q(a.bodyMdCrh)},
+      ${a.titleDe ? `title_de = ${q(a.titleDe)}, excerpt_de = ${q(a.excerptDe || '')}, body_md_de = ${q(a.bodyMdDe || '')}, de_translated_at = ${q(updatedAt)},` : ''}
       tags = ${q(JSON.stringify(a.tags || []))},
       ${Array.isArray(a.relatedMediaIds) ? `related_media_ids = ${q(JSON.stringify(a.relatedMediaIds))},` : ''}
       is_important = ${a.isImportant === undefined ? 'is_important' : (a.isImportant ? 1 : 0)},
       card_style = ${cardStyle ? q(cardStyle) : 'card_style'},
       ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(coverMeta(a))},` : ''}
-      updated_at = ${q(new Date().toISOString())}
+      updated_at = ${q(updatedAt)}
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
     ${pinSql(a, marker)}
     INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`;
@@ -255,7 +259,7 @@ for (const f of files) {
   } else if (a.cover?.commonsFile) {
     const credit = await commonsInfo(a.cover.commonsFile, a.cover.width);
     console.log(`Cover: ${credit.page} — ${credit.author}, ${credit.licence}`);
-    for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) if (a[k]) a[k] = fillCredit(a[k], credit);
+    for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh', 'bodyMdDe']) if (a[k]) a[k] = fillCredit(a[k], credit);
     fillCaption(a.cover, credit);
     const img = await fetch(credit.thumb, {headers: {'User-Agent': UA}});
     if (!img.ok) throw Error('Cover download ' + img.status);
@@ -269,7 +273,7 @@ for (const f of files) {
       coverUrl = credit.thumb;
     }
   }
-  for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh']) {
+  for (const k of ['bodyMd', 'bodyMdEn', 'bodyMdCrh', 'bodyMdDe']) {
     if (a[k] && /⟦[^⟧]+⟧/.test(a[k])) throw Error(`Unfilled placeholder in ${k} of ${f}`);
   }
   if (a.cover?.caption && /⟦[^⟧]+⟧/.test(JSON.stringify(a.cover.caption))) throw Error(`Unfilled placeholder in cover.caption of ${f}`);
@@ -277,11 +281,12 @@ for (const f of files) {
   if (!author) throw Error('No admin user found');
   const now = new Date().toISOString();
   const published = a.publishedAt || (a.publishAt ? new Date(a.publishAt).toISOString() : now);
+  // Німецька версія (з 26.11.2026): якщо в JSON є titleDe/bodyMdDe — публікуємо її одразу, без автоперекладу.
   const sql = `INSERT INTO articles (slug, title, title_en, title_crh, excerpt, excerpt_en, excerpt_crh,
-    body_md, body_md_en, body_md_crh, cover_image_url, cover_crop_data, tags, related_media_ids, is_important, card_style, status, author_id,
+    body_md, body_md_en, body_md_crh, title_de, excerpt_de, body_md_de, de_translated_at, cover_image_url, cover_crop_data, tags, related_media_ids, is_important, card_style, status, author_id,
     published_at, created_at, updated_at)
   SELECT ${[a.slug, a.title, a.titleEn, a.titleCrh, a.excerpt || '', a.excerptEn, a.excerptCrh,
-    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, coverUrl, coverMeta(a),
+    a.bodyMd, a.bodyMdEn, a.bodyMdCrh, a.titleDe || null, a.titleDe ? (a.excerptDe || '') : null, a.titleDe ? (a.bodyMdDe || '') : null, a.titleDe ? now : null, coverUrl, coverMeta(a),
     JSON.stringify(a.tags || []), JSON.stringify(Array.isArray(a.relatedMediaIds) ? a.relatedMediaIds : [])].map(q).join(', ')}, ${a.isImportant ? 1 : 0}, ${q(a.cardStyle || 'auto')},
     ${scheduledFor ? "'draft'" : "'published'"}, ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});

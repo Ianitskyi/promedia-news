@@ -69,9 +69,16 @@ export function normalizeGerman(text) {
 export async function translateToGerman(env, kind, source) {
   const apiKey = String(env.OPENAI_API_KEY || "").trim();
   if (!apiKey) throw new Error("OPENAI_API_KEY is not set");
-  const fields = kind === "project" ? PROJECT_FIELDS : ARTICLE_FIELDS;
+  let fields = kind === "project" ? PROJECT_FIELDS : ARTICLE_FIELDS;
   const original = Object.fromEntries(fields.map(([col]) => [col, String(source[col] || "")]));
   const english = Object.fromEntries(fields.map(([col]) => [col, String(source[`${col}_en`] || "")]));
+  // Підпис обкладинки новини (cover_crop_data.caption) теж перекладаємо, якщо німецького ще немає.
+  const caption = kind === "article" ? coverCaptionOf(source) : null;
+  if (caption?.uk && !caption.de) {
+    fields = [...fields, ["cover_caption", "coverCaptionDe"]];
+    original.cover_caption = String(caption.uk);
+    english.cover_caption = String(caption.en || "");
+  }
   const response = await fetch("https://api.openai.com/v1/responses", {
     method: "POST",
     headers: { "Authorization": `Bearer ${apiKey}`, "Content-Type": "application/json" },
@@ -98,6 +105,14 @@ export async function translateToGerman(env, kind, source) {
     throw new Error("German body looks truncated");
   }
   return out;
+}
+
+function coverMetaOf(row) {
+  try { const m = typeof row.cover_crop_data === "string" ? JSON.parse(row.cover_crop_data) : row.cover_crop_data; return m && typeof m === "object" ? m : {}; } catch { return {}; }
+}
+function coverCaptionOf(row) {
+  const c = coverMetaOf(row).caption;
+  return c && typeof c === "object" ? c : null;
 }
 
 async function takeLock(db) {
@@ -151,6 +166,13 @@ export async function runGermanTranslation(env, { maxItems = 6, budgetMs = 4 * 6
       const table = kind === "project" ? "projects" : "articles";
       try {
         const de = await translateToGerman(env, kind, row);
+        const captionDe = de.cover_caption_de;
+        delete de.cover_caption_de;
+        if (captionDe) {
+          const meta = coverMetaOf(row);
+          meta.caption = { ...(meta.caption || {}), de: captionDe };
+          de.cover_crop_data = JSON.stringify(meta);
+        }
         const cols = Object.keys(de);
         // updated_at не чіпаємо: переклад — не редакційна правка.
         await db.prepare(

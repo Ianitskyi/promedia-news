@@ -22,7 +22,8 @@
     "caption": {
       "uk": "Німецька версія сайту ProMedia. Скриншот: ProMedia.",
       "en": "The German version of the ProMedia website. Screenshot: ProMedia.",
-      "crh": "ProMedia saytınıñ nemse versiyası. Skrinşot: ProMedia."
+      "crh": "ProMedia saytınıñ nemse versiyası. Skrinşot: ProMedia.",
+      "de": "Die deutsche Version der Website von ProMedia. Screenshot: ProMedia."
     }
   },
   "relatedMediaIds": [
@@ -31,5 +32,9 @@
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
   "cardStyle": "image",
-  "revision": "2026-11-26-initial"
+  "revision": "2026-11-26-de",
+  "titleDe": "Die ukrainische NGO ProMedia startet eine deutsche Version ihrer Website",
+  "excerptDe": "Nachrichten über ukrainische Medien, die Projekte von ProMedia und die Geschichte der Organisation gibt es jetzt auf Deutsch. Übersetzt wird mit KI.",
+  "bodyMdDe": "ProMedia, eine ukrainische Nichtregierungsorganisation und ein Medium über Medien, hat am 26. November eine deutsche Version ihrer Website gestartet: Nachrichten, Projekte und die Geschichte der Organisation sind jetzt auf Deutsch verfügbar.\n\nJournalistinnen und Journalisten, Forschende, Förderer und Partner aus deutschsprachigen Ländern können Nachrichten über ukrainische Medien, Journalismus und Kommunikation nun in ihrer eigenen Sprache lesen.\n\n„Zu unseren Partnern gehören Menschen aus vielen verschiedenen Ländern. Natürlich könnten sie unsere Website auch auf Englisch oder mit einer Übersetzung lesen. Aber ==in der eigenen Sprache zu lesen ist einfach bequem, und es ist auch ein Zeichen des Respekts gegenüber unseren Partnern==“, sagte **Andrii Ianitskyi**, Vorstandsvorsitzender von ProMedia.\n\nDie Texte übersetzt künstliche Intelligenz. Eine neue Nachricht erscheint etwa zwei Stunden nach der Veröffentlichung auf Deutsch; wird der ukrainische Text später geändert, aktualisiert sich die deutsche Fassung automatisch. Unter jeder Übersetzung steht ein Hinweis, dass sie mit KI erstellt wurde, sowie ein Link zum ukrainischen Original. Auch das Nachrichtenarchiv wurde ins Deutsche übersetzt.\n\nDie Sprache lässt sich über die Schaltfläche mit dem Globus in der Kopfzeile wechseln. Der Medienatlas, die Karte der Medien-Communitys, das Ranking der ukrainischen Journalistik-Fakultäten und der Bereich „Personen“ öffnen sich vorerst auf Englisch. Auf Deutsch gibt es außerdem die Seite „ProMedia unterstützen“, die Spendenbedingungen und die Datenschutzerklärung.\n\nDie deutsche Version der Website ist unter [promedia.report/de/](https://promedia.report/de/) zu finden, die Nachrichten unter [news.promedia.report/de/](https://news.promedia.report/de/). Bisher war die Website von ProMedia auf Ukrainisch, Englisch und Krimtatarisch verfügbar.\n\n---\n\nDieser Text wurde automatisch auf Grundlage eines Auftrags der NGO ProMedia erstellt. Die Entscheidung zur Veröffentlichung traf Andrii Ianitskyi.",
+  "coverRevision": "2026-11-26-de"
 }

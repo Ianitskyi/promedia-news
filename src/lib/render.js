@@ -782,7 +782,8 @@ function manualFocus(p) {
 const COVER_CAPTION_LINE = /^\*(Фото на обкладинці|Фото|Cover photo|Photo|Qapaqtaki resim|Resim|Fotoresim):\s*(.+)\*$/;
 function coverCaption(article, lang, bodyMd) {
   const meta = articleCoverMetadata(article, "uk");
-  const own = meta.caption && typeof meta.caption === "object" ? String(meta.caption[lang] || "").trim() : "";
+  // Німецька: якщо німецького підпису фото ще немає, беремо англійський (а не український).
+  const own = meta.caption && typeof meta.caption === "object" ? String(meta.caption[lang] || (lang === "de" ? meta.caption.en : "") || "").trim() : "";
   const lines = String(bodyMd || "").split("\n");
   const divider = lines.findIndex((l) => /^(-{3,}|\*{3,})$/.test(l.trim()));
   if (own) return { caption: String(own).replace(/^\*|\*$/g, ""), bodyMd };
