@@ -84,7 +84,6 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
 .pm-global-primary a:hover,.pm-global-secondary a:hover{color:#e8901a}
 .pm-global-lang{position:relative;flex:0 0 auto}
 .pm-global-jurisdiction{margin-top:6px;font-size:.85rem;opacity:.75}
-.pm-global-ext-lang{display:inline-block;margin-left:5px;padding:1px 4px;border:1px solid currentColor;border-radius:4px;font-size:9px;font-weight:700;line-height:1.2;letter-spacing:.04em;vertical-align:2px;opacity:.55}
 .pm-global-lang>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:4px;padding:5px 9px;border:1px solid rgba(13,12,92,.18);border-radius:999px;color:var(--pm-shell-ink);font-size:12px;font-weight:700;line-height:1;user-select:none}
 .pm-global-lang>summary::-webkit-details-marker{display:none}
 .pm-global-lang>summary:hover,.pm-global-lang[open]>summary{border-color:var(--pm-shell-ink)}
@@ -156,9 +155,11 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         ["news",t.news,links.news],["communities",t.communities,links.communities],["ratings",t.ratings,links.ratings],["research",t.research,links.research],["atlas",t.atlas,links.atlas],["santa",t.santa,links.santa],["brief",t.brief||"Brief",links.brief],["people",t.people,links.people],["brands",t.brands,links.brands]
       ].filter(([key]) => (key !== "santa" || lang === "uk") && (key !== "brief" || lang !== "de")); // Санта — лише українською; BRIEF — у другому меню (власник, 17.11.2026), але не в німецькій версії (26.11.2026)
       const mobileMain=[[t.projects,projectUrl],[t.about,aboutUrl],[t.contacts,mainHome+"#contacts"]];
-      // Німецька: розділи без німецької версії лишаються в меню, але з позначкою «EN» (власник, 26.11.2026).
-      const extBadge=(url)=>{try{return lang==="de"&&!DE_HOSTS.includes(new URL(url).hostname)?'<span class="pm-global-ext-lang" title="English">EN</span>':""}catch(e){return ""}};
-      const mobileSub=sec.map(x=>[x[1]+extBadge(x[2]),x[2]]);
+      // Німецька: розділи без німецької версії лишаються в меню й відкриваються англійською.
+      // Видимої позначки «EN» немає — власникові вона не сподобалась (26.11.2026); лише hreflang і підказка.
+      const isExt=(url)=>{try{return lang==="de"&&!DE_HOSTS.includes(new URL(url).hostname)}catch(e){return false}};
+      const extAttrs=(url)=>isExt(url)?' hreflang="en" title="English"':"";
+      const mobileSub=sec.map(x=>[x[1],x[2]]);
       const available=(this.getAttribute("data-langs")||"uk,en,crh"+(DE_HOSTS.includes(location.hostname)?",de":"")).split(",").map(x=>x.trim()).filter(Boolean);
       const langs=LANG_NAMES.filter(([code])=>available.includes(code));
       const curLang=LANG_NAMES.find(([code])=>code===lang)||LANG_NAMES[0];
@@ -169,7 +170,7 @@ promedia-global-header,promedia-global-footer{display:block;font-family:Montserr
         ${langMenu}
         ${socialLinks("pm-global-head-socials")}
         <details class="pm-global-burger"><summary aria-label="Menu"><span></span></summary><div class="pm-global-mobile-panel"><div class="pm-global-mobile-main">${mobileMain.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div><div class="pm-global-mobile-sub">${mobileSub.map(x=>`<a href="${x[1]}">${x[0]}</a>`).join("")}</div>${socialLinks("pm-global-mobile-socials")}</div></details>
-      </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}"${extBadge(x[2])?' hreflang="en"':""}>${x[1]}${extBadge(x[2])}</a>`).join("")}</nav></header>`;
+      </div><nav class="pm-global-secondary">${sec.map(x=>`<a class="${current===x[0]?"active":""}" href="${x[2]}"${extAttrs(x[2])}>${x[1]}</a>`).join("")}</nav></header>`;
       // Narrow BRIEF bar under the header on every ProMedia site (owner, 2026-11-17).
       // Ukrainian only (BRIEF is Ukrainian); not on BRIEF itself, which has its own player.
       if(lang==="uk"&&location.hostname!=="brief.promedia.report"&&typeof this.after==="function"&&!document.querySelector(".pm-brief-bar")){
