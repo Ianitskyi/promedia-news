@@ -1,0 +1,46 @@
+{
+  "slug": "chris-willman",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Кріс Віллман",
+    "en": "Chris Willman"
+  },
+  "sort": {
+    "uk": "Віллман Кріс",
+    "en": "Willman Chris"
+  },
+  "role": {
+    "uk": "головний музичний критик Variety",
+    "en": "chief music critic of Variety"
+  },
+  "summary": {
+    "uk": "Старший автор і головний музичний критик видання Variety.",
+    "en": "Senior writer and chief music critic at Variety."
+  },
+  "bio": {
+    "uk": "Кріс Віллман — американський музичний журналіст, старший автор і головний музичний критик видання Variety.\n\nУ листопаді 2026 року розкритикував статтю Vanity Fair «The Mastermind» про Тейлор Свіфт: порахував, що з понад сотні співрозмовників у ній під власними іменами цитують лише шістьох, і назвав текст «уїдливістю, яка вдає репортаж»."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Variety"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Variety: Chris Willman",
+      "url": "https://variety.com/author/chris-willman/"
+    },
+    {
+      "title": "Yahoo Entertainment: Vanity Fair's Taylor Swift article, explained",
+      "url": "https://www.yahoo.com/entertainment/celebrity/article/vanity-fairs-taylor-swift-article-explained-the-regina-george-comparison-ugg-boots-and-easter-eggs-225217887.html"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

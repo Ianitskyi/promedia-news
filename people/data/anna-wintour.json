@@ -1,0 +1,50 @@
+{
+  "slug": "anna-wintour",
+  "group": "intl",
+  "country": "США",
+  "kind": "manager",
+  "name": {
+    "uk": "Анна Вінтур",
+    "en": "Anna Wintour"
+  },
+  "sort": {
+    "uk": "Вінтур Анна",
+    "en": "Wintour Anna"
+  },
+  "role": {
+    "uk": "головна контент-директорка Condé Nast, глобальна редакційна директорка Vogue",
+    "en": "chief content officer of Condé Nast, global editorial director of Vogue"
+  },
+  "summary": {
+    "uk": "Багаторічна головна редакторка американського Vogue, нині керує контентом медіадому Condé Nast.",
+    "en": "Long-time editor of American Vogue, now oversees content at Condé Nast."
+  },
+  "bio": {
+    "uk": "Анна Вінтур народилася 1949 року в Лондоні. З 1988 року очолювала американський Vogue і стала одною з найвпливовіших постатей у світі моди та глянцевих медіа. Згодом стала головною контент-директоркою медіадому Condé Nast і глобальною редакційною директоркою Vogue.\n\nУ 2025 році передала керівництво американським Vogue новій редакторці, залишившись на посадах у Condé Nast. Особисто обрала Марка Ґвідуччі першим глобальним редакційним директором Vanity Fair."
+  },
+  "facts": [
+    [
+      "Медіадім",
+      "Condé Nast"
+    ],
+    [
+      "Vogue (США)",
+      "головна редакторка з 1988 року"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Anna Wintour",
+      "url": "https://en.wikipedia.org/wiki/Anna_Wintour"
+    },
+    {
+      "title": "Stylecaster: Anna Wintour's Reaction to Taylor Swift Hit Piece",
+      "url": "https://stylecaster.com/entertainment/celebrity-news/1234974578/anna-wintour-taylor-swift-vanity-fair/"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

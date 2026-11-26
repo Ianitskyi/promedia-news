@@ -565,6 +565,28 @@ export const BRANDS = [
     }
   },
   {
+    "slug": "committee-to-protect-journalists",
+    "tag": "Комітет захисту журналістів",
+    "aliases": [
+      "CPJ"
+    ],
+    "group": "intl",
+    "kind": "ngo",
+    "country": "США",
+    "name": {
+      "uk": "Комітет захисту журналістів",
+      "en": "Committee to Protect Journalists"
+    },
+    "type": {
+      "uk": "міжнародна організація, що захищає свободу преси",
+      "en": "international press freedom organisation"
+    },
+    "summary": {
+      "uk": "Некомерційна організація з Нью-Йорка, яка обстоює свободу преси й безпеку журналістів у всьому світі.",
+      "en": "New York-based non-profit defending press freedom and the safety of journalists worldwide."
+    }
+  },
+  {
     "slug": "korrespondent",
     "tag": "Кореспондент",
     "aliases": [],
@@ -5086,6 +5108,26 @@ export const BRANDS = [
     }
   },
   {
+    "slug": "vanity-fair",
+    "tag": "Vanity Fair",
+    "aliases": [],
+    "group": "intl",
+    "kind": "magazine",
+    "country": "США",
+    "name": {
+      "uk": "Vanity Fair",
+      "en": "Vanity Fair"
+    },
+    "type": {
+      "uk": "американський журнал про культуру, політику й знаменитостей",
+      "en": "US magazine of culture, politics and celebrity"
+    },
+    "summary": {
+      "uk": "Глянцевий журнал медіадому Condé Nast, відомий портретами знаменитостей і розслідуваннями.",
+      "en": "Condé Nast glossy known for celebrity profiles and investigations."
+    }
+  },
+  {
     "slug": "variety",
     "tag": "Variety",
     "aliases": [],
@@ -5123,6 +5165,26 @@ export const BRANDS = [
     "summary": {
       "uk": "Нідерландське фахове видання про журналістику, пов'язане зі Спілкою журналістів Нідерландів (NVJ).",
       "en": "Dutch journalism trade outlet linked to the Netherlands Union of Journalists (NVJ)."
+    }
+  },
+  {
+    "slug": "vogue",
+    "tag": "Vogue",
+    "aliases": [],
+    "group": "intl",
+    "kind": "magazine",
+    "country": "США",
+    "name": {
+      "uk": "Vogue",
+      "en": "Vogue"
+    },
+    "type": {
+      "uk": "американський журнал про моду й культуру",
+      "en": "US fashion and culture magazine"
+    },
+    "summary": {
+      "uk": "Один із найвідоміших модних журналів світу, належить Condé Nast.",
+      "en": "One of the world's best-known fashion magazines, owned by Condé Nast."
     }
   },
   {

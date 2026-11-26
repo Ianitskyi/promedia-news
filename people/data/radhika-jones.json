@@ -1,0 +1,46 @@
+{
+  "slug": "radhika-jones",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Радхіка Джонс",
+    "en": "Radhika Jones"
+  },
+  "sort": {
+    "uk": "Джонс Радхіка",
+    "en": "Jones Radhika"
+  },
+  "role": {
+    "uk": "колишня головна редакторка Vanity Fair (2017–2025)",
+    "en": "former editor-in-chief of Vanity Fair (2017–2025)"
+  },
+  "summary": {
+    "uk": "Очолювала Vanity Fair вісім років, змінивши Грейдона Картера.",
+    "en": "Led Vanity Fair for eight years after succeeding Graydon Carter."
+  },
+  "bio": {
+    "uk": "Радхіка Джонс закінчила Гарвардський університет. До Vanity Fair працювала, зокрема, в журналі Time і була редакторкою книжкового розділу The New York Times.\n\nНаприкінці 2017 року очолила Vanity Fair, змінивши Грейдона Картера, який керував журналом 25 років. У 2025 році, після восьми років роботи, оголосила про відхід; журнал очолив Марк Ґвідуччі."
+  },
+  "facts": [
+    [
+      "Vanity Fair",
+      "головна редакторка, 2017–2025"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Radhika Jones",
+      "url": "https://en.wikipedia.org/wiki/Radhika_Jones"
+    },
+    {
+      "title": "Harvard Magazine: Radhika Jones at the helm of Vanity Fair",
+      "url": "https://www.harvardmagazine.com/2021/02/alumni-radhika-jones"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

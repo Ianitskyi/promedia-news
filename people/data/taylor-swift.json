@@ -1,0 +1,46 @@
+{
+  "slug": "taylor-swift",
+  "group": "intl",
+  "country": "США",
+  "kind": "other",
+  "name": {
+    "uk": "Тейлор Свіфт",
+    "en": "Taylor Swift"
+  },
+  "sort": {
+    "uk": "Свіфт Тейлор",
+    "en": "Swift Taylor"
+  },
+  "role": {
+    "uk": "американська співачка й авторка пісень",
+    "en": "American singer-songwriter"
+  },
+  "summary": {
+    "uk": "Одна з найуспішніших співачок світу; героїня статті Vanity Fair «The Mastermind».",
+    "en": "One of the world's best-selling singers; subject of Vanity Fair's \"The Mastermind\"."
+  },
+  "bio": {
+    "uk": "Тейлор Свіфт народилася 13 грудня 1989 року в Пенсильванії й виросла на фермі різдвяних ялинок. Починала як кантрі-співачка в Нешвіллі, згодом перейшла до поп-музики. Тур Eras Tour (2023–2024) став найкасовішим концертним туром в історії.\n\nУлітку 2026 року вийшла заміж за американського футболіста Тревіса Келсі. У листопаді 2026 року Vanity Fair опублікував про неї критичну статтю «The Mastermind», не назвавши її на ім'я; співачка відмовилася відповідати на запитання журналу."
+  },
+  "facts": [
+    [
+      "Народилася",
+      "13 грудня 1989 року"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Taylor Swift",
+      "url": "https://en.wikipedia.org/wiki/Taylor_Swift"
+    },
+    {
+      "title": "The Washington Times: Vanity Fair article that slams Taylor Swift as a 'mastermind' receives backlash",
+      "url": "https://www.washingtontimes.com/news/2026/nov/24/vanity-fair-article-slams-taylor-swift-mastermind-receives-backlash/"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

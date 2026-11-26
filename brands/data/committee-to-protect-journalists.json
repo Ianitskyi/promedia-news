@@ -1,0 +1,58 @@
+{
+  "slug": "committee-to-protect-journalists",
+  "group": "intl",
+  "country": "США",
+  "kind": "ngo",
+  "name": {
+    "uk": "Комітет захисту журналістів",
+    "en": "Committee to Protect Journalists"
+  },
+  "sort": {
+    "uk": "Комітет захисту журналістів",
+    "en": "Committee to Protect Journalists"
+  },
+  "aliases": [
+    "CPJ"
+  ],
+  "match": [
+    "Комітет захисту журналістів",
+    "Committee to Protect Journalists",
+    "CPJ"
+  ],
+  "type": {
+    "uk": "міжнародна організація, що захищає свободу преси",
+    "en": "international press freedom organisation"
+  },
+  "summary": {
+    "uk": "Некомерційна організація з Нью-Йорка, яка обстоює свободу преси й безпеку журналістів у всьому світі.",
+    "en": "New York-based non-profit defending press freedom and the safety of journalists worldwide."
+  },
+  "bio": {
+    "uk": "Комітет захисту журналістів (CPJ) заснували 1981 року в Нью-Йорку американські журналісти. Організація документує вбивства, ув'язнення й переслідування журналістів у всьому світі, щороку оприлюднює звіти про загиблих і ув'язнених медійників і допомагає тим, кому загрожує небезпека.\n\nУ листопаді 2026 року, за даними Page Six, CPJ про всяк випадок зв'язався з журналісткою Vanity Fair Мей Чон, яку цькували фанати Тейлор Свіфт."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1981, Нью-Йорк"
+    ]
+  ],
+  "website": "https://cpj.org",
+  "wiki": [
+    "en:Committee to Protect Journalists"
+  ],
+  "sources": [
+    {
+      "title": "Сайт CPJ",
+      "url": "https://cpj.org"
+    },
+    {
+      "title": "Вікіпедія: Committee to Protect Journalists",
+      "url": "https://en.wikipedia.org/wiki/Committee_to_Protect_Journalists"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

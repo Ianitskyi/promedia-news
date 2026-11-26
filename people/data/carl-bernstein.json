@@ -1,0 +1,42 @@
+{
+  "slug": "carl-bernstein",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Карл Бернстайн",
+    "en": "Carl Bernstein"
+  },
+  "sort": {
+    "uk": "Бернстайн Карл",
+    "en": "Bernstein Carl"
+  },
+  "role": {
+    "uk": "американський журналіст-розслідувач",
+    "en": "American investigative journalist"
+  },
+  "summary": {
+    "uk": "Разом із Бобом Вудвордом розкрив Вотергейтський скандал для The Washington Post.",
+    "en": "Broke the Watergate scandal with Bob Woodward for The Washington Post."
+  },
+  "bio": {
+    "uk": "Карл Бернстайн народився 1944 року у Вашингтоні. У 1972–1974 роках як репортер The Washington Post разом із Бобом Вудвордом розслідував Вотергейтський скандал, який закінчився відставкою президента Річарда Ніксона; газета отримала за це Пулітцерівську премію. Разом із Вудвордом написав книжку «Уся президентська рать» (1974)."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "The Washington Post (Вотергейт)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Carl Bernstein",
+      "url": "https://en.wikipedia.org/wiki/Carl_Bernstein"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

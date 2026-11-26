@@ -1,0 +1,47 @@
+{
+  "slug": "mark-felt",
+  "group": "intl",
+  "country": "США",
+  "kind": "official",
+  "name": {
+    "uk": "Марк Фелт",
+    "en": "Mark Felt"
+  },
+  "sort": {
+    "uk": "Фелт Марк",
+    "en": "Felt Mark"
+  },
+  "aliases": [
+    "Глибока глотка",
+    "Deep Throat",
+    "William Mark Felt"
+  ],
+  "role": {
+    "uk": "заступник директора ФБР, таємне джерело «Глибока глотка» у Вотергейтській справі",
+    "en": "FBI associate director, the secret source \"Deep Throat\" in the Watergate affair"
+  },
+  "summary": {
+    "uk": "Посадовець ФБР, який був таємним джерелом The Washington Post у Вотергейтській справі; зізнався в цьому 2005 року у Vanity Fair.",
+    "en": "FBI official who was The Washington Post's secret Watergate source; revealed his role in Vanity Fair in 2005."
+  },
+  "bio": {
+    "uk": "Марк Фелт (1913–2008) — американський правоохоронець, заступник директора ФБР на початку 1970-х років.\n\nПід прізвиськом «Глибока глотка» допомагав журналістам The Washington Post Бобу Вудворду й Карлу Бернстайну розслідувати Вотергейтський скандал, що закінчився відставкою президента Річарда Ніксона. Понад 30 років його особу тримали в таємниці. У 2005 році у статті Vanity Fair він сам зізнався, що був цим джерелом, а Вудворд це підтвердив."
+  },
+  "facts": [
+    [
+      "Роки життя",
+      "1913–2008"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Mark Felt",
+      "url": "https://en.wikipedia.org/wiki/Mark_Felt"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

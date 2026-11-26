@@ -1,0 +1,58 @@
+{
+  "slug": "vanity-fair",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "Vanity Fair",
+    "en": "Vanity Fair"
+  },
+  "sort": {
+    "uk": "Vanity Fair",
+    "en": "Vanity Fair"
+  },
+  "type": {
+    "uk": "американський журнал про культуру, політику й знаменитостей",
+    "en": "US magazine of culture, politics and celebrity"
+  },
+  "summary": {
+    "uk": "Глянцевий журнал медіадому Condé Nast, відомий портретами знаменитостей і розслідуваннями.",
+    "en": "Condé Nast glossy known for celebrity profiles and investigations."
+  },
+  "bio": {
+    "uk": "Перша версія Vanity Fair виходила в 1913–1936 роках; у 1983 році медіадім Condé Nast відновив журнал. Відомий великими портретами знаменитостей, фотопортфоліо й розслідуваннями: саме Vanity Fair 2005 року розкрив, що таємним джерелом «Глибока глотка» у Вотергейтській справі був заступник директора ФБР Марк Фелт.\n\nУ 2017–2025 роках журнал очолювала Радхіка Джонс, з кінця червня 2025 року — Марк Ґвідуччі, перший глобальний редакційний директор. Окремі видання виходять у Великій Британії, Франції, Італії та Іспанії. У листопаді 2026 року стаття журналу «The Mastermind» про Тейлор Свіфт викликала хвилю критики."
+  },
+  "facts": [
+    [
+      "Видавець",
+      "Condé Nast"
+    ],
+    [
+      "Відновлено",
+      "1983 (перша версія — 1913–1936)"
+    ],
+    [
+      "Керівник",
+      "Марк Ґвідуччі (з 2025)"
+    ]
+  ],
+  "website": "https://www.vanityfair.com",
+  "wiki": [
+    "en:Vanity Fair (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Vanity Fair",
+      "url": "https://www.vanityfair.com"
+    },
+    {
+      "title": "Вікіпедія: Vanity Fair (magazine)",
+      "url": "https://en.wikipedia.org/wiki/Vanity_Fair_(magazine)"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

@@ -1,0 +1,46 @@
+{
+  "slug": "susie-wiles",
+  "group": "intl",
+  "country": "США",
+  "kind": "official",
+  "name": {
+    "uk": "Сьюзі Вайлз",
+    "en": "Susie Wiles"
+  },
+  "sort": {
+    "uk": "Вайлз Сьюзі",
+    "en": "Wiles Susie"
+  },
+  "role": {
+    "uk": "голова апарату Білого дому",
+    "en": "White House chief of staff"
+  },
+  "summary": {
+    "uk": "Перша жінка на посаді голови апарату Білого дому (з січня 2025 року).",
+    "en": "The first woman to serve as White House chief of staff (since January 2025)."
+  },
+  "bio": {
+    "uk": "Сьюзі Вайлз — американська політична стратегиня, керувала виборчою кампанією Дональда Трампа 2024 року. З січня 2025 року — голова апарату Білого дому, перша жінка на цій посаді.\n\nНаприкінці 2025 року її відверті інтерв'ю для Vanity Fair сколихнули Вашингтон."
+  },
+  "facts": [
+    [
+      "Посада",
+      "голова апарату Білого дому (з 2025)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Susie Wiles",
+      "url": "https://en.wikipedia.org/wiki/Susie_Wiles"
+    },
+    {
+      "title": "Tangle: How anonymous sourcing actually works",
+      "url": "https://www.readtangle.com/how-anonymous-sourcing-actually-works/"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

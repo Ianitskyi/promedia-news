@@ -1,0 +1,64 @@
+{
+  "slug": "may-jeong",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Мей Чон",
+    "en": "May Jeong"
+  },
+  "sort": {
+    "uk": "Чон Мей",
+    "en": "Jeong May"
+  },
+  "role": {
+    "uk": "журналістка Vanity Fair, колишня воєнна кореспондентка в Афганістані",
+    "en": "Vanity Fair writer, former war correspondent in Afghanistan"
+  },
+  "summary": {
+    "uk": "Авторка розслідувань для Vanity Fair, у 2013–2017 роках працювала в Афганістані; написала статтю «The Mastermind» про Тейлор Свіфт.",
+    "en": "Vanity Fair writer who reported from Afghanistan in 2013–2017; author of \"The Mastermind\", a piece about Taylor Swift."
+  },
+  "bio": {
+    "uk": "Мей Чон — журналістка Vanity Fair. Раніше працювала в агенції Reuters, канадській газеті The Globe and Mail і бейрутській The Daily Star.\n\nУ 2013–2017 роках жила й працювала в Афганістані, писала про права жінок, американську зовнішню політику й загиблих серед цивільних. Її розслідування для The Intercept про удар по лікарні «Лікарів без кордонів» у Кундузі відзначене премією імені Деніела Перла від Асоціації південноазійських журналістів (2017) і нагородою Байо-Кальвадос для воєнних кореспондентів.\n\nДля Vanity Fair писала, зокрема, про зникнення китайської кінозірки Фань Бінбін. Восени 2024 року викладала журналістику в Принстонському університеті. Працює над книжкою «The Life» про секс-роботу й американську систему кримінального правосуддя.\n\nУ листопаді 2026 року опублікувала у Vanity Fair статтю «The Mastermind» про Тейлор Свіфт, після якої зазнала цькування від частини фанатів співачки; з нею про всяк випадок зв'язався Комітет захисту журналістів."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Vanity Fair"
+    ],
+    [
+      "Відзнаки",
+      "премія імені Деніела Перла (SAJA, 2017), нагорода Байо-Кальвадос"
+    ]
+  ],
+  "photo": {
+    "url": "https://news.promedia.report/img/news/may-jeong.jpg",
+    "author": "Ендрю Квілті",
+    "sourceUrl": "https://journalism.nyu.edu/about-us/awards-and-fellowships/the-reporting-award/recipients/may-jeong/",
+    "sourceName": "Нью-Йоркський університет"
+  },
+  "sources": [
+    {
+      "title": "Women's Media Center: May Jeong",
+      "url": "https://womensmediacenter.com/shesource/expert/may-jeong"
+    },
+    {
+      "title": "Princeton University: May Jeong",
+      "url": "https://journalism.princeton.edu/people/may-jeong"
+    },
+    {
+      "title": "NYU Journalism: May Jeong",
+      "url": "https://journalism.nyu.edu/about-us/awards-and-fellowships/the-reporting-award/recipients/may-jeong/"
+    },
+    {
+      "title": "Type Investigations: May Jeong",
+      "url": "https://typeinvestigations.org/reporter/mayjeong/"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

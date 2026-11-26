@@ -4,7 +4,7 @@
 
 ## Як це працює
 
-- `brands/data/<slug>.json` — одне досьє. Обов'язкові поля: `slug`, `group` (`ua` або `intl`), `country` (українською), `kind` (`agency`, `newspaper`, `magazine`, `tv`, `radio`, `online`, `investigative`, `factcheck`, `trade`, `group`), `name` (uk/en), `sort` (uk/en, для абетки), `type` (uk/en), `summary` (uk/en), `bio.uk`, `sources`, `updated` (YYYY-MM-DD).
+- `brands/data/<slug>.json` — одне досьє. Обов'язкові поля: `slug`, `group` (`ua` або `intl`), `country` (українською), `kind` (`agency`, `newspaper`, `magazine`, `tv`, `radio`, `online`, `investigative`, `factcheck`, `trade`, `group`, `ngo` — медійні й правозахисні організації на кшталт CPJ), `name` (uk/en), `sort` (uk/en, для абетки), `type` (uk/en), `summary` (uk/en), `bio.uk`, `sources`, `updated` (YYYY-MM-DD).
 - Необов'язкові: `aliases` (інші назви, зокрема для тегів), `facts` (пари «назва — значення»), `website`, `wiki` (наприклад `["en:Reuters", "uk:Reuters"]`), `match`, `articles`.
 - **Згадки в новинах шукаються автоматично** в заголовку й тексті кожної опублікованої новини (разом з адресами посилань). За замовчуванням шукаємо `name.uk`, `name.en` і `aliases` як окремі слова. Якщо назва відмінюється або є звичайним словом, задайте `match`: рядки (наприклад `«Української правди»`) або регулярні вирази з префіксом `re:`. `"match": []` вимикає автопошук — тоді згадки задаються вручну через `articles` (slug новин).
 - Сторінки Вікіпедії зі списку `wiki` під час збірки перевіряються й додаються до джерел; логотип береться з Вікідані (P154) лише з вільною ліцензією, інакше показується монограма.

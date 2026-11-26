@@ -221,6 +221,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "anna-wintour",
+    "tag": "Анна Вінтур",
+    "aliases": [],
+    "name": {
+      "uk": "Анна Вінтур",
+      "en": "Anna Wintour"
+    },
+    "role": {
+      "uk": "головна контент-директорка Condé Nast, глобальна редакційна директорка Vogue",
+      "en": "chief content officer of Condé Nast, global editorial director of Vogue"
+    },
+    "summary": {
+      "uk": "Багаторічна головна редакторка американського Vogue, нині керує контентом медіадому Condé Nast.",
+      "en": "Long-time editor of American Vogue, now oversees content at Condé Nast."
+    }
+  },
+  {
     "slug": "anna-rodichkina",
     "tag": "Анна Родічкіна",
     "aliases": [
@@ -1656,6 +1673,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "carl-bernstein",
+    "tag": "Карл Бернстайн",
+    "aliases": [],
+    "name": {
+      "uk": "Карл Бернстайн",
+      "en": "Carl Bernstein"
+    },
+    "role": {
+      "uk": "американський журналіст-розслідувач",
+      "en": "American investigative journalist"
+    },
+    "summary": {
+      "uk": "Разом із Бобом Вудвордом розкрив Вотергейтський скандал для The Washington Post.",
+      "en": "Broke the Watergate scandal with Bob Woodward for The Washington Post."
+    }
+  },
+  {
     "slug": "kateryna-horchynska",
     "tag": "Катерина Горчинська",
     "aliases": [
@@ -1727,6 +1761,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Костянтин Либеров — український фотограф, працює разом із дружиною Владою Либеровою.",
       "en": "Kostiantyn Liberov is a Ukrainian photographer who works together with his wife Vlada Liberova."
+    }
+  },
+  {
+    "slug": "chris-willman",
+    "tag": "Кріс Віллман",
+    "aliases": [],
+    "name": {
+      "uk": "Кріс Віллман",
+      "en": "Chris Willman"
+    },
+    "role": {
+      "uk": "головний музичний критик Variety",
+      "en": "chief music critic of Variety"
+    },
+    "summary": {
+      "uk": "Старший автор і головний музичний критик видання Variety.",
+      "en": "Senior writer and chief music critic at Variety."
     }
   },
   {
@@ -1879,6 +1930,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "mark-guiducci",
+    "tag": "Марк Ґвідуччі",
+    "aliases": [
+      "Марк Гвідуччі"
+    ],
+    "name": {
+      "uk": "Марк Ґвідуччі",
+      "en": "Mark Guiducci"
+    },
+    "role": {
+      "uk": "глобальний редакційний директор Vanity Fair",
+      "en": "global editorial director of Vanity Fair"
+    },
+    "summary": {
+      "uk": "Керує Vanity Fair з кінця червня 2025 року, до того був креативним редакційним директором Vogue.",
+      "en": "Has led Vanity Fair since the end of June 2025; previously creative editorial director of Vogue."
+    }
+  },
+  {
     "slug": "mark-deuze",
     "tag": "Марк Деузе",
     "aliases": [],
@@ -1893,6 +1963,27 @@ export const PEOPLE = [
     "summary": {
       "uk": "Нідерландський дослідник медіа й журналістської праці, автор ідеї «плинної журналістики», колишній журналіст-фрилансер.",
       "en": "Dutch scholar of media and journalistic work, known for the idea of 'liquid journalism', former freelance reporter."
+    }
+  },
+  {
+    "slug": "mark-felt",
+    "tag": "Марк Фелт",
+    "aliases": [
+      "Глибока глотка",
+      "Deep Throat",
+      "William Mark Felt"
+    ],
+    "name": {
+      "uk": "Марк Фелт",
+      "en": "Mark Felt"
+    },
+    "role": {
+      "uk": "заступник директора ФБР, таємне джерело «Глибока глотка» у Вотергейтській справі",
+      "en": "FBI associate director, the secret source \"Deep Throat\" in the Watergate affair"
+    },
+    "summary": {
+      "uk": "Посадовець ФБР, який був таємним джерелом The Washington Post у Вотергейтській справі; зізнався в цьому 2005 року у Vanity Fair.",
+      "en": "FBI official who was The Washington Post's secret Watergate source; revealed his role in Vanity Fair in 2005."
     }
   },
   {
@@ -1933,6 +2024,40 @@ export const PEOPLE = [
     "summary": {
       "uk": "Колишня віцепрезидентка PEN America, у 2023 році пішли з посади на знак протесту; співзасновниця PEN Writes US. Небінарна персона, просить писати про себе в множині.",
       "en": "Former vice-president of PEN America who resigned in protest in 2023; co-founder of PEN Writes US. Gessen is non-binary and uses they/them pronouns."
+    }
+  },
+  {
+    "slug": "may-jeong",
+    "tag": "Мей Чон",
+    "aliases": [],
+    "name": {
+      "uk": "Мей Чон",
+      "en": "May Jeong"
+    },
+    "role": {
+      "uk": "журналістка Vanity Fair, колишня воєнна кореспондентка в Афганістані",
+      "en": "Vanity Fair writer, former war correspondent in Afghanistan"
+    },
+    "summary": {
+      "uk": "Авторка розслідувань для Vanity Fair, у 2013–2017 роках працювала в Афганістані; написала статтю «The Mastermind» про Тейлор Свіфт.",
+      "en": "Vanity Fair writer who reported from Afghanistan in 2013–2017; author of \"The Mastermind\", a piece about Taylor Swift."
+    }
+  },
+  {
+    "slug": "meredith-lynch",
+    "tag": "Мередіт Лінч",
+    "aliases": [],
+    "name": {
+      "uk": "Мередіт Лінч",
+      "en": "Meredith Lynch"
+    },
+    "role": {
+      "uk": "комікиня й блогерка з Лос-Анджелеса",
+      "en": "Los Angeles comedian and content creator"
+    },
+    "summary": {
+      "uk": "Авторка відео про знаменитостей і піар-стратегії компаній.",
+      "en": "Creates videos analysing celebrities and corporate PR."
     }
   },
   {
@@ -2491,6 +2616,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "radhika-jones",
+    "tag": "Радхіка Джонс",
+    "aliases": [],
+    "name": {
+      "uk": "Радхіка Джонс",
+      "en": "Radhika Jones"
+    },
+    "role": {
+      "uk": "колишня головна редакторка Vanity Fair (2017–2025)",
+      "en": "former editor-in-chief of Vanity Fair (2017–2025)"
+    },
+    "summary": {
+      "uk": "Очолювала Vanity Fair вісім років, змінивши Грейдона Картера.",
+      "en": "Led Vanity Fair for eight years after succeeding Graydon Carter."
+    }
+  },
+  {
     "slug": "robert-capa",
     "tag": "Роберт Капа",
     "aliases": [
@@ -2650,6 +2792,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "stacy-lee-kong",
+    "tag": "Стейсі Лі Конг",
+    "aliases": [],
+    "name": {
+      "uk": "Стейсі Лі Конг",
+      "en": "Stacy Lee Kong"
+    },
+    "role": {
+      "uk": "канадська журналістка, авторка про поп-культуру",
+      "en": "Canadian journalist and pop culture writer"
+    },
+    "summary": {
+      "uk": "Торонтська авторка, яка пише про поп-культуру й медіа.",
+      "en": "Toronto-based writer covering pop culture and media."
+    }
+  },
+  {
     "slug": "susan-decarava",
     "tag": "Сьюзен ДеКарава",
     "aliases": [],
@@ -2664,6 +2823,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює Гільдію журналістів Нью-Йорка — профспілку працівників медіа, що представляє зокрема журналістів Reuters.",
       "en": "Leads The NewsGuild of New York, the media workers' union that represents, among others, Reuters journalists."
+    }
+  },
+  {
+    "slug": "susie-wiles",
+    "tag": "Сьюзі Вайлз",
+    "aliases": [],
+    "name": {
+      "uk": "Сьюзі Вайлз",
+      "en": "Susie Wiles"
+    },
+    "role": {
+      "uk": "голова апарату Білого дому",
+      "en": "White House chief of staff"
+    },
+    "summary": {
+      "uk": "Перша жінка на посаді голови апарату Білого дому (з січня 2025 року).",
+      "en": "The first woman to serve as White House chief of staff (since January 2025)."
     }
   },
   {
@@ -2742,6 +2918,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "taylor-swift",
+    "tag": "Тейлор Свіфт",
+    "aliases": [],
+    "name": {
+      "uk": "Тейлор Свіфт",
+      "en": "Taylor Swift"
+    },
+    "role": {
+      "uk": "американська співачка й авторка пісень",
+      "en": "American singer-songwriter"
+    },
+    "summary": {
+      "uk": "Одна з найуспішніших співачок світу; героїня статті Vanity Fair «The Mastermind».",
+      "en": "One of the world's best-selling singers; subject of Vanity Fair's \"The Mastermind\"."
+    }
+  },
+  {
     "slug": "tetiana-troshchynska",
     "tag": "Тетяна Трощинська",
     "aliases": [],
@@ -2775,6 +2968,40 @@ export const PEOPLE = [
     "summary": {
       "uk": "Співзасновник Denník N, відповідає за цифровий напрям видання й платформу передплат REMP.",
       "en": "Co-founder of Denník N, responsible for its digital operations and the REMP subscription platform."
+    }
+  },
+  {
+    "slug": "toni-fitzgerald",
+    "tag": "Тоні Фіцджеральд",
+    "aliases": [],
+    "name": {
+      "uk": "Тоні Фіцджеральд",
+      "en": "Toni Fitzgerald"
+    },
+    "role": {
+      "uk": "оглядачка Forbes про медіа",
+      "en": "Forbes media contributor"
+    },
+    "summary": {
+      "uk": "Пише для Forbes про медіа й телебачення.",
+      "en": "Writes about media and television for Forbes."
+    }
+  },
+  {
+    "slug": "travis-kelce",
+    "tag": "Тревіс Келсі",
+    "aliases": [],
+    "name": {
+      "uk": "Тревіс Келсі",
+      "en": "Travis Kelce"
+    },
+    "role": {
+      "uk": "гравець команди з американського футболу Kansas City Chiefs, співведучий подкасту",
+      "en": "Kansas City Chiefs tight end and podcast co-host"
+    },
+    "summary": {
+      "uk": "Американський футболіст, чоловік Тейлор Свіфт; у статті Vanity Fair фігурує як «Редвуд».",
+      "en": "American football player and Taylor Swift's husband; called \"Redwood\" in Vanity Fair's piece."
     }
   },
   {

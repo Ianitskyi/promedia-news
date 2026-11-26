@@ -1,0 +1,54 @@
+{
+  "slug": "vogue",
+  "group": "intl",
+  "country": "США",
+  "kind": "magazine",
+  "name": {
+    "uk": "Vogue",
+    "en": "Vogue"
+  },
+  "sort": {
+    "uk": "Vogue",
+    "en": "Vogue"
+  },
+  "type": {
+    "uk": "американський журнал про моду й культуру",
+    "en": "US fashion and culture magazine"
+  },
+  "summary": {
+    "uk": "Один із найвідоміших модних журналів світу, належить Condé Nast.",
+    "en": "One of the world's best-known fashion magazines, owned by Condé Nast."
+  },
+  "bio": {
+    "uk": "Vogue заснували 1892 року в Нью-Йорку як тижневик; з 1909 року журнал належить Condé Nast. Виходить у десятках країн. Американський Vogue з 1988 року очолювала Анна Вінтур. Із Vogue до Vanity Fair у 2025 році перейшов Марк Ґвідуччі, який був креативним редакційним директором журналу."
+  },
+  "facts": [
+    [
+      "Заснування",
+      "1892"
+    ],
+    [
+      "Видавець",
+      "Condé Nast"
+    ]
+  ],
+  "website": "https://www.vogue.com",
+  "wiki": [
+    "en:Vogue (magazine)"
+  ],
+  "sources": [
+    {
+      "title": "Сайт Vogue",
+      "url": "https://www.vogue.com"
+    },
+    {
+      "title": "Вікіпедія: Vogue (magazine)",
+      "url": "https://en.wikipedia.org/wiki/Vogue_(magazine)"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

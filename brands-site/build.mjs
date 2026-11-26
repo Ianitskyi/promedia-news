@@ -30,7 +30,7 @@ const LANGS = ["uk", "en", "crh"];
 const MONTHS = ["січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня"];
 const MONTHS_EN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const MONTHS_CRH = ["yanvar", "fevral", "mart", "aprel", "mayıs", "iyun", "iyul", "avgust", "sentâbr", "oktâbr", "noyabr", "dekabr"];
-const KINDS = ["agency", "newspaper", "magazine", "tv", "radio", "online", "investigative", "factcheck", "trade", "group"];
+const KINDS = ["agency", "newspaper", "magazine", "tv", "radio", "online", "investigative", "factcheck", "trade", "group", "ngo"];
 // Скільки карток і згадок показувати до кнопки «Показати всі» / «Ще N згадок».
 const PREVIEW = 5;
 const REQUIRED = ["slug", "group", "country", "kind", "name", "sort", "type", "summary", "bio", "sources", "updated"];
@@ -237,9 +237,9 @@ function firstLetter(s, alphabets) {
 function plural(n, forms) { return forms[(n % 10 === 1 && n % 100 !== 11) ? 0 : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? 1 : 2]; }
 
 const KIND_LABELS = {
-  uk: { agency: "Агенції", newspaper: "Газети", magazine: "Журнали", tv: "Телебачення", radio: "Радіо", online: "Онлайн-медіа", investigative: "Розслідувальні", factcheck: "Фактчекінг", trade: "Про медіа", group: "Медіагрупи" },
-  en: { agency: "Agencies", newspaper: "Newspapers", magazine: "Magazines", tv: "Television", radio: "Radio", online: "Online", investigative: "Investigative", factcheck: "Fact-checking", trade: "Media trade", group: "Media groups" },
-  crh: { agency: "Ajansları", newspaper: "Gazetalar", magazine: "Mecmualar", tv: "Televidenie", radio: "Radio", online: "Onlayn mediya", investigative: "Tedqiqat", factcheck: "Faktçeking", trade: "Mediya aqqında", group: "Mediya gruppaları" }
+  uk: { agency: "Агенції", newspaper: "Газети", magazine: "Журнали", tv: "Телебачення", radio: "Радіо", online: "Онлайн-медіа", investigative: "Розслідувальні", factcheck: "Фактчекінг", trade: "Про медіа", group: "Медіагрупи", ngo: "Медійні організації" },
+  en: { agency: "Agencies", newspaper: "Newspapers", magazine: "Magazines", tv: "Television", radio: "Radio", online: "Online", investigative: "Investigative", factcheck: "Fact-checking", trade: "Media trade", group: "Media groups", ngo: "Media organisations" },
+  crh: { agency: "Ajansları", newspaper: "Gazetalar", magazine: "Mecmualar", tv: "Televidenie", radio: "Radio", online: "Onlayn mediya", investigative: "Tedqiqat", factcheck: "Faktçeking", trade: "Mediya aqqında", group: "Mediya gruppaları", ngo: "Mediya teşkilâtları" }
 };
 
 const T = {

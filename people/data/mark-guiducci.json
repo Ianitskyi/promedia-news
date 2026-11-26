@@ -1,0 +1,57 @@
+{
+  "slug": "mark-guiducci",
+  "group": "intl",
+  "country": "США",
+  "kind": "manager",
+  "name": {
+    "uk": "Марк Ґвідуччі",
+    "en": "Mark Guiducci"
+  },
+  "sort": {
+    "uk": "Ґвідуччі Марк",
+    "en": "Guiducci Mark"
+  },
+  "aliases": [
+    "Марк Гвідуччі"
+  ],
+  "role": {
+    "uk": "глобальний редакційний директор Vanity Fair",
+    "en": "global editorial director of Vanity Fair"
+  },
+  "summary": {
+    "uk": "Керує Vanity Fair з кінця червня 2025 року, до того був креативним редакційним директором Vogue.",
+    "en": "Has led Vanity Fair since the end of June 2025; previously creative editorial director of Vogue."
+  },
+  "bio": {
+    "uk": "Марк Ґвідуччі виріс у Сан-Дієго й закінчив Принстонський університет. У 2010 році почав працювати у Vanity Fair, у 2012-му став редактором розділу мистецтва у Vogue. У 2017 році очолив журнал Garage, а в 2020-му повернувся до Vogue як креативний редакційний директор.\n\nУ червні 2025 року медіадім Condé Nast призначив його першим глобальним редакційним директором Vanity Fair: він керує виданнями журналу в США, Великій Британії, Франції, Італії та Іспанії. Пообіцяв «оригінальну, провокативну журналістику» для нового покоління читачів. У листопаді 2026 року журнал під його керівництвом опублікував статтю «The Mastermind» про Тейлор Свіфт, яка викликала хвилю критики."
+  },
+  "facts": [
+    [
+      "Посада",
+      "глобальний редакційний директор Vanity Fair (з 30 червня 2025)"
+    ],
+    [
+      "Раніше",
+      "Vogue, Garage"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Mark Guiducci",
+      "url": "https://en.wikipedia.org/wiki/Mark_Guiducci"
+    },
+    {
+      "title": "TheWrap: Condé Nast Names Mark Guiducci as Vanity Fair's First Global Editorial Director",
+      "url": "https://www.thewrap.com/vanity-fair-global-editorial-director-mark-guiducci-conde-nast"
+    },
+    {
+      "title": "MediaPost: Mark Guiducci To Serve As Global Editorial Director Of Vanity Fair",
+      "url": "https://www.mediapost.com/publications/article/406559"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

@@ -1,0 +1,38 @@
+{
+  "slug": "stacy-lee-kong",
+  "group": "intl",
+  "country": "Канада",
+  "kind": "journalist",
+  "name": {
+    "uk": "Стейсі Лі Конг",
+    "en": "Stacy Lee Kong"
+  },
+  "sort": {
+    "uk": "Конг Стейсі Лі",
+    "en": "Kong Stacy Lee"
+  },
+  "role": {
+    "uk": "канадська журналістка, авторка про поп-культуру",
+    "en": "Canadian journalist and pop culture writer"
+  },
+  "summary": {
+    "uk": "Торонтська авторка, яка пише про поп-культуру й медіа.",
+    "en": "Toronto-based writer covering pop culture and media."
+  },
+  "bio": {
+    "uk": "Стейсі Лі Конг — журналістка з Торонто, яка пише про поп-культуру та медіа.\n\nУ листопаді 2026 року в коментарі CBC про статтю Vanity Fair «The Mastermind» нагадала, що анонімне джерело анонімне лише для публіки: журналістка, фактчекери й редактори знають, хто це."
+  },
+  "facts": [
+    [
+      "Місто",
+      "Торонто"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

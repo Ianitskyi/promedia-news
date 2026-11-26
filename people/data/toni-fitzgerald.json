@@ -1,0 +1,46 @@
+{
+  "slug": "toni-fitzgerald",
+  "group": "intl",
+  "country": "США",
+  "kind": "journalist",
+  "name": {
+    "uk": "Тоні Фіцджеральд",
+    "en": "Toni Fitzgerald"
+  },
+  "sort": {
+    "uk": "Фіцджеральд Тоні",
+    "en": "Fitzgerald Toni"
+  },
+  "role": {
+    "uk": "оглядачка Forbes про медіа",
+    "en": "Forbes media contributor"
+  },
+  "summary": {
+    "uk": "Пише для Forbes про медіа й телебачення.",
+    "en": "Writes about media and television for Forbes."
+  },
+  "bio": {
+    "uk": "Тоні Фіцджеральд — американська журналістка, авторка Forbes, яка пише про медіа й телебачення.\n\nУ листопаді 2026 року в колонці для Forbes оцінила статтю Vanity Fair «The Mastermind» про Тейлор Свіфт: визнала, що вона добре написана, але, на її думку, не розкриває нічого суттєвого."
+  },
+  "facts": [
+    [
+      "Редакція",
+      "Forbes (авторка)"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Forbes: Toni Fitzgerald",
+      "url": "https://www.forbes.com/sites/tonifitzgerald/"
+    },
+    {
+      "title": "Forbes: Vanity Fair Taylor Swift Profile 'The Mastermind': Mean Girl Or Misogyny?",
+      "url": "https://www.forbes.com/sites/tonifitzgerald/2026/11/25/vanity-fair-taylor-swift-profile-the-mastermind-mean-girl-or-misogyny/"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

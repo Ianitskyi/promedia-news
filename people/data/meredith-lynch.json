@@ -1,0 +1,42 @@
+{
+  "slug": "meredith-lynch",
+  "group": "intl",
+  "country": "США",
+  "kind": "other",
+  "name": {
+    "uk": "Мередіт Лінч",
+    "en": "Meredith Lynch"
+  },
+  "sort": {
+    "uk": "Лінч Мередіт",
+    "en": "Lynch Meredith"
+  },
+  "role": {
+    "uk": "комікиня й блогерка з Лос-Анджелеса",
+    "en": "Los Angeles comedian and content creator"
+  },
+  "summary": {
+    "uk": "Авторка відео про знаменитостей і піар-стратегії компаній.",
+    "en": "Creates videos analysing celebrities and corporate PR."
+  },
+  "bio": {
+    "uk": "Мередіт Лінч — комікиня й блогерка з Лос-Анджелеса, яка в соцмережах розбирає історії знаменитостей і компаній.\n\nУ листопаді 2026 року проаналізувала в TikTok можливу піар-стратегію Тейлор Свіфт після статті Vanity Fair «The Mastermind». Після цього частина коментаторів, що називали себе фанатами співачки, почала глузувати зі смерті її мами."
+  },
+  "facts": [
+    [
+      "Місто",
+      "Лос-Анджелес"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Complex: Influencer Says Taylor Swift Fans Mocked Her Late Mother",
+      "url": "https://complex.com/pop-culture/a/bernadette-giacomazzo/taylor-swift-fans-attack-dead-mother"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}

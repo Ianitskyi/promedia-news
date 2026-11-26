@@ -1,0 +1,46 @@
+{
+  "slug": "travis-kelce",
+  "group": "intl",
+  "country": "США",
+  "kind": "other",
+  "name": {
+    "uk": "Тревіс Келсі",
+    "en": "Travis Kelce"
+  },
+  "sort": {
+    "uk": "Келсі Тревіс",
+    "en": "Kelce Travis"
+  },
+  "role": {
+    "uk": "гравець команди з американського футболу Kansas City Chiefs, співведучий подкасту",
+    "en": "Kansas City Chiefs tight end and podcast co-host"
+  },
+  "summary": {
+    "uk": "Американський футболіст, чоловік Тейлор Свіфт; у статті Vanity Fair фігурує як «Редвуд».",
+    "en": "American football player and Taylor Swift's husband; called \"Redwood\" in Vanity Fair's piece."
+  },
+  "bio": {
+    "uk": "Тревіс Келсі — гравець команди Kansas City Chiefs, разом із братом Джейсоном веде подкаст New Heights. Улітку 2026 року одружився з Тейлор Свіфт.\n\nУ статті Vanity Fair «The Mastermind» (листопад 2026) його названо прізвиськом «Редвуд»; за версією Page Six, це відсилання до пісні Свіфт «Wood»."
+  },
+  "facts": [
+    [
+      "Команда",
+      "Kansas City Chiefs"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Вікіпедія: Travis Kelce",
+      "url": "https://en.wikipedia.org/wiki/Travis_Kelce"
+    },
+    {
+      "title": "The Comeback: Travis Kelce reportedly 'always going to have' Taylor Swift's back",
+      "url": "https://thecomeback.com/nfl/travis-kelce-taylor-swift-vanity-fair-article.html"
+    },
+    {
+      "title": "ПроМедіа: Чому фанати Тейлор Свіфт накинулися на Vanity Fair",
+      "url": "https://news.promedia.report/article/chomu-fanaty-teilor-svift-nakynulysia-na-vanity-fair"
+    }
+  ],
+  "updated": "2026-11-26"
+}
