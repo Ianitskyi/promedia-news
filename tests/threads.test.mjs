@@ -102,6 +102,23 @@ test("Errors are retried three times, then left alone", async () => {
   assert.deepEqual({ ...row }, { status: "error", attempts: 3, error: "bad image" });
 });
 
+test("Account ID is looked up once when only the token is set", async () => {
+  const { add, env, calls } = setup();
+  delete env.THREADS_USER_ID;
+  const f = async (url, init = {}) => {
+    calls.push(new URL(url));
+    const u = new URL(url);
+    const body = u.pathname.endsWith("/me") ? { id: "777", username: "promediaua" } : { id: "c1" };
+    return new Response(JSON.stringify(body), { status: 200 });
+  };
+  await runThreadsAutopost(env, at("2026-11-25T08:00:00Z"), f);
+  add("n", { published: "2026-11-25T09:00:00Z" });
+  await runThreadsAutopost(env, at("2026-11-25T12:00:00Z"), f);
+  await runThreadsAutopost(env, at("2026-11-25T12:05:00Z"), f);
+  assert.equal(calls.filter(u => u.pathname.endsWith("/me")).length, 1);
+  assert.ok(calls.some(u => u.pathname === "/v1.0/777/threads"));
+});
+
 test("Token is refreshed weekly", async () => {
   const { env, fakeFetch, calls } = setup();
   await runThreadsAutopost(env, at("2026-11-25T08:00:00Z"), fakeFetch);
