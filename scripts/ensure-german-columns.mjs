@@ -28,6 +28,6 @@ console.log('German columns verified.');
 // Німецька Німеччини, а не Австрії (26.11.2026): «Jänner» → «Januar» у вже перекладених текстах. Повторний запуск нічого не змінює.
 for(const table of ['articles','projects']){
  const cols=table==='articles'?['title_de','excerpt_de','body_md_de']:['title_de','excerpt_de','body_md_de','work_md_de','results_md_de','period_label_de'];
- execute(`UPDATE ${table} SET ${cols.map(c=>`${c} = replace(${c}, 'Jänner', 'Januar')`).join(', ')} WHERE ${cols.map(c=>`${c} LIKE '%Jänner%'`).join(' OR ')}`);
+ execute(`UPDATE ${table} SET ${cols.map(c=>`${c} = replace(replace(${c}, 'Jänner', 'Januar'), 'Taylor-Swifts', 'Taylor Swifts')`).join(', ')} WHERE ${cols.map(c=>`${c} LIKE '%Jänner%' OR ${c} LIKE '%Taylor-Swifts%'`).join(' OR ')}`);
 }
 console.log('German wording normalised.');
