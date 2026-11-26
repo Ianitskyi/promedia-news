@@ -8,8 +8,8 @@
 // 3. Кожна новина постується лише раз (таблиця threads_posts), за раз — не більше однієї.
 // 4. Старі новини не постяться: відлік іде з моменту першого запуску (threads_state.start_at).
 //
-// Секрети (wrangler secret put): THREADS_USER_ID, THREADS_ACCESS_TOKEN (довгий токен, 60 днів).
-// Без них модуль нічого не робить. Токен щотижня оновлюється автоматично й зберігається в D1.
+// Секрет (wrangler secret put): THREADS_ACCESS_TOKEN (довгий токен, 60 днів); THREADS_USER_ID —
+// необов'язково, інакше ID береться з /me. Без токена модуль нічого не робить. Токен щотижня оновлюється автоматично й зберігається в D1.
 
 import { socialCover } from "./render.js";
 import { markdownToPlainText } from "./markdown.js";
@@ -42,7 +42,18 @@ async function setState(db, key, value) {
 }
 
 export function threadsEnabled(env) {
-  return Boolean(env.THREADS_USER_ID && env.THREADS_ACCESS_TOKEN);
+  return Boolean(env.THREADS_ACCESS_TOKEN);
+}
+
+// ID акаунта: із секрету THREADS_USER_ID або один раз запитується в Threads за токеном.
+async function threadsUserId(env, token, fetchImpl) {
+  if (env.THREADS_USER_ID) return env.THREADS_USER_ID;
+  const saved = await getState(env.DB, "user_id");
+  if (saved) return saved;
+  const me = await threadsCall(fetchImpl, "GET", "/me", { fields: "id,username", access_token: token });
+  await setState(env.DB, "user_id", String(me.id));
+  await setState(env.DB, "username", me.username || "");
+  return String(me.id);
 }
 
 // Актуальний токен: оновлений з D1, або секрет. Якщо секрет замінили — беремо новий секрет.
@@ -127,7 +138,9 @@ export async function runThreadsAutopost(env, now = new Date(), fetchImpl = fetc
   }
 
   const token = await currentToken(env, now);
-  const userId = env.THREADS_USER_ID;
+  let userId;
+  try { userId = await threadsUserId(env, token, fetchImpl); }
+  catch (e) { console.error("threads me", e.message); return { error: "me", message: e.message }; }
 
   // Крок 2: опублікувати вже створений контейнер.
   const pending = await db.prepare(
@@ -229,6 +242,7 @@ export async function threadsStatus(env) {
   ).all()).results || [];
   return {
     enabled: true,
+    account: (await getState(env.DB, "username")) || null,
     startAt: await getState(env.DB, "start_at"),
     tokenRefreshedAt: await getState(env.DB, "token_refreshed_at"),
     tokenError: (await getState(env.DB, "token_error")) || null,

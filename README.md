@@ -323,6 +323,6 @@ Production-режим `npm run import:promedia` потребує Cloudflare та
 - Якщо обкладинка не JPEG/PNG з нашого сайту, пост виходить із карткою посилання.
 - Після трьох невдалих спроб новина пропускається; причину видно на
   `/api/threads-status`.
-- Підключення: секрети `THREADS_USER_ID` і `THREADS_ACCESS_TOKEN` (довгий токен,
-  дозволи `threads_basic`, `threads_content_publish`). Токен продовжується
+- Підключення: секрет `THREADS_ACCESS_TOKEN` (довгий токен, дозволи
+  `threads_basic`, `threads_content_publish`); ID акаунта береться автоматично. Токен продовжується
   автоматично раз на тиждень. Без секретів модуль нічого не робить.
