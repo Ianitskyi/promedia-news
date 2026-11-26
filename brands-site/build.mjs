@@ -439,6 +439,8 @@ async function main() {
   const silent = brands.filter(b => !mentions.get(b.slug).length).map(b => b.slug);
   if (silent.length) console.warn(`Без згадок у новинах (${silent.length}): ${silent.join(", ")}`);
   const wiki = await resolveAllWiki(brands);
+  // Власний логотип з досьє (поле `logo`: src, sourceName, sourceUrl) — коли організація сама надала лого.
+  for (const b of brands) if (b.logo?.src) wiki[b.slug] = { ...(wiki[b.slug] || { pages: [] }), logo: { author: "", license: "", licenseUrl: "", ...b.logo } };
 
   if (existsSync(DIST)) rmSync(DIST, { recursive: true, force: true });
   mkdirSync(DIST, { recursive: true });

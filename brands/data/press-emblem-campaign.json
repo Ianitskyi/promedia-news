@@ -73,5 +73,10 @@
       "url": "https://news.promedia.report/article/zhurnalistky-u-sviti-platiat-podviinu-tsinu-zvit-pec"
     }
   ],
-  "updated": "2026-11-26"
+  "updated": "2026-11-26",
+  "logo": {
+    "src": "https://promedia.report/assets/partners/pec.png",
+    "sourceName": "Press Emblem Campaign (надано організацією)",
+    "sourceUrl": "https://www.pressemblem.ch"
+  }
 }
