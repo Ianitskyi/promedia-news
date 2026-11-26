@@ -32,8 +32,8 @@
   const analyticsOn=!/(?:^|;\s*)pm_analytics=denied(?:;|$)/.test(document.cookie);
   const prefixFor=(host)=>{const l=langFor(host);return l==="uk"?"":"/"+l};
   const prefix=prefixFor("promedia.report"); // головна promedia.report
-  // Сторінки головного сайту (підтримка, умови пожертви, приватність) німецькою ще не перекладені — ведемо на англійські.
-  const pagesPrefix=lang==="de"?"/en":prefix;
+  // Сторінки головного сайту (підтримка, умови пожертви, приватність) є всіма мовами, зокрема німецькою (з 26.11.2026).
+  const pagesPrefix=prefix;
   const localize=(base)=>base+prefixFor(new URL(base).hostname)+"/";
   const mainBase="https://promedia.report";
   const mainHome=mainBase+(prefix||"")+"/";
