@@ -47,6 +47,8 @@ const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Ан�
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "наука": "science",
+  "смартфони": "smartphones",
   "СБУ": "SBU",
   "Україна Online": "Ukraina Online",
   "анонімні канали": "anonymous channels",
@@ -278,6 +280,8 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "наука": "ilim",
+  "смартфони": "smartfonlar",
   "СБУ": "SBU",
   "Україна Online": "Ukraina Online",
   "анонімні канали": "anonim kanallar",
@@ -474,6 +478,8 @@ const TAG_LABELS_CRH = {
 // Німецькі назви тегів (26.11.2026). Імен людей і брендів тут немає: для них беремо латиницю з TAG_LABELS_EN,
 // а нові теги без німецького перекладу показуємо англійською (не транслітом).
 const TAG_LABELS_DE = {
+  "наука": "Wissenschaft",
+  "смартфони": "Smartphones",
   "СБУ": "SBU",
   "Україна Online": "Ukraina Online",
   "анонімні канали": "anonyme Kanäle",

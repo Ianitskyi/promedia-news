@@ -1172,6 +1172,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "john-burn-murdoch",
+    "tag": "Джон Берн-Мердок",
+    "aliases": [
+      "Берн-Мердок",
+      "John Burn Murdoch"
+    ],
+    "name": {
+      "uk": "Джон Берн-Мердок",
+      "en": "John Burn-Murdoch"
+    },
+    "role": {
+      "uk": "британський журналіст, головний аналітик даних Financial Times",
+      "en": "British journalist, chief data reporter at the Financial Times"
+    },
+    "summary": {
+      "uk": "Головний аналітик даних британської газети Financial Times. Останніми роками пише про глобальну «рецесію стосунків» — дедалі менше молодих людей живуть у парі.",
+      "en": "Chief data reporter at the British newspaper Financial Times. In recent years he has written about a global \"relationship recession\": fewer and fewer young people live as couples."
+    }
+  },
+  {
     "slug": "john-holliman",
     "tag": "Джон Голлімен",
     "aliases": [],
@@ -1795,6 +1815,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Головна редакторка миколаївського видання «МикВісті», регіональна представниця ІМІ на Миколаївщині й координаторка хабу «Медіабаза Миколаїв».",
       "en": "Editor-in-chief of Mykolaiv outlet MykVisti, IMI's regional representative and coordinator of the Mediabaza Mykolaiv hub."
+    }
+  },
+  {
+    "slug": "kate-julian",
+    "tag": "Кейт Джуліан",
+    "aliases": [
+      "Кейт Джулиан"
+    ],
+    "name": {
+      "uk": "Кейт Джуліан",
+      "en": "Kate Julian"
+    },
+    "role": {
+      "uk": "американська журналістка, The Atlantic",
+      "en": "American journalist, The Atlantic"
+    },
+    "summary": {
+      "uk": "Журналістка американського журналу The Atlantic. 2018 року запустила в широкий обіг термін «сексуальна рецесія».",
+      "en": "Journalist at the American magazine The Atlantic. In 2018 she popularised the term \"sex recession\"."
     }
   },
   {

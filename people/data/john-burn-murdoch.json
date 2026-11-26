@@ -1,0 +1,57 @@
+{
+ "slug": "john-burn-murdoch",
+ "group": "intl",
+ "country": "Велика Британія",
+ "kind": "journalist",
+ "name": {
+  "uk": "Джон Берн-Мердок",
+  "en": "John Burn-Murdoch"
+ },
+ "sort": {
+  "uk": "Берн-Мердок Джон",
+  "en": "Burn-Murdoch John"
+ },
+ "aliases": [
+  "Берн-Мердок",
+  "John Burn Murdoch"
+ ],
+ "role": {
+  "uk": "британський журналіст, головний аналітик даних Financial Times",
+  "en": "British journalist, chief data reporter at the Financial Times"
+ },
+ "summary": {
+  "uk": "Головний аналітик даних британської газети Financial Times. Останніми роками пише про глобальну «рецесію стосунків» — дедалі менше молодих людей живуть у парі.",
+  "en": "Chief data reporter at the British newspaper Financial Times. In recent years he has written about a global \"relationship recession\": fewer and fewer young people live as couples."
+ },
+ "bio": {
+  "uk": "Джон Берн-Мердок — британський журналіст, головний аналітик даних газети Financial Times. Пише аналітичні матеріали на основі статистики й готує до них графіки.\n\nОстанніми роками він пише про глобальну «рецесію стосунків»: у багатьох країнах дедалі менше молодих людей живуть у парі.\n\nУ листопаді 2026 року ПроМедіа згадало його роботу в статті про «сексуальну рецесію» в багатих країнах і роль смартфонів.",
+  "en": "John Burn-Murdoch is a British journalist and chief data reporter at the Financial Times. He writes data-driven analysis and makes the charts for it.\n\nIn recent years he has written about a global \"relationship recession\": in many countries, fewer and fewer young people live as couples.\n\nIn November 2026 ProMedia cited his work in an article on the \"sex recession\" in rich countries and the role of smartphones."
+ },
+ "facts": [
+  [
+   "Країна",
+   "Велика Британія"
+  ],
+  [
+   "Видання",
+   "Financial Times"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "John Burn-Murdoch"
+  ]
+ },
+ "sources": [
+  {
+   "title": "Financial Times: John Burn-Murdoch",
+   "url": "https://www.ft.com/john-burn-murdoch"
+  },
+  {
+   "title": "ПроМедіа: Менше сексу, більше екранів. Чи справді смартфони винні в «сексуальній рецесії»",
+   "url": "https://news.promedia.report/article/menshe-seksu-bilshe-ekraniv-chy-vynni-smartfony"
+  }
+ ],
+ "updated": "2026-11-26"
+}

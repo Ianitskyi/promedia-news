@@ -1,0 +1,60 @@
+{
+ "slug": "kate-julian",
+ "group": "intl",
+ "country": "США",
+ "kind": "journalist",
+ "name": {
+  "uk": "Кейт Джуліан",
+  "en": "Kate Julian"
+ },
+ "sort": {
+  "uk": "Джуліан Кейт",
+  "en": "Julian Kate"
+ },
+ "aliases": [
+  "Кейт Джулиан"
+ ],
+ "role": {
+  "uk": "американська журналістка, The Atlantic",
+  "en": "American journalist, The Atlantic"
+ },
+ "summary": {
+  "uk": "Журналістка американського журналу The Atlantic. 2018 року запустила в широкий обіг термін «сексуальна рецесія».",
+  "en": "Journalist at the American magazine The Atlantic. In 2018 she popularised the term \"sex recession\"."
+ },
+ "bio": {
+  "uk": "Кейт Джуліан — американська журналістка, працює в журналі The Atlantic.\n\nУ грудневому номері The Atlantic за 2018 рік вийшла її стаття про те, чому молоді люди в США займаються сексом рідше, ніж попередні покоління. Саме вона запустила в широкий обіг термін «сексуальна рецесія», яким відтоді описують спад сексуальної активності в багатих країнах.\n\nУ листопаді 2026 року ПроМедіа згадало її роботу в статті про нові дані щодо «сексуальної рецесії» та роль смартфонів.",
+  "en": "Kate Julian is an American journalist at The Atlantic.\n\nIn The Atlantic's December 2018 issue she published an article on why young Americans are having less sex than previous generations. It popularised the term \"sex recession\", which has since been used to describe the decline in sexual activity in rich countries.\n\nIn November 2026 ProMedia cited her work in an article on new data about the \"sex recession\" and the role of smartphones."
+ },
+ "facts": [
+  [
+   "Країна",
+   "США"
+  ],
+  [
+   "Видання",
+   "The Atlantic"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Kate Julian"
+  ]
+ },
+ "sources": [
+  {
+   "title": "The Atlantic: Why Are Young People Having So Little Sex? (December 2018)",
+   "url": "https://www.theatlantic.com/magazine/archive/2018/12/the-sex-recession/573949/"
+  },
+  {
+   "title": "The Atlantic: Kate Julian",
+   "url": "https://www.theatlantic.com/author/kate-julian/"
+  },
+  {
+   "title": "ПроМедіа: Менше сексу, більше екранів. Чи справді смартфони винні в «сексуальній рецесії»",
+   "url": "https://news.promedia.report/article/menshe-seksu-bilshe-ekraniv-chy-vynni-smartfony"
+  }
+ ],
+ "updated": "2026-11-26"
+}
