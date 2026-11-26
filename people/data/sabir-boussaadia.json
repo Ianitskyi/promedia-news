@@ -1,0 +1,49 @@
+{
+ "slug": "sabir-boussaadia",
+ "group": "intl",
+ "country": "Швейцарія (PEC)",
+ "kind": "journalist",
+ "name": {
+  "uk": "Сабір Буссаадія",
+  "en": "Sabir Boussaadia"
+ },
+ "sort": {
+  "uk": "Буссаадія Сабір",
+  "en": "Boussaadia Sabir"
+ },
+ "role": {
+  "uk": "регіональний директор Press Emblem Campaign (PEC) для Близького Сходу, Північної Африки та Магрибу",
+  "en": "Regional Director for the Middle East, North Africa and the Maghreb at the Press Emblem Campaign (PEC)"
+ },
+ "summary": {
+  "uk": "Очолює регіональне бюро женевської організації Press Emblem Campaign, яка стежить за безпекою журналістів у зонах війн і конфліктів.",
+  "en": "Heads the regional bureau of the Geneva-based Press Emblem Campaign, which monitors the safety of journalists in war and conflict zones."
+ },
+ "bio": {
+  "uk": "Сабір Буссаадія — регіональний директор женевської громадської організації Press Emblem Campaign (PEC) для Близького Сходу, Північної Африки та Магрибу. 25 листопада 2026 року він підписав спеціальний звіт PEC про насильство проти журналісток у світі, у якому організація закликала ООН, ЮНЕСКО та Європейський Союз розслідувати вбивства й катування журналісток, зокрема в Україні."
+ },
+ "facts": [
+  [
+   "Організація",
+   "Press Emblem Campaign (PEC), Женева"
+  ]
+ ],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Boussaadia",
+   "PEC"
+  ]
+ },
+ "sources": [
+  {
+   "title": "Press Emblem Campaign: спеціальний звіт про журналісток, 25.11.2026",
+   "url": "https://www.pressemblem.ch"
+  },
+  {
+   "title": "ПроМедіа: Журналістки у світі платять подвійну ціну. Звіт PEC",
+   "url": "https://news.promedia.report/article/zhurnalistky-u-sviti-platiat-podviinu-tsinu-zvit-pec"
+  }
+ ],
+ "updated": "2026-11-26"
+}

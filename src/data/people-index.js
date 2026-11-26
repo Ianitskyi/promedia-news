@@ -2219,6 +2219,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "narges-mohammadi",
+    "tag": "Наргес Мохаммаді",
+    "aliases": [],
+    "name": {
+      "uk": "Наргес Мохаммаді",
+      "en": "Narges Mohammadi"
+    },
+    "role": {
+      "uk": "іранська журналістка, письменниця й правозахисниця, лауреатка Нобелівської премії миру 2023 року",
+      "en": "Iranian journalist, writer and human rights defender, 2023 Nobel Peace Prize laureate"
+    },
+    "summary": {
+      "uk": "Іранська журналістка й правозахисниця, лауреатка Нобелівської премії миру 2023 року, яку влада Ірану роками переслідує й ув'язнює.",
+      "en": "Iranian journalist and human rights defender, 2023 Nobel Peace Prize laureate, persecuted and repeatedly jailed by the Iranian authorities."
+    }
+  },
+  {
     "slug": "nataliia-humeniuk",
     "tag": "Наталія Гуменюк",
     "aliases": [
@@ -2759,6 +2776,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Сценарист студії Rockstar Games, відповідає за сюжет і сценарії гри Grand Theft Auto VI.",
       "en": "Rockstar Games writer responsible for the story and writing of Grand Theft Auto VI."
+    }
+  },
+  {
+    "slug": "sabir-boussaadia",
+    "tag": "Сабір Буссаадія",
+    "aliases": [],
+    "name": {
+      "uk": "Сабір Буссаадія",
+      "en": "Sabir Boussaadia"
+    },
+    "role": {
+      "uk": "регіональний директор Press Emblem Campaign (PEC) для Близького Сходу, Північної Африки та Магрибу",
+      "en": "Regional Director for the Middle East, North Africa and the Maghreb at the Press Emblem Campaign (PEC)"
+    },
+    "summary": {
+      "uk": "Очолює регіональне бюро женевської організації Press Emblem Campaign, яка стежить за безпекою журналістів у зонах війн і конфліктів.",
+      "en": "Heads the regional bureau of the Geneva-based Press Emblem Campaign, which monitors the safety of journalists in war and conflict zones."
     }
   },
   {

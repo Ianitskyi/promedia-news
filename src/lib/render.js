@@ -47,6 +47,7 @@ const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Ан�
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "журналістки": "women journalists",
   "Буркіна-Фасо": "Burkina Faso",
   "Африка": "Africa",
   "Туреччина": "Turkey",
@@ -271,6 +272,7 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "журналістки": "qadın jurnalistler",
   "сатира": "satira",
   "реклама": "reklama",
   "конспірологія": "konspirologiya",
@@ -460,6 +462,7 @@ const TAG_LABELS_CRH = {
 // Німецькі назви тегів (26.11.2026). Імен людей і брендів тут немає: для них беремо латиницю з TAG_LABELS_EN,
 // а нові теги без німецького перекладу показуємо англійською (не транслітом).
 const TAG_LABELS_DE = {
+  "журналістки": "Journalistinnen",
   "Буркіна-Фасо": "Burkina Faso",
   "Африка": "Afrika",
   "Туреччина": "Türkei",

@@ -1,0 +1,67 @@
+{
+ "slug": "narges-mohammadi",
+ "group": "intl",
+ "country": "Іран",
+ "kind": "journalist",
+ "name": {
+  "uk": "Наргес Мохаммаді",
+  "en": "Narges Mohammadi"
+ },
+ "sort": {
+  "uk": "Мохаммаді Наргес",
+  "en": "Mohammadi Narges"
+ },
+ "role": {
+  "uk": "іранська журналістка, письменниця й правозахисниця, лауреатка Нобелівської премії миру 2023 року",
+  "en": "Iranian journalist, writer and human rights defender, 2023 Nobel Peace Prize laureate"
+ },
+ "summary": {
+  "uk": "Іранська журналістка й правозахисниця, лауреатка Нобелівської премії миру 2023 року, яку влада Ірану роками переслідує й ув'язнює.",
+  "en": "Iranian journalist and human rights defender, 2023 Nobel Peace Prize laureate, persecuted and repeatedly jailed by the Iranian authorities."
+ },
+ "bio": {
+  "uk": "Наргес Мохаммаді — іранська журналістка, письменниця й правозахисниця, віцедиректорка й речниця Центру захисників прав людини в Ірані. 2023 року їй присудили Нобелівську премію миру.\n\n12 грудня 2025 року силовики в цивільному знову затримали її в Машгаді, приблизно через рік після умовного звільнення, повідомили «Репортери без кордонів». У лютому 2026 року Революційний суд Машгада засудив її ще до семи з половиною років ув'язнення за звинуваченнями, які міжнародні організації вважають політично вмотивованими. У травні 2026 року виконання вироку відклали під заставу, повідомив Центр прав людини Перської затоки. Міжнародні організації, зокрема «Репортери без кордонів» і PEN, вимагають скасувати вироки."
+ },
+ "facts": [
+  [
+   "Країна",
+   "Іран"
+  ],
+  [
+   "Відзнака",
+   "Нобелівська премія миру, 2023"
+  ]
+ ],
+ "photo": {
+  "wiki": [
+   "en:Narges Mohammadi"
+  ],
+  "check": [
+   "Mohammadi",
+   "Narges"
+  ]
+ },
+ "sources": [
+  {
+   "title": "RSF: Nobel Laureate Narges Mohammadi arrested in Iran",
+   "url": "https://rsf.org/en/nobel-laureate-narges-mohammadi-arrested-iran-alongside-other-journalists-and-human-rights"
+  },
+  {
+   "title": "RSF: Iran : RSF dénonce l'acharnement du régime contre Narges Mohammadi",
+   "url": "https://rsf.org/fr/iran-rsf-dénonce-l-acharnement-du-régime-contre-narges-mohammadi"
+  },
+  {
+   "title": "PEN International: Narges Mohammadi",
+   "url": "https://www.pen-international.org/cases/narges-mohammadi-1"
+  },
+  {
+   "title": "Gulf Centre for Human Rights: Narges Mohammadi",
+   "url": "https://www.gc4hr.org/defenders/narges-mohammadi/"
+  },
+  {
+   "title": "ПроМедіа: Журналістки у світі платять подвійну ціну. Звіт PEC",
+   "url": "https://news.promedia.report/article/zhurnalistky-u-sviti-platiat-podviinu-tsinu-zvit-pec"
+  }
+ ],
+ "updated": "2026-11-26"
+}
