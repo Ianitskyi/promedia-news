@@ -2844,7 +2844,7 @@ export const PEOPLE = [
       "en": "Deputy Director-General of the BBC"
     },
     "summary": {
-      "uk": "Заступник генерального директора британської суспільної мовниці BBC.",
+      "uk": "Заступник генерального директора британської суспільної телерадіокомпанії BBC.",
       "en": "Deputy Director-General of the UK public service broadcaster BBC."
     }
   },
