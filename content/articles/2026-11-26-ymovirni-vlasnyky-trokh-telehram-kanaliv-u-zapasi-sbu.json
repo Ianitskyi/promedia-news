@@ -24,7 +24,7 @@
   ],
   "relatedMediaIds": [],
   "decision": "Andrii Ianitskyi",
-  "isImportant": false,
+  "isImportant": true,
   "cardStyle": "image",
   "cover": {
     "remoteUrl": "https://detector.media/doc/images/news/archive/2021/254303/ArticleImage_254303.jpg?t=1795713788",
@@ -36,5 +36,5 @@
       "de": "Sitzung des Untersuchungsausschusses der Werchowna Rada, 26. November 2026. Screenshot: Detector Media."
     }
   },
-  "revision": "2026-11-26-v1"
+  "revision": "2026-11-27-v2"
 }
