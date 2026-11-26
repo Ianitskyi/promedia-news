@@ -58,5 +58,10 @@
  "atlas-6495f94ecdf5b3": {
   "site": "https://localhistory.org.ua/",
   "name": "Локальна історія"
+ },
+ "media-promedia": {
+  "site": "https://promedia.report/",
+  "name": "ProMedia",
+  "city": "м. Київ"
  }
 }
