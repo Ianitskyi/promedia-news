@@ -168,6 +168,13 @@ function bodyUpdates(a) {
     .map(([col, v]) => `UPDATE articles SET ${col} = ${q(v)} WHERE slug = ${q(a.slug)};`).join('\n  ');
 }
 
+// The same limit for revisions: each translated body goes in its own UPDATE, guarded by the revision marker.
+function revisionBodyUpdates(a, marker) {
+  return [['body_md_en', a.bodyMdEn], ['body_md_crh', a.bodyMdCrh], ['body_md_de', a.titleDe ? (a.bodyMdDe || '') : undefined]]
+    .filter(([, v]) => v !== undefined)
+    .map(([col, v]) => `UPDATE articles SET ${col} = ${q(v)} WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});`).join('\n    ');
+}
+
 const files = readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
   const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
@@ -228,8 +235,8 @@ for (const f of files) {
     const updatedAt = new Date().toISOString();
     const sql = `UPDATE articles SET title = ${q(a.title)}, title_en = ${q(a.titleEn)}, title_crh = ${q(a.titleCrh)},
       excerpt = ${q(a.excerpt || '')}, excerpt_en = ${q(a.excerptEn)}, excerpt_crh = ${q(a.excerptCrh)},
-      body_md = ${q(a.bodyMd)}, body_md_en = ${q(a.bodyMdEn)}, body_md_crh = ${q(a.bodyMdCrh)},
-      ${a.titleDe ? `title_de = ${q(a.titleDe)}, excerpt_de = ${q(a.excerptDe || '')}, body_md_de = ${q(a.bodyMdDe || '')}, de_translated_at = ${q(updatedAt)},` : ''}
+      body_md = ${q(a.bodyMd)},
+      ${a.titleDe ? `title_de = ${q(a.titleDe)}, excerpt_de = ${q(a.excerptDe || '')}, de_translated_at = ${q(updatedAt)},` : ''}
       tags = ${q(JSON.stringify(a.tags || []))},
       ${Array.isArray(a.relatedMediaIds) ? `related_media_ids = ${q(JSON.stringify(a.relatedMediaIds))},` : ''}
       is_important = ${a.isImportant === undefined ? 'is_important' : (a.isImportant ? 1 : 0)},
@@ -237,6 +244,7 @@ for (const f of files) {
       ${newCover ? `cover_image_url = ${q(newCover)}, cover_crop_data = ${q(coverMeta(a))},` : ''}
       updated_at = ${q(updatedAt)}
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
+    ${revisionBodyUpdates(a, marker)}
     ${pinSql(a, marker)}
     INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`;
     const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'update.sql');
