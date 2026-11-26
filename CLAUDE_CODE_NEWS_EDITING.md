@@ -189,4 +189,4 @@ admin credentials через змінні середовища. Не запус�
 ## Назва ProMedia в українських текстах (правило Андрія Яніцького, 26.11.2026)
 
 - Перша згадка: українська назва в лапках, англійська в дужках — «ГО «ПроМедіа» (ProMedia)» або «громадська організація «ПроМедіа» (ProMedia)». Далі — лише ProMedia латинкою, без лапок.
-- В англійській і німецькій версіях — одразу ProMedia («the Ukrainian NGO ProMedia», «die ukrainische NGO ProMedia»).
+- В англійській, кримськотатарській і німецькій версіях — одразу ProMedia («the Ukrainian NGO ProMedia», «die ukrainische NGO ProMedia»).
