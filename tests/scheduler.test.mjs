@@ -21,7 +21,7 @@ function d1(db) {
 
 function setup() {
   const db = new DatabaseSync(":memory:");
-  db.exec("CREATE TABLE articles (slug TEXT PRIMARY KEY, status TEXT NOT NULL CHECK (status IN ('draft','published')), deleted_at TEXT, updated_at TEXT, published_at TEXT)");
+  db.exec("CREATE TABLE articles (slug TEXT PRIMARY KEY, card_style TEXT DEFAULT 'auto', status TEXT NOT NULL CHECK (status IN ('draft','published')), deleted_at TEXT, updated_at TEXT, published_at TEXT)");
   db.exec(SCHEDULE_TABLE_SQL);
   const add = (slug, status, publishAt, deleted = null) => {
     db.prepare("INSERT INTO articles (slug, status, deleted_at, published_at) VALUES (?, ?, ?, ?)").run(slug, status, deleted, "2026-11-28T00:10:00.000Z");

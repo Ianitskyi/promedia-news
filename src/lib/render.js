@@ -1132,7 +1132,7 @@ function categoryNav(lang, activeTag, activeSort) {
 
 const TOP_STORY_LABEL = { uk: "У центрі уваги", en: "Top story", crh: "Baş haber", de: "Im Fokus" };
 
-function articleCard(article, lang, baseUrl, variant) {
+function articleCard(article, lang, baseUrl, variant, frontPage = true) {
   const title = articleTitle(article, lang);
   const excerpt = articleExcerpt(article, lang);
   const tags = JSON.parse(article.tags || "[]");
@@ -1148,7 +1148,7 @@ function articleCard(article, lang, baseUrl, variant) {
       </a>`
     : "";
   return `
-<article class="article-card article-card--${cardVariant}${article.card_style === "hero" ? " article-card--photo" : ""}${article.is_important ? " article-card--important" : ""}" data-content-kind="${contentKind}">
+<article class="article-card article-card--${cardVariant}${frontPage && article.card_style === "hero" ? " article-card--photo" : ""}${article.is_important ? " article-card--important" : ""}" data-content-kind="${contentKind}">
   ${cover}
   <div class="article-card-body">
     ${tags.length ? tagLinks(tags, lang) : ""}
@@ -1366,7 +1366,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
   const heading = (title, href, label) => `<div class="practice-heading"><h2>${escapeHtml(title)}</h2>${href ? `<a href="${escapeHtml(href)}">${escapeHtml(label || copy.all)} ↗</a>` : ""}</div>`;
   let list = `<p class="empty-state">${pick(NO_ARTICLES_LABEL, lang)}</p>`;
   const mosaic = (items, withPromo, mobileListed) => {
-    const cells = items.map((a, i) => `<div class="mosaic-cell${mobileListed?.has(a.slug) ? " mosaic-cell--mobile-listed" : ""}" data-published="${escapeHtml(a.published_at || "")}">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"))}</div>`);
+    const cells = items.map((a, i) => `<div class="mosaic-cell${mobileListed?.has(a.slug) ? " mosaic-cell--mobile-listed" : ""}" data-published="${escapeHtml(a.published_at || "")}">${articleCard(a, lang, baseUrl, articleCardVariant(a, i % 4 === 2 ? "text" : "visual"), !filtered)}</div>`);
     // Atlas promo a few cards lower, so it does not sit right under the newsletter strip (owner, 2026-11-20).
     if (withPromo) cells.splice(Math.min(6, cells.length), 0, `<div class="mosaic-cell mosaic-cell--promo">${projectPromo(lang, "atlas", "home-mosaic")}</div>`);
     return cells.length ? `<div class="article-grid restored-feed">${cells.join("")}</div>` : "";
@@ -1383,7 +1383,10 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
       if (!featured.length && leadArticle) { featured.push(leadArticle); articles = [leadArticle, ...articles]; }
       hero = featured.length ? featured.reduce((latest, article) => (article.published_at || "") > (latest.published_at || "") ? article : latest) : articles[0];
     } else {
-      hero = activeSort === "top" ? articles[0] : (articles.find(a => a.card_style === "hero") || articles[0]);
+      // Правило «великої картинки» (card_style = hero) діє лише в загальній стрічці
+      // й на promedia.report. У розділах («Новини», «Статті», «Топ», теги) головною
+      // стає найсвіжіший матеріал розділу, а в «Топі» — найчитаніший (власник, 28.11.2026).
+      hero = activeSort === "top" ? articles[0] : articles.reduce((latest, article) => (article.published_at || "") > (latest.published_at || "") ? article : latest);
     }
     // Закріплена новина (лише в загальній стрічці): завжди перша в списку заголовків,
     // з булавкою й заливкою; у мозаїці не дублюється.
@@ -1394,7 +1397,7 @@ export function renderHomepage({ articles, lang, activeTag, activeTopic, activeS
     const rest = remaining.slice(pinned ? 4 : 5);
     const mobileListed = new Set(side.slice(5).map(a => a.slug));
     const tagHeading = filtered && !activeSort && !CATEGORY_NAV_LABELS[activeTag] ? heading(tagLabel(activeTag, lang), null) : "";
-    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top", pinned?.slug) + (filtered ? "" : newsletterSlot(lang, "strip")) + mosaic(rest, !filtered, mobileListed);
+    list = tagHeading + newsLead(hero, side, lang, baseUrl, activeSort === "top", pinned?.slug, !filtered) + (filtered ? "" : newsletterSlot(lang, "strip")) + mosaic(rest, !filtered, mobileListed);
   }
   const bodyHtml = `<main class="wrap practice-home magazine-home">
     ${topic ? "" : categoryNav(lang, activeTag, activeSort)}
@@ -1426,7 +1429,7 @@ function leadMeta(article, lang) {
 }
 
 // Блок угорі стрічки — такий самий, як на promedia.report.
-function newsLead(hero, side, lang, baseUrl, isTop, pinnedSlug) {
+function newsLead(hero, side, lang, baseUrl, isTop, pinnedSlug, frontPage = true) {
   const isPinned = (a) => Boolean(pinnedSlug) && a.slug === pinnedSlug;
   const href = (a) => `${baseUrl}${langPrefix(lang)}/article/${escapeHtml(a.slug)}`;
   const title = articleTitle(hero, lang);
@@ -1443,7 +1446,7 @@ function newsLead(hero, side, lang, baseUrl, isTop, pinnedSlug) {
   // «З фото на першій»: на комп'ютері головна одна, а на смартфоні кожна така новина
   // стоїть у стрічці з фото (фото в списку сховане на комп'ютері).
   const itemPhoto = (a) => {
-    const c = a.card_style === "hero" && !articleCoverMetadata(a, lang).hideMobile ? articleCover(a, lang) : "";
+    const c = frontPage && a.card_style === "hero" && !articleCoverMetadata(a, lang).hideMobile ? articleCover(a, lang) : "";
     return c ? `<a class="feed-lead-item-photo" href="${href(a)}" tabindex="-1" aria-hidden="true"><img src="${escapeHtml(c)}" alt=""${articleFocalStyle(a, lang, "feed")} loading="lazy" /></a>` : "";
   };
   const item = (a, extra) => { const photo = itemPhoto(a); return `<li class="feed-lead-item${a.is_important ? " feed-lead-item--important" : ""}${isPinned(a) ? " feed-lead-item--pinned" : ""}${photo ? " feed-lead-item--photo" : ""}${extra}">${pinMark(a)}${photo}${leadMeta(a, lang)}<a href="${href(a)}">${escapeHtml(articleTitle(a, lang))}</a></li>`; };

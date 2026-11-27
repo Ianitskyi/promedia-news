@@ -247,6 +247,7 @@ for (const f of files) {
     WHERE slug = ${q(a.slug)} AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)});
     ${revisionBodyUpdates(a, marker)}
     ${pinSql(a, marker)}
+    ${raise ? `UPDATE articles SET card_style = 'auto' WHERE card_style = 'hero' AND status = 'published' AND slug <> ${q(a.slug)};` : ''}
     INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(marker)});`;
     const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'update.sql');
     writeFileSync(sqlFile, sql);
@@ -308,6 +309,7 @@ for (const f of files) {
     ${scheduledFor ? "'draft'" : "'published'"}, ${Number(author.id)}, ${q(published)}, ${q(now)}, ${q(now)}
   WHERE NOT EXISTS (SELECT 1 FROM articles WHERE slug = ${q(a.slug)});
   ${bodyUpdates(a)}
+  ${!scheduledFor && a.cardStyle === 'hero' ? `UPDATE articles SET card_style = 'auto' WHERE card_style = 'hero' AND status = 'published' AND slug <> ${q(a.slug)};` : ''}
   ${scheduledFor ? `${SCHEDULE_TABLE_SQL};
   INSERT OR REPLACE INTO scheduled_publications (slug, publish_at, done) VALUES (${q(a.slug)}, ${q(scheduledFor)}, 0);` : pinSql(a)}`;
   const sqlFile = join(mkdtempSync(join(tmpdir(), 'sql-')), 'insert.sql');

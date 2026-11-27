@@ -6,6 +6,7 @@ import { handleAdminSubdomainsRoute } from "../lib/subdomains.js";
 import { completeArticleDraft, generateArticleAssist } from "../lib/articleAssist.js";
 import { normalizeUkrainianFields } from "../lib/typography.js";
 import { isPinActive, pinUntilDate, resolvePinUntil } from "../lib/pinning.js";
+import { keepSingleLead } from "../lib/leadStory.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -370,6 +371,7 @@ export async function handleAdminRoute(request, env, url) {
         id
       ).run();
       if (pinChange) await setArticlePinned(db, id, pinChange.pinned, pinChange.until);
+      if (body.cardStyle !== undefined) await keepSingleLead(db, { id });
       const updated = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
       return json({ item: serializeArticle(updated) });
     }
@@ -393,6 +395,7 @@ export async function handleAdminRoute(request, env, url) {
     await db.prepare(
       "UPDATE articles SET status = 'published', published_at = COALESCE(published_at, ?), updated_at = ? WHERE id = ?"
     ).bind(now, now, id).run();
+    await keepSingleLead(db, { id });
     return json({ ok: true });
   }
 

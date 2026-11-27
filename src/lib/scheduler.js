@@ -3,6 +3,8 @@
 // "publishAt" у базу чернеткою й записує час у scheduled_publications, а сайт
 // (Cloudflare cron кожні 5 хвилин) сам відкриває новини, час яких настав.
 
+import { keepSingleLead } from "./leadStory.js";
+
 export const SCHEDULE_TABLE_SQL =
   "CREATE TABLE IF NOT EXISTS scheduled_publications (slug TEXT PRIMARY KEY, publish_at TEXT NOT NULL, done INTEGER NOT NULL DEFAULT 0, published_at_run TEXT)";
 const STATE_TABLE_SQL =
@@ -22,6 +24,7 @@ export async function publishDueArticles(db, now = new Date()) {
     await db.prepare(
       "UPDATE articles SET status = 'published', published_at = ?, updated_at = ? WHERE slug = ? AND status = 'draft' AND deleted_at IS NULL"
     ).bind(nowIso, nowIso, slug).run();
+    await keepSingleLead(db, { slug });
     await db.prepare(
       "UPDATE scheduled_publications SET done = 1, published_at_run = ? WHERE slug = ?"
     ).bind(nowIso, slug).run();
