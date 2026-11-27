@@ -354,6 +354,45 @@ body.innerpage main:not(:has(> .slimheader)) {
     .pm-projects-pills { padding-right: 12px; }
 }
 
+/* Phones (27.11.2026): instead of the sideways-scrolling projects strip, the news
+   format chips from news.promedia.report (same colours and size), wrapping, no scroll. */
+.pm-formats-nav { display: none; }
+@media (max-width: 767px) {
+    /* The id selector beats the inline "body.homepage #projects-grid {display:flex!important}". */
+    body.homepage .pm-projects-strip .pm-projects-strip-title,
+    body.homepage .pm-projects-strip #projects-grid,
+    body.homepage .pm-projects-strip .pm-projects-pills,
+    body.homepage .pm-projects-strip .pm-projects-all { display: none !important; }
+    .pm-projects-strip > .container { padding-right: var(--bs-gutter-x, 12px); }
+    .pm-formats-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+    .pm-format-chip {
+        --chip-bg: #f0f0f6; --chip-fg: #4a4970; --chip-on: #e0e0ee;
+        display: inline-flex;
+        align-items: center;
+        padding: 5px 11px;
+        border-radius: 999px;
+        background: var(--chip-bg);
+        color: var(--chip-fg);
+        font-size: 11.5px;
+        font-weight: 700;
+        line-height: 1.5;
+        white-space: nowrap;
+        text-decoration: none;
+        transition: background .15s ease;
+    }
+    .pm-format-chip--news { --chip-bg: #fbf3e6; --chip-fg: #9a6a2a; --chip-on: #f3e2c4; }
+    .pm-format-chip--articles { --chip-bg: #efeff6; --chip-fg: #45447a; --chip-on: #dddcee; }
+    .pm-format-chip--press { --chip-bg: #f9eeed; --chip-fg: #9c4f49; --chip-on: #f0d8d5; }
+    .pm-format-chip--announce { --chip-bg: #edf5ef; --chip-fg: #4a7a56; --chip-on: #d5e9da; }
+    .pm-format-chip--top { --chip-bg: #f2eef7; --chip-fg: #6a4f8a; --chip-on: #e2d9ee; }
+    .pm-format-chip:hover,
+    .pm-format-chip:focus-visible { background: var(--chip-on); color: var(--chip-fg); }
+}
+
 
 /* Contact social icons on dark contact section */
 .section-contactform .pm-contact-socials a {
