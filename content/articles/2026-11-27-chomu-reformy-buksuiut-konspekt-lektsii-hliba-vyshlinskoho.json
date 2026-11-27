@@ -31,7 +31,7 @@
   "relatedMediaIds": [],
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
-  "cardStyle": "image",
+  "cardStyle": "hero",
   "tts": false,
   "publishAt": "2026-11-27T13:00:00+02:00",
   "cover": {
@@ -53,5 +53,7 @@
         "y": 40
       }
     }
-  }
+  },
+  "revision": "2026-11-27-hero",
+  "raiseToTop": "2026-11-27-hero"
 }
