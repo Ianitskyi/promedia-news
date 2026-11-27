@@ -29,6 +29,11 @@
     ]
   ],
   "website": "https://www.independent.co.uk",
+  "logo": {
+    "src": "https://www.independent.co.uk/img/logo.png",
+    "sourceName": "independent.co.uk",
+    "sourceUrl": "https://www.independent.co.uk"
+  },
   "wiki": [
     "en:The Independent"
   ],
@@ -38,5 +43,5 @@
       "url": "https://www.independent.co.uk"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

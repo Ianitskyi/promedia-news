@@ -26,11 +26,16 @@
     "uk": "0542.ua — міський сайт Сум (назва — телефонний код міста). ПроМедіа посилалася на нього в новині про загибель фотографа Артура Назарова."
   },
   "website": "https://www.0542.ua",
+  "logo": {
+    "src": "https://s.0542.ua/section/logo/upload/pers/44/logo.png",
+    "sourceName": "0542.ua",
+    "sourceUrl": "https://www.0542.ua"
+  },
   "sources": [
     {
       "title": "Сайт 0542.ua",
       "url": "https://www.0542.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

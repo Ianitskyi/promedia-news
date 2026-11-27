@@ -30,11 +30,16 @@
     "uk": "«Рубрика» розповідає не лише про проблеми, а й про способи їх розв'язання; має екологічний напрям «ЕкоРубрика». Журналістка видання Вікторія Губарева в листопаді 2026 року представила в ЮНЕСКО результати Школи екологічної журналістики рішень."
   },
   "website": "https://rubryka.com",
+  "logo": {
+    "src": "https://rubryka.com/wp-content/themes/rubryca/assets/img/logo_ua.png",
+    "sourceName": "rubryka.com",
+    "sourceUrl": "https://rubryka.com"
+  },
   "sources": [
     {
       "title": "Сайт Rubryka",
       "url": "https://rubryka.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

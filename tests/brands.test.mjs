@@ -91,3 +91,30 @@ test("One media brands box: Atlas/map media first, then tagged brands, without d
   assert.ok(en.includes('href="https://brands.promedia.report/en/cnn/"'));
   assert.ok(en.includes("Media brands in this story"));
 });
+
+test("Dossier logos are well-formed: https source, credit, optional background colour", () => {
+  const brands = loadBrands(new URL("../brands/data/", import.meta.url).pathname);
+  for (const b of brands.filter(b => b.logo)) {
+    assert.match(b.logo.src, /^https:\/\//, `${b.slug}: logo.src`);
+    assert.ok(b.logo.sourceName && /^https:\/\//.test(b.logo.sourceUrl), `${b.slug}: logo credit`);
+    if (b.logo.bg) assert.match(b.logo.bg, /^#[0-9a-f]{3,8}$/i, `${b.slug}: logo.bg`);
+  }
+});
+
+test("Mirrored logos: images only, no active SVG content", async () => {
+  const { fetchLogo } = await import("../brands-site/build.mjs");
+  const real = globalThis.fetch;
+  const reply = (body, type) => async () => new Response(body, { headers: { "content-type": type } });
+  try {
+    globalThis.fetch = reply('<svg xmlns="http://www.w3.org/2000/svg"><rect/></svg>', "image/svg+xml");
+    assert.equal((await fetchLogo("https://example.com/logo.svg")).ext, "svg");
+    globalThis.fetch = reply('<svg onload="alert(1)"></svg>', "image/svg+xml");
+    await assert.rejects(fetchLogo("https://example.com/logo.svg"));
+    globalThis.fetch = reply("<html></html>", "text/html");
+    await assert.rejects(fetchLogo("https://example.com/logo.png"));
+    globalThis.fetch = reply(new Uint8Array([137, 80, 78, 71]), "image/png");
+    assert.equal((await fetchLogo("https://example.com/logo.png")).ext, "png");
+  } finally {
+    globalThis.fetch = real;
+  }
+});

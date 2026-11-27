@@ -29,6 +29,11 @@
     ]
   ],
   "website": "https://www.al-monitor.com",
+  "logo": {
+    "src": "https://www.al-monitor.com/themes/custom/alm/images/logo.svg",
+    "sourceName": "al-monitor.com",
+    "sourceUrl": "https://www.al-monitor.com"
+  },
   "wiki": [
     "en:Al-Monitor"
   ],
@@ -38,5 +43,5 @@
       "url": "https://www.al-monitor.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

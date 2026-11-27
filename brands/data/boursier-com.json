@@ -23,6 +23,11 @@
     "uk": "Boursier.com публікує новини фінансових ринків і котирування. AFP включила його до переліку видань LVMH, охоплених угодою з OpenAI."
   },
   "website": "https://www.boursier.com",
+  "logo": {
+    "src": "https://www.boursier.com/ui/v5/images/core/boursier-logo.svg",
+    "sourceName": "boursier.com",
+    "sourceUrl": "https://www.boursier.com"
+  },
   "wiki": [
     "fr:Boursier.com"
   ],
@@ -32,5 +37,5 @@
       "url": "https://www.boursier.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

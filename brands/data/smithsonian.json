@@ -32,6 +32,11 @@
     ]
   ],
   "website": "https://www.smithsonianmag.com",
+  "logo": {
+    "src": "https://www.smithsonianmag.com/static/smithsonianmag/img/smithsonian_magazine_logo_black.46435ad4efd4.svg",
+    "sourceName": "smithsonianmag.com",
+    "sourceUrl": "https://www.smithsonianmag.com"
+  },
   "wiki": [
     "en:Smithsonian (magazine)"
   ],
@@ -41,5 +46,5 @@
       "url": "https://www.smithsonianmag.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

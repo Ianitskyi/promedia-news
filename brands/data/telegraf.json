@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://telegraf.com.ua",
+  "logo": {
+    "src": "https://telegraf.com.ua/static/build/img/svg/logo-ukraine.ee7ceea026.svg",
+    "sourceName": "telegraf.com.ua",
+    "sourceUrl": "https://telegraf.com.ua"
+  },
   "sources": [
     {
       "title": "Сайт Telegraf",
       "url": "https://telegraf.com.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -23,6 +23,11 @@
     "uk": "Khrono пише про норвезькі університети, студентів і науковців. Видання розповіло історію української студентки Серафими Мельничук, яка повернулася з Японії додому під час війни."
   },
   "website": "https://www.khrono.no",
+  "logo": {
+    "src": "https://www.khrono.no/view-resources/dachser2/public/khrono/v2/logo.svg",
+    "sourceName": "khrono.no",
+    "sourceUrl": "https://www.khrono.no"
+  },
   "wiki": [
     "no:Khrono"
   ],
@@ -32,5 +37,5 @@
       "url": "https://www.khrono.no"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -23,6 +23,11 @@
     "uk": "Villamedia пише про умови праці журналістів, фриланс і медіаполітику в Нідерландах. Разом із ним дослідник Ервін ван 'т Гоф записав подкаст «Життя фрилансера», про що ПроМедіа писала в тексті про його дисертацію."
   },
   "website": "https://www.villamedia.nl",
+  "logo": {
+    "src": "https://www.villamedia.nl/images/logo.png",
+    "sourceName": "villamedia.nl",
+    "sourceUrl": "https://www.villamedia.nl"
+  },
   "wiki": [
     "nl:Villamedia"
   ],
@@ -32,5 +37,5 @@
       "url": "https://www.villamedia.nl"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

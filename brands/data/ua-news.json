@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://ua.news",
+  "logo": {
+    "src": "https://cdn-cabinet.ua.news/assets-front/images/logo_ua.news.png",
+    "sourceName": "ua.news",
+    "sourceUrl": "https://ua.news"
+  },
   "sources": [
     {
       "title": "Сайт UA.NEWS",
       "url": "https://ua.news"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -29,6 +29,11 @@
     ]
   ],
   "website": "https://www.krik.rs",
+  "logo": {
+    "src": "https://www.krik.rs/wp-content/uploads/2026/06/cropped-krik_Icon-180x180.png",
+    "sourceName": "krik.rs",
+    "sourceUrl": "https://www.krik.rs"
+  },
   "wiki": [
     "en:Crime and Corruption Reporting Network"
   ],
@@ -38,5 +43,5 @@
       "url": "https://www.krik.rs"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

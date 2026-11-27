@@ -26,11 +26,16 @@
     "uk": "UNITED24 Media публікує новини й пояснювальні матеріали про війну та Україну англійською й іншими мовами."
   },
   "website": "https://united24media.com",
+  "logo": {
+    "src": "https://united24media.com/static/build/img/logo-media-black.mQDqB97J.svg",
+    "sourceName": "united24media.com",
+    "sourceUrl": "https://united24media.com"
+  },
   "sources": [
     {
       "title": "Сайт UNITED24 Media",
       "url": "https://united24media.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

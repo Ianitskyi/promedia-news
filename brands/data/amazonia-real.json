@@ -29,6 +29,11 @@
     ]
   ],
   "website": "https://amazoniareal.com.br",
+  "logo": {
+    "src": "https://amazoniareal.com.br/wp-content/uploads/2026/02/amazonia-real-logotipo.png",
+    "sourceName": "amazoniareal.com.br",
+    "sourceUrl": "https://amazoniareal.com.br"
+  },
   "wiki": [
     "pt:Amazônia Real"
   ],
@@ -38,5 +43,5 @@
       "url": "https://amazoniareal.com.br"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

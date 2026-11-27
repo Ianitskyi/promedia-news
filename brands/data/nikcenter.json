@@ -26,11 +26,16 @@
     "uk": "Редакторка NikCenter Олеся Борейко розповідала на Медіадні Премії імені Георгія Ґонґадзе в Миколаєві про складні випадки з досвіду розслідувачів."
   },
   "website": "https://nikcenter.org",
+  "logo": {
+    "src": "https://nikcenter.org/wp-content/uploads/2023/03/nikcenter-logo-ua-1.svg",
+    "sourceName": "nikcenter.org",
+    "sourceUrl": "https://nikcenter.org"
+  },
   "sources": [
     {
       "title": "Сайт NikCenter",
       "url": "https://nikcenter.org"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

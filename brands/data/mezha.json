@@ -33,11 +33,16 @@
     ]
   ],
   "website": "https://mezha.ua",
+  "logo": {
+    "src": "https://mezha.ua/mezha/img/mezha_s.png",
+    "sourceName": "mezha.ua",
+    "sourceUrl": "https://mezha.ua"
+  },
   "sources": [
     {
       "title": "Сайт Mezha",
       "url": "https://mezha.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

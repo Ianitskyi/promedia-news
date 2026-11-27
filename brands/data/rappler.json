@@ -29,6 +29,11 @@
     ]
   ],
   "website": "https://www.rappler.com",
+  "logo": {
+    "src": "https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Rappler_logo.svg/500px-Rappler_logo.svg.png",
+    "sourceName": "Вікіпедія",
+    "sourceUrl": "https://en.wikipedia.org/wiki/File:Rappler_logo.svg"
+  },
   "wiki": [
     "en:Rappler"
   ],
@@ -38,5 +43,5 @@
       "url": "https://www.rappler.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

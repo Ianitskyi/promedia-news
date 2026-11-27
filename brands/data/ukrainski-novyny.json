@@ -32,6 +32,11 @@
     ]
   ],
   "website": "https://ukranews.com",
+  "logo": {
+    "src": "https://ukranews.com/images/logo_ua_600.png",
+    "sourceName": "ukranews.com",
+    "sourceUrl": "https://ukranews.com"
+  },
   "wiki": [
     "uk:Українські новини"
   ],
@@ -41,5 +46,5 @@
       "url": "https://ukranews.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

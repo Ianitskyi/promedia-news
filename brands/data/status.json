@@ -26,11 +26,16 @@
     "uk": "Status — платна розсилка про медіаіндустрію, яку Олівер Дарсі запустив після того, як залишив CNN, де вів медійну розсилку Reliable Sources. Розсилка розповідає про телемережі, видавців, власників медіа й тиск влади на пресу у США."
   },
   "website": "https://www.status.news",
+  "logo": {
+    "src": "https://media.beehiiv.com/cdn-cgi/image/fit=scale-down,format=auto,onerror=redirect,quality=80/uploads/publication/logo/589f0e76-784b-4aeb-a6e8-0d44b943e3a0/thumb_improved_favicon_symbol.png",
+    "sourceName": "status.news",
+    "sourceUrl": "https://www.status.news"
+  },
   "sources": [
     {
       "title": "Сайт Status",
       "url": "https://www.status.news"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

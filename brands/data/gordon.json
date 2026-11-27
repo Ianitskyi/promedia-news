@@ -32,6 +32,11 @@
     ]
   ],
   "website": "https://gordonua.com",
+  "logo": {
+    "src": "https://cdn.gordonua.com/img/logo-full.svg",
+    "sourceName": "gordonua.com",
+    "sourceUrl": "https://gordonua.com"
+  },
   "wiki": [
     "uk:Гордон (інтернет-видання)"
   ],
@@ -41,5 +46,5 @@
       "url": "https://gordonua.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

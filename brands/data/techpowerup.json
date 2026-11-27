@@ -23,6 +23,11 @@
     "uk": "TechPowerUp публікує новини та огляди комп'ютерних комплектувальних, веде довідкові бази даних процесорів і відеокарт та розробляє безкоштовні утиліти для діагностики комп'ютера."
   },
   "website": "https://www.techpowerup.com",
+  "logo": {
+    "src": "https://tpucdn.com/images/logo-v1795442328.svg",
+    "sourceName": "techpowerup.com",
+    "sourceUrl": "https://www.techpowerup.com"
+  },
   "wiki": [
     "en:TechPowerUp"
   ],
@@ -32,5 +37,5 @@
       "url": "https://www.techpowerup.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

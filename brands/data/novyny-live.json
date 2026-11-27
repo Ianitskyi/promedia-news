@@ -33,6 +33,11 @@
     ]
   ],
   "website": "https://novyny.live",
+  "logo": {
+    "src": "https://novyny.live/static/news/img/base/logo.svg",
+    "sourceName": "novyny.live",
+    "sourceUrl": "https://novyny.live"
+  },
   "wiki": [
     "uk:Новини.LIVE"
   ],
@@ -42,5 +47,5 @@
       "url": "https://novyny.live"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

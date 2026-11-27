@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://blik.ua",
+  "logo": {
+    "src": "https://blik.ua/img/blik-logotype.svg",
+    "sourceName": "blik.ua",
+    "sourceUrl": "https://blik.ua"
+  },
   "sources": [
     {
       "title": "Сайт Blik",
       "url": "https://blik.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

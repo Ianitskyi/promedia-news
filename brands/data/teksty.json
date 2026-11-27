@@ -46,6 +46,11 @@
     ]
   ],
   "website": "https://texty.org.ua",
+  "logo": {
+    "src": "https://texty.org.ua/static/core/images/logo_texty_black.svg",
+    "sourceName": "texty.org.ua",
+    "sourceUrl": "https://texty.org.ua"
+  },
   "wiki": [
     "uk:Тексти (видання)"
   ],
@@ -55,5 +60,5 @@
       "url": "https://texty.org.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

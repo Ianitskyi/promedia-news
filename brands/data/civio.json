@@ -23,6 +23,11 @@
     "uk": "Civio аналізує державні дані — бюджети, закупівлі, урядові рішення — і робить їх зрозумілими громадянам. Учасник програми JournalismAI Лондонської школи економіки."
   },
   "website": "https://civio.es",
+  "logo": {
+    "src": "https://civio.es/assets/img/apple-touch-icon.png",
+    "sourceName": "civio.es",
+    "sourceUrl": "https://civio.es"
+  },
   "wiki": [
     "es:Fundación Ciudadana Civio",
     "es:Civio",
@@ -34,5 +39,5 @@
       "url": "https://civio.es"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

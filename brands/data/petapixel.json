@@ -23,6 +23,11 @@
     "uk": "PetaPixel пише про фототехніку, фотографів і етичні дискусії у фотожурналістиці. Серед іншого видання висвітлювало суперечку щодо авторства знімка «Дівчинка й напалм», про яку ПроМедіа писала в огляді історії воєнної журналістики."
   },
   "website": "https://petapixel.com",
+  "logo": {
+    "src": "https://petapixel.com/assets/uploads/2021/03/petapixellogo.jpg",
+    "sourceName": "petapixel.com",
+    "sourceUrl": "https://petapixel.com"
+  },
   "wiki": [
     "en:PetaPixel"
   ],
@@ -32,5 +37,5 @@
       "url": "https://petapixel.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

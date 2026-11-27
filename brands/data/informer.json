@@ -23,6 +23,11 @@
     "uk": "Informer — газета-таблоїд, сайт і телеканал, які фактчекери вважають одним із найвпливовіших пропагандистських медіа Вучича. За підрахунками проєкту Raskrikavanje, на перших шпальтах 306 номерів Informer за 2024 рік було щонайменше 384 маніпулятивні новини; FakeNews Tragač 2025 року «нагородив» його «Золотим Піноккіо».\n\n25 листопада 2026 року в Белграді затримали власника й головного редактора Informer Драгана Вучичевича, про що писала ПроМедіа."
   },
   "website": "https://informer.rs",
+  "logo": {
+    "src": "https://informer.rs/layout/files/img/apple-icon.png",
+    "sourceName": "informer.rs",
+    "sourceUrl": "https://informer.rs"
+  },
   "wiki": [
     "sr:Informer"
   ],
@@ -32,5 +37,5 @@
       "url": "https://informer.rs"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

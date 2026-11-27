@@ -32,6 +32,11 @@
     ]
   ],
   "website": "https://www.aljazeera.com",
+  "logo": {
+    "src": "https://upload.wikimedia.org/wikipedia/en/thumb/8/8f/Al_Jazeera_Media_Network_Logo.svg/500px-Al_Jazeera_Media_Network_Logo.svg.png",
+    "sourceName": "Вікіпедія",
+    "sourceUrl": "https://en.wikipedia.org/wiki/File:Al_Jazeera_Media_Network_Logo.svg"
+  },
   "wiki": [
     "en:Al Jazeera"
   ],
@@ -41,5 +46,5 @@
       "url": "https://www.aljazeera.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -7,7 +7,8 @@
 //
 // Згадки в новинах шукаються автоматично: за назвою бренду, його псевдонімами або шаблонами з поля `match`
 // у тексті й заголовку кожної опублікованої новини. Нова новина з'являється в досьє з наступною збіркою.
-// Логотипи беремо лише з вільними ліцензіями (CC BY, CC BY-SA, CC0, суспільне надбання), інакше — монограма.
+// Логотипи з Вікідані беремо лише з вільними ліцензіями (CC BY, CC BY-SA, CC0, суспільне надбання). Поле `logo` у досьє
+// (логотип із сайту самого видання чи з Вікіпедії) має перевагу; без жодного — монограма.
 
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync, existsSync, cpSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -208,6 +209,49 @@ async function resolveAllWiki(brands) {
   return result;
 }
 
+// ---------- логотипи з сайтів видань ----------
+
+// Логотипи з поля `logo` досьє, що лежать на чужих сайтах, під час збірки копіюємо в dist/logos/<slug>.<ext>:
+// так сторінки не залежать від захисту від хотлінку й доступності чужих серверів, а читачі не ходять на сторонні домени.
+// Якщо завантажити не вдалося — лишаємо пряме посилання (з referrerpolicy="no-referrer"), а не вдасться й воно — монограма.
+const LOGO_TYPES = { "image/svg+xml": "svg", "image/png": "png", "image/jpeg": "jpg", "image/webp": "webp", "image/gif": "gif" };
+const OWN_HOST = /(^|\.)promedia\.report$/;
+
+export async function fetchLogo(src) {
+  const res = await fetch(src, { headers: { "user-agent": "ProMediaBrandsBot/1.0 (+https://brands.promedia.report)" }, signal: AbortSignal.timeout(20000), redirect: "follow" });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const type = (res.headers.get("content-type") || "").split(";")[0].trim().toLowerCase();
+  const ext = LOGO_TYPES[type] || (/\.svg$/i.test(new URL(src).pathname) && /xml|text/.test(type) ? "svg" : "");
+  if (!ext) throw new Error(`не зображення (${type || "без типу"})`);
+  const buf = Buffer.from(await res.arrayBuffer());
+  if (!buf.length || buf.length > 2_000_000) throw new Error(`розмір ${buf.length} байт`);
+  if (ext === "svg" && /<script|\son[a-z]+\s*=|javascript:|<foreignObject/i.test(buf.toString("utf8"))) throw new Error("SVG з активним вмістом");
+  return { buf, ext };
+}
+
+async function mirrorLogos(brands, wiki) {
+  if (OFFLINE) return;
+  const todo = brands.filter(b => wiki[b.slug]?.logo && b.logo?.src && /^https?:/.test(b.logo.src) && !OWN_HOST.test(new URL(b.logo.src).hostname));
+  if (!todo.length) return;
+  mkdirSync(join(DIST, "logos"), { recursive: true });
+  let ok = 0;
+  const queue = [...todo];
+  await Promise.all(Array.from({ length: 4 }, async () => {
+    while (queue.length) {
+      const b = queue.shift();
+      try {
+        const { buf, ext } = await fetchLogo(b.logo.src);
+        writeFileSync(join(DIST, "logos", `${b.slug}.${ext}`), buf);
+        wiki[b.slug].logo = { ...wiki[b.slug].logo, src: `${SITE}/logos/${b.slug}.${ext}` };
+        ok++;
+      } catch (err) {
+        console.warn(`  логотип ${b.slug}: ${err.message} — лишаю пряме посилання`);
+      }
+    }
+  }));
+  console.log(`Логотипи з сайтів видань: скопійовано ${ok} з ${todo.length}`);
+}
+
 // ---------- html helpers ----------
 
 const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -330,9 +374,14 @@ ${body}
 `;
 }
 
+// Колір підкладки для світлих логотипів (поле `logo.bg`, наприклад "#303f9f").
+const logoBg = logo => (logo?.bg && /^#[0-9a-f]{3,8}$/i.test(logo.bg) ? logo.bg : "");
+
 function logoImg(b, logo, cls) {
   const mono = esc(monogram(b.name.en || b.name.uk));
-  return `<span class="${cls}${logo ? "" : " bb-logo--mono"}"><span class="bb-mono" aria-hidden="true">${mono}</span>${logo ? `<img src="${esc(logo.src)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</span>`;
+  const bg = logoBg(logo);
+  const style = bg ? ` style="background:${bg}"` : "";
+  return `<span class="${cls}${logo ? "" : " bb-logo--mono"}"${style}><span class="bb-mono" aria-hidden="true">${mono}</span>${logo ? `<img src="${esc(logo.src)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()"${style}>` : ""}</span>`;
 }
 
 function card(b, logo, count, lang) {
@@ -445,6 +494,7 @@ async function main() {
   if (existsSync(DIST)) rmSync(DIST, { recursive: true, force: true });
   mkdirSync(DIST, { recursive: true });
   cpSync(join(ROOT, "brands-site", "assets"), DIST, { recursive: true });
+  await mirrorLogos(brands, wiki);
 
   for (const lang of LANGS) {
     const base = lang === "uk" ? DIST : join(DIST, lang);

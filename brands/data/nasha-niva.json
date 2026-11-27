@@ -38,6 +38,11 @@
     ]
   ],
   "website": "https://nashaniva.com",
+  "logo": {
+    "src": "https://s.nashaniva.com/main/img/logo/desktop-logo-plain.svg",
+    "sourceName": "nashaniva.com",
+    "sourceUrl": "https://nashaniva.com"
+  },
   "wiki": [
     "en:Nasha Niva"
   ],
@@ -47,5 +52,5 @@
       "url": "https://nashaniva.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

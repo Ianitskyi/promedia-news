@@ -23,6 +23,11 @@
     "uk": "Nova.rs першим повідомив про затримання власника проурядового Informer Драгана Вучичевича в листопаді 2026 року."
   },
   "website": "https://nova.rs",
+  "logo": {
+    "src": "https://nova.rs/media/images/2025/11/1763720629_16.2e16d0ba.fill-180x180.svg",
+    "sourceName": "nova.rs",
+    "sourceUrl": "https://nova.rs"
+  },
   "wiki": [
     "sr:Nova.rs"
   ],
@@ -32,5 +37,5 @@
       "url": "https://nova.rs"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

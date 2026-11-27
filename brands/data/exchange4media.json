@@ -23,11 +23,16 @@
     "uk": "exchange4media повідомило, що в жовтні 2026 року до коаліції видавців SPUR приєдналися понад 40 нових членів, зокрема The New York Times, The Economist і AFP."
   },
   "website": "https://www.exchange4media.com",
+  "logo": {
+    "src": "https://www.exchange4media.com/news-photo/static-images/logo-new.png",
+    "sourceName": "exchange4media.com",
+    "sourceUrl": "https://www.exchange4media.com"
+  },
   "sources": [
     {
       "title": "Сайт exchange4media",
       "url": "https://www.exchange4media.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

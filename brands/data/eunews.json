@@ -23,11 +23,16 @@
     "uk": "Eunews пише про рішення інституцій ЄС. ПроМедіа посилалася на нього в новині про санкції ЄС за російську дезінформацію."
   },
   "website": "https://www.eunews.it",
+  "logo": {
+    "src": "https://www.eunews.it/wp-content/uploads/2021/04/cropped-EU512-180x180.png",
+    "sourceName": "eunews.it",
+    "sourceUrl": "https://www.eunews.it"
+  },
   "sources": [
     {
       "title": "Сайт Eunews",
       "url": "https://www.eunews.it"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

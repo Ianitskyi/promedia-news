@@ -32,6 +32,11 @@
     ]
   ],
   "website": "https://www.ftm.eu",
+  "logo": {
+    "src": "https://www.ftm.eu/ftm-logo.png",
+    "sourceName": "ftm.eu",
+    "sourceUrl": "https://www.ftm.eu"
+  },
   "wiki": [
     "en:Follow the Money (website)"
   ],
@@ -41,5 +46,5 @@
       "url": "https://www.ftm.eu"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

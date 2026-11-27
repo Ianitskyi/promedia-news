@@ -32,6 +32,11 @@
     ]
   ],
   "website": "https://unn.ua",
+  "logo": {
+    "src": "https://unn.ua/logo.svg",
+    "sourceName": "unn.ua",
+    "sourceUrl": "https://unn.ua"
+  },
   "wiki": [
     "uk:Українські національні новини"
   ],
@@ -41,5 +46,5 @@
       "url": "https://unn.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

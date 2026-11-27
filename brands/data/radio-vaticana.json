@@ -33,6 +33,12 @@
     ]
   ],
   "website": "https://www.vaticannews.va",
+  "logo": {
+    "src": "https://www.vaticannews.va/etc/designs/vatican-news/release/library/main/images/vatican-news-header-white_retina.png",
+    "sourceName": "vaticannews.va",
+    "sourceUrl": "https://www.vaticannews.va",
+    "bg": "#cc0000"
+  },
   "wiki": [
     "en:Vatican Radio"
   ],
@@ -42,5 +48,5 @@
       "url": "https://www.vaticannews.va"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -29,6 +29,11 @@
     ]
   ],
   "website": "https://historynewsnetwork.org",
+  "logo": {
+    "src": "https://www.historynewsnetwork.org/images/hnn-favicons/apple-icon-180x180.png",
+    "sourceName": "historynewsnetwork.org",
+    "sourceUrl": "https://historynewsnetwork.org"
+  },
   "wiki": [
     "en:History News Network"
   ],
@@ -38,5 +43,5 @@
       "url": "https://historynewsnetwork.org"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

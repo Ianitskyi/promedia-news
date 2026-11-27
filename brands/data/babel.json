@@ -42,6 +42,11 @@
     ]
   ],
   "website": "https://babel.ua",
+  "logo": {
+    "src": "https://babel.ua/static/src/svg/logo.svg",
+    "sourceName": "babel.ua",
+    "sourceUrl": "https://babel.ua"
+  },
   "wiki": [
     "uk:Бабель (видання)",
     "uk:Бабель (медіа)",
@@ -53,5 +58,5 @@
       "url": "https://babel.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

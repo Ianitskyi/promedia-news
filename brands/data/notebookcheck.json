@@ -23,6 +23,11 @@
     "uk": "Notebookcheck публікує огляди та новини кількома мовами, зокрема англійською й німецькою. Видання відоме детальними лабораторними тестами ноутбуків."
   },
   "website": "https://www.notebookcheck.net",
+  "logo": {
+    "src": "https://www.notebookcheck.net/fileadmin/templates/nbc_v5/images/logo_alone_header.svg",
+    "sourceName": "notebookcheck.net",
+    "sourceUrl": "https://www.notebookcheck.net"
+  },
   "wiki": [
     "en:Notebookcheck"
   ],
@@ -32,5 +37,5 @@
       "url": "https://www.notebookcheck.net"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -29,11 +29,17 @@
     "uk": "«Четверта влада» розслідує діяльність місцевої влади й правоохоронців на Рівненщині. Редакція неодноразово зазнавала тиску: у листопаді 2026 року головний редактор і директорка медіа отримали у Facebook погрози вбивством. Медіа є на Карті спільнот ПроМедіа."
   },
   "website": "https://4vlada.com",
+  "logo": {
+    "src": "https://4vlada.com/sites/default/files/logo_new.svg",
+    "sourceName": "4vlada.com",
+    "sourceUrl": "https://4vlada.com",
+    "bg": "#000000"
+  },
   "sources": [
     {
       "title": "Сайт Chetverta Vlada",
       "url": "https://4vlada.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

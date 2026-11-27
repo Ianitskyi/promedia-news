@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://sud.ua",
+  "logo": {
+    "src": "https://sud.ua/images/logo_uk.png",
+    "sourceName": "sud.ua",
+    "sourceUrl": "https://sud.ua"
+  },
   "sources": [
     {
       "title": "Сайт Sudovo-Yurydychna Gazeta",
       "url": "https://sud.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

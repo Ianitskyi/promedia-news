@@ -28,11 +28,16 @@
     "uk": "Спільнота читачів Pechera Club, яку створило Pechera.info, за рік об'єднала 174 учасники."
   },
   "website": "https://pechera.info",
+  "logo": {
+    "src": "https://pechera.info/img/logo-pechera.svg",
+    "sourceName": "pechera.info",
+    "sourceUrl": "https://pechera.info"
+  },
   "sources": [
     {
       "title": "Сайт Pechera.info",
       "url": "https://pechera.info"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

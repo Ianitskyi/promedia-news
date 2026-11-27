@@ -38,6 +38,11 @@
     ]
   ],
   "website": "https://glavcom.ua",
+  "logo": {
+    "src": "https://glavcom.ua/user/i/glavcom_logo.svg",
+    "sourceName": "glavcom.ua",
+    "sourceUrl": "https://glavcom.ua"
+  },
   "wiki": [
     "uk:Главком"
   ],
@@ -47,5 +52,5 @@
       "url": "https://glavcom.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

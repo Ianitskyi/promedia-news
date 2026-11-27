@@ -23,11 +23,16 @@
     "uk": "MediaGuru пише про чеський медіаринок. Видання розповідало про кампанію Чеського телебачення «Наше дитинство під шапкою» до 60-річчя «Вечірничка»."
   },
   "website": "https://www.mediaguru.cz",
+  "logo": {
+    "src": "https://www.mediaguru.cz/static/img/logo.png",
+    "sourceName": "mediaguru.cz",
+    "sourceUrl": "https://www.mediaguru.cz"
+  },
   "sources": [
     {
       "title": "Сайт MediaGuru",
       "url": "https://www.mediaguru.cz"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

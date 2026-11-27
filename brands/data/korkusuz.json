@@ -23,11 +23,16 @@
     "uk": "Як писав Bianet, рішення про передачу Sözcü TV під державне управління не стосувалося газети Sözcü та пов'язаних із нею видань Tavır і Korkusuz."
   },
   "website": "https://www.korkusuz.com.tr",
+  "logo": {
+    "src": "https://korkusuz01.sozcucdn.com/korkusuz/production/uploads/images/2023/9/logopng-Wq5wCq1tdkSMht9LaspaPw.png",
+    "sourceName": "korkusuz.com.tr",
+    "sourceUrl": "https://www.korkusuz.com.tr"
+  },
   "sources": [
     {
       "title": "Сайт Korkusuz",
       "url": "https://www.korkusuz.com.tr"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

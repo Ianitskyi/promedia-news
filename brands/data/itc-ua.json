@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://itc.ua",
+  "logo": {
+    "src": "https://cdn.itc.ua/uploads/2023/02/favicon-itc-300x300.png",
+    "sourceName": "itc.ua",
+    "sourceUrl": "https://itc.ua"
+  },
   "sources": [
     {
       "title": "Сайт ITC.ua",
       "url": "https://itc.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

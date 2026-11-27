@@ -28,6 +28,11 @@
     "uk": "«Збруч» публікує есеї, колонки й історичні розвідки. У лютому 2026 року тут вийшла колонка Юрія Винничука «Була колись розпусна епоха», яка спричинила скандал в Українському ПЕН."
   },
   "website": "https://zbruc.eu",
+  "logo": {
+    "src": "https://zbruc.eu/sites/all/themes/new_zbruc/logo.png",
+    "sourceName": "zbruc.eu",
+    "sourceUrl": "https://zbruc.eu"
+  },
   "wiki": [
     "uk:Збруч (інтернет-видання)"
   ],
@@ -37,5 +42,5 @@
       "url": "https://zbruc.eu"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

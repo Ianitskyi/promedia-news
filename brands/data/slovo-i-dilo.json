@@ -32,6 +32,12 @@
     ]
   ],
   "website": "https://www.slovoidilo.ua",
+  "logo": {
+    "src": "https://slovoidilo.ua/i/images/logo-white-s-uk.svg",
+    "sourceName": "slovoidilo.ua",
+    "sourceUrl": "https://www.slovoidilo.ua",
+    "bg": "#303f9f"
+  },
   "wiki": [
     "uk:Слово і діло"
   ],
@@ -41,5 +47,5 @@
       "url": "https://www.slovoidilo.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -33,11 +33,16 @@
     ]
   ],
   "website": "https://novynarnia.com",
+  "logo": {
+    "src": "https://novynarnia.com/wp-content/themes/novynarnia/dist/images/logo-nov1.webp",
+    "sourceName": "novynarnia.com",
+    "sourceUrl": "https://novynarnia.com"
+  },
   "sources": [
     {
       "title": "Сайт Novynarnia",
       "url": "https://novynarnia.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

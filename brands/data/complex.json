@@ -29,6 +29,11 @@
     ]
   ],
   "website": "https://www.complex.com",
+  "logo": {
+    "src": "https://images.complex.com/image/upload/w_650/complex_nbiphu.jpg",
+    "sourceName": "complex.com",
+    "sourceUrl": "https://www.complex.com"
+  },
   "wiki": [
     "en:Complex (magazine)"
   ],
@@ -38,5 +43,5 @@
       "url": "https://www.complex.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -23,6 +23,12 @@
     "uk": "Tele1 — серед турецьких телеканалів, які влада передала під зовнішнє управління. Логотип каналу несли учасники маршу в Стамбулі на захист свободи преси в листопаді 2026 року."
   },
   "website": "https://tele1.com.tr",
+  "logo": {
+    "src": "https://tele1comtr.teimg.com/tele1-com-tr/uploads/2024/12/tele1-logo-1.svg",
+    "sourceName": "tele1.com.tr",
+    "sourceUrl": "https://tele1.com.tr",
+    "bg": "#343434"
+  },
   "wiki": [
     "en:Tele1"
   ],
@@ -32,5 +38,5 @@
       "url": "https://tele1.com.tr"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

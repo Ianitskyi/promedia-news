@@ -35,6 +35,12 @@
     ]
   ],
   "website": "https://armyinform.com.ua",
+  "logo": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/3/31/Logo-ai.png",
+    "sourceName": "Вікісховище",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Logo-ai.png",
+    "license": "CC BY-SA 4.0"
+  },
   "wiki": [
     "uk:АрміяInform"
   ],
@@ -44,5 +50,5 @@
       "url": "https://armyinform.com.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

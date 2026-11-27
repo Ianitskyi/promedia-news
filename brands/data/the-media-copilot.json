@@ -23,11 +23,16 @@
     "uk": "The Media Copilot заснував американський журналіст Піт Пачал. Видання пише про угоди видавців із ШІ-компаніями, інструменти для редакцій і навчає журналістів працювати з ШІ."
   },
   "website": "https://mediacopilot.ai",
+  "logo": {
+    "src": "https://mediacopilot.ai/wp-content/uploads/2025/05/cropped-Media-Copilot-logo@2x.png",
+    "sourceName": "mediacopilot.ai",
+    "sourceUrl": "https://mediacopilot.ai"
+  },
   "sources": [
     {
       "title": "Сайт The Media Copilot",
       "url": "https://mediacopilot.ai"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -27,11 +27,16 @@
     "uk": "Mind пише про економіку, бізнес і реформи. ПроМедіа посилалася на нього в матеріалі про схеми з київською землею."
   },
   "website": "https://mind.ua",
+  "logo": {
+    "src": "https://mind.ua/assets/i/mind_logo.svg",
+    "sourceName": "mind.ua",
+    "sourceUrl": "https://mind.ua"
+  },
   "sources": [
     {
       "title": "Сайт Mind",
       "url": "https://mind.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

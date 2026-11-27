@@ -23,6 +23,11 @@
     "uk": "journalism.co.uk публікує новини та поради для журналістів, організовує конференцію Newsrewired."
   },
   "website": "https://www.journalism.co.uk",
+  "logo": {
+    "src": "https://storage.ghost.io/c/5c/e7/5ce74819-ead9-4ef3-8ecc-47e8bfde5535/content/images/2025/10/Logo_JournalismUK_Basic_Version_Blue-Pink_RGB.png",
+    "sourceName": "journalism.co.uk",
+    "sourceUrl": "https://www.journalism.co.uk"
+  },
   "wiki": [
     "en:Journalism.co.uk"
   ],
@@ -32,5 +37,5 @@
       "url": "https://www.journalism.co.uk"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

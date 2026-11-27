@@ -26,11 +26,16 @@
     "uk": "NGL.media розслідує діяльність місцевої влади й бізнесу у Львові. Позов до ГО «Львівська група» від фігуранта розслідування став приводом для звернення медійників із закликом ухвалити закон проти SLAPP до кінця 2026 року."
   },
   "website": "https://ngl.media",
+  "logo": {
+    "src": "https://ngl.media/wp-content/uploads/2023/09/logo-black.png",
+    "sourceName": "ngl.media",
+    "sourceUrl": "https://ngl.media"
+  },
   "sources": [
     {
       "title": "Сайт NGL.media",
       "url": "https://ngl.media"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -26,11 +26,16 @@
     "uk": "UkraineWorld пояснює іноземній аудиторії події в Україні; має однойменний подкаст, гостем якого була, зокрема, Наталія Гуменюк."
   },
   "website": "https://ukraineworld.org",
+  "logo": {
+    "src": "https://ukraineworld.org/themes/uw/assets/img/UW_logo.svg",
+    "sourceName": "ukraineworld.org",
+    "sourceUrl": "https://ukraineworld.org"
+  },
   "sources": [
     {
       "title": "Сайт UkraineWorld",
       "url": "https://ukraineworld.org"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

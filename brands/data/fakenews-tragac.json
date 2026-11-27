@@ -23,11 +23,16 @@
     "uk": "FakeNews Tragač 2025 року віддав «Золотого Піноккіо» таблоїду Informer: на нього припало 38% усіх дезінформацій, які виявив проєкт."
   },
   "website": "https://fakenews.rs",
+  "logo": {
+    "src": "https://fakenews.rs/wp-content/themes/fakenews_theme/img/fakenews-logo.svg",
+    "sourceName": "fakenews.rs",
+    "sourceUrl": "https://fakenews.rs"
+  },
   "sources": [
     {
       "title": "Сайт FakeNews Tragač",
       "url": "https://fakenews.rs"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -26,11 +26,16 @@
     "uk": "964media названо за телефонним кодом Іраку. Видання писало про блокування Telegram в Іраку, яке запровадила державна Комісія з питань комунікацій і медіа."
   },
   "website": "https://en.964media.com",
+  "logo": {
+    "src": "https://en.964media.com/storage/2024/04/WPcmaONbR3dXZ6NvRc7NsILGQ9rl3Rz1E4p5NdjZXyjxI7q1mAkPnB-180x180.png",
+    "sourceName": "en.964media.com",
+    "sourceUrl": "https://en.964media.com"
+  },
   "sources": [
     {
       "title": "Сайт 964media",
       "url": "https://en.964media.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

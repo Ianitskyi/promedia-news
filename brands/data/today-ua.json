@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://today.ua",
+  "logo": {
+    "src": "https://today.ua/img/logo.png",
+    "sourceName": "today.ua",
+    "sourceUrl": "https://today.ua"
+  },
   "sources": [
     {
       "title": "Сайт Today.ua",
       "url": "https://today.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

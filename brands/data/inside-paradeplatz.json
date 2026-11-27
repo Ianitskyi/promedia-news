@@ -23,6 +23,11 @@
     "uk": "Inside Paradeplatz названий на честь цюрихської площі, де розташовані штаб-квартири найбільших швейцарських банків. 2016 року сайт опублікував статті про ймовірні фінансові зловживання колишнього генерального директора Raiffeisen Switzerland П'єріна Вінценца. Як писала ПроМедіа, у Швейцарії вперше судитимуть журналіста — засновника сайту Лукаса Гессіга — за статтею про порушення банківської таємниці."
   },
   "website": "https://insideparadeplatz.ch",
+  "logo": {
+    "src": "https://insideparadeplatz.ch/wp-content/uploads/2014/11/favicon-547b52dd_site_icon-256x256.png",
+    "sourceName": "insideparadeplatz.ch",
+    "sourceUrl": "https://insideparadeplatz.ch"
+  },
   "wiki": [
     "de:Inside Paradeplatz"
   ],
@@ -32,5 +37,5 @@
       "url": "https://insideparadeplatz.ch"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

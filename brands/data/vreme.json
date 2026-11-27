@@ -29,6 +29,11 @@
     ]
   ],
   "website": "https://vreme.com",
+  "logo": {
+    "src": "https://vreme.com/wp-content/themes/cubestheme/frontend/apple-icon-144x144.png",
+    "sourceName": "vreme.com",
+    "sourceUrl": "https://vreme.com"
+  },
   "wiki": [
     "en:Vreme"
   ],
@@ -38,5 +43,5 @@
       "url": "https://vreme.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

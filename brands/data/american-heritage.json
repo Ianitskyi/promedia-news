@@ -23,6 +23,11 @@
     "uk": "American Heritage публікує статті істориків і журналістів про минуле США. Нині журнал виходить переважно онлайн. ПроМедіа посилалася на нього в тексті про міфи воєнної журналістики, зокрема про радіорепортажі Едварда Марроу з Лондона."
   },
   "website": "https://www.americanheritage.com",
+  "logo": {
+    "src": "https://www.americanheritage.com/sites/default/files/AH%20LOGO%202%20line%20transparent%20%281%29-1.png",
+    "sourceName": "americanheritage.com",
+    "sourceUrl": "https://www.americanheritage.com"
+  },
   "wiki": [
     "en:American Heritage (magazine)"
   ],
@@ -32,5 +37,5 @@
       "url": "https://www.americanheritage.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

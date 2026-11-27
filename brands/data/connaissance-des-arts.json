@@ -23,6 +23,11 @@
     "uk": "Connaissance des Arts пише про образотворче мистецтво, виставки й арт-ринок. AFP включила журнал до переліку видань LVMH, охоплених угодою з OpenAI."
   },
   "website": "https://www.connaissancedesarts.com",
+  "logo": {
+    "src": "https://www.connaissancedesarts.com/wp-content/themes/cda-v4/favicons/apple-touch-icon.png",
+    "sourceName": "connaissancedesarts.com",
+    "sourceUrl": "https://www.connaissancedesarts.com"
+  },
   "wiki": [
     "fr:Connaissance des arts"
   ],
@@ -32,5 +37,5 @@
       "url": "https://www.connaissancedesarts.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

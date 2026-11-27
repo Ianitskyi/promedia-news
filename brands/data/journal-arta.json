@@ -23,11 +23,16 @@
     "uk": "Journal Arta згадано в новині ПроМедіа про рекордний старт гри GTA 6 як джерело інформації про ціну гри та відсутність дати виходу версії для комп'ютерів. Досьє буде доповнено."
   },
   "website": "https://journalarta.com",
+  "logo": {
+    "src": "https://journalarta.com/wp-content/themes/journalarta-theme/assets/img/journalarta-logo.png",
+    "sourceName": "journalarta.com",
+    "sourceUrl": "https://journalarta.com"
+  },
   "sources": [
     {
       "title": "Сайт Journal Arta",
       "url": "https://journalarta.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

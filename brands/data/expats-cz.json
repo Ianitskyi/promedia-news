@@ -23,11 +23,16 @@
     "uk": "Expats.cz перекладає й пояснює чеські новини англійською. Видання писало, що організатори протестів закликали приходити в шапках героя «Вечірничка»."
   },
   "website": "https://www.expats.cz",
+  "logo": {
+    "src": "https://www.expats.cz/redesign2010/img/2018_layout/logo_expats.svg",
+    "sourceName": "expats.cz",
+    "sourceUrl": "https://www.expats.cz"
+  },
   "sources": [
     {
       "title": "Сайт Expats.cz",
       "url": "https://www.expats.cz"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

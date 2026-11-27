@@ -23,11 +23,16 @@
     "uk": "Raskrikavanje перевіряє заяви політиків і публікації проурядових медіа. За його підрахунками, на перших шпальтах 306 номерів Informer за 2024 рік було щонайменше 384 маніпулятивні новини й дезінформації."
   },
   "website": "https://www.raskrikavanje.rs",
+  "logo": {
+    "src": "https://raskrikavanje.rs/wp-content/uploads/2025/07/cropped-RKK_Logo_01-180x180.png",
+    "sourceName": "raskrikavanje.rs",
+    "sourceUrl": "https://www.raskrikavanje.rs"
+  },
   "sources": [
     {
       "title": "Сайт Raskrikavanje",
       "url": "https://www.raskrikavanje.rs"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://defence-ua.com",
+  "logo": {
+    "src": "https://defence-ua.com/images/logo.svg",
+    "sourceName": "defence-ua.com",
+    "sourceUrl": "https://defence-ua.com"
+  },
   "sources": [
     {
       "title": "Сайт Defense Express",
       "url": "https://defence-ua.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

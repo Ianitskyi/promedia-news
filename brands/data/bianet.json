@@ -29,6 +29,12 @@
     ]
   ],
   "website": "https://bianet.org",
+  "logo": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Bianet_logo.png",
+    "sourceName": "Вікісховище",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bianet_logo.png",
+    "license": "CC BY-SA 3.0"
+  },
   "wiki": [
     "en:Bianet"
   ],
@@ -38,5 +44,5 @@
       "url": "https://bianet.org"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

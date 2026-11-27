@@ -23,11 +23,16 @@
     "uk": "PPC Land пише про рекламні технології, Google, штучний інтелект і регулювання цифрових ринків. На нього ПроМедіа посилалася в новині про угоду OpenAI з медіагрупою LVMH."
   },
   "website": "https://ppc.land",
+  "logo": {
+    "src": "https://ppc.land/content/images/2026/04/PPC-Land-logo-2.png",
+    "sourceName": "ppc.land",
+    "sourceUrl": "https://ppc.land"
+  },
   "sources": [
     {
       "title": "Сайт PPC Land",
       "url": "https://ppc.land"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

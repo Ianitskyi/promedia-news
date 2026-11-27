@@ -23,11 +23,16 @@
     "uk": "021.rs пише про Нові-Сад і Воєводину. ПроМедіа посилалася на нього в новині про затримання власника Informer, згадуючи попередні судові справи проти Драгана Вучичевича."
   },
   "website": "https://www.021.rs",
+  "logo": {
+    "src": "https://www.021.rs/images/logo-021.png",
+    "sourceName": "021.rs",
+    "sourceUrl": "https://www.021.rs"
+  },
   "sources": [
     {
       "title": "Сайт 021.rs",
       "url": "https://www.021.rs"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

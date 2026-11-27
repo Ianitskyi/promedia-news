@@ -23,11 +23,16 @@
     "uk": "Medical Dialogues публікує новини медицини, фармацевтики й регулювання охорони здоров'я в Індії. Учасник програми JournalismAI Лондонської школи економіки."
   },
   "website": "https://medicaldialogues.in",
+  "logo": {
+    "src": "https://medicaldialogues.in/images/logo.svg",
+    "sourceName": "medicaldialogues.in",
+    "sourceUrl": "https://medicaldialogues.in"
+  },
   "sources": [
     {
       "title": "Сайт Medical Dialogues",
       "url": "https://medicaldialogues.in"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

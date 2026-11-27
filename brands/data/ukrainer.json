@@ -32,6 +32,11 @@
     ]
   ],
   "website": "https://www.ukrainer.net",
+  "logo": {
+    "src": "https://upload.wikimedia.org/wikipedia/uk/8/89/Ukra%D1%97ner_(%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF).png",
+    "sourceName": "Вікіпедія",
+    "sourceUrl": "https://uk.wikipedia.org/wiki/File:Ukra%D1%97ner_(%D0%BB%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF).png"
+  },
   "wiki": [
     "uk:Ukraїner"
   ],
@@ -41,5 +46,5 @@
       "url": "https://www.ukrainer.net"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

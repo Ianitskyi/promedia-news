@@ -29,6 +29,12 @@
     ]
   ],
   "website": "https://www.niemanlab.org",
+  "logo": {
+    "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Nieman_Foundation_logo.svg/500px-Nieman_Foundation_logo.svg.png",
+    "sourceName": "Вікісховище",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nieman_Foundation_logo.svg",
+    "license": "Public domain"
+  },
   "wiki": [
     "en:Nieman Journalism Lab"
   ],
@@ -38,5 +44,5 @@
       "url": "https://www.niemanlab.org"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

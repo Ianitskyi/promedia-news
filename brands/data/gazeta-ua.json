@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://gazeta.ua",
+  "logo": {
+    "src": "https://gazeta.ua/images/svg/gazeta.svg",
+    "sourceName": "gazeta.ua",
+    "sourceUrl": "https://gazeta.ua"
+  },
   "sources": [
     {
       "title": "Сайт Gazeta.ua",
       "url": "https://gazeta.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

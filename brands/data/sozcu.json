@@ -32,6 +32,11 @@
     ]
   ],
   "website": "https://www.sozcu.com.tr",
+  "logo": {
+    "src": "https://upload.wikimedia.org/wikipedia/en/1/14/Sozculogo248x90.png",
+    "sourceName": "Вікіпедія",
+    "sourceUrl": "https://en.wikipedia.org/wiki/File:Sozculogo248x90.png"
+  },
   "wiki": [
     "en:Sözcü"
   ],
@@ -41,5 +46,5 @@
       "url": "https://www.sozcu.com.tr"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

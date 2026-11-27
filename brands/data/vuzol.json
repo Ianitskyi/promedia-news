@@ -33,6 +33,11 @@
     ]
   ],
   "website": "https://vuzol.org.ua",
+  "logo": {
+    "src": "https://vuzol.org.ua/assets/vuzol-logo-dark-cropped.png",
+    "sourceName": "vuzol.org.ua",
+    "sourceUrl": "https://vuzol.org.ua"
+  },
   "sources": [
     {
       "title": "Медіа про історію української музики VUZOL запустило сайт — ПроМедіа",
@@ -43,5 +48,5 @@
       "url": "https://vuzol.org.ua"
     }
   ],
-  "updated": "2026-11-27"
+  "updated": "2026-11-28"
 }

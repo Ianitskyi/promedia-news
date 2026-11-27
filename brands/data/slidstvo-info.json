@@ -43,6 +43,11 @@
     ]
   ],
   "website": "https://www.slidstvo.info",
+  "logo": {
+    "src": "https://www.slidstvo.info/wp-content/themes/slidstvo_wp/img/logo.svg",
+    "sourceName": "slidstvo.info",
+    "sourceUrl": "https://www.slidstvo.info"
+  },
   "wiki": [
     "uk:Слідство.Інфо"
   ],
@@ -52,5 +57,5 @@
       "url": "https://www.slidstvo.info"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

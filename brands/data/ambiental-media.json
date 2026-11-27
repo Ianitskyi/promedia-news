@@ -23,11 +23,16 @@
     "uk": "Ambiental Media робить інтерактивні проєкти про клімат і довкілля. Учасник програми JournalismAI Лондонської школи економіки."
   },
   "website": "https://ambiental.media",
+  "logo": {
+    "src": "https://ambiental.media/wp-content/uploads/2023/04/cropped-favicon-180x180.png",
+    "sourceName": "ambiental.media",
+    "sourceUrl": "https://ambiental.media"
+  },
   "sources": [
     {
       "title": "Сайт Ambiental Media",
       "url": "https://ambiental.media"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

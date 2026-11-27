@@ -33,6 +33,11 @@
     ]
   ],
   "website": "https://www.eurointegration.com.ua",
+  "logo": {
+    "src": "https://www.eurointegration.com.ua/images/v3/europe_logo_ukr.svg",
+    "sourceName": "eurointegration.com.ua",
+    "sourceUrl": "https://www.eurointegration.com.ua"
+  },
   "wiki": [
     "uk:Європейська правда"
   ],
@@ -42,5 +47,5 @@
       "url": "https://www.eurointegration.com.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

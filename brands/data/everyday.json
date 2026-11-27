@@ -26,11 +26,16 @@
     "uk": "EveryDay писав про загибель на фронті сумського фотографа Артура Назарова, який знімав Майдан."
   },
   "website": "https://everyday.sumy.ua",
+  "logo": {
+    "src": "https://everyday.sumy.ua/wp-content/uploads/2025/08/cropped-logo-180x180.png",
+    "sourceName": "everyday.sumy.ua",
+    "sourceUrl": "https://everyday.sumy.ua"
+  },
   "sources": [
     {
       "title": "Сайт EveryDay",
       "url": "https://everyday.sumy.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

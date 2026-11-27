@@ -26,11 +26,16 @@
     "uk": "«Накипіло» робить новини про Харків і має програму лояльності для членів спільноти. Медіагрупа організувала фестиваль-ярмарок «Ключ до Харкова» на підтримку місцевих брендів."
   },
   "website": "https://nakypilo.ua",
+  "logo": {
+    "src": "https://nakypilo.ua/wp-content/uploads/2024/04/cropped-logo-nakypilo-kolo-180x180.png",
+    "sourceName": "nakypilo.ua",
+    "sourceUrl": "https://nakypilo.ua"
+  },
   "sources": [
     {
       "title": "Сайт Nakypilo",
       "url": "https://nakypilo.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

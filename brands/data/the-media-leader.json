@@ -23,11 +23,16 @@
     "uk": "The Media Leader пише про медіабізнес і рекламний ринок. Його французька редакція повідомила, що Мішель Бенбюнан очолила групу Les Echos — Le Parisien, про що ПроМедіа писала в новині про угоду OpenAI з LVMH."
   },
   "website": "https://uk.themedialeader.com",
+  "logo": {
+    "src": "https://uk.themedialeader.com/wp-content/themes/the-media-leader-theme/assets/images/tml-logo.svg",
+    "sourceName": "uk.themedialeader.com",
+    "sourceUrl": "https://uk.themedialeader.com"
+  },
   "sources": [
     {
       "title": "Сайт The Media Leader",
       "url": "https://uk.themedialeader.com"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

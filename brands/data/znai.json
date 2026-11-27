@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://znaj.ua",
+  "logo": {
+    "src": "https://znaj.ua/icons/icon-600x600.png",
+    "sourceName": "znaj.ua",
+    "sourceUrl": "https://znaj.ua"
+  },
   "sources": [
     {
       "title": "Сайт Znaj",
       "url": "https://znaj.ua"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

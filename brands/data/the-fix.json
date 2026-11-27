@@ -32,11 +32,16 @@
     ]
   ],
   "website": "https://thefix.media",
+  "logo": {
+    "src": "https://thefix.media/fix-logo.svg",
+    "sourceName": "thefix.media",
+    "sourceUrl": "https://thefix.media"
+  },
   "sources": [
     {
       "title": "Сайт The Fix Media",
       "url": "https://thefix.media"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }

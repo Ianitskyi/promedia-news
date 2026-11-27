@@ -23,6 +23,11 @@
     "uk": "Challenges пише про економіку, компанії та їхніх власників. За даними AFP, на які посилалася ПроМедіа, журнал входить до 17 видань LVMH, щодо яких група уклала угоду з OpenAI."
   },
   "website": "https://www.challenges.fr",
+  "logo": {
+    "src": "https://www.challenges.fr/images/logo.svg",
+    "sourceName": "challenges.fr",
+    "sourceUrl": "https://www.challenges.fr"
+  },
   "wiki": [
     "fr:Challenges (magazine)",
     "fr:Challenges (magazine français)"
@@ -33,5 +38,5 @@
       "url": "https://www.challenges.fr"
     }
   ],
-  "updated": "2026-11-25"
+  "updated": "2026-11-28"
 }
