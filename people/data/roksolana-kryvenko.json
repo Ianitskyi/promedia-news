@@ -1,0 +1,45 @@
+{
+  "slug": "roksolana-kryvenko",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Роксолана Кривенко",
+    "en": "Roksolana Kryvenko"
+  },
+  "sort": {
+    "uk": "Кривенко Роксолана",
+    "en": "Kryvenko Roksolana"
+  },
+  "role": {
+    "uk": "засновниця й очільниця онлайн-медіа VUZOL",
+    "en": "Founder and head of the online outlet VUZOL"
+  },
+  "summary": {
+    "uk": "Засновниця й очільниця VUZOL — онлайн-медіа про історію української музики.",
+    "en": "Founder and head of VUZOL, an online outlet about the history of Ukrainian music."
+  },
+  "bio": {
+    "uk": "Роксолана Кривенко — засновниця й очільниця VUZOL, онлайн-медіа про історію української музики, яке працює понад чотири роки. Медіа створює відео, тексти, події, лекції та плейлисти й розвиває спільноту людей, яких об'єднує українська музика.\n\nУ листопаді 2026 року VUZOL запустило власний сайт vuzol.org.ua, який розробила ГО «ПроМедіа»."
+  },
+  "facts": [
+    [
+      "VUZOL",
+      "засновниця й очільниця"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Медіа про історію української музики VUZOL запустило сайт — ПроМедіа",
+      "url": "https://news.promedia.report/article/media-vuzol-zapustylo-sait"
+    },
+    {
+      "title": "VUZOL",
+      "url": "https://vuzol.org.ua"
+    }
+  ],
+  "updated": "2026-11-27",
+  "aliases": [
+    "Roksolana Kryvenko"
+  ],
+  "kind": "journalist"
+}

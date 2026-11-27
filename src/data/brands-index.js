@@ -5275,6 +5275,26 @@ export const BRANDS = [
     }
   },
   {
+    "slug": "vuzol",
+    "tag": "VUZOL",
+    "aliases": [],
+    "group": "ua",
+    "kind": "online",
+    "country": "Україна",
+    "name": {
+      "uk": "VUZOL",
+      "en": "VUZOL"
+    },
+    "type": {
+      "uk": "онлайн-медіа про історію української музики",
+      "en": "online outlet about the history of Ukrainian music"
+    },
+    "summary": {
+      "uk": "Українське онлайн-медіа про історію української музики, що працює понад чотири роки.",
+      "en": "Ukrainian online outlet about the history of Ukrainian music, working for more than four years."
+    }
+  },
+  {
     "slug": "windows-central",
     "tag": "Windows Central",
     "aliases": [],

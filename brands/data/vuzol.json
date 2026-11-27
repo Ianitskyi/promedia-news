@@ -1,0 +1,47 @@
+{
+  "slug": "vuzol",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "online",
+  "name": {
+    "uk": "VUZOL",
+    "en": "VUZOL"
+  },
+  "sort": {
+    "uk": "VUZOL",
+    "en": "VUZOL"
+  },
+  "type": {
+    "uk": "онлайн-медіа про історію української музики",
+    "en": "online outlet about the history of Ukrainian music"
+  },
+  "summary": {
+    "uk": "Українське онлайн-медіа про історію української музики, що працює понад чотири роки.",
+    "en": "Ukrainian online outlet about the history of Ukrainian music, working for more than four years."
+  },
+  "bio": {
+    "uk": "VUZOL розповідає про українську музику, її історію та людей, які її творили. Створює відео, тексти, події, лекції та плейлисти й розвиває спільноту. Засновниця й очільниця — Роксолана Кривенко. У листопаді 2026 року медіа запустило сайт vuzol.org.ua, який розробила ГО «ПроМедіа»."
+  },
+  "facts": [
+    [
+      "Засновниця",
+      "Роксолана Кривенко"
+    ],
+    [
+      "Сайт",
+      "vuzol.org.ua"
+    ]
+  ],
+  "website": "https://vuzol.org.ua",
+  "sources": [
+    {
+      "title": "Медіа про історію української музики VUZOL запустило сайт — ПроМедіа",
+      "url": "https://news.promedia.report/article/media-vuzol-zapustylo-sait"
+    },
+    {
+      "title": "VUZOL",
+      "url": "https://vuzol.org.ua"
+    }
+  ],
+  "updated": "2026-11-27"
+}

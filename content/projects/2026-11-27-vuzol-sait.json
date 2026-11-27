@@ -1,0 +1,30 @@
+{
+  "slug": "vuzol-sait",
+  "title": "Сайт для медіа VUZOL",
+  "titleEn": "Website for the VUZOL outlet",
+  "titleCrh": "VUZOL mediyası içün sayt",
+  "excerpt": "Розробили сайт vuzol.org.ua для онлайн-медіа про історію української музики. Частина матеріалів підтягується із соцмереж автоматично.",
+  "excerptEn": "We built vuzol.org.ua for an online outlet about the history of Ukrainian music. Part of the content is pulled in from social media automatically.",
+  "excerptCrh": "Ukrain muzıkasınıñ tarihı aqqında onlayn-mediya içün vuzol.org.ua saytını yarattıq. Materiallarnıñ bir qısmı sotsial ağlardan avtomatik olaraq alına.",
+  "bodyMd": "VUZOL — онлайн-медіа про історію української музики, яке працює понад чотири роки. Його аудиторія жила переважно в соцмережах: Instagram, TikTok, YouTube і Threads. ГО «ПроМедіа» розробила для медіа власний сайт [vuzol.org.ua](https://vuzol.org.ua), де зібрано публікації, події, дослідницькі проєкти та спільноту. Сайт запрацював 27 листопада 2026 року.\n\nДокладніше — у новині [«Медіа про історію української музики VUZOL запустило сайт»](https://news.promedia.report/article/media-vuzol-zapustylo-sait).",
+  "bodyMdEn": "VUZOL is an online outlet about the history of Ukrainian music that has been working for more than four years. Its audience lived mainly on social media: Instagram, TikTok, YouTube and Threads. The NGO ProMedia developed the outlet's own website, [vuzol.org.ua](https://vuzol.org.ua), which gathers its publications, events, research projects and community. The website went live on 27 November 2026.\n\nMore in the story [\"VUZOL, an outlet about the history of Ukrainian music, launches its website\"](https://news.promedia.report/en/article/media-vuzol-zapustylo-sait).",
+  "bodyMdCrh": "VUZOL — dört yıldan ziyade çalışqan ukrain muzıkasınıñ tarihı aqqında onlayn-mediya. Onıñ auditoriyası esasen sotsial ağlarda edi: Instagram, TikTok, YouTube ve Threads. ProMedia İCT mediya içün neşirler, vaqialar, tedqiqat leyhaları ve cemaat toplanğan öz saytını — [vuzol.org.ua](https://vuzol.org.ua) — yarattı. Sayt 2026 senesi 27 noyabrde işlemege başladı.\n\nTafsilâtlı — [«Ukrain muzıkasınıñ tarihı aqqında mediya VUZOL saytını başlattı»](https://news.promedia.report/crh/article/media-vuzol-zapustylo-sait) haberinde.",
+  "workMd": "- Розробили сайт vuzol.org.ua з розділами «Наші публікації», «Що робимо», «Проєкти», «Спільнота» й «Команда».\n- Налаштували автоматичне оновлення сайту матеріалами з Instagram і YouTube медіа — частина інформації оновлюється без участі людини.\n- Підключили домен vuzol.org.ua і вебаналітику.\n- Зробили адмінпанель, у якій команда VUZOL сама редагує вміст сайту.",
+  "workMdEn": "- Built vuzol.org.ua with the sections Our publications, What we do, Projects, Community and Team.\n- Set up automatic updates from the outlet's Instagram and YouTube, so part of the content refreshes without human involvement.\n- Connected the vuzol.org.ua domain and web analytics.\n- Built an admin panel where the VUZOL team edits the site's content themselves.",
+  "workMdCrh": "- «Neşirlerimiz», «Ne yapamız», «Leyhalar», «Cemaat» ve «Komanda» bölükleri olğan vuzol.org.ua saytını yarattıq.\n- Saytnıñ mediyanıñ Instagram ve YouTube materiallarınen avtomatik yañartuvını sazladıq — malümatnıñ bir qısmı insan iştirakisiz yañartıla.\n- vuzol.org.ua domenini ve veb-analitikanı bağladıq.\n- VUZOL komandası sayt muhtevasını özü deñiştirgen idare panelini yarattıq.",
+  "partner": "VUZOL",
+  "partnerEn": "VUZOL",
+  "partnerCrh": "VUZOL",
+  "periodLabel": "Листопад 2026 року",
+  "periodLabelEn": "November 2026",
+  "periodLabelCrh": "2026 senesi noyabr",
+  "coverImageUrl": "/img/projects/vuzol-sait.jpg",
+  "projectStatus": "active",
+  "startDate": "2026-11-01",
+  "websiteUrl": "https://vuzol.org.ua",
+  "tags": [
+    "медіа",
+    "автоматизація"
+  ],
+  "isFeatured": true
+}

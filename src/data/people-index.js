@@ -2888,6 +2888,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "roksolana-kryvenko",
+    "tag": "Роксолана Кривенко",
+    "aliases": [
+      "Roksolana Kryvenko"
+    ],
+    "name": {
+      "uk": "Роксолана Кривенко",
+      "en": "Roksolana Kryvenko"
+    },
+    "role": {
+      "uk": "засновниця й очільниця онлайн-медіа VUZOL",
+      "en": "Founder and head of the online outlet VUZOL"
+    },
+    "summary": {
+      "uk": "Засновниця й очільниця VUZOL — онлайн-медіа про історію української музики.",
+      "en": "Founder and head of VUZOL, an online outlet about the history of Ukrainian music."
+    }
+  },
+  {
     "slug": "rupert-humphries",
     "tag": "Руперт Гамфріс",
     "aliases": [
