@@ -241,6 +241,8 @@ const TAG_LABELS_EN = {
   "журналістські розслідування": "investigative journalism",
   "ІРРП": "RPDI",
   "Суспільне": "Suspilne",
+  "Євробачення": "Eurovision",
+  "Нацвідбір 2027": "Vidbir 2027",
   "державний бюджет": "state budget",
   "медіаполітика": "media policy",
   "незалежні медіа": "independent media",
@@ -456,6 +458,8 @@ const TAG_LABELS_CRH = {
   "журналістські розслідування": "jurnalist teftişleri",
   "ІРРП": "RPDI",
   "Суспільне": "Suspilne",
+  "Євробачення": "Evrovidenie",
+  "Нацвідбір 2027": "Milliy saylav 2027",
   "державний бюджет": "devlet byudjeti",
   "медіаполітика": "mediya siyaseti",
   "незалежні медіа": "müstaqil mediya",
@@ -511,6 +515,7 @@ const TAG_LABELS_CRH = {
 // а нові теги без німецького перекладу показуємо англійською (не транслітом).
 const TAG_LABELS_DE = {
   "Іран": "Iran",
+  "Євробачення": "Eurovision", "Нацвідбір 2027": "Vidbir 2027",
   "телебачення": "Fernsehen", "супутникове телебачення": "Satellitenfernsehen",
   "алгоритми": "Algorithmen", "медіатеорія": "Medientheorie",
   "наука": "Wissenschaft",
