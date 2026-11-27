@@ -319,6 +319,13 @@ for (const f of files) {
     : `Published ${a.slug} (id ${row.id}).`);
 }
 
+// Новини, які вийшли за розкладом раніше, ніж спершу планували: дата на сайті = фактичний час виходу
+// (scheduled_publications.published_at_run), а не перший запланований час.
+d1(SCHEDULE_TABLE_SQL);
+d1(`UPDATE articles SET published_at = (SELECT s.published_at_run FROM scheduled_publications s WHERE s.slug = articles.slug)
+  WHERE status = 'published' AND EXISTS (SELECT 1 FROM scheduled_publications s WHERE s.slug = articles.slug
+    AND s.done = 1 AND s.published_at_run IS NOT NULL AND s.published_at_run < articles.published_at)`);
+
 // Картки «Медіа в матеріалі» / «Університети в матеріалі» для вже опублікованих новин
 // (зокрема з адмінки): content/related-media.json — { "slug": ["atlas-…", "univ:…"] }.
 // Змінює лише related_media_ids, текст не чіпає. Кожен список застосовується один раз,

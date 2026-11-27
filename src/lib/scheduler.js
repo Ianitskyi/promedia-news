@@ -17,9 +17,11 @@ export async function publishDueArticles(db, now = new Date()) {
   ).bind(nowIso).all()).results || [];
   for (const { slug } of due) {
     // Лише чернетка, не видалена: якщо редактор уже опублікував чи прибрав новину в адмінці, не чіпаємо.
+    // Дата публікації = фактичний час виходу (27.11.2026: новина Spokusy, яку спершу запланували на 28.11,
+    // а потім перенесли на 18:00 27.11, на сайті стояла з датою 28.11).
     await db.prepare(
-      "UPDATE articles SET status = 'published', updated_at = ? WHERE slug = ? AND status = 'draft' AND deleted_at IS NULL"
-    ).bind(nowIso, slug).run();
+      "UPDATE articles SET status = 'published', published_at = ?, updated_at = ? WHERE slug = ? AND status = 'draft' AND deleted_at IS NULL"
+    ).bind(nowIso, nowIso, slug).run();
     await db.prepare(
       "UPDATE scheduled_publications SET done = 1, published_at_run = ? WHERE slug = ?"
     ).bind(nowIso, slug).run();

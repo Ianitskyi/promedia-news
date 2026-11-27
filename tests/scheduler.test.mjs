@@ -21,10 +21,10 @@ function d1(db) {
 
 function setup() {
   const db = new DatabaseSync(":memory:");
-  db.exec("CREATE TABLE articles (slug TEXT PRIMARY KEY, status TEXT NOT NULL CHECK (status IN ('draft','published')), deleted_at TEXT, updated_at TEXT)");
+  db.exec("CREATE TABLE articles (slug TEXT PRIMARY KEY, status TEXT NOT NULL CHECK (status IN ('draft','published')), deleted_at TEXT, updated_at TEXT, published_at TEXT)");
   db.exec(SCHEDULE_TABLE_SQL);
   const add = (slug, status, publishAt, deleted = null) => {
-    db.prepare("INSERT INTO articles (slug, status, deleted_at) VALUES (?, ?, ?)").run(slug, status, deleted);
+    db.prepare("INSERT INTO articles (slug, status, deleted_at, published_at) VALUES (?, ?, ?, ?)").run(slug, status, deleted, "2026-11-28T00:10:00.000Z");
     if (publishAt) db.prepare("INSERT INTO scheduled_publications (slug, publish_at) VALUES (?, ?)").run(slug, publishAt);
   };
   return { db, add, status: slug => db.prepare("SELECT status FROM articles WHERE slug = ?").get(slug).status };
@@ -40,6 +40,7 @@ test("Scheduler publishes only drafts whose time has come", async () => {
   const published = await publishDueArticles(d1(db), now);
   assert.deepEqual(published.sort(), ["deleted", "due"]);
   assert.equal(status("due"), "published");
+  assert.equal(db.prepare("SELECT published_at FROM articles WHERE slug = 'due'").get().published_at, now.toISOString(), "the date shown is the actual publication time");
   assert.equal(status("future"), "draft");
   assert.equal(status("plain-draft"), "draft", "an ordinary admin draft is never published");
   assert.equal(status("deleted"), "draft", "a deleted article stays hidden");
