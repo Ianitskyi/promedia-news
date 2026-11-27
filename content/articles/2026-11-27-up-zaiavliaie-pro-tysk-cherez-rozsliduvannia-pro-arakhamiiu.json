@@ -24,34 +24,33 @@
   "isImportant": true,
   "cardStyle": "image",
   "cover": {
-    "commonsFile": "Sevgil Musayeva 2022 Global Forum (cropped).jpg",
-    "width": 1600,
-    "alt": "Севгіль Мусаєва",
+    "url": "/img/news/musaieva-trust-conference-2024.jpg",
+    "alt": "Севгіль Мусаєва на сцені Trust Conference 2024",
     "caption": {
-      "uk": "Головна редакторка «Української правди» Севгіль Мусаєва, 2022 рік. Фото: ⟦АВТОР⟧ / Вікісховище, ⟦ЛІЦЕНЗІЯ⟧.",
-      "en": "Ukrainska Pravda editor-in-chief Sevgil Musaieva, 2022. Photo: ⟦AUTHOR⟧ / Wikimedia Commons, ⟦LICENCE⟧.",
-      "crh": "«Ukrainska Pravda» baş redaktorı Sevgil Musayeva, 2022 senesi. Foto: ⟦MÜELLİF⟧ / Wikimedia Commons, ⟦LİTSENZİYA⟧.",
-      "de": "Sevgil Musaieva, Chefredakteurin von Ukrainska Pravda, 2022. Foto: ⟦AUTHOR⟧ / Wikimedia Commons, ⟦LICENCE⟧."
+      "uk": "Головна редакторка «Української правди» Севгіль Мусаєва (праворуч) на Trust Conference 2024, щорічному форумі Фонду Thomson Reuters у Лондоні. Фото: Thomson Reuters Foundation / GIJN.",
+      "en": "Ukrainska Pravda editor-in-chief Sevgil Musaieva (right) at Trust Conference 2024, the Thomson Reuters Foundation's annual forum in London. Photo: Thomson Reuters Foundation / GIJN.",
+      "crh": "«Ukrainska Pravda» baş redaktorı Sevgil Musayeva (sağda) Londonda Thomson Reuters Fondunıñ yıllıq forumı Trust Conference 2024-te. Foto: Thomson Reuters Foundation / GIJN.",
+      "de": "Sevgil Musaieva (rechts), Chefredakteurin von Ukrainska Pravda, bei der Trust Conference 2024, dem jährlichen Forum der Thomson Reuters Foundation in London. Foto: Thomson Reuters Foundation / GIJN."
     },
     "focus": {
       "mobile": {
-        "x": 50,
-        "y": 28
+        "x": 62,
+        "y": 45
       },
       "desktop": {
-        "x": 50,
-        "y": 28
+        "x": 62,
+        "y": 45
       },
       "feed": {
-        "x": 50,
-        "y": 28
+        "x": 62,
+        "y": 45
       },
       "social": {
-        "x": 50,
-        "y": 28
+        "x": 62,
+        "y": 45
       }
     }
   },
-  "revision": "2026-11-27-v3",
-  "coverRevision": "2026-11-27-v3"
+  "revision": "2026-11-27-v4",
+  "coverRevision": "2026-11-27-v4"
 }
