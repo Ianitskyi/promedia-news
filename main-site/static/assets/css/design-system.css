@@ -363,12 +363,20 @@ body.innerpage main:not(:has(> .slimheader)) {
     body.homepage .pm-projects-strip #projects-grid,
     body.homepage .pm-projects-strip .pm-projects-pills,
     body.homepage .pm-projects-strip .pm-projects-all { display: none !important; }
-    .pm-projects-strip > .container { padding-right: var(--bs-gutter-x, 12px); }
+    /* One row that scrolls sideways to the screen edge, like on news.promedia.report. */
+    .pm-projects-strip > .container { padding-right: 0; }
     .pm-formats-nav {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: 6px;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+        padding-right: 12px;
     }
+    .pm-formats-nav::-webkit-scrollbar { display: none; }
+    .pm-format-chip { flex: none; }
     .pm-format-chip {
         --chip-bg: #f0f0f6; --chip-fg: #4a4970; --chip-on: #e0e0ee;
         display: inline-flex;
