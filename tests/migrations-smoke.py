@@ -11,6 +11,10 @@ migrations = sorted(Path("migrations").glob("*.sql"))
 assert migrations, "No database migrations found"
 
 for migration in migrations:
+    sql = migration.read_text(encoding="utf-8")
+    # articles.pinned_at is added at deploy by scripts/ensure-article-pinned.mjs, before 0032 runs.
+    if "pinned_at" in sql and "pinned_at" not in {r[1] for r in db.execute("PRAGMA table_info(articles)")}:
+        db.execute("ALTER TABLE articles ADD COLUMN pinned_at TEXT")
     try:
         db.executescript(migration.read_text(encoding="utf-8"))
     except sqlite3.Error as exc:
