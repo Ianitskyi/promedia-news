@@ -5,6 +5,25 @@ import { ukrainianTypographyReplacer } from "../lib/typography.js";
 // Мова — перший сегмент шляху: /en/…, /crh/…, /de/… (uk — без префікса).
 // Німецькою (/de/) показуємо лише вже перекладені матеріали: переклад робить ШІ через 2 години після останньої правки.
 const DE_READY = " AND title_de IS NOT NULL AND title_de != ''";
+
+const POPULAR_TTL_MS = 10 * 60 * 1000;
+const popularMemo = new Map();
+
+async function popularList(db, lang) {
+  const key = lang === "de" ? "de" : "all";
+  const hit = popularMemo.get(key);
+  if (hit && Date.now() - hit.at < POPULAR_TTL_MS) return hit.list;
+  try {
+    const { results } = await db.prepare(
+      "SELECT id, slug, title, title_en, title_crh, title_de FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL" + (key === "de" ? DE_READY : "") + " AND published_at >= datetime('now', '-30 days') ORDER BY COALESCE(av.ga4_views, 0) DESC, published_at DESC LIMIT 11"
+    ).all();
+    const list = results || [];
+    popularMemo.set(key, { at: Date.now(), list });
+    return list;
+  } catch (_) {
+    return hit ? hit.list : [];
+  }
+}
 const LANG_PATH = /^\/(en|crh|de)(?=\/|$)/;
 
 function getLang(url) {
@@ -442,9 +461,9 @@ ${entries.join("\n")}
       fetchRelatedMediaNames(relatedIds, env, baseUrl),
       fetchRelatedUniversities(relatedIds, env, baseUrl),
       // «Найчитаніше» у правій колонці: найпопулярніші (GA4) за останні 30 днів, без поточної.
-      db.prepare(
-        "SELECT slug, title, title_en, title_crh, title_de FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL" + (lang === "de" ? DE_READY : "") + " AND id != ? AND published_at >= datetime('now', '-30 days') ORDER BY COALESCE(av.ga4_views, 0) DESC, published_at DESC LIMIT 10"
-      ).bind(article.id).all().then(r => r.results || []).catch(() => [])
+      // Список однаковий для всіх статей, тож тримаємо його в пам'яті воркера 10 хвилин,
+      // а не читаємо з D1 на кожній сторінці (27.11.2026 — ліміт читань).
+      popularList(db, lang).then(list => list.filter(a => a.id !== article.id).slice(0, 10))
     ]);
     return html(renderArticlePage({ article, lang, baseUrl, relatedMediaNames, relatedUniversities, popularArticles }));
   }

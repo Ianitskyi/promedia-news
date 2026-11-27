@@ -12,6 +12,19 @@ import { runGermanTranslation, germanStatus } from "./lib/translateDe.js";
 const EDGE_CACHE_SECONDS = 120;
 const NO_EDGE_CACHE = /^\/(admin|api\/(admin|auth|me|setup|push|analytics|scheduler-status|threads-status|translation-status|export)|img-storage)(\/|$)/;
 
+// Параметри, від яких справді залежить відповідь публічних сторінок і API.
+// Усе інше (fbclid, utm_*, gclid, випадкові хвости від ботів) у ключ кешу не йде:
+// інакше кожен перехід із Facebook/Telegram мав унікальну адресу, кеш промахувався
+// й запит ішов у D1 (27.11.2026 знову вичерпали денний ліміт читань).
+const CACHE_KEY_PARAMS = new Set(["tag", "topic", "sort", "before", "limit", "mediaId", "important", "withHero", "lang", "featured", "status"]);
+
+function edgeCacheKey(url) {
+  const key = new URL(url.origin + url.pathname);
+  [...url.searchParams.keys()].filter(k => CACHE_KEY_PARAMS.has(k)).sort()
+    .forEach(k => key.searchParams.set(k, url.searchParams.get(k)));
+  return new Request(key.toString(), { method: "GET" });
+}
+
 function edgeCacheable(request, url) {
   return request.method === "GET"
     && !request.headers.has("Authorization")
@@ -82,8 +95,9 @@ export default {
       // Cloudflare коротко (EDGE_CACHE_SECONDS): боти й сплески трафіку більше не
       // б'ють щоразу в D1 (25.11.2026 вичерпували денний ліміт читань).
       const cache = edgeCacheable(request, url) ? caches.default : null;
+      const cacheKey = cache ? edgeCacheKey(url) : null;
       if (cache) {
-        const hit = await cache.match(request);
+        const hit = await cache.match(cacheKey);
         if (hit) return hit;
       }
 
@@ -94,7 +108,7 @@ export default {
           if (!cached.headers.has("Cache-Control")) cached.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
           const edge = cached.clone();
           edge.headers.set("Cache-Control", `public, max-age=${EDGE_CACHE_SECONDS}`);
-          ctx.waitUntil(cache.put(request, edge));
+          ctx.waitUntil(cache.put(cacheKey, edge));
           return cached;
         }
         return publicRes;
@@ -116,10 +130,15 @@ export default {
   async scheduled(event, env, ctx) {
     // Кожні 5 хвилин: відкрити новини, час публікації яких настав (src/lib/scheduler.js).
     ctx.waitUntil(publishDueArticles(env.DB).catch(e => console.error("scheduler", e)));
-    // Автопостинг у Threads (src/lib/threads.js) — після розкладу, щоб не заважати публікації.
-    ctx.waitUntil(runThreadsAutopost(env).catch(e => console.error("threads", e)));
-    // Німецька версія: один матеріал за запуск, через 2 години після останньої правки (src/lib/translateDe.js).
-    ctx.waitUntil(runGermanTranslation(env).catch(e => console.error("de-translate", e)));
+    // Threads і німецький переклад щоразу переглядають усю таблицю новин, а чекають
+    // 2 години після правки — тож їм досить запуску раз на 15 хвилин (економія читань D1).
+    const minute = new Date(event.scheduledTime || Date.now()).getUTCMinutes();
+    if (minute % 15 < 5) {
+      // Автопостинг у Threads (src/lib/threads.js) — після розкладу, щоб не заважати публікації.
+      ctx.waitUntil(runThreadsAutopost(env).catch(e => console.error("threads", e)));
+      // Німецька версія: через 2 години після останньої правки (src/lib/translateDe.js).
+      ctx.waitUntil(runGermanTranslation(env).catch(e => console.error("de-translate", e)));
+    }
     if (event.cron === "17 3 * * *") {
       ctx.waitUntil(refreshThreadsToken(env).catch(e => console.error("threads-token", e)));
       ctx.waitUntil(
