@@ -9,6 +9,7 @@ on:
       - 'content/articles/**'
       - 'content/related-media.json'
       - 'scripts/publish-article-from-json.mjs'
+      - 'src/lib/pinning.js'
       - '.github/workflows/publish-articles.yml'
   workflow_dispatch:
   # Publishes articles whose "publishAt" time has come (GitHub may start a scheduled run a few minutes late).
@@ -56,6 +57,12 @@ jobs:
         run: |
           test -n "$CF_TOKEN" || { echo "::error::Missing CLOUDFLARE_API_TOKEN"; exit 1; }
           test -n "$CF_ACCOUNT" || { echo "::error::Missing CLOUDFLARE_ACCOUNT_ID"; exit 1; }
+      - if: steps.due.outputs.run == 'true'
+        name: Ensure pinned-article columns (pinned_at, pinned_until)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: node scripts/ensure-article-pinned.mjs
       - if: steps.due.outputs.run == 'true'
         name: Publish new articles
         env:

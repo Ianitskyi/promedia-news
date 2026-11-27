@@ -1,6 +1,7 @@
 import { renderHomepage, renderArticlePage, renderNewsletterPage, renderNotFound, renderArchivePage, ARCHIVE_PAGE_SIZE, PRACTICE_TOPICS, viewsVisible } from "../lib/render.js";
 import { handlePublicPushRoute } from "../lib/push.js";
 import { ukrainianTypographyReplacer } from "../lib/typography.js";
+import { pinActiveSql, pinnedAtSelectSql } from "../lib/pinning.js";
 
 // Мова — перший сегмент шляху: /en/…, /crh/…, /de/… (uk — без префікса).
 // Німецькою (/de/) показуємо лише вже перекладені матеріали: переклад робить ШІ через 2 години після останньої правки.
@@ -302,7 +303,7 @@ ${entries.join("\n")}
     const important = url.searchParams.get("important");
     const limit = Math.min(parseInt(url.searchParams.get("limit") || "50", 10) || 50, 100);
 
-    let query = "SELECT id, slug, title, title_en, title_crh, title_de, excerpt, excerpt_en, excerpt_crh, excerpt_de, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, related_media_ids, is_important, card_style, pinned_at, published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, (length(body_md) - length(replace(body_md, '[youtube](', ''))) / 10 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, title_de, excerpt, excerpt_en, excerpt_crh, excerpt_de, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, related_media_ids, is_important, card_style, " + pinnedAtSelectSql() + ", published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, (length(body_md) - length(replace(body_md, '[youtube](', ''))) / 10 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
     const binds = [];
     if (tag) {
       query += " AND EXISTS (SELECT 1 FROM json_each(CASE WHEN json_valid(tags) THEN tags ELSE '[]' END) AS tag_filter WHERE tag_filter.value = ?)";
@@ -332,7 +333,7 @@ ${entries.join("\n")}
     }
     // Закріплена новина (📌) теж потрібна promedia.report, навіть якщо вона старша за список.
     if (url.searchParams.get("withHero") === "1" && !tag && !mediaId && !before && !results.some(a => a.pinned_at)) {
-      const pinned = await db.prepare(query.replace(" WHERE status = 'published'", " WHERE pinned_at IS NOT NULL AND status = 'published'").replace(/LIMIT \?$/, "LIMIT 1")).bind(...binds.slice(0, -1)).first();
+      const pinned = await db.prepare(query.replace(" WHERE status = 'published'", " WHERE " + pinActiveSql() + " AND status = 'published'").replace(/LIMIT \?$/, "LIMIT 1")).bind(...binds.slice(0, -1)).first();
       if (pinned) results = [...results, pinned];
     }
     const items = results.map((a) => ({
@@ -489,7 +490,7 @@ ${entries.join("\n")}
   // GET / (homepage, optional ?tag=)
   if (pagePath === "/" && request.method === "GET") {
     const tag = url.searchParams.get("tag");
-    let query = "SELECT id, slug, title, title_en, title_crh, title_de, excerpt, excerpt_en, excerpt_crh, excerpt_de, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, is_important, card_style, pinned_at, published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, (length(body_md) - length(replace(body_md, '[youtube](', ''))) / 10 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
+    let query = "SELECT id, slug, title, title_en, title_crh, title_de, excerpt, excerpt_en, excerpt_crh, excerpt_de, cover_image_url, cover_image_url_en, cover_image_url_crh, cover_crop_data, cover_crop_data_en, cover_crop_data_crh, tags, is_important, card_style, " + pinnedAtSelectSql() + ", published_at , (length(body_md) - length(replace(body_md, '![', ''))) / 2 AS media_photos, (length(body_md) - length(replace(body_md, '[youtube](', ''))) / 10 AS media_video, instr(body_md, '[audio](') > 0 AS media_audio, av.ga4_views AS view_count, av.synced_at AS views_updated_at FROM articles LEFT JOIN article_views av ON av.article_id = articles.id WHERE status = 'published' AND deleted_at IS NULL";
     if (lang === "de") query += DE_READY;
     const binds = [];
     if (tag) {
@@ -512,7 +513,7 @@ ${entries.join("\n")}
     // Закріплена новина може бути старшою за 60 останніх — тоді беремо її окремо.
     let pinnedArticle = null;
     if (!tag && !topic && !top) {
-      pinnedArticle = results.find(a => a.pinned_at) || await db.prepare(query.replace(" WHERE status = 'published'", " WHERE pinned_at IS NOT NULL AND status = 'published'").replace(/LIMIT \d+$/, "LIMIT 1")).bind(...binds).first();
+      pinnedArticle = results.find(a => a.pinned_at) || await db.prepare(query.replace(" WHERE status = 'published'", " WHERE " + pinActiveSql() + " AND status = 'published'").replace(/LIMIT \d+$/, "LIMIT 1")).bind(...binds).first();
     }
     return html(renderHomepage({ articles: results, leadArticle, pinnedArticle, lang, activeTag: tag, activeTopic: topic?.id, activeSort: top ? "top" : null, baseUrl }));
   }

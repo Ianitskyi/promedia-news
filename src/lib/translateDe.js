@@ -4,6 +4,7 @@
 // бо тексти ще деякий час правлять після публікації. Спершу проєкти, потім новини (найсвіжіші першими).
 // Ключ — той самий OPENAI_API_KEY, що й для автоперекладу в адмінці.
 
+import { pinActiveSql } from "./pinning.js";
 const SETTLE_SQL = "datetime('now', '-2 hours')";
 const LOCK_KEY = "de_translate_lock";
 const LOCK_MINUTES = 12;
@@ -146,7 +147,7 @@ export async function pendingGerman(db) {
     `SELECT a.* FROM articles a WHERE a.status = 'published' AND a.deleted_at IS NULL
        AND (a.title_de IS NULL OR a.title_de = '' OR a.de_translated_at IS NULL OR datetime(a.de_translated_at) < datetime(COALESCE(a.updated_at, a.published_at)))
        AND datetime(COALESCE(a.updated_at, a.published_at, a.created_at)) <= ${SETTLE_SQL} AND ${NOT_FAILED_RECENTLY("article", "a")}
-     ORDER BY (a.pinned_at IS NOT NULL) DESC, (a.card_style = 'hero') DESC, a.published_at DESC LIMIT 1`
+     ORDER BY ${pinActiveSql("a.")} DESC, (a.card_style = 'hero') DESC, a.published_at DESC LIMIT 1`
   ).first();
   if (article) return { kind: "article", row: article };
   return null;

@@ -16,6 +16,19 @@
     subdomainEditor: null
   };
 
+  // Закріплення має термін (правило 28.11.2026): дата за Києвом, за замовчуванням сьогодні + 5 днів.
+  function kyivToday() {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Kyiv", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+  }
+  function defaultPinDate() {
+    var p = kyivToday().split("-").map(Number);
+    return new Date(Date.UTC(p[0], p[1] - 1, p[2] + 5)).toISOString().slice(0, 10);
+  }
+  function pinDateLabel(date) {
+    if (!date) return "";
+    var p = date.split("-");
+    return p[2] + "." + p[1];
+  }
   function escapeHtml(value) {
     return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
@@ -139,7 +152,7 @@
 
     var rows = state.articles.map(function (a) {
       return "<tr>" +
-        "<td>" + (a.isPinned ? '<span title="Закріплена вгорі стрічки" aria-label="Закріплена вгорі стрічки">📌 </span>' : "") + (a.isImportant ? '<span title="Важлива новина" aria-label="Важлива новина">★ </span>' : "") + escapeHtml(a.title) + "</td>" +
+        "<td>" + (a.isPinned ? '<span title="Закріплена вгорі стрічки до кінця ' + escapeHtml(pinDateLabel(a.pinnedUntil)) + '" aria-label="Закріплена вгорі стрічки">📌 <small style="color:#6b7280">до ' + escapeHtml(pinDateLabel(a.pinnedUntil)) + '</small> </span>' : "") + (a.isImportant ? '<span title="Важлива новина" aria-label="Важлива новина">★ </span>' : "") + escapeHtml(a.title) + "</td>" +
         "<td>" + statusBadge(a.status) + "</td>" +
         "<td>" + escapeHtml(new Date(a.updatedAt).toLocaleDateString("uk-UA")) + "</td>" +
         '<td><div class="admin-row"><a href="#/edit/' + a.id + '">Редагувати</a>' +
@@ -1490,7 +1503,11 @@
       (state.user.role === "admin" ? '<div class="admin-field"><label style="display:flex;align-items:flex-start;gap:10px;cursor:pointer">' +
       '<input type="checkbox" name="isPinned" style="width:auto;margin-top:3px"' + (a.isPinned ? " checked" : "") + ' />' +
       '<span><strong>📌 Закріпити вгорі стрічки</strong><br><span class="admin-hint">Як закріплене повідомлення в Telegram: новина стоїть першою в списку заголовків зі світлою заливкою, нові новини йдуть під нею. Закріплена може бути лише одна — попередня відкріпиться. Діє лише для опублікованих.</span></span>' +
-      "</label></div>" : "") +
+      "</label>" +
+      '<label style="display:flex;align-items:center;gap:8px;margin:6px 0 0 28px">Закріплена до кінця дня (включно) ' +
+      '<input type="date" name="pinnedUntil" style="width:auto" min="' + kyivToday() + '" value="' + escapeHtml(a.isPinned && a.pinnedUntil ? a.pinnedUntil : defaultPinDate()) + '" /></label>' +
+      '<span class="admin-hint" style="margin-left:28px;display:block">Закріплення завжди з терміном: о 00:00 наступного дня (за Києвом) новина сама зникне з закріплених. Якщо дату не змінювати — 5 днів від сьогодні.</span>' +
+      "</div>" : "") +
       '<div class="admin-field"><label>Пов’язані медіа (пошук за назвою з каталогу карти спільнот)</label>' +
       '<input type="text" id="media-search" placeholder="Почніть вводити назву медіа…" autocomplete="off" />' +
       '<div id="media-search-results"></div>' +
@@ -1748,6 +1765,7 @@
         relatedMediaIds: selectedMediaIds,
         isImportant: fields.isImportant.checked,
         isPinned: fields.isPinned ? fields.isPinned.checked : undefined,
+        pinnedUntil: fields.isPinned && fields.isPinned.checked && fields.pinnedUntil ? fields.pinnedUntil.value : undefined,
         cardStyle: fields.cardStyle.value
       };
     }
