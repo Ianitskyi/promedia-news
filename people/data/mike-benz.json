@@ -1,0 +1,61 @@
+{
+  "slug": "mike-benz",
+  "group": "intl",
+  "country": "США",
+  "kind": "other",
+  "name": {
+    "uk": "Майк Бенц",
+    "en": "Mike Benz"
+  },
+  "sort": {
+    "uk": "Бенц Майк",
+    "en": "Benz Mike"
+  },
+  "aliases": [
+    "Mike Benz"
+  ],
+  "role": {
+    "uk": "американський правий блогер, колишній посадовець Держдепу",
+    "en": "American right-wing blogger, former State Department official"
+  },
+  "summary": {
+    "uk": "Блогер, який роками звинувачує USAID у «цензурі». У листопаді 2026 року оголосив про публікацію архіву «USAID Files».",
+    "en": "Blogger who has accused USAID of \"censorship\" for years. In November 2026 he announced the release of the \"USAID Files\" archive."
+  },
+  "bio": {
+    "uk": "Майк Бенц — американський правий блогер, який називає себе дослідником цензури й борцем за свободу слова. За даними OCCRP, під час першої каденції Дональда Трампа він писав промови в Міністерстві житлового будівництва і в Білому домі, а з листопада 2020 до січня 2021 року кілька тижнів обіймав посаду заступника помічника держсекретаря з міжнародних комунікацій. Пізніше заснував проєкт Foundation for Freedom Online і зібрав в X близько 1,1 млн підписників.\n\nПан Майк роками стверджує, що USAID брав участь в онлайн-цензурі та «зміні режимів». За даними The Atlantic і OCCRP, наприкінці 2025 року його взяли на тимчасову посаду в держслужбі, щоб він переглядав архіви агентства; Державний департамент цього не підтвердив. 25 листопада 2026 року він оголосив про публікацію на сайті USAID архіву «USAID Files» — 248 вибраних документів, переважно про програми підтримки медіа і протидії дезінформації."
+  },
+  "facts": [
+    [
+      "Країна",
+      "США"
+    ],
+    [
+      "Фах",
+      "блогер"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Mike Benz"
+    ],
+    "check": [
+      "Benz"
+    ]
+  },
+  "sources": [
+    {
+      "title": "OCCRP: Right-Wing Influencer Involved in 'Reckless' Release of USAID Files, 26.11.2026",
+      "url": "https://www.occrp.org/en/feature/right-wing-influencer-involved-in-reckless-release-of-usaid-files"
+    },
+    {
+      "title": "The Atlantic: USAID Hired the Right-Wing Influencer Responsible for Its Decimation, 09.12.2025 (копія на сайті USAID Alumni)",
+      "url": "https://usaidalumni.org/wp-content/uploads/2025/12/USAID-Hired-the-Right-Wing-Influencer-Responsible-for-Its-Decimation.-By-Isaac-Stanley-Becker-The-Atlantic-9-Dec-2025.pdf"
+    },
+    {
+      "title": "ПроМедіа: RT знов збрехали. Що насправді є у файлах USAID про Україну",
+      "url": "https://news.promedia.report/article/rt-znov-zbrekhaly-shcho-naspravdi-ye-u-failakh-usaid-pro-ukrainu"
+    }
+  ],
+  "updated": "2026-11-27"
+}

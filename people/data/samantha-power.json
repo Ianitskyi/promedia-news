@@ -1,0 +1,65 @@
+{
+  "slug": "samantha-power",
+  "group": "intl",
+  "country": "США",
+  "kind": "official",
+  "name": {
+    "uk": "Саманта Пауер",
+    "en": "Samantha Power"
+  },
+  "sort": {
+    "uk": "Пауер Саманта",
+    "en": "Power Samantha"
+  },
+  "aliases": [
+    "Samantha Power"
+  ],
+  "role": {
+    "uk": "американська журналістка й дипломатка, остання очільниця USAID",
+    "en": "American journalist and diplomat, last head of USAID"
+  },
+  "summary": {
+    "uk": "Колишня воєнна кореспондентка, лауреатка Пулітцерівської премії. Очолювала USAID у 2021–2025 роках, до того була постійною представницею США при ООН.",
+    "en": "Former war correspondent and Pulitzer Prize winner. Headed USAID in 2021–2025; earlier served as US Ambassador to the United Nations."
+  },
+  "bio": {
+    "uk": "Саманта Пауер (нар. 1970) — американська журналістка, письменниця й дипломатка. Починала як кореспондентка, яка писала про війну на Балканах.\n\n2003 року її книжка «Проблема з пекла» (A Problem from Hell) про геноциди XX століття і реакцію США на них отримала Пулітцерівську премію. У 2013–2017 роках пані Саманта була постійною представницею США при ООН, а у 2021–2025 роках очолювала Агентство США з міжнародного розвитку (USAID) — до того, як адміністрація Дональда Трампа фактично його закрила.\n\nУ листопаді 2026 року, коли адміністрація оприлюднила вибірковий архів «USAID Files», пані Саманта назвала добірку вибірковою і такою, що не містить доказів шахрайства, про які говорять критики агентства."
+  },
+  "facts": [
+    [
+      "Рік народження",
+      "1970"
+    ],
+    [
+      "Нагорода",
+      "Пулітцерівська премія (2003)"
+    ],
+    [
+      "Посада",
+      "адміністраторка USAID (2021–2025)"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Samantha Power"
+    ],
+    "check": [
+      "Power"
+    ]
+  },
+  "sources": [
+    {
+      "title": "The Pulitzer Prizes: Samantha Power, 2003 General Nonfiction",
+      "url": "https://www.pulitzer.org/winners/samantha-power"
+    },
+    {
+      "title": "OCCRP: Right-Wing Influencer Involved in 'Reckless' Release of USAID Files, 26.11.2026",
+      "url": "https://www.occrp.org/en/feature/right-wing-influencer-involved-in-reckless-release-of-usaid-files"
+    },
+    {
+      "title": "ПроМедіа: RT знов збрехали. Що насправді є у файлах USAID про Україну",
+      "url": "https://news.promedia.report/article/rt-znov-zbrekhaly-shcho-naspravdi-ye-u-failakh-usaid-pro-ukrainu"
+    }
+  ],
+  "updated": "2026-11-27"
+}

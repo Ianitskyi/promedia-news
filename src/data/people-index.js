@@ -2089,6 +2089,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "mike-benz",
+    "tag": "Майк Бенц",
+    "aliases": [
+      "Mike Benz"
+    ],
+    "name": {
+      "uk": "Майк Бенц",
+      "en": "Mike Benz"
+    },
+    "role": {
+      "uk": "американський правий блогер, колишній посадовець Держдепу",
+      "en": "American right-wing blogger, former State Department official"
+    },
+    "summary": {
+      "uk": "Блогер, який роками звинувачує USAID у «цензурі». У листопаді 2026 року оголосив про публікацію архіву «USAID Files».",
+      "en": "Blogger who has accused USAID of \"censorship\" for years. In November 2026 he announced the release of the \"USAID Files\" archive."
+    }
+  },
+  {
     "slug": "michael-j-arlen",
     "tag": "Майкл Арлен",
     "aliases": [],
@@ -3131,6 +3150,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює регіональне бюро женевської організації Press Emblem Campaign, яка стежить за безпекою журналістів у зонах війн і конфліктів.",
       "en": "Heads the regional bureau of the Geneva-based Press Emblem Campaign, which monitors the safety of journalists in war and conflict zones."
+    }
+  },
+  {
+    "slug": "samantha-power",
+    "tag": "Саманта Пауер",
+    "aliases": [
+      "Samantha Power"
+    ],
+    "name": {
+      "uk": "Саманта Пауер",
+      "en": "Samantha Power"
+    },
+    "role": {
+      "uk": "американська журналістка й дипломатка, остання очільниця USAID",
+      "en": "American journalist and diplomat, last head of USAID"
+    },
+    "summary": {
+      "uk": "Колишня воєнна кореспондентка, лауреатка Пулітцерівської премії. Очолювала USAID у 2021–2025 роках, до того була постійною представницею США при ООН.",
+      "en": "Former war correspondent and Pulitzer Prize winner. Headed USAID in 2021–2025; earlier served as US Ambassador to the United Nations."
     }
   },
   {
