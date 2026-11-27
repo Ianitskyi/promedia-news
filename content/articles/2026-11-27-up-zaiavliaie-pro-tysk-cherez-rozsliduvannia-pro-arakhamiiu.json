@@ -24,16 +24,34 @@
   "isImportant": true,
   "cardStyle": "image",
   "cover": {
-    "commonsFile": "Sevgil Musaieva at the International Journalism Festival 2024 in Perugia, Italy 2 (cropped).jpg",
+    "commonsFile": "Sevgil Musayeva 2022 Global Forum (cropped).jpg",
     "width": 1600,
     "alt": "Севгіль Мусаєва",
     "caption": {
-      "uk": "Головна редакторка «Української правди» Севгіль Мусаєва на Міжнародному фестивалі журналістики в Перуджі, 2024 рік. Фото: ⟦АВТОР⟧ / Вікісховище, ⟦ЛІЦЕНЗІЯ⟧.",
-      "en": "Ukrainska Pravda editor-in-chief Sevgil Musaieva at the International Journalism Festival in Perugia, 2024. Photo: ⟦AUTHOR⟧ / Wikimedia Commons, ⟦LICENCE⟧.",
-      "crh": "«Ukrainska Pravda» baş redaktorı Sevgil Musayeva Perujadaki Halqara jurnalistika festivalinde, 2024 senesi. Foto: ⟦MÜELLİF⟧ / Wikimedia Commons, ⟦LİTSENZİYA⟧.",
-      "de": "Sevgil Musaieva, Chefredakteurin von Ukrainska Pravda, beim Internationalen Journalismusfestival in Perugia, 2024. Foto: Jennifer 8. Lee / Wikimedia Commons, CC BY-SA 4.0."
+      "uk": "Головна редакторка «Української правди» Севгіль Мусаєва, 2022 рік. Фото: ⟦АВТОР⟧ / Вікісховище, ⟦ЛІЦЕНЗІЯ⟧.",
+      "en": "Ukrainska Pravda editor-in-chief Sevgil Musaieva, 2022. Photo: ⟦AUTHOR⟧ / Wikimedia Commons, ⟦LICENCE⟧.",
+      "crh": "«Ukrainska Pravda» baş redaktorı Sevgil Musayeva, 2022 senesi. Foto: ⟦MÜELLİF⟧ / Wikimedia Commons, ⟦LİTSENZİYA⟧.",
+      "de": "Sevgil Musaieva, Chefredakteurin von Ukrainska Pravda, 2022. Foto: ⟦AUTHOR⟧ / Wikimedia Commons, ⟦LICENCE⟧."
+    },
+    "focus": {
+      "mobile": {
+        "x": 50,
+        "y": 28
+      },
+      "desktop": {
+        "x": 50,
+        "y": 28
+      },
+      "feed": {
+        "x": 50,
+        "y": 28
+      },
+      "social": {
+        "x": 50,
+        "y": 28
+      }
     }
   },
-  "revision": "2026-11-27-v2",
-  "coverRevision": "2026-11-27-v2"
+  "revision": "2026-11-27-v3",
+  "coverRevision": "2026-11-27-v3"
 }
