@@ -3226,6 +3226,27 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "tomas-fiala",
+    "tag": "Томаш Фіала",
+    "aliases": [
+      "Tomas Fiala",
+      "Томас Фіала",
+      "Томаш Фиала"
+    ],
+    "name": {
+      "uk": "Томаш Фіала",
+      "en": "Tomáš Fiala"
+    },
+    "role": {
+      "uk": "засновник інвестиційної компанії Dragon Capital, власник медіагруп «Українська правда» і NV",
+      "en": "Founder of the investment company Dragon Capital, owner of the Ukrainska Pravda and NV media groups"
+    },
+    "summary": {
+      "uk": "Чеський підприємець, який працює в Україні: заснував Dragon Capital, створив медіахолдинг NV і купив «Українську правду»; співзасновник Центру економічної стратегії.",
+      "en": "Czech businessman working in Ukraine: founded Dragon Capital, created the NV media holding and bought Ukrainska Pravda; co-founder of the Centre for Economic Strategy."
+    }
+  },
+  {
     "slug": "toni-fitzgerald",
     "tag": "Тоні Фіцджеральд",
     "aliases": [],

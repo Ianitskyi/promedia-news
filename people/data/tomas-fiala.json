@@ -1,0 +1,56 @@
+{
+  "slug": "tomas-fiala",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "manager",
+  "name": {
+    "uk": "Томаш Фіала",
+    "en": "Tomáš Fiala"
+  },
+  "sort": {
+    "uk": "Фіала Томаш",
+    "en": "Fiala Tomáš"
+  },
+  "aliases": [
+    "Tomas Fiala",
+    "Томас Фіала",
+    "Томаш Фиала"
+  ],
+  "role": {
+    "uk": "засновник інвестиційної компанії Dragon Capital, власник медіагруп «Українська правда» і NV",
+    "en": "Founder of the investment company Dragon Capital, owner of the Ukrainska Pravda and NV media groups"
+  },
+  "summary": {
+    "uk": "Чеський підприємець, який працює в Україні: заснував Dragon Capital, створив медіахолдинг NV і купив «Українську правду»; співзасновник Центру економічної стратегії.",
+    "en": "Czech businessman working in Ukraine: founded Dragon Capital, created the NV media holding and bought Ukrainska Pravda; co-founder of the Centre for Economic Strategy."
+  },
+  "bio": {
+    "uk": "Томаш Фіала народився 13 травня 1974 року в Брно (Чехія). 2000 року разом із партнерами заснував інвестиційну компанію Dragon Capital і став її генеральним директором.\n\n2014 року заснував тижневик «Новий час» і новинний сайт NV, згодом — Радіо NV; ці медіа утворили медіахолдинг NV. У травні 2021 року Dragon Capital купила «Українську правду». У січні 2026 року Фіала передав свою частку в компаніях групи в сімейний траст.\n\n2015 року разом з Іваном Міклошем і Святославом Вакарчуком заснував аналітичний Центр економічної стратегії, очолює його наглядову раду.",
+    "en": "Tomáš Fiala was born on 13 May 1974 in Brno, Czech Republic. In 2000 he co-founded the investment company Dragon Capital and became its CEO.\n\nIn 2014 he founded the weekly magazine Novoye Vremya (NV) and the NV news website, later Radio NV; together they form the NV media holding. In May 2021 Dragon Capital bought Ukrainska Pravda. In January 2026 Fiala transferred his stake in the group's companies to a family trust.\n\nIn 2015, together with Ivan Mikloš and Sviatoslav Vakarchuk, he founded the Centre for Economic Strategy think tank and chairs its supervisory board."
+  },
+  "facts": [
+    [
+      "Компанія",
+      "Dragon Capital (засновник, з 2000 року)"
+    ],
+    [
+      "Медіа",
+      "NV, «Українська правда»"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "LB.ua: Фіала Томаш",
+      "url": "https://lb.ua/file/person/4005_fiala_tomash.html"
+    },
+    {
+      "title": "Forbes Ukraine: Томаш Фіала купив видання «Українська правда»",
+      "url": "https://forbes.ua/news/tomash-fiala-kupiv-vidannya-ukrainska-pravda-tsogo-roku-investor-pridbav-shche-dva-media-26052021-1677"
+    },
+    {
+      "title": "Forbes Ukraine: Томаш Фіала не виключає залучення інвестора в медіахолдинг NV",
+      "url": "https://forbes.ua/news/tomash-fiala-ne-viklyuchae-zaluchennya-investora-v-mediakholding-nv-28012026-35864"
+    }
+  ],
+  "updated": "2026-11-27"
+}
