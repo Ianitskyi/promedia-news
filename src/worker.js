@@ -10,6 +10,22 @@ import { runThreadsAutopost, refreshThreadsToken, threadsStatus } from "./lib/th
 import { runGermanTranslation, germanStatus } from "./lib/translateDe.js";
 
 const EDGE_CACHE_SECONDS = 120;
+
+// Сторінки, які рідко змінюються, але дорого читаються з D1 (перебирають усі новини),
+// тримаємо в кеші довше. Головна й статті лишаються на 2 хвилини, щоб правки
+// після публікації з'являлися швидко.
+function edgeCacheSeconds(url) {
+  const p = url.pathname.replace(/^\/(en|crh|de)(?=\/|$)/, "") || "/";
+  const q = url.searchParams;
+  if (p === "/sitemap.xml") return 3600;
+  if (p === "/news-sitemap.xml") return 600;
+  if (/^\/archive(\/\d+)?\/?$/.test(p)) return 900;
+  if (p === "/" && (q.has("tag") || q.has("topic") || q.get("sort") === "top")) return 600;
+  if (p.startsWith("/tag/")) return 600;
+  if (p === "/api/articles" && (q.has("tag") || q.has("mediaId") || q.has("before"))) return 600;
+  if (p.startsWith("/project") || p.startsWith("/api/projects")) return 600;
+  return EDGE_CACHE_SECONDS;
+}
 const NO_EDGE_CACHE = /^\/(admin|api\/(admin|auth|me|setup|push|analytics|scheduler-status|threads-status|translation-status|export)|img-storage)(\/|$)/;
 
 // Параметри, від яких справді залежить відповідь публічних сторінок і API.
@@ -107,7 +123,7 @@ export default {
           const cached = new Response(publicRes.body, publicRes);
           if (!cached.headers.has("Cache-Control")) cached.headers.set("Cache-Control", "public, max-age=0, must-revalidate");
           const edge = cached.clone();
-          edge.headers.set("Cache-Control", `public, max-age=${EDGE_CACHE_SECONDS}`);
+          edge.headers.set("Cache-Control", `public, max-age=${edgeCacheSeconds(url)}`);
           ctx.waitUntil(cache.put(cacheKey, edge));
           return cached;
         }
