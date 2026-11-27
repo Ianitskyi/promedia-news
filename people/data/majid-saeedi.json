@@ -1,0 +1,41 @@
+{
+  "slug": "majid-saeedi",
+  "group": "intl",
+  "country": "Іран",
+  "kind": "journalist",
+  "name": {
+    "uk": "Маджид Саїді",
+    "en": "Majid Saeedi"
+  },
+  "sort": {
+    "uk": "Саїді Маджид",
+    "en": "Saeedi Majid"
+  },
+  "role": {
+    "uk": "іранський фотодокументаліст, багаторічний автор Getty Images",
+    "en": "Iranian documentary photographer, longtime Getty Images contributor"
+  },
+  "summary": {
+    "uk": "Відомий іранський фотожурналіст, який багато років знімає для Getty Images. З вересня 2026 року після арешту в Тегерані його місцеперебування невідоме.",
+    "en": "Renowned Iranian photojournalist and longtime Getty Images contributor. His whereabouts have been unknown since his arrest in Tehran in September 2026."
+  },
+  "bio": {
+    "uk": "Маджид Саїді — іранський фотодокументаліст, який народився 1974 року в Тегерані. Він багато років знімає для Getty Images, зокрема в Ірані та Афганістані, і має міжнародні нагороди, серед них премію Лукаса Долеги — французьку нагороду для фотожурналістів, які працюють у небезпечних умовах.\n\nЗа даними Комітету захисту журналістів (CPJ), 9 вересня 2026 року силовики заарештували пана Маджида вдома в Тегерані. Женевська організація Press Emblem Campaign (PEC) повідомляє, що понад два місяці влада не розкриває, де його тримають і в чому звинувачують, і вимагає його звільнення."
+  },
+  "facts": [
+    ["Країна", "Іран"],
+    ["Співпраця", "Getty Images"],
+    ["Нагорода", "премія Лукаса Долеги"]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": ["Majid Saeedi"]
+  },
+  "sources": [
+    {"title": "Press Emblem Campaign: спецзвіт про репресії проти преси в Ірані, 27.11.2026", "url": "https://www.pressemblem.ch"},
+    {"title": "CPJ: Majid Saeedi", "url": "https://cpj.org/data/people/majid-saeedi/"},
+    {"title": "ПроМедіа: Іран посилив репресії проти журналістів. Звіт PEC", "url": "https://news.promedia.report/article/pec-iran-posylyv-represii-proty-zhurnalistiv"}
+  ],
+  "aliases": ["Majid Saeedi"],
+  "updated": "2026-11-27"
+}

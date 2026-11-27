@@ -1,0 +1,40 @@
+{
+  "slug": "mehdi-mahmoudian",
+  "group": "intl",
+  "country": "Іран",
+  "kind": "journalist",
+  "name": {
+    "uk": "Мехді Махмудіан",
+    "en": "Mehdi Mahmoudian"
+  },
+  "sort": {
+    "uk": "Махмудіан Мехді",
+    "en": "Mahmoudian Mehdi"
+  },
+  "role": {
+    "uk": "іранський незалежний журналіст, сценарист і правозахисник",
+    "en": "Iranian freelance journalist, screenwriter and human rights defender"
+  },
+  "summary": {
+    "uk": "Іранський журналіст і правозахисник, один зі співавторів сценарію оскарівського фільму Джафара Панагі. Неодноразово зазнавав арештів через свою роботу.",
+    "en": "Iranian journalist and human rights defender, a co-writer of Jafar Panahi's Oscar-nominated film. Repeatedly arrested over his work."
+  },
+  "bio": {
+    "uk": "Мехді Махмудіан — іранський незалежний журналіст, коментатор, сценарист і правозахисник. Він один зі співавторів сценарію фільму Джафара Панагі «Це був просто нещасний випадок» (It Was Just an Accident), який номінували на «Оскар» 2026 року.\n\nЗа даними Комітету захисту журналістів (CPJ), іранська влада неодноразово затримувала його через публікації та публічні заяви, зокрема наприкінці січня 2026 року — після того, як він підписав заяву на підтримку масових протестів.\n\n25 листопада 2026 року силовики знову затримали пана Мехді в Тегерані — наступного дня після того, як він попередив у своєму Telegram-каналі про можливу страту двох учасників протестів 2022 року. Женевська організація Press Emblem Campaign (PEC) повідомила, що в ув'язненні його ймовірно били й катували, і вимагає його негайного звільнення."
+  },
+  "facts": [
+    ["Країна", "Іран"],
+    ["Фах", "журналіст, сценарист, правозахисник"]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": ["Mahmoudian"]
+  },
+  "sources": [
+    {"title": "Press Emblem Campaign: спецзвіт про репресії проти преси в Ірані, 27.11.2026", "url": "https://www.pressemblem.ch"},
+    {"title": "CPJ: Mehdi Mahmoudian", "url": "https://cpj.org/data/people/mehdi-mahmoudian/"},
+    {"title": "ПроМедіа: Іран посилив репресії проти журналістів. Звіт PEC", "url": "https://news.promedia.report/article/pec-iran-posylyv-represii-proty-zhurnalistiv"}
+  ],
+  "aliases": ["Mehdi Mahmoudian"],
+  "updated": "2026-11-27"
+}

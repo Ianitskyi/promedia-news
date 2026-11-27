@@ -1981,6 +1981,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "majid-saeedi",
+    "tag": "Маджид Саїді",
+    "aliases": [
+      "Majid Saeedi"
+    ],
+    "name": {
+      "uk": "Маджид Саїді",
+      "en": "Majid Saeedi"
+    },
+    "role": {
+      "uk": "іранський фотодокументаліст, багаторічний автор Getty Images",
+      "en": "Iranian documentary photographer, longtime Getty Images contributor"
+    },
+    "summary": {
+      "uk": "Відомий іранський фотожурналіст, який багато років знімає для Getty Images. З вересня 2026 року після арешту в Тегерані його місцеперебування невідоме.",
+      "en": "Renowned Iranian photojournalist and longtime Getty Images contributor. His whereabouts have been unknown since his arrest in Tehran in September 2026."
+    }
+  },
+  {
     "slug": "michael-j-arlen",
     "tag": "Майкл Арлен",
     "aliases": [],
@@ -2223,6 +2242,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Власник нью-йоркської галереї, де 1862 року показали «Мертвих під Антітемом».",
       "en": "Owner of the New York gallery that showed “The Dead of Antietam” in 1862."
+    }
+  },
+  {
+    "slug": "mehdi-mahmoudian",
+    "tag": "Мехді Махмудіан",
+    "aliases": [
+      "Mehdi Mahmoudian"
+    ],
+    "name": {
+      "uk": "Мехді Махмудіан",
+      "en": "Mehdi Mahmoudian"
+    },
+    "role": {
+      "uk": "іранський незалежний журналіст, сценарист і правозахисник",
+      "en": "Iranian freelance journalist, screenwriter and human rights defender"
+    },
+    "summary": {
+      "uk": "Іранський журналіст і правозахисник, один зі співавторів сценарію оскарівського фільму Джафара Панагі. Неодноразово зазнавав арештів через свою роботу.",
+      "en": "Iranian journalist and human rights defender, a co-writer of Jafar Panahi's Oscar-nominated film. Repeatedly arrested over his work."
     }
   },
   {

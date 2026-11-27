@@ -47,6 +47,7 @@ const CATEGORIES = ["Новини", "Статті", "Пресреліз", "Ан�
 const DEFAULT_OG_IMAGE = "https://news.promedia.report/img/og-share.png";
 
 const TAG_LABELS_EN = {
+  "Іран": "Iran",
   "телебачення": "television",
   "супутникове телебачення": "satellite TV",
   "алгоритми": "algorithms",
@@ -294,6 +295,7 @@ const TAG_LABELS_EN = {
 // Crimean Tatar interface labels use the modern Latin orthography and the shared
 // editorial terminology standard. Content translations receive a separate source-based check.
 const TAG_LABELS_CRH = {
+  "Іран": "İran",
   "телебачення": "televideniye",
   "супутникове телебачення": "sputnik televideniyesi",
   "медіаринок": "mediya bazarı",
@@ -508,6 +510,7 @@ const TAG_LABELS_CRH = {
 // Німецькі назви тегів (26.11.2026). Імен людей і брендів тут немає: для них беремо латиницю з TAG_LABELS_EN,
 // а нові теги без німецького перекладу показуємо англійською (не транслітом).
 const TAG_LABELS_DE = {
+  "Іран": "Iran",
   "телебачення": "Fernsehen", "супутникове телебачення": "Satellitenfernsehen",
   "алгоритми": "Algorithmen", "медіатеорія": "Medientheorie",
   "наука": "Wissenschaft",
