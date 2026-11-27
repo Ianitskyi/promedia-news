@@ -903,11 +903,13 @@ export const PEOPLE = [
     },
     "role": {
       "uk": "доцентка з радіо, телебачення й цифрових медіа, Університет Ліва (ОАЕ)",
-      "en": "Associate Professor of Radio, TV and Digital Media, Liwa University (UAE)"
+      "en": "Associate Professor of Radio, TV and Digital Media, Liwa University (UAE)",
+      "de": "Associate Professor für Radio, Fernsehen und digitale Medien, Liwa University (VAE)"
     },
     "summary": {
       "uk": "Викладачка медіа з понад двадцятирічним досвідом, досліджує цифрові медіа й телебачення та їхній вплив на суспільство в арабському світі.",
-      "en": "Media lecturer with more than twenty years of teaching experience; researches digital media, television and their impact on society in the Arab world."
+      "en": "Media lecturer with more than twenty years of teaching experience; researches digital media, television and their impact on society in the Arab world.",
+      "de": "Medienwissenschaftlerin mit über zwanzig Jahren Lehrerfahrung; erforscht digitale Medien, Fernsehen und ihren Einfluss auf die Gesellschaft in der arabischen Welt."
     }
   },
   {
@@ -1226,6 +1228,28 @@ export const PEOPLE = [
     "summary": {
       "uk": "Кореспондент CNN, який у ніч на 17 січня 1991 року разом з Арнеттом і Шоу наживо розповідав з Багдада про бомбардування.",
       "en": "CNN correspondent who, with Arnett and Shaw, reported live from Baghdad on the bombing on the night of 17 January 1991."
+    }
+  },
+  {
+    "slug": "jonathan-haidt",
+    "tag": "Джонатан Гайдт",
+    "aliases": [
+      "Джонатан Хайдт",
+      "Джонатан Гайдт"
+    ],
+    "name": {
+      "uk": "Джонатан Гайдт",
+      "en": "Jonathan Haidt"
+    },
+    "role": {
+      "uk": "американський соціальний психолог, професор Школи бізнесу Стерна Нью-Йоркського університету",
+      "en": "American social psychologist, professor at New York University's Stern School of Business",
+      "de": "US-amerikanischer Sozialpsychologe, Professor an der Stern School of Business der New York University"
+    },
+    "summary": {
+      "uk": "Досліджує вплив соцмереж і смартфонів на психічне здоров'я молоді, автор книжки «Тривожне покоління» (2024).",
+      "en": "Researches the impact of social media and smartphones on young people's mental health; author of \"The Anxious Generation\" (2024).",
+      "de": "Erforscht den Einfluss sozialer Medien und Smartphones auf die psychische Gesundheit junger Menschen; Autor von „Generation Angst“ (The Anxious Generation, 2024)."
     }
   },
   {
@@ -1871,11 +1895,13 @@ export const PEOPLE = [
     },
     "role": {
       "uk": "американська дослідниця літератури, науки й технологій, професорка Каліфорнійського університету в Лос-Анджелесі",
-      "en": "American scholar of literature, science and technology, Distinguished Research Professor at UCLA"
+      "en": "American scholar of literature, science and technology, Distinguished Research Professor at UCLA",
+      "de": "US-amerikanische Forscherin zu Literatur, Wissenschaft und Technologie, Distinguished Research Professor an der UCLA"
     },
     "summary": {
       "uk": "Досліджує, як цифрові технології змінюють людське мислення, читання й письмо. Авторка книжок «Як ми стали постлюдьми» (1999) і «Немислене» (2017).",
-      "en": "Studies how digital technologies change human thinking, reading and writing. Author of \"How We Became Posthuman\" (1999) and \"Unthought\" (2017)."
+      "en": "Studies how digital technologies change human thinking, reading and writing. Author of \"How We Became Posthuman\" (1999) and \"Unthought\" (2017).",
+      "de": "Erforscht, wie digitale Technologien menschliches Denken, Lesen und Schreiben verändern. Autorin von „How We Became Posthuman“ (1999) und „Unthought“ (2017)."
     }
   },
   {
@@ -2228,11 +2254,13 @@ export const PEOPLE = [
     },
     "role": {
       "uk": "канадський філософ і теоретик медіа",
-      "en": "Canadian philosopher and media theorist"
+      "en": "Canadian philosopher and media theorist",
+      "de": "kanadischer Philosoph und Medientheoretiker"
     },
     "summary": {
       "uk": "Один із найвідоміших теоретиків медіа XX століття, автор книжки «Розуміння медіа» (1964) і фрази «медіум — це повідомлення».",
-      "en": "One of the best-known media theorists of the 20th century, author of \"Understanding Media\" (1964) and of the phrase \"the medium is the message\"."
+      "en": "One of the best-known media theorists of the 20th century, author of \"Understanding Media\" (1964) and of the phrase \"the medium is the message\".",
+      "de": "Einer der bekanntesten Medientheoretiker des 20. Jahrhunderts, Autor von „Die magischen Kanäle“ (Understanding Media, 1964) und des Satzes „Das Medium ist die Botschaft“."
     }
   },
   {
@@ -2928,11 +2956,13 @@ export const PEOPLE = [
     },
     "role": {
       "uk": "дослідниця, коледж медіа та зв'язків із громадськістю Університету Ліва (ОАЕ)",
-      "en": "researcher, Media and Public Relations College, Liwa University (UAE)"
+      "en": "researcher, Media and Public Relations College, Liwa University (UAE)",
+      "de": "Forscherin am College für Medien und Öffentlichkeitsarbeit der Liwa University (VAE)"
     },
     "summary": {
       "uk": "Працює в коледжі медіа та зв'язків із громадськістю Університету Ліва в Абу-Дабі.",
-      "en": "Works at the Media and Public Relations College of Liwa University in Abu Dhabi."
+      "en": "Works at the Media and Public Relations College of Liwa University in Abu Dhabi.",
+      "de": "Arbeitet am College für Medien und Öffentlichkeitsarbeit der Liwa University in Abu Dhabi."
     }
   },
   {
@@ -3516,11 +3546,13 @@ export const PEOPLE = [
     },
     "role": {
       "uk": "дослідник, коледж медіа та зв'язків із громадськістю Університету Ліва (ОАЕ)",
-      "en": "researcher, Media and Public Relations College, Liwa University (UAE)"
+      "en": "researcher, Media and Public Relations College, Liwa University (UAE)",
+      "de": "Forscher am College für Medien und Öffentlichkeitsarbeit der Liwa University (VAE)"
     },
     "summary": {
       "uk": "Працює в коледжі медіа та зв'язків із громадськістю Університету Ліва в Абу-Дабі.",
-      "en": "Works at the Media and Public Relations College of Liwa University in Abu Dhabi."
+      "en": "Works at the Media and Public Relations College of Liwa University in Abu Dhabi.",
+      "de": "Arbeitet am College für Medien und Öffentlichkeitsarbeit der Liwa University in Abu Dhabi."
     }
   },
   {

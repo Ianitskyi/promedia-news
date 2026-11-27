@@ -21,7 +21,8 @@
     "The Economist",
     "Financial Times",
     "Кейт Джуліан",
-    "Джон Берн-Мердок"
+    "Джон Берн-Мердок",
+    "Джонатан Гайдт"
   ],
   "relatedMediaIds": [],
   "decision": "Andrii Ianitskyi",
@@ -49,6 +50,5 @@
       }
     }
   },
-  "revision": "2026-11-27-hero",
-  "raiseToTop": "2026-11-27-hero"
+  "revision": "2026-11-27-haidt-dossier"
 }

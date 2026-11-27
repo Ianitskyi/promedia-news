@@ -1,0 +1,61 @@
+{
+ "slug": "jonathan-haidt",
+ "group": "intl",
+ "country": "США",
+ "kind": "other",
+ "name": {
+  "uk": "Джонатан Гайдт",
+  "en": "Jonathan Haidt"
+ },
+ "sort": {
+  "uk": "Гайдт Джонатан",
+  "en": "Haidt Jonathan"
+ },
+ "aliases": [
+  "Джонатан Хайдт",
+  "Джонатан Гайдт"
+ ],
+ "role": {
+  "uk": "американський соціальний психолог, професор Школи бізнесу Стерна Нью-Йоркського університету",
+  "en": "American social psychologist, professor at New York University's Stern School of Business",
+  "de": "US-amerikanischer Sozialpsychologe, Professor an der Stern School of Business der New York University"
+ },
+ "summary": {
+  "uk": "Досліджує вплив соцмереж і смартфонів на психічне здоров'я молоді, автор книжки «Тривожне покоління» (2024).",
+  "en": "Researches the impact of social media and smartphones on young people's mental health; author of \"The Anxious Generation\" (2024).",
+  "de": "Erforscht den Einfluss sozialer Medien und Smartphones auf die psychische Gesundheit junger Menschen; Autor von „Generation Angst“ (The Anxious Generation, 2024)."
+ },
+ "bio": {
+  "uk": "Джонатан Гайдт здобув ступінь бакалавра філософії в Єльському університеті, а 1992 року — ступінь PhD у Пенсільванському університеті. 16 років викладав на кафедрі психології Університету Вірджинії, а 2011 року перейшов до Школи бізнесу Стерна Нью-Йоркського університету, де обіймає посаду професора етичного лідерства.\n\nДосліджує інтуїтивні основи моралі, відмінності моральних поглядів між культурами й політичними таборами, а також вплив соцмереж на психічне здоров'я молоді та значення самостійності й гри в дитинстві.\n\nАвтор книжок «Гіпотеза щастя» (2006), «Праведний розум» (2012), «Розпещення американського розуму» (2018, разом із Грегом Лук'яновим) і «Тривожне покоління» (2024). В останній він описує «Великий перемонтаж» дитинства у 2010–2015 роках, коли смартфони й соцмережі стали повсюдними.\n\nУ листопаді 2026 року ПроМедіа згадало його концепцію в статті про «сексуальну рецесію» та роль смартфонів.",
+  "en": "Jonathan Haidt earned a BA in philosophy at Yale University and a PhD at the University of Pennsylvania in 1992. He taught for 16 years in the psychology department at the University of Virginia and in 2011 moved to New York University's Stern School of Business, where he holds the Thomas Cooley Chair in Ethical Leadership.\n\nHe studies the intuitive foundations of morality, how moral views differ across cultures and political camps, the impact of social media on young people's mental health, and the importance of independence and play in childhood.\n\nHis books include \"The Happiness Hypothesis\" (2006), \"The Righteous Mind\" (2012), \"The Coddling of the American Mind\" (2018, with Greg Lukianoff) and \"The Anxious Generation\" (2024). In the last he describes the \"Great Rewiring\" of childhood in 2010–2015, when smartphones and social media became ubiquitous.\n\nIn November 2026 ProMedia cited his concept in an article on the \"sex recession\" and the role of smartphones."
+ },
+ "facts": [
+  [
+   "Країна",
+   "США"
+  ],
+  [
+   "Університет",
+   "Нью-Йоркський університет"
+  ]
+ ],
+ "photo": {
+  "url": "https://news.promedia.report/img/news/jonathan-haidt-2012.jpg",
+  "author": "Miller Center of Public Affairs",
+  "license": "CC BY 2.0",
+  "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+  "sourceUrl": "https://commons.wikimedia.org/wiki/File:Jonathan_Haidt_2012_03.jpg",
+  "sourceName": "Вікісховище"
+ },
+ "sources": [
+  {
+   "title": "NYU Stern: Jonathan Haidt",
+   "url": "https://www.stern.nyu.edu/faculty/bio/jonathan-haidt"
+  },
+  {
+   "title": "ПроМедіа: Менше сексу, більше екранів. Чи справді смартфони винні в «сексуальній рецесії»",
+   "url": "https://news.promedia.report/article/menshe-seksu-bilshe-ekraniv-chy-vynni-smartfony"
+  }
+ ],
+ "updated": "2026-11-27"
+}
