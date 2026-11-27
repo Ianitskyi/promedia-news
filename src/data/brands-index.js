@@ -41,6 +41,28 @@ export const BRANDS = [
     }
   },
   {
+    "slug": "1plus1-media",
+    "tag": "1+1 media",
+    "aliases": [
+      "1+1 медіа"
+    ],
+    "group": "ua",
+    "kind": "group",
+    "country": "Україна",
+    "name": {
+      "uk": "1+1 media",
+      "en": "1+1 Media"
+    },
+    "type": {
+      "uk": "українська медіагрупа",
+      "en": "Ukrainian media group"
+    },
+    "summary": {
+      "uk": "Одна з найбільших українських медіагруп: телеканали «1+1 Україна», «2+2», ТЕТ, ПлюсПлюс, Бігуді, УНІАН та інші, сайти ТСН і УНІАН.",
+      "en": "One of Ukraine's largest media groups: 1+1 Ukraine, 2+2, TET, PLUSPLUS, Bigudi, UNIAN and other channels, plus the TSN and UNIAN websites."
+    }
+  },
+  {
     "slug": "24-kanal",
     "tag": "24 Канал",
     "aliases": [],

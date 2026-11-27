@@ -1,0 +1,48 @@
+{
+  "slug": "1plus1-media",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "group",
+  "name": {
+    "uk": "1+1 media",
+    "en": "1+1 Media"
+  },
+  "sort": {
+    "uk": "1+1 media",
+    "en": "1+1 Media"
+  },
+  "aliases": [
+    "1+1 медіа"
+  ],
+  "match": [
+    "«1+1 media»",
+    "1+1 media",
+    "«1+1 медіа»"
+  ],
+  "type": {
+    "uk": "українська медіагрупа",
+    "en": "Ukrainian media group"
+  },
+  "summary": {
+    "uk": "Одна з найбільших українських медіагруп: телеканали «1+1 Україна», «2+2», ТЕТ, ПлюсПлюс, Бігуді, УНІАН та інші, сайти ТСН і УНІАН.",
+    "en": "One of Ukraine's largest media groups: 1+1 Ukraine, 2+2, TET, PLUSPLUS, Bigudi, UNIAN and other channels, plus the TSN and UNIAN websites."
+  },
+  "bio": {
+    "uk": "1+1 media — українська медіагрупа з понад 25-річною історією. До неї входять власні й партнерські телеканали, серед них «1+1 Україна», «1+1 Марафон», «2+2», ТЕТ, ПлюсПлюс, УНІАН, Бігуді, Comedy Central, KVARTAL TV, 1+1 International, а з 1 листопада 2024 року — канал про подорожі Світ+.\n\nГрупа розвиває й платформи: онлайн-телебачення «Київстар ТБ» — спільний проєкт із «Київстаром», а супутникову платформу Viasat сама 1+1 media називає партнерською. Генеральний директор групи — Ярослав Пахольчук.\n\nУ жовтні 2023 року група повідомила, що Ігор Коломойський передав свої корпоративні права в управління трудовому колективу в особі Ярослава Пахольчука."
+  },
+  "facts": [
+    ["Генеральний директор", "Ярослав Пахольчук"]
+  ],
+  "website": "https://media.1plus1.ua",
+  "wiki": [
+    "uk:1+1 Media",
+    "en:1+1 Media Group"
+  ],
+  "sources": [
+    {"title": "1+1 media: про компанію", "url": "https://media.1plus1.ua/en"},
+    {"title": "1+1 media: платформний бізнес", "url": "https://media.1plus1.ua/en/platform-business"},
+    {"title": "1+1 media: запуск телеканалу Світ+ (01.11.2024)", "url": "https://media.1plus1.ua/en/news/pro-podorozi-i-ekstremalnii-vidpocinok-11-media-zapuskaje-novii-telekanal-svit"},
+    {"title": "Forbes Україна про власників 1+1 media (06.12.2024)", "url": "https://forbes.ua/news/spivvlasnikom-dekilkokh-kanaliv-grupi-11-media-stav-ii-direktor-departamentu-distributsii-andriy-malchevskiy-06122024-25373"}
+  ],
+  "updated": "2026-11-27"
+}
