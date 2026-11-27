@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'main-site/**'
+      - 'src/lib/autoLanguage.js'
       - 'scripts/build-home-stats.mjs'
       - '.github/workflows/deploy-main-site.yml'
   schedule:

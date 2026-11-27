@@ -8,6 +8,12 @@ import { publishDueArticles, schedulerStatus } from "./lib/scheduler.js";
 import { handleInternalUpload } from "./lib/internalUpload.js";
 import { runThreadsAutopost, refreshThreadsToken, threadsStatus } from "./lib/threads.js";
 import { runGermanTranslation, germanStatus } from "./lib/translateDe.js";
+import { autoLanguageTarget, autoLanguageRedirect, withLanguageCookie } from "./lib/autoLanguage.js";
+
+// Мовні версії news.promedia.report і projects.promedia.report (перша — типова, без префікса).
+// Нова мова з'явилася — допишіть її сюди, і новачків з такою мовою браузера відкриватиме нею.
+const SITE_LANGUAGES = ["uk", "en", "crh", "de"];
+const AUTO_LANGUAGE_HOSTS = new Set(["news.promedia.report", "projects.promedia.report"]);
 
 const EDGE_CACHE_SECONDS = 120;
 
@@ -51,7 +57,17 @@ function edgeCacheable(request, url) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    if (!AUTO_LANGUAGE_HOSTS.has(url.hostname.toLowerCase())) return handleRequest(request, env, ctx, url);
+    // Перший візит: відкриваємо мовою браузера (src/lib/autoLanguage.js).
+    const target = autoLanguageTarget(request, url, SITE_LANGUAGES);
+    if (target) return autoLanguageRedirect(url, SITE_LANGUAGES, target);
+    return withLanguageCookie(request, url, await handleRequest(request, env, ctx, url), SITE_LANGUAGES);
+  },
 
+  scheduled
+};
+
+async function handleRequest(request, env, ctx, url) {
     try {
       const uploadRes = await handleInternalUpload(request, env, url);
       if (uploadRes) return uploadRes;
@@ -141,9 +157,9 @@ export default {
         headers: { "Content-Type": "application/json; charset=utf-8" }
       });
     }
-  },
+}
 
-  async scheduled(event, env, ctx) {
+async function scheduled(event, env, ctx) {
     // Кожні 5 хвилин: відкрити новини, час публікації яких настав (src/lib/scheduler.js).
     ctx.waitUntil(publishDueArticles(env.DB).catch(e => console.error("scheduler", e)));
     // Threads і німецький переклад щоразу переглядають усю таблицю новин, а чекають
@@ -164,4 +180,3 @@ export default {
       );
     }
   }
-};
