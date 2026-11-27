@@ -20,11 +20,12 @@
   "periodLabelCrh": "2026 senesi noyabr",
   "coverImageUrl": "/img/projects/vuzol-sait.jpg",
   "projectStatus": "active",
-  "startDate": "2026-11-01",
+  "startDate": "2026-11-27",
   "websiteUrl": "https://vuzol.org.ua",
   "tags": [
     "медіа",
     "автоматизація"
   ],
-  "isFeatured": true
+  "isFeatured": true,
+  "revision": "2026-11-27-start-date"
 }
