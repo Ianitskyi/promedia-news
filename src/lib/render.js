@@ -445,6 +445,7 @@ const TAG_LABELS_CRH = {
   "медіаграмотність": "mediya savatlılığı",
   "штучний інтелект": "suniy zekâ",
   "дані": "malümat",
+  "відкриті дані": "açıq malümatlar",
   "медіаспільноти": "mediya cemaatları",
   "Львівський медіафорум": "Lviv mediya forumı",
   "стійкість медіа": "mediyanıñ turaqlılığı",

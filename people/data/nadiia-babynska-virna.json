@@ -1,0 +1,55 @@
+{
+  "slug": "nadiia-babynska-virna",
+  "group": "ua",
+  "country": "Україна",
+  "name": {
+    "uk": "Надія Бабинська-Вірна",
+    "en": "Nadiia Babynska-Virna"
+  },
+  "sort": {
+    "uk": "Бабинська-Вірна Надія",
+    "en": "Babynska-Virna Nadiia"
+  },
+  "role": {
+    "uk": "експертка з відкритих даних, журналістка, координаторка спільноти OpenUp Ukraine",
+    "en": "Open data expert, journalist, coordinator of the OpenUp Ukraine community"
+  },
+  "summary": {
+    "uk": "Експертка з відкритих даних і журналістка, координаторка ініціативи з відкритих даних OpenUp Ukraine.",
+    "en": "Open data expert and journalist, coordinator of the OpenUp Ukraine open data initiative."
+  },
+  "bio": {
+    "uk": "Надія Бабинська-Вірна — українська експертка з відкритих даних, громадська діячка й журналістка. Координує ініціативу з відкритих даних OpenUp Ukraine.\n\nРаніше була експерткою Громадянської мережі ОПОРА, керувала проєктом порталу відкритих даних Верховної Ради та була однією з ініціаторок і розробниць Плану дій «Відкритий парламент» для України.\n\nУ листопаді 2026 року OpenUp Ukraine оприлюднила її дослідження про те, як державні органи виконують зобов'язання щодо відкритих даних у межах ініціативи «Партнерство «Відкритий Уряд». Того ж місяця пані Надія публічно розкритикувала Мінцифри за мовчання під час недоступності порталу data.gov.ua."
+  },
+  "facts": [
+    [
+      "Організація",
+      "OpenUp Ukraine — координаторка ініціативи з відкритих даних"
+    ],
+    [
+      "Раніше",
+      "експертка Громадянської мережі ОПОРА"
+    ]
+  ],
+  "sources": [
+    {
+      "title": "Open Government Partnership: Nadiia Babynska",
+      "url": "https://www.opengovpartnership.org/people/nadiia-babynska/"
+    },
+    {
+      "title": "NV Бізнес: Надія Бабинська, координаторка ініціативи з відкритих даних OpenUp Ukraine",
+      "url": "https://biz.nv.ua/ukr/expert_author/babynska_n.html"
+    },
+    {
+      "title": "OpenUp Ukraine: Відкриті дані як міжнародне зобов'язання ініціативи «Партнерство «Відкритий Уряд». Дослідження",
+      "url": "https://openup.org.ua/2026/11/17/opendataogpreport2026/"
+    },
+    {
+      "title": "ПроМедіа: Держпортал відкритих даних не працював. Мінцифри повідомило про «оновлення»",
+      "url": "https://news.promedia.report/article/derzhportal-vidkrytykh-danykh-ne-pratsiuvav-mintsyfry-povidomylo-pro-onovlennia"
+    }
+  ],
+  "updated": "2026-11-27",
+  "aliases": ["Надія Бабинська", "Надія Вірна", "Nadiia Babynska", "Nadiia Virna"],
+  "kind": "journalist"
+}

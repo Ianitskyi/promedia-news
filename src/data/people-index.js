@@ -2459,6 +2459,28 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "nadiia-babynska-virna",
+    "tag": "Надія Бабинська-Вірна",
+    "aliases": [
+      "Надія Бабинська",
+      "Надія Вірна",
+      "Nadiia Babynska",
+      "Nadiia Virna"
+    ],
+    "name": {
+      "uk": "Надія Бабинська-Вірна",
+      "en": "Nadiia Babynska-Virna"
+    },
+    "role": {
+      "uk": "експертка з відкритих даних, журналістка, координаторка спільноти OpenUp Ukraine",
+      "en": "Open data expert, journalist, coordinator of the OpenUp Ukraine community"
+    },
+    "summary": {
+      "uk": "Експертка з відкритих даних і журналістка, координаторка ініціативи з відкритих даних OpenUp Ukraine.",
+      "en": "Open data expert and journalist, coordinator of the OpenUp Ukraine open data initiative."
+    }
+  },
+  {
     "slug": "narges-mohammadi",
     "tag": "Наргес Мохаммаді",
     "aliases": [],
