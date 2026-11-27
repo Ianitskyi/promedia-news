@@ -1,0 +1,73 @@
+{
+  "slug": "gulnara-bazhkenova",
+  "group": "intl",
+  "country": "Казахстан",
+  "kind": "journalist",
+  "name": {
+    "uk": "Гульнара Бажкенова",
+    "en": "Gulnara Bazhkenova"
+  },
+  "sort": {
+    "uk": "Бажкенова Гульнара",
+    "en": "Bazhkenova Gulnara"
+  },
+  "role": {
+    "uk": "казахстанська журналістка, засновниця і колишня головна редакторка Orda",
+    "en": "Kazakh journalist, founder and former editor-in-chief of Orda"
+  },
+  "summary": {
+    "uk": "Казахстанська журналістка й медіаменеджерка, засновниця незалежного видання Orda. У серпні 2026 року засуджена до восьми років позбавлення волі з відстрочкою.",
+    "en": "Kazakh journalist and media manager, founder of the independent outlet Orda. Sentenced in August 2026 to eight years in prison, deferred."
+  },
+  "bio": {
+    "uk": "Гульнара Бажкенова — казахстанська журналістка й медіаменеджерка. 2020 року вона заснувала інтернет-видання Orda, яке стало одним із найпопулярніших незалежних медіа Казахстану, і була його головною редакторкою. Пані Гульнара неодноразово заявляла про тиск на видання і спроби його захопити.\n\nУ грудні 2025 року поліція провела обшуки в редакції Orda і в журналістки; її звинуватили в «неодноразовому й навмисному поширенні завідомо неправдивої інформації» і відправили під домашній арешт. 18 серпня 2026 року суд в Алмати засудив її до восьми років позбавлення волі за поширення завідомо неправдивої інформації, незаконне підприємництво і привласнення майна. Виконання вироку відстрочили на два роки, бо журналістка має дитину, молодшу за 14 років. Провини вона не визнала. Переслідування пані Гульнари критикували Комітет захисту журналістів (CPJ) і Human Rights Watch."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Казахстан"
+    ],
+    [
+      "Фах",
+      "журналістка, медіаменеджерка"
+    ],
+    [
+      "Медіа",
+      "Orda"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Bazhkenova"
+    ]
+  },
+  "sources": [
+    {
+      "title": "CPJ: Kazakhstan police raid Orda, charge top editor over ‘false information’",
+      "url": "https://cpj.org/2025/12/kazakhstan-police-raid-orda-charge-top-editor-over-false-information/"
+    },
+    {
+      "title": "Informburo: Гульнаре Бажкеновой вынесли приговор",
+      "url": "https://informburo.kz/novosti/gulnare-bazkenovoi-vynesli-prigovor"
+    },
+    {
+      "title": "Настоящее Время: приговор Гульнаре Бажкеновой",
+      "url": "https://www.currenttime.tv/a/bazhkenova-orda-kz-prigovor/33832945.html"
+    },
+    {
+      "title": "Новая газета Европа: экс-главреда Orda приговорили к восьми годам",
+      "url": "https://novayagazeta.eu/articles/2026/08/18/eks-glavreda-kazakhstanskogo-izdaniia-orda-prigovorili-k-vosmi-godam-zakliucheniia-news"
+    },
+    {
+      "title": "ПроМедіа: Казахстанського антикорупційного блогера засудили до 10 років ув'язнення",
+      "url": "https://news.promedia.report/article/kazakhstanskoho-antykoruptsiinoho-blohera-zasudyly-do-10-rokiv"
+    }
+  ],
+  "aliases": [
+    "Gulnara Bazhkenova",
+    "Гульнара Бажкенова",
+    "Гульнар Бажкенова"
+  ],
+  "updated": "2026-11-27"
+}

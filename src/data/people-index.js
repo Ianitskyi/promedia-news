@@ -1023,6 +1023,27 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "gulnara-bazhkenova",
+    "tag": "Гульнара Бажкенова",
+    "aliases": [
+      "Gulnara Bazhkenova",
+      "Гульнара Бажкенова",
+      "Гульнар Бажкенова"
+    ],
+    "name": {
+      "uk": "Гульнара Бажкенова",
+      "en": "Gulnara Bazhkenova"
+    },
+    "role": {
+      "uk": "казахстанська журналістка, засновниця і колишня головна редакторка Orda",
+      "en": "Kazakh journalist, founder and former editor-in-chief of Orda"
+    },
+    "summary": {
+      "uk": "Казахстанська журналістка й медіаменеджерка, засновниця незалежного видання Orda. У серпні 2026 року засуджена до восьми років позбавлення волі з відстрочкою.",
+      "en": "Kazakh journalist and media manager, founder of the independent outlet Orda. Sentenced in August 2026 to eight years in prison, deferred."
+    }
+  },
+  {
     "slug": "gerda-taro",
     "tag": "Ґерда Таро",
     "aliases": [
@@ -3110,6 +3131,26 @@ export const PEOPLE = [
     "summary": {
       "uk": "Очолює регіональне бюро женевської організації Press Emblem Campaign, яка стежить за безпекою журналістів у зонах війн і конфліктів.",
       "en": "Heads the regional bureau of the Geneva-based Press Emblem Campaign, which monitors the safety of journalists in war and conflict zones."
+    }
+  },
+  {
+    "slug": "sanzhar-bokayev",
+    "tag": "Санжар Бокаєв",
+    "aliases": [
+      "Sanzhar Bokayev",
+      "Санжар Бокаев"
+    ],
+    "name": {
+      "uk": "Санжар Бокаєв",
+      "en": "Sanzhar Bokayev"
+    },
+    "role": {
+      "uk": "казахстанський опозиційний блогер і антикорупційний активіст",
+      "en": "Kazakh opposition blogger and anti-corruption activist"
+    },
+    "summary": {
+      "uk": "Казахстанський блогер, який викривав безгосподарність і ймовірну корупцію в Алмати. У листопаді 2026 року засуджений до 10 років ув'язнення; сам називає справу політичною.",
+      "en": "Kazakh blogger who exposed mismanagement and alleged corruption in Almaty. Sentenced to 10 years in prison in November 2026; he calls the case political."
     }
   },
   {
