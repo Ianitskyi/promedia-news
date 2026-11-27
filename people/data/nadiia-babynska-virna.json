@@ -50,6 +50,18 @@
     }
   ],
   "updated": "2026-11-27",
-  "aliases": ["Надія Бабинська", "Надія Вірна", "Nadiia Babynska", "Nadiia Virna"],
-  "kind": "journalist"
+  "aliases": [
+    "Надія Бабинська",
+    "Надія Вірна",
+    "Nadiia Babynska",
+    "Nadiia Virna"
+  ],
+  "kind": "journalist",
+  "photo": {
+    "url": "https://news.promedia.report/img/news/nadiia-babynska-virna.jpg",
+    "author": "сторінка Надії Бабинської-Вірної у Facebook",
+    "sourceUrl": "https://news.promedia.report/article/derzhportal-vidkrytykh-danykh-ne-pratsiuvav-mintsyfry-povidomylo-pro-onovlennia",
+    "sourceName": "фото з її сторінки у Facebook",
+    "article": "derzhportal-vidkrytykh-danykh-ne-pratsiuvav-mintsyfry-povidomylo-pro-onovlennia"
+  }
 }
