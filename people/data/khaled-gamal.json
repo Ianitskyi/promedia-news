@@ -1,0 +1,50 @@
+{
+ "slug": "khaled-gamal",
+ "group": "intl",
+ "country": "ОАЕ",
+ "kind": "other",
+ "name": {
+  "uk": "Халед Гамаль",
+  "en": "Khaled Gamal"
+ },
+ "sort": {
+  "uk": "Гамаль Халед",
+  "en": "Gamal Khaled"
+ },
+ "aliases": [],
+ "role": {
+  "uk": "дослідник, коледж медіа та зв'язків із громадськістю Університету Ліва (ОАЕ)",
+  "en": "researcher, Media and Public Relations College, Liwa University (UAE)"
+ },
+ "summary": {
+  "uk": "Працює в коледжі медіа та зв'язків із громадськістю Університету Ліва в Абу-Дабі.",
+  "en": "Works at the Media and Public Relations College of Liwa University in Abu Dhabi."
+ },
+ "bio": {
+  "uk": "Халед Гамаль працює в коледжі медіа та зв'язків із громадськістю Університету Ліва в Абу-Дабі (ОАЕ).\n\nУ листопаді 2026 року ПроМедіа переказало статтю в журналі Frontiers in Communication про ідеї Маршалла Маклюена й Кетрін Гейлз в епоху штучного інтелекту, яку він написав разом із колегами і як автор-кореспондент.",
+  "en": "Khaled Gamal works at the Media and Public Relations College of Liwa University in Abu Dhabi (UAE).\n\nIn November 2026 ProMedia retold an article in Frontiers in Communication on Marshall McLuhan's and Katherine Hayles's ideas in the age of artificial intelligence, which he co-authored as corresponding author."
+ },
+ "facts": [],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Khaled Gamal",
+   "Liwa University"
+  ]
+ },
+ "sources": [
+  {
+   "title": "Frontiers Loop: Khaled Gamal",
+   "url": "https://loop.frontiersin.org/people/3706825"
+  },
+  {
+   "title": "Frontiers in Communication: From sensory extension to distributed cognition: reassessing McLuhan through Hayles in the age of artificial intelligence (2026)",
+   "url": "https://www.frontiersin.org/journals/communication/articles/10.3389/fcomm.2026.2003776/full"
+  },
+  {
+   "title": "ПроМедіа: Хто обирає новини у вашій стрічці. Науковці перечитали Маклюена в епоху ШІ",
+   "url": "https://news.promedia.report/article/khto-obyraie-novyny-u-vashii-strichtsi-naukovtsi-perechytaly-makliuena"
+  }
+ ],
+ "updated": "2026-11-27"
+}

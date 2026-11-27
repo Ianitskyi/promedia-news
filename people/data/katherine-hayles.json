@@ -1,0 +1,69 @@
+{
+ "slug": "katherine-hayles",
+ "group": "intl",
+ "country": "США",
+ "kind": "other",
+ "name": {
+  "uk": "Кетрін Гейлз",
+  "en": "Katherine Hayles"
+ },
+ "sort": {
+  "uk": "Гейлз Кетрін",
+  "en": "Hayles Katherine"
+ },
+ "aliases": [
+  "N. Katherine Hayles",
+  "Nancy Katherine Hayles",
+  "Кетрін Гейлс",
+  "Кетрин Хейлз"
+ ],
+ "role": {
+  "uk": "американська дослідниця літератури, науки й технологій, професорка Каліфорнійського університету в Лос-Анджелесі",
+  "en": "American scholar of literature, science and technology, Distinguished Research Professor at UCLA"
+ },
+ "summary": {
+  "uk": "Досліджує, як цифрові технології змінюють людське мислення, читання й письмо. Авторка книжок «Як ми стали постлюдьми» (1999) і «Немислене» (2017).",
+  "en": "Studies how digital technologies change human thinking, reading and writing. Author of \"How We Became Posthuman\" (1999) and \"Unthought\" (2017)."
+ },
+ "bio": {
+  "uk": "Кетрін Гейлз народилася 1943 року в Сент-Луїсі (США). Спершу здобула освіту хіміка, а 1977 року захистила докторську дисертацію з англійської літератури в Рочестерському університеті.\n\nВикладала в Каліфорнійському університеті в Лос-Анджелесі, Університеті Айови, Каліфорнійському технологічному інституті й Дартмутському коледжі, у 2008–2018 роках — в Університеті Дюка, де нині є почесною професоркою. Також має звання заслуженої професорки-дослідниці Каліфорнійського університету в Лос-Анджелесі.\n\nДосліджує зв'язки літератури, науки й технологій, електронну літературу та вплив цифрових медіа на мислення. Її книжка «Як ми стали постлюдьми» (1999) отримала премію Рене Велека Американської асоціації порівняльного літературознавства. Серед інших праць — «Як ми думаємо: цифрові медіа й сучасний техногенез» і «Немислене: сила когнітивного несвідомого» (обидві 2017).\n\nУ листопаді 2026 року ПроМедіа переказало наукову статтю, автори якої застосовують її ідеї про «розподілене мислення» до медіа зі штучним інтелектом.",
+  "en": "Katherine Hayles was born in 1943 in St. Louis (USA). She first trained as a chemist and in 1977 earned her PhD in English literature at the University of Rochester.\n\nShe has taught at UCLA, the University of Iowa, the California Institute of Technology and Dartmouth College, and in 2008–2018 at Duke University, where she is now Professor Emerita. She is also a Distinguished Research Professor at UCLA.\n\nShe studies the relations of literature, science and technology, electronic literature and the impact of digital media on thinking. Her book \"How We Became Posthuman\" (1999) won the René Wellek Prize of the American Comparative Literature Association. Other works include \"How We Think: Digital Media and Contemporary Technogenesis\" and \"Unthought: The Power of the Cognitive Nonconscious\" (both 2017).\n\nIn November 2026 ProMedia retold an academic article whose authors apply her ideas on \"distributed cognition\" to AI-driven media."
+ },
+ "facts": [
+  [
+   "Країна",
+   "США"
+  ],
+  [
+   "Університет",
+   "Каліфорнійський університет у Лос-Анджелесі; Університет Дюка"
+  ]
+ ],
+ "photo": {
+  "wiki": [
+   "en:N. Katherine Hayles"
+  ],
+  "check": [
+   "Katherine Hayles"
+  ]
+ },
+ "sources": [
+  {
+   "title": "Duke University Scholars: N. Katherine Hayles",
+   "url": "https://scholars.duke.edu/person/katherine.hayles"
+  },
+  {
+   "title": "University of Oregon, What is Research: N. Katherine Hayles",
+   "url": "https://blogs.uoregon.edu/whatisresearch/katherine-hayles"
+  },
+  {
+   "title": "Wikipedia: N. Katherine Hayles",
+   "url": "https://en.wikipedia.org/wiki/N._Katherine_Hayles"
+  },
+  {
+   "title": "ПроМедіа: Хто обирає новини у вашій стрічці. Науковці перечитали Маклюена в епоху ШІ",
+   "url": "https://news.promedia.report/article/khto-obyraie-novyny-u-vashii-strichtsi-naukovtsi-perechytaly-makliuena"
+  }
+ ],
+ "updated": "2026-11-27"
+}

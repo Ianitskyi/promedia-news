@@ -1,0 +1,49 @@
+{
+ "slug": "rania-dafalla",
+ "group": "intl",
+ "country": "ОАЕ",
+ "kind": "other",
+ "name": {
+  "uk": "Ранія Дафалла",
+  "en": "Rania Dafalla"
+ },
+ "sort": {
+  "uk": "Дафалла Ранія",
+  "en": "Dafalla Rania"
+ },
+ "aliases": [],
+ "role": {
+  "uk": "дослідниця, коледж медіа та зв'язків із громадськістю Університету Ліва (ОАЕ)",
+  "en": "researcher, Media and Public Relations College, Liwa University (UAE)"
+ },
+ "summary": {
+  "uk": "Працює в коледжі медіа та зв'язків із громадськістю Університету Ліва в Абу-Дабі.",
+  "en": "Works at the Media and Public Relations College of Liwa University in Abu Dhabi."
+ },
+ "bio": {
+  "uk": "Ранія Дафалла працює в коледжі медіа та зв'язків із громадськістю Університету Ліва в Абу-Дабі (ОАЕ).\n\nУ листопаді 2026 року ПроМедіа переказало її спільну з колегами статтю в журналі Frontiers in Communication про ідеї Маршалла Маклюена й Кетрін Гейлз в епоху штучного інтелекту.",
+  "en": "Rania Dafalla works at the Media and Public Relations College of Liwa University in Abu Dhabi (UAE).\n\nIn November 2026 ProMedia retold her co-authored article in Frontiers in Communication on Marshall McLuhan's and Katherine Hayles's ideas in the age of artificial intelligence."
+ },
+ "facts": [],
+ "photo": {
+  "wiki": [],
+  "check": [
+   "Rania Dafalla"
+  ]
+ },
+ "sources": [
+  {
+   "title": "Frontiers Loop: Rania Dafalla",
+   "url": "https://loop.frontiersin.org/people/3615377"
+  },
+  {
+   "title": "Frontiers in Communication: From sensory extension to distributed cognition: reassessing McLuhan through Hayles in the age of artificial intelligence (2026)",
+   "url": "https://www.frontiersin.org/journals/communication/articles/10.3389/fcomm.2026.2003776/full"
+  },
+  {
+   "title": "ПроМедіа: Хто обирає новини у вашій стрічці. Науковці перечитали Маклюена в епоху ШІ",
+   "url": "https://news.promedia.report/article/khto-obyraie-novyny-u-vashii-strichtsi-naukovtsi-perechytaly-makliuena"
+  }
+ ],
+ "updated": "2026-11-27"
+}

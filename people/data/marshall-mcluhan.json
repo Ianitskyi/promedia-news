@@ -1,0 +1,68 @@
+{
+ "slug": "marshall-mcluhan",
+ "group": "intl",
+ "country": "Канада",
+ "kind": "other",
+ "name": {
+  "uk": "Маршалл Маклюен",
+  "en": "Marshall McLuhan"
+ },
+ "sort": {
+  "uk": "Маклюен Маршалл",
+  "en": "McLuhan Marshall"
+ },
+ "aliases": [
+  "Маршал Маклюен",
+  "Маршалл Маклюан",
+  "Herbert Marshall McLuhan"
+ ],
+ "role": {
+  "uk": "канадський філософ і теоретик медіа",
+  "en": "Canadian philosopher and media theorist"
+ },
+ "summary": {
+  "uk": "Один із найвідоміших теоретиків медіа XX століття, автор книжки «Розуміння медіа» (1964) і фрази «медіум — це повідомлення».",
+  "en": "One of the best-known media theorists of the 20th century, author of \"Understanding Media\" (1964) and of the phrase \"the medium is the message\"."
+ },
+ "bio": {
+  "uk": "Маршалл Маклюен народився 21 липня 1911 року в Едмонтоні (Канада) і помер 31 грудня 1980 року в Торонто.\n\nВід 1946 до 1979 року він працював у Торонтському університеті, з 1952 року — професором англійської літератури. Згодом очолював університетський центр, що досліджував культуру й технології.\n\nУ книжці «Розуміння медіа» (1964) він описав медіа як розширення людських органів і почуттів. Його фраза «медіум — це повідомлення» означає, що сама технологія змінює те, як люди мислять і спілкуються, незалежно від змісту.\n\nУ листопаді 2026 року ПроМедіа переказало наукову статтю, автори якої перечитують ідеї Маклюена в епоху штучного інтелекту.",
+  "en": "Marshall McLuhan was born on 21 July 1911 in Edmonton, Canada, and died on 31 December 1980 in Toronto.\n\nFrom 1946 to 1979 he worked at the University of Toronto, becoming a full professor of English literature in 1952. He later directed a university centre for the study of culture and technology.\n\nIn \"Understanding Media\" (1964) he described media as extensions of human organs and senses. His phrase \"the medium is the message\" means that technology itself changes how people think and communicate, regardless of content.\n\nIn November 2026 ProMedia retold an academic article whose authors reread McLuhan's ideas in the age of artificial intelligence."
+ },
+ "facts": [
+  [
+   "Країна",
+   "Канада"
+  ],
+  [
+   "Роки життя",
+   "1911–1980"
+  ],
+  [
+   "Університет",
+   "Торонтський університет"
+  ]
+ ],
+ "photo": {
+  "url": "https://news.promedia.report/img/news/portrait-marshall-mcluhan.jpg",
+  "author": "Бернард Ґотфрід",
+  "license": "Суспільне надбання",
+  "licenseUrl": "https://www.loc.gov/rr/print/res/415_gotf.html",
+  "sourceUrl": "https://commons.wikimedia.org/wiki/File:Marshall_McLuhan_with_and_on_television.jpg",
+  "sourceName": "Бібліотека Конгресу США / Вікісховище"
+ },
+ "sources": [
+  {
+   "title": "Encyclopaedia Britannica: Marshall McLuhan",
+   "url": "https://www.britannica.com/biography/Marshall-McLuhan"
+  },
+  {
+   "title": "Frontiers in Communication: From sensory extension to distributed cognition: reassessing McLuhan through Hayles in the age of artificial intelligence (2026)",
+   "url": "https://www.frontiersin.org/journals/communication/articles/10.3389/fcomm.2026.2003776/full"
+  },
+  {
+   "title": "ПроМедіа: Хто обирає новини у вашій стрічці. Науковці перечитали Маклюена в епоху ШІ",
+   "url": "https://news.promedia.report/article/khto-obyraie-novyny-u-vashii-strichtsi-naukovtsi-perechytaly-makliuena"
+  }
+ ],
+ "updated": "2026-11-27"
+}

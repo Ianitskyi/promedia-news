@@ -891,6 +891,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "ghada-salih",
+    "tag": "Гада Саліх",
+    "aliases": [
+      "Ghada Mohamed Salih",
+      "Гада Мохамед Саліх"
+    ],
+    "name": {
+      "uk": "Гада Саліх",
+      "en": "Ghada Salih"
+    },
+    "role": {
+      "uk": "доцентка з радіо, телебачення й цифрових медіа, Університет Ліва (ОАЕ)",
+      "en": "Associate Professor of Radio, TV and Digital Media, Liwa University (UAE)"
+    },
+    "summary": {
+      "uk": "Викладачка медіа з понад двадцятирічним досвідом, досліджує цифрові медіа й телебачення та їхній вплив на суспільство в арабському світі.",
+      "en": "Media lecturer with more than twenty years of teaching experience; researches digital media, television and their impact on society in the Arab world."
+    }
+  },
+  {
     "slug": "halyna-tanai",
     "tag": "Галина Танай",
     "aliases": [],
@@ -1837,6 +1857,28 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "katherine-hayles",
+    "tag": "Кетрін Гейлз",
+    "aliases": [
+      "N. Katherine Hayles",
+      "Nancy Katherine Hayles",
+      "Кетрін Гейлс",
+      "Кетрин Хейлз"
+    ],
+    "name": {
+      "uk": "Кетрін Гейлз",
+      "en": "Katherine Hayles"
+    },
+    "role": {
+      "uk": "американська дослідниця літератури, науки й технологій, професорка Каліфорнійського університету в Лос-Анджелесі",
+      "en": "American scholar of literature, science and technology, Distinguished Research Professor at UCLA"
+    },
+    "summary": {
+      "uk": "Досліджує, як цифрові технології змінюють людське мислення, читання й письмо. Авторка книжок «Як ми стали постлюдьми» (1999) і «Немислене» (2017).",
+      "en": "Studies how digital technologies change human thinking, reading and writing. Author of \"How We Became Posthuman\" (1999) and \"Unthought\" (2017)."
+    }
+  },
+  {
     "slug": "kostiantyn-liberov",
     "tag": "Костянтин Либеров",
     "aliases": [],
@@ -2170,6 +2212,27 @@ export const PEOPLE = [
     "summary": {
       "uk": "Польський економіст і політик: міністр в уряді Тадеуша Мазовецького (1989–1991), мер Варшави (1994–1999), депутат Сейму, з жовтня 2019 року — бізнес-омбудсмен України.",
       "en": "Polish economist and politician: minister in Tadeusz Mazowiecki's government (1989–1991), mayor of Warsaw (1994–1999), member of the Sejm, and from October 2019 Ukraine's Business Ombudsman."
+    }
+  },
+  {
+    "slug": "marshall-mcluhan",
+    "tag": "Маршалл Маклюен",
+    "aliases": [
+      "Маршал Маклюен",
+      "Маршалл Маклюан",
+      "Herbert Marshall McLuhan"
+    ],
+    "name": {
+      "uk": "Маршалл Маклюен",
+      "en": "Marshall McLuhan"
+    },
+    "role": {
+      "uk": "канадський філософ і теоретик медіа",
+      "en": "Canadian philosopher and media theorist"
+    },
+    "summary": {
+      "uk": "Один із найвідоміших теоретиків медіа XX століття, автор книжки «Розуміння медіа» (1964) і фрази «медіум — це повідомлення».",
+      "en": "One of the best-known media theorists of the 20th century, author of \"Understanding Media\" (1964) and of the phrase \"the medium is the message\"."
     }
   },
   {
@@ -2856,6 +2919,23 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "rania-dafalla",
+    "tag": "Ранія Дафалла",
+    "aliases": [],
+    "name": {
+      "uk": "Ранія Дафалла",
+      "en": "Rania Dafalla"
+    },
+    "role": {
+      "uk": "дослідниця, коледж медіа та зв'язків із громадськістю Університету Ліва (ОАЕ)",
+      "en": "researcher, Media and Public Relations College, Liwa University (UAE)"
+    },
+    "summary": {
+      "uk": "Працює в коледжі медіа та зв'язків із громадськістю Університету Ліва в Абу-Дабі.",
+      "en": "Works at the Media and Public Relations College of Liwa University in Abu Dhabi."
+    }
+  },
+  {
     "slug": "rachel-campos-duffy",
     "tag": "Рейчел Кампос-Даффі",
     "aliases": [],
@@ -3424,6 +3504,23 @@ export const PEOPLE = [
     "summary": {
       "uk": "Голова правління опозиційного Sözcü TV; затримана 17 листопада 2026 року, коли канал передали під державне управління.",
       "en": "Board chair of the opposition channel Sözcü TV; detained on 17 November 2026 when the channel was placed under state management."
+    }
+  },
+  {
+    "slug": "khaled-gamal",
+    "tag": "Халед Гамаль",
+    "aliases": [],
+    "name": {
+      "uk": "Халед Гамаль",
+      "en": "Khaled Gamal"
+    },
+    "role": {
+      "uk": "дослідник, коледж медіа та зв'язків із громадськістю Університету Ліва (ОАЕ)",
+      "en": "researcher, Media and Public Relations College, Liwa University (UAE)"
+    },
+    "summary": {
+      "uk": "Працює в коледжі медіа та зв'язків із громадськістю Університету Ліва в Абу-Дабі.",
+      "en": "Works at the Media and Public Relations College of Liwa University in Abu Dhabi."
     }
   },
   {
