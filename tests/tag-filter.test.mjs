@@ -6,8 +6,9 @@ import { execFileSync } from "node:child_process";
 const source = readFileSync(new URL("../src/routes/public.js", import.meta.url), "utf8")
   .replace(/^import .*?;\s*/gm, "").replace(/export /g, "");
 const { PRACTICE_TOPICS, viewsVisible } = await import("../src/lib/render.js");
-const route = new Function("renderHomepage", "ukrainianTypographyReplacer", "PRACTICE_TOPICS", "viewsVisible", source + "; return handlePublicRoute;")(
-  ({ articles }) => `<html>${articles.length}</html>`, (_key, value) => value, PRACTICE_TOPICS, viewsVisible
+const { pinActiveSql, pinnedAtSelectSql } = await import("../src/lib/pinning.js");
+const route = new Function("renderHomepage", "ukrainianTypographyReplacer", "PRACTICE_TOPICS", "viewsVisible", "pinActiveSql", "pinnedAtSelectSql", source + "; return handlePublicRoute;")(
+  ({ articles }) => `<html>${articles.length}</html>`, (_key, value) => value, PRACTICE_TOPICS, viewsVisible, pinActiveSql, pinnedAtSelectSql
 );
 const longTag = "журналістські розслідування";
 const article = {
@@ -15,7 +16,7 @@ const article = {
   excerpt: "Опис", excerpt_en: "Description", excerpt_crh: "Tarif",
   cover_image_url: "", cover_image_url_en: "", cover_image_url_crh: "", cover_crop_data_crh: "{}", cover_crop_data: "{}", cover_crop_data_en: "{}",
   tags: JSON.stringify(["автоматизація", longTag, 'Тег "із лапками" та % _']), related_media_ids: JSON.stringify(["long-media-id-".repeat(8)]),
-  is_important: 0, card_style: "auto", pinned_at: null, published_at: "2026-11-05", status: "published", deleted_at: null, body_md: "Текст"
+  is_important: 0, card_style: "auto", pinned_at: null, pinned_until: null, published_at: "2026-11-05", status: "published", deleted_at: null, body_md: "Текст"
 };
 const sqlite = `
 import sqlite3, json, sys

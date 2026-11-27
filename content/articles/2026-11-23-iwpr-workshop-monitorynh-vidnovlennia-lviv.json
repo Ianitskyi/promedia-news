@@ -32,6 +32,7 @@
   "isImportant": false,
   "cardStyle": "image",
   "pinned": true,
+  "pinnedUntil": "2026-12-04",
   "revision": "2026-11-26-lead-in-body",
   "coverRevision": "2026-11-23-cover-mobile"
 }

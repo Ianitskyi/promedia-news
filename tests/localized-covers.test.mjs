@@ -17,12 +17,12 @@ test('Each language selects its own image and crop; missing translations fall ba
 test('Admin API saves, reads, changes and clears Crimean Tatar cover independently',async()=>{
  const db=new DatabaseSync(':memory:');
  for(const name of readdirSync(new URL('../migrations/',import.meta.url)).filter(n=>n.endsWith('.sql')).sort()){
-  // articles.pinned_at is added by scripts/ensure-article-pinned.mjs at deploy, not by a migration.
-  if(/pinned_at/.test(read('migrations/'+name))&&!db.prepare("SELECT 1 FROM pragma_table_info('articles') WHERE name='pinned_at'").get())db.exec('ALTER TABLE articles ADD COLUMN pinned_at TEXT');
+  // articles.pinned_at/pinned_until are added by scripts/ensure-article-pinned.mjs at deploy, not by a migration.
+  if(/pinned_(at|until)/.test(read('migrations/'+name)))for(const col of ['pinned_at','pinned_until'])if(!db.prepare("SELECT 1 FROM pragma_table_info('articles') WHERE name=?").get(col))db.exec('ALTER TABLE articles ADD COLUMN '+col+' TEXT');
   db.exec(read('migrations/'+name));
  }
  db.exec("INSERT INTO users(id,email,password_hash,name,role) VALUES(1,'test@example.org','test','Test','admin')");
- const D1={prepare(sql){
+ const D1={async batch(list){for(const st of list)await st.run();},prepare(sql){
   let values=[];
   return {
    bind(...v){values=v;return this;},
@@ -32,13 +32,24 @@ test('Admin API saves, reads, changes and clears Crimean Tatar cover independent
   };
  }};
  const source=read('src/routes/admin.js').replace(/^import .*?;\s*/gm,'').replace(/export /g,'');
- const handler=new Function('getCurrentUser','uniqueSlug','completeArticleDraft','normalizeUkrainianFields','markdownToPlainText',source+';return handleAdminRoute;')(async()=>({id:1,role:'admin'}),async()=>'santa-test',async b=>b,a=>a,x=>x);
+ const pin=await import('../src/lib/pinning.js');
+ const handler=new Function('getCurrentUser','uniqueSlug','completeArticleDraft','normalizeUkrainianFields','markdownToPlainText','isPinActive','pinUntilDate','resolvePinUntil',source+';return handleAdminRoute;')(async()=>({id:1,role:'admin'}),async()=>'santa-test',async b=>b,a=>a,x=>x,pin.isPinActive,pin.pinUntilDate,pin.resolvePinUntil);
  const call=async(method,path,body)=>{const u=new URL(path,'https://news.promedia.report');const request=new Request(u,{method,...(body?{headers:{'content-type':'application/json'},body:JSON.stringify(body)}:{})});return handler(request,{DB:D1},u)};
  let response=await call('POST','/api/admin/articles',{title:'Санта',bodyMd:'Текст',coverImageUrl:'/uk.png',coverImageUrlEn:'/en.png',coverImageUrlCrh:'/crh.png',coverCropDataCrh:{alt:'Gizli Santa'}});
  assert.equal(response.status,201);let item=(await response.json()).item;assert.equal(item.coverImageUrlCrh,'/crh.png');assert.equal(item.coverCropDataCrh.alt,'Gizli Santa');
  response=await call('PUT','/api/admin/articles/'+item.id,{coverImageUrlCrh:'/new-crh.png',coverCropDataCrh:{alt:'QT'}});assert.equal(response.status,200);
  const saved=db.prepare('SELECT * FROM articles WHERE id=?').get(item.id);assert.equal(saved.cover_image_url,'/uk.png');assert.equal(saved.cover_image_url_en,'/en.png');assert.equal(saved.cover_image_url_crh,'/new-crh.png');
  response=await call('PUT','/api/admin/articles/'+item.id,{coverImageUrlCrh:null});assert.equal(response.status,200);assert.equal(db.prepare('SELECT cover_image_url_crh FROM articles WHERE id=?').get(item.id).cover_image_url_crh,null);
+ // Закріплення завжди з терміном: без дати — 5 днів, минула дата — помилка, свою дату зберігаємо.
+ response=await call('PUT','/api/admin/articles/'+item.id,{isPinned:true});assert.equal(response.status,200);
+ item=(await response.json()).item;assert.equal(item.isPinned,true);assert.equal(item.pinnedUntil,pin.defaultPinDate());
+ response=await call('PUT','/api/admin/articles/'+item.id,{isPinned:true,pinnedUntil:'2020-01-01'});assert.equal(response.status,400);
+ response=await call('PUT','/api/admin/articles/'+item.id,{isPinned:true,pinnedUntil:'2999-12-04'});item=(await response.json()).item;assert.equal(item.pinnedUntil,'2999-12-04');
+ assert.equal(db.prepare('SELECT pinned_until FROM articles WHERE id=?').get(item.id).pinned_until,'2999-12-04T22:00:00.000Z');
+ response=await call('POST','/api/admin/articles/'+item.id+'/pin',{pinned:true});item=(await response.json()).item;assert.equal(item.pinnedUntil,pin.defaultPinDate());
+ db.prepare("UPDATE articles SET pinned_until='2020-01-01T22:00:00.000Z' WHERE id=?").run(item.id);
+ response=await call('GET','/api/admin/articles');const listed=(await response.json());item=(listed.items||listed.articles).find(x=>x.id===item.id);assert.equal(item.isPinned,false);assert.equal(item.pinnedUntil,null);
+ response=await call('PUT','/api/admin/articles/'+item.id,{isPinned:false});assert.equal(db.prepare('SELECT pinned_at FROM articles WHERE id=?').get(item.id).pinned_at,null);
 });
 test('Santa preset prepares three language covers without saving or publishing an article',()=>{
  const source=read('public/admin/admin.js');const start=source.indexOf('document.getElementById("santa-covers-preset").addEventListener');const end=source.indexOf('function collectPayload',start);const action=source.slice(start,end);

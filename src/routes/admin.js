@@ -5,6 +5,7 @@ import { handleAdminPushRoute } from "../lib/push.js";
 import { handleAdminSubdomainsRoute } from "../lib/subdomains.js";
 import { completeArticleDraft, generateArticleAssist } from "../lib/articleAssist.js";
 import { normalizeUkrainianFields } from "../lib/typography.js";
+import { isPinActive, pinUntilDate, resolvePinUntil } from "../lib/pinning.js";
 
 function json(data, status) {
   return new Response(JSON.stringify(data), {
@@ -35,8 +36,10 @@ function serializeArticle(a) {
     tags: JSON.parse(a.tags || "[]"),
     relatedMediaIds: JSON.parse(a.related_media_ids || "[]"),
     isImportant: Boolean(a.is_important),
-    isPinned: Boolean(a.pinned_at),
-    pinnedAt: a.pinned_at || null,
+    // Прострочене закріплення вважається знятим (термін — до кінця дня pinnedUntil за Києвом).
+    isPinned: isPinActive(a),
+    pinnedAt: isPinActive(a) ? a.pinned_at : null,
+    pinnedUntil: isPinActive(a) ? pinUntilDate(a) : null,
     cardStyle: a.card_style || "auto",
     status: a.status,
     authorId: a.author_id,
@@ -265,7 +268,13 @@ export async function handleAdminRoute(request, env, url) {
     const body = await request.json().catch(() => ({}));
     const article = await db.prepare("SELECT id FROM articles WHERE id = ? AND deleted_at IS NULL").bind(id).first();
     if (!article) return json({ error: "not_found" }, 404);
-    await setArticlePinned(db, id, body.pinned !== false);
+    let until = null;
+    if (body.pinned !== false) {
+      const resolved = resolvePinUntil(body.pinnedUntil);
+      if (resolved.error) return json({ error: resolved.error }, 400);
+      until = resolved.until;
+    }
+    await setArticlePinned(db, id, body.pinned !== false, until);
     const updated = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
     return json({ item: serializeArticle(updated) });
   }
@@ -304,6 +313,18 @@ export async function handleAdminRoute(request, env, url) {
     if (request.method === "PUT") {
       let body = await request.json().catch(() => null);
       if (!body) return json({ error: "invalid_body" }, 400);
+      // Закріплення перевіряємо до збереження, щоб неправильна дата не лишила новину напівзбереженою.
+      let pinChange = null;
+      if (body.isPinned !== undefined && user.role === "admin") {
+        const wasPinned = isPinActive(article);
+        if (body.isPinned) {
+          const resolved = resolvePinUntil(body.pinnedUntil);
+          if (resolved.error) return json({ error: resolved.error }, 400);
+          if (!wasPinned || resolved.date !== pinUntilDate(article)) pinChange = { pinned: true, until: resolved.until };
+        } else if (article.pinned_at) {
+          pinChange = { pinned: false };
+        }
+      }
       body = await completeArticleDraft({
         ...body,
         title: body.title ?? article.title,
@@ -348,16 +369,14 @@ export async function handleAdminRoute(request, env, url) {
         new Date().toISOString(),
         id
       ).run();
-      if (body.isPinned !== undefined && user.role === "admin" && Boolean(body.isPinned) !== Boolean(article.pinned_at)) {
-        await setArticlePinned(db, id, Boolean(body.isPinned));
-      }
+      if (pinChange) await setArticlePinned(db, id, pinChange.pinned, pinChange.until);
       const updated = await db.prepare("SELECT * FROM articles WHERE id = ?").bind(id).first();
       return json({ item: serializeArticle(updated) });
     }
 
     if (request.method === "DELETE") {
       const now = new Date().toISOString();
-      await db.prepare("UPDATE articles SET deleted_at = ?, updated_at = ?, pinned_at = NULL WHERE id = ?")
+      await db.prepare("UPDATE articles SET deleted_at = ?, updated_at = ?, pinned_at = NULL, pinned_until = NULL WHERE id = ?")
         .bind(now, now, id).run();
       return json({ ok: true, deletedAt: now });
     }
@@ -383,7 +402,7 @@ export async function handleAdminRoute(request, env, url) {
     const article = await db.prepare("SELECT * FROM articles WHERE id = ? AND deleted_at IS NULL").bind(id).first();
     if (!article) return json({ error: "not_found" }, 404);
     if (user.role !== "admin" && article.author_id !== user.id) return json({ error: "forbidden" }, 403);
-    await db.prepare("UPDATE articles SET status = 'draft', pinned_at = NULL, updated_at = ? WHERE id = ?")
+    await db.prepare("UPDATE articles SET status = 'draft', pinned_at = NULL, pinned_until = NULL, updated_at = ? WHERE id = ?")
       .bind(new Date().toISOString(), id).run();
     return json({ ok: true });
   }
@@ -469,13 +488,14 @@ export async function handleAdminRoute(request, env, url) {
 }
 
 
-async function setArticlePinned(db, id, pinned) {
+// until — UTC-момент кінця закріплення (resolvePinUntil): закріплення завжди з терміном.
+async function setArticlePinned(db, id, pinned, until) {
   if (pinned) {
     await db.batch([
-      db.prepare("UPDATE articles SET pinned_at = NULL WHERE pinned_at IS NOT NULL AND id != ?").bind(id),
-      db.prepare("UPDATE articles SET pinned_at = ? WHERE id = ?").bind(new Date().toISOString(), id)
+      db.prepare("UPDATE articles SET pinned_at = NULL, pinned_until = NULL WHERE pinned_at IS NOT NULL AND id != ?").bind(id),
+      db.prepare("UPDATE articles SET pinned_at = ?, pinned_until = ? WHERE id = ?").bind(new Date().toISOString(), until, id)
     ]);
   } else {
-    await db.prepare("UPDATE articles SET pinned_at = NULL WHERE id = ?").bind(id).run();
+    await db.prepare("UPDATE articles SET pinned_at = NULL, pinned_until = NULL WHERE id = ?").bind(id).run();
   }
 }

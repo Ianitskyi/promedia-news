@@ -13,6 +13,7 @@ import {execFileSync} from 'node:child_process';
 import {readFileSync, readdirSync, writeFileSync, mkdtempSync} from 'node:fs';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
+import {resolvePinUntil} from '../src/lib/pinning.js';
 
 const DB = 'promedia-news';
 const BUCKET = 'promedia-news-images';
@@ -342,11 +343,17 @@ for (const [slug, ids] of Object.entries(related)) {
 }
 
 // "pinned": true — закріпити новину вгорі стрічки (знімає закріплення з попередньої);
+// "pinnedUntil": "2026-12-04" — до кінця якого дня (за Києвом) висить закріплення;
+//   без цього поля — 5 днів від сьогодні. Безстрокового закріплення немає.
 // "pinned": false — відкріпити. Без поля закріплення не змінюється.
 function pinSql(a, marker) {
   if (a.pinned === undefined) return '';
   const guard = marker ? ` AND NOT EXISTS (SELECT 1 FROM editorial_data_fixes WHERE name = ${q(marker)})` : '';
-  if (!a.pinned) return `UPDATE articles SET pinned_at = NULL WHERE slug = ${q(a.slug)}${guard};`;
-  return `UPDATE articles SET pinned_at = NULL WHERE pinned_at IS NOT NULL AND slug != ${q(a.slug)}${guard};
-    UPDATE articles SET pinned_at = ${q(new Date().toISOString())} WHERE slug = ${q(a.slug)}${guard};`;
+  if (!a.pinned) return `UPDATE articles SET pinned_at = NULL, pinned_until = NULL WHERE slug = ${q(a.slug)}${guard};`;
+  // Скрипт проганяє всі JSON на кожному деплої, тож минула дата — не помилка: таке закріплення
+  // просто вже не діє. Помилка лише на неправильний формат.
+  const resolved = a.pinnedUntil ? resolvePinUntil(a.pinnedUntil, new Date(0)) : resolvePinUntil(null);
+  if (resolved.error) throw Error(`${a.slug}: pinnedUntil — ${resolved.error}`);
+  return `UPDATE articles SET pinned_at = NULL, pinned_until = NULL WHERE pinned_at IS NOT NULL AND slug != ${q(a.slug)}${guard};
+    UPDATE articles SET pinned_at = ${q(new Date().toISOString())}, pinned_until = ${q(resolved.until)} WHERE slug = ${q(a.slug)}${guard};`;
 }
