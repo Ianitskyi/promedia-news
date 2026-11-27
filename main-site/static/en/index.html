@@ -177,7 +177,7 @@ body.pm-modal-open{overflow:hidden}
 <script>(function(){var root=document.querySelector(".pm-home-numbers");if(!root)return;var nums=[].slice.call(root.querySelectorAll("b[data-n]")),lang="en";
 function fmt(n){return lang==="en"?n.toLocaleString("en-US"):String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"\u00a0")}
 function run(el){var to=+el.dataset.n,t0=null,d=1200;if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){el.textContent=fmt(to);return}
-function step(t){if(!t0)t0=t;var k=Math.min((t-t0)/d,1),e=1-Math.pow(1-k,3);el.textContent=fmt(Math.round(to*e));if(k<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+function step(t){if(!t0)t0=t;var k=Math.min((t-t0)/d,1),e=1-Math.pow(1-k,3);el.textContent=fmt(Math.round(+el.dataset.n*e));if(k<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
 nums.forEach(function(el){el.textContent=fmt(+el.dataset.n)});
 var started=false;function go(){if(started)return;started=true;nums.forEach(run)}
 if("IntersectionObserver"in window){var io=new IntersectionObserver(function(es){if(es.some(function(e){return e.isIntersecting})){go();io.disconnect()}},{threshold:.3});io.observe(root)}else go();
