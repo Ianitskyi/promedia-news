@@ -501,6 +501,29 @@ export const BRANDS = [
     }
   },
   {
+    "slug": "imi",
+    "tag": "Інститут масової інформації",
+    "aliases": [
+      "ІМІ",
+      "IMI"
+    ],
+    "group": "ua",
+    "kind": "ngo",
+    "country": "Україна",
+    "name": {
+      "uk": "Інститут масової інформації",
+      "en": "Institute of Mass Information"
+    },
+    "type": {
+      "uk": "українська громадська медійна організація",
+      "en": "Ukrainian media NGO"
+    },
+    "summary": {
+      "uk": "Київська громадська організація, що з 1995 року захищає свободу слова й журналістів, моніторить медіа та складає Білий список якісних онлайн-медіа.",
+      "en": "Kyiv-based NGO defending press freedom and journalists since 1995; monitors the media and compiles the Quality Media (White) List."
+    }
+  },
+  {
     "slug": "interfax-ukraine",
     "tag": "Інтерфакс-Україна",
     "aliases": [
