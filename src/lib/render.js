@@ -1451,7 +1451,6 @@ const ABOUT_LABEL = { uk: "Про кого:", en: "About:", crh: "Kimler aqqınd
 
 // Картка «Медіа в матеріалі» під новиною — поруч із карткою «Люди в матеріалі».
 // Показуємо лише медіа, які є в Атласі медіа або на карті спільнот, з посиланнями на обидва.
-const MEDIA_BOX_TITLE = { uk: "Українські медіа в матеріалі", en: "Ukrainian media in this story", crh: "Bu materialdaki ukrain mediyaları", de: "Ukrainische Medien in diesem Beitrag" };
 const MEDIA_BOX_ATLAS = { uk: "В Атласі медіа", en: "In the Media Atlas", crh: "Mediya Atlasında", de: "Im Medienatlas" };
 const MEDIA_BOX_MAP = { uk: "На карті спільнот", en: "On the community map", crh: "Cemaatlar haritasında", de: "Auf der Community-Karte" };
 const MEDIA_BOX_SITE = { uk: "Сайт", en: "Website", crh: "Sayt", de: "Website" };
@@ -1470,7 +1469,7 @@ const UNI_BOX_LINK = { uk: "У рейтингу журфаків", en: "In the j
 const BRANDS_BOX_TITLE = { uk: "Медіабренди в матеріалі", en: "Media brands in this story", crh: "Bu materialdaki mediya brendleri", de: "Medienmarken in diesem Beitrag" };
 const BRANDS_BOX_LINK = { uk: "Досьє", en: "Profile", crh: "Dosye", de: "Profil" };
 
-function brandsBox(tags, lang, media = []) {
+function brandRows(tags, lang, media = []) {
   if (!BRANDS_BASE_URL) return "";
   const shown = new Set((media || []).map(m => tagLookupKey(m && m.name)));
   const seen = new Set();
@@ -1491,7 +1490,7 @@ function brandsBox(tags, lang, media = []) {
       <p class="people-box-summary">${escapeHtml(summary)} <a href="${escapeHtml(href)}">${pick(BRANDS_BOX_LINK, lang)} →</a></p></div>
     </li>`;
   }).join("");
-  return `<aside class="people-box media-box brands-box" aria-label="${escapeHtml(pick(BRANDS_BOX_TITLE, lang))}"><h2>${pick(BRANDS_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
+  return rows;
 }
 
 function universitiesBox(universities, lang) {
@@ -1510,7 +1509,14 @@ function universitiesBox(universities, lang) {
   return `<aside class="people-box media-box" aria-label="${escapeHtml(pick(UNI_BOX_TITLE, lang))}"><h2>${pick(UNI_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
 }
 
-function mediaBox(media, lang) {
+function brandDossierLink(name, lang) {
+  const b = BRANDS_BASE_URL && brandForTag(name);
+  if (!b) return "";
+  const href = `${BRANDS_BASE_URL.replace(/\/$/, "")}${langPrefix(extLang(lang))}/${b.slug}/`;
+  return `<a href="${escapeHtml(href)}">${pick(BRANDS_BOX_LINK, lang)} →</a>`;
+}
+
+function mediaRows(media, lang) {
   const items = (media || []).filter(m => m && (m.atlasUrl || m.community || (m.manual && m.website)));
   if (!items.length) return "";
   const rows = items.map((m) => {
@@ -1525,7 +1531,8 @@ function mediaBox(media, lang) {
     const links = [
       atlasUrl ? `<a href="${escapeHtml(atlasUrl)}">${pick(MEDIA_BOX_ATLAS, lang)} →</a>` : "",
       mapUrl ? `<a href="${escapeHtml(mapUrl)}">${pick(MEDIA_BOX_MAP, lang)} →</a>` : "",
-      website ? `<a href="${escapeHtml(website)}" rel="noopener">${pick(MEDIA_BOX_SITE, lang)} ↗</a>` : ""
+      website ? `<a href="${escapeHtml(website)}" rel="noopener">${pick(MEDIA_BOX_SITE, lang)} ↗</a>` : "",
+      brandDossierLink(m.name, lang)
     ].filter(Boolean).join("");
     return `<li class="people-box-item media-box-item">
       <a class="people-box-photo media-box-logo" href="${escapeHtml(main)}" aria-hidden="true" tabindex="-1"><span>${escapeHtml(initials)}</span>${(m.logo || c.logo) ? `<img src="${escapeHtml(m.logo || c.logo)}" alt="" loading="lazy" onerror="this.remove()">` : ""}</a>
@@ -1535,7 +1542,15 @@ function mediaBox(media, lang) {
       <p class="media-box-links">${links}</p></div>
     </li>`;
   }).join("");
-  return `<aside class="people-box media-box" aria-label="${escapeHtml(pick(MEDIA_BOX_TITLE, lang))}"><h2>${pick(MEDIA_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
+  return rows;
+}
+
+// Один блок «Медіабренди в матеріалі» (рішення Андрія Яніцького, 27.11.2026): спершу медіа з Атласу
+// й карти спільнот, далі решта брендів із досьє brands.promedia.report, без дублів.
+function mediaBrandsBox(tags, lang, media = []) {
+  const rows = mediaRows(media, lang) + brandRows(tags, lang, media);
+  if (!rows) return "";
+  return `<aside class="people-box media-box brands-box" aria-label="${escapeHtml(pick(BRANDS_BOX_TITLE, lang))}"><h2>${pick(BRANDS_BOX_TITLE, lang)}</h2><ul>${rows}</ul></aside>`;
 }
 
 
@@ -1580,7 +1595,6 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   const cover = coverImg && coverCaptionText
     ? `<figure class="article-cover-figure">${coverImg}<figcaption class="article-caption">${inlineMarkdown(coverCaptionText)}</figcaption></figure>`
     : coverImg;
-  const mediaLinksHtml = mediaBox(relatedMediaNames, lang);
   const bodyHtml = `
 <main class="wrap article-page article-page--with-aside">
   <div class="article-main">
@@ -1596,8 +1610,7 @@ export function renderArticlePage({ article, lang, baseUrl, relatedMediaNames = 
   ${followBlock(lang, "article-end")}
   ${newsletterSlot(lang, "article-end")}
   ${peopleBox(tags, lang)}
-  ${mediaLinksHtml}
-  ${brandsBox(tags, lang, relatedMediaNames)}
+  ${mediaBrandsBox(tags, lang, relatedMediaNames)}
   ${universitiesBox(relatedUniversities, lang)}
   ${projectPromo(lang, "atlas", "article-bottom")}
   </div>

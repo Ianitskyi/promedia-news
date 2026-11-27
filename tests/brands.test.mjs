@@ -76,12 +76,15 @@ test("Brands box stays hidden until the brands site address is set, tags still r
   assert.ok(en.includes("/en/?tag=" + encodeURIComponent("Українська правда")));
 });
 
-test("Brands box lists tagged brands once and skips media already shown from the Atlas", () => {
+test("One media brands box: Atlas/map media first, then tagged brands, without duplicates", () => {
   const { renderArticlePage } = load("https://brands.promedia.report");
   const dup = { ...article, tags: JSON.stringify(["Українська правда", "УП", "Sözcü TV", "CNN", "Новини"]) };
   const uk = renderArticlePage({ article: dup, lang: "uk", baseUrl: "https://news.promedia.report", relatedMediaNames: [{ name: "CNN", manual: true, website: "https://cnn.com" }] });
   const box = uk.slice(uk.indexOf("brands-box"));
-  assert.equal((box.match(/class="people-box-item media-box-item"/g) || []).length, 2);
+  assert.equal((box.match(/class="people-box-item media-box-item"/g) || []).length, 3);
+  assert.equal((box.match(/class="people-box-name"[^>]*>CNN</g) || []).length, 1);
+  assert.ok(box.includes('href="https://brands.promedia.report/cnn/"'));
+  assert.ok(!uk.includes("Українські медіа в матеріалі"));
   assert.ok(uk.includes('href="https://brands.promedia.report/ukrainska-pravda/"'));
   assert.ok(uk.includes("https://brands.promedia.report/logo/sozcu-tv"));
   const en = renderArticlePage({ article: dup, lang: "en", baseUrl: "https://news.promedia.report", relatedMediaNames: [] });
