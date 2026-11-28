@@ -28,7 +28,7 @@
   ],
   "decision": "Andrii Ianitskyi",
   "isImportant": false,
-  "cardStyle": "image",
+  "cardStyle": "hero",
   "tts": false,
   "publishAt": "2026-11-28T09:00:00+02:00",
   "cover": {
@@ -50,5 +50,7 @@
         "y": 40
       }
     }
-  }
+  },
+  "revision": "2026-11-28-lead",
+  "raiseToTop": "2026-11-28-lead"
 }
