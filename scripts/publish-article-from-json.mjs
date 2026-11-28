@@ -14,6 +14,19 @@ import {readFileSync, readdirSync, writeFileSync, mkdtempSync} from 'node:fs';
 import {join} from 'node:path';
 import {tmpdir} from 'node:os';
 import {resolvePinUntil} from '../src/lib/pinning.js';
+import {addPersonTags} from '../src/lib/personTags.js';
+
+// Досьє з розділу «Люди»: для тегів-людей (картка «Люди в матеріалі», див. src/lib/personTags.js).
+const PEOPLE_DIR = join(DIR, '..', '..', 'people', 'data');
+let PEOPLE = [];
+try {
+  PEOPLE = readdirSync(PEOPLE_DIR).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(join(PEOPLE_DIR, f), 'utf8')));
+} catch (e) { console.log(`::warning::People dossiers not loaded (${e.message}); person tags are not checked.`); }
+function withPersonTags(a) {
+  const added = addPersonTags(a, PEOPLE);
+  if (added.length) console.log(`::notice::${a.slug}: added person tags ${added.join(', ')} (dossier card «Люди в матеріалі»).`);
+  return added;
+}
 
 const DB = 'promedia-news';
 const BUCKET = 'promedia-news-images';
@@ -180,6 +193,7 @@ const files = readdirSync(DIR).filter(f => f.endsWith('.json')).sort();
 for (const f of files) {
   const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
   if (!a.slug || !a.title || !a.bodyMd) throw Error('Missing slug/title/bodyMd in ' + f);
+  withPersonTags(a);
   // Scheduled publication: "publishAt" (ISO 8601 with a time zone offset, e.g. 2026-11-18T03:00:00+02:00).
   // A future article goes into D1 right away as a hidden draft and into scheduled_publications;
   // the site's own Cloudflare cron (every 5 minutes, src/lib/scheduler.js) makes it public on time.
@@ -320,6 +334,27 @@ for (const f of files) {
   console.log(scheduledFor
     ? `Scheduled ${a.slug} (id ${row.id}): hidden draft, the site publishes it at ${scheduledFor}.`
     : `Published ${a.slug} (id ${row.id}).`);
+}
+
+// Теги людей із досьє для вже опублікованих новин (зокрема давніх): лише дописуємо відсутні теги
+// до поточних тегів у D1, текст і решту полів не чіпаємо. Кожен набір застосовується один раз.
+d1('CREATE TABLE IF NOT EXISTS editorial_data_fixes (name TEXT PRIMARY KEY)');
+for (const f of files) {
+  const a = JSON.parse(readFileSync(join(DIR, f), 'utf8'));
+  const added = addPersonTags({...a, tags: [...(a.tags || [])]}, PEOPLE);
+  if (!added.length) continue;
+  const fix = `person_tags:${a.slug}:${added.join('|')}`;
+  if (d1(`SELECT 1 FROM editorial_data_fixes WHERE name = ${q(fix)}`).length) continue;
+  const row = d1(`SELECT tags FROM articles WHERE slug = ${q(a.slug)}`)[0];
+  if (row) {
+    let current = [];
+    try { current = JSON.parse(row.tags || '[]'); } catch {}
+    const lower = new Set(current.map(t => String(t).toLocaleLowerCase('uk-UA')));
+    const merged = [...current, ...added.filter(t => !lower.has(t.toLocaleLowerCase('uk-UA')))];
+    d1(`UPDATE articles SET tags = ${q(JSON.stringify(merged))} WHERE slug = ${q(a.slug)}`);
+    console.log(`Person tags for ${a.slug}: ${added.join(', ')}`);
+  }
+  d1(`INSERT OR IGNORE INTO editorial_data_fixes (name) VALUES (${q(fix)})`);
 }
 
 // Новини, які вийшли за розкладом раніше, ніж спершу планували: дата на сайті = фактичний час виходу

@@ -70,6 +70,11 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: node scripts/publish-article-from-json.mjs content/articles
+      # Сторінки новин за останні 3 дні: відкриваються (UK/EN) і мають картку «Люди в матеріалі»
+      # для кожної людини з досьє (правило Андрія Яніцького, 28.11.2026). Падає, якщо картки бракує.
+      - if: steps.due.outputs.run == 'true'
+        name: Check dossier cards on recent pages
+        run: sleep 20 && node scripts/check-article-pages.mjs
       - if: steps.due.outputs.run == 'true'
         name: Check public pages
         run: |
