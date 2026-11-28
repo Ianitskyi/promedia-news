@@ -1,0 +1,56 @@
+{
+  "slug": "guram-rogava",
+  "group": "intl",
+  "country": "Грузія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Гурам Рогава",
+    "en": "Guram Rogava"
+  },
+  "sort": {
+    "uk": "Рогава Гурам",
+    "en": "Rogava Guram"
+  },
+  "aliases": [
+    "Guram Rogava"
+  ],
+  "role": {
+    "uk": "грузинський журналіст телеканалу Formula TV",
+    "en": "Georgian journalist at Formula TV"
+  },
+  "summary": {
+    "uk": "Журналіст Formula TV, якого побили під час прямого ефіру з протестів у Тбілісі. 12 листопада 2026 року за напад засудили бійця спецпідрозділу; пан Гурам вважає, що засудили не того.",
+    "en": "Formula TV journalist who was beaten during a live broadcast from protests in Tbilisi. On 12 November 2026 a special forces officer was convicted of the attack; Mr Rogava believes the wrong man was convicted."
+  },
+  "bio": {
+    "uk": "Гурам Рогава — грузинський журналіст телеканалу Formula TV. Під час протестів у Тбілісі його побили під час прямого ефіру.\n\n12 листопада 2026 року за напад на нього бійця спецпідрозділу засудили до п'яти років ув'язнення. Пан Гурам сказав «Репортерам без кордонів», що його відсторонили від судового процесу і що засуджений — не та людина, яка його била.",
+    "en": "Guram Rogava is a Georgian journalist at Formula TV. He was beaten during a live broadcast from protests in Tbilisi.\n\nOn 12 November 2026 a special forces officer was sentenced to five years in prison for attacking him. Mr Rogava told Reporters Without Borders he was excluded from the trial and that the man convicted is not the one who beat him."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Грузія"
+    ],
+    [
+      "Медіа",
+      "Formula TV"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Guram Rogava"
+    ]
+  },
+  "sources": [
+    {
+      "title": "RSF: Georgia — impunity persists and crackdown on press institutionalised two years after protests, 27.11.2026",
+      "url": "https://rsf.org/en/georgia-impunity-persists-and-crackdown-press-institutionalised-two-years-protests"
+    },
+    {
+      "title": "ПроМедіа: Тиск на пресу в Грузії перейшов у суди й банківські рахунки. RSF",
+      "url": "https://news.promedia.report/article/tysk-na-presu-v-hruzii-pereishov-u-sudy-i-bankivski-rakhunky-rsf"
+    }
+  ],
+  "updated": "2026-11-28"
+}

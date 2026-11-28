@@ -1,0 +1,52 @@
+{
+  "slug": "jeanne-cavelier",
+  "group": "intl",
+  "country": "Франція",
+  "kind": "manager",
+  "name": {
+    "uk": "Жанна Кавельє",
+    "en": "Jeanne Cavelier"
+  },
+  "sort": {
+    "uk": "Кавельє Жанна",
+    "en": "Cavelier Jeanne"
+  },
+  "aliases": [
+    "Jeanne Cavelier"
+  ],
+  "role": {
+    "uk": "керівниця відділу Східної Європи та Центральної Азії RSF",
+    "en": "Head of RSF's Eastern Europe and Central Asia desk"
+  },
+  "summary": {
+    "uk": "Керує відділом «Репортерів без кордонів» у Східній Європі та Центральній Азії.",
+    "en": "Heads the Eastern Europe and Central Asia desk of Reporters Without Borders."
+  },
+  "bio": {
+    "uk": "Жанна Кавельє — керівниця відділу Східної Європи та Центральної Азії міжнародної організації «Репортери без кордонів» (RSF).\n\n27 листопада 2026 року, підбиваючи підсумки двох років протестів у Грузії, пані Жанна заявила, що грузинська влада «мобілізує державний апарат, щоб змусити замовкнути незалежні голоси».",
+    "en": "Jeanne Cavelier heads the Eastern Europe and Central Asia desk of Reporters Without Borders (RSF).\n\nOn 27 November 2026, taking stock of two years of protests in Georgia, Ms Cavelier said the Georgian authorities are \"mobilising the state apparatus to silence independent voices\"."
+  },
+  "facts": [
+    [
+      "Організація",
+      "Репортери без кордонів (RSF)"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Jeanne Cavelier"
+    ]
+  },
+  "sources": [
+    {
+      "title": "RSF: Georgia — impunity persists and crackdown on press institutionalised two years after protests, 27.11.2026",
+      "url": "https://rsf.org/en/georgia-impunity-persists-and-crackdown-press-institutionalised-two-years-protests"
+    },
+    {
+      "title": "ПроМедіа: Тиск на пресу в Грузії перейшов у суди й банківські рахунки. RSF",
+      "url": "https://news.promedia.report/article/tysk-na-presu-v-hruzii-pereishov-u-sudy-i-bankivski-rakhunky-rsf"
+    }
+  ],
+  "updated": "2026-11-28"
+}

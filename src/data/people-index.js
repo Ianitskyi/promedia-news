@@ -1063,6 +1063,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "guram-rogava",
+    "tag": "Гурам Рогава",
+    "aliases": [
+      "Guram Rogava"
+    ],
+    "name": {
+      "uk": "Гурам Рогава",
+      "en": "Guram Rogava"
+    },
+    "role": {
+      "uk": "грузинський журналіст телеканалу Formula TV",
+      "en": "Georgian journalist at Formula TV"
+    },
+    "summary": {
+      "uk": "Журналіст Formula TV, якого побили під час прямого ефіру з протестів у Тбілісі. 12 листопада 2026 року за напад засудили бійця спецпідрозділу; пан Гурам вважає, що засудили не того.",
+      "en": "Formula TV journalist who was beaten during a live broadcast from protests in Tbilisi. On 12 November 2026 a special forces officer was convicted of the attack; Mr Rogava believes the wrong man was convicted."
+    }
+  },
+  {
     "slug": "gerda-taro",
     "tag": "Ґерда Таро",
     "aliases": [
@@ -1739,6 +1758,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Журналістка-міжнародниця з досвідом у «Радіо Свобода», «Українському тижні», hromadske та BBC News Україна.",
       "en": "International affairs journalist who has worked for Radio Liberty, Ukrainian Week, hromadske and BBC News Ukrainian."
+    }
+  },
+  {
+    "slug": "jeanne-cavelier",
+    "tag": "Жанна Кавельє",
+    "aliases": [
+      "Jeanne Cavelier"
+    ],
+    "name": {
+      "uk": "Жанна Кавельє",
+      "en": "Jeanne Cavelier"
+    },
+    "role": {
+      "uk": "керівниця відділу Східної Європи та Центральної Азії RSF",
+      "en": "Head of RSF's Eastern Europe and Central Asia desk"
+    },
+    "summary": {
+      "uk": "Керує відділом «Репортерів без кордонів» у Східній Європі та Центральній Азії.",
+      "en": "Heads the Eastern Europe and Central Asia desk of Reporters Without Borders."
     }
   },
   {
@@ -2451,6 +2489,26 @@ export const PEOPLE = [
     "summary": {
       "uk": "Іранський журналіст і правозахисник, один зі співавторів сценарію оскарівського фільму Джафара Панагі. Неодноразово зазнавав арештів через свою роботу.",
       "en": "Iranian journalist and human rights defender, a co-writer of Jafar Panahi's Oscar-nominated film. Repeatedly arrested over his work."
+    }
+  },
+  {
+    "slug": "mzia-amaglobeli",
+    "tag": "Мзія Амаглобелі",
+    "aliases": [
+      "Mzia Amaglobeli",
+      "Mzia Amaghlobeli"
+    ],
+    "name": {
+      "uk": "Мзія Амаглобелі",
+      "en": "Mzia Amaglobeli"
+    },
+    "role": {
+      "uk": "грузинська журналістка, засновниця Batumelebi і Netgazeti",
+      "en": "Georgian journalist, founder of Batumelebi and Netgazeti"
+    },
+    "summary": {
+      "uk": "Засновниця незалежних видань Batumelebi і Netgazeti, лауреатка премії Сахарова 2025 року. Відбуває дворічне ув'язнення після суду, який RSF вважає несправедливим.",
+      "en": "Founder of the independent outlets Batumelebi and Netgazeti and a 2025 Sakharov Prize laureate. Serving a two-year sentence after a trial RSF considers unfair."
     }
   },
   {

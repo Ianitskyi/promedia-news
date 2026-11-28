@@ -1,0 +1,61 @@
+{
+  "slug": "mzia-amaglobeli",
+  "group": "intl",
+  "country": "Грузія",
+  "kind": "journalist",
+  "name": {
+    "uk": "Мзія Амаглобелі",
+    "en": "Mzia Amaglobeli"
+  },
+  "sort": {
+    "uk": "Амаглобелі Мзія",
+    "en": "Amaglobeli Mzia"
+  },
+  "aliases": [
+    "Mzia Amaglobeli",
+    "Mzia Amaghlobeli"
+  ],
+  "role": {
+    "uk": "грузинська журналістка, засновниця Batumelebi і Netgazeti",
+    "en": "Georgian journalist, founder of Batumelebi and Netgazeti"
+  },
+  "summary": {
+    "uk": "Засновниця незалежних видань Batumelebi і Netgazeti, лауреатка премії Сахарова 2025 року. Відбуває дворічне ув'язнення після суду, який RSF вважає несправедливим.",
+    "en": "Founder of the independent outlets Batumelebi and Netgazeti and a 2025 Sakharov Prize laureate. Serving a two-year sentence after a trial RSF considers unfair."
+  },
+  "bio": {
+    "uk": "Мзія Амаглобелі — грузинська журналістка, засновниця незалежних видань Batumelebi і Netgazeti, лауреатка премії Сахарова 2025 року.\n\nУ серпні 2025 року пані Мзію засудили до двох років ув'язнення після суду, який «Репортери без кордонів» вважають несправедливим. У березні 2026 року Верховний суд Грузії відхилив її апеляцію й прохання про дострокове звільнення. RSF вимагає негайно її звільнити.",
+    "en": "Mzia Amaglobeli is a Georgian journalist, founder of the independent outlets Batumelebi and Netgazeti and a 2025 Sakharov Prize laureate.\n\nIn August 2025 Ms Amaglobeli was sentenced to two years in prison after a trial Reporters Without Borders considers unfair. In March 2026 Georgia's Supreme Court rejected her appeal and request for early release. RSF demands her immediate release."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Грузія"
+    ],
+    [
+      "Медіа",
+      "Batumelebi, Netgazeti"
+    ],
+    [
+      "Нагорода",
+      "Премія Сахарова (2025)"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Mzia Amaglobeli"
+    ]
+  },
+  "sources": [
+    {
+      "title": "RSF: Georgia — impunity persists and crackdown on press institutionalised two years after protests, 27.11.2026",
+      "url": "https://rsf.org/en/georgia-impunity-persists-and-crackdown-press-institutionalised-two-years-protests"
+    },
+    {
+      "title": "ПроМедіа: Тиск на пресу в Грузії перейшов у суди й банківські рахунки. RSF",
+      "url": "https://news.promedia.report/article/tysk-na-presu-v-hruzii-pereishov-u-sudy-i-bankivski-rakhunky-rsf"
+    }
+  ],
+  "updated": "2026-11-28"
+}
