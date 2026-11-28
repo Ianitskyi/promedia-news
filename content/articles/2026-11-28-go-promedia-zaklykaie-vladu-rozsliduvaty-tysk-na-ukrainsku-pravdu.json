@@ -16,7 +16,8 @@
     "Заяви",
     "Українська правда",
     "свобода слова",
-    "СБУ"
+    "СБУ",
+    "Севгіль Мусаєва"
   ],
   "cover": {
     "url": "/img/news/musaieva-trust-conference-2024.jpg",
@@ -50,5 +51,5 @@
   "decision": "Andrii Ianitskyi",
   "isImportant": true,
   "cardStyle": "image",
-  "revision": "2026-11-28-v2-kartky"
+  "revision": "2026-11-28-v3-dosie"
 }
