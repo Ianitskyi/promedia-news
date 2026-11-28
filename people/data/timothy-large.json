@@ -1,0 +1,52 @@
+{
+  "slug": "timothy-large",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "manager",
+  "name": {
+    "uk": "Тімоті Ларж",
+    "en": "Timothy Large"
+  },
+  "sort": {
+    "uk": "Ларж Тімоті",
+    "en": "Large Timothy"
+  },
+  "aliases": [
+    "Timothy Large"
+  ],
+  "role": {
+    "uk": "директор програм незалежних медіа Міжнародного інституту преси (IPI)",
+    "en": "Director of independent media programmes at the International Press Institute (IPI)"
+  },
+  "summary": {
+    "uk": "Керує програмами незалежних медіа Міжнародного інституту преси (IPI), який очолює консорціум грантової програми IJ4EU для транскордонних розслідувань.",
+    "en": "Heads independent media programmes at the International Press Institute (IPI), which leads the IJ4EU grant programme for cross-border investigations."
+  },
+  "bio": {
+    "uk": "Тімоті Ларж — директор програм незалежних медіа Міжнародного інституту преси (IPI) у Відні. IPI очолює консорціум програми «Розслідувальна журналістика для Європи» (IJ4EU), яка за кошти ЄС та приватних фондів дає гранти на транскордонні журналістські розслідування.\n\nУ січні 2026 року, під час запуску нового циклу IJ4EU, пан Тімоті сказав: «IJ4EU існує, бо журналістика, на яку спирається демократія, зазнає ударів з усіх боків».",
+    "en": "Timothy Large is director of independent media programmes at the International Press Institute (IPI) in Vienna. IPI leads the consortium behind Investigative Journalism for Europe (IJ4EU), which uses EU and philanthropic funding to give grants for cross-border investigative journalism.\n\nAt the launch of IJ4EU's new cycle in January 2026, Mr Large said: “IJ4EU exists because the journalism that democracy relies on is being hammered from all sides.”"
+  },
+  "facts": [
+    [
+      "Організація",
+      "Міжнародний інститут преси (IPI)"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Timothy Large"
+    ]
+  },
+  "sources": [
+    {
+      "title": "IJ4EU: IJ4EU revamped for 2026–27, 20.01.2026",
+      "url": "https://investigativejournalismforeu.net/ij4eu-revamped-2026-27/"
+    },
+    {
+      "title": "ПроМедіа: IJ4EU дасть до €50 000 на транскордонні розслідування. Дедлайн — 2 лютого 2027 року",
+      "url": "https://news.promedia.report/article/ij4eu-dast-do-50-tysiach-ievro-na-transkordonni-rozsliduvannia"
+    }
+  ],
+  "updated": "2026-11-28"
+}

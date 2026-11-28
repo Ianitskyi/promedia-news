@@ -3475,6 +3475,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "timothy-large",
+    "tag": "Тімоті Ларж",
+    "aliases": [
+      "Timothy Large"
+    ],
+    "name": {
+      "uk": "Тімоті Ларж",
+      "en": "Timothy Large"
+    },
+    "role": {
+      "uk": "директор програм незалежних медіа Міжнародного інституту преси (IPI)",
+      "en": "Director of independent media programmes at the International Press Institute (IPI)"
+    },
+    "summary": {
+      "uk": "Керує програмами незалежних медіа Міжнародного інституту преси (IPI), який очолює консорціум грантової програми IJ4EU для транскордонних розслідувань.",
+      "en": "Heads independent media programmes at the International Press Institute (IPI), which leads the IJ4EU grant programme for cross-border investigations."
+    }
+  },
+  {
     "slug": "tomas-bella",
     "tag": "Томаш Белла",
     "aliases": [
