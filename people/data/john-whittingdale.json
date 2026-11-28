@@ -1,0 +1,59 @@
+{
+  "slug": "john-whittingdale",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "official",
+  "name": {
+    "uk": "Джон Віттінгдейл",
+    "en": "John Whittingdale"
+  },
+  "sort": {
+    "uk": "Віттінгдейл Джон",
+    "en": "Whittingdale John"
+  },
+  "aliases": [
+    "John Whittingdale",
+    "Sir John Whittingdale"
+  ],
+  "role": {
+    "uk": "британський депутат-консерватор, колишній міністр культури",
+    "en": "British Conservative MP, former culture secretary"
+  },
+  "summary": {
+    "uk": "Депутат-консерватор Палати громад, колишній міністр культури Великої Британії. 2026 року вніс законопроєкт проти SLAPP-позовів, який підтримав уряд.",
+    "en": "Conservative MP and former UK culture secretary. In 2026 he introduced an anti-SLAPP bill that the government backed."
+  },
+  "bio": {
+    "uk": "Джон Віттінгдейл — британський політик, депутат Палати громад від Консервативної партії, колишній міністр культури.\n\n2026 року пан Джон вніс приватний законопроєкт проти SLAPP-позовів, який поширює захист від таких позовів на всю суспільно важливу журналістику. 27 листопада 2026 року уряд підтримав законопроєкт, і, за даними Міністерства юстиції, він пройшов друге читання в Палаті громад.",
+    "en": "Sir John Whittingdale is a British Conservative MP and former culture secretary.\n\nIn 2026 he introduced a private member's bill against SLAPPs that extends protection to all public-interest journalism. On 27 November 2026 the government backed the bill, which, according to the Ministry of Justice, received its Second Reading in the House of Commons."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Велика Британія"
+    ],
+    [
+      "Партія",
+      "Консервативна"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:John Whittingdale"
+    ],
+    "check": [
+      "John Whittingdale"
+    ]
+  },
+  "sources": [
+    {
+      "title": "GOV.UK: New protections will stop powerful figures silencing scrutiny, 27.11.2026",
+      "url": "https://www.gov.uk/government/news/new-protections-will-stop-powerful-figures-silencing-scrutiny"
+    },
+    {
+      "title": "ПроМедіа: Уряд Британії підтримав законопроєкт проти SLAPP-позовів до журналістів",
+      "url": "https://news.promedia.report/article/uriad-brytanii-pidtrymav-zakonoproiekt-proty-slapp-pozoviv"
+    }
+  ],
+  "updated": "2026-11-28"
+}

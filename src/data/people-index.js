@@ -1293,6 +1293,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "john-whittingdale",
+    "tag": "Джон Віттінгдейл",
+    "aliases": [
+      "John Whittingdale",
+      "Sir John Whittingdale"
+    ],
+    "name": {
+      "uk": "Джон Віттінгдейл",
+      "en": "John Whittingdale"
+    },
+    "role": {
+      "uk": "британський депутат-консерватор, колишній міністр культури",
+      "en": "British Conservative MP, former culture secretary"
+    },
+    "summary": {
+      "uk": "Депутат-консерватор Палати громад, колишній міністр культури Великої Британії. 2026 року вніс законопроєкт проти SLAPP-позовів, який підтримав уряд.",
+      "en": "Conservative MP and former UK culture secretary. In 2026 he introduced an anti-SLAPP bill that the government backed."
+    }
+  },
+  {
     "slug": "john-holliman",
     "tag": "Джон Голлімен",
     "aliases": [],
@@ -3326,6 +3346,25 @@ export const PEOPLE = [
     "summary": {
       "uk": "Казахстанський блогер, який викривав безгосподарність і ймовірну корупцію в Алмати. У листопаді 2026 року засуджений до 10 років ув'язнення; сам називає справу політичною.",
       "en": "Kazakh blogger who exposed mismanagement and alleged corruption in Almaty. Sentenced to 10 years in prison in November 2026; he calls the case political."
+    }
+  },
+  {
+    "slug": "sarah-sackman",
+    "tag": "Сара Сакман",
+    "aliases": [
+      "Sarah Sackman"
+    ],
+    "name": {
+      "uk": "Сара Сакман",
+      "en": "Sarah Sackman"
+    },
+    "role": {
+      "uk": "міністерка у справах судів і правових послуг Великої Британії",
+      "en": "UK Minister for Courts and Legal Services"
+    },
+    "summary": {
+      "uk": "Міністерка у справах судів і правових послуг Великої Британії. 27 листопада 2026 року від імені уряду підтримала законопроєкт проти SLAPP-позовів.",
+      "en": "UK Minister for Courts and Legal Services. On 27 November 2026 she backed the anti-SLAPP bill on behalf of the government."
     }
   },
   {

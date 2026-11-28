@@ -1,0 +1,58 @@
+{
+  "slug": "sarah-sackman",
+  "group": "intl",
+  "country": "Велика Британія",
+  "kind": "official",
+  "name": {
+    "uk": "Сара Сакман",
+    "en": "Sarah Sackman"
+  },
+  "sort": {
+    "uk": "Сакман Сара",
+    "en": "Sackman Sarah"
+  },
+  "aliases": [
+    "Sarah Sackman"
+  ],
+  "role": {
+    "uk": "міністерка у справах судів і правових послуг Великої Британії",
+    "en": "UK Minister for Courts and Legal Services"
+  },
+  "summary": {
+    "uk": "Міністерка у справах судів і правових послуг Великої Британії. 27 листопада 2026 року від імені уряду підтримала законопроєкт проти SLAPP-позовів.",
+    "en": "UK Minister for Courts and Legal Services. On 27 November 2026 she backed the anti-SLAPP bill on behalf of the government."
+  },
+  "bio": {
+    "uk": "Сара Сакман — британська юристка й політикиня, міністерка у справах судів і правових послуг у Міністерстві юстиції Великої Британії.\n\n27 листопада 2026 року пані Сара від імені уряду підтримала законопроєкт Джона Віттінгдейла проти SLAPP-позовів. «Ніхто не повинен мати змогу використати своє багатство чи вплив, щоб заглушити законний контроль», — заявила вона.",
+    "en": "Sarah Sackman KC is a British lawyer and politician, Minister for Courts and Legal Services at the UK Ministry of Justice.\n\nOn 27 November 2026 Ms Sackman backed John Whittingdale's anti-SLAPP bill on behalf of the government. \"No one should be able to use their wealth or influence to silence legitimate scrutiny,\" she said."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Велика Британія"
+    ],
+    [
+      "Посада",
+      "міністерка у справах судів і правових послуг"
+    ]
+  ],
+  "photo": {
+    "wiki": [
+      "en:Sarah Sackman"
+    ],
+    "check": [
+      "Sarah Sackman"
+    ]
+  },
+  "sources": [
+    {
+      "title": "GOV.UK: New protections will stop powerful figures silencing scrutiny, 27.11.2026",
+      "url": "https://www.gov.uk/government/news/new-protections-will-stop-powerful-figures-silencing-scrutiny"
+    },
+    {
+      "title": "ПроМедіа: Уряд Британії підтримав законопроєкт проти SLAPP-позовів до журналістів",
+      "url": "https://news.promedia.report/article/uriad-brytanii-pidtrymav-zakonoproiekt-proty-slapp-pozoviv"
+    }
+  ],
+  "updated": "2026-11-28"
+}
