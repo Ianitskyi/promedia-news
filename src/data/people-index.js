@@ -272,6 +272,25 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "anna-myroniuk",
+    "tag": "Анна Миронюк",
+    "aliases": [
+      "Anna Myroniuk"
+    ],
+    "name": {
+      "uk": "Анна Миронюк",
+      "en": "Anna Myroniuk"
+    },
+    "role": {
+      "uk": "українська журналістка-розслідувачка, The Kyiv Independent",
+      "en": "Ukrainian investigative journalist, The Kyiv Independent"
+    },
+    "summary": {
+      "uk": "Журналістка-розслідувачка The Kyiv Independent. 2023 року разом з Олександром Хребтом отримала спеціальну відзнаку Європейської премії преси.",
+      "en": "Investigative journalist at The Kyiv Independent. In 2023, together with Oleksandr Khrebet, she received the European Press Prize Special Award."
+    }
+  },
+  {
     "slug": "anna-rodichkina",
     "tag": "Анна Родічкіна",
     "aliases": [
@@ -2754,6 +2773,26 @@ export const PEOPLE = [
     "summary": {
       "uk": "Львівський журналіст і редактор, у журналістиці з 1992 року; очолював «Поступ», «Львівську газету», TVI.ua і ZAXID.NET, з 2023 року — в NGL.media.",
       "en": "Lviv-based journalist and editor in journalism since 1992; led Postup, Lvivska Gazeta, TVI.ua and ZAXID.NET, and has worked at NGL.media since 2023."
+    }
+  },
+  {
+    "slug": "oleksandr-khrebet",
+    "tag": "Олександр Хребет",
+    "aliases": [
+      "Alexander Khrebet",
+      "Oleksandr Khrebet"
+    ],
+    "name": {
+      "uk": "Олександр Хребет",
+      "en": "Oleksandr Khrebet"
+    },
+    "role": {
+      "uk": "український журналіст, The Kyiv Independent",
+      "en": "Ukrainian journalist, The Kyiv Independent"
+    },
+    "summary": {
+      "uk": "Журналіст The Kyiv Independent. 2023 року разом з Анною Миронюк отримав спеціальну відзнаку Європейської премії преси.",
+      "en": "Journalist at The Kyiv Independent. In 2023, together with Anna Myroniuk, he received the European Press Prize Special Award."
     }
   },
   {

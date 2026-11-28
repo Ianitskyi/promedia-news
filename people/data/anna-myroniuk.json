@@ -1,0 +1,56 @@
+{
+  "slug": "anna-myroniuk",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Анна Миронюк",
+    "en": "Anna Myroniuk"
+  },
+  "sort": {
+    "uk": "Миронюк Анна",
+    "en": "Myroniuk Anna"
+  },
+  "aliases": [
+    "Anna Myroniuk"
+  ],
+  "role": {
+    "uk": "українська журналістка-розслідувачка, The Kyiv Independent",
+    "en": "Ukrainian investigative journalist, The Kyiv Independent"
+  },
+  "summary": {
+    "uk": "Журналістка-розслідувачка The Kyiv Independent. 2023 року разом з Олександром Хребтом отримала спеціальну відзнаку Європейської премії преси.",
+    "en": "Investigative journalist at The Kyiv Independent. In 2023, together with Oleksandr Khrebet, she received the European Press Prize Special Award."
+  },
+  "bio": {
+    "uk": "Анна Миронюк — українська журналістка-розслідувачка видання The Kyiv Independent.\n\n2023 року Європейська премія преси присудила пані Анні та її колезі Олександру Хребту спеціальну відзнаку, яку того року присвятили висвітленню війни в Україні, — за розслідування «Самогубчі місії, зловживання, фізичні погрози: бійці Інтернаціонального легіону виступають проти зловживань командування».",
+    "en": "Anna Myroniuk is a Ukrainian investigative journalist at The Kyiv Independent.\n\nIn 2023 the European Press Prize gave Ms Myroniuk and her colleague Oleksandr Khrebet its Special Award, dedicated that year to coverage of the war in Ukraine, for the investigation “Suicide missions, abuse, physical threats: International Legion fighters speak out against leadership's misconduct”."
+  },
+  "facts": [
+    [
+      "Медіа",
+      "The Kyiv Independent"
+    ],
+    [
+      "Нагорода",
+      "Європейська премія преси, спеціальна відзнака (2023)"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Anna Myroniuk"
+    ]
+  },
+  "sources": [
+    {
+      "title": "European Press Prize: winners and runners-up 2023, 09.06.2023",
+      "url": "https://www.europeanpressprize.com/the-best-of-european-journalism-the-european-press-prize-announces-its-winners-and-runners-up/"
+    },
+    {
+      "title": "ПроМедіа: Європейська премія преси приймає роботи до 10 грудня",
+      "url": "https://news.promedia.report/article/ievropeiska-premiia-presy-pryimaie-roboty-do-10-hrudnia"
+    }
+  ],
+  "updated": "2026-11-28"
+}

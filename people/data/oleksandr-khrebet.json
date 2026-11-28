@@ -1,0 +1,57 @@
+{
+  "slug": "oleksandr-khrebet",
+  "group": "ua",
+  "country": "Україна",
+  "kind": "journalist",
+  "name": {
+    "uk": "Олександр Хребет",
+    "en": "Oleksandr Khrebet"
+  },
+  "sort": {
+    "uk": "Хребет Олександр",
+    "en": "Khrebet Oleksandr"
+  },
+  "aliases": [
+    "Alexander Khrebet",
+    "Oleksandr Khrebet"
+  ],
+  "role": {
+    "uk": "український журналіст, The Kyiv Independent",
+    "en": "Ukrainian journalist, The Kyiv Independent"
+  },
+  "summary": {
+    "uk": "Журналіст The Kyiv Independent. 2023 року разом з Анною Миронюк отримав спеціальну відзнаку Європейської премії преси.",
+    "en": "Journalist at The Kyiv Independent. In 2023, together with Anna Myroniuk, he received the European Press Prize Special Award."
+  },
+  "bio": {
+    "uk": "Олександр Хребет — український журналіст видання The Kyiv Independent.\n\n2023 року Європейська премія преси присудила йому та Анні Миронюк спеціальну відзнаку, яку того року присвятили висвітленню війни в Україні, — за розслідування про зловживання командування в Інтернаціональному легіоні.",
+    "en": "Oleksandr Khrebet is a Ukrainian journalist at The Kyiv Independent.\n\nIn 2023 the European Press Prize gave him and Anna Myroniuk its Special Award, dedicated that year to coverage of the war in Ukraine, for an investigation into leadership misconduct in the International Legion."
+  },
+  "facts": [
+    [
+      "Медіа",
+      "The Kyiv Independent"
+    ],
+    [
+      "Нагорода",
+      "Європейська премія преси, спеціальна відзнака (2023)"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Oleksandr Khrebet"
+    ]
+  },
+  "sources": [
+    {
+      "title": "European Press Prize: winners and runners-up 2023, 09.06.2023",
+      "url": "https://www.europeanpressprize.com/the-best-of-european-journalism-the-european-press-prize-announces-its-winners-and-runners-up/"
+    },
+    {
+      "title": "ПроМедіа: Європейська премія преси приймає роботи до 10 грудня",
+      "url": "https://news.promedia.report/article/ievropeiska-premiia-presy-pryimaie-roboty-do-10-hrudnia"
+    }
+  ],
+  "updated": "2026-11-28"
+}
