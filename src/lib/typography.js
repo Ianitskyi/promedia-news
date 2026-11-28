@@ -45,11 +45,12 @@ export function normalizeUkrainianQuotes(value) {
 
 // Use the full organization name in editorial headlines. Product names such
 // as ProMedia Report, ProMedia News and ProMedia Events are separate names.
+// «за версією ProMedia» лишається латинкою без лапок (рішення Андрія, 28.11.2026).
 export function normalizeUkrainianTitle(value) {
   const title = normalizeUkrainianQuotes(value);
   if (typeof title !== "string") return title;
   return title.replace(
-    /(?<![\p{L}\p{N}@/])(?:(?:ГО|[Гг]ромадська\s+організація)\s+)?(?:«(?:ПроМедіа|ProMedia)»|ПроМедіа(?![\p{L}\p{N}./@-])|ProMedia(?![\p{L}\p{N}./@-]|\s+(?:Report|News|Events|CRM)\b))/gu,
+    /(?<![\p{L}\p{N}@/])(?<!за\s+версією\s+)(?:(?:ГО|[Гг]ромадська\s+організація)\s+)?(?:«(?:ПроМедіа|ProMedia)»|ПроМедіа(?![\p{L}\p{N}./@-])|ProMedia(?![\p{L}\p{N}./@-]|\s+(?:Report|News|Events|CRM)\b))/gu,
     "ГО «ПроМедіа»"
   );
 }
