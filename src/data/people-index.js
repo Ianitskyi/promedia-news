@@ -1137,6 +1137,26 @@ export const PEOPLE = [
     }
   },
   {
+    "slug": "deniz-bayramoglu",
+    "tag": "Деніз Байрамоглу",
+    "aliases": [
+      "Deniz Bayramoğlu",
+      "Özgürdeniz Bayramoğlu"
+    ],
+    "name": {
+      "uk": "Деніз Байрамоглу",
+      "en": "Deniz Bayramoğlu"
+    },
+    "role": {
+      "uk": "турецький тележурналіст, ведучий Halk TV",
+      "en": "Turkish TV journalist, Halk TV anchor"
+    },
+    "summary": {
+      "uk": "Ведучий Halk TV. 27 листопада 2026 року затриманий разом із дружиною Едже Юнер у справі власника каналу; прокуратура висуває звинувачення, суд їх не розглядав.",
+      "en": "Halk TV anchor. Detained on 27 November 2026 together with his wife Ece Üner in the case against the channel's owner; prosecutors' allegations have not been examined by a court."
+    }
+  },
+  {
     "slug": "jake-tapper",
     "tag": "Джейк Таппер",
     "aliases": [
@@ -1387,6 +1407,26 @@ export const PEOPLE = [
     "summary": {
       "uk": "Кореспондент CBS, чиї прямі радіорепортажі з Лондона під час бомбардувань 1940 року почули мільйони американців.",
       "en": "CBS correspondent whose live radio reports from London during the 1940 bombing were heard by millions of Americans."
+    }
+  },
+  {
+    "slug": "ece-uner",
+    "tag": "Едже Юнер",
+    "aliases": [
+      "Ece Üner",
+      "Özge Ece Bayramoğlu"
+    ],
+    "name": {
+      "uk": "Едже Юнер",
+      "en": "Ece Üner"
+    },
+    "role": {
+      "uk": "турецька тележурналістка, ведуча Halk TV",
+      "en": "Turkish TV journalist, Halk TV anchor"
+    },
+    "summary": {
+      "uk": "Ведуча Halk TV, раніше — головна ведуча новин Show TV. 27 листопада 2026 року затримана в справі власника Halk TV; прокуратура висуває звинувачення, суд їх не розглядав.",
+      "en": "Halk TV anchor, formerly Show TV's main news anchor. Detained on 27 November 2026 in the case against Halk TV's owner; prosecutors' allegations have not been examined by a court."
     }
   },
   {

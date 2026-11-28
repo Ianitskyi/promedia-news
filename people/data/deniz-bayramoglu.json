@@ -1,0 +1,61 @@
+{
+  "slug": "deniz-bayramoglu",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "journalist",
+  "name": {
+    "uk": "Деніз Байрамоглу",
+    "en": "Deniz Bayramoğlu"
+  },
+  "sort": {
+    "uk": "Байрамоглу Деніз",
+    "en": "Bayramoğlu Deniz"
+  },
+  "aliases": [
+    "Deniz Bayramoğlu",
+    "Özgürdeniz Bayramoğlu"
+  ],
+  "role": {
+    "uk": "турецький тележурналіст, ведучий Halk TV",
+    "en": "Turkish TV journalist, Halk TV anchor"
+  },
+  "summary": {
+    "uk": "Ведучий Halk TV. 27 листопада 2026 року затриманий разом із дружиною Едже Юнер у справі власника каналу; прокуратура висуває звинувачення, суд їх не розглядав.",
+    "en": "Halk TV anchor. Detained on 27 November 2026 together with his wife Ece Üner in the case against the channel's owner; prosecutors' allegations have not been examined by a court."
+  },
+  "bio": {
+    "uk": "Деніз Байрамоглу (повне ім'я — Озгюрденіз Байрамоглу) — турецький тележурналіст, ведучий телеканалу Halk TV, якого пов'язують з опозицією.\n\n27 листопада 2026 року пана Деніза затримали разом із дружиною, ведучою Едже Юнер, у третій хвилі затримань у справі власника Halk TV Джафера Махіроглу. Прокуратура Стамбула стверджує, що подружжя отримувало неофіційні щомісячні виплати за «неправдиві новини». Суд ці звинувачення не розглядав.",
+    "en": "Deniz Bayramoğlu (full name Özgürdeniz Bayramoğlu) is a Turkish TV journalist and anchor at Halk TV, a channel associated with the opposition.\n\nOn 27 November 2026 Mr Bayramoğlu was detained together with his wife, anchor Ece Üner, in the third wave of detentions in the case against Halk TV's owner Cafer Mahiroğlu. Istanbul prosecutors allege the couple received unofficial monthly payments for \"false news\". No court has examined the allegations."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Туреччина"
+    ],
+    [
+      "Медіа",
+      "Halk TV"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Deniz Bayramoğlu"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Bianet: Cafer Mahiroğlu soruşturmasında üçüncü dalga, 27.11.2026",
+      "url": "https://bianet.org/haber/cafer-mahiroglu-sorusturmasinda-ucuncu-dalga-ece-uner-ve-ozgurdeniz-bayramoglu-gozaltinda-325840"
+    },
+    {
+      "title": "Turkish Minute: 2 Turkish news anchors among 9 detained weeks after state takeover of Halk TV, 27.11.2026",
+      "url": "https://www.turkishminute.com/2026/11/27/2-turkish-news-anchors-among-9-detained-weeks-after-state-takeover-of-halk-tv/"
+    },
+    {
+      "title": "ПроМедіа: У Туреччині затримали ведучих Halk TV, яку держава взяла під контроль",
+      "url": "https://news.promedia.report/article/u-turechchyni-zatrymaly-veduchykh-halk-tv"
+    }
+  ],
+  "updated": "2026-11-28"
+}

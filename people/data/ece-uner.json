@@ -1,0 +1,61 @@
+{
+  "slug": "ece-uner",
+  "group": "intl",
+  "country": "Туреччина",
+  "kind": "journalist",
+  "name": {
+    "uk": "Едже Юнер",
+    "en": "Ece Üner"
+  },
+  "sort": {
+    "uk": "Юнер Едже",
+    "en": "Üner Ece"
+  },
+  "aliases": [
+    "Ece Üner",
+    "Özge Ece Bayramoğlu"
+  ],
+  "role": {
+    "uk": "турецька тележурналістка, ведуча Halk TV",
+    "en": "Turkish TV journalist, Halk TV anchor"
+  },
+  "summary": {
+    "uk": "Ведуча Halk TV, раніше — головна ведуча новин Show TV. 27 листопада 2026 року затримана в справі власника Halk TV; прокуратура висуває звинувачення, суд їх не розглядав.",
+    "en": "Halk TV anchor, formerly Show TV's main news anchor. Detained on 27 November 2026 in the case against Halk TV's owner; prosecutors' allegations have not been examined by a court."
+  },
+  "bio": {
+    "uk": "Едже Юнер — турецька тележурналістка, ведуча телеканалу Halk TV, якого пов'язують з опозицією. Раніше була головною ведучою новин каналу Show TV.\n\n27 листопада 2026 року, через шість тижнів після того, як державний фонд TMSF узяв Halk TV під управління, пані Едже затримали разом із чоловіком, ведучим Денізом Байрамоглу, у третій хвилі затримань у справі власника каналу Джафера Махіроглу. Прокуратура Стамбула стверджує, що подружжя отримувало неофіційні щомісячні виплати за «неправдиві новини», і підозрює їх, зокрема, у відмиванні коштів і «поширенні оманливої інформації» (стаття 217/A). Суд ці звинувачення не розглядав.",
+    "en": "Ece Üner is a Turkish TV journalist and anchor at Halk TV, a channel associated with the opposition. She was previously Show TV's main news anchor.\n\nOn 27 November 2026, six weeks after the state fund TMSF took over Halk TV's management, Ms Üner was detained together with her husband, anchor Deniz Bayramoğlu, in the third wave of detentions in the case against the channel's owner Cafer Mahiroğlu. Istanbul prosecutors allege the couple received unofficial monthly payments for \"false news\" and suspect them of, among other things, money laundering and \"disseminating misleading information\" (Article 217/A). No court has examined the allegations."
+  },
+  "facts": [
+    [
+      "Країна",
+      "Туреччина"
+    ],
+    [
+      "Медіа",
+      "Halk TV"
+    ]
+  ],
+  "photo": {
+    "wiki": [],
+    "check": [
+      "Ece Üner"
+    ]
+  },
+  "sources": [
+    {
+      "title": "Bianet: Cafer Mahiroğlu soruşturmasında üçüncü dalga, 27.11.2026",
+      "url": "https://bianet.org/haber/cafer-mahiroglu-sorusturmasinda-ucuncu-dalga-ece-uner-ve-ozgurdeniz-bayramoglu-gozaltinda-325840"
+    },
+    {
+      "title": "Turkish Minute: 2 Turkish news anchors among 9 detained weeks after state takeover of Halk TV, 27.11.2026",
+      "url": "https://www.turkishminute.com/2026/11/27/2-turkish-news-anchors-among-9-detained-weeks-after-state-takeover-of-halk-tv/"
+    },
+    {
+      "title": "ПроМедіа: У Туреччині затримали ведучих Halk TV, яку держава взяла під контроль",
+      "url": "https://news.promedia.report/article/u-turechchyni-zatrymaly-veduchykh-halk-tv"
+    }
+  ],
+  "updated": "2026-11-28"
+}
