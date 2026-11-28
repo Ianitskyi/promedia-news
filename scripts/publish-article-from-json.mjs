@@ -17,7 +17,7 @@ import {resolvePinUntil} from '../src/lib/pinning.js';
 import {addPersonTags} from '../src/lib/personTags.js';
 
 // Досьє з розділу «Люди»: для тегів-людей (картка «Люди в матеріалі», див. src/lib/personTags.js).
-const PEOPLE_DIR = join(DIR, '..', '..', 'people', 'data');
+const PEOPLE_DIR = join(process.cwd(), 'people', 'data');
 let PEOPLE = [];
 try {
   PEOPLE = readdirSync(PEOPLE_DIR).filter(f => f.endsWith('.json')).map(f => JSON.parse(readFileSync(join(PEOPLE_DIR, f), 'utf8')));
